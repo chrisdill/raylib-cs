@@ -1,5 +1,8 @@
-﻿using System;
-using static Raylibcs.Raylibcs;
+﻿using CppSharp;
+using raylib;
+using static raylib.raymath;
+using static raylib.raylib;
+using System;
 
 namespace Raylibcs
 {
@@ -7,36 +10,44 @@ namespace Raylibcs
     {
         static void Main(string[] args)
         {
-            InitWindow(800, 450, "Raylibcs 0.1");
+            // ConsoleDriver.Run(new SampleLibrary());
+            Test();
+            // Console.Read();
+        }
+
+        public static void Test()
+        {
+            InitWindow(800, 450, "Raylib-cs [2.0]");
+            InitAudioDevice();          
             SetTargetFPS(60);
             SetExitKey(256);
+   
+            var sound = LoadSound("Data/alive.wav");
+            // PlaySound(sound);
 
-            var sound = LoadSound("alive.wav");
-            PlaySound(ref sound);
+            var t = LoadTexture("Data/test.png");
 
-            var t = LoadTexture("crimbocore.png");
-            //var f = LoadSpriteFont("Vera.ttf");
+            int a = 0;
+            var f = LoadFontEx("Data/Vera.ttf", 96, 0, ref a);
 
-            var w = new Color(255, 255, 255, 255);
-            var c = new Color(124, 124, 124, 255);
-            var g = new Color(230, 230, 230, 255);
+            var c = new Color();
+            c.R = 255;
+            c.G = 255;
+            c.B = 255;
+            c.A = 255;
 
             while (!WindowShouldClose())
             {
-                if (IsKeyPressed(257))
-                {
-                    TakeScreenshot("test.png");
-                }               
-
                 BeginDrawing();
                 ClearBackground(c);
-
-                DrawTexture(t, 0, 0, w);
-                DrawFPS(0, 0);
-                //DrawTextEx(f, "Congrats! You created your first window!", new Vector2(190, 200), 20, 0, w);
-              
+                DrawTexture(t, 0, 0, c);
+                // DrawTextEx(f, "testing", new Vector2 { X = 100, Y = 100 }, 20, 10, c);
+                // DrawFPS(0, 0);
                 EndDrawing();
             }
+
+            UnloadTexture(t);
+            CloseAudioDevice();
             CloseWindow();
         }
     }
