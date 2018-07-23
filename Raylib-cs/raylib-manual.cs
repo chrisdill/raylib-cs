@@ -10,6 +10,8 @@ using System;
 using System.Runtime.InteropServices;
 #endregion
 
+// manually added bindings test
+
 namespace Raylibcs
 {
     using Camera = Raylibcs.Camera2D;
@@ -25,7 +27,7 @@ namespace Raylibcs
 
         private const int MAX_SHADER_LOCATIONS = 32;
         private const int MAX_MATERIAL_MAPS = 12;
-
+            
         #endregion
 
         #region Raylib.h
@@ -46,9 +48,9 @@ namespace Raylibcs
         // Vector3 type
         public struct Vector3
         {
-            float x;
-            float y;
-            float z;
+            public float x;
+            public float y;
+            public float z;
 
             public Vector3(float x, float y, float z)
             {
@@ -61,10 +63,10 @@ namespace Raylibcs
         // Vector4 type
         public struct Vector4
         {
-            float x;
-            float y;
-            float z;
-            float w;
+            public float x;
+            public float y;
+            public float z;
+            public float w;
 
             public Vector4(float x, float y, float z, float w)
             {
@@ -147,9 +149,9 @@ namespace Raylibcs
         // RenderTexture2D type, for texture rendering
         public struct RenderTexture2D
         {
-            uint id;        // OpenGL Framebuffer Object (FBO) id
-            Texture2D texture;      // Color buffer attachment texture
-            Texture2D depth;        // Depth buffer attachment texture
+            public uint id;        // OpenGL Framebuffer Object (FBO) id
+            public Texture2D texture;      // Color buffer attachment texture
+            public Texture2D depth;        // Depth buffer attachment texture
         }
 
         // RenderTexture type, same as RenderTexture2D
@@ -167,6 +169,7 @@ namespace Raylibcs
         }
 
         // Font type, includes texture and charSet array data
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct Font
         {
             public Texture2D texture;      // Font texture
@@ -175,7 +178,7 @@ namespace Raylibcs
             public CharInfo[] chars;        // Characters info data
         }
 
-        // #define SpriteFont Font     // SpriteFont type fallback, defaults to Font
+        // public static Color SpriteFont Font     // SpriteFont type fallback, defaults to Font
 
         // Camera type, defines a camera position/orientation in 3d space
         public struct Camera3D
@@ -187,7 +190,7 @@ namespace Raylibcs
             public int type;               // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
         }
 
-        // #define Camera Camera3D     // Camera type fallback, defaults to Camera3D
+        // public static Color Camera Camera3D     // Camera type fallback, defaults to Camera3D
 
         // Camera2D type, defines a 2d camera
         public struct Camera2D
@@ -212,16 +215,16 @@ namespace Raylibcs
             public int vertexCount;        // Number of vertices stored in arrays
             public int triangleCount;      // Number of triangles stored (indexed or not)
 
-            public float[] vertices;        // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-            public float[] texcoords;       // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-            public float[] texcoords2;      // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
-            public float[] normals;         // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
-            public float[] tangents;        // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
-            public byte[] colors;  // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
-            public ushort[] indices;// Vertex indices (in case vertex data comes indexed)
+            public float[] vertices;       // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
+            public float[] texcoords;      // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
+            public float[] texcoords2;     // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
+            public float[] normals;        // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
+            public float[] tangents;       // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
+            public byte[] colors;          // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
+            public ushort[] indices;       // Vertex indices (in case vertex data comes indexed)
 
-            public uint vaoId;     // OpenGL Vertex Array Object id
-            //public uint vboId[7];  // OpenGL Vertex Buffer Objects id (7 types of vertex data)
+            public uint vaoId;             // OpenGL Vertex Array Object id
+            //public uint vboId[7];        // OpenGL Vertex Buffer Objects id (7 types of vertex data)
         }
 
         // Shader type (generic)
@@ -234,15 +237,15 @@ namespace Raylibcs
         // Material texture map
         public struct MaterialMap
         {
-            Texture2D texture;      // Material map texture
-            Color color;            // Material map color
-            float value;            // Material map value
+            public Texture2D texture;      // Material map texture
+            public Color color;            // Material map color
+            public float value;            // Material map value
         }
 
         // Material type (generic)
         public struct Material
         {
-            Shader shader;          // Material shader
+            public Shader shader;          // Material shader
             //MaterialMap maps[MAX_MATERIAL_MAPS]; // Material maps
             //float[] params;          // Material generic parameters (if required)
         }
@@ -271,30 +274,31 @@ namespace Raylibcs
         // Raycast hit information
         public struct RayHitInfo
         {
-            bool hit;               // Did the ray hit something?
-            float distance;         // Distance to nearest hit
-            Vector3 position;       // Position of nearest hit
-            Vector3 normal;         // Surface normal of hit
+            public bool hit;               // Did the ray hit something?
+            public float distance;         // Distance to nearest hit
+            public Vector3 position;       // Position of nearest hit
+            public Vector3 normal;         // Surface normal of hit
         }
 
         // Wave type, defines audio wave data
         public struct Wave
         {
-            uint sampleCount;   // Number of samples
-            uint sampleRate;    // Frequency (samples per second)
-            uint sampleSize;    // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-            uint channels;      // Number of channels (1-mono, 2-stereo)
-            IntPtr data;                 // Buffer data pointer
+            public uint sampleCount;   // Number of samples
+            public uint sampleRate;    // Frequency (samples per second)
+            public uint sampleSize;    // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+            public uint channels;      // Number of channels (1-mono, 2-stereo)
+            public IntPtr data;                 // Buffer data pointer
         }
 
         // Sound source type
+	    [StructLayout(LayoutKind.Sequential)]
         public struct Sound
         {
-            IntPtr audioBuffer;      // Pointer to internal data used by the audio system
+            public IntPtr audioBuffer;      // Pointer to internal data used by the audio system
 
-            uint source;    // Audio source id
-            uint buffer;    // Audio buffer id
-            int format;             // Audio format specifier
+            public uint source;    // Audio source id
+            public uint buffer;    // Audio buffer id
+            public int format;             // Audio format specifier
         }
 
         // Music type (file streaming from memory)
@@ -931,7 +935,7 @@ namespace Raylibcs
         public static extern SpriteFont LoadSpriteFont(string fileName);                                                    // Load a SpriteFont image into GPU memory
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern SpriteFont LoadSpriteFontEx(string fileName, int fontSize, int numChars, IntPtr fontChars);     // Load a SpriteFont from TTF font with parameters
+        public static extern SpriteFont LoadSpriteFontEx(string fileName, int fontSize, int numChars, int fontChars);     // Load a SpriteFont from TTF font with parameters
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadSpriteFont(SpriteFont spriteFont);                                                       // Unload SpriteFont from GPU memory
@@ -1128,7 +1132,7 @@ namespace Raylibcs
         public static extern RayHitInfo GetCollisionRayGround(Ray ray, float groundHeight);                                      // Get collision info between ray and ground plane (Y-normal plane)
 
 
-        //module: shaders (rlgl)
+        // module: shaders (rlgl)
 
         // Shader loading/unloading functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1248,7 +1252,7 @@ namespace Raylibcs
 	    // Wave/Sound management functions
 	    
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void PlaySound(ref Sound sound);                                                    // Play a sound
+        public static extern void PlaySound(Sound sound);                                                    // Play a sound
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void PauseSound(Sound sound);                                                   // Pause a sound
@@ -1346,38 +1350,231 @@ namespace Raylibcs
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void StopAudioStream(AudioStream stream);                                       // Stop audio stream
-	    
-		//colors
 
-	    // Custom raylib color palette for amazing visuals
-	    /*#define LIGHTGRAY  (Color){ 200, 200, 200, 255 }        // Light Gray
-	    #define GRAY       (Color){ 130, 130, 130, 255 }        // Gray
-	    #define DARKGRAY   (Color){ 80, 80, 80, 255 }           // Dark Gray
-	    #define YELLOW     (Color){ 253, 249, 0, 255 }          // Yellow
-	    #define GOLD       (Color){ 255, 203, 0, 255 }          // Gold
-	    #define ORANGE     (Color){ 255, 161, 0, 255 }          // Orange
-	    #define PINK       (Color){ 255, 109, 194, 255 }        // Pink
-	    #define RED        (Color){ 230, 41, 55, 255 }          // Red
-	    #define MAROON     (Color){ 190, 33, 55, 255 }          // Maroon
-	    #define GREEN      (Color){ 0, 228, 48, 255 }           // Green
-	    #define LIME       (Color){ 0, 158, 47, 255 }           // Lime
-	    #define DARKGREEN  (Color){ 0, 117, 44, 255 }           // Dark Green
-	    #define SKYBLUE    (Color){ 102, 191, 255, 255 }        // Sky Blue
-	    #define BLUE       (Color){ 0, 121, 241, 255 }          // Blue
-	    #define DARKBLUE   (Color){ 0, 82, 172, 255 }           // Dark Blue
-	    #define PURPLE     (Color){ 200, 122, 255, 255 }        // Purple
-	    #define VIOLET     (Color){ 135, 60, 190, 255 }         // Violet
-	    #define DARKPURPLE (Color){ 112, 31, 126, 255 }         // Dark Purple
-	    #define BEIGE      (Color){ 211, 176, 131, 255 }        // Beige
-	    #define BROWN      (Color){ 127, 106, 79, 255 }         // Brown
-	    #define DARKBROWN  (Color){ 76, 63, 47, 255 }           // Dark Brown
+        #endregion
 
-	    #define WHITE      (Color){ 255, 255, 255, 255 }        // White
-	    #define BLACK      (Color){ 0, 0, 0, 255 }              // Black
-	    #define BLANK      (Color){ 0, 0, 0, 0 }                // Transparent
-	    #define MAGENTA    (Color){ 255, 0, 255, 255 }          // Magenta
-	    #define RAYWHITE   (Color){ 245, 245, 245, 255 }        // Ray White
+        #region Raylib# Constants
+
+        // raylib Config Flags
+        /*#define FLAG_SHOW_LOGO              1       // Set to show raylib logo at startup
+        #define FLAG_FULLSCREEN_MODE        2       // Set to run program in fullscreen
+        #define FLAG_WINDOW_RESIZABLE       4       // Set to allow resizable window
+        #define FLAG_WINDOW_UNDECORATED     8       // Set to disable window decoration (frame and buttons)
+        #define FLAG_WINDOW_TRANSPARENT    16       // Set to allow transparent window
+        #define FLAG_MSAA_4X_HINT          32       // Set to try enabling MSAA 4X
+        #define FLAG_VSYNC_HINT            64       // Set to try enabling V-Sync on GPU
         */
+
+        // Keyboard Function Keys
+        /*#define KEY_SPACE 32
+        #define KEY_ESCAPE 256
+        #define KEY_ENTER 257
+        #define KEY_TAB 258
+        #define KEY_BACKSPACE 259
+        #define KEY_INSERT 260
+        #define KEY_DELETE 261
+        #define KEY_RIGHT 262
+        #define KEY_LEFT 263
+        #define KEY_DOWN 264
+        #define KEY_UP 265
+        #define KEY_PAGE_UP 266
+        #define KEY_PAGE_DOWN 267
+        #define KEY_HOME 268
+        #define KEY_END 269
+        #define KEY_CAPS_LOCK 280
+        #define KEY_SCROLL_LOCK 281
+        #define KEY_NUM_LOCK 282
+        #define KEY_PRINT_SCREEN 283
+        #define KEY_PAUSE 284
+        #define KEY_F1 290
+        #define KEY_F2 291
+        #define KEY_F3 292
+        #define KEY_F4 293
+        #define KEY_F5 294
+        #define KEY_F6 295
+        #define KEY_F7 296
+        #define KEY_F8 297
+        #define KEY_F9 298
+        #define KEY_F10 299
+        #define KEY_F11 300
+        #define KEY_F12 301
+        #define KEY_LEFT_SHIFT 340
+        #define KEY_LEFT_CONTROL 341
+        #define KEY_LEFT_ALT 342
+        #define KEY_RIGHT_SHIFT 344
+        #define KEY_RIGHT_CONTROL 345
+        #define KEY_RIGHT_ALT 346
+        #define KEY_GRAVE 96
+        #define KEY_SLASH 47
+        #define KEY_BACKSLASH 92
+        
+                    // Keyboard Alpha Numeric Keys
+        #define KEY_ZERO 48
+        #define KEY_ONE 49
+        #define KEY_TWO 50
+        #define KEY_THREE 51
+        #define KEY_FOUR 52
+        #define KEY_FIVE 53
+        #define KEY_SIX 54
+        #define KEY_SEVEN 55
+        #define KEY_EIGHT 56
+        #define KEY_NINE 57
+        #define KEY_A 65
+        #define KEY_B 66
+        #define KEY_C 67
+        #define KEY_D 68
+        #define KEY_E 69
+        #define KEY_F 70
+        #define KEY_G 71
+        #define KEY_H 72
+        #define KEY_I 73
+        #define KEY_J 74
+        #define KEY_K 75
+        #define KEY_L 76
+        #define KEY_M 77
+        #define KEY_N 78
+        #define KEY_O 79
+        #define KEY_P 80
+        #define KEY_Q 81
+        #define KEY_R 82
+        #define KEY_S 83
+        #define KEY_T 84
+        #define KEY_U 85
+        #define KEY_V 86
+        #define KEY_W 87
+        #define KEY_X 88
+        #define KEY_Y 89
+        #define KEY_Z 90
+        
+        // Android Physical Buttons
+        #define KEY_BACK 4
+        #define KEY_MENU 82
+        #define KEY_VOLUME_UP 24
+        #define KEY_VOLUME_DOWN 25*/
+
+        // Mouse Buttons
+        /*#define MOUSE_LEFT_BUTTON     0
+        #define MOUSE_RIGHT_BUTTON    1
+        #define MOUSE_MIDDLE_BUTTON   2
+
+        // Touch points registered
+        #define MAX_TOUCH_POINTS      2
+
+        // Gamepad Number
+        #define GAMEPAD_PLAYER1       0
+        #define GAMEPAD_PLAYER2       1
+        #define GAMEPAD_PLAYER3       2
+        #define GAMEPAD_PLAYER4       3
+
+        // Gamepad Buttons/Axis
+
+        // PS3 USB Controller Buttons
+        #define GAMEPAD_PS3_BUTTON_TRIANGLE 0
+        #define GAMEPAD_PS3_BUTTON_CIRCLE   1
+        #define GAMEPAD_PS3_BUTTON_CROSS    2
+        #define GAMEPAD_PS3_BUTTON_SQUARE   3
+        #define GAMEPAD_PS3_BUTTON_L1       6
+        #define GAMEPAD_PS3_BUTTON_R1       7
+        #define GAMEPAD_PS3_BUTTON_L2       4
+        #define GAMEPAD_PS3_BUTTON_R2       5
+        #define GAMEPAD_PS3_BUTTON_START    8
+        #define GAMEPAD_PS3_BUTTON_SELECT   9
+        #define GAMEPAD_PS3_BUTTON_UP      24
+        #define GAMEPAD_PS3_BUTTON_RIGHT   25
+        #define GAMEPAD_PS3_BUTTON_DOWN    26
+        #define GAMEPAD_PS3_BUTTON_LEFT    27
+        #define GAMEPAD_PS3_BUTTON_PS      12
+
+        // PS3 USB Controller Axis
+        #define GAMEPAD_PS3_AXIS_LEFT_X     0
+        #define GAMEPAD_PS3_AXIS_LEFT_Y     1
+        #define GAMEPAD_PS3_AXIS_RIGHT_X    2
+        #define GAMEPAD_PS3_AXIS_RIGHT_Y    5
+        #define GAMEPAD_PS3_AXIS_L2         3       // [1..-1] (pressure-level)
+        #define GAMEPAD_PS3_AXIS_R2         4       // [1..-1] (pressure-level)
+
+        // Xbox360 USB Controller Buttons
+        #define GAMEPAD_XBOX_BUTTON_A       0
+        #define GAMEPAD_XBOX_BUTTON_B       1
+        #define GAMEPAD_XBOX_BUTTON_X       2
+        #define GAMEPAD_XBOX_BUTTON_Y       3
+        #define GAMEPAD_XBOX_BUTTON_LB      4
+        #define GAMEPAD_XBOX_BUTTON_RB      5
+        #define GAMEPAD_XBOX_BUTTON_SELECT  6
+        #define GAMEPAD_XBOX_BUTTON_START   7
+        #define GAMEPAD_XBOX_BUTTON_UP      10
+        #define GAMEPAD_XBOX_BUTTON_RIGHT   11
+        #define GAMEPAD_XBOX_BUTTON_DOWN    12
+        #define GAMEPAD_XBOX_BUTTON_LEFT    13
+        #define GAMEPAD_XBOX_BUTTON_HOME    8
+
+        // Android Gamepad Controller (SNES CLASSIC)
+        #define GAMEPAD_ANDROID_DPAD_UP        19
+        #define GAMEPAD_ANDROID_DPAD_DOWN      20
+        #define GAMEPAD_ANDROID_DPAD_LEFT      21
+        #define GAMEPAD_ANDROID_DPAD_RIGHT     22
+        #define GAMEPAD_ANDROID_DPAD_CENTER    23
+
+        #define GAMEPAD_ANDROID_BUTTON_A       96
+        #define GAMEPAD_ANDROID_BUTTON_B       97
+        #define GAMEPAD_ANDROID_BUTTON_C       98
+        #define GAMEPAD_ANDROID_BUTTON_X       99
+        #define GAMEPAD_ANDROID_BUTTON_Y       100
+        #define GAMEPAD_ANDROID_BUTTON_Z       101
+        #define GAMEPAD_ANDROID_BUTTON_L1      102
+        #define GAMEPAD_ANDROID_BUTTON_R1      103
+        #define GAMEPAD_ANDROID_BUTTON_L2      104
+        #define GAMEPAD_ANDROID_BUTTON_R2      105
+
+        // Xbox360 USB Controller Axis
+        // NOTE: For Raspberry Pi, axis must be reconfigured
+        #if defined(PLATFORM_RPI)
+            #define GAMEPAD_XBOX_AXIS_LEFT_X    0   // [-1..1] (left->right)
+            #define GAMEPAD_XBOX_AXIS_LEFT_Y    1   // [-1..1] (up->down)
+            #define GAMEPAD_XBOX_AXIS_RIGHT_X   3   // [-1..1] (left->right)
+            #define GAMEPAD_XBOX_AXIS_RIGHT_Y   4   // [-1..1] (up->down)
+            #define GAMEPAD_XBOX_AXIS_LT        2   // [-1..1] (pressure-level)
+            #define GAMEPAD_XBOX_AXIS_RT        5   // [-1..1] (pressure-level)
+        #else
+            #define GAMEPAD_XBOX_AXIS_LEFT_X    0   // [-1..1] (left->right)
+            #define GAMEPAD_XBOX_AXIS_LEFT_Y    1   // [1..-1] (up->down)
+            #define GAMEPAD_XBOX_AXIS_RIGHT_X   2   // [-1..1] (left->right)
+            #define GAMEPAD_XBOX_AXIS_RIGHT_Y   3   // [1..-1] (up->down)
+            #define GAMEPAD_XBOX_AXIS_LT        4   // [-1..1] (pressure-level)
+            #define GAMEPAD_XBOX_AXIS_RT        5   // [-1..1] (pressure-level)
+        #endif*/
+
+        // colors
+
+        // Custom raylib color palette for amazing visuals
+        public static Color LIGHTGRAY  = new Color(200, 200, 200, 255);          // Light Gray
+        public static Color GRAY       = new Color(130, 130, 130, 255);          // Gray
+        public static Color DARKGRAY   = new Color(80, 80, 80, 255);             // Dark Gray
+	    public static Color YELLOW     = new Color( 253, 249, 0, 255 );          // Yellow
+	    public static Color GOLD       = new Color( 255, 203, 0, 255 );          // Gold
+	    public static Color ORANGE     = new Color( 255, 161, 0, 255 );          // Orange
+	    public static Color PINK       = new Color( 255, 109, 194, 255 );        // Pink
+	    public static Color RED        = new Color( 230, 41, 55, 255 );          // Red
+	    public static Color MAROON     = new Color( 190, 33, 55, 255 );          // Maroon
+	    public static Color GREEN      = new Color( 0, 228, 48, 255 );           // Green
+	    public static Color LIME       = new Color( 0, 158, 47, 255 );           // Lime
+	    public static Color DARKGREEN  = new Color( 0, 117, 44, 255 );           // Dark Green
+	    public static Color SKYBLUE    = new Color( 102, 191, 255, 255 );        // Sky Blue
+	    public static Color BLUE       = new Color( 0, 121, 241, 255 );          // Blue
+	    public static Color DARKBLUE   = new Color( 0, 82, 172, 255 );           // Dark Blue
+	    public static Color PURPLE     = new Color( 200, 122, 255, 255 );        // Purple
+	    public static Color VIOLET     = new Color( 135, 60, 190, 255 );         // Violet
+	    public static Color DARKPURPLE = new Color( 112, 31, 126, 255 );         // Dark Purple
+	    public static Color BEIGE      = new Color( 211, 176, 131, 255 );        // Beige
+	    public static Color BROWN      = new Color( 127, 106, 79, 255 );         // Brown
+	    public static Color DARKBROWN  = new Color( 76, 63, 47, 255 );           // Dark Brown
+
+	    public static Color WHITE      = new Color( 255, 255, 255, 255 );        // White
+	    public static Color BLACK      = new Color( 0, 0, 0, 255 );              // Black
+        public static Color BLANK      = new Color(0, 0, 0, 0);                  // Transparent
+	    public static Color MAGENTA    = new Color( 255, 0, 255, 255 );          // Magenta
+	    public static Color RAYWHITE   = new Color( 245, 245, 245, 255 );        // Ray White
+        
         #endregion
     }
 }
