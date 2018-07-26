@@ -89,7 +89,6 @@
     <Compile Include="Generator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="raylib-manual.cs" />
     <Compile Include="raylib.cs" />
     <Compile Include="Std.cs" />
   </ItemGroup>
