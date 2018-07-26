@@ -154,6 +154,110 @@ namespace raylib
         HMD_SONY_PSVR = 5
     }
 
+    [Flags]
+    public enum Flag
+    {
+        FLAG_SHOW_LOGO = 1,
+        FLAG_FULLSCREEN_MODE = 2,
+        FLAG_WINDOW_RESIZABLE = 4,
+        FLAG_WINDOW_UNDECORATED = 8,
+        FLAG_WINDOW_TRANSPARENT = 16,
+        FLAG_MSAA_4X_HINT = 32,
+        FLAG_VSYNC_HINT = 64
+    }
+
+    public enum Key
+    {
+        KEY_SPACE = 32,
+        KEY_ESCAPE = 256,
+        KEY_ENTER = 257,
+        KEY_TAB = 258,
+        KEY_BACKSPACE = 259,
+        KEY_INSERT = 260,
+        KEY_DELETE = 261,
+        KEY_RIGHT = 262,
+        KEY_LEFT = 263,
+        KEY_DOWN = 264,
+        KEY_UP = 265,
+        KEY_PAGE_UP = 266,
+        KEY_PAGE_DOWN = 267,
+        KEY_HOME = 268,
+        KEY_END = 269,
+        KEY_CAPS_LOCK = 280,
+        KEY_SCROLL_LOCK = 281,
+        KEY_NUM_LOCK = 282,
+        KEY_PRINT_SCREEN = 283,
+        KEY_PAUSE = 284,
+        KEY_F1 = 290,
+        KEY_F2 = 291,
+        KEY_F3 = 292,
+        KEY_F4 = 293,
+        KEY_F5 = 294,
+        KEY_F6 = 295,
+        KEY_F7 = 296,
+        KEY_F8 = 297,
+        KEY_F9 = 298,
+        KEY_F10 = 299,
+        KEY_F11 = 300,
+        KEY_F12 = 301,
+        KEY_LEFT_SHIFT = 340,
+        KEY_LEFT_CONTROL = 341,
+        KEY_LEFT_ALT = 342,
+        KEY_RIGHT_SHIFT = 344,
+        KEY_RIGHT_CONTROL = 345,
+        KEY_RIGHT_ALT = 346,
+        KEY_GRAVE = 96,
+        KEY_SLASH = 47,
+        KEY_BACKSLASH = 92,
+        KEY_ZERO = 48,
+        KEY_ONE = 49,
+        KEY_TWO = 50,
+        KEY_THREE = 51,
+        KEY_FOUR = 52,
+        KEY_FIVE = 53,
+        KEY_SIX = 54,
+        KEY_SEVEN = 55,
+        KEY_EIGHT = 56,
+        KEY_NINE = 57,
+        KEY_A = 65,
+        KEY_B = 66,
+        KEY_C = 67,
+        KEY_D = 68,
+        KEY_E = 69,
+        KEY_F = 70,
+        KEY_G = 71,
+        KEY_H = 72,
+        KEY_I = 73,
+        KEY_J = 74,
+        KEY_K = 75,
+        KEY_L = 76,
+        KEY_M = 77,
+        KEY_N = 78,
+        KEY_O = 79,
+        KEY_P = 80,
+        KEY_Q = 81,
+        KEY_R = 82,
+        KEY_S = 83,
+        KEY_T = 84,
+        KEY_U = 85,
+        KEY_V = 86,
+        KEY_W = 87,
+        KEY_X = 88,
+        KEY_Y = 89,
+        KEY_Z = 90,
+        KEY_BACK = 4,
+        KEY_MENU = 82,
+        KEY_VOLUME_UP = 24,
+        KEY_VOLUME_DOWN = 25
+    }
+
+    public enum Mouse
+    {
+        MOUSE_LEFT_BUTTON = 0,
+        MOUSE_RIGHT_BUTTON = 1,
+        MOUSE_MIDDLE_BUTTON = 2
+    }
+
     public unsafe partial class Vector2 : IDisposable
     {
         [StructLayout(LayoutKind.Explicit, Size = 8)]
@@ -903,6 +1007,21 @@ namespace raylib
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="??0Color@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
+
+            [SuppressUnmanagedCodeSecurity]
+            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+                EntryPoint="ColorToInt")]
+            internal static extern int ToInt(global::System.IntPtr instance);
+
+            [SuppressUnmanagedCodeSecurity]
+            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+                EntryPoint="ColorNormalize")]
+            internal static extern global::raylib.Vector4.__Internal Normalize(global::System.IntPtr instance);
+
+            [SuppressUnmanagedCodeSecurity]
+            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+                EntryPoint="ColorToHSV")]
+            internal static extern global::raylib.Vector3.__Internal ToHSV(global::System.IntPtr instance);
         }
 
         public global::System.IntPtr __Instance { get; protected set; }
@@ -973,6 +1092,24 @@ namespace raylib
             if (__ownsNativeInstance)
                 Marshal.FreeHGlobal(__Instance);
             __Instance = IntPtr.Zero;
+        }
+
+        public int ToInt()
+        {
+            var __ret = __Internal.ToInt((__Instance + __PointerAdjustment));
+            return __ret;
+        }
+
+        public global::raylib.Vector4 Normalize()
+        {
+            var __ret = __Internal.Normalize((__Instance + __PointerAdjustment));
+            return global::raylib.Vector4.__CreateInstance(__ret);
+        }
+
+        public global::raylib.Vector3 ToHSV()
+        {
+            var __ret = __Internal.ToHSV((__Instance + __PointerAdjustment));
+            return global::raylib.Vector3.__CreateInstance(__ret);
         }
 
         public byte R
@@ -1198,6 +1335,11 @@ namespace raylib
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="??0Image@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
+
+            [SuppressUnmanagedCodeSecurity]
+            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+                EntryPoint="ImageCopy")]
+            internal static extern global::raylib.Image.__Internal Copy(global::System.IntPtr instance);
         }
 
         public global::System.IntPtr __Instance { get; protected set; }
@@ -1332,6 +1474,15 @@ namespace raylib
             set
             {
                 ((global::raylib.Image.__Internal*)__Instance)->format = value;
+            }
+        }
+
+        public global::raylib.Image Copy
+        {
+            get
+            {
+                var __ret = __Internal.Copy((__Instance + __PointerAdjustment));
+                return global::raylib.Image.__CreateInstance(__ret);
             }
         }
     }
@@ -2352,7 +2503,7 @@ namespace raylib
             __Instance = IntPtr.Zero;
         }
 
-        public global::raylib.Vector3 Min
+        public global::raylib.Vector3 min
         {
             get
             {
@@ -2365,7 +2516,7 @@ namespace raylib
             }
         }
 
-        public global::raylib.Vector3 Max
+        public global::raylib.Vector3 max
         {
             get
             {
@@ -2421,6 +2572,11 @@ namespace raylib
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="??0Mesh@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
+
+            [SuppressUnmanagedCodeSecurity]
+            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+                EntryPoint="MeshBoundingBox")]
+            internal static extern global::raylib.BoundingBox.__Internal BoundingBox(global::System.IntPtr instance);
         }
 
         public global::System.IntPtr __Instance { get; protected set; }
@@ -2644,6 +2800,15 @@ namespace raylib
                     for (int i = 0; i < 7; i++)
                         ((global::raylib.Mesh.__Internal*)__Instance)->vboId[i] = value[i];
                 }
+            }
+        }
+
+        public global::raylib.BoundingBox BoundingBox
+        {
+            get
+            {
+                var __ret = __Internal.BoundingBox((__Instance + __PointerAdjustment));
+                return global::raylib.BoundingBox.__CreateInstance(__ret);
             }
         }
     }
@@ -3460,6 +3625,11 @@ namespace raylib
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="??0Wave@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
+
+            [SuppressUnmanagedCodeSecurity]
+            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+                EntryPoint="WaveCopy")]
+            internal static extern global::raylib.Wave.__Internal Copy(global::System.IntPtr instance);
         }
 
         public global::System.IntPtr __Instance { get; protected set; }
@@ -3594,6 +3764,15 @@ namespace raylib
             set
             {
                 ((global::raylib.Wave.__Internal*)__Instance)->data = (global::System.IntPtr) value;
+            }
+        }
+
+        public global::raylib.Wave Copy
+        {
+            get
+            {
+                var __ret = __Internal.Copy((__Instance + __PointerAdjustment));
+                return global::raylib.Wave.__CreateInstance(__ret);
             }
         }
     }
@@ -4445,21 +4624,6 @@ namespace raylib
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="ColorToInt")]
-            internal static extern int ColorToInt(global::raylib.Color.__Internal color);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="ColorNormalize")]
-            internal static extern void ColorNormalize(global::System.IntPtr @return, global::raylib.Color.__Internal color);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="ColorToHSV")]
-            internal static extern void ColorToHSV(global::System.IntPtr @return, global::raylib.Color.__Internal color);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="GetColor")]
             internal static extern global::raylib.Color.__Internal GetColor(int hexValue);
 
@@ -5034,11 +5198,6 @@ namespace raylib
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="ImageCopy")]
-            internal static extern void ImageCopy(global::System.IntPtr @return, global::raylib.Image.__Internal image);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="ImageToPOT")]
             internal static extern void ImageToPOT(global::System.IntPtr image, global::raylib.Color.__Internal fillColor);
 
@@ -5431,11 +5590,6 @@ namespace raylib
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="ExportMesh")]
             internal static extern void ExportMesh([MarshalAs(UnmanagedType.LPStr)] string fileName, global::raylib.Mesh.__Internal mesh);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="MeshBoundingBox")]
-            internal static extern void MeshBoundingBox(global::System.IntPtr @return, global::raylib.Mesh.__Internal mesh);
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
@@ -5843,11 +5997,6 @@ namespace raylib
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="WaveCopy")]
-            internal static extern void WaveCopy(global::System.IntPtr @return, global::raylib.Wave.__Internal wave);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="WaveCrop")]
             internal static extern void WaveCrop(global::System.IntPtr wave, int initSample, int finalSample);
 
@@ -6177,29 +6326,6 @@ namespace raylib
         {
             var __ret = __Internal.GetTime();
             return __ret;
-        }
-
-        public static int ColorToInt(global::raylib.Color color)
-        {
-            var __arg0 = ReferenceEquals(color, null) ? new global::raylib.Color.__Internal() : *(global::raylib.Color.__Internal*) color.__Instance;
-            var __ret = __Internal.ColorToInt(__arg0);
-            return __ret;
-        }
-
-        public static global::raylib.Vector4 ColorNormalize(global::raylib.Color color)
-        {
-            var __arg0 = ReferenceEquals(color, null) ? new global::raylib.Color.__Internal() : *(global::raylib.Color.__Internal*) color.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.ColorNormalize(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 ColorToHSV(global::raylib.Color color)
-        {
-            var __arg0 = ReferenceEquals(color, null) ? new global::raylib.Color.__Internal() : *(global::raylib.Color.__Internal*) color.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.ColorToHSV(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector3.__CreateInstance(__ret);
         }
 
         public static global::raylib.Color GetColor(int hexValue)
@@ -6923,14 +7049,6 @@ namespace raylib
             __Internal.UpdateTexture(__arg0, pixels);
         }
 
-        public static global::raylib.Image ImageCopy(global::raylib.Image image)
-        {
-            var __arg0 = ReferenceEquals(image, null) ? new global::raylib.Image.__Internal() : *(global::raylib.Image.__Internal*) image.__Instance;
-            var __ret = new global::raylib.Image.__Internal();
-            __Internal.ImageCopy(new IntPtr(&__ret), __arg0);
-            return global::raylib.Image.__CreateInstance(__ret);
-        }
-
         public static void ImageToPOT(global::raylib.Image image, global::raylib.Color fillColor)
         {
             var __arg0 = ReferenceEquals(image, null) ? global::System.IntPtr.Zero : image.__Instance;
@@ -7500,14 +7618,6 @@ namespace raylib
             __Internal.ExportMesh(fileName, __arg1);
         }
 
-        public static global::raylib.BoundingBox MeshBoundingBox(global::raylib.Mesh mesh)
-        {
-            var __arg0 = ReferenceEquals(mesh, null) ? new global::raylib.Mesh.__Internal() : *(global::raylib.Mesh.__Internal*) mesh.__Instance;
-            var __ret = new global::raylib.BoundingBox.__Internal();
-            __Internal.MeshBoundingBox(new IntPtr(&__ret), __arg0);
-            return global::raylib.BoundingBox.__CreateInstance(__ret);
-        }
-
         public static void MeshTangents(global::raylib.Mesh mesh)
         {
             var __arg0 = ReferenceEquals(mesh, null) ? global::System.IntPtr.Zero : mesh.__Instance;
@@ -8064,14 +8174,6 @@ namespace raylib
             __Internal.WaveFormat(__arg0, sampleRate, sampleSize, channels);
         }
 
-        public static global::raylib.Wave WaveCopy(global::raylib.Wave wave)
-        {
-            var __arg0 = ReferenceEquals(wave, null) ? new global::raylib.Wave.__Internal() : *(global::raylib.Wave.__Internal*) wave.__Instance;
-            var __ret = new global::raylib.Wave.__Internal();
-            __Internal.WaveCopy(new IntPtr(&__ret), __arg0);
-            return global::raylib.Wave.__CreateInstance(__ret);
-        }
-
         public static void WaveCrop(global::raylib.Wave wave, int initSample, int finalSample)
         {
             var __arg0 = ReferenceEquals(wave, null) ? global::System.IntPtr.Zero : wave.__Instance;
@@ -8238,1164 +8340,6 @@ namespace raylib
         {
             var __arg0 = ReferenceEquals(stream, null) ? new global::raylib.AudioStream.__Internal() : *(global::raylib.AudioStream.__Internal*) stream.__Instance;
             __Internal.SetAudioStreamPitch(__arg0, pitch);
-        }
-    }
-
-    public unsafe partial class Float3 : IDisposable
-    {
-        [StructLayout(LayoutKind.Explicit, Size = 12)]
-        public partial struct __Internal
-        {
-            [FieldOffset(0)]
-            internal fixed float v[3];
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="??0float3@@QEAA@AEBU0@@Z")]
-            internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
-        }
-
-        public global::System.IntPtr __Instance { get; protected set; }
-
-        protected int __PointerAdjustment;
-        internal static readonly global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::raylib.Float3> NativeToManagedMap = new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::raylib.Float3>();
-        protected void*[] __OriginalVTables;
-
-        protected bool __ownsNativeInstance;
-
-        internal static global::raylib.Float3 __CreateInstance(global::System.IntPtr native, bool skipVTables = false)
-        {
-            return new global::raylib.Float3(native.ToPointer(), skipVTables);
-        }
-
-        internal static global::raylib.Float3 __CreateInstance(global::raylib.Float3.__Internal native, bool skipVTables = false)
-        {
-            return new global::raylib.Float3(native, skipVTables);
-        }
-
-        private static void* __CopyValue(global::raylib.Float3.__Internal native)
-        {
-            var ret = Marshal.AllocHGlobal(sizeof(global::raylib.Float3.__Internal));
-            *(global::raylib.Float3.__Internal*) ret = native;
-            return ret.ToPointer();
-        }
-
-        private Float3(global::raylib.Float3.__Internal native, bool skipVTables = false)
-            : this(__CopyValue(native), skipVTables)
-        {
-            __ownsNativeInstance = true;
-            NativeToManagedMap[__Instance] = this;
-        }
-
-        protected Float3(void* native, bool skipVTables = false)
-        {
-            if (native == null)
-                return;
-            __Instance = new global::System.IntPtr(native);
-        }
-
-        public Float3()
-        {
-            __Instance = Marshal.AllocHGlobal(sizeof(global::raylib.Float3.__Internal));
-            __ownsNativeInstance = true;
-            NativeToManagedMap[__Instance] = this;
-        }
-
-        public Float3(global::raylib.Float3 _0)
-        {
-            __Instance = Marshal.AllocHGlobal(sizeof(global::raylib.Float3.__Internal));
-            __ownsNativeInstance = true;
-            NativeToManagedMap[__Instance] = this;
-            *((global::raylib.Float3.__Internal*) __Instance) = *((global::raylib.Float3.__Internal*) _0.__Instance);
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-        }
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (__Instance == IntPtr.Zero)
-                return;
-            global::raylib.Float3 __dummy;
-            NativeToManagedMap.TryRemove(__Instance, out __dummy);
-            if (__ownsNativeInstance)
-                Marshal.FreeHGlobal(__Instance);
-            __Instance = IntPtr.Zero;
-        }
-
-        public float[] V
-        {
-            get
-            {
-                float[] __value = null;
-                if (((global::raylib.Float3.__Internal*) __Instance)->v != null)
-                {
-                    __value = new float[3];
-                    for (int i = 0; i < 3; i++)
-                        __value[i] = ((global::raylib.Float3.__Internal*) __Instance)->v[i];
-                }
-                return __value;
-            }
-
-            set
-            {
-                if (value != null)
-                {
-                    for (int i = 0; i < 3; i++)
-                        ((global::raylib.Float3.__Internal*)__Instance)->v[i] = value[i];
-                }
-            }
-        }
-    }
-
-    public unsafe partial class Float16 : IDisposable
-    {
-        [StructLayout(LayoutKind.Explicit, Size = 64)]
-        public partial struct __Internal
-        {
-            [FieldOffset(0)]
-            internal fixed float v[16];
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="??0float16@@QEAA@AEBU0@@Z")]
-            internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
-        }
-
-        public global::System.IntPtr __Instance { get; protected set; }
-
-        protected int __PointerAdjustment;
-        internal static readonly global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::raylib.Float16> NativeToManagedMap = new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::raylib.Float16>();
-        protected void*[] __OriginalVTables;
-
-        protected bool __ownsNativeInstance;
-
-        internal static global::raylib.Float16 __CreateInstance(global::System.IntPtr native, bool skipVTables = false)
-        {
-            return new global::raylib.Float16(native.ToPointer(), skipVTables);
-        }
-
-        internal static global::raylib.Float16 __CreateInstance(global::raylib.Float16.__Internal native, bool skipVTables = false)
-        {
-            return new global::raylib.Float16(native, skipVTables);
-        }
-
-        private static void* __CopyValue(global::raylib.Float16.__Internal native)
-        {
-            var ret = Marshal.AllocHGlobal(sizeof(global::raylib.Float16.__Internal));
-            *(global::raylib.Float16.__Internal*) ret = native;
-            return ret.ToPointer();
-        }
-
-        private Float16(global::raylib.Float16.__Internal native, bool skipVTables = false)
-            : this(__CopyValue(native), skipVTables)
-        {
-            __ownsNativeInstance = true;
-            NativeToManagedMap[__Instance] = this;
-        }
-
-        protected Float16(void* native, bool skipVTables = false)
-        {
-            if (native == null)
-                return;
-            __Instance = new global::System.IntPtr(native);
-        }
-
-        public Float16()
-        {
-            __Instance = Marshal.AllocHGlobal(sizeof(global::raylib.Float16.__Internal));
-            __ownsNativeInstance = true;
-            NativeToManagedMap[__Instance] = this;
-        }
-
-        public Float16(global::raylib.Float16 _0)
-        {
-            __Instance = Marshal.AllocHGlobal(sizeof(global::raylib.Float16.__Internal));
-            __ownsNativeInstance = true;
-            NativeToManagedMap[__Instance] = this;
-            *((global::raylib.Float16.__Internal*) __Instance) = *((global::raylib.Float16.__Internal*) _0.__Instance);
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-        }
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (__Instance == IntPtr.Zero)
-                return;
-            global::raylib.Float16 __dummy;
-            NativeToManagedMap.TryRemove(__Instance, out __dummy);
-            if (__ownsNativeInstance)
-                Marshal.FreeHGlobal(__Instance);
-            __Instance = IntPtr.Zero;
-        }
-
-        public float[] V
-        {
-            get
-            {
-                float[] __value = null;
-                if (((global::raylib.Float16.__Internal*) __Instance)->v != null)
-                {
-                    __value = new float[16];
-                    for (int i = 0; i < 16; i++)
-                        __value[i] = ((global::raylib.Float16.__Internal*) __Instance)->v[i];
-                }
-                return __value;
-            }
-
-            set
-            {
-                if (value != null)
-                {
-                    for (int i = 0; i < 16; i++)
-                        ((global::raylib.Float16.__Internal*)__Instance)->v[i] = value[i];
-                }
-            }
-        }
-    }
-
-    public unsafe partial class raymath
-    {
-        public partial struct __Internal
-        {
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Clamp@@YAMMMM@Z")]
-            internal static extern float Clamp(float value, float min, float max);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Zero@@YA?AUVector2@@XZ")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Zero();
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2One@@YA?AUVector2@@XZ")]
-            internal static extern global::raylib.Vector2.__Internal Vector2One();
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Add@@YA?AUVector2@@U1@0@Z")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Add(global::raylib.Vector2.__Internal v1, global::raylib.Vector2.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Subtract@@YA?AUVector2@@U1@0@Z")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Subtract(global::raylib.Vector2.__Internal v1, global::raylib.Vector2.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Length@@YAMUVector2@@@Z")]
-            internal static extern float Vector2Length(global::raylib.Vector2.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2DotProduct@@YAMUVector2@@0@Z")]
-            internal static extern float Vector2DotProduct(global::raylib.Vector2.__Internal v1, global::raylib.Vector2.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Distance@@YAMUVector2@@0@Z")]
-            internal static extern float Vector2Distance(global::raylib.Vector2.__Internal v1, global::raylib.Vector2.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Angle@@YAMUVector2@@0@Z")]
-            internal static extern float Vector2Angle(global::raylib.Vector2.__Internal v1, global::raylib.Vector2.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Scale@@YA?AUVector2@@U1@M@Z")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Scale(global::raylib.Vector2.__Internal v, float scale);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Negate@@YA?AUVector2@@U1@@Z")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Negate(global::raylib.Vector2.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Divide@@YA?AUVector2@@U1@M@Z")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Divide(global::raylib.Vector2.__Internal v, float div);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector2Normalize@@YA?AUVector2@@U1@@Z")]
-            internal static extern global::raylib.Vector2.__Internal Vector2Normalize(global::raylib.Vector2.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Zero@@YA?AUVector3@@XZ")]
-            internal static extern void Vector3Zero(global::System.IntPtr @return);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3One@@YA?AUVector3@@XZ")]
-            internal static extern void Vector3One(global::System.IntPtr @return);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Add@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3Add(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Subtract@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3Subtract(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Multiply@@YA?AUVector3@@U1@M@Z")]
-            internal static extern void Vector3Multiply(global::System.IntPtr @return, global::raylib.Vector3.__Internal v, float scalar);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3MultiplyV@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3MultiplyV(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3CrossProduct@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3CrossProduct(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Perpendicular@@YA?AUVector3@@U1@@Z")]
-            internal static extern void Vector3Perpendicular(global::System.IntPtr @return, global::raylib.Vector3.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Length@@YAMUVector3@@@Z")]
-            internal static extern float Vector3Length(global::raylib.Vector3.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3DotProduct@@YAMUVector3@@0@Z")]
-            internal static extern float Vector3DotProduct(global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Distance@@YAMUVector3@@0@Z")]
-            internal static extern float Vector3Distance(global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Scale@@YA?AUVector3@@U1@M@Z")]
-            internal static extern void Vector3Scale(global::System.IntPtr @return, global::raylib.Vector3.__Internal v, float scale);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Negate@@YA?AUVector3@@U1@@Z")]
-            internal static extern void Vector3Negate(global::System.IntPtr @return, global::raylib.Vector3.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Normalize@@YA?AUVector3@@U1@@Z")]
-            internal static extern void Vector3Normalize(global::System.IntPtr @return, global::raylib.Vector3.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3OrthoNormalize@@YAXPEAUVector3@@0@Z")]
-            internal static extern void Vector3OrthoNormalize(global::System.IntPtr v1, global::System.IntPtr v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Transform@@YA?AUVector3@@U1@UMatrix@@@Z")]
-            internal static extern void Vector3Transform(global::System.IntPtr @return, global::raylib.Vector3.__Internal v, global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3RotateByQuaternion@@YA?AUVector3@@U1@UVector4@@@Z")]
-            internal static extern void Vector3RotateByQuaternion(global::System.IntPtr @return, global::raylib.Vector3.__Internal v, global::raylib.Vector4.__Internal q);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Lerp@@YA?AUVector3@@U1@0M@Z")]
-            internal static extern void Vector3Lerp(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2, float amount);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Reflect@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3Reflect(global::System.IntPtr @return, global::raylib.Vector3.__Internal v, global::raylib.Vector3.__Internal normal);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Min@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3Min(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Max@@YA?AUVector3@@U1@0@Z")]
-            internal static extern void Vector3Max(global::System.IntPtr @return, global::raylib.Vector3.__Internal v1, global::raylib.Vector3.__Internal v2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3Barycenter@@YA?AUVector3@@U1@000@Z")]
-            internal static extern void Vector3Barycenter(global::System.IntPtr @return, global::raylib.Vector3.__Internal p, global::raylib.Vector3.__Internal a, global::raylib.Vector3.__Internal b, global::raylib.Vector3.__Internal c);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?Vector3ToFloatV@@YA?AUfloat3@@UVector3@@@Z")]
-            internal static extern void Vector3ToFloatV(global::System.IntPtr @return, global::raylib.Vector3.__Internal v);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixDeterminant@@YAMUMatrix@@@Z")]
-            internal static extern float MatrixDeterminant(global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixTrace@@YAMUMatrix@@@Z")]
-            internal static extern float MatrixTrace(global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixTranspose@@YA?AUMatrix@@U1@@Z")]
-            internal static extern void MatrixTranspose(global::System.IntPtr @return, global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixInvert@@YA?AUMatrix@@U1@@Z")]
-            internal static extern void MatrixInvert(global::System.IntPtr @return, global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixNormalize@@YA?AUMatrix@@U1@@Z")]
-            internal static extern void MatrixNormalize(global::System.IntPtr @return, global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixIdentity@@YA?AUMatrix@@XZ")]
-            internal static extern void MatrixIdentity(global::System.IntPtr @return);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixAdd@@YA?AUMatrix@@U1@0@Z")]
-            internal static extern void MatrixAdd(global::System.IntPtr @return, global::raylib.Matrix.__Internal left, global::raylib.Matrix.__Internal right);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixSubstract@@YA?AUMatrix@@U1@0@Z")]
-            internal static extern void MatrixSubstract(global::System.IntPtr @return, global::raylib.Matrix.__Internal left, global::raylib.Matrix.__Internal right);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixTranslate@@YA?AUMatrix@@MMM@Z")]
-            internal static extern void MatrixTranslate(global::System.IntPtr @return, float x, float y, float z);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixRotate@@YA?AUMatrix@@UVector3@@M@Z")]
-            internal static extern void MatrixRotate(global::System.IntPtr @return, global::raylib.Vector3.__Internal axis, float angle);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixRotateX@@YA?AUMatrix@@M@Z")]
-            internal static extern void MatrixRotateX(global::System.IntPtr @return, float angle);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixRotateY@@YA?AUMatrix@@M@Z")]
-            internal static extern void MatrixRotateY(global::System.IntPtr @return, float angle);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixRotateZ@@YA?AUMatrix@@M@Z")]
-            internal static extern void MatrixRotateZ(global::System.IntPtr @return, float angle);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixScale@@YA?AUMatrix@@MMM@Z")]
-            internal static extern void MatrixScale(global::System.IntPtr @return, float x, float y, float z);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixMultiply@@YA?AUMatrix@@U1@0@Z")]
-            internal static extern void MatrixMultiply(global::System.IntPtr @return, global::raylib.Matrix.__Internal left, global::raylib.Matrix.__Internal right);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixFrustum@@YA?AUMatrix@@NNNNNN@Z")]
-            internal static extern void MatrixFrustum(global::System.IntPtr @return, double left, double right, double bottom, double top, double near, double far);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixPerspective@@YA?AUMatrix@@NNNN@Z")]
-            internal static extern void MatrixPerspective(global::System.IntPtr @return, double fovy, double aspect, double near, double far);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixOrtho@@YA?AUMatrix@@NNNNNN@Z")]
-            internal static extern void MatrixOrtho(global::System.IntPtr @return, double left, double right, double bottom, double top, double near, double far);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixLookAt@@YA?AUMatrix@@UVector3@@00@Z")]
-            internal static extern void MatrixLookAt(global::System.IntPtr @return, global::raylib.Vector3.__Internal eye, global::raylib.Vector3.__Internal target, global::raylib.Vector3.__Internal up);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?MatrixToFloatV@@YA?AUfloat16@@UMatrix@@@Z")]
-            internal static extern void MatrixToFloatV(global::System.IntPtr @return, global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionIdentity@@YA?AUVector4@@XZ")]
-            internal static extern void QuaternionIdentity(global::System.IntPtr @return);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionLength@@YAMUVector4@@@Z")]
-            internal static extern float QuaternionLength(global::raylib.Vector4.__Internal q);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionNormalize@@YA?AUVector4@@U1@@Z")]
-            internal static extern void QuaternionNormalize(global::System.IntPtr @return, global::raylib.Vector4.__Internal q);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionInvert@@YA?AUVector4@@U1@@Z")]
-            internal static extern void QuaternionInvert(global::System.IntPtr @return, global::raylib.Vector4.__Internal q);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionMultiply@@YA?AUVector4@@U1@0@Z")]
-            internal static extern void QuaternionMultiply(global::System.IntPtr @return, global::raylib.Vector4.__Internal q1, global::raylib.Vector4.__Internal q2);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionLerp@@YA?AUVector4@@U1@0M@Z")]
-            internal static extern void QuaternionLerp(global::System.IntPtr @return, global::raylib.Vector4.__Internal q1, global::raylib.Vector4.__Internal q2, float amount);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionNlerp@@YA?AUVector4@@U1@0M@Z")]
-            internal static extern void QuaternionNlerp(global::System.IntPtr @return, global::raylib.Vector4.__Internal q1, global::raylib.Vector4.__Internal q2, float amount);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionSlerp@@YA?AUVector4@@U1@0M@Z")]
-            internal static extern void QuaternionSlerp(global::System.IntPtr @return, global::raylib.Vector4.__Internal q1, global::raylib.Vector4.__Internal q2, float amount);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionFromVector3ToVector3@@YA?AUVector4@@UVector3@@0@Z")]
-            internal static extern void QuaternionFromVector3ToVector3(global::System.IntPtr @return, global::raylib.Vector3.__Internal from, global::raylib.Vector3.__Internal to);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionFromMatrix@@YA?AUVector4@@UMatrix@@@Z")]
-            internal static extern void QuaternionFromMatrix(global::System.IntPtr @return, global::raylib.Matrix.__Internal mat);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionToMatrix@@YA?AUMatrix@@UVector4@@@Z")]
-            internal static extern void QuaternionToMatrix(global::System.IntPtr @return, global::raylib.Vector4.__Internal q);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionFromAxisAngle@@YA?AUVector4@@UVector3@@M@Z")]
-            internal static extern void QuaternionFromAxisAngle(global::System.IntPtr @return, global::raylib.Vector3.__Internal axis, float angle);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionToAxisAngle@@YAXUVector4@@PEAUVector3@@PEAM@Z")]
-            internal static extern void QuaternionToAxisAngle(global::raylib.Vector4.__Internal q, global::System.IntPtr outAxis, float* outAngle);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionFromEuler@@YA?AUVector4@@MMM@Z")]
-            internal static extern void QuaternionFromEuler(global::System.IntPtr @return, float roll, float pitch, float yaw);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionToEuler@@YA?AUVector3@@UVector4@@@Z")]
-            internal static extern void QuaternionToEuler(global::System.IntPtr @return, global::raylib.Vector4.__Internal q);
-
-            [SuppressUnmanagedCodeSecurity]
-            [DllImport("raylib", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
-                EntryPoint="?QuaternionTransform@@YA?AUVector4@@U1@UMatrix@@@Z")]
-            internal static extern void QuaternionTransform(global::System.IntPtr @return, global::raylib.Vector4.__Internal q, global::raylib.Matrix.__Internal mat);
-        }
-
-        public static float Clamp(float value, float min, float max)
-        {
-            var __ret = __Internal.Clamp(value, min, max);
-            return __ret;
-        }
-
-        public static global::raylib.Vector2 Vector2Zero()
-        {
-            var __ret = __Internal.Vector2Zero();
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector2 Vector2One()
-        {
-            var __ret = __Internal.Vector2One();
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector2 Vector2Add(global::raylib.Vector2 v1, global::raylib.Vector2 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector2Add(__arg0, __arg1);
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector2 Vector2Subtract(global::raylib.Vector2 v1, global::raylib.Vector2 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector2Subtract(__arg0, __arg1);
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static float Vector2Length(global::raylib.Vector2 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v.__Instance;
-            var __ret = __Internal.Vector2Length(__arg0);
-            return __ret;
-        }
-
-        public static float Vector2DotProduct(global::raylib.Vector2 v1, global::raylib.Vector2 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector2DotProduct(__arg0, __arg1);
-            return __ret;
-        }
-
-        public static float Vector2Distance(global::raylib.Vector2 v1, global::raylib.Vector2 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector2Distance(__arg0, __arg1);
-            return __ret;
-        }
-
-        public static float Vector2Angle(global::raylib.Vector2 v1, global::raylib.Vector2 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector2Angle(__arg0, __arg1);
-            return __ret;
-        }
-
-        public static global::raylib.Vector2 Vector2Scale(global::raylib.Vector2 v, float scale)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v.__Instance;
-            var __ret = __Internal.Vector2Scale(__arg0, scale);
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector2 Vector2Negate(global::raylib.Vector2 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v.__Instance;
-            var __ret = __Internal.Vector2Negate(__arg0);
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector2 Vector2Divide(global::raylib.Vector2 v, float div)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v.__Instance;
-            var __ret = __Internal.Vector2Divide(__arg0, div);
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector2 Vector2Normalize(global::raylib.Vector2 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector2.__Internal() : *(global::raylib.Vector2.__Internal*) v.__Instance;
-            var __ret = __Internal.Vector2Normalize(__arg0);
-            return global::raylib.Vector2.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Zero()
-        {
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Zero(new IntPtr(&__ret));
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3One()
-        {
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3One(new IntPtr(&__ret));
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Add(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Add(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Subtract(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Subtract(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Multiply(global::raylib.Vector3 v, float scalar)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Multiply(new IntPtr(&__ret), __arg0, scalar);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3MultiplyV(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3MultiplyV(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3CrossProduct(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3CrossProduct(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Perpendicular(global::raylib.Vector3 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Perpendicular(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static float Vector3Length(global::raylib.Vector3 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = __Internal.Vector3Length(__arg0);
-            return __ret;
-        }
-
-        public static float Vector3DotProduct(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector3DotProduct(__arg0, __arg1);
-            return __ret;
-        }
-
-        public static float Vector3Distance(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = __Internal.Vector3Distance(__arg0, __arg1);
-            return __ret;
-        }
-
-        public static global::raylib.Vector3 Vector3Scale(global::raylib.Vector3 v, float scale)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Scale(new IntPtr(&__ret), __arg0, scale);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Negate(global::raylib.Vector3 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Negate(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Normalize(global::raylib.Vector3 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Normalize(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static void Vector3OrthoNormalize(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? global::System.IntPtr.Zero : v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? global::System.IntPtr.Zero : v2.__Instance;
-            __Internal.Vector3OrthoNormalize(__arg0, __arg1);
-        }
-
-        public static global::raylib.Vector3 Vector3Transform(global::raylib.Vector3 v, global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __arg1 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Transform(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3RotateByQuaternion(global::raylib.Vector3 v, global::raylib.Vector4 q)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __arg1 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3RotateByQuaternion(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Lerp(global::raylib.Vector3 v1, global::raylib.Vector3 v2, float amount)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Lerp(new IntPtr(&__ret), __arg0, __arg1, amount);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Reflect(global::raylib.Vector3 v, global::raylib.Vector3 normal)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __arg1 = ReferenceEquals(normal, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) normal.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Reflect(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Min(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Min(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Max(global::raylib.Vector3 v1, global::raylib.Vector3 v2)
-        {
-            var __arg0 = ReferenceEquals(v1, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v1.__Instance;
-            var __arg1 = ReferenceEquals(v2, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v2.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Max(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 Vector3Barycenter(global::raylib.Vector3 p, global::raylib.Vector3 a, global::raylib.Vector3 b, global::raylib.Vector3 c)
-        {
-            var __arg0 = ReferenceEquals(p, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) p.__Instance;
-            var __arg1 = ReferenceEquals(a, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) a.__Instance;
-            var __arg2 = ReferenceEquals(b, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) b.__Instance;
-            var __arg3 = ReferenceEquals(c, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) c.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.Vector3Barycenter(new IntPtr(&__ret), __arg0, __arg1, __arg2, __arg3);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Float3 Vector3ToFloatV(global::raylib.Vector3 v)
-        {
-            var __arg0 = ReferenceEquals(v, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) v.__Instance;
-            var __ret = new global::raylib.Float3.__Internal();
-            __Internal.Vector3ToFloatV(new IntPtr(&__ret), __arg0);
-            return global::raylib.Float3.__CreateInstance(__ret);
-        }
-
-        public static float MatrixDeterminant(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = __Internal.MatrixDeterminant(__arg0);
-            return __ret;
-        }
-
-        public static float MatrixTrace(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = __Internal.MatrixTrace(__arg0);
-            return __ret;
-        }
-
-        public static global::raylib.Matrix MatrixTranspose(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixTranspose(new IntPtr(&__ret), __arg0);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixInvert(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixInvert(new IntPtr(&__ret), __arg0);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixNormalize(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixNormalize(new IntPtr(&__ret), __arg0);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixIdentity()
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixIdentity(new IntPtr(&__ret));
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixAdd(global::raylib.Matrix left, global::raylib.Matrix right)
-        {
-            var __arg0 = ReferenceEquals(left, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) left.__Instance;
-            var __arg1 = ReferenceEquals(right, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) right.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixAdd(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixSubstract(global::raylib.Matrix left, global::raylib.Matrix right)
-        {
-            var __arg0 = ReferenceEquals(left, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) left.__Instance;
-            var __arg1 = ReferenceEquals(right, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) right.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixSubstract(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixTranslate(float x, float y, float z)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixTranslate(new IntPtr(&__ret), x, y, z);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixRotate(global::raylib.Vector3 axis, float angle)
-        {
-            var __arg0 = ReferenceEquals(axis, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) axis.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixRotate(new IntPtr(&__ret), __arg0, angle);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixRotateX(float angle)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixRotateX(new IntPtr(&__ret), angle);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixRotateY(float angle)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixRotateY(new IntPtr(&__ret), angle);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixRotateZ(float angle)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixRotateZ(new IntPtr(&__ret), angle);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixScale(float x, float y, float z)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixScale(new IntPtr(&__ret), x, y, z);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixMultiply(global::raylib.Matrix left, global::raylib.Matrix right)
-        {
-            var __arg0 = ReferenceEquals(left, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) left.__Instance;
-            var __arg1 = ReferenceEquals(right, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) right.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixMultiply(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixFrustum(double left, double right, double bottom, double top, double near, double far)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixFrustum(new IntPtr(&__ret), left, right, bottom, top, near, far);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixPerspective(double fovy, double aspect, double near, double far)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixPerspective(new IntPtr(&__ret), fovy, aspect, near, far);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixOrtho(double left, double right, double bottom, double top, double near, double far)
-        {
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixOrtho(new IntPtr(&__ret), left, right, bottom, top, near, far);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix MatrixLookAt(global::raylib.Vector3 eye, global::raylib.Vector3 target, global::raylib.Vector3 up)
-        {
-            var __arg0 = ReferenceEquals(eye, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) eye.__Instance;
-            var __arg1 = ReferenceEquals(target, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) target.__Instance;
-            var __arg2 = ReferenceEquals(up, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) up.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.MatrixLookAt(new IntPtr(&__ret), __arg0, __arg1, __arg2);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Float16 MatrixToFloatV(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Float16.__Internal();
-            __Internal.MatrixToFloatV(new IntPtr(&__ret), __arg0);
-            return global::raylib.Float16.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionIdentity()
-        {
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionIdentity(new IntPtr(&__ret));
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static float QuaternionLength(global::raylib.Vector4 q)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __ret = __Internal.QuaternionLength(__arg0);
-            return __ret;
-        }
-
-        public static global::raylib.Vector4 QuaternionNormalize(global::raylib.Vector4 q)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionNormalize(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionInvert(global::raylib.Vector4 q)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionInvert(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionMultiply(global::raylib.Vector4 q1, global::raylib.Vector4 q2)
-        {
-            var __arg0 = ReferenceEquals(q1, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q1.__Instance;
-            var __arg1 = ReferenceEquals(q2, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q2.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionMultiply(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionLerp(global::raylib.Vector4 q1, global::raylib.Vector4 q2, float amount)
-        {
-            var __arg0 = ReferenceEquals(q1, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q1.__Instance;
-            var __arg1 = ReferenceEquals(q2, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q2.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionLerp(new IntPtr(&__ret), __arg0, __arg1, amount);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionNlerp(global::raylib.Vector4 q1, global::raylib.Vector4 q2, float amount)
-        {
-            var __arg0 = ReferenceEquals(q1, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q1.__Instance;
-            var __arg1 = ReferenceEquals(q2, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q2.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionNlerp(new IntPtr(&__ret), __arg0, __arg1, amount);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionSlerp(global::raylib.Vector4 q1, global::raylib.Vector4 q2, float amount)
-        {
-            var __arg0 = ReferenceEquals(q1, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q1.__Instance;
-            var __arg1 = ReferenceEquals(q2, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q2.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionSlerp(new IntPtr(&__ret), __arg0, __arg1, amount);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionFromVector3ToVector3(global::raylib.Vector3 from, global::raylib.Vector3 to)
-        {
-            var __arg0 = ReferenceEquals(from, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) from.__Instance;
-            var __arg1 = ReferenceEquals(to, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) to.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionFromVector3ToVector3(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionFromMatrix(global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionFromMatrix(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Matrix QuaternionToMatrix(global::raylib.Vector4 q)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __ret = new global::raylib.Matrix.__Internal();
-            __Internal.QuaternionToMatrix(new IntPtr(&__ret), __arg0);
-            return global::raylib.Matrix.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionFromAxisAngle(global::raylib.Vector3 axis, float angle)
-        {
-            var __arg0 = ReferenceEquals(axis, null) ? new global::raylib.Vector3.__Internal() : *(global::raylib.Vector3.__Internal*) axis.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionFromAxisAngle(new IntPtr(&__ret), __arg0, angle);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static void QuaternionToAxisAngle(global::raylib.Vector4 q, global::raylib.Vector3 outAxis, ref float outAngle)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __arg1 = ReferenceEquals(outAxis, null) ? global::System.IntPtr.Zero : outAxis.__Instance;
-            fixed (float* __refParamPtr2 = &outAngle)
-            {
-                var __arg2 = __refParamPtr2;
-                __Internal.QuaternionToAxisAngle(__arg0, __arg1, __arg2);
-            }
-        }
-
-        public static global::raylib.Vector4 QuaternionFromEuler(float roll, float pitch, float yaw)
-        {
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionFromEuler(new IntPtr(&__ret), roll, pitch, yaw);
-            return global::raylib.Vector4.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector3 QuaternionToEuler(global::raylib.Vector4 q)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __ret = new global::raylib.Vector3.__Internal();
-            __Internal.QuaternionToEuler(new IntPtr(&__ret), __arg0);
-            return global::raylib.Vector3.__CreateInstance(__ret);
-        }
-
-        public static global::raylib.Vector4 QuaternionTransform(global::raylib.Vector4 q, global::raylib.Matrix mat)
-        {
-            var __arg0 = ReferenceEquals(q, null) ? new global::raylib.Vector4.__Internal() : *(global::raylib.Vector4.__Internal*) q.__Instance;
-            var __arg1 = ReferenceEquals(mat, null) ? new global::raylib.Matrix.__Internal() : *(global::raylib.Matrix.__Internal*) mat.__Instance;
-            var __ret = new global::raylib.Vector4.__Internal();
-            __Internal.QuaternionTransform(new IntPtr(&__ret), __arg0, __arg1);
-            return global::raylib.Vector4.__CreateInstance(__ret);
         }
     }
 }
