@@ -1,5 +1,7 @@
 # Raylib-cs
-Testing C# bindings for Raylib
+> Testing C# bindings for Raylib, a simple and easy-to-use library to learn videogames programming 
+
+![](header.png)
 
 # TODO:
 ## cppsharp generator:
@@ -8,4 +10,18 @@ Testing C# bindings for Raylib
 - Add utility for cleaning up types so they are destroyed with the type.
 
 ## general
+- Copy raylib.dll across to same directory as .exe automatically
+- Add windows forms interface for generator
 - Convert across raylib examples
+
+## Installation
+Windows:
+'''sh
+- Download the repository
+- Open in visual studio
+- Copy raylib.dll in Raylib-cs/raylib.dll
+- Build and run
+'''
+
+## Contributing
+
