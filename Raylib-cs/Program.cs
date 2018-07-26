@@ -1,54 +1,82 @@
-﻿using CppSharp;
+﻿using System;
+using CppSharp;
 using raylib;
-using static raylib.raymath;
 using static raylib.raylib;
-using System;
 
 namespace Raylibcs
 {
     class Program
     {
+        // TODO: setup windows forms gui
         static void Main(string[] args)
         {
-            // ConsoleDriver.Run(new SampleLibrary());
-            Test();
-            // Console.Read();
+            Console.WriteLine("Raylib-cs generator");
+
+            while (true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("1. Regenerate bindings in .exe folder");
+                Console.WriteLine("2. Run test example, requires raylib.dll in .exe folder");
+                Console.WriteLine("3. Exit");
+
+                var choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    ConsoleDriver.Run(new SampleLibrary());
+                }
+                else if (choice == "2")
+                {
+                    Test();
+                }
+                else if (choice == "3")
+                {
+                    break;
+                }
+            }
         }
 
-        public static void Test()
+        public static int Test()
         {
-            InitWindow(800, 450, "Raylib-cs [2.0]");
-            InitAudioDevice();          
+            var RAYWHITE = new Color { R = 255, G = 255, B = 255, A = 255 };
+            var MAROON = new Color { R = 0, G = 0, B = 0, A = 255 };
+
+            // Initialization
+            //--------------------------------------------------------------------------------------
+            int screenWidth = 800;
+            int screenHeight = 450;
+
+            InitWindow(screenWidth, screenHeight, "Raylib-cs [core] example - basic window");
+
             SetTargetFPS(60);
-            SetExitKey(256);
-   
-            var sound = LoadSound("Data/alive.wav");
-            // PlaySound(sound);
+            //--------------------------------------------------------------------------------------
 
-            var t = LoadTexture("Data/test.png");
-
-            int a = 0;
-            var f = LoadFontEx("Data/Vera.ttf", 96, 0, ref a);
-
-            var c = new Color();
-            c.R = 255;
-            c.G = 255;
-            c.B = 255;
-            c.A = 255;
-
-            while (!WindowShouldClose())
+            // Main game loop
+            while (!WindowShouldClose())    // Detect window close button or ESC key
             {
+                // Update
+                //----------------------------------------------------------------------------------
+                // TODO: Update your variables here
+                //----------------------------------------------------------------------------------
+
+                // Draw
+                //----------------------------------------------------------------------------------
                 BeginDrawing();
-                ClearBackground(c);
-                DrawTexture(t, 0, 0, c);
-                // DrawTextEx(f, "testing", new Vector2 { X = 100, Y = 100 }, 20, 10, c);
-                // DrawFPS(0, 0);
+
+                ClearBackground(RAYWHITE);
+
+                DrawText("Congrats! You created your first window!", 190, 200, 20, MAROON);
+                DrawFPS(0, 0);
+
                 EndDrawing();
+                //----------------------------------------------------------------------------------
             }
 
-            UnloadTexture(t);
-            CloseAudioDevice();
-            CloseWindow();
+            // De-Initialization
+            //--------------------------------------------------------------------------------------   
+            CloseWindow();        // Close window and OpenGL context
+            //-----------------------------
+
+            return 0;
         }
     }
 }
