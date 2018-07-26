@@ -12,11 +12,12 @@
 ## general
 - Copy raylib.dll across to same directory as .exe automatically
 - Add windows forms interface for generator
+- Allow raylib to be used inside windows forms
 - Convert across raylib examples
 
 ## Installation
 Windows:
-'''sh
+'''
 - Download the repository
 - Open in visual studio
 - Copy raylib.dll in Raylib-cs/raylib.dll
