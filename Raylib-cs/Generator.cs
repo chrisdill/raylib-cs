@@ -15,11 +15,13 @@ namespace Raylibcs
         {
             var options = driver.Options;
             var module = options.AddModule("raylib");
-            module.IncludeDirs.Add("C:\\raylib\\raylib\\release\\include");
-            // module.IncludeDirs.Add("C:\\raylib\\raylib\\src");
+            // module.IncludeDirs.Add("C:\\raylib\\raylib\\release\\include");
+            module.IncludeDirs.Add("C:\\raylib\\raylib\\src");
             module.Headers.Add("raylib.h");
-            // module.Headers.Add("raymath.h");
-            module.LibraryDirs.Add("C:\\raylib\\raylib\\release\\libs\\win32\\msvc");
+            module.Headers.Add("rlgl.h");
+            module.Headers.Add("raymath.h");
+            // module.Headers.Add("easings.h");
+            module.LibraryDirs.Add("C:\\raylib\\raylib\\projects\\VS2017\\x64\\Debug.DLL");
             module.Libraries.Add("raylib.lib");
 
             var parserOptions = driver.ParserOptions;
@@ -28,7 +30,7 @@ namespace Raylibcs
         }
 
         void ILibrary.SetupPasses(Driver driver)
-        {
+        {          
             driver.Context.TranslationUnitPasses.RenameDeclsUpperCase(RenameTargets.Any);
             // driver.AddTranslationUnitPass(new FunctionToInstanceMethodPass());
             // driver.AddTranslationUnitPass(new HandleDefaultParamValuesPass());
@@ -37,11 +39,12 @@ namespace Raylibcs
         }
 
         public void Preprocess(Driver driver, ASTContext ctx)
-        {
+        {          
             ctx.SetNameOfEnumWithMatchingItem("KEY_UNKOWN", "Key");
             ctx.GenerateEnumFromMacros("Flag", "FLAG_(.*)");
             ctx.GenerateEnumFromMacros("Key", "KEY_(.*)");
             ctx.GenerateEnumFromMacros("Mouse", "MOUSE_(.*)");
+            ctx.GenerateEnumFromMacros("Colors", "RAYWHITE");
             // ctx.GenerateEnumFromMacros("Gamepad", "GAMEPAD_(.*)");
         }
 

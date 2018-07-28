@@ -1,37 +1,13 @@
-﻿using System;
-using CppSharp;
-using raylib;
+﻿using raylib;
 using static raylib.raylib;
 
-namespace Raylibcs
+namespace Raylibexample
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Raylib-cs generator");
-
-            while (true)
-            {
-                Console.WriteLine();
-                Console.WriteLine("1. Genertate c# binding code");
-                Console.WriteLine("2. Run test example, requires raylib.dll in .exe folder");
-                Console.WriteLine("3. Exit");
-
-                var choice = Console.ReadLine();
-                if (choice == "1")
-                {
-                    ConsoleDriver.Run(new SampleLibrary());
-                }
-                else if (choice == "2")
-                {
-                    Test();
-                }
-                else if (choice == "3")
-                {
-                    break;
-                }
-            }
+            Test();
         }
 
         public static int Test()
