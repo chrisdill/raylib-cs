@@ -1,20 +1,18 @@
-﻿using raylib;
-using static raylib.raylib;
+﻿using Raylib;
+using static Raylib.rl;
 
-namespace Raylibexample
+namespace ExampleApplication
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Test();
+            // LoadApp();
+            Run();
         }
 
-        public static int Test()
+        public static int Run()
         {
-            var RAYWHITE = new Color { R = 255, G = 255, B = 255, A = 255 };
-            var MAROON = new Color { R = 0, G = 0, B = 0, A = 255 };
-
             // Initialization
             //--------------------------------------------------------------------------------------
             int screenWidth = 800;
@@ -39,7 +37,7 @@ namespace Raylibexample
 
                 ClearBackground(RAYWHITE);
 
-                DrawText("Congrats! You created your first window!", 190, 200, 20, MAROON);
+                DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
                 DrawFPS(0, 0);
 
                 EndDrawing();
