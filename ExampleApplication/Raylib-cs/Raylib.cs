@@ -1,442 +1,695 @@
-#region License
-
-/* Raylib# - C# Wrapper for raylib 2.0
- *
- *
- */
-
-#endregion
-
-#region Using Statements
-
 using System;
 using System.Runtime.InteropServices;
 
-#endregion
-
-namespace Raylibcs
+// quick reference
+// http://www.raylib.com/cheatsheet/cheatsheet.html
+namespace Raylib
 {
     #region Raylib# Enums
+ 
+    [Flags]
+    public enum LogType
+    {
+        LOG_INFO = 1,
+        LOG_WARNING = 2,
+        LOG_ERROR = 4,
+        LOG_DEBUG = 8,
+        LOG_OTHER = 16
+    }
+
+    public enum ShaderLocationIndex
+    {
+        LOC_VERTEX_POSITION = 0,
+        LOC_VERTEX_TEXCOORD01 = 1,
+        LOC_VERTEX_TEXCOORD02 = 2,
+        LOC_VERTEX_NORMAL = 3,
+        LOC_VERTEX_TANGENT = 4,
+        LOC_VERTEX_COLOR = 5,
+        LOC_MATRIX_MVP = 6,
+        LOC_MATRIX_MODEL = 7,
+        LOC_MATRIX_VIEW = 8,
+        LOC_MATRIX_PROJECTION = 9,
+        LOC_VECTOR_VIEW = 10,
+        LOC_COLOR_DIFFUSE = 11,
+        LOC_COLOR_SPECULAR = 12,
+        LOC_COLOR_AMBIENT = 13,
+        LOC_MAP_ALBEDO = 14,
+        LOC_MAP_METALNESS = 15,
+        LOC_MAP_NORMAL = 16,
+        LOC_MAP_ROUGHNESS = 17,
+        LOC_MAP_OCCLUSION = 18,
+        LOC_MAP_EMISSION = 19,
+        LOC_MAP_HEIGHT = 20,
+        LOC_MAP_CUBEMAP = 21,
+        LOC_MAP_IRRADIANCE = 22,
+        LOC_MAP_PREFILTER = 23,
+        LOC_MAP_BRDF = 24
+    }
+
+    public enum TexmapIndex
+    {
+        MAP_ALBEDO = 0,
+        MAP_METALNESS = 1,
+        MAP_NORMAL = 2,
+        MAP_ROUGHNESS = 3,
+        MAP_OCCLUSION = 4,
+        MAP_EMISSION = 5,
+        MAP_HEIGHT = 6,
+        MAP_CUBEMAP = 7,
+        MAP_IRRADIANCE = 8,
+        MAP_PREFILTER = 9,
+        MAP_BRDF = 10
+    }
+
+    public enum PixelFormat
+    {
+        UNCOMPRESSED_GRAYSCALE = 1,
+        UNCOMPRESSED_GRAY_ALPHA = 2,
+        UNCOMPRESSED_R5G6B5 = 3,
+        UNCOMPRESSED_R8G8B8 = 4,
+        UNCOMPRESSED_R5G5B5A1 = 5,
+        UNCOMPRESSED_R4G4B4A4 = 6,
+        UNCOMPRESSED_R8G8B8A8 = 7,
+        UNCOMPRESSED_R32 = 8,
+        UNCOMPRESSED_R32G32B32 = 9,
+        UNCOMPRESSED_R32G32B32A32 = 10,
+        COMPRESSED_DXT1RGB = 11,
+        COMPRESSED_DXT1RGBA = 12,
+        COMPRESSED_DXT3RGBA = 13,
+        COMPRESSED_DXT5RGBA = 14,
+        COMPRESSED_ETC1RGB = 15,
+        COMPRESSED_ETC2RGB = 16,
+        COMPRESSED_ETC2EAC_RGBA = 17,
+        COMPRESSED_PVRT_RGB = 18,
+        COMPRESSED_PVRT_RGBA = 19,
+        COMPRESSED_ASTC_4x4RGBA = 20,
+        COMPRESSED_ASTC_8x8RGBA = 21
+    }
+
+    public enum TextureFilterMode
+    {
+        FILTER_POINT = 0,
+        FILTER_BILINEAR = 1,
+        FILTER_TRILINEAR = 2,
+        FILTER_ANISOTROPIC_4X = 3,
+        FILTER_ANISOTROPIC_8X = 4,
+        FILTER_ANISOTROPIC_16X = 5
+    }
+
+    public enum TextureWrapMode
+    {
+        WRAP_REPEAT = 0,
+        WRAP_CLAMP = 1,
+        WRAP_MIRROR = 2
+    }
+
+    public enum BlendMode
+    {
+        BLEND_ALPHA = 0,
+        BLEND_ADDITIVE = 1,
+        BLEND_MULTIPLIED = 2
+    }
+
+    [Flags]
+    public enum Gestures
+    {
+        GESTURE_NONE = 0,
+        GESTURE_TAP = 1,
+        GESTURE_DOUBLETAP = 2,
+        GESTURE_HOLD = 4,
+        GESTURE_DRAG = 8,
+        GESTURE_SWIPE_RIGHT = 16,
+        GESTURE_SWIPE_LEFT = 32,
+        GESTURE_SWIPE_UP = 64,
+        GESTURE_SWIPE_DOWN = 128,
+        GESTURE_PINCH_IN = 256,
+        GESTURE_PINCH_OUT = 512
+    }
+
+    public enum CameraMode
+    {
+        CAMERA_CUSTOM = 0,
+        CAMERA_FREE = 1,
+        CAMERA_ORBITAL = 2,
+        CAMERA_FIRST_PERSON = 3,
+        CAMERA_THIRD_PERSON = 4
+    }
+
+    public enum CameraType
+    {
+        CAMERA_PERSPECTIVE = 0,
+        CAMERA_ORTHOGRAPHIC = 1
+    }
+
+    public enum VrDeviceType
+    {
+        HMD_DEFAULT_DEVICE = 0,
+        HMD_OCULUS_RIFT_DK2 = 1,
+        HMD_OCULUS_RIFT_CV1 = 2,
+        HMD_OCULUS_GO = 3,
+        HMD_VALVE_HTC_VIVE = 4,
+        HMD_SONY_PSVR = 5
+    }
+
+    [Flags]
+    public enum Flag
+    {
+        SHOW_LOGO = 1,
+        FULLSCREEN_MODE = 2,
+        WINDOW_RESIZABLE = 4,
+        WINDOW_UNDECORATED = 8,
+        WINDOW_TRANSPARENT = 16,
+        MSAA_4X_HINT = 32,
+        VSYNC_HINT = 64
+    }
 
     // Keyboard Function Keys
     public enum Keys
     {
-        KEY_SPACE = 32,
-        KEY_ESCAPE = 256,
-        KEY_ENTER = 257,
-        KEY_TAB = 258,
-        KEY_BACKSPACE = 259,
-        KEY_INSERT = 260,
-        KEY_DELETE = 261,
-        KEY_RIGHT = 262,
-        KEY_LEFT = 263,
-        KEY_DOWN = 264,
-        KEY_UP = 265,
-        KEY_PAGE_UP = 266,
-        KEY_PAGE_DOWN = 267,
-        KEY_HOME = 268,
-        KEY_END = 269,
-        KEY_CAPS_LOCK = 280,
-        KEY_SCROLL_LOCK = 281,
-        KEY_NUM_LOCK = 282,
-        KEY_PRINT_SCREEN = 283,
-        KEY_PAUSE = 284,
-        KEY_F1 = 290,
-        KEY_F2 = 291,
-        KEY_F3 = 292,
-        KEY_F4 = 293,
-        KEY_F5 = 294,
-        KEY_F6 = 295,
-        KEY_F7 = 296,
-        KEY_F8 = 297,
-        KEY_F9 = 298,
-        KEY_F10 = 299,
-        KEY_F11 = 300,
-        KEY_F12 = 301,
-        KEY_LEFT_SHIFT = 340,
-        KEY_LEFT_CONTROL = 341,
-        KEY_LEFT_ALT = 342,
-        KEY_RIGHT_SHIFT = 344,
-        KEY_RIGHT_CONTROL = 345,
-        KEY_RIGHT_ALT = 346,
-        KEY_GRAVE = 96,
-        KEY_SLASH = 47,
-        KEY_BACKSLASH = 92,
+        SPACE = 32,
+        ESCAPE = 256,
+        ENTER = 257,
+        TAB = 258,
+        BACKSPACE = 259,
+        INSERT = 260,
+        DELETE = 261,
+        RIGHT = 262,
+        LEFT = 263,
+        DOWN = 264,
+        UP = 265,
+        PAGE_UP = 266,
+        PAGE_DOWN = 267,
+        HOME = 268,
+        END = 269,
+        CAPS_LOCK = 280,
+        SCROLL_LOCK = 281,
+        NUM_LOCK = 282,
+        PRINT_SCREEN = 283,
+        PAUSE = 284,
+        F1 = 290,
+        F2 = 291,
+        F3 = 292,
+        F4 = 293,
+        F5 = 294,
+        F6 = 295,
+        F7 = 296,
+        F8 = 297,
+        F9 = 298,
+        F10 = 299,
+        F11 = 300,
+        F12 = 301,
+        LEFT_SHIFT = 340,
+        LEFT_CONTROL = 341,
+        LEFT_ALT = 342,
+        RIGHT_SHIFT = 344,
+        RIGHT_CONTROL = 345,
+        RIGHT_ALT = 346,
+        GRAVE = 96,
+        SLASH = 47,
+        BACKSLASH = 92,
 
         // Keyboard Alpha Numeric Keys
-        KEY_ZERO = 48,
-        KEY_ONE = 49,
-        KEY_TWO = 50,
-        KEY_THREE = 51,
-        KEY_FOUR = 52,
-        KEY_FIVE = 53,
-        KEY_SIX = 54,
-        KEY_SEVEN = 55,
-        KEY_EIGHT = 56,
-        KEY_NINE = 57,
-        KEY_A = 65,
-        KEY_B = 66,
-        KEY_C = 67,
-        KEY_D = 68,
-        KEY_E = 69,
-        KEY_F = 70,
-        KEY_G = 71,
-        KEY_H = 72,
-        KEY_I = 73,
-        KEY_J = 74,
-        KEY_K = 75,
-        KEY_L = 76,
-        KEY_M = 77,
-        KEY_N = 78,
-        KEY_O = 79,
-        KEY_P = 80,
-        KEY_Q = 81,
-        KEY_R = 82,
-        KEY_S = 83,
-        KEY_T = 84,
-        KEY_U = 85,
-        KEY_V = 86,
-        KEY_W = 87,
-        KEY_X = 88,
-        KEY_Y = 89,
-        KEY_Z = 90,
+        ZERO = 48,
+        ONE = 49,
+        TWO = 50,
+        THREE = 51,
+        FOUR = 52,
+        FIVE = 53,
+        SIX = 54,
+        SEVEN = 55,
+        EIGHT = 56,
+        NINE = 57,
+        A = 65,
+        B = 66,
+        C = 67,
+        D = 68,
+        E = 69,
+        F = 70,
+        G = 71,
+        H = 72,
+        I = 73,
+        J = 74,
+        K = 75,
+        L = 76,
+        M = 77,
+        N = 78,
+        O = 79,
+        P = 80,
+        Q = 81,
+        R = 82,
+        S = 83,
+        T = 84,
+        U = 85,
+        V = 86,
+        W = 87,
+        X = 88,
+        Y = 89,
+        Z = 90,
 
         // Android Physical Buttons
-        KEY_BACK = 4,
-        KEY_MENU = 82,
-        KEY_VOLUME_UP = 24,
-        KEY_VOLUME_DOWN = 25
+        BACK = 4,
+        MENU = 82,
+        VOLUME_UP = 24,
+        VOLUME_DOWN = 25
     }
 
     // Mouse Buttons
     public enum Mouse
     {
-        MOUSE_LEFT_BUTTON = 0,
-        MOUSE_RIGHT_BUTTON = 1,
-        MOUSE_MIDDLE_BUTTON = 2
+        LEFT_BUTTON = 0,
+        RIGHT_BUTTON = 1,
+        MIDDLE_BUTTON = 2
     }
-  
+
+    public enum Gamepad
+    {
+        PLAYER1 = 0,
+        PLAYER2 = 1,
+        PLAYER3 = 2,
+        PLAYER4 = 3,
+        PS3BUTTON_TRIANGLE = 0,
+        PS3BUTTON_CIRCLE = 1,
+        PS3BUTTON_CROSS = 2,
+        PS3BUTTON_SQUARE = 3,
+        PS3BUTTON_L1 = 6,
+        PS3BUTTON_R1 = 7,
+        PS3BUTTON_L2 = 4,
+        PS3BUTTON_R2 = 5,
+        PS3BUTTON_START = 8,
+        PS3BUTTON_SELECT = 9,
+        PS3BUTTON_UP = 24,
+        PS3BUTTON_RIGHT = 25,
+        PS3BUTTON_DOWN = 26,
+        PS3BUTTON_LEFT = 27,
+        PS3BUTTON_PS = 12,
+        PS3AXIS_LEFT_X = 0,
+        PS3AXIS_LEFT_Y = 1,
+        PS3AXIS_RIGHT_X = 2,
+        PS3AXIS_RIGHT_Y = 5,
+        PS3AXIS_L2 = 3,
+        PS3AXIS_R2 = 4,
+        XBOX_BUTTON_A = 0,
+        XBOX_BUTTON_B = 1,
+        XBOX_BUTTON_X = 2,
+        XBOX_BUTTON_Y = 3,
+        XBOX_BUTTON_LB = 4,
+        XBOX_BUTTON_RB = 5,
+        XBOX_BUTTON_SELECT = 6,
+        XBOX_BUTTON_START = 7,
+        XBOX_BUTTON_UP = 10,
+        XBOX_BUTTON_RIGHT = 11,
+        XBOX_BUTTON_DOWN = 12,
+        XBOX_BUTTON_LEFT = 13,
+        XBOX_BUTTON_HOME = 8,
+        ANDROID_DPAD_UP = 19,
+        ANDROID_DPAD_DOWN = 20,
+        ANDROID_DPAD_LEFT = 21,
+        ANDROID_DPAD_RIGHT = 22,
+        ANDROID_DPAD_CENTER = 23,
+        ANDROID_BUTTON_A = 96,
+        ANDROID_BUTTON_B = 97,
+        ANDROID_BUTTON_C = 98,
+        ANDROID_BUTTON_X = 99,
+        ANDROID_BUTTON_Y = 100,
+        ANDROID_BUTTON_Z = 101,
+        ANDROID_BUTTON_L1 = 102,
+        ANDROID_BUTTON_R1 = 103,
+        ANDROID_BUTTON_L2 = 104,
+        ANDROID_BUTTON_R2 = 105,
+        XBOX_AXIS_LEFT_X = 0,
+        XBOX_AXIS_LEFT_Y = 1,
+        XBOX_AXIS_RIGHT_X = 2,
+        XBOX_AXIS_RIGHT_Y = 3,
+        XBOX_AXIS_LT = 4,
+        XBOX_AXIS_RT = 5
+    }
+
     #endregion
 
-    public static class Raylibcs
+    #region Raylib# Types
+   
+    // Vector2 type
+    public struct Vector2
     {
+        public float x;
+        public float y;
+
+        public Vector2(float x, float y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    // Vector3 type
+    public struct Vector3
+    {
+        public float x;
+        public float y;
+        public float z;
+
+        public Vector3(float x, float y, float z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+    }
+
+    // Vector4 type
+    public struct Vector4
+    {
+        public float x;
+        public float y;
+        public float z;
+        public float w;
+        
+        public Vector4(float x, float y, float z, float w)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.w = w;
+        }
+    }
+
+    // Matrix type (OpenGL style 4x4 - right handed, column major)
+    public struct Matrix
+    {
+        public float m0, m4, m8, m12;
+        public float m1, m5, m9, m13;
+        public float m2, m6, m10, m14;
+        public float m3, m7, m11, m15;
+    }
+
+    // Color type, RGBA (32bit)
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct Color
+    {
+        public byte r;
+        public byte g;
+        public byte b;
+        public byte a;
+
+        public Color(byte r, byte g, byte b, byte a)
+        {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+            this.a = a;
+        }
+    }
+
+    // Rectangle type
+    public struct Rectangle
+    {
+        public float x;
+        public float y;
+        public float width;
+        public float height;
+
+        public Rectangle(float x, float y, float width, float height)
+        {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+        }
+    }
+
+    // Image type, bpp always RGBA (32bit)
+    // NOTE: Data stored in CPU memory (RAM)
+    public struct Image
+    {
+        public IntPtr data; // Image raw data
+        public int width; // Image base width
+        public int height; // Image base height
+        public int mipmaps; // Mipmap levels, 1 by default
+        public int format; // Data format (PixelFormat type)
+    }
+
+    // Texture2D type
+    // NOTE: Data stored in GPU memory
+    public struct Texture2D
+    {
+        public uint id; // OpenGL texture id
+        public int width; // Texture base width
+        public int height; // Texture base height
+        public int mipmaps; // Mipmap levels, 1 by default
+        public int format; // Data format (PixelFormat type)
+    }
+
+    // Texture type, same as Texture2D
+    // typedef Texture2D Texture;
+
+    // RenderTexture2D type, for texture rendering
+    public struct RenderTexture2D
+    {
+        public uint id; // OpenGL Framebuffer Object (FBO) id
+        public Texture2D texture; // Color buffer attachment texture
+        public Texture2D depth; // Depth buffer attachment texture
+    }
+
+    // RenderTexture type, same as RenderTexture2D
+    // typedef RenderTexture2D RenderTexture;
+
+    // Font character info
+    public struct CharInfo
+    {
+        public int value; // Character value (Unicode)
+        public Rectangle rec; // Character rectangle in sprite font
+        public int offsetX; // Character offset X when drawing
+        public int offsetY; // Character offset Y when drawing
+        public int advanceX; // Character advance position X
+        public byte[] data; // Character pixel data (grayscale)
+    }
+
+    // Font type, includes texture and charSet array data
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct Font
+    {
+        public Texture2D texture; // Font texture
+        public int baseSize; // Base size (default chars height)
+        public int charsCount; // Number of characters
+        public CharInfo[] chars; // Characters info data
+    }
+
+    // public static Color Font Font     // Font type fallback, defaults to Font
+
+    // Camera type, defines a camera position/orientation in 3d space
+    public struct Camera
+    {
+        public Vector3 position; // Camera position
+        public Vector3 target; // Camera target it looks-at
+        public Vector3 up; // Camera up vector (rotation over its axis)
+
+        public float fovy; // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+
+        public int type; // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+    }
+
+    // public static Color Camera Camera3D     // Camera type fallback, defaults to Camera3D
+
+    // Camera2D type, defines a 2d camera
+    public struct Camera2D
+    {
+        public Vector2 offset; // Camera offset (displacement from target)
+        public Vector2 target; // Camera target (rotation and zoom origin)
+        public float rotation; // Camera rotation in degrees
+        public float zoom; // Camera zoom (scaling), should be 1.0f by default
+    }
+
+    // Bounding box type
+    public struct BoundingBox
+    {
+        public Vector3 min; // Minimum vertex box-corner
+        public Vector3 max; // Maximum vertex box-corner
+    }
+
+    // Vertex data definning a mesh
+    // NOTE: Data stored in CPU memory (and GPU)
+    public struct Mesh
+    {
+        public int vertexCount; // Number of vertices stored in arrays
+        public int triangleCount; // Number of triangles stored (indexed or not)
+        public float[] vertices; // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
+        public float[] texcoords; // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
+        public float[] texcoords2; // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
+        public float[] normals; // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
+        public float[] tangents; // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
+        public byte[] colors; // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
+        public ushort[] indices; // Vertex indices (in case vertex data comes indexed)
+
+        public uint vaoId; // OpenGL Vertex Array Object id
+        //public uint vboId[7];        // OpenGL Vertex Buffer Objects id (7 types of vertex data)
+    }
+
+    // Shader type (generic)
+    public unsafe struct Shader
+    {
+        public uint id; // Shader program id
+        public fixed int locs[rl.MAX_SHADER_LOCATIONS]; // Shader locations array
+    }
+
+    // Material texture map
+    public struct MaterialMap
+    {
+        public Texture2D texture; // Material map texture
+        public Color color; // Material map color
+        public float value; // Material map value
+    }
+
+    // Material type (generic)
+    public class Material
+    {
+        public Shader shader; // Material shader
+        MaterialMap[] maps = new MaterialMap[rl.MAX_MATERIAL_MAPS]; // Material maps
+        float[] param;          // Material generic parameters (if required)
+    }
+
+    // Model type
+    public struct Model
+    {
+        public Mesh mesh; // Vertex data buffers (RAM and VRAM)
+        public Matrix transform; // Local transform matrix
+        public Material material; // Shader and textures data
+    }
+
+    // Ray type (useful for raycast)
+    public struct Ray
+    {
+        public Vector3 position; // Ray position (origin)
+        public Vector3 direction; // Ray direction
+
+        public Ray(Vector3 position, Vector3 direction)
+        {
+            this.position = position;
+            this.direction = direction;
+        }
+    }
+
+    // Raycast hit information
+    public struct RayHitInfo
+    {
+        public bool hit; // Did the ray hit something?
+        public float distance; // Distance to nearest hit
+        public Vector3 position; // Position of nearest hit
+        public Vector3 normal; // Surface normal of hit
+    }
+
+    // Wave type, defines audio wave data
+    public struct Wave
+    {
+        public uint sampleCount; // Number of samples
+        public uint sampleRate; // Frequency (samples per second)
+        public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+        public uint channels; // Number of channels (1-mono, 2-stereo)
+        public IntPtr data; // Buffer data pointer
+    }
+
+    // Sound source type
+    public struct Sound
+    {
+        public IntPtr audioBuffer; // Pointer to internal data used by the audio system
+        public uint source; // Audio source id
+        public uint buffer; // Audio buffer id
+        public int format; // Audio format specifier
+    }
+
+    // Music type (file streaming from memory)
+    // NOTE: Anything longer than ~10 seconds should be streamed
+    // typedef struct MusicData *Music;
+    //public struct MusicData
+    //{
+    //}
+
+    // Audio stream type
+    // NOTE: Useful to create custom audio streams not bound to a specific file
+    public class AudioStream
+    {
+        public uint sampleRate; // Frequency (samples per second)
+        public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+        public uint channels; // Number of channels (1-mono, 2-stereo)
+        public IntPtr audioBuffer; // Pointer to internal data used by the audio system.
+        public int format; // Audio format specifier
+
+        public uint source; // Audio source id
+        public uint[] buffers = new uint[2];    // Audio buffers (double buffering)
+    }
+
+    // Head-Mounted-Display device parameters
+    public class VrDeviceInfo
+    {
+        public int hResolution; // HMD horizontal resolution in pixels
+        public int vResolution; // HMD vertical resolution in pixels
+        public float hScreenSize; // HMD horizontal size in meters
+        public float vScreenSize; // HMD vertical size in meters
+        public float vScreenCenter; // HMD screen center in meters
+        public float eyeToScreenDistance; // HMD distance between eye and display in meters
+        public float lensSeparationDistance; // HMD lens separation distance in meters
+
+        public float interpupillaryDistance; // HMD IPD (distance between pupils) in meters
+        public float[] lensDistortionValues = new float[4];  // HMD lens distortion constant parameters
+        public float[] chromaAbCorrection = new float[4];    // HMD chromatic aberration correction parameters
+    }
+    
+    #endregion
+    
+    public static partial class rl
+    {
+        /// <summary>
+        /// Copy raylib dll to output folder automatically
+        /// Needed to run bindings
+        /// </summary>
+        /*public static void LoadApp()
+        {
+            var libFolder = (Environment.Is64BitProcess ? "x64" : "x86");
+            var dllPath = AppDomain.CurrentDomain.BaseDirectory + "../../../raylib-cs\\" + libFolder + "\\raylib.dll";
+            var binPath = AppDomain.CurrentDomain.BaseDirectory + "raylib.dll";
+            if (File.Exists(dllPath))  
+                File.Copy(dllPath, binPath, true);
+        }*/
+
         #region Raylib# Variables
 
         /* Used by DllImport to load the native library. */
         private const string nativeLibName = "raylib.dll";
-        private const int MAX_SHADER_LOCATIONS = 32;
-        private const int MAX_MATERIAL_MAPS = 12;
+        public const int MAX_SHADER_LOCATIONS = 32;
+        public const int MAX_MATERIAL_MAPS = 12;
 
+        // colors
+
+        // Custom raylib color palette for amazing visuals
+        public static Color LIGHTGRAY = new Color(200, 200, 200, 255); // Light Gray
+        public static Color GRAY = new Color(130, 130, 130, 255); // Gray
+        public static Color DARKGRAY = new Color(80, 80, 80, 255); // Dark Gray
+        public static Color YELLOW = new Color(253, 249, 0, 255); // Yellow
+        public static Color GOLD = new Color(255, 203, 0, 255); // Gold
+        public static Color ORANGE = new Color(255, 161, 0, 255); // Orange
+        public static Color PINK = new Color(255, 109, 194, 255); // Pink
+        public static Color RED = new Color(230, 41, 55, 255); // Red
+        public static Color MAROON = new Color(190, 33, 55, 255); // Maroon
+        public static Color GREEN = new Color(0, 228, 48, 255); // Green
+        public static Color LIME = new Color(0, 158, 47, 255); // Lime
+        public static Color DARKGREEN = new Color(0, 117, 44, 255); // Dark Green
+        public static Color SKYBLUE = new Color(102, 191, 255, 255); // Sky Blue
+        public static Color BLUE = new Color(0, 121, 241, 255); // Blue
+        public static Color DARKBLUE = new Color(0, 82, 172, 255); // Dark Blue
+        public static Color PURPLE = new Color(200, 122, 255, 255); // Purple
+        public static Color VIOLET = new Color(135, 60, 190, 255); // Violet
+        public static Color DARKPURPLE = new Color(112, 31, 126, 255); // Dark Purple
+        public static Color BEIGE = new Color(211, 176, 131, 255); // Beige
+        public static Color BROWN = new Color(127, 106, 79, 255); // Brown
+        public static Color DARKBROWN = new Color(76, 63, 47, 255); // Dark Brown
+        public static Color WHITE = new Color(255, 255, 255, 255); // White
+        public static Color BLACK = new Color(0, 0, 0, 255); // Black
+        public static Color BLANK = new Color(0, 0, 0, 0); // Transparent
+        public static Color MAGENTA = new Color(255, 0, 255, 255); // Magenta
+        public static Color RAYWHITE = new Color(245, 245, 245, 255); // Ray White
+        
         #endregion
 
         #region Raylib.h
-
-        // Vector2 type
-        public struct Vector2
-        {
-            public float x;
-            public float y;
-
-            public Vector2(float x, float y)
-            {
-                this.x = x;
-                this.y = y;
-            }
-        }
-
-        // Vector3 type
-        public struct Vector3
-        {
-            public float x;
-            public float y;
-            public float z;
-
-            public Vector3(float x, float y, float z)
-            {
-                this.x = x;
-                this.y = y;
-                this.z = z;
-            }
-        }
-
-        // Vector4 type
-        public struct Vector4
-        {
-            public float x;
-            public float y;
-            public float z;
-            public float w;
-
-            public Vector4(float x, float y, float z, float w)
-            {
-                this.x = x;
-                this.y = y;
-                this.z = z;
-                this.w = w;
-            }
-        }
-
-        // Matrix type (OpenGL style 4x4 - right handed, column major)
-        public struct Matrix
-        {
-            public float m0, m4, m8, m12;
-            public float m1, m5, m9, m13;
-            public float m2, m6, m10, m14;
-            public float m3, m7, m11, m15;
-        }
-
-        // Color type, RGBA (32bit)
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-        public struct Color
-        {
-            public byte r;
-            public byte g;
-            public byte b;
-            public byte a;
-
-            public Color(byte r, byte g, byte b, byte a)
-            {
-                this.r = r;
-                this.g = g;
-                this.b = b;
-                this.a = a;
-            }
-        }
-
-        // Rectangle type
-        public struct Rectangle
-        {
-            public float x;
-            public float y;
-            public float width;
-            public float height;
-
-            public Rectangle(float x, float y, float width, float height)
-            {
-                this.x = x;
-                this.y = y;
-                this.width = width;
-                this.height = height;
-            }
-        }
-
-        // Image type, bpp always RGBA (32bit)
-        // NOTE: Data stored in CPU memory (RAM)
-        public struct Image
-        {
-            public IntPtr data; // Image raw data
-            public int width; // Image base width
-            public int height; // Image base height
-            public int mipmaps; // Mipmap levels, 1 by default
-            public int format; // Data format (PixelFormat type)
-        }
-
-        // Texture2D type
-        // NOTE: Data stored in GPU memory
-        public struct Texture2D
-        {
-            public uint id; // OpenGL texture id
-            public int width; // Texture base width
-            public int height; // Texture base height
-            public int mipmaps; // Mipmap levels, 1 by default
-            public int format; // Data format (PixelFormat type)
-        }
-
-        // Texture type, same as Texture2D
-        // typedef Texture2D Texture;
-
-        // RenderTexture2D type, for texture rendering
-        public struct RenderTexture2D
-        {
-            public uint id; // OpenGL Framebuffer Object (FBO) id
-            public Texture2D texture; // Color buffer attachment texture
-            public Texture2D depth; // Depth buffer attachment texture
-        }
-
-        // RenderTexture type, same as RenderTexture2D
-        // typedef RenderTexture2D RenderTexture;
-
-        // Font character info
-        public struct CharInfo
-        {
-            public int value; // Character value (Unicode)
-            public Rectangle rec; // Character rectangle in sprite font
-            public int offsetX; // Character offset X when drawing
-            public int offsetY; // Character offset Y when drawing
-            public int advanceX; // Character advance position X
-            public byte[] data; // Character pixel data (grayscale)
-        }
-
-        // Font type, includes texture and charSet array data
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-        public struct Font
-        {
-            public Texture2D texture; // Font texture
-            public int baseSize; // Base size (default chars height)
-            public int charsCount; // Number of characters
-            public CharInfo[] chars; // Characters info data
-        }
-
-        // public static Color SpriteFont Font     // SpriteFont type fallback, defaults to Font
-
-        // Camera type, defines a camera position/orientation in 3d space
-        public struct Camera3D
-        {
-            public Vector3 position; // Camera position
-            public Vector3 target; // Camera target it looks-at
-            public Vector3 up; // Camera up vector (rotation over its axis)
-
-            public float
-                fovy; // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-
-            public int type; // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
-        }
-
-        // public static Color Camera Camera3D     // Camera type fallback, defaults to Camera3D
-
-        // Camera2D type, defines a 2d camera
-        public struct Camera2D
-        {
-            public Vector2 offset; // Camera offset (displacement from target)
-            public Vector2 target; // Camera target (rotation and zoom origin)
-            public float rotation; // Camera rotation in degrees
-            public float zoom; // Camera zoom (scaling), should be 1.0f by default
-        }
-
-        // Bounding box type
-        public struct BoundingBox
-        {
-            public Vector3 min; // Minimum vertex box-corner
-            public Vector3 max; // Maximum vertex box-corner
-        }
-
-        // Vertex data definning a mesh
-        // NOTE: Data stored in CPU memory (and GPU)
-        public struct Mesh
-        {
-            public int vertexCount; // Number of vertices stored in arrays
-            public int triangleCount; // Number of triangles stored (indexed or not)
-            public float[] vertices; // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-            public float[] texcoords; // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-            public float[] texcoords2; // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
-            public float[] normals; // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
-            public float[] tangents; // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
-            public byte[] colors; // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
-            public ushort[] indices; // Vertex indices (in case vertex data comes indexed)
-
-            public uint vaoId; // OpenGL Vertex Array Object id
-            //public uint vboId[7];        // OpenGL Vertex Buffer Objects id (7 types of vertex data)
-        }
-
-        // Shader type (generic)
-        public struct Shader
-        {
-            public uint id; // Shader program id
-            //public int locs[MAX_SHADER_LOCATIONS]; // Shader locations array
-        }
-
-        // Material texture map
-        public struct MaterialMap
-        {
-            public Texture2D texture; // Material map texture
-            public Color color; // Material map color
-            public float value; // Material map value
-        }
-
-        // Material type (generic)
-        public struct Material
-        {
-            public Shader shader; // Material shader
-            //MaterialMap maps[MAX_MATERIAL_MAPS]; // Material maps
-            //float[] params;          // Material generic parameters (if required)
-        }
-
-        // Model type
-        public struct Model
-        {
-            public Mesh mesh; // Vertex data buffers (RAM and VRAM)
-            public Matrix transform; // Local transform matrix
-            public Material material; // Shader and textures data
-        }
-
-        // Ray type (useful for raycast)
-        public struct Ray
-        {
-            public Vector3 position; // Ray position (origin)
-            public Vector3 direction; // Ray direction
-
-            public Ray(Vector3 position, Vector3 direction)
-            {
-                this.position = position;
-                this.direction = direction;
-            }
-        }
-
-        // Raycast hit information
-        public struct RayHitInfo
-        {
-            public bool hit; // Did the ray hit something?
-            public float distance; // Distance to nearest hit
-            public Vector3 position; // Position of nearest hit
-            public Vector3 normal; // Surface normal of hit
-        }
-
-        // Wave type, defines audio wave data
-        public struct Wave
-        {
-            public uint sampleCount; // Number of samples
-            public uint sampleRate; // Frequency (samples per second)
-            public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-            public uint channels; // Number of channels (1-mono, 2-stereo)
-            public IntPtr data; // Buffer data pointer
-        }
-
-        // Sound source type
-        [StructLayout(LayoutKind.Sequential)]
-        public struct Sound
-        {
-            public IntPtr audioBuffer; // Pointer to internal data used by the audio system
-            public uint source; // Audio source id
-            public uint buffer; // Audio buffer id
-            public int format; // Audio format specifier
-        }
-
-        // Music type (file streaming from memory)
-        // NOTE: Anything longer than ~10 seconds should be streamed
-        // typedef struct MusicData *Music;
-        public struct MusicData
-        {
-        }
-
-        // Audio stream type
-        // NOTE: Useful to create custom audio streams not bound to a specific file
-        public struct AudioStream
-        {
-            public uint sampleRate; // Frequency (samples per second)
-            public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-            public uint channels; // Number of channels (1-mono, 2-stereo)
-            public IntPtr audioBuffer; // Pointer to internal data used by the audio system.
-            public int format; // Audio format specifier
-
-            public uint source; // Audio source id
-            //public uint buffers[2];    // Audio buffers (double buffering)
-        }
-
-        // Head-Mounted-Display device parameters
-        public struct VrDeviceInfo
-        {
-            public int hResolution; // HMD horizontal resolution in pixels
-            public int vResolution; // HMD vertical resolution in pixels
-            public float hScreenSize; // HMD horizontal size in meters
-            public float vScreenSize; // HMD vertical size in meters
-            public float vScreenCenter; // HMD screen center in meters
-            public float eyeToScreenDistance; // HMD distance between eye and display in meters
-            public float lensSeparationDistance; // HMD lens separation distance in meters
-
-            public float interpupillaryDistance; // HMD IPD (distance between pupils) in meters
-            //public float lensDistortionValues[4];  // HMD lens distortion constant parameters
-            //public float chromaAbCorrection[4];    // HMD chromatic aberration correction parameters
-        }
 
         // Window-related functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1004,7 +1257,7 @@ namespace Raylibcs
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image
-            ImageTextEx(SpriteFont font, string text, int fontSize, int spacing,
+            ImageTextEx(Font font, string text, int fontSize, int spacing,
                 Color tint); // Create an image from text (custom sprite font)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1018,7 +1271,7 @@ namespace Raylibcs
                 Color color); // Draw text (default font) within an image (destination)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawTextEx(ref Image dst, Vector2 position, SpriteFont font, string text,
+        public static extern void ImageDrawTextEx(ref Image dst, Vector2 position, Font font, string text,
             int fontSize, int spacing, Color color); // Draw text (custom sprite font) within image
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1110,20 +1363,20 @@ namespace Raylibcs
 
         // module: text
 
-        // SpriteFont loading/unloading functions
+        // Font loading/unloading functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern SpriteFont GetDefaultFont(); // Get the default SpriteFont
+        public static extern Font GetDefaultFont(); // Get the default Font
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern SpriteFont LoadSpriteFont(string fileName); // Load a SpriteFont image into GPU memory
+        public static extern Font LoadFont(string fileName); // Load a Font image into GPU memory
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern SpriteFont
-            LoadSpriteFontEx(string fileName, int fontSize, int numChars,
-                int fontChars); // Load a SpriteFont from TTF font with parameters
+        public static extern Font
+            LoadFontEx(string fileName, int fontSize, int numChars,
+                int fontChars); // Load a Font from TTF font with parameters
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadSpriteFont(SpriteFont spriteFont); // Unload SpriteFont from GPU memory
+        public static extern void UnloadFont(Font spriteFont); // Unload Font from GPU memory
 
         // Text drawing functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1134,8 +1387,8 @@ namespace Raylibcs
             DrawText(string text, int posX, int posY, int fontSize, Color color); // Draw text (using default font)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextEx(SpriteFont spriteFont, string text, Vector2 position, int fontSize,
-            int spacing, Color tint); // Draw text using SpriteFont and additional parameters
+        public static extern void DrawTextEx(Font spriteFont, string text, Vector2 position, int fontSize,
+            int spacing, Color tint); // Draw text using Font and additional parameters
 
         // Text misc. functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1143,8 +1396,8 @@ namespace Raylibcs
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2
-            MeasureTextEx(SpriteFont spriteFont, string text, int fontSize,
-                int spacing); // Measure string size for SpriteFont
+            MeasureTextEx(Font spriteFont, string text, int fontSize,
+                int spacing); // Measure string size for Font
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern string
@@ -1510,43 +1763,43 @@ namespace Raylibcs
 
         // Music management functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Music LoadMusicStream(string fileName); // Load music stream from file
+        public static extern IntPtr LoadMusicStream(string fileName); // Load music stream from file
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadMusicStream(Music music); // Unload music stream
+        public static extern void UnloadMusicStream(IntPtr music); // Unload music stream
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void PlayMusicStream(Music music); // Start music playing
+        public static extern void PlayMusicStream(IntPtr music); // Start music playing
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateMusicStream(Music music); // Updates buffers for music streaming
+        public static extern void UpdateMusicStream(IntPtr music); // Updates buffers for music streaming
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void StopMusicStream(Music music); // Stop music playing
+        public static extern void StopMusicStream(IntPtr music); // Stop music playing
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void PauseMusicStream(Music music); // Pause music playing
+        public static extern void PauseMusicStream(IntPtr music); // Pause music playing
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ResumeMusicStream(Music music); // Resume playing paused music
+        public static extern void ResumeMusicStream(IntPtr music); // Resume playing paused music
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsMusicPlaying(Music music); // Check if music is playing
+        public static extern bool IsMusicPlaying(IntPtr music); // Check if music is playing
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicVolume(Music music, float volume); // Set volume for music (1.0 is max level)
+        public static extern void SetMusicVolume(IntPtr music, float volume); // Set volume for music (1.0 is max level)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicPitch(Music music, float pitch); // Set pitch for a music (1.0 is base level)
+        public static extern void SetMusicPitch(IntPtr music, float pitch); // Set pitch for a music (1.0 is base level)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicLoopCount(Music music, float count); // Set music loop count (loop repeats)
+        public static extern void SetMusicLoopCount(IntPtr music, float count); // Set music loop count (loop repeats)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GetMusicTimeLength(Music music); // Get music time length (in seconds)
+        public static extern float GetMusicTimeLength(IntPtr music); // Get music time length (in seconds)
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GetMusicTimePlayed(Music music); // Get current music time played (in seconds)
+        public static extern float GetMusicTimePlayed(IntPtr music); // Get current music time played (in seconds)
 
         // AudioStream management functions
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1577,137 +1830,6 @@ namespace Raylibcs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void StopAudioStream(AudioStream stream); // Stop audio stream
 
-        #endregion
-
-        #region Raylib# Constants
-
-        // raylib Config Flags
-        /*#define FLAG_SHOW_LOGO              1       // Set to show raylib logo at startup
-        #define FLAG_FULLSCREEN_MODE        2       // Set to run program in fullscreen
-        #define FLAG_WINDOW_RESIZABLE       4       // Set to allow resizable window
-        #define FLAG_WINDOW_UNDECORATED     8       // Set to disable window decoration (frame and buttons)
-        #define FLAG_WINDOW_TRANSPARENT    16       // Set to allow transparent window
-        #define FLAG_MSAA_4X_HINT          32       // Set to try enabling MSAA 4X
-        #define FLAG_VSYNC_HINT            64       // Set to try enabling V-Sync on GPU
-        */
-
-        // Touch points registered
-        /*#define MAX_TOUCH_POINTS      2
-
-        // Gamepad Number
-        #define GAMEPAD_PLAYER1       0
-        #define GAMEPAD_PLAYER2       1
-        #define GAMEPAD_PLAYER3       2
-        #define GAMEPAD_PLAYER4       3
-        
-        // Gamepad Buttons/Axis
-
-        // PS3 USB Controller Buttons
-        #define GAMEPAD_PS3_BUTTON_TRIANGLE 0
-        #define GAMEPAD_PS3_BUTTON_CIRCLE   1
-        #define GAMEPAD_PS3_BUTTON_CROSS    2
-        #define GAMEPAD_PS3_BUTTON_SQUARE   3
-        #define GAMEPAD_PS3_BUTTON_L1       6
-        #define GAMEPAD_PS3_BUTTON_R1       7
-        #define GAMEPAD_PS3_BUTTON_L2       4
-        #define GAMEPAD_PS3_BUTTON_R2       5
-        #define GAMEPAD_PS3_BUTTON_START    8
-        #define GAMEPAD_PS3_BUTTON_SELECT   9
-        #define GAMEPAD_PS3_BUTTON_UP      24
-        #define GAMEPAD_PS3_BUTTON_RIGHT   25
-        #define GAMEPAD_PS3_BUTTON_DOWN    26
-        #define GAMEPAD_PS3_BUTTON_LEFT    27
-        #define GAMEPAD_PS3_BUTTON_PS      12
-
-        // PS3 USB Controller Axis
-        #define GAMEPAD_PS3_AXIS_LEFT_X     0
-        #define GAMEPAD_PS3_AXIS_LEFT_Y     1
-        #define GAMEPAD_PS3_AXIS_RIGHT_X    2
-        #define GAMEPAD_PS3_AXIS_RIGHT_Y    5
-        #define GAMEPAD_PS3_AXIS_L2         3       // [1..-1] (pressure-level)
-        #define GAMEPAD_PS3_AXIS_R2         4       // [1..-1] (pressure-level)
-
-        // Xbox360 USB Controller Buttons
-        #define GAMEPAD_XBOX_BUTTON_A       0
-        #define GAMEPAD_XBOX_BUTTON_B       1
-        #define GAMEPAD_XBOX_BUTTON_X       2
-        #define GAMEPAD_XBOX_BUTTON_Y       3
-        #define GAMEPAD_XBOX_BUTTON_LB      4
-        #define GAMEPAD_XBOX_BUTTON_RB      5
-        #define GAMEPAD_XBOX_BUTTON_SELECT  6
-        #define GAMEPAD_XBOX_BUTTON_START   7
-        #define GAMEPAD_XBOX_BUTTON_UP      10
-        #define GAMEPAD_XBOX_BUTTON_RIGHT   11
-        #define GAMEPAD_XBOX_BUTTON_DOWN    12
-        #define GAMEPAD_XBOX_BUTTON_LEFT    13
-        #define GAMEPAD_XBOX_BUTTON_HOME    8
-
-        // Android Gamepad Controller (SNES CLASSIC)
-        #define GAMEPAD_ANDROID_DPAD_UP        19
-        #define GAMEPAD_ANDROID_DPAD_DOWN      20
-        #define GAMEPAD_ANDROID_DPAD_LEFT      21
-        #define GAMEPAD_ANDROID_DPAD_RIGHT     22
-        #define GAMEPAD_ANDROID_DPAD_CENTER    23
-
-        #define GAMEPAD_ANDROID_BUTTON_A       96
-        #define GAMEPAD_ANDROID_BUTTON_B       97
-        #define GAMEPAD_ANDROID_BUTTON_C       98
-        #define GAMEPAD_ANDROID_BUTTON_X       99
-        #define GAMEPAD_ANDROID_BUTTON_Y       100
-        #define GAMEPAD_ANDROID_BUTTON_Z       101
-        #define GAMEPAD_ANDROID_BUTTON_L1      102
-        #define GAMEPAD_ANDROID_BUTTON_R1      103
-        #define GAMEPAD_ANDROID_BUTTON_L2      104
-        #define GAMEPAD_ANDROID_BUTTON_R2      105
-
-        // Xbox360 USB Controller Axis
-        // NOTE: For Raspberry Pi, axis must be reconfigured
-        #if defined(PLATFORM_RPI)
-            #define GAMEPAD_XBOX_AXIS_LEFT_X    0   // [-1..1] (left->right)
-            #define GAMEPAD_XBOX_AXIS_LEFT_Y    1   // [-1..1] (up->down)
-            #define GAMEPAD_XBOX_AXIS_RIGHT_X   3   // [-1..1] (left->right)
-            #define GAMEPAD_XBOX_AXIS_RIGHT_Y   4   // [-1..1] (up->down)
-            #define GAMEPAD_XBOX_AXIS_LT        2   // [-1..1] (pressure-level)
-            #define GAMEPAD_XBOX_AXIS_RT        5   // [-1..1] (pressure-level)
-        #else
-            #define GAMEPAD_XBOX_AXIS_LEFT_X    0   // [-1..1] (left->right)
-            #define GAMEPAD_XBOX_AXIS_LEFT_Y    1   // [1..-1] (up->down)
-            #define GAMEPAD_XBOX_AXIS_RIGHT_X   2   // [-1..1] (left->right)
-            #define GAMEPAD_XBOX_AXIS_RIGHT_Y   3   // [1..-1] (up->down)
-            #define GAMEPAD_XBOX_AXIS_LT        4   // [-1..1] (pressure-level)
-            #define GAMEPAD_XBOX_AXIS_RT        5   // [-1..1] (pressure-level)
-        #endif*/
-            
-        // colors
-
-        // Custom raylib color palette for amazing visuals
-        public static Color LIGHTGRAY = new Color(200, 200, 200, 255); // Light Gray
-        public static Color GRAY = new Color(130, 130, 130, 255); // Gray
-        public static Color DARKGRAY = new Color(80, 80, 80, 255); // Dark Gray
-        public static Color YELLOW = new Color(253, 249, 0, 255); // Yellow
-        public static Color GOLD = new Color(255, 203, 0, 255); // Gold
-        public static Color ORANGE = new Color(255, 161, 0, 255); // Orange
-        public static Color PINK = new Color(255, 109, 194, 255); // Pink
-        public static Color RED = new Color(230, 41, 55, 255); // Red
-        public static Color MAROON = new Color(190, 33, 55, 255); // Maroon
-        public static Color GREEN = new Color(0, 228, 48, 255); // Green
-        public static Color LIME = new Color(0, 158, 47, 255); // Lime
-        public static Color DARKGREEN = new Color(0, 117, 44, 255); // Dark Green
-        public static Color SKYBLUE = new Color(102, 191, 255, 255); // Sky Blue
-        public static Color BLUE = new Color(0, 121, 241, 255); // Blue
-        public static Color DARKBLUE = new Color(0, 82, 172, 255); // Dark Blue
-        public static Color PURPLE = new Color(200, 122, 255, 255); // Purple
-        public static Color VIOLET = new Color(135, 60, 190, 255); // Violet
-        public static Color DARKPURPLE = new Color(112, 31, 126, 255); // Dark Purple
-        public static Color BEIGE = new Color(211, 176, 131, 255); // Beige
-        public static Color BROWN = new Color(127, 106, 79, 255); // Brown
-        public static Color DARKBROWN = new Color(76, 63, 47, 255); // Dark Brown
-        public static Color WHITE = new Color(255, 255, 255, 255); // White
-        public static Color BLACK = new Color(0, 0, 0, 255); // Black
-        public static Color BLANK = new Color(0, 0, 0, 0); // Transparent
-        public static Color MAGENTA = new Color(255, 0, 255, 255); // Magenta
-        public static Color RAYWHITE = new Color(245, 245, 245, 255); // Ray White
-        
         #endregion
     }
 }
