@@ -1,8 +1,13 @@
-# Raylib-cs
+# raylib-cs
 
-Testing C# bindings for Raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
-![](header.png)
+## Installation
+Windows:
+- Download the repository
+- Open Raylib-cs.sln
+- Copy x86 or x64 dll inside ExampleApplication to your output folder
+- Build and run
 
 # TODO:
 ## Cppsharp generator:
@@ -16,20 +21,11 @@ Testing C# bindings for Raylib, a simple and easy-to-use library to learn videog
 - Allow raylib to be used inside windows forms
 - Convert across raylib examples
 
-## Installation
-Windows:
-- Download the repository
-- Open Raylib-cs.sln
-- Copy x86 or x64 dll inside ExampleApplication to your output folder
-- Build and run
-
 ## Contributing
-As I use this for my own projects, I know this might not be the perfect approach
-for all the projects out there. If you have any ideas, just
-open an issue and tell me what you think.
+If you have any ideas, feel free to open an issue and tell me what you think.
 
 If you'd like to contribute, please fork the repository and make changes as
 you'd like. Pull requests are warmly welcome.
 
 ## Licensing
-Raylib-cs is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+raylib-cs is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
