@@ -3,12 +3,11 @@ using static Raylib.rl;
 
 namespace ExampleApplication
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
-        {
-            // LoadApp();           
-            Examples.shapes_basic_shapes();
+        {     
+            Examples.core_basic_window();
             // DrawControl.Run();
         }
     }
