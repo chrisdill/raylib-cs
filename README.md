@@ -3,21 +3,15 @@
 C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 ## Installation
-Windows:
-- Download the repository
-- Open Raylib-cs.sln
-- Copy x86 or x64 dll inside ExampleApplication to your output folder
-- Build and run
+- Download the repository 
+- Run ExampleApplication.exe in ExampleApplication/bin/Debug/
 
 # TODO:
 ## Cppsharp generator:
-- Change #defines such as KEY_ENTER to static variables or enums.
 - Add utility constructors for types -> Vector3(x, y, z).
 - Add utility for cleaning up types so they are destroyed with the type.
 
 ## General
-- Copy raylib.dll across to same output folder automatically
-- Add windows forms interface for generator
 - Allow raylib to be used inside windows forms
 - Convert across raylib examples
 

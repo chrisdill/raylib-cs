@@ -25,13 +25,10 @@
 [Rr]elease/
 [Rr]eleases/
 bld/
-[Qq]uartz/[Bb]in/
-[Ff][Nn][Aa]/[Bb]in/
 [Bb]uild/
-[Dd]ebug/
+Generator/bin/[Dd]ebug
 [Oo]bj/
 [Ll]og/
-[xX][68][46]/
 
 # Visual Studio 2015 cache/options directory
 .vs/
