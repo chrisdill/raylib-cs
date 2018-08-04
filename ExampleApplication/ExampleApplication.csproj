@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2B3BBC8-3D48-46DD-B3CF-263F554E4474}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Raylib_example</RootNamespace>
-    <AssemblyName>Raylib-example</AssemblyName>
+    <RootNamespace>ExampleApplication</RootNamespace>
+    <AssemblyName>ExampleApplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -240,8 +240,6 @@
     <Content Include="Examples\text\text_ttf_loading.png" />
     <Content Include="Examples\text\text_writing_anim.c" />
     <Content Include="Examples\text\text_writing_anim.png" />
-    <Content Include="Raylib-cs\x64\raylib.dll" />
-    <Content Include="Raylib-cs\x86\raylib.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Raylib-cs\DrawControl.resx">
@@ -249,7 +247,4 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(ProjectDir)Examples\resources" "$(TargetDir)\resources\" /Y /S /I</PostBuildEvent>
-  </PropertyGroup>
 </Project>
