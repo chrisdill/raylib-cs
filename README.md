@@ -3,17 +3,40 @@
 C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 ## Installation
-- Download the repository 
-- Run ExampleApplication.exe in ExampleApplication/bin/Debug/
+Tested on windows 10 64 bit.
+
+1. Download the repository 
+2. Run ExampleApplication.exe in ExampleApplication/bin/Debug/
+
+``` 
+using Raylib;
+using static Raylib.rl;
+
+static class Program
+{
+	public static void Main() 
+	{
+		InitWindow(640, 480, "Raylib-cs");
+
+		while (!WindowShouldClose())
+		{
+			BeginDraw();
+
+			ClearBackground(WHITE);
+			DrawText("Hello, world!", 12, 12, 20, BLACK);
+
+			EndDrawing();
+		}
+	
+		CloseWindow();
+	}
+}
+```
 
 # TODO:
-## Cppsharp generator:
-- Add utility constructors for types -> Vector3(x, y, z).
-- Add utility for cleaning up types so they are destroyed with the type.
-
-## General
-- Allow raylib to be used inside windows forms
-- Convert across raylib examples
+- Finish binding generator
+- Use raylib in windows forms
+- Bind physac, raygui, easings
 
 ## Contributing
 If you have any ideas, feel free to open an issue and tell me what you think.
