@@ -34,7 +34,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
@@ -55,7 +55,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
@@ -81,168 +81,24 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\audio\audio_module_playing.cs" />
-    <Compile Include="Examples\core\core_basic_window.cs" />
-    <Compile Include="Examples\shapes\shapes_basic_shapes.cs" />
-    <Compile Include="Examples\textures\textures_image_drawing.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Raylib-cs\DrawControl.cs">
+    <Compile Include="core_basic_window.cs" />
+    <Compile Include="DrawControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Raylib-cs\Raylib.cs" />
+    <Compile Include="Easings.cs" />
+    <Compile Include="Physac.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raygui.cs" />
+    <Compile Include="Raylib.cs" />
+    <Compile Include="Raymath.cs" />
+    <Compile Include="Rlgl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Examples\models\bridge.obj" />
-    <None Include="Examples\models\castle.obj" />
-    <None Include="Examples\models\house.obj" />
-    <None Include="Examples\models\market.obj" />
-    <None Include="Examples\models\turret.obj" />
-    <None Include="Examples\models\well.obj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Examples\audio\audio_module_playing.png" />
-    <Content Include="Examples\audio\audio_music_stream.c" />
-    <Content Include="Examples\audio\audio_music_stream.png" />
-    <Content Include="Examples\audio\audio_raw_stream.c" />
-    <Content Include="Examples\audio\audio_raw_stream.png" />
-    <Content Include="Examples\audio\audio_sound_loading.c" />
-    <Content Include="Examples\audio\audio_sound_loading.png" />
-    <Content Include="Examples\core\core_2d_camera.c" />
-    <Content Include="Examples\core\core_2d_camera.png" />
-    <Content Include="Examples\core\core_3d_camera_first_person.c" />
-    <Content Include="Examples\core\core_3d_camera_first_person.png" />
-    <Content Include="Examples\core\core_3d_camera_free.c" />
-    <Content Include="Examples\core\core_3d_camera_free.png" />
-    <Content Include="Examples\core\core_3d_mode.c" />
-    <Content Include="Examples\core\core_3d_mode.png" />
-    <Content Include="Examples\core\core_3d_picking.c" />
-    <Content Include="Examples\core\core_3d_picking.png" />
-    <Content Include="Examples\core\core_basic_window.png" />
-    <Content Include="Examples\core\core_basic_window_web.c" />
-    <Content Include="Examples\core\core_color_select.c" />
-    <Content Include="Examples\core\core_color_select.png" />
-    <Content Include="Examples\core\core_drop_files.c" />
-    <Content Include="Examples\core\core_drop_files.png" />
-    <Content Include="Examples\core\core_gestures_detection.c" />
-    <Content Include="Examples\core\core_gestures_detection.png" />
-    <Content Include="Examples\core\core_input_gamepad.c" />
-    <Content Include="Examples\core\core_input_gamepad.png" />
-    <Content Include="Examples\core\core_input_keys.c" />
-    <Content Include="Examples\core\core_input_keys.png" />
-    <Content Include="Examples\core\core_input_mouse.c" />
-    <Content Include="Examples\core\core_input_mouse.png" />
-    <Content Include="Examples\core\core_mouse_wheel.c" />
-    <Content Include="Examples\core\core_mouse_wheel.png" />
-    <Content Include="Examples\core\core_random_values.c" />
-    <Content Include="Examples\core\core_random_values.png" />
-    <Content Include="Examples\core\core_storage_values.c" />
-    <Content Include="Examples\core\core_storage_values.png" />
-    <Content Include="Examples\core\core_vr_simulator.c" />
-    <Content Include="Examples\core\core_vr_simulator.png" />
-    <Content Include="Examples\core\core_world_screen.c" />
-    <Content Include="Examples\core\core_world_screen.png" />
-    <Content Include="Examples\models\bridge_diffuse.png" />
-    <Content Include="Examples\models\castle_diffuse.png" />
-    <Content Include="Examples\models\house_diffuse.png" />
-    <Content Include="Examples\models\market_diffuse.png" />
-    <Content Include="Examples\models\models_billboard.c" />
-    <Content Include="Examples\models\models_billboard.png" />
-    <Content Include="Examples\models\models_box_collisions.c" />
-    <Content Include="Examples\models\models_box_collisions.png" />
-    <Content Include="Examples\models\models_cubicmap.c" />
-    <Content Include="Examples\models\models_cubicmap.png" />
-    <Content Include="Examples\models\models_geometric_shapes.c" />
-    <Content Include="Examples\models\models_geometric_shapes.png" />
-    <Content Include="Examples\models\models_heightmap.c" />
-    <Content Include="Examples\models\models_heightmap.png" />
-    <Content Include="Examples\models\models_material_pbr.c" />
-    <Content Include="Examples\models\models_material_pbr.png" />
-    <Content Include="Examples\models\models_mesh_generation.c" />
-    <Content Include="Examples\models\models_mesh_generation.png" />
-    <Content Include="Examples\models\models_mesh_picking.c" />
-    <Content Include="Examples\models\models_mesh_picking.png" />
-    <Content Include="Examples\models\models_obj_loading.c" />
-    <Content Include="Examples\models\models_obj_loading.png" />
-    <Content Include="Examples\models\models_orthographic_projection.c" />
-    <Content Include="Examples\models\models_orthographic_projection.png" />
-    <Content Include="Examples\models\models_skybox.c" />
-    <Content Include="Examples\models\models_skybox.png" />
-    <Content Include="Examples\models\models_yaw_pitch_roll.c" />
-    <Content Include="Examples\models\models_yaw_pitch_roll.png" />
-    <Content Include="Examples\models\rlights.h" />
-    <Content Include="Examples\models\turret_diffuse.png" />
-    <Content Include="Examples\models\well_diffuse.png" />
-    <Content Include="Examples\physac\physics_demo.c" />
-    <Content Include="Examples\physac\physics_demo.png" />
-    <Content Include="Examples\physac\physics_friction.c" />
-    <Content Include="Examples\physac\physics_friction.png" />
-    <Content Include="Examples\physac\physics_movement.c" />
-    <Content Include="Examples\physac\physics_movement.png" />
-    <Content Include="Examples\physac\physics_restitution.c" />
-    <Content Include="Examples\physac\physics_restitution.png" />
-    <Content Include="Examples\physac\physics_shatter.c" />
-    <Content Include="Examples\physac\physics_shatter.png" />
-    <Content Include="Examples\shaders\shaders_custom_uniform.c" />
-    <Content Include="Examples\shaders\shaders_custom_uniform.png" />
-    <Content Include="Examples\shaders\shaders_model_shader.c" />
-    <Content Include="Examples\shaders\shaders_model_shader.png" />
-    <Content Include="Examples\shaders\shaders_postprocessing.c" />
-    <Content Include="Examples\shaders\shaders_postprocessing.png" />
-    <Content Include="Examples\shaders\shaders_shapes_textures.c" />
-    <Content Include="Examples\shaders\shaders_shapes_textures.png" />
-    <Content Include="Examples\shapes\shapes_basic_shapes.png" />
-    <Content Include="Examples\shapes\shapes_colors_palette.c" />
-    <Content Include="Examples\shapes\shapes_colors_palette.png" />
-    <Content Include="Examples\shapes\shapes_lines_bezier.c" />
-    <Content Include="Examples\shapes\shapes_lines_bezier.png" />
-    <Content Include="Examples\shapes\shapes_logo_raylib.c" />
-    <Content Include="Examples\shapes\shapes_logo_raylib.png" />
-    <Content Include="Examples\shapes\shapes_logo_raylib_anim.c" />
-    <Content Include="Examples\shapes\shapes_logo_raylib_anim.png" />
-    <Content Include="Examples\textures\textures_image_drawing.png" />
-    <Content Include="Examples\textures\textures_image_generation.c" />
-    <Content Include="Examples\textures\textures_image_generation.png" />
-    <Content Include="Examples\textures\textures_image_loading.c" />
-    <Content Include="Examples\textures\textures_image_loading.png" />
-    <Content Include="Examples\textures\textures_image_processing.c" />
-    <Content Include="Examples\textures\textures_image_processing.png" />
-    <Content Include="Examples\textures\textures_image_text.c" />
-    <Content Include="Examples\textures\textures_image_text.png" />
-    <Content Include="Examples\textures\textures_logo_raylib.c" />
-    <Content Include="Examples\textures\textures_logo_raylib.png" />
-    <Content Include="Examples\textures\textures_particles_blending.c" />
-    <Content Include="Examples\textures\textures_particles_blending.png" />
-    <Content Include="Examples\textures\textures_raw_data.c" />
-    <Content Include="Examples\textures\textures_raw_data.png" />
-    <Content Include="Examples\textures\textures_rectangle.c" />
-    <Content Include="Examples\textures\textures_rectangle.png" />
-    <Content Include="Examples\textures\textures_srcrec_dstrec.c" />
-    <Content Include="Examples\textures\textures_srcrec_dstrec.png" />
-    <Content Include="Examples\textures\textures_to_image.c" />
-    <Content Include="Examples\textures\textures_to_image.png" />
-    <Content Include="Examples\text\text_bmfont_ttf.c" />
-    <Content Include="Examples\text\text_bmfont_ttf.png" />
-    <Content Include="Examples\text\text_bmfont_unordered.c" />
-    <Content Include="Examples\text\text_bmfont_unordered.png" />
-    <Content Include="Examples\text\text_font_sdf.c" />
-    <Content Include="Examples\text\text_font_sdf.png" />
-    <Content Include="Examples\text\text_format_text.c" />
-    <Content Include="Examples\text\text_format_text.png" />
-    <Content Include="Examples\text\text_input_box.c" />
-    <Content Include="Examples\text\text_input_box.png" />
-    <Content Include="Examples\text\text_raylib_fonts.c" />
-    <Content Include="Examples\text\text_raylib_fonts.png" />
-    <Content Include="Examples\text\text_sprite_fonts.c" />
-    <Content Include="Examples\text\text_sprite_fonts.png" />
-    <Content Include="Examples\text\text_ttf_loading.c" />
-    <Content Include="Examples\text\text_ttf_loading.png" />
-    <Content Include="Examples\text\text_writing_anim.c" />
-    <Content Include="Examples\text\text_writing_anim.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Raylib-cs\DrawControl.resx">
+    <EmbeddedResource Include="DrawControl.resx">
       <DependentUpon>DrawControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

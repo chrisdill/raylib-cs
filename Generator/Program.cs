@@ -1,16 +1,16 @@
 ﻿using System;
-using CppSharp;
 
 namespace Raylibcs
 {
-    static class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Raylib-cs binding generator");    
-            ConsoleDriver.Run(new SampleLibrary());
+            Console.WriteLine("Raylib-cs generator");
+            // Generator.Process("raylib.h", "RLAPI");
+            Generator.ProcessExamples();
             Console.WriteLine("Press enter to exit");
-            Console.ReadLine();
+            Console.Read();
         }
     }
 }
