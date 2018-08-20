@@ -8,7 +8,7 @@ Tested on windows 10 64 bit.
 1. Download the repository 
 2. Run ExampleApplication.exe in ExampleApplication/bin/Debug/
 
-``` 
+```csharp 
 using Raylib;
 using static Raylib.rl;
 
