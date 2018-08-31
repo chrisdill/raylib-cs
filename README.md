@@ -1,12 +1,19 @@
-# raylib-cs
+# Raylib-cs
 
 C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
+Bindings:
+* Easings
+* Physac
+* Raygui
+* Raylib
+* Raymath
+
 ## Installation
-Tested on windows 10 64 bit.
+Tested on windows 10 64 bit using the mono compiler.
 
 1. Download the repository 
-2. Run ExampleApplication.exe in ExampleApplication/bin/Debug/
+2. Run Bindings.exe in Bindings/bin/Debug/
 
 ```csharp 
 using Raylib;
@@ -34,9 +41,15 @@ static class Program
 ```
 
 # TODO:
-- Finish binding generator
-- Use raylib in windows forms
-- Bind physac, raygui, easings
+- Binding generator improvements
+- Managed bindings(Marhsall etc)
+- .Net Core support
+- Windows forms support
+- Finish examples
+- Add as a nuget package
+- Add templates
+- Add logos
+- Auto select x86/x64 dll as needed(currently only x64 dll included)
 
 ## Contributing
 If you have any ideas, feel free to open an issue and tell me what you think.
