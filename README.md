@@ -13,7 +13,7 @@ Bindings:
 Tested on windows 10 64 bit using the mono compiler.
 
 1. Download the repository 
-2. Run Bindings.exe in Bindings/bin/Debug/
+2. Run Examples.exe in Examples/bin/Debug/
 
 ```csharp 
 using Raylib;
