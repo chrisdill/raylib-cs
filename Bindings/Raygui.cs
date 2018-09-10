@@ -1,3 +1,9 @@
+/**********************************************************************************************
+ * 
+ * Raygui
+ * https://github.com/raysan5/raygui/blob/master/src/raygui.h
+ * 
+**********************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -182,14 +188,18 @@ namespace Raylib
         LISTVIEW_TEXT_COLOR_DISABLED
     }
 
+	// GUI controls state
+	public enum GuiControlState 
+	{ 
+	    DISABLED = 0, 
+	    NORMAL, 
+	    FOCUSED, 
+	    PRESSED 
+	}
+
     #endregion
 
-    #region Raylib-cs Types
-
-
-    #endregion
-
-    public static partial class rl
+    public static partial class Raylib
     {
         #region Raylib-cs Variables
 
@@ -197,10 +207,6 @@ namespace Raylib
 
         #region Raylib-cs Functions
 
-        //----------------------------------------------------------------------------------
-        // Module Functions Declaration
-        //----------------------------------------------------------------------------------
-        
         // Global gui modification functions
         // Enable gui controls (global state)
         [DllImport(nativeLibName)]
@@ -213,8 +219,7 @@ namespace Raylib
         // Set gui controls alpha (global state), alpha goes from 0.0f to 1.0f
         [DllImport(nativeLibName)]
         public static extern void GuiFade(float alpha);                                    
-        
-        
+          
         // Style set/get functions
         // Set one style property
         [DllImport(nativeLibName)]
@@ -223,8 +228,7 @@ namespace Raylib
         // Get one style property
         [DllImport(nativeLibName)]
         public static extern int GuiGetStyleProperty(int guiProperty);                     
-        
-        
+             
         // Container/separator controls, useful for controls organization
         // Window Box control, shows a window that can be closed
         [DllImport(nativeLibName)]
@@ -244,9 +248,7 @@ namespace Raylib
         
         // Scroll Panel control
         [DllImport(nativeLibName)]
-        public static extern Vector2 GuiScrollPanel(Rectangle bounds, Rectangle content, Vector2 viewScroll);              
-        
-        
+        public static extern Vector2 GuiScrollPanel(Rectangle bounds, Rectangle content, Vector2 viewScroll);                   
         
         // Basic controls set
         // Label control, shows text
@@ -339,8 +341,7 @@ namespace Raylib
         
         // Dummy control for placeholders
         [DllImport(nativeLibName)]
-        public static extern void GuiDummyRec(Rectangle bounds, string text);                                         
-        
+        public static extern void GuiDummyRec(Rectangle bounds, string text);                                              
         
         // Advance controls set
         // List View control, returns selected list element index

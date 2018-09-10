@@ -1,3 +1,9 @@
+/**********************************************************************************************
+ * 
+ * Raylib 2.0 - A simple and easy-to-use library to learn videogames programming (www.raylib.com)
+ * Original - https://github.com/raysan5/raylib/blob/master/src/raylib.h
+ * 
+**********************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -342,6 +348,36 @@ namespace Raylib
             this.b = b;
             this.a = a;
         }
+	    
+	    // Access colours from struct extension
+	    // By default accessed from Raylib class
+	    // Custom raylib color palette for amazing visuals
+        public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
+        public static Color GRAY = new Color(130, 130, 130, 255);
+        public static Color DARKGRAY = new Color(80, 80, 80, 255);
+        public static Color YELLOW = new Color(253, 249, 0, 255);
+        public static Color GOLD = new Color(255, 203, 0, 255);
+        public static Color ORANGE = new Color(255, 161, 0, 255);
+        public static Color PINK = new Color(255, 109, 194, 255);
+        public static Color RED = new Color(230, 41, 55, 255);
+        public static Color MAROON = new Color(190, 33, 55, 255);
+        public static Color GREEN = new Color(0, 228, 48, 255);
+        public static Color LIME = new Color(0, 158, 47, 255);
+        public static Color DARKGREEN = new Color(0, 117, 44, 255);
+        public static Color SKYBLUE = new Color(102, 191, 255, 255);
+        public static Color BLUE = new Color(0, 121, 241, 255);
+        public static Color DARKBLUE = new Color(0, 82, 172, 255);
+        public static Color PURPLE = new Color(200, 122, 255, 255);
+        public static Color VIOLET = new Color(135, 60, 190, 255);
+        public static Color DARKPURPLE = new Color(112, 31, 126, 255);
+        public static Color BEIGE = new Color(211, 176, 131, 255);
+        public static Color BROWN = new Color(127, 106, 79, 255);
+        public static Color DARKBROWN = new Color(76, 63, 47, 255);
+        public static Color WHITE = new Color(255, 255, 255, 255);
+        public static Color BLACK = new Color(0, 0, 0, 255);
+        public static Color BLANK = new Color(0, 0, 0, 0);
+        public static Color MAGENTA = new Color(255, 0, 255, 255);
+        public static Color RAYWHITE = new Color(245, 245, 245, 255);
     }
 
     // Rectangle type
@@ -367,11 +403,11 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Image
     {
-        public IntPtr data; // Image raw data
-        public int width; // Image base width
-        public int height; // Image base height
-        public int mipmaps; // Mipmap levels, 1 by default
-        public int format; // Data format (PixelFormat type)
+        public IntPtr data;
+        public int width;
+        public int height;
+        public int mipmaps;
+        public int format;
     }
 
     // Texture2D type
@@ -379,20 +415,20 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Texture2D
     {
-        public uint id; // OpenGL texture id
-        public int width; // Texture base width
-        public int height; // Texture base height
-        public int mipmaps; // Mipmap levels, 1 by default
-        public int format; // Data format (PixelFormat type)
+        public uint id;
+        public int width;
+        public int height;
+        public int mipmaps;
+        public int format;
     }
 
     // RenderTexture2D type, for texture rendering
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct RenderTexture2D
     {
-        public uint id; // OpenGL Framebuffer Object (FBO) id
-        public Texture2D texture; // Color buffer attachment texture
-        public Texture2D depth; // Depth buffer attachment texture
+        public uint id;
+        public Texture2D texture;
+        public Texture2D depth;
     }
 
     // RenderTexture type, same as RenderTexture2D
@@ -402,35 +438,35 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct CharInfo
     {
-        public int value; // Character value (Unicode)
-        public Rectangle rec; // Character rectangle in sprite font
-        public int offsetX; // Character offset X when drawing
-        public int offsetY; // Character offset Y when drawing
-        public int advanceX; // Character advance position X
-	    public unsafe void* data;// Character pixel data (grayscale)
+        public int value;
+        public Rectangle rec;
+        public int offsetX;
+        public int offsetY;
+        public int advanceX;
+	    public unsafe void* data;
     }
 
     // Font type, includes texture and charSet array data
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Font
     {
-        public Texture2D texture; // Font texture
-        public int baseSize; // Base size (default chars height)
-        public int charsCount; // Number of characters
-	    public unsafe CharInfo* chars; // Characters info data
+        public Texture2D texture;
+        public int baseSize;
+        public int charsCount;
+	    public unsafe CharInfo* chars;
     }
 
     // Camera type, defines a camera position/orientation in 3d space
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Camera3D
     {
-        public Vector3 position; // Camera position
-        public Vector3 target; // Camera target it looks-at
-        public Vector3 up; // Camera up vector (rotation over its axis)
+        public Vector3 position;
+        public Vector3 target;
+        public Vector3 up;
 
-        public float fovy; // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public float fovy;
 
-        public CameraType type; // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        public CameraType type;
 
         public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy = 90,
             CameraType type = CameraType.CAMERA_PERSPECTIVE)
@@ -447,18 +483,18 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Camera2D
     {
-        public Vector2 offset; // Camera offset (displacement from target)
-        public Vector2 target; // Camera target (rotation and zoom origin)
-        public float rotation; // Camera rotation in degrees
-        public float zoom; // Camera zoom (scaling), should be 1.0f by default
+        public Vector2 offset;
+        public Vector2 target;
+        public float rotation;
+        public float zoom;
     }
 
     // Bounding box type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct BoundingBox
     {
-        public Vector3 min; // Minimum vertex box-corner
-        public Vector3 max; // Maximum vertex box-corner
+        public Vector3 min;
+        public Vector3 max;
     }
 
     // Vertex data definning a mesh
@@ -466,62 +502,62 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Mesh
     {
-        public int vertexCount; // Number of vertices stored in arrays
-        public int triangleCount; // Number of triangles stored (indexed or not)
+        public int vertexCount;
+        public int triangleCount;
 
-        public float[] vertices; // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-        public float[] texcoords; // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-        public float[] texcoords2; // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
-        public float[] normals; // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
-        public float[] tangents; // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
-        public byte[] colors; // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
-        public ushort[] indices; // Vertex indices (in case vertex data comes indexed)
+        public float[] vertices;
+        public float[] texcoords;
+        public float[] texcoords2;
+        public float[] normals;
+        public float[] tangents;
+        public byte[] colors;
+        public ushort[] indices;
 
-        public uint vaoId; // OpenGL Vertex Array Object id
-        public unsafe fixed uint vboId[7];        // OpenGL Vertex Buffer Objects id (7 types of vertex data)
+        public uint vaoId;
+        public unsafe fixed uint vboId[7];
     }
 
     // Shader type (generic)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public unsafe struct Shader
     {
-        public uint id; // Shader program id
-        public fixed int locs[rl.MAX_SHADER_LOCATIONS]; // Shader locations array
+        public uint id;
+        public fixed int locs[Raylib.MAX_SHADER_LOCATIONS];
     }
 
     // Material texture map
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct MaterialMap
     {
-        public Texture2D texture; // Material map texture
-        public Color color; // Material map color
-        public float value; // Material map value
+        public Texture2D texture;
+        public Color color;
+        public float value;
     }
 
     // Material type (generic)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Material
     {
-        public Shader shader; // Material shader
-        // public MaterialMap[] maps = new MaterialMap[rl.MAX_MATERIAL_MAPS]; // Material maps
-        public float[] param;          // Material generic parameters (if required)
+        public Shader shader;
+        // public MaterialMap[] maps = new MaterialMap[rl.MAX_MATERIAL_MAPS];
+        public float[] param;
     }
 
     // Model type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Model
     {
-        public Mesh mesh; // Vertex data buffers (RAM and VRAM)
-        public Matrix transform; // Local transform matrix
-        public Material material; // Shader and textures data
+        public Mesh mesh;
+        public Matrix transform;
+        public Material material;
     }
 
     // Ray type (useful for raycast)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Ray
     {
-        public Vector3 position; // Ray position (origin)
-        public Vector3 direction; // Ray direction
+        public Vector3 position;
+        public Vector3 direction;
 
         public Ray(Vector3 position, Vector3 direction)
         {
@@ -534,31 +570,31 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct RayHitInfo
     {
-        public bool hit; // Did the ray hit something?
-        public float distance; // Distance to nearest hit
-        public Vector3 position; // Position of nearest hit
-        public Vector3 normal; // Surface normal of hit
+        public bool hit;
+        public float distance;
+        public Vector3 position;
+        public Vector3 normal;
     }
 
     // Wave type, defines audio wave data
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Wave
     {
-        public uint sampleCount; // Number of samples
-        public uint sampleRate; // Frequency (samples per second)
-        public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-        public uint channels; // Number of channels (1-mono, 2-stereo)
-        public IntPtr data; // Buffer data pointer
+        public uint sampleCount;
+        public uint sampleRate;
+        public uint sampleSize;
+        public uint channels;
+        public IntPtr data;
     }
 
     // Sound source type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Sound
     {
-        public IntPtr audioBuffer; // Pointer to internal data used by the audio system
-        public uint source; // Audio source id
-        public uint buffer; // Audio buffer id
-        public int format; // Audio format specifier
+        public IntPtr audioBuffer;
+        public uint source;
+        public uint buffer;
+        public int format;
     }
 
     // Audio stream type
@@ -566,36 +602,36 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public class AudioStream
     {
-        public uint sampleRate; // Frequency (samples per second)
-        public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-        public uint channels; // Number of channels (1-mono, 2-stereo)
-        public IntPtr audioBuffer; // Pointer to internal data used by the audio system.
-        public int format; // Audio format specifier
+        public uint sampleRate;
+        public uint sampleSize;
+        public uint channels;
+        public IntPtr audioBuffer;
+        public int format;
 
-        public uint source; // Audio source id
-        public uint[] buffers = new uint[2];    // Audio buffers (double buffering)
+        public uint source;
+        public uint[] buffers = new uint[2];
     }
 
     // Head-Mounted-Display device parameters
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public class VrDeviceInfo
     {
-        public int hResolution; // HMD horizontal resolution in pixels
-        public int vResolution; // HMD vertical resolution in pixels
-        public float hScreenSize; // HMD horizontal size in meters
-        public float vScreenSize; // HMD vertical size in meters
-        public float vScreenCenter; // HMD screen center in meters
-        public float eyeToScreenDistance; // HMD distance between eye and display in meters
-        public float lensSeparationDistance; // HMD lens separation distance in meters
+        public int hResolution;
+        public int vResolution;
+        public float hScreenSize;
+        public float vScreenSize;
+        public float vScreenCenter;
+        public float eyeToScreenDistance;
+        public float lensSeparationDistance;
 
-        public float interpupillaryDistance; // HMD IPD (distance between pupils) in meters
-        public float[] lensDistortionValues = new float[4];  // HMD lens distortion constant parameters
-        public float[] chromaAbCorrection = new float[4];    // HMD chromatic aberration correction parameters
+        public float interpupillaryDistance;
+        public float[] lensDistortionValues = new float[4];
+        public float[] chromaAbCorrection = new float[4];
     }
 
     #endregion
 
-    public static partial class rl
+    public static partial class Raylib
     {
         #region Raylib-cs Variables
 
@@ -607,1048 +643,1385 @@ namespace Raylib
         // colors
 
         // Custom raylib color palette for amazing visuals
-        public static Color LIGHTGRAY = new Color(200, 200, 200, 255); // Light Gray
-        public static Color GRAY = new Color(130, 130, 130, 255); // Gray
-        public static Color DARKGRAY = new Color(80, 80, 80, 255); // Dark Gray
-        public static Color YELLOW = new Color(253, 249, 0, 255); // Yellow
-        public static Color GOLD = new Color(255, 203, 0, 255); // Gold
-        public static Color ORANGE = new Color(255, 161, 0, 255); // Orange
-        public static Color PINK = new Color(255, 109, 194, 255); // Pink
-        public static Color RED = new Color(230, 41, 55, 255); // Red
-        public static Color MAROON = new Color(190, 33, 55, 255); // Maroon
-        public static Color GREEN = new Color(0, 228, 48, 255); // Green
-        public static Color LIME = new Color(0, 158, 47, 255); // Lime
-        public static Color DARKGREEN = new Color(0, 117, 44, 255); // Dark Green
-        public static Color SKYBLUE = new Color(102, 191, 255, 255); // Sky Blue
-        public static Color BLUE = new Color(0, 121, 241, 255); // Blue
-        public static Color DARKBLUE = new Color(0, 82, 172, 255); // Dark Blue
-        public static Color PURPLE = new Color(200, 122, 255, 255); // Purple
-        public static Color VIOLET = new Color(135, 60, 190, 255); // Violet
-        public static Color DARKPURPLE = new Color(112, 31, 126, 255); // Dark Purple
-        public static Color BEIGE = new Color(211, 176, 131, 255); // Beige
-        public static Color BROWN = new Color(127, 106, 79, 255); // Brown
-        public static Color DARKBROWN = new Color(76, 63, 47, 255); // Dark Brown
-        public static Color WHITE = new Color(255, 255, 255, 255); // White
-        public static Color BLACK = new Color(0, 0, 0, 255); // Black
-        public static Color BLANK = new Color(0, 0, 0, 0); // Transparent
-        public static Color MAGENTA = new Color(255, 0, 255, 255); // Magenta
-        public static Color RAYWHITE = new Color(245, 245, 245, 255); // Ray White
+        public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
+        public static Color GRAY = new Color(130, 130, 130, 255);
+        public static Color DARKGRAY = new Color(80, 80, 80, 255);
+        public static Color YELLOW = new Color(253, 249, 0, 255);
+        public static Color GOLD = new Color(255, 203, 0, 255);
+        public static Color ORANGE = new Color(255, 161, 0, 255);
+        public static Color PINK = new Color(255, 109, 194, 255);
+        public static Color RED = new Color(230, 41, 55, 255);
+        public static Color MAROON = new Color(190, 33, 55, 255);
+        public static Color GREEN = new Color(0, 228, 48, 255);
+        public static Color LIME = new Color(0, 158, 47, 255);
+        public static Color DARKGREEN = new Color(0, 117, 44, 255);
+        public static Color SKYBLUE = new Color(102, 191, 255, 255);
+        public static Color BLUE = new Color(0, 121, 241, 255);
+        public static Color DARKBLUE = new Color(0, 82, 172, 255);
+        public static Color PURPLE = new Color(200, 122, 255, 255);
+        public static Color VIOLET = new Color(135, 60, 190, 255);
+        public static Color DARKPURPLE = new Color(112, 31, 126, 255);
+        public static Color BEIGE = new Color(211, 176, 131, 255);
+        public static Color BROWN = new Color(127, 106, 79, 255);
+        public static Color DARKBROWN = new Color(76, 63, 47, 255);
+        public static Color WHITE = new Color(255, 255, 255, 255);
+        public static Color BLACK = new Color(0, 0, 0, 255);
+        public static Color BLANK = new Color(0, 0, 0, 0);
+        public static Color MAGENTA = new Color(255, 0, 255, 255);
+        public static Color RAYWHITE = new Color(245, 245, 245, 255);
 
         #endregion
 
         #region Raylib-cs Functions 
 
+	    // Initialize window and OpenGL context
         [DllImport(nativeLibName)]
-		public static extern IntPtr InitWindow(int width, int height, string title);  // Initialize window and OpenGL context
+		public static extern IntPtr InitWindow(int width, int height, string title);
 
+		 // Close window and unload OpenGL context
 		[DllImport(nativeLibName)]
-		public static extern void CloseWindow();                                     // Close window and unload OpenGL context
+		public static extern void CloseWindow();
 
+	    // Check if window has been initialized successfully
 		[DllImport(nativeLibName)]
-		public static extern bool IsWindowReady();                                   // Check if window has been initialized successfully
+		public static extern bool IsWindowReady();
 
+	    // Check if KEY_ESCAPE pressed or Close icon pressed
 		[DllImport(nativeLibName)]
-		public static extern bool WindowShouldClose();                               // Check if KEY_ESCAPE pressed or Close icon pressed
+		public static extern bool WindowShouldClose();
 
+	    // Check if window has been minimized (or lost focus)
 		[DllImport(nativeLibName)]
-		public static extern bool IsWindowMinimized();                               // Check if window has been minimized (or lost focus)
-
-		[DllImport(nativeLibName)]
-		public static extern void ToggleFullscreen();                                // Toggle fullscreen mode (only PLATFORM_DESKTOP)
-
-		[DllImport(nativeLibName)]
-		public static extern void SetWindowIcon(Image image);                            // Set icon for window (only PLATFORM_DESKTOP)
-
+		public static extern bool IsWindowMinimized();
+	    
+	    // Toggle fullscreen mode (only PLATFORM_DESKTOP)
 		[DllImport(nativeLibName)]
-		public static extern void SetWindowTitle(string title);                     // Set title for window (only PLATFORM_DESKTOP)
+		public static extern void ToggleFullscreen();
 
-		[DllImport(nativeLibName)]
-		public static extern void SetWindowPosition(int x, int y);                       // Set window position on screen (only PLATFORM_DESKTOP)
+	    // Set icon for window (only PLATFORM_DESKTOP)
+	    [DllImport(nativeLibName)]
+	    public static extern void SetWindowIcon(Image image);
 
+	    // Set title for window (only PLATFORM_DESKTOP)
 		[DllImport(nativeLibName)]
-		public static extern void SetWindowMonitor(int monitor);                         // Set monitor for the current window (fullscreen mode)
+		public static extern void SetWindowTitle(string title);
 
+	    // Set window position on screen (only PLATFORM_DESKTOP)
 		[DllImport(nativeLibName)]
-		public static extern void SetWindowMinSize(int width, int height);               // Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
+		public static extern void SetWindowPosition(int x, int y);
 
+	    // Set monitor for the current window (fullscreen mode)
 		[DllImport(nativeLibName)]
-		public static extern void SetWindowSize(int width, int height);                  // Set window dimensions
+		public static extern void SetWindowMonitor(int monitor);
 
+	    // Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
 		[DllImport(nativeLibName)]
-		public static extern int GetScreenWidth();                                   // Get current screen width
+		public static extern void SetWindowMinSize(int width, int height);
 
+	    // Set window dimensions
 		[DllImport(nativeLibName)]
-		public static extern int GetScreenHeight();                                  // Get current screen height
+		public static extern void SetWindowSize(int width, int height);
 
+	    // Get current screen width
 		[DllImport(nativeLibName)]
-		public static extern string GetClipboard();								  // Get current clipboard text
+		public static extern int GetScreenWidth();
 
+	    // Get current screen height
 		[DllImport(nativeLibName)]
-		public static extern void SetClipboard(string text);						  // Set current clipboard text
+		public static extern int GetScreenHeight();
 
-		[DllImport(nativeLibName)]
-		public static extern void ShowCursor();                                      // Shows cursor
+	    // Get current clipboard text
+		//[DllImport(nativeLibName)]
+		//public static extern string GetClipboard();
 
-		[DllImport(nativeLibName)]
-		public static extern void HideCursor();                                      // Hides cursor
+	    // Set current clipboard text
+		//[DllImport(nativeLibName)]
+		//public static extern void SetClipboard(string text);
 
+	    // Shows cursor
 		[DllImport(nativeLibName)]
-		public static extern bool IsCursorHidden();                                  // Check if cursor is not visible
+		public static extern void ShowCursor();
 
+	    // Hides cursor
 		[DllImport(nativeLibName)]
-		public static extern void EnableCursor();                                    // Enables cursor (unlock cursor)
+		public static extern void HideCursor();
 
+	    // Check if cursor is not visible
 		[DllImport(nativeLibName)]
-		public static extern void DisableCursor();                                   // Disables cursor (lock cursor)
+		public static extern bool IsCursorHidden();
 
+	    // Enables cursor (unlock cursor)
 		[DllImport(nativeLibName)]
-		public static extern void ClearBackground(Color color);                          // Set background color (framebuffer clear color)
+		public static extern void EnableCursor();
 
+	    // Disables cursor (lock cursor)
 		[DllImport(nativeLibName)]
-		public static extern void BeginDrawing();                                    // Setup canvas (framebuffer) to start drawing
+		public static extern void DisableCursor();
 
+	    // Set background color (framebuffer clear color)
 		[DllImport(nativeLibName)]
-		public static extern void EndDrawing();                                      // End canvas drawing and swap buffers (double buffering)
+		public static extern void ClearBackground(Color color);
 
+	    // Setup canvas (framebuffer) to start drawing
 		[DllImport(nativeLibName)]
-		public static extern void BeginMode2D(Camera2D camera);                          // Initialize 2D mode with custom camera (2D)
+		public static extern void BeginDrawing();
 
+	    // End canvas drawing and swap buffers (double buffering)
 		[DllImport(nativeLibName)]
-		public static extern void EndMode2D();                                       // Ends 2D mode with custom camera
+		public static extern void EndDrawing();
 
+	    // Initialize 2D mode with custom camera (2D)
 		[DllImport(nativeLibName)]
-		public static extern void BeginMode3D(Camera3D camera);                          // Initializes 3D mode with custom camera (3D)
+		public static extern void BeginMode2D(Camera2D camera);
 
+	    // Ends 2D mode with custom camera
 		[DllImport(nativeLibName)]
-		public static extern void EndMode3D();                                       // Ends 3D mode and returns to default 2D orthographic mode
-
+		public static extern void EndMode2D();
+	  
+	    // Initializes 3D mode with custom camera (3D)
 		[DllImport(nativeLibName)]
-		public static extern void BeginTextureMode(RenderTexture2D target);              // Initializes render texture for drawing
-
+		public static extern void BeginMode3D(Camera3D camera);
+	    
+	    // Ends 3D mode and returns to default 2D orthographic mode
 		[DllImport(nativeLibName)]
-		public static extern void EndTextureMode();                                  // Ends drawing to render texture
+		public static extern void EndMode3D();
 
+	    // Initializes render texture for drawing
 		[DllImport(nativeLibName)]
-		public static extern Ray GetMouseRay(Vector2 mousePosition, Camera3D camera);      // Returns a ray trace from mouse position
+		public static extern void BeginTextureMode(RenderTexture2D target);
 
+	    // Ends drawing to render texture
 		[DllImport(nativeLibName)]
-		public static extern Vector2 GetWorldToScreen(Vector3 position, Camera3D camera);  // Returns the screen space position for a 3d world space position
+		public static extern void EndTextureMode();
 
+	    // Returns a ray trace from mouse position
 		[DllImport(nativeLibName)]
-		public static extern Matrix GetCameraMatrix(Camera3D camera);                      // Returns camera transform matrix (view matrix)
+		public static extern Ray GetMouseRay(Vector2 mousePosition, Camera3D camera);
 
+	    // Returns the screen space position for a 3d world space position
 		[DllImport(nativeLibName)]
-		public static extern void SetTargetFPS(int fps);                                 // Set target FPS (maximum)
+		public static extern Vector2 GetWorldToScreen(Vector3 position, Camera3D camera);
 
+	    // Returns camera transform matrix (view matrix)
 		[DllImport(nativeLibName)]
-		public static extern int GetFPS();                                           // Returns current FPS
+		public static extern Matrix GetCameraMatrix(Camera3D camera);
 
+	    // Set target FPS (maximum)
 		[DllImport(nativeLibName)]
-		public static extern float GetFrameTime();                                   // Returns time in seconds for last frame drawn
+		public static extern void SetTargetFPS(int fps);
 
+	    // Returns current FPS
 		[DllImport(nativeLibName)]
-		public static extern double GetTime();                                       // Returns elapsed time in seconds since InitWindow()
+		public static extern int GetFPS();
 
+	    // Returns time in seconds for last frame drawn
 		[DllImport(nativeLibName)]
-		public static extern int ColorToInt(Color color);                                // Returns hexadecimal value for a Color
+		public static extern float GetFrameTime();
 
+	    // Returns elapsed time in seconds since InitWindow()
 		[DllImport(nativeLibName)]
-		public static extern Vector4 ColorNormalize(Color color);                        // Returns color normalized as float [0..1]
+		public static extern double GetTime();
 
+	    // Returns hexadecimal value for a Color
 		[DllImport(nativeLibName)]
-		public static extern Vector3 ColorToHSV(Color color);                            // Returns HSV values for a Color
+		public static extern int ColorToInt(Color color);
 
+	    // Returns color normalized as float [0..1]
 		[DllImport(nativeLibName)]
-		public static extern Color GetColor(int hexValue);                               // Returns a Color struct from hexadecimal value
+		public static extern Vector4 ColorNormalize(Color color);
 
+	    // Returns HSV values for a Color
 		[DllImport(nativeLibName)]
-		public static extern Color Fade(Color color, float alpha);                       // Color fade-in or fade-out, alpha goes from 0.0f to 1.0f
+		public static extern Vector3 ColorToHSV(Color color);
 
+	    // Returns a Color struct from hexadecimal value
 		[DllImport(nativeLibName)]
-		public static extern void ShowLogo();                                        // Activate raylib logo at startup (can be done with flags)
+		public static extern Color GetColor(int hexValue);
 
+	    // Color fade-in or fade-out, alpha goes from 0.0f to 1.0f
 		[DllImport(nativeLibName)]
-		public static extern void SetConfigFlags(byte flags);                   // Setup window configuration flags (view FLAGS)
+		public static extern Color Fade(Color color, float alpha);
 
+	    // Activate raylib logo at startup (can be done with flags)
 		[DllImport(nativeLibName)]
-		public static extern void SetTraceLog(byte types);                      // Enable trace log message types (bit flags based)
+		public static extern void ShowLogo();
 
+	    // Setup window configuration flags (view FLAGS)
 		[DllImport(nativeLibName)]
-		public static extern void TraceLog(int logType, string text, params object[] args);          // Show trace log messages (LOG_INFO, LOG_WARNING, LOG_ERROR, LOG_DEBUG)
+		public static extern void SetConfigFlags(byte flags);
 
+	    // Enable trace log message types (bit flags based)
 		[DllImport(nativeLibName)]
-		public static extern void TakeScreenshot(string fileName);                  // Takes a screenshot of current screen (saved a .png)
+		public static extern void SetTraceLog(byte types);
 
+	    // Show trace log messages (LOG_INFO, LOG_WARNING, LOG_ERROR, LOG_DEBUG)
 		[DllImport(nativeLibName)]
-		public static extern int GetRandomValue(int min, int max);                       // Returns a random value between min and max (both included)
-
+		public static extern void TraceLog(int logType, string text, params object[] args);
+	    
+	    // Takes a screenshot of current screen (saved a .png)
 		[DllImport(nativeLibName)]
-		public static extern bool IsFileExtension(string fileName, string ext);// Check file extension
+		public static extern void TakeScreenshot(string fileName);
 
+	    // Returns a random value between min and max (both included)
 		[DllImport(nativeLibName)]
-		public static extern string GetExtension(string fileName);             // Get pointer to extension for a filename string
+		public static extern int GetRandomValue(int min, int max);
 
-		[DllImport(nativeLibName)]
-		public static extern string GetFileName(string filePath);              // Get pointer to filename for a path string
+	    // Check file extension
+	    [DllImport(nativeLibName)]
+	    public static extern bool IsFileExtension(string fileName, string ext);
 
+	    // Get pointer to extension for a filename string
 		[DllImport(nativeLibName)]
-		public static extern string GetDirectoryPath(string fileName);         // Get full path for a given fileName (uses static string)
+		public static extern string GetExtension(string fileName);
 
+	    // Get pointer to filename for a path string
 		[DllImport(nativeLibName)]
-		public static extern string GetWorkingDirectory();                      // Get current working directory (uses static string)
+		public static extern string GetFileName(string filePath);
 
+	    // Get full path for a given fileName (uses static string)
 		[DllImport(nativeLibName)]
-		public static extern bool ChangeDirectory(string dir);                      // Change working directory, returns true if success
+		public static extern string GetDirectoryPath(string fileName);
 
+	    // Get current working directory (uses static string)
 		[DllImport(nativeLibName)]
-		public static extern bool IsFileDropped();                                   // Check if a file has been dropped into window
+		public static extern string GetWorkingDirectory();
 
+	    // Change working directory, returns true if success
 		[DllImport(nativeLibName)]
-		public static extern char[] GetDroppedFiles(int[] count);                         // Get dropped files names
+		public static extern bool ChangeDirectory(string dir);
 
+	    // Check if a file has been dropped into window
 		[DllImport(nativeLibName)]
-		public static extern void ClearDroppedFiles();                               // Clear dropped files paths buffer
+		public static extern bool IsFileDropped();
 
+	    // Get dropped files names
 		[DllImport(nativeLibName)]
-		public static extern void StorageSaveValue(int position, int value);             // Save integer value to storage file (to defined position)
-
+		public static extern char[] GetDroppedFiles(int[] count);
+	  
+	    // Clear dropped files paths buffer
 		[DllImport(nativeLibName)]
-		public static extern int StorageLoadValue(int position);                         // Load integer value from storage file (from defined position)
+		public static extern void ClearDroppedFiles();
 
+	    // Save integer value to storage file (to defined position)
 		[DllImport(nativeLibName)]
-		public static extern bool IsKeyPressed(int key);                             // Detect if a key has been pressed once
+		public static extern void StorageSaveValue(int position, int value);
 
+	    // Load integer value from storage file (from defined position)
 		[DllImport(nativeLibName)]
-		public static extern bool IsKeyDown(int key);                                // Detect if a key is being pressed
-
+		public static extern int StorageLoadValue(int position);
+	    
+	    // Detect if a key has been pressed once
 		[DllImport(nativeLibName)]
-		public static extern bool IsKeyReleased(int key);                            // Detect if a key has been released once
+		public static extern bool IsKeyPressed(int key);
 
-		[DllImport(nativeLibName)]
-		public static extern bool IsKeyUp(int key);                                  // Detect if a key is NOT being pressed
+	    // Detect if a key is being pressed
+	    [DllImport(nativeLibName)]
+		public static extern bool IsKeyDown(int key);
 
+	    // Detect if a key has been released once
 		[DllImport(nativeLibName)]
-		public static extern int GetKeyPressed();                                // Get latest key pressed
-
+		public static extern bool IsKeyReleased(int key);
+	    
+	    // Detect if a key is NOT being pressed
 		[DllImport(nativeLibName)]
-		public static extern void SetExitKey(int key);                               // Set a custom key to exit program (default is ESC)
+		public static extern bool IsKeyUp(int key);
 
+	    // Get latest key pressed
 		[DllImport(nativeLibName)]
-		public static extern bool IsGamepadAvailable(int gamepad);                   // Detect if a gamepad is available
+		public static extern int GetKeyPressed();
 
+	    // Set a custom key to exit program (default is ESC)
 		[DllImport(nativeLibName)]
-		public static extern bool IsGamepadName(int gamepad, string name);      // Check gamepad name (if available)
+		public static extern void SetExitKey(int key);
 
+	    // Detect if a gamepad is available
 		[DllImport(nativeLibName)]
-		public static extern string GetGamepadName(int gamepad);                // Return gamepad internal name id
+		public static extern bool IsGamepadAvailable(int gamepad);
 
+	    // Check gamepad name (if available)
 		[DllImport(nativeLibName)]
-		public static extern bool IsGamepadButtonPressed(int gamepad, int button);   // Detect if a gamepad button has been pressed once
-
+		public static extern bool IsGamepadName(int gamepad, string name);
+	    
+	    // Return gamepad internal name id
 		[DllImport(nativeLibName)]
-		public static extern bool IsGamepadButtonDown(int gamepad, int button);      // Detect if a gamepad button is being pressed
+		public static extern string GetGamepadName(int gamepad);
 
+	    // Detect if a gamepad button has been pressed once
 		[DllImport(nativeLibName)]
-		public static extern bool IsGamepadButtonReleased(int gamepad, int button);  // Detect if a gamepad button has been released once
+		public static extern bool IsGamepadButtonPressed(int gamepad, int button);
 
+	    // Detect if a gamepad button is being pressed
 		[DllImport(nativeLibName)]
-		public static extern bool IsGamepadButtonUp(int gamepad, int button);        // Detect if a gamepad button is NOT being pressed
+		public static extern bool IsGamepadButtonDown(int gamepad, int button);
 
-		[DllImport(nativeLibName)]
-		public static extern int GetGamepadButtonPressed();                      // Get the last gamepad button pressed
+	    // Detect if a gamepad button has been released once
+	    [DllImport(nativeLibName)]
+	    public static extern bool IsGamepadButtonReleased(int gamepad, int button);
 
+	    // Detect if a gamepad button is NOT being pressed
 		[DllImport(nativeLibName)]
-		public static extern int GetGamepadAxisCount(int gamepad);                   // Return gamepad axis count for a gamepad
+		public static extern bool IsGamepadButtonUp(int gamepad, int button);
 
+	    // Get the last gamepad button pressed
 		[DllImport(nativeLibName)]
-		public static extern float GetGamepadAxisMovement(int gamepad, int axis);    // Return axis movement value for a gamepad axis
+		public static extern int GetGamepadButtonPressed();
 
+	    // Return gamepad axis count for a gamepad
 		[DllImport(nativeLibName)]
-		public static extern bool IsMouseButtonPressed(int button);                  // Detect if a mouse button has been pressed once
+		public static extern int GetGamepadAxisCount(int gamepad);
 
+	    // Return axis movement value for a gamepad axis
 		[DllImport(nativeLibName)]
-		public static extern bool IsMouseButtonDown(int button);                     // Detect if a mouse button is being pressed
-
+		public static extern float GetGamepadAxisMovement(int gamepad, int axis);
+	    
+		// Detect if a mouse button has been pressed once
 		[DllImport(nativeLibName)]
-		public static extern bool IsMouseButtonReleased(int button);                 // Detect if a mouse button has been released once
+		public static extern bool IsMouseButtonPressed(int button);
 
+	    // Detect if a mouse button is being pressed
 		[DllImport(nativeLibName)]
-		public static extern bool IsMouseButtonUp(int button);                       // Detect if a mouse button is NOT being pressed
+		public static extern bool IsMouseButtonDown(int button);
 
+	    // Detect if a mouse button has been released once
 		[DllImport(nativeLibName)]
-		public static extern int GetMouseX();                                    // Returns mouse position X
+		public static extern bool IsMouseButtonReleased(int button);
 
+	    // Detect if a mouse button is NOT being pressed
 		[DllImport(nativeLibName)]
-		public static extern int GetMouseY();                                    // Returns mouse position Y
+		public static extern bool IsMouseButtonUp(int button);
 
+	    // Returns mouse position X
 		[DllImport(nativeLibName)]
-		public static extern Vector2 GetMousePosition();                         // Returns mouse position XY
+		public static extern int GetMouseX();
 
+	    // Returns mouse position Y
 		[DllImport(nativeLibName)]
-		public static extern void SetMousePosition(Vector2 position);                // Set mouse position XY
+		public static extern int GetMouseY();
 
+	    // Returns mouse position XY
 		[DllImport(nativeLibName)]
-		public static extern void SetMouseScale(float scale);                        // Set mouse scaling
+		public static extern Vector2 GetMousePosition();
 
+	    // Set mouse position XY
 		[DllImport(nativeLibName)]
-		public static extern int GetMouseWheelMove();                            // Returns mouse wheel movement Y
+		public static extern void SetMousePosition(Vector2 position);
 
+	    // Set mouse scaling
 		[DllImport(nativeLibName)]
-		public static extern int GetTouchX();                                    // Returns touch position X for touch point 0 (relative to screen size)
-
+		public static extern void SetMouseScale(float scale);
+	    
+	    // Returns mouse wheel movement Y
 		[DllImport(nativeLibName)]
-		public static extern int GetTouchY();                                    // Returns touch position Y for touch point 0 (relative to screen size)
-
+		public static extern int GetMouseWheelMove();
+	    
+	    // Returns touch position X for touch point 0 (relative to screen size)
 		[DllImport(nativeLibName)]
-		public static extern Vector2 GetTouchPosition(int index);                    // Returns touch position XY for a touch point index (relative to screen size)
+		public static extern int GetTouchX();
 
+	    // Returns touch position Y for touch point 0 (relative to screen size)
 		[DllImport(nativeLibName)]
-		public static extern void SetGesturesEnabled(uint gestureFlags);     // Enable a set of gestures using flags
+		public static extern int GetTouchY();
 
+	    // Returns touch position XY for a touch point index (relative to screen size)
 		[DllImport(nativeLibName)]
-		public static extern bool IsGestureDetected(int gesture);                    // Check if a gesture have been detected
+		public static extern Vector2 GetTouchPosition(int index);
 
+	    // Enable a set of gestures using flags
 		[DllImport(nativeLibName)]
-		public static extern int GetGestureDetected();                           // Get latest detected gesture
-
+		public static extern void SetGesturesEnabled(uint gestureFlags);
+	    
+	    // Check if a gesture have been detected
 		[DllImport(nativeLibName)]
-		public static extern int GetTouchPointsCount();                          // Get touch points count
+		public static extern bool IsGestureDetected(int gesture);
 
+	    // Get latest detected gesture
 		[DllImport(nativeLibName)]
-		public static extern float GetGestureHoldDuration();                     // Get gesture hold time in milliseconds
+		public static extern int GetGestureDetected();
 
+	    // Get touch points count
 		[DllImport(nativeLibName)]
-		public static extern Vector2 GetGestureDragVector();                     // Get gesture drag vector
-
+		public static extern int GetTouchPointsCount();
+	    
+	    // Get gesture hold time in milliseconds	    
 		[DllImport(nativeLibName)]
-		public static extern float GetGestureDragAngle();                        // Get gesture drag angle
-
+		public static extern float GetGestureHoldDuration();
+	    
+	    // Get gesture drag vector
 		[DllImport(nativeLibName)]
-		public static extern Vector2 GetGesturePinchVector();                    // Get gesture pinch delta
+		public static extern Vector2 GetGestureDragVector();
 
+	    // Get gesture drag angle
 		[DllImport(nativeLibName)]
-		public static extern float GetGesturePinchAngle();                       // Get gesture pinch angle
+		public static extern float GetGestureDragAngle();
 
+	    // Get gesture pinch delta
+	    [DllImport(nativeLibName)]
+	    public static extern Vector2 GetGesturePinchVector();
+	    
+	    // Get gesture pinch angle
 		[DllImport(nativeLibName)]
-		public static extern void SetCameraMode(Camera3D camera, int mode);                // Set camera mode (multiple camera modes available)
+		public static extern float GetGesturePinchAngle();
 
+	    // Set camera mode (multiple camera modes available)
 		[DllImport(nativeLibName)]
-		public static extern void UpdateCamera(Camera3D camera);                          // Update camera position for selected mode
+		public static extern void SetCameraMode(Camera3D camera, int mode);
 
+	    // Update camera position for selected mode
 		[DllImport(nativeLibName)]
-		public static extern void SetCameraPanControl(int panKey);                       // Set camera pan key to combine with mouse movement (free camera)
+		public static extern void UpdateCamera(Camera3D camera);
 
+	    // Set camera pan key to combine with mouse movement (free camera)
 		[DllImport(nativeLibName)]
-		public static extern void SetCameraAltControl(int altKey);                       // Set camera alt key to combine with mouse movement (free camera)
+		public static extern void SetCameraPanControl(int panKey);
 
+	    // Set camera alt key to combine with mouse movement (free camera)
 		[DllImport(nativeLibName)]
-		public static extern void SetCameraSmoothZoomControl(int szKey);                 // Set camera smooth zoom key to combine with mouse (free camera)
+		public static extern void SetCameraAltControl(int altKey);
 
+	    // Set camera smooth zoom key to combine with mouse (free camera)
 		[DllImport(nativeLibName)]
-		public static extern void SetCameraMoveControls(int frontKey, int backKey, int rightKey, int leftKey, int upKey, int downKey); // Set camera move controls (1st person and 3rd person cameras)
+		public static extern void SetCameraSmoothZoomControl(int szKey);
 
+	    // Set camera move controls (1st person and 3rd person cameras)
 		[DllImport(nativeLibName)]
-		public static extern void DrawPixel(int posX, int posY, Color color);                                                   // Draw a pixel
+		public static extern void SetCameraMoveControls(int frontKey, int backKey, int rightKey, int leftKey, int upKey, int downKey);
 
+	    // Draw a pixel
 		[DllImport(nativeLibName)]
-		public static extern void DrawPixelV(Vector2 position, Color color);                                                    // Draw a pixel (Vector version)
+		public static extern void DrawPixel(int posX, int posY, Color color);
 
+	    // Draw a pixel (Vector version)
 		[DllImport(nativeLibName)]
-		public static extern void DrawLine(int startPosX, int startPosY, int endPosX, int endPosY, Color color);                // Draw a line
+		public static extern void DrawPixelV(Vector2 position, Color color);
 
+	    // Draw a line
 		[DllImport(nativeLibName)]
-		public static extern void DrawLineV(Vector2 startPos, Vector2 endPos, Color color);                                     // Draw a line (Vector version)
+		public static extern void DrawLine(int startPosX, int startPosY, int endPosX, int endPosY, Color color);
 
+	    // Draw a line (Vector version)
 		[DllImport(nativeLibName)]
-		public static extern void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color);                       // Draw a line defining thickness
+		public static extern void DrawLineV(Vector2 startPos, Vector2 endPos, Color color);
 
+	    // Draw a line defining thickness
 		[DllImport(nativeLibName)]
-		public static extern void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);                   // Draw a line using cubic-bezier curves in-out
+		public static extern void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color);
 
+	    // Draw a line using cubic-bezier curves in-out
 		[DllImport(nativeLibName)]
-		public static extern void DrawCircle(int centerX, int centerY, float radius, Color color);                              // Draw a color-filled circle
+		public static extern void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);
 
+	    // Draw a color-filled circle
 		[DllImport(nativeLibName)]
-		public static extern void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2);       // Draw a gradient-filled circle
+		public static extern void DrawCircle(int centerX, int centerY, float radius, Color color);
 
+	    // Draw a gradient-filled circle
 		[DllImport(nativeLibName)]
-		public static extern void DrawCircleV(Vector2 center, float radius, Color color);                                       // Draw a color-filled circle (Vector version)
+		public static extern void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2);
 
+	    // Draw a color-filled circle (Vector version)
 		[DllImport(nativeLibName)]
-		public static extern void DrawCircleLines(int centerX, int centerY, float radius, Color color);                         // Draw circle outline
+		public static extern void DrawCircleV(Vector2 center, float radius, Color color);
 
+	    // Draw circle outline
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangle(int posX, int posY, int width, int height, Color color);                        // Draw a color-filled rectangle
+		public static extern void DrawCircleLines(int centerX, int centerY, float radius, Color color);
 
+	    // Draw a color-filled rectangle
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleV(Vector2 position, Vector2 size, Color color);                                  // Draw a color-filled rectangle (Vector version)
+		public static extern void DrawRectangle(int posX, int posY, int width, int height, Color color);
 
+	    // Draw a color-filled rectangle (Vector version)
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleRec(Rectangle rec, Color color);                                                 // Draw a color-filled rectangle
+		public static extern void DrawRectangleV(Vector2 position, Vector2 size, Color color);
 
+	    // Draw a color-filled rectangle
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color);                 // Draw a color-filled rectangle with pro parameters
+		public static extern void DrawRectangleRec(Rectangle rec, Color color);
 
+	    // Draw a color-filled rectangle with pro parameters
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);// Draw a vertical-gradient-filled rectangle
+		public static extern void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color);
 
+	    // Draw a vertical-gradient-filled rectangle
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);// Draw a horizontal-gradient-filled rectangle
+		public static extern void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);
 
+	    // Draw a horizontal-gradient-filled rectangle
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);       // Draw a gradient-filled rectangle with custom vertex colors
+		public static extern void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);
 
+	    // Draw a gradient-filled rectangle with custom vertex colors
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleLines(int posX, int posY, int width, int height, Color color);                   // Draw rectangle outline
+		public static extern void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
 
+	    // Draw rectangle outline
 		[DllImport(nativeLibName)]
-		public static extern void DrawRectangleLinesEx(Rectangle rec, int lineThick, Color color);                              // Draw rectangle outline with extended parameters
+		public static extern void DrawRectangleLines(int posX, int posY, int width, int height, Color color);
 
+	    // Draw rectangle outline with extended parameters
 		[DllImport(nativeLibName)]
-		public static extern void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color);                                // Draw a color-filled triangle
-
+		public static extern void DrawRectangleLinesEx(Rectangle rec, int lineThick, Color color);
+	    
+	    // Draw a color-filled triangle
 		[DllImport(nativeLibName)]
-		public static extern void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);                           // Draw triangle outline
+		public static extern void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
 
+	    // Draw triangle outline
 		[DllImport(nativeLibName)]
-		public static extern void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);               // Draw a regular polygon (Vector version)
+		public static extern void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
 
+	    // Draw a regular polygon (Vector version)
 		[DllImport(nativeLibName)]
-		public static extern void DrawPolyEx(Vector2[] points, int numPoints, Color color);                                      // Draw a closed polygon defined by points
+		public static extern void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);
 
+	    // Draw a closed polygon defined by points
 		[DllImport(nativeLibName)]
-		public static extern void DrawPolyExLines(Vector2[] points, int numPoints, Color color);                                 // Draw polygon lines
+		public static extern void DrawPolyEx(Vector2[] points, int numPoints, Color color);
 
+	    // Draw polygon lines
 		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);                                           // Check collision between two rectangles
+		public static extern void DrawPolyExLines(Vector2[] points, int numPoints, Color color);
 
+	    // Check collision between two rectangles
 		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);        // Check collision between two circles
+		public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
 
+	    // Check collision between two circles
 		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);                         // Check collision between circle and rectangle
+		public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
 
+	    // Check collision between circle and rectangle
 		[DllImport(nativeLibName)]
-		public static extern Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);                                         // Get collision rectangle for two rectangles collision
+		public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+		
+	    // Get collision rectangle for two rectangles collision
+	    [DllImport(nativeLibName)]
+		public static extern Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);                                         // Check if point is inside rectangle
+        // Check if point is inside rectangle
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);                       // Check if point is inside circle
+        // Check if point is inside circle
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);               // Check if point is inside a triangle
+        // Check if point is inside a triangle
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
-		[DllImport(nativeLibName)]
-		public static extern Image LoadImage(string fileName);                                                             // Load image from file into CPU memory (RAM)
+        // Load image from file into CPU memory (RAM)
+        [DllImport(nativeLibName)]
+		public static extern Image LoadImage(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Image LoadImageEx(Color pixels, int width, int height);                                           // Load image from Color array data (RGBA - 32bit)
+        // Load image from Color array data (RGBA - 32bit)
+        [DllImport(nativeLibName)]
+		public static extern Image LoadImageEx(Color pixels, int width, int height);
 
-		[DllImport(nativeLibName)]
-		public static extern Image LoadImagePro(IntPtr data, int width, int height, int format);                                 // Load image from raw data with parameters
+        // Load image from raw data with parameters
+        [DllImport(nativeLibName)]
+		public static extern Image LoadImagePro(IntPtr data, int width, int height, int format);
 
-		[DllImport(nativeLibName)]
-		public static extern Image LoadImageRaw(string fileName, int width, int height, int format, int headerSize);       // Load image from RAW file data
+        // Load image from RAW file data
+        [DllImport(nativeLibName)]
+		public static extern Image LoadImageRaw(string fileName, int width, int height, int format, int headerSize);
 
-		[DllImport(nativeLibName)]
-		public static extern void ExportImage(string fileName, Image image);                                               // Export image as a PNG file
+        // Export image as a PNG file
+        [DllImport(nativeLibName)]
+		public static extern void ExportImage(string fileName, Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D LoadTexture(string fileName);                                                       // Load texture from file into GPU memory (VRAM)
+        // Load texture from file into GPU memory (VRAM)
+        [DllImport(nativeLibName)]
+		public static extern Texture2D LoadTexture(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D LoadTextureFromImage(Image image);                                                       // Load texture from image data
+        // Load texture from image data
+        [DllImport(nativeLibName)]
+		public static extern Texture2D LoadTextureFromImage(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern RenderTexture2D LoadRenderTexture(int width, int height);                                          // Load texture for rendering (framebuffer)
+        // Load texture for rendering (framebuffer)
+        [DllImport(nativeLibName)]
+		public static extern RenderTexture2D LoadRenderTexture(int width, int height);
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadImage(Image image);                                                                     // Unload image from CPU memory (RAM)
+        // Unload image from CPU memory (RAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadImage(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadTexture(Texture2D texture);                                                             // Unload texture from GPU memory (VRAM)
+        // Unload texture from GPU memory (VRAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadTexture(Texture2D texture);
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadRenderTexture(RenderTexture2D target);                                                  // Unload render texture from GPU memory (VRAM)
+        // Unload render texture from GPU memory (VRAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadRenderTexture(RenderTexture2D target);
 
-		[DllImport(nativeLibName)]
-		public static extern Color[] GetImageData(Image image);                                                                  // Get pixel data from image as a Color struct array
+        // Get pixel data from image as a Color struct array
+        [DllImport(nativeLibName)]
+		public static extern Color[] GetImageData(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern Vector4[] GetImageDataNormalized(Image image);                                                      // Get pixel data from image as Vector4 array (float normalized)
+        // Get pixel data from image as Vector4 array (float normalized)
+        [DllImport(nativeLibName)]
+		public static extern Vector4[] GetImageDataNormalized(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern int GetPixelDataSize(int width, int height, int format);                                           // Get pixel data size in bytes (image or texture)
+        // Get pixel data size in bytes (image or texture)
+        [DllImport(nativeLibName)]
+		public static extern int GetPixelDataSize(int width, int height, int format);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GetTextureData(Texture2D texture);                                                           // Get pixel data from GPU texture and return an Image
+        // Get pixel data from GPU texture and return an Image
+        [DllImport(nativeLibName)]
+		public static extern Image GetTextureData(Texture2D texture);
 
-		[DllImport(nativeLibName)]
-		public static extern void UpdateTexture(Texture2D texture, byte[] pixels);                                         // Update GPU texture with new data
+        // Update GPU texture with new data
+        [DllImport(nativeLibName)]
+		public static extern void UpdateTexture(Texture2D texture, byte[] pixels);
 
-		[DllImport(nativeLibName)]
-		public static extern Image ImageCopy(Image image);                                                                      // Create an image duplicate (useful for transformations)
+        // Create an image duplicate (useful for transformations)
+        [DllImport(nativeLibName)]
+		public static extern Image ImageCopy(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageToPOT(Image image, Color fillColor);                                                    // Convert image to POT (power-of-two)
+        // Convert image to POT (power-of-two)
+        [DllImport(nativeLibName)]
+		public static extern void ImageToPOT(Image image, Color fillColor);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageFormat(Image image, int newFormat);                                                     // Convert image data to desired format
+        // Convert image data to desired format
+        [DllImport(nativeLibName)]
+		public static extern void ImageFormat(Image image, int newFormat);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageAlphaMask(Image image, Image alphaMask);                                                // Apply alpha mask to image
+        // Apply alpha mask to image
+        [DllImport(nativeLibName)]
+		public static extern void ImageAlphaMask(Image image, Image alphaMask);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageAlphaClear(Image image, Color color, float threshold);                                  // Clear alpha channel to desired color
+        // Clear alpha channel to desired color
+        [DllImport(nativeLibName)]
+		public static extern void ImageAlphaClear(Image image, Color color, float threshold);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageAlphaCrop(Image image, float threshold);                                                // Crop image depending on alpha value
+        // Crop image depending on alpha value
+        [DllImport(nativeLibName)]
+		public static extern void ImageAlphaCrop(Image image, float threshold);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageAlphaPremultiply(Image image);                                                          // Premultiply alpha channel
+        // Premultiply alpha channel
+        [DllImport(nativeLibName)]
+		public static extern void ImageAlphaPremultiply(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageCrop(Image image, Rectangle crop);                                                      // Crop an image to a defined rectangle
+        // Crop an image to a defined rectangle
+        [DllImport(nativeLibName)]
+		public static extern void ImageCrop(Image image, Rectangle crop);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageResize(Image image, int newWidth, int newHeight);                                       // Resize image (bilinear filtering)
+        // Resize image (bilinear filtering)
+        [DllImport(nativeLibName)]
+		public static extern void ImageResize(Image image, int newWidth, int newHeight);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageResizeNN(Image image, int newWidth,int newHeight);                                      // Resize image (Nearest-Neighbor scaling algorithm)
+        // Resize image (Nearest-Neighbor scaling algorithm)
+        [DllImport(nativeLibName)]
+		public static extern void ImageResizeNN(Image image, int newWidth,int newHeight);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageResizeCanvas(Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color color);  // Resize canvas and fill with color
+        // Resize canvas and fill with color
+        [DllImport(nativeLibName)]
+		public static extern void ImageResizeCanvas(Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageMipmaps(Image image);                                                                   // Generate all mipmap levels for a provided image
+        // Generate all mipmap levels for a provided image
+        [DllImport(nativeLibName)]
+		public static extern void ImageMipmaps(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageDither(Image image, int rBpp, int gBpp, int bBpp, int aBpp);                            // Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+        // Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+        [DllImport(nativeLibName)]
+		public static extern void ImageDither(Image image, int rBpp, int gBpp, int bBpp, int aBpp);
 
-		[DllImport(nativeLibName)]
-		public static extern Image ImageText(string text, int fontSize, Color color);                                      // Create an image from text (default font)
+        // Create an image from text (default font)
+        [DllImport(nativeLibName)]
+		public static extern Image ImageText(string text, int fontSize, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint);         // Create an image from text (custom sprite font)
+        // Create an image from text (custom sprite font)
+        [DllImport(nativeLibName)]
+		public static extern Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageDraw(Image dst, Image src, Rectangle srcRec, Rectangle dstRec);                         // Draw a source image within a destination image
+        // Draw a source image within a destination image
+        [DllImport(nativeLibName)]
+		public static extern void ImageDraw(Image dst, Image src, Rectangle srcRec, Rectangle dstRec);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageDrawRectangle(Image dst, Vector2 position, Rectangle rec, Color color);                 // Draw rectangle within an image
+        // Draw rectangle within an image
+        [DllImport(nativeLibName)]
+		public static extern void ImageDrawRectangle(Image dst, Vector2 position, Rectangle rec, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageDrawText(Image dst, Vector2 position, string text, int fontSize, Color color);     // Draw text (default font) within an image (destination)
+        // Draw text (default font) within an image (destination)
+        [DllImport(nativeLibName)]
+		public static extern void ImageDrawText(Image dst, Vector2 position, string text, int fontSize, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageDrawTextEx(Image dst, Vector2 position, Font font, string text, float fontSize, float spacing, Color color); // Draw text (custom sprite font) within an image (destination)
+        // Draw text (custom sprite font) within an image (destination)
+        [DllImport(nativeLibName)]
+		public static extern void ImageDrawTextEx(Image dst, Vector2 position, Font font, string text, float fontSize, float spacing, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageFlipVertical(Image image);                                                              // Flip image vertically
+        // Flip image vertically
+        [DllImport(nativeLibName)]
+		public static extern void ImageFlipVertical(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageFlipHorizontal(Image image);                                                            // Flip image horizontally
+        // Flip image horizontally
+        [DllImport(nativeLibName)]
+		public static extern void ImageFlipHorizontal(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageRotateCW(Image image);                                                                  // Rotate image clockwise 90deg
+        // Rotate image clockwise 90deg
+        [DllImport(nativeLibName)]
+		public static extern void ImageRotateCW(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageRotateCCW(Image image);                                                                 // Rotate image counter-clockwise 90deg
+        // Rotate image counter-clockwise 90deg
+        [DllImport(nativeLibName)]
+		public static extern void ImageRotateCCW(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageColorTint(Image image, Color color);                                                    // Modify image color: tint
+        // Modify image color: tint
+        [DllImport(nativeLibName)]
+		public static extern void ImageColorTint(Image image, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageColorInvert(Image image);                                                               // Modify image color: invert
+        // Modify image color: invert
+        [DllImport(nativeLibName)]
+		public static extern void ImageColorInvert(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageColorGrayscale(Image image);                                                            // Modify image color: grayscale
+        // Modify image color: grayscale
+        [DllImport(nativeLibName)]
+		public static extern void ImageColorGrayscale(Image image);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageColorContrast(Image image, float contrast);                                             // Modify image color: contrast (-100 to 100)
+        // Modify image color: contrast (-100 to 100)
+        [DllImport(nativeLibName)]
+		public static extern void ImageColorContrast(Image image, float contrast);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageColorBrightness(Image image, int brightness);                                           // Modify image color: brightness (-255 to 255)
+        // Modify image color: brightness (-255 to 255)
+        [DllImport(nativeLibName)]
+		public static extern void ImageColorBrightness(Image image, int brightness);
 
-		[DllImport(nativeLibName)]
-		public static extern void ImageColorReplace(Image image, Color color, Color replace);                                  // Modify image color: replace color
+        // Modify image color: replace color
+        [DllImport(nativeLibName)]
+		public static extern void ImageColorReplace(Image image, Color color, Color replace);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageColor(int width, int height, Color color);                                           // Generate image: plain color
+        // Generate image: plain color
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageColor(int width, int height, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageGradientV(int width, int height, Color top, Color bottom);                           // Generate image: vertical gradient
+        // Generate image: vertical gradient
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageGradientV(int width, int height, Color top, Color bottom);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageGradientH(int width, int height, Color left, Color right);                           // Generate image: horizontal gradient
+        // Generate image: horizontal gradient
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageGradientH(int width, int height, Color left, Color right);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageGradientRadial(int width, int height, float density, Color inner, Color outer);      // Generate image: radial gradient
+        // Generate image: radial gradient
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageGradientRadial(int width, int height, float density, Color inner, Color outer);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageChecked(int width, int height, int checksX, int checksY, Color col1, Color col2);    // Generate image: checked
+        // Generate image: checked
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageChecked(int width, int height, int checksX, int checksY, Color col1, Color col2);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageWhiteNoise(int width, int height, float factor);                                     // Generate image: white noise
+        // Generate image: white noise
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageWhiteNoise(int width, int height, float factor);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float scale);           // Generate image: perlin noise
+        // Generate image: perlin noise
+        [DllImport(nativeLibName)]
+		public static extern Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float scale);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageCellular(int width, int height, int tileSize);                                       // Generate image: cellular algorithm. Bigger tileSize means bigger cells
+        // Generate image: cellular algorithm. Bigger tileSize means bigger cells
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageCellular(int width, int height, int tileSize);
 
-		[DllImport(nativeLibName)]
-		public static extern void GenTextureMipmaps(Texture2D texture);                                                        // Generate GPU mipmaps for a texture
+        // Generate GPU mipmaps for a texture
+        [DllImport(nativeLibName)]
+		public static extern void GenTextureMipmaps(Texture2D texture);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetTextureFilter(Texture2D texture, int filterMode);                                          // Set texture scaling filter mode
+        // Set texture scaling filter mode
+        [DllImport(nativeLibName)]
+		public static extern void SetTextureFilter(Texture2D texture, int filterMode);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetTextureWrap(Texture2D texture, int wrapMode);                                              // Set texture wrapping mode
+        // Set texture wrapping mode
+        [DllImport(nativeLibName)]
+		public static extern void SetTextureWrap(Texture2D texture, int wrapMode);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawTexture(Texture2D texture, int posX, int posY, Color tint);                               // Draw a Texture2D
+        // Draw a Texture2D
+        [DllImport(nativeLibName)]
+		public static extern void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawTextureV(Texture2D texture, Vector2 position, Color tint);                                // Draw a Texture2D with position defined as Vector2
+        // Draw a Texture2D with position defined as Vector2
+        [DllImport(nativeLibName)]
+		public static extern void DrawTextureV(Texture2D texture, Vector2 position, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);  // Draw a Texture2D with extended parameters
+        // Draw a Texture2D with extended parameters
+        [DllImport(nativeLibName)]
+		public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint);         // Draw a part of a texture defined by a rectangle
+        // Draw a part of a texture defined by a rectangle
+        [DllImport(nativeLibName)]
+		public static extern void DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawTexturePro(Texture2D texture, Rectangle sourceRec, Rectangle destRec, Vector2 origin, float rotation, Color tint); // Draw a part of a texture defined by a rectangle with 'pro' parameters
+        // Draw a part of a texture defined by a rectangle with 'pro' parameters
+        [DllImport(nativeLibName)]
+		public static extern void DrawTexturePro(Texture2D texture, Rectangle sourceRec, Rectangle destRec, Vector2 origin, float rotation, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern Font GetFontDefault();                                                            // Get the default Font
+        // Get the default Font
+        [DllImport(nativeLibName)]
+		public static extern Font GetFontDefault();
 
-		[DllImport(nativeLibName)]
-		public static extern Font LoadFont(string fileName);                                                  // Load font from file into GPU memory (VRAM)
+        // Load font from file into GPU memory (VRAM)
+        [DllImport(nativeLibName)]
+		public static extern Font LoadFont(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Font LoadFontEx(string fileName, int fontSize, int charsCount, int[] fontChars);  // Load font from file with extended parameters
+        // Load font from file with extended parameters
+        [DllImport(nativeLibName)]
+		public static extern Font LoadFontEx(string fileName, int fontSize, int charsCount, int[] fontChars);
 
-		[DllImport(nativeLibName)]
-		public static extern CharInfo[] LoadFontData(string fileName, int fontSize, int[] fontChars, int charsCount, bool sdf); // Load font data for further use
+        // Load font data for further use
+        [DllImport(nativeLibName)]
+		public static extern CharInfo[] LoadFontData(string fileName, int fontSize, int[] fontChars, int charsCount, bool sdf);
 
-		[DllImport(nativeLibName)]
-		public static extern Image GenImageFontAtlas(CharInfo[] chars, int fontSize, int charsCount, int padding, int packMethod);  // Generate image font atlas using chars info
+        // Generate image font atlas using chars info
+        [DllImport(nativeLibName)]
+		public static extern Image GenImageFontAtlas(CharInfo[] chars, int fontSize, int charsCount, int padding, int packMethod);
 
+	    // Unload Font from GPU memory (VRAM)
 		[DllImport(nativeLibName)]
-		public static extern void UnloadFont(Font font);                                                           // Unload Font from GPU memory (VRAM)
+		public static extern void UnloadFont(Font font);
 
+	    // Shows current FPS
 		[DllImport(nativeLibName)]
-		public static extern void DrawFPS(int posX, int posY);                                                     // Shows current FPS
+		public static extern void DrawFPS(int posX, int posY);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawText(string text, int posX, int posY, int fontSize, Color color);       // Draw text (using default font)
+        // Draw text (using default font)
+        [DllImport(nativeLibName)]
+		public static extern void DrawText(string text, int posX, int posY, int fontSize, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint); // Draw text using font and additional parameters
+        // Draw text using font and additional parameters
+        [DllImport(nativeLibName)]
+		public static extern void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern int MeasureText(string text, int fontSize);                                      // Measure string width for default font
+        // Measure string width for default font
+        [DllImport(nativeLibName)]
+		public static extern int MeasureText(string text, int fontSize);
 
-		[DllImport(nativeLibName)]
-		public static extern Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing);    // Measure string size for Font
+        // Measure string size for Font
+        [DllImport(nativeLibName)]
+		public static extern Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing);
 
-		[DllImport(nativeLibName)]
-		public static extern string FormatText(string text, params object[] args);                                        // Formatting of text with variables to 'embed'
+        // Formatting of text with variables to 'embed'
+        [DllImport(nativeLibName)]
+		public static extern string FormatText(string text, params object[] args);
 
-		[DllImport(nativeLibName)]
-		public static extern string SubText(string text, int position, int length);                      // Get a piece of a text string
+        // Get a piece of a text string
+        [DllImport(nativeLibName)]
+		public static extern string SubText(string text, int position, int length);
 
-		[DllImport(nativeLibName)]
-		public static extern int GetGlyphIndex(Font font, int character);                                          // Get index position for a unicode character on font
+        // Get index position for a unicode character on font
+        [DllImport(nativeLibName)]
+		public static extern int GetGlyphIndex(Font font, int character);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);                                    // Draw a line in 3D world space
+        // Draw a line in 3D world space
+        [DllImport(nativeLibName)]
+		public static extern void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color); // Draw a circle in 3D world space
+        // Draw a circle in 3D world space
+        [DllImport(nativeLibName)]
+		public static extern void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCube(Vector3 position, float width, float height, float length, Color color);             // Draw cube
+        // Draw cube
+        [DllImport(nativeLibName)]
+		public static extern void DrawCube(Vector3 position, float width, float height, float length, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCubeV(Vector3 position, Vector3 size, Color color);                                       // Draw cube (Vector version)
+        // Draw cube (Vector version)
+        [DllImport(nativeLibName)]
+		public static extern void DrawCubeV(Vector3 position, Vector3 size, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCubeWires(Vector3 position, float width, float height, float length, Color color);        // Draw cube wires
+        // Draw cube wires
+        [DllImport(nativeLibName)]
+		public static extern void DrawCubeWires(Vector3 position, float width, float height, float length, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color); // Draw cube textured
+        // Draw cube textured
+        [DllImport(nativeLibName)]
+		public static extern void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawSphere(Vector3 centerPos, float radius, Color color);                                     // Draw sphere
+        // Draw sphere
+        [DllImport(nativeLibName)]
+		public static extern void DrawSphere(Vector3 centerPos, float radius, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawSphereEx(Vector3 centerPos, float radius, int rings, int slices, Color color);            // Draw sphere with extended parameters
+        // Draw sphere with extended parameters
+        [DllImport(nativeLibName)]
+		public static extern void DrawSphereEx(Vector3 centerPos, float radius, int rings, int slices, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Color color);         // Draw sphere wires
+        // Draw sphere wires
+        [DllImport(nativeLibName)]
+		public static extern void DrawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color); // Draw a cylinder/cone
+        // Draw a cylinder/cone
+        [DllImport(nativeLibName)]
+		public static extern void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color); // Draw a cylinder/cone wires
+        // Draw a cylinder/cone wires
+        [DllImport(nativeLibName)]
+		public static extern void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawPlane(Vector3 centerPos, Vector2 size, Color color);                                      // Draw a plane XZ
+        // Draw a plane XZ
+        [DllImport(nativeLibName)]
+		public static extern void DrawPlane(Vector3 centerPos, Vector2 size, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawRay(Ray ray, Color color);                                                                // Draw a ray line
+        // Draw a ray line
+        [DllImport(nativeLibName)]
+		public static extern void DrawRay(Ray ray, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawGrid(int slices, float spacing);                                                          // Draw a grid (centered at (0, 0, 0))
+        // Draw a grid (centered at (0, 0, 0))
+        [DllImport(nativeLibName)]
+		public static extern void DrawGrid(int slices, float spacing);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawGizmo(Vector3 position);                                                                  // Draw simple gizmo
+        // Draw simple gizmo
+        [DllImport(nativeLibName)]
+		public static extern void DrawGizmo(Vector3 position);
 
-		[DllImport(nativeLibName)]
-		public static extern Model LoadModel(string fileName);                                                            // Load model from files (mesh and material)
+        // Load model from files (mesh and material)
+        [DllImport(nativeLibName)]
+		public static extern Model LoadModel(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Model LoadModelFromMesh(Mesh mesh);                                                               // Load model from generated mesh
+        // Load model from generated mesh
+        [DllImport(nativeLibName)]
+		public static extern Model LoadModelFromMesh(Mesh mesh);
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadModel(Model model);                                                                    // Unload model from memory (RAM and/or VRAM)
+        // Unload model from memory (RAM and/or VRAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadModel(Model model);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh LoadMesh(string fileName);                                                              // Load mesh from file
+        // Load mesh from file
+        [DllImport(nativeLibName)]
+		public static extern Mesh LoadMesh(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadMesh(Mesh mesh);                                                                      // Unload mesh from memory (RAM and/or VRAM)
+        // Unload mesh from memory (RAM and/or VRAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadMesh(Mesh mesh);
 
-		[DllImport(nativeLibName)]
-		public static extern void ExportMesh(string fileName, Mesh mesh);                                                 // Export mesh as an OBJ file
+        // Export mesh as an OBJ file
+        [DllImport(nativeLibName)]
+		public static extern void ExportMesh(string fileName, Mesh mesh);
 
-		[DllImport(nativeLibName)]
-		public static extern BoundingBox MeshBoundingBox(Mesh mesh);                                                           // Compute mesh bounding box limits
+        // Compute mesh bounding box limits
+        [DllImport(nativeLibName)]
+		public static extern BoundingBox MeshBoundingBox(Mesh mesh);
 
-		[DllImport(nativeLibName)]
-		public static extern void MeshTangents(Mesh mesh);                                                                    // Compute mesh tangents
+        // Compute mesh tangents
+        [DllImport(nativeLibName)]
+		public static extern void MeshTangents(Mesh mesh);
 
-		[DllImport(nativeLibName)]
-		public static extern void MeshBinormals(Mesh mesh);                                                                   // Compute mesh binormals
+        // Compute mesh binormals
+        [DllImport(nativeLibName)]
+		public static extern void MeshBinormals(Mesh mesh);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshPlane(float width, float length, int resX, int resZ);                                 // Generate plane mesh (with subdivisions)
+        // Generate plane mesh (with subdivisions)
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshPlane(float width, float length, int resX, int resZ);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshCube(float width, float height, float length);                                        // Generate cuboid mesh
+        // Generate cuboid mesh
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshCube(float width, float height, float length);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshSphere(float radius, int rings, int slices);                                          // Generate sphere mesh (standard sphere)
+        // Generate sphere mesh (standard sphere)
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshSphere(float radius, int rings, int slices);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshHemiSphere(float radius, int rings, int slices);                                      // Generate half-sphere mesh (no bottom cap)
+        // Generate half-sphere mesh (no bottom cap)
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshHemiSphere(float radius, int rings, int slices);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshCylinder(float radius, float height, int slices);                                     // Generate cylinder mesh
+        // Generate cylinder mesh
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshCylinder(float radius, float height, int slices);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshTorus(float radius, float size, int radSeg, int sides);                               // Generate torus mesh
+        // Generate torus mesh
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshTorus(float radius, float size, int radSeg, int sides);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshKnot(float radius, float size, int radSeg, int sides);                                // Generate trefoil knot mesh
+        // Generate trefoil knot mesh
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshKnot(float radius, float size, int radSeg, int sides);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshHeightmap(Image heightmap, Vector3 size);                                             // Generate heightmap mesh from image data
+        // Generate heightmap mesh from image data
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshHeightmap(Image heightmap, Vector3 size);
 
-		[DllImport(nativeLibName)]
-		public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);                                           // Generate cubes-based map mesh from image data
+        // Generate cubes-based map mesh from image data
+        [DllImport(nativeLibName)]
+		public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
 
-		[DllImport(nativeLibName)]
-		public static extern Material LoadMaterial(string fileName);                                                      // Load material from file
+        // Load material from file
+        [DllImport(nativeLibName)]
+		public static extern Material LoadMaterial(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Material LoadMaterialDefault();                                                               // Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+        // Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+        [DllImport(nativeLibName)]
+		public static extern Material LoadMaterialDefault();
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadMaterial(Material material);                                                           // Unload material from GPU memory (VRAM)
+        // Unload material from GPU memory (VRAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadMaterial(Material material);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawModel(Model model, Vector3 position, float scale, Color tint);                           // Draw a model (with texture if set)
+        // Draw a model (with texture if set)
+        [DllImport(nativeLibName)]
+		public static extern void DrawModel(Model model, Vector3 position, float scale, Color tint);
 
+        // Draw a model with extended parameters
 		[DllImport(nativeLibName)]
-		public static extern void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint); // Draw a model with extended parameters
+		public static extern void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawModelWires(Model model, Vector3 position, float scale, Color tint);                      // Draw a model wires (with texture if set)
+        // Draw a model wires (with texture if set)
+        [DllImport(nativeLibName)]
+		public static extern void DrawModelWires(Model model, Vector3 position, float scale, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint); // Draw a model wires (with texture if set) with extended parameters
+        // Draw a model wires (with texture if set) with extended parameters
+        [DllImport(nativeLibName)]
+		public static extern void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawBoundingBox(BoundingBox box, Color color);                                               // Draw bounding box (wires)
+        // Draw bounding box (wires)
+        [DllImport(nativeLibName)]
+		public static extern void DrawBoundingBox(BoundingBox box, Color color);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 center, float size, Color tint);     // Draw a billboard texture
+        // Draw a billboard texture
+        [DllImport(nativeLibName)]
+		public static extern void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 center, float size, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle sourceRec, Vector3 center, float size, Color tint); // Draw a billboard texture defined by sourceRec
+        // Draw a billboard texture defined by sourceRec
+        [DllImport(nativeLibName)]
+        public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle sourceRec, Vector3 center, float size, Color tint);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionSpheres(Vector3 centerA, float radiusA, Vector3 centerB, float radiusB);       // Detect collision between two spheres
+        // Detect collision between two spheres
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionSpheres(Vector3 centerA, float radiusA, Vector3 centerB, float radiusB);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);                                     // Detect collision between two bounding boxes
+        // Detect collision between two bounding boxes
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 centerSphere, float radiusSphere);          // Detect collision between box and sphere
+        // Detect collision between box and sphere
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 centerSphere, float radiusSphere);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionRaySphere(Ray ray, Vector3 spherePosition, float sphereRadius);                // Detect collision between ray and sphere
+        // Detect collision between ray and sphere
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionRaySphere(Ray ray, Vector3 spherePosition, float sphereRadius);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionRaySphereEx(Ray ray, Vector3 spherePosition, float sphereRadius, Vector3 collisionPoint); // Detect collision between ray and sphere, returns collision point
+        // Detect collision between ray and sphere, returns collision point
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionRaySphereEx(Ray ray, Vector3 spherePosition, float sphereRadius, Vector3 collisionPoint);
 
-		[DllImport(nativeLibName)]
-		public static extern bool CheckCollisionRayBox(Ray ray, BoundingBox box);                                              // Detect collision between ray and box
+        // Detect collision between ray and box
+        [DllImport(nativeLibName)]
+		public static extern bool CheckCollisionRayBox(Ray ray, BoundingBox box);
 
-		[DllImport(nativeLibName)]
-		public static extern RayHitInfo GetCollisionRayModel(Ray ray, Model model);                                           // Get collision info between ray and model
+        // Get collision info between ray and model
+        [DllImport(nativeLibName)]
+		public static extern RayHitInfo GetCollisionRayModel(Ray ray, Model model);
 
-		[DllImport(nativeLibName)]
-		public static extern RayHitInfo GetCollisionRayTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);                  // Get collision info between ray and triangle
+        // Get collision info between ray and triangle
+        [DllImport(nativeLibName)]
+		public static extern RayHitInfo GetCollisionRayTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);
 
-		[DllImport(nativeLibName)]
-		public static extern RayHitInfo GetCollisionRayGround(Ray ray, float groundHeight);                                    // Get collision info between ray and ground plane (Y-normal plane)
+        // Get collision info between ray and ground plane (Y-normal plane)
+        [DllImport(nativeLibName)]
+		public static extern RayHitInfo GetCollisionRayGround(Ray ray, float groundHeight);
 
-		[DllImport(nativeLibName)]
-		public static extern string LoadText(string fileName);                               // Load chars array from text file
+        // Load chars array from text file
+        [DllImport(nativeLibName)]
+		public static extern string LoadText(string fileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Shader LoadShader(string vsFileName, string fsFileName);  // Load shader from files and bind default locations
+        // Load shader from files and bind default locations
+        [DllImport(nativeLibName)]
+		public static extern Shader LoadShader(string vsFileName, string fsFileName);
 
-		[DllImport(nativeLibName)]
-		public static extern Shader LoadShaderCode(string vsCode, string fsCode);                  // Load shader from code strings and bind default locations
+        // Load shader from code strings and bind default locations
+        [DllImport(nativeLibName)]
+		public static extern Shader LoadShaderCode(string vsCode, string fsCode);
 
-		[DllImport(nativeLibName)]
-		public static extern void UnloadShader(Shader shader);                                   // Unload shader from GPU memory (VRAM)
+        // Unload shader from GPU memory (VRAM)
+        [DllImport(nativeLibName)]
+		public static extern void UnloadShader(Shader shader);
 
-		[DllImport(nativeLibName)]
-		public static extern Shader GetShaderDefault();                                      // Get default shader
+        // Get default shader
+        [DllImport(nativeLibName)]
+		public static extern Shader GetShaderDefault();
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D GetTextureDefault();                                  // Get default texture
+        // Get default texture
+        [DllImport(nativeLibName)]
+		public static extern Texture2D GetTextureDefault();
 
-		[DllImport(nativeLibName)]
-		public static extern int GetShaderLocation(Shader shader, string uniformName);              // Get shader uniform location
+        // Get shader uniform location
+        [DllImport(nativeLibName)]
+		public static extern int GetShaderLocation(Shader shader, string uniformName);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetShaderValue(Shader shader, int uniformLoc, float[] value, int size); // Set shader uniform value (float)
+        // Set shader uniform value (float)
+        [DllImport(nativeLibName)]
+		public static extern void SetShaderValue(Shader shader, int uniformLoc, float[] value, int size);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetShaderValuei(Shader shader, int uniformLoc, int[] value, int size);  // Set shader uniform value (int)
+        // Set shader uniform value (int)
+        [DllImport(nativeLibName)]
+		public static extern void SetShaderValuei(Shader shader, int uniformLoc, int[] value, int size);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix mat);       // Set shader uniform value (matrix 4x4)
+        // Set shader uniform value (matrix 4x4)
+        [DllImport(nativeLibName)]
+		public static extern void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix mat);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetMatrixProjection(Matrix proj);                              // Set a custom projection matrix (replaces internal projection matrix)
+        // Set a custom projection matrix (replaces internal projection matrix)
+        [DllImport(nativeLibName)]
+		public static extern void SetMatrixProjection(Matrix proj);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetMatrixModelview(Matrix view);                               // Set a custom modelview matrix (replaces internal modelview matrix)
+        // Set a custom modelview matrix (replaces internal modelview matrix)
+        [DllImport(nativeLibName)]
+		public static extern void SetMatrixModelview(Matrix view);
 
-		[DllImport(nativeLibName)]
-		public static extern Matrix GetMatrixModelview();                                        // Get internal modelview matrix
+        // Get internal modelview matrix
+        [DllImport(nativeLibName)]
+		public static extern Matrix GetMatrixModelview();
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D GenTextureCubemap(Shader shader, Texture2D skyHDR, int size);       // Generate cubemap texture from HDR texture
+        // Generate cubemap texture from HDR texture
+        [DllImport(nativeLibName)]
+		public static extern Texture2D GenTextureCubemap(Shader shader, Texture2D skyHDR, int size);
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D GenTextureIrradiance(Shader shader, Texture2D cubemap, int size);   // Generate irradiance texture using cubemap data
+        // Generate irradiance texture using cubemap data
+        [DllImport(nativeLibName)]
+		public static extern Texture2D GenTextureIrradiance(Shader shader, Texture2D cubemap, int size);
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D GenTexturePrefilter(Shader shader, Texture2D cubemap, int size);    // Generate prefilter texture using cubemap data
+        // Generate prefilter texture using cubemap data
+        [DllImport(nativeLibName)]
+		public static extern Texture2D GenTexturePrefilter(Shader shader, Texture2D cubemap, int size);
 
-		[DllImport(nativeLibName)]
-		public static extern Texture2D GenTextureBRDF(Shader shader, Texture2D cubemap, int size);         // Generate BRDF texture using cubemap data
+        // Generate BRDF texture using cubemap data
+        [DllImport(nativeLibName)]
+		public static extern Texture2D GenTextureBRDF(Shader shader, Texture2D cubemap, int size);
 
-		[DllImport(nativeLibName)]
-		public static extern void BeginShaderMode(Shader shader);                                // Begin custom shader drawing
+        // Begin custom shader drawing
+        [DllImport(nativeLibName)]
+		public static extern void BeginShaderMode(Shader shader);
 
-		[DllImport(nativeLibName)]
-		public static extern void EndShaderMode();                                           // End custom shader drawing (use default shader)
+        // End custom shader drawing (use default shader)
+        [DllImport(nativeLibName)]
+		public static extern void EndShaderMode();
 
-		[DllImport(nativeLibName)]
-		public static extern void BeginBlendMode(int mode);                                      // Begin blending mode (alpha, additive, multiplied)
+        // Begin blending mode (alpha, additive, multiplied)
+        [DllImport(nativeLibName)]
+		public static extern void BeginBlendMode(int mode);
 
-		[DllImport(nativeLibName)]
-		public static extern void EndBlendMode();                                            // End blending mode (reset to default: alpha blending)
+        // End blending mode (reset to default: alpha blending)
+        [DllImport(nativeLibName)]
+		public static extern void EndBlendMode();
 
-		[DllImport(nativeLibName)]
-		public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);   // Get VR device information for some standard devices
+        // Get VR device information for some standard devices
+        [DllImport(nativeLibName)]
+		public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);
 
-		[DllImport(nativeLibName)]
-		public static extern void InitVrSimulator(VrDeviceInfo info);          // Init VR simulator for selected device parameters
+        // Init VR simulator for selected device parameters
+        [DllImport(nativeLibName)]
+		public static extern void InitVrSimulator(VrDeviceInfo info);
 
-		[DllImport(nativeLibName)]
-		public static extern void CloseVrSimulator();                      // Close VR simulator for current device
+        // Close VR simulator for current device
+        [DllImport(nativeLibName)]
+		public static extern void CloseVrSimulator();
 
-		[DllImport(nativeLibName)]
-		public static extern bool IsVrSimulatorReady();                    // Detect if VR simulator is ready
+        // Detect if VR simulator is ready
+        [DllImport(nativeLibName)]
+		public static extern bool IsVrSimulatorReady();
 
-		[DllImport(nativeLibName)]
-		public static extern void SetVrDistortionShader(Shader shader);        // Set VR distortion shader for stereoscopic rendering
+        // Set VR distortion shader for stereoscopic rendering
+        [DllImport(nativeLibName)]
+		public static extern void SetVrDistortionShader(Shader shader);
 
-		[DllImport(nativeLibName)]
-		public static extern void UpdateVrTracking(Camera3D camera);            // Update VR tracking (position and orientation) and camera
+        // Update VR tracking (position and orientation) and camera
+        [DllImport(nativeLibName)]
+		public static extern void UpdateVrTracking(Camera3D camera);
 
-		[DllImport(nativeLibName)]
-		public static extern void ToggleVrMode();                          // Enable/Disable VR experience
+        // Enable/Disable VR experience
+        [DllImport(nativeLibName)]
+		public static extern void ToggleVrMode();
 
-		[DllImport(nativeLibName)]
-		public static extern void BeginVrDrawing();                        // Begin VR simulator stereo rendering
+        // Begin VR simulator stereo rendering
+        [DllImport(nativeLibName)]
+		public static extern void BeginVrDrawing();
 
-		[DllImport(nativeLibName)]
-		public static extern void EndVrDrawing();                          // End VR simulator stereo rendering
+        // End VR simulator stereo rendering
+        [DllImport(nativeLibName)]
+		public static extern void EndVrDrawing();
 
+	    // Initialize audio device and context
 		[DllImport(nativeLibName)]
-		public static extern void InitAudioDevice();                                     // Initialize audio device and context
-
+		public static extern void InitAudioDevice();
+	    
+	    // Close the audio device and context
 		[DllImport(nativeLibName)]
-		public static extern void CloseAudioDevice();                                    // Close the audio device and context
-
+		public static extern void CloseAudioDevice();
+	    
+	    // Check if audio device has been initialized successfully
 		[DllImport(nativeLibName)]
-		public static extern bool IsAudioDeviceReady();                                  // Check if audio device has been initialized successfully
+		public static extern bool IsAudioDeviceReady();
 
+	    // Set master volume (listener)
 		[DllImport(nativeLibName)]
-		public static extern void SetMasterVolume(float volume);                             // Set master volume (listener)
+		public static extern void SetMasterVolume(float volume);
 
+	    // Load wave data from file
 		[DllImport(nativeLibName)]
-		public static extern Wave LoadWave(string fileName);                            // Load wave data from file
+		public static extern Wave LoadWave(string fileName);
 
+	    // Load wave data from raw array data
 		[DllImport(nativeLibName)]
-		public static extern Wave LoadWaveEx(IntPtr data, int sampleCount, int sampleRate, int sampleSize, int channels); // Load wave data from raw array data
+		public static extern Wave LoadWaveEx(IntPtr data, int sampleCount, int sampleRate, int sampleSize, int channels);
 
+	    // Load sound from file
 		[DllImport(nativeLibName)]
-		public static extern Sound LoadSound(string fileName);                          // Load sound from file
+		public static extern Sound LoadSound(string fileName);
 
+	    // Load sound from wave data
 		[DllImport(nativeLibName)]
-		public static extern Sound LoadSoundFromWave(Wave wave);                             // Load sound from wave data
+		public static extern Sound LoadSoundFromWave(Wave wave);
 
+	    // Update sound buffer with new data
 		[DllImport(nativeLibName)]
-		public static extern void UpdateSound(Sound sound, byte[] data, int samplesCount);// Update sound buffer with new data
+		public static extern void UpdateSound(Sound sound, byte[] data, int samplesCount);
 
+	    // Unload wave data
 		[DllImport(nativeLibName)]
-		public static extern void UnloadWave(Wave wave);                                     // Unload wave data
+		public static extern void UnloadWave(Wave wave);
 
+	    // Unload sound
 		[DllImport(nativeLibName)]
-		public static extern void UnloadSound(Sound sound);                                  // Unload sound
+		public static extern void UnloadSound(Sound sound);
 
+	    // Play a sound
 		[DllImport(nativeLibName)]
-		public static extern void PlaySound(Sound sound);                                    // Play a sound
+		public static extern void PlaySound(Sound sound);
 
+	    // Pause a sound
 		[DllImport(nativeLibName)]
-		public static extern void PauseSound(Sound sound);                                   // Pause a sound
-
+		public static extern void PauseSound(Sound sound);
+	    
+	    // Resume a paused sound
 		[DllImport(nativeLibName)]
-		public static extern void ResumeSound(Sound sound);                                  // Resume a paused sound
+		public static extern void ResumeSound(Sound sound);
 
+	    // Stop playing a sound
 		[DllImport(nativeLibName)]
-		public static extern void StopSound(Sound sound);                                    // Stop playing a sound
+		public static extern void StopSound(Sound sound);
 
+	    // Check if a sound is currently playing
 		[DllImport(nativeLibName)]
-		public static extern bool IsSoundPlaying(Sound sound);                               // Check if a sound is currently playing
+		public static extern bool IsSoundPlaying(Sound sound);
 
+	    // Set volume for a sound (1.0 is max level)
 		[DllImport(nativeLibName)]
-		public static extern void SetSoundVolume(Sound sound, float volume);                 // Set volume for a sound (1.0 is max level)
+		public static extern void SetSoundVolume(Sound sound, float volume);
 
+	    // Set pitch for a sound (1.0 is base level)
 		[DllImport(nativeLibName)]
-		public static extern void SetSoundPitch(Sound sound, float pitch);                   // Set pitch for a sound (1.0 is base level)
+		public static extern void SetSoundPitch(Sound sound, float pitch);
 
-		[DllImport(nativeLibName)]
-		public static extern void WaveFormat(out Wave wave, int sampleRate, int sampleSize, int channels);  // Convert wave data to desired format
+		// Convert wave data to desired format
+	    [DllImport(nativeLibName)]
+	    public static extern void WaveFormat(out Wave wave, int sampleRate, int sampleSize, int channels);
 
+	    // Copy a wave to a new wave
 		[DllImport(nativeLibName)]
-		public static extern Wave WaveCopy(Wave wave);                                       // Copy a wave to a new wave
+		public static extern Wave WaveCopy(Wave wave);
 
+	    // Crop a wave to defined samples range
 		[DllImport(nativeLibName)]
-		public static extern void WaveCrop(out Wave wave, int initSample, int finalSample);     // Crop a wave to defined samples range
+		public static extern void WaveCrop(out Wave wave, int initSample, int finalSample);
 
+	    // Get samples data from wave as a floats array
 		[DllImport(nativeLibName)]
-		public static extern float[] GetWaveData(Wave wave);                                  // Get samples data from wave as a floats array
+		public static extern float[] GetWaveData(Wave wave);
 
-		[DllImport(nativeLibName)]
-		public static extern IntPtr LoadMusicStream(string fileName);                    // Load IntPtr stream from file
+	    // Load IntPtr stream from file
+	    [DllImport(nativeLibName)]
+	    public static extern IntPtr LoadMusicStream(string fileName);
 
+	    // Unload IntPtr stream
 		[DllImport(nativeLibName)]
-		public static extern void UnloadMusicStream(IntPtr music);                            // Unload IntPtr stream
+		public static extern void UnloadMusicStream(IntPtr music);
 
+	    // Start IntPtr playing
 		[DllImport(nativeLibName)]
-		public static extern void PlayMusicStream(IntPtr music);                              // Start IntPtr playing
+		public static extern void PlayMusicStream(IntPtr music);
 
+	    // Updates buffers for IntPtr streaming
 		[DllImport(nativeLibName)]
-		public static extern void UpdateMusicStream(IntPtr music);                            // Updates buffers for IntPtr streaming
+		public static extern void UpdateMusicStream(IntPtr music);
 
+	    // Stop IntPtr playing
 		[DllImport(nativeLibName)]
-		public static extern void StopMusicStream(IntPtr music);                              // Stop IntPtr playing
+		public static extern void StopMusicStream(IntPtr music);
 
+	    // Pause IntPtr playing
 		[DllImport(nativeLibName)]
-		public static extern void PauseMusicStream(IntPtr music);                             // Pause IntPtr playing
+		public static extern void PauseMusicStream(IntPtr music);
 
+	    // Resume playing paused music
 		[DllImport(nativeLibName)]
-		public static extern void ResumeMusicStream(IntPtr music);                            // Resume playing paused music
+		public static extern void ResumeMusicStream(IntPtr music);
 
+	    // Check if IntPtr is playing
 		[DllImport(nativeLibName)]
-		public static extern bool IsMusicPlaying(IntPtr music);                               // Check if IntPtr is playing
+		public static extern bool IsMusicPlaying(IntPtr music);
 
+	    // Set volume for IntPtr (1.0 is max level)
 		[DllImport(nativeLibName)]
-		public static extern void SetMusicVolume(IntPtr music, float volume);                 // Set volume for IntPtr (1.0 is max level)
+		public static extern void SetMusicVolume(IntPtr music, float volume);
 
+	    // Set pitch for a IntPtr (1.0 is base level)
 		[DllImport(nativeLibName)]
-		public static extern void SetMusicPitch(IntPtr music, float pitch);                   // Set pitch for a IntPtr (1.0 is base level)
+		public static extern void SetMusicPitch(IntPtr music, float pitch);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetMusicLoopCount(IntPtr music, int count);                 // Set IntPtr loop count (loop repeats)
+		// Set IntPtr loop count (loop repeats)
+	    [DllImport(nativeLibName)]
+	    public static extern void SetMusicLoopCount(IntPtr music, int count);
 
+	    // Get IntPtr time length (in seconds)
 		[DllImport(nativeLibName)]
-		public static extern float GetMusicTimeLength(IntPtr music);                          // Get IntPtr time length (in seconds)
+		public static extern float GetMusicTimeLength(IntPtr music);
 
+	    // Get current IntPtr time played (in seconds)
 		[DllImport(nativeLibName)]
-		public static extern float GetMusicTimePlayed(IntPtr music);                          // Get current IntPtr time played (in seconds)
+		public static extern float GetMusicTimePlayed(IntPtr music);
 
+	    // Init audio stream (to stream raw audio pcm data)
 		[DllImport(nativeLibName)]
-		public static extern AudioStream InitAudioStream(uint sampleRate, uint sampleSize, uint channels); // Init audio stream (to stream raw audio pcm data)
+		public static extern AudioStream InitAudioStream(uint sampleRate, uint sampleSize, uint channels);
 
+	    // Update audio stream buffers with data
 		[DllImport(nativeLibName)]
-		public static extern void UpdateAudioStream(AudioStream stream, byte[] data, int samplesCount); // Update audio stream buffers with data
+		public static extern void UpdateAudioStream(AudioStream stream, byte[] data, int samplesCount);
 
+	    // Close audio stream and free memory
 		[DllImport(nativeLibName)]
-		public static extern void CloseAudioStream(AudioStream stream);                      // Close audio stream and free memory
+		public static extern void CloseAudioStream(AudioStream stream);
 
+	    // Check if any audio stream buffers requires refill
 		[DllImport(nativeLibName)]
-		public static extern bool IsAudioBufferProcessed(AudioStream stream);                // Check if any audio stream buffers requires refill
+		public static extern bool IsAudioBufferProcessed(AudioStream stream);
 
+	    // Play audio stream
 		[DllImport(nativeLibName)]
-		public static extern void PlayAudioStream(AudioStream stream);                       // Play audio stream
+		public static extern void PlayAudioStream(AudioStream stream);
 
+	    // Pause audio stream
 		[DllImport(nativeLibName)]
-		public static extern void PauseAudioStream(AudioStream stream);                      // Pause audio stream
+		public static extern void PauseAudioStream(AudioStream stream);
 
+	    // Resume audio stream
 		[DllImport(nativeLibName)]
-		public static extern void ResumeAudioStream(AudioStream stream);                     // Resume audio stream
+		public static extern void ResumeAudioStream(AudioStream stream);
 
+	    // Check if audio stream is playing
 		[DllImport(nativeLibName)]
-		public static extern bool IsAudioStreamPlaying(AudioStream stream);                  // Check if audio stream is playing
+		public static extern bool IsAudioStreamPlaying(AudioStream stream);
 
+	    // Stop audio stream
 		[DllImport(nativeLibName)]
-		public static extern void StopAudioStream(AudioStream stream);                       // Stop audio stream
+		public static extern void StopAudioStream(AudioStream stream);
 
-		[DllImport(nativeLibName)]
-		public static extern void SetAudioStreamVolume(AudioStream stream, float volume);    // Set volume for audio stream (1.0 is max level)
+	    // Set volume for audio stream (1.0 is max level)
+	    [DllImport(nativeLibName)]
+	    public static extern void SetAudioStreamVolume(AudioStream stream, float volume);
 
+	    // Set pitch for audio stream (1.0 is base level)
 		[DllImport(nativeLibName)]
-		public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);      // Set pitch for audio stream (1.0 is base level)
-
+		public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
+	    
 		#endregion
     }
 }
