@@ -26,6 +26,7 @@
 [Rr]eleases/
 bld/
 [Bb]uild/
+Bindings/bin/[Dd]ebug
 Generator/bin/[Dd]ebug
 [Oo]bj/
 [Ll]og/

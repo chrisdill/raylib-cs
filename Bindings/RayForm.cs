@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using static Raylib.rl;
+using static Raylib.Raylib;
 
 namespace Raylib
 {

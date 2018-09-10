@@ -1,4 +1,11 @@
+/**********************************************************************************************
+ * 
+ * Raymath v1.2 bindings - Math functions to work with Vector3, Matrix and Quaternions
+ * Original - https://github.com/raysan5/raylib/blob/master/src/raymath.h 
+ * 
+**********************************************************************************************/
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib
@@ -17,6 +24,7 @@ namespace Raylib
             this.y = y;
         }
 
+        // extensions
         public override bool Equals(object obj)
         {
             return (obj is Vector2) && Equals((Vector2)obj);
@@ -32,43 +40,6 @@ namespace Raylib
             return "Vector2(" + x + " " + y + ")";
         }
         
-        // utility for c functions Vector2Zero -> Zero etc
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Zero")]
-        public static extern Vector2 Zero();
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2One")]
-        public static extern Vector2 One();
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Add")]
-        public static extern Vector2 operator +(Vector2 v1, Vector2 v2);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Subtract")]
-        public static extern Vector2 operator -(Vector2 v1, Vector2 v2);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Length")]
-        public static extern float Length(Vector2 v);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2DotProduct")]
-        public static extern float DotProduct(Vector2 v1, Vector2 v2);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Distance")]
-        public static extern float Distance(Vector2 v1, Vector2 v2);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Angle")]
-        public static extern float Angle(Vector2 v1, Vector2 v2);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Scale")]
-        public static extern Vector2 Scale(Vector2 v, float scale);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Negate")]
-        public static extern Vector2 Negate(Vector2 v);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Divide")]
-        public static extern Vector2 Divide(Vector2 v, float div);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector2Normalize")]
-        public static extern Vector2 Normalize(Vector2 v);
-
         public static bool operator ==(Vector2 v1, Vector2 v2)
         {
             return (v1.x == v2.x && v1.y == v2.y);
@@ -78,6 +49,74 @@ namespace Raylib
         {
             return !(v1 == v2);
         }
+
+        public static bool operator >(Vector2 v1, Vector2 v2)
+        {
+            return v1.x > v2.x && v1.y > v2.y;
+        }
+
+        public static bool operator <(Vector2 v1, Vector2 v2)
+        {
+            return v1.x < v2.x && v1.y < v2.y;
+        }
+
+        // utility for c functions Vector2Zero() -> Vector2.Zero() etc
+        public static Vector2 Zero()
+        {
+            return Raylib.Vector2Zero();
+        }
+
+        public static Vector2 One()
+        {
+            return Raylib.Vector2One();
+        }
+
+        public static float Length(Vector2 v)
+        {
+            return Raylib.Vector2Length(v);
+        }
+
+        public static float DotProduct(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2DotProduct(v1, v2);
+        }
+
+        public static float Distance(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2Distance(v1, v2);
+        }
+
+        public static float Angle(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2Angle(v1, v2);
+        }
+
+        public static Vector2 Scale(Vector2 v, float scale)        
+        {
+            return Raylib.Vector2Scale(v, scale);
+        }
+
+        public static Vector2 Negate(Vector2 v)        
+        {
+            return Raylib.Vector2Negate(v);
+        }
+
+        public static Vector2 Divide(Vector2 v, float div)
+        {
+            return Raylib.Vector2Divide(v, div);
+        }
+ 
+        public static Vector2 Normalize(Vector2 v)
+        {         
+            return Raylib.Vector2Normalize(v);
+        }
+
+        // extra operators(Vector2Add(v1, v2) -> v1 += v2);
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Add")]
+        public static extern Vector2 operator +(Vector2 v1, Vector2 v2);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Subtract")]
+        public static extern Vector2 operator -(Vector2 v1, Vector2 v2);
     }
 
     // Vector3 type
@@ -104,55 +143,10 @@ namespace Raylib
             return x.GetHashCode() + y.GetHashCode() + z.GetHashCode();
         }
 
-        // utility for c functions Vector3Zero -> Zero etc
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Zero")]
-        public static extern Vector3 Zero();
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3One")]
-        public static extern Vector3 One();
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Add")]
-        public static extern Vector3 operator +(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Subtract")]
-        public static extern Vector3 operator -(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Length")]
-        public static extern float Length(Vector3 v);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3DotProduct")]
-        public static extern float DotProduct(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Distance")]
-        public static extern float Distance(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Angle")]
-        public static extern float Angle(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Scale")]
-        public static extern Vector3 Scale(Vector3 v, float scale);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Negate")]
-        public static extern Vector3 Negate(Vector3 v);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Divide")]
-        public static extern Vector3 Divide(Vector3 v, float div);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Normalize")]
-        public static extern Vector3 Normalize(Vector3 v);
-
-        // operators
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3MultiplyV")]
-        public static extern Vector3 operator *(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Multiply")]
-        public static extern Vector3 operator *(Vector3 v1, float scale);
-        
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Divide")]
-        public static extern Vector3 operator /(Vector3 v1, Vector3 v3);
-
-        [DllImport(rl.nativeLibName, EntryPoint = "Vector3Negate")]
-        public static extern Vector3 operator -(Vector3 v1);
+        public override string ToString()
+        {
+            return "Vector3(" + x + " " + y + " " + z + ")";
+        }
 
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
@@ -163,6 +157,66 @@ namespace Raylib
         {
             return !(v1 == v2);
         }
+
+        /*public bool operator >(Vector2 v1, Vector2 v2)
+        {
+            return v1.x > v2.x && v1.y > v2.y;
+        }
+
+        public static bool operator <(Vector2 v1, Vector2 v2)
+        {
+            return v1.x < v2.x && v1.y < v2.y;
+        }*/
+
+        // utility for c functions Vector3Zero -> Zero etc
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Zero")]
+        public static extern Vector3 Zero();
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3One")]
+        public static extern Vector3 One();
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Add")]
+        public static extern Vector3 operator +(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Subtract")]
+        public static extern Vector3 operator -(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Length")]
+        public static extern float Length(Vector3 v);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3DotProduct")]
+        public static extern float DotProduct(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Distance")]
+        public static extern float Distance(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Angle")]
+        public static extern float Angle(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Scale")]
+        public static extern Vector3 Scale(Vector3 v, float scale);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Negate")]
+        public static extern Vector3 Negate(Vector3 v);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Divide")]
+        public static extern Vector3 Divide(Vector3 v, float div);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Normalize")]
+        public static extern Vector3 Normalize(Vector3 v);
+
+        // operators
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3MultiplyV")]
+        public static extern Vector3 operator *(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Multiply")]
+        public static extern Vector3 operator *(Vector3 v1, float scale);
+        
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Divide")]
+        public static extern Vector3 operator /(Vector3 v1, Vector3 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Negate")]
+        public static extern Vector3 operator -(Vector3 v1);
     }
 
     // Vector4 type
@@ -180,6 +234,21 @@ namespace Raylib
             this.z = z;
             this.w = w;
         }
+
+        public override bool Equals(object obj)
+        {
+            return (obj is Vector4) && Equals((Vector4)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return x.GetHashCode() + y.GetHashCode() + z.GetHashCode() + w.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Vector4(" + x + " " + y + " " + z + " " + w + ")";
+        }
     }
 
     // Matrix type (OpenGL style 4x4 - right handed, column major)
@@ -190,6 +259,11 @@ namespace Raylib
         public float m1, m5, m9, m13;
         public float m2, m6, m10, m14;
         public float m3, m7, m11, m15;
+
+        public override string ToString()
+        {
+            return $"Matrix({m0}, {m4}, {m8}, {m12}\n       {m1}, {m5}, {m9}, {m13}\n      {m2}, {m6}, {m10}, {m14}\n      {m3}, {m7}, {m11}, {m15})";
+        }
     }
 
     // Quaternion type
@@ -200,11 +274,16 @@ namespace Raylib
         public float y;
         public float z;
         public float w;
+
+        public override string ToString()
+        {
+            return "Quaternion(" + x + " " + y + " " + z + " " + w + ")";
+        }
     }
 
     #endregion
 
-    public static partial class rl
+    public static partial class Raylib
     {
         #region Raylib-cs Functions 
 
@@ -259,7 +338,6 @@ namespace Raylib
         // Normalize provided vector
         [DllImport(nativeLibName)]
         public static extern Vector2 Vector2Normalize(Vector2 v);
-
 
         // Vector with components value 0.0f
         [DllImport(nativeLibName)]
@@ -356,7 +434,6 @@ namespace Raylib
         [DllImport(nativeLibName)]
         public static extern float[] Vector3ToFloatV(Vector3 v);
 
-
         // Compute matrix determinant
         [DllImport(nativeLibName)]
         public static extern float MatrixDeterminant(Matrix mat);
@@ -439,8 +516,7 @@ namespace Raylib
         // Returns float array of matrix data
         [DllImport(nativeLibName)]
         public static extern float[] MatrixToFloatV(Matrix mat);
-       
-        
+            
         // Returns identity quaternion
         [DllImport(nativeLibName)]
         public static extern Quaternion QuaternionIdentity();

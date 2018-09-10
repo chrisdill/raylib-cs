@@ -1,3 +1,9 @@
+/**********************************************************************************************
+ * 
+ * Rlgl
+ * Original - https://github.com/raysan5/raylib/blob/master/src/rlgl.h
+ * 
+**********************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -13,7 +19,7 @@ namespace Raylib
 
     #endregion
 
-    public static partial class rl
+    public static partial class Raylib
     {
         #region Raylib-cs Variables
 
