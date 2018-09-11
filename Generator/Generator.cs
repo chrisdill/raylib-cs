@@ -7,7 +7,7 @@ namespace Raylibcs
 {
     static class Generator
     {
-        static string template = @"
+        public static string template = @"
 using System;
 using System.Runtime.InteropServices;
 
@@ -29,17 +29,17 @@ namespace Raylib
 }
 ";
 
-        static string exampleTemplate = @"
+        public static string exampleTemplate = @"
 using Raylib;
-using static Raylib.rl;
+using static Raylib.Raylib;
 
 public partial class Examples
 {
 {{ CONTENT }}
 }";
 
+        public static string RaylibDirectory = "C:\\raylib\\raylib\\";
         public static string InstallDirectory = "C:\\raylib\\raylib\\src\\";
-        public static string ExamplesDirectory = "C:\\raylib\\raylib\\examples\\";
 
         // string extensions
         private static string CapitalizeFirstCharacter(string format)
@@ -59,6 +59,7 @@ public partial class Examples
             return sb.ToString();
         }
 
+        // testing regex
         public static string ReplaceEx(this string input, string pattern, string replacement)
         {
             input = input.Replace("\r", "\r\n");
@@ -72,11 +73,7 @@ public partial class Examples
             return Regex.Replace(input, pattern, replacement);
         }
 
-        /// <summary>
-        /// Proocess raylib file
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="api"></param>
+        // Create binding code
         public static void Process(string filePath, string api)
         {
             var lines = File.ReadAllLines(InstallDirectory + filePath);
@@ -121,58 +118,41 @@ public partial class Examples
             File.WriteAllText("Raylib-cs/ " + filePath + ".cs", output);
         }
 
-        /// <summary>
-        /// Process raylib examples
-        /// </summary>
-        public static void ProcessExamples()
+        // Convert c style to c#
+        // Design is close to raylib so only a few changes needed
+        public static void ProcessExample(string file, string dirName)
         {
-            // create directory in output folder with same layout as raylib examples
+            var fileName = Path.GetFileNameWithoutExtension(file);
+            var text = File.ReadAllText(file);
 
-            Directory.CreateDirectory("Examples");
+            // indent since example will be in Examples namespace
+            text = text.Indent(4);
 
-            var dirs = Directory.GetDirectories(ExamplesDirectory);
-            foreach (var dir in dirs)
+            // add template and fill in content
+            var output = exampleTemplate;
+            output = output.Replace("{{ CONTENT }}", text);
+            //output = output.Replace("int main()", "public static int " + fileName + "()");
+            //output = output.Replace("#include \"raylib.h\"", "");
+
+            // test regex on one file for now
+            if (fileName == "core_2d_camera")
             {
-                var dirName = new DirectoryInfo(dir).Name;
-                var files = Directory.GetFiles(dir);
-                Directory.CreateDirectory("Examples\\" + dirName);
+                // remove #include lines
 
-                foreach (var file in files)
-                {
-                    if (Path.GetExtension(file) != ".c")
-                        continue;
+                // #define x y -> private const int x = y;
+                //output = output.ReplaceEx(@"#define (\w+).*?(\d+)", "private const int $1 = $2;");
 
-                    var fileName = Path.GetFileNameWithoutExtension(file);
-                    var text = File.ReadAllText(file);
-
-                    // indent since example will be in Examples namespace
-                    text = text.Indent(4);
-           
-                    // add template and fill in content
-                    var output = exampleTemplate;
-                    output = output.Replace("{{ CONTENT }}", text);
-                    output = output.Replace("int main()", "public static int " + fileName + "()");
-                    output = output.Replace("#include \"raylib.h\"", "");
-
-                    // REGEX WHYYYYYYY!!!
-                    //if (fileName == "core_2d_camera")
-                    {
-                        // remove #include lines
-
-                        // #define x y -> private const int x = y;
-                        output = output.ReplaceEx(@"#define (\w+).*?(\d+)", "private const int $1 = $2;");
-                        
-                        // (Type){...} -> new Type(...);
-                        // output = output.ReplaceEx(@"(\((\w+)\).*?{.*})", @"");
-                        // output = output.ReplaceEx(@"\((\w +)\).*{ (.*)}", @"new $1($2)");
-                    }
-
-                    //output = output.ReplaceEx(@"#define (\w+) (\w+)", @"struct 1 public 2 public 3 public 4");
-
-                    var path = "Examples\\" + dirName + "\\" + fileName + ".cs";
-                    File.WriteAllText(path, output);
-                }
+                // (Type){...} -> new Type(...);
+                // output = output.ReplaceEx(@"(\((\w+)\).*?{.*})", @"");
+                // output = output.ReplaceEx(@"\((\w +)\).*{ (.*)}", @"new $1($2)");
             }
+
+            //output = output.ReplaceEx(@"#define (\w+) (\w+)", @"struct 1 public 2 public 3 public 4");
+
+            var path = "Examples\\" + dirName + "\\" + fileName + ".cs";
+            File.WriteAllText(path, output);
+
+            Console.WriteLine("Generated " + fileName + ".cs");
         }
     }
 }
