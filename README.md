@@ -1,3 +1,5 @@
+![Raylib-cs Logo](https://github.com/ChrisDill/Raylib-cs/blob/master/Logo/raylib-cs_256x256.png "Raylib-cs Logo")
+
 # Raylib-cs
 
 C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
@@ -48,8 +50,7 @@ static class Program
 - Finish examples
 - Add as a nuget package
 - Add templates
-- Add logos
-- Auto select x86/x64 dll as needed(currently only x64 dll included)
+- Auto select x86/x64 dll as needed
 
 ## Contributing
 If you have any ideas, feel free to open an issue and tell me what you think.
