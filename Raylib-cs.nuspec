@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Raylib-cs</id>
+    <version>1.0</version>
+    <authors>Chris Dill</authors>
+    <owners>Chris Dill</owners>
+    <licenseUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ChrisDill/Raylib-cs</projectUrl>
+    <iconUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/Logo/raylib-cs.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Testing C# bindings for raylib, a simple and easy-to-use library to learn videogames programming.</description>
+    <releaseNotes>Made for raylib 2.0</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>raylib csharp binding opengl gamedev</tags>
+  </metadata>
+  <files>
+    <file src="Bindings/bin/Debug/Bindings.dll" target="lib\net461"></file>
+    <file src="Examples/bin/Debug/raylib.dll" target="lib\net461"></file>
+  </files>
+</package>
