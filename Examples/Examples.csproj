@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -54,6 +54,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,7 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\audio\audio_module_playing.cs" />
+    <Compile Include="Examples\audio\audio_music_stream.cs" />
     <Compile Include="Examples\core\core_basic_window.cs" />
+    <Compile Include="Examples\physac\physics_demo.cs" />
+    <Compile Include="Examples\text\text_bmfont_ttf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,15 +80,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="raylib-cs.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Bindings\Bindings.csproj">
       <Project>{a2b3bbc8-3d48-46dd-b3cf-263f554e4474}</Project>
       <Name>Bindings</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Examples\core\core_basic_window.png" />
-    <Content Include="Examples\core\resources\ps3.png" />
-    <Content Include="Examples\core\resources\xbox.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

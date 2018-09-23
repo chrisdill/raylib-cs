@@ -135,16 +135,35 @@ namespace Raylib
         public static extern void SetPhysicsGravity(float x, float y);                                                         
 
         // Creates a new circle physics body with generic parameters
-        [DllImport(nativeLibName)]
-        public static extern PhysicsBodyData CreatePhysicsBodyCircle(Vector2 pos, float radius, float density);                    
+        [DllImport(nativeLibName, EntryPoint = "CreatePhysicsBodyCircle")]
+        // [return: MarshalAs(UnmanagedType.LPStruct)]
+        private static extern IntPtr CreatePhysicsBodyCircleImport(Vector2 pos, float radius, float density);
+        public static PhysicsBodyData CreatePhysicsBodyCircle(Vector2 pos, float radius, float density)
+        {
+            var body = CreatePhysicsBodyCircleImport(pos, radius, density);
+            var data = (PhysicsBodyData)Marshal.PtrToStructure(body, typeof(PhysicsBodyData));
+            return data;
+        }
 
         // Creates a new rectangle physics body with generic parameters
-        [DllImport(nativeLibName)]
-        public static extern PhysicsBodyData CreatePhysicsBodyRectangle(Vector2 pos, float width, float height, float density);    
+        [DllImport(nativeLibName, EntryPoint = "CreatePhysicsBodyRectangle")]
+        private static extern IntPtr CreatePhysicsBodyRectangleImport(Vector2 pos, float width, float height, float density);
+        public static PhysicsBodyData CreatePhysicsBodyRectangle(Vector2 pos, float width, float height, float density)
+        {
+            var body = CreatePhysicsBodyRectangleImport(pos, width, height, density);
+            var data = (PhysicsBodyData)Marshal.PtrToStructure(body, typeof(PhysicsBodyData));
+            return data;
+        }
 
         // Creates a new polygon physics body with generic parameters
-        [DllImport(nativeLibName)]
-        public static extern PhysicsBodyData CreatePhysicsBodyPolygon(Vector2 pos, float radius, int sides, float density);        
+        [DllImport(nativeLibName, EntryPoint = "CreatePhysicsBodyPolygon")]
+        private static extern IntPtr CreatePhysicsBodyPolygonImport(Vector2 pos, float radius, int sides, float density);
+        public static PhysicsBodyData CreatePhysicsBodyPolygon(Vector2 pos, float radius, int sides, float density)
+        {
+            var body = CreatePhysicsBodyPolygonImport(pos, radius, sides, density);
+            var data = (PhysicsBodyData)Marshal.PtrToStructure(body, typeof(PhysicsBodyData));
+            return data;
+        }
 
         // Adds a force to a physics body
         [DllImport(nativeLibName)]
@@ -163,9 +182,15 @@ namespace Raylib
         public static extern int GetPhysicsBodiesCount();                                                                  
 
         // Returns a physics body of the bodies pool at a specific index
-        [DllImport(nativeLibName)]
-        public static extern IntPtr GetPhysicsBody(int index);                                                            
-	    
+        [DllImport(nativeLibName, EntryPoint = "GetPhysicsBody")]
+        public static extern IntPtr GetPhysicsBodyImport(int index);     
+        public static PhysicsBodyData GetPhysicsBody(int index)
+        {
+            var body = GetPhysicsBodyImport(index);
+            var data = (PhysicsBodyData)Marshal.PtrToStructure(body, typeof(PhysicsBodyData));
+            return data;
+        }
+
         // Returns the physics body shape type (PHYSICS_CIRCLE or PHYSICS_POLYGON)
         [DllImport(nativeLibName)]
         public static extern int GetPhysicsShapeType(int index);                                                             
