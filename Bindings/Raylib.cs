@@ -443,7 +443,10 @@ namespace Raylib
         public int offsetX;
         public int offsetY;
         public int advanceX;
-	    public unsafe void* data;
+
+        // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
+        // public unsafe void* data;
+        public IntPtr data;
     }
 
     // Font type, includes texture and charSet array data
@@ -453,7 +456,11 @@ namespace Raylib
         public Texture2D texture;
         public int baseSize;
         public int charsCount;
-	    public unsafe CharInfo* chars;
+
+        // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
+        // public unsafe CharInfo* data;
+        //public CharInfo[] chars;
+        public IntPtr data;
     }
 
     // Camera type, defines a camera position/orientation in 3d space
@@ -514,15 +521,19 @@ namespace Raylib
         public ushort[] indices;
 
         public uint vaoId;
-        public unsafe fixed uint vboId[7];
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)] // Raylib.PHYSAC_MAX_VERTICES)]
+        public uint[] vboId;
     }
 
     // Shader type (generic)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public unsafe struct Shader
+    public struct Shader
     {
         public uint id;
-        public fixed int locs[Raylib.MAX_SHADER_LOCATIONS];
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
+        public int[] locs;
     }
 
     // Material texture map
@@ -539,7 +550,10 @@ namespace Raylib
     public struct Material
     {
         public Shader shader;
-        // public MaterialMap[] maps = new MaterialMap[rl.MAX_MATERIAL_MAPS];
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_MATERIAL_MAPS)]
+        public MaterialMap[] maps;
+
         public float[] param;
     }
 

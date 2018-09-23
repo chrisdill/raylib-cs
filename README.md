@@ -44,7 +44,6 @@ static class Program
 
 # TODO:
 - Generator improvements
-- Managed bindings(Marhsall etc)
 - .Net Core support
 - Windows forms support
 - Auto select x86/x64 dll
