@@ -19,7 +19,7 @@ Tested on windows 10 64 bit using the mono compiler.
 
 ```csharp
 using Raylib;
-using static Raylib.rl;
+using static Raylib.Raylib;
 
 static class Program
 {
