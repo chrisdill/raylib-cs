@@ -11,6 +11,9 @@ Bindings:
 * Raylib
 * Raymath
 
+Currently the only difference to raylib is changing interger constants to enums.
+For example KEY_ENTER becomes Key.ENTER.
+
 ## Installation
 Tested on windows 10 64 bit using the mono compiler.
 
@@ -41,19 +44,6 @@ static class Program
 	}
 }
 ```
-
-# TODO:
-- Generator improvements
-- .Net Core support
-- Windows forms support
-- Auto select x86/x64 dll
-
-# Differences
-- interger constants are enums. 
-KEY_ENTER -> Key.ENTER
-
-- types changed to work with C#. 
-char * -> string
 
 ## Contributing
 If you have any ideas, feel free to open an issue and tell me what you think.

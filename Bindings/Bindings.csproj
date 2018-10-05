@@ -84,9 +84,6 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RayForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Easings.cs" />
     <Compile Include="Physac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,11 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="RayForm.resx">
-      <DependentUpon>RayForm.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

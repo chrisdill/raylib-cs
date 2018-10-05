@@ -1,7 +1,7 @@
 /**********************************************************************************************
  * 
  * Raygui
- * https://github.com/raysan5/raygui/blob/master/src/raygui.h
+ * Original - https://github.com/raysan5/raygui/blob/master/src/raygui.h
  * 
 **********************************************************************************************/
 
