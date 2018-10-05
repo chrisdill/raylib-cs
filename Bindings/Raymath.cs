@@ -111,12 +111,24 @@ namespace Raylib
             return Raylib.Vector2Normalize(v);
         }
 
-        // extra operators(Vector2Add(v1, v2) -> v1 += v2);
+        // operators
         [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Add")]
-        public static extern Vector2 operator +(Vector2 v1, Vector2 v2);
+        public static extern Vector2 operator +(Vector2 v1, Vector2 v3);
 
         [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Subtract")]
-        public static extern Vector2 operator -(Vector2 v1, Vector2 v2);
+        public static extern Vector2 operator -(Vector2 v1, Vector2 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2MultiplyV")]
+        public static extern Vector2 operator *(Vector2 v1, Vector2 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Scale")]
+        public static extern Vector2 operator *(Vector2 v1, float scale);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Divide")]
+        public static extern Vector2 operator /(Vector2 v1, Vector2 v3);
+
+        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Negate")]
+        public static extern Vector2 operator -(Vector2 v1);
     }
 
     // Vector3 type

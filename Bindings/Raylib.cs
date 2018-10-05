@@ -744,6 +744,30 @@ namespace Raylib
 		[DllImport(nativeLibName)]
 		public static extern int GetScreenHeight();
 
+         // Get number of connected monitors
+        [DllImport(nativeLibName)]
+        public static extern int GetMonitorCount();
+
+        // Get primary monitor width
+        [DllImport(nativeLibName)]
+        public static extern int GetMonitorWidth(int monitor);
+
+        // Get primary monitor height
+        [DllImport(nativeLibName)]
+        public static extern int GetMonitorHeight(int monitor);
+
+        // Get primary monitor physical width in millimetres
+        [DllImport(nativeLibName)]
+        public static extern int GetMonitorPhysicalWidth(int monitor);
+
+        // Get primary monitor physical height in millimetres
+        [DllImport(nativeLibName)]
+        public static extern int GetMonitorPhysicalHeight(int monitor);
+
+        // Get the human-readable, UTF-8 encoded name of the primary monitor
+        [DllImport(nativeLibName)]
+        public static extern string GetMonitorName(int monitor);
+
 	    // Get current clipboard text
 		//[DllImport(nativeLibName)]
 		//public static extern string GetClipboard();

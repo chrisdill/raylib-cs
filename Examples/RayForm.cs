@@ -6,23 +6,29 @@ using static Raylib.Raylib;
 
 namespace Raylib
 {
-    class DrawControl : Form
+    class RayForm : Form
     {
         private Panel panel;
 
+        #region WinAPI Entry Points
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWindowPos(IntPtr handle, IntPtr handleAfter, int x, int y, int cx, int cy, uint flags);
         [DllImport("user32.dll")]
         private static extern IntPtr SetParent(IntPtr child, IntPtr newParent);
         [DllImport("user32.dll")]
         private static extern IntPtr ShowWindow(IntPtr handle, int command);
 
+        #endregion
+
         public static void Run()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DrawControl());
+            Application.Run(new RayForm());
         }
 
-        public DrawControl()
+        public RayForm()
         {
             panel = new Panel();
             panel.Size = new Size(640, 480);

@@ -7,39 +7,8 @@ namespace Raylibcs
 {
     static class Generator
     {
-        public static string template = @"
-using System;
-using System.Runtime.InteropServices;
-
-namespace Raylib
-{
-    public static partial class rl
-    {
-        #region Raylib-cs Variables
-
-        // Used by DllImport to load the native library.
-        private const string nativeLibName = 'raylib.dll';
-
-        #endregion
-
-        #region Raylib-cs Functions 
-
-{{ CONTENT }}
-    }
-}
-";
-
-        public static string exampleTemplate = @"
-using Raylib;
-using static Raylib.Raylib;
-
-public partial class Examples
-{
-{{ CONTENT }}
-}";
-
         public static string RaylibDirectory = "C:\\raylib\\raylib\\";
-        public static string InstallDirectory = "C:\\raylib\\raylib\\src\\";
+        public static string RaylibDirectory2 = "C:\\Users\\Chris\\Documents\\projects\\raylib\\";
 
         // string extensions
         private static string CapitalizeFirstCharacter(string format)
@@ -62,11 +31,12 @@ public partial class Examples
         // testing regex
         public static string ReplaceEx(this string input, string pattern, string replacement)
         {
-            input = input.Replace("\r", "\r\n");
-            foreach (Match match in Regex.Matches(input, pattern))
+            var matches = Regex.Matches(input, pattern);
+            foreach (Match match in matches)
             {
-                Console.WriteLine(match.Value);
+                //Console.WriteLine(match.Value);
             }
+            // Console.WriteLine(matches.Count);
             //return input;
  
             //var match = Regex.IsMatch(input, pattern);
@@ -76,8 +46,12 @@ public partial class Examples
         // Create binding code
         public static void Process(string filePath, string api)
         {
-            var lines = File.ReadAllLines(InstallDirectory + filePath);
+            var lines = File.ReadAllLines(RaylibDirectory + "src//" + filePath);
             var output = "";
+
+            output += "using Raylib;\n";
+            output += "using static Raylib.Raylib;\n\n";
+            output += "public partial class Examples\n{\n";
 
             // convert functions to c#
             foreach (string line in lines)
@@ -94,8 +68,11 @@ public partial class Examples
             }
             output += "\t\t#endregion\n";
 
+            //output += text;
+            output += "\n}";
+
             // convert syntax to c#
-            output = template.Replace("{{ CONTENT }}", output);
+            //output = template.Replace("{{ CONTENT }}", output);
 
             output = output.Replace("(void)", "()");
             output = output.Replace("const char *", "string ");
@@ -120,38 +97,109 @@ public partial class Examples
 
         // Convert c style to c#
         // Design is close to raylib so only a few changes needed
-        public static void ProcessExample(string file, string dirName)
+        public static void ProcessExample(string file, string folder, string path)
         {
+            // fix #defines
+            // fix structs
+            // fix enums
+            // remove return 0 for main
+            // fix {} initialization(not all cases covered)
+
+            // load and setup
             var fileName = Path.GetFileNameWithoutExtension(file);
             var text = File.ReadAllText(file);
+            var result = "";
+            var output = "";
+            output += "using Raylib;\n";
+            output += "using static Raylib.Raylib;\n\n";
+            output += "public partial class " + folder + "\n{\n";
+            // text = text.Replace("\r", "\r\n");
 
-            // indent since example will be in Examples namespace
-            text = text.Indent(4);
-
-            // add template and fill in content
-            var output = exampleTemplate;
-            output = output.Replace("{{ CONTENT }}", text);
-            //output = output.Replace("int main()", "public static int " + fileName + "()");
-            //output = output.Replace("#include \"raylib.h\"", "");
-
-            // test regex on one file for now
-            if (fileName == "core_2d_camera")
+            // rough file conversion
+            string[] lines = text.Split('\n');
+            for (int i = 0; i < lines.Length; i++)
             {
-                // remove #include lines
+                string line = lines[i];
 
-                // #define x y -> private const int x = y;
-                //output = output.ReplaceEx(@"#define (\w+).*?(\d+)", "private const int $1 = $2;");
+                // ignore certain preprocess symbols
+                if (line.Contains("#include"))
+                    continue;
+                else if (line.Contains("#if"))
+                    continue;
+                else if (line.Contains("#else"))
+                    continue;
+                else if (line.Contains("#endif"))
+                    continue;
 
-                // (Type){...} -> new Type(...);
-                // output = output.ReplaceEx(@"(\((\w+)\).*?{.*})", @"");
-                // output = output.ReplaceEx(@"\((\w +)\).*{ (.*)}", @"new $1($2)");
+                else if (line.Contains("#define"))
+                {
+                    var str = line.Replace("#define", "");
+                    var arr = str.Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (arr.Length < 2)
+                        continue;
+
+                    bool isNumeric = int.TryParse(arr[1], out var n);
+                    if (isNumeric)
+                        result += "public const int " + arr[0] + " = " + arr[1] + ";\r\n";
+                    else
+                        result += "public const string " + arr[0] + " = " + arr[1] + ";\r\n";
+                }
+
+                // change main signature
+                else if (line.StartsWith("int main"))
+                    result += "public static void Main()\r\n";
+
+                // remove typedef and mark members as public
+                else if (line.StartsWith("typedef struct"))
+                {
+                    var members = "";
+                    while (!line.StartsWith("}"))
+                    {
+                        i++;
+                        line = lines[i];
+                        members += "public " + line + "\n";
+                    }
+
+                    line = line.Replace(" ", "");
+                    line = line.Replace("}", "");
+                    line = line.Replace(";", "");
+                    result += "struct " + line + "{\n\n";
+                    result += members;
+                }
+
+                // copy line by default
+                else
+                    result += line + "\n";
             }
 
-            //output = output.ReplaceEx(@"#define (\w+) (\w+)", @"struct 1 public 2 public 3 public 4");
+            // regex
 
-            var path = "Examples\\" + dirName + "\\" + fileName + ".cs";
-            File.WriteAllText(path, output);
+            // (Type){...} -> new Type(...)
+            // e.g (Vector2){ 100, 100 } -> new Vector2( 100, 100 );
+            result = result.ReplaceEx(@"\((\w+)\){(.*)}", @"new $1($2);");
+            result = result.ReplaceEx(@"\((\w+)\) \w+ = {(.*)}", @"new $1($2);");
 
+            // Type name[size] -> Type[] name = new Type[size];
+            // e.g Rectangle buildings[MAX_BUILDINGS]; -> Rectangle[] buildings = new Rectangle[MAX_BUILDINGS];
+            result = result.ReplaceEx(@"(\w+) (\w+)\[(.*)\];", "$1[] $2 = new $1[$3];");
+
+            result = result.Replace("Music ", "IntPtr ");
+            result = result.Replace("(void)", "()");
+
+            // defines to enums(might use defines as variables aswell not sure)
+            result = result.ReplaceEx(@"KEY_(\w+)", @"(int)Key.$1");
+            result = result.ReplaceEx(@"MOUSE_(\w+)", @"(int)Mouse.$1");
+            result = result.ReplaceEx(@"FLAG_(\w+)", @"(int)Flag.$1");
+            // result = result.ReplaceEx(@"FLAG_(\w+)", @"(int)Flag.$1");
+
+            // add result
+            result = result.Indent(4);
+            output += result;
+            output += "\n}\n";
+
+            // saves relative to executable location
+            var loc = path + "//" + fileName + ".cs";
+            File.WriteAllText(loc, output);
             Console.WriteLine("Generated " + fileName + ".cs");
         }
     }
