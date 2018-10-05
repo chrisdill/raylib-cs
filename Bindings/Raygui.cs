@@ -209,151 +209,151 @@ namespace Raylib
 
         // Global gui modification functions
         // Enable gui controls (global state)
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiEnable();                                         
         
         // Disable gui controls (global state)
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiDisable();                                        
         
         // Set gui controls alpha (global state), alpha goes from 0.0f to 1.0f
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiFade(float alpha);                                    
           
         // Style set/get functions
         // Set one style property
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiSetStyleProperty(int guiProperty, int value);         
         
         // Get one style property
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiGetStyleProperty(int guiProperty);                     
              
         // Container/separator controls, useful for controls organization
         // Window Box control, shows a window that can be closed
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiWindowBox(Rectangle bounds, string text);                                        
         
         // Group Box control with title name
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiGroupBox(Rectangle bounds, string text);                                         
         
         // Line separator control
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiLine(Rectangle bounds, int thick);                                                    
         
         // Panel control, useful to group controls
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiPanel(Rectangle bounds);                                                              
         
         // Scroll Panel control
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GuiScrollPanel(Rectangle bounds, Rectangle content, Vector2 viewScroll);                   
         
         // Basic controls set
         // Label control, shows text
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiLabel(Rectangle bounds, string text);                                            
         
         // Button control, returns true when clicked
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiButton(Rectangle bounds, string text);                                           
         
         // Label button control, show true when clicked
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiLabelButton(Rectangle bounds, string text);                                      
         
         // Image button control, returns true when clicked
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiImageButton(Rectangle bounds, Texture2D texture);                                     
         
         // Image button extended control, returns true when clicked
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiImageButtonEx(Rectangle bounds, Texture2D texture, Rectangle texSource, string text); 
         
         // Toggle Button control, returns true when active
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiToggleButton(Rectangle bounds, string text, bool toggle);                        
         
         // Toggle Group control, returns toggled button index
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiToggleGroup(Rectangle bounds, string text, int count, int active);               
         
         // Check Box control, returns true when active
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiCheckBox(Rectangle bounds, bool isChecked);                                             
         
         // Check Box control with text, returns true when active
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiCheckBoxEx(Rectangle bounds, bool isChecked, string text);                         
         
         // Combo Box control, returns selected item index
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiComboBox(Rectangle bounds, string text, int count, int active);                  
         
         // Dropdown Box control, returns selected item
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiDropdownBox(Rectangle bounds, string[] text, int count, int active);               
         
         // Spinner control, returns selected value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiSpinner(Rectangle bounds, int value, int maxValue, int btnWidth);                      
         
         // Value Box control, updates input text with numbers
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiValueBox(Rectangle bounds, int value, int maxValue);                                   
         
         // Text Box control, updates input text
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiTextBox(Rectangle bounds, char text, int textSize, bool freeEdit);                   
         
         // Text Box control with multiple lines
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiTextBoxMulti(Rectangle bounds, string text, int textSize, bool editMode);          
         
         // Slider control, returns selected value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GuiSlider(Rectangle bounds, float value, float minValue, float maxValue);               
         
         // Slider control, returns selected value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GuiSliderEx(Rectangle bounds, float value, float minValue, float maxValue, string text, bool showValue); 
         
         // Slider Bar control, returns selected value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GuiSliderBar(Rectangle bounds, float value, float minValue, float maxValue);            
         
         // Slider Bar control, returns selected value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GuiSliderBarEx(Rectangle bounds, float value, float minValue, float maxValue, string text, bool showValue); 
         
         // Progress Bar control, shows current progress value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GuiProgressBar(Rectangle bounds, float value, float minValue, float maxValue);          
         
         // Progress Bar control, shows current progress value
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GuiProgressBarEx(Rectangle bounds, float value, float minValue, float maxValue, bool showValue); 
         
         // Status Bar control, shows info text
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiStatusBar(Rectangle bounds, string text, int offsetX);                           
         
         // Dummy control for placeholders
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiDummyRec(Rectangle bounds, string text);                                              
         
         // Advance controls set
         // List View control, returns selected list element index
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiListView(Rectangle bounds, string text, int count, int active);                  
         
         // Color Picker control
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Color GuiColorPicker(Rectangle bounds, Color color);                                          
         
         // Message Box control, displays a message
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiMessageBox(Rectangle bounds, string windowTitle, string message);           
 
         #endregion
