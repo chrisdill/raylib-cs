@@ -123,15 +123,15 @@ namespace Raylib
         #region Raylib-cs Functions 
 
         // Initializes physics values, pointers and creates physics loop thread
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitPhysics();                                                                          
 
         // Returns true if physics thread is currently enabled
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool IsPhysicsEnabled();                                                                      
 
         // Sets physics global gravity force
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetPhysicsGravity(float x, float y);                                                         
 
         // Creates a new circle physics body with generic parameters
@@ -166,19 +166,19 @@ namespace Raylib
         }
 
         // Adds a force to a physics body
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void PhysicsAddForce(PhysicsBodyData body, Vector2 force);                                            
 
         // Adds an angular force to a physics body
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void PhysicsAddTorque(PhysicsBodyData body, float amount);                                            
         
         // Shatters a polygon shape physics body to little physics bodies with explosion force
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void PhysicsShatter(PhysicsBodyData body, Vector2 position, float force);                             
 
         // Returns the current amount of created physics bodies
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetPhysicsBodiesCount();                                                                  
 
         // Returns a physics body of the bodies pool at a specific index
@@ -192,31 +192,31 @@ namespace Raylib
         }
 
         // Returns the physics body shape type (PHYSICS_CIRCLE or PHYSICS_POLYGON)
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetPhysicsShapeType(int index);                                                             
 
         // Returns the amount of vertices of a physics body shape
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetPhysicsShapeVerticesCount(int index);                                                      
 
         // Returns transformed position of a body shape (body position + vertex transformed position)
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetPhysicsShapeVertex(PhysicsBodyData body, int vertex);                                      
 
         // Sets physics body shape transform based on radians parameter
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetPhysicsBodyRotation(PhysicsBodyData body, float radians);                                     
 
         // Unitializes and destroy a physics body
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void DestroyPhysicsBody(PhysicsBodyData body);                                                        
 
         // Destroys created physics bodies and manifolds and resets global values
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void ResetPhysics();                                                                        
 
         // Unitializes physics pointers and closes physics loop thread
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void ClosePhysics();                                                                      
 
         #endregion
