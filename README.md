@@ -45,6 +45,23 @@ static class Program
 }
 ```
 
+## Custom build
+Raylib-cs uses a custom build for raylib to give access to some features that are not accessible by default.
+
+1. Add [raygui](https://github.com/raysan5/raygui)
+2. Add a C file with the following
+```
+#include "raylib.h"
+#include "easings.h"
+
+#define PHYSAC_NO_THREADS
+#define PHYSAC_IMPLEMENTATION 
+#include "physac.h"
+
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
+```
+
 ## Contributing
 If you have any ideas, feel free to open an issue and tell me what you think.
 If you'd like to contribute, please fork the repository and make changes as
