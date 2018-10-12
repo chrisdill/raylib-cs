@@ -1,6 +1,6 @@
 /**********************************************************************************************
  * 
- * Raylib 2.0 - A simple and easy-to-use library to learn videogames programming (www.raylib.com)
+ * Raylib - A simple and easy-to-use library to learn videogames programming (www.raylib.com)
  * Original - https://github.com/raysan5/raylib/blob/master/src/raylib.h
  * 
 **********************************************************************************************/
@@ -528,12 +528,16 @@ namespace Raylib
 
     // Shader type (generic)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Shader
+    public unsafe struct Shader
     {
         public uint id;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
-        public int[] locs;
+        // public IntPtr locs;
+        // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.I1, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
+        // [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
+        //[MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_I4)]
+        // public int[] locs;
+        public fixed int locs[Raylib.MAX_SHADER_LOCATIONS];
     }
 
     // Material texture map
@@ -745,39 +749,43 @@ namespace Raylib
 		public static extern int GetScreenHeight();
 
          // Get number of connected monitors
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorCount();
 
         // Get primary monitor width
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorWidth(int monitor);
 
         // Get primary monitor height
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorHeight(int monitor);
 
         // Get primary monitor physical width in millimetres
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalWidth(int monitor);
 
         // Get primary monitor physical height in millimetres
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalHeight(int monitor);
 
         // Get the human-readable, UTF-8 encoded name of the primary monitor
-        [DllImport(nativeLibName)]
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern string GetMonitorName(int monitor);
 
-	    // Get current clipboard text
-		//[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-		//public static extern string GetClipboard();
+        // Get handle from window
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GetWindowHandle();
 
-	    // Set current clipboard text
-		//[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-		//public static extern void SetClipboard(string text);
+        // Get current clipboard text
+        //[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        //public static extern string GetClipboard();
 
-	    // Shows cursor
-		[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        // Set current clipboard text
+        //[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        //public static extern void SetClipboard(string text);
+
+        // Shows cursor
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
 		public static extern void ShowCursor();
 
 	    // Hides cursor

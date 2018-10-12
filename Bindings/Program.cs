@@ -1,4 +1,5 @@
-﻿using Raylib;
+﻿using System;
+using Raylib;
 using static Raylib.Raylib;
 
 // example to quickly test bindings
@@ -7,14 +8,19 @@ class Program
 { 
     public static void Main()
     {
+        //RayForms.Run();
+        //return;
+
         // Initialization
         //--------------------------------------------------------------------------------------
-        int screenWidth = 800;        int screenHeight = 450;
+        int screenWidth = 800;
+        int screenHeight = 450;
 
+        // SetConfigFlags((int)Flag.WINDOW_UNDECORATED);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
         SetTargetFPS(60);
-        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------      
 
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -29,9 +35,9 @@ class Program
             BeginDrawing();
 
             ClearBackground(RAYWHITE);
-
+            
             DrawText("Congrats! You created your first window!", 190, 200, 20, MAROON);
-
+            
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
