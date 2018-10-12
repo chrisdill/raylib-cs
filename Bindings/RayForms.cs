@@ -67,7 +67,7 @@ namespace Raylib
                 ShowWindow(winHandle, 1);
                 windowAttached = true;
             }));
-
+   
             // Main game loop
             while (!WindowShouldClose())    // Detect window close button or ESC key
             {
@@ -75,7 +75,7 @@ namespace Raylib
                 //----------------------------------------------------------------------------------
                 // TODO: Update your variables here
                 //----------------------------------------------------------------------------------
-
+ 
                 // Draw
                 //----------------------------------------------------------------------------------
                 BeginDrawing();
