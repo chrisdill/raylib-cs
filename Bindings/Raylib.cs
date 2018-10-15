@@ -507,23 +507,28 @@ namespace Raylib
     // Vertex data definning a mesh
     // NOTE: Data stored in CPU memory (and GPU)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Mesh
+    public unsafe struct Mesh
     {
         public int vertexCount;
         public int triangleCount;
 
-        public float[] vertices;
-        public float[] texcoords;
-        public float[] texcoords2;
-        public float[] normals;
-        public float[] tangents;
-        public byte[] colors;
-        public ushort[] indices;
+        public IntPtr vertices;
+        public IntPtr texcoords;
+        public IntPtr texcoords2;
+        public IntPtr normals;
+        public IntPtr tangents;
+        public IntPtr colors;
+        public IntPtr indices;
+
+        public IntPtr baseVertices;
+        public IntPtr baseNormals;
+        public IntPtr weightBias;
+        public IntPtr weightId;
+
 
         public uint vaoId;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)] // Raylib.PHYSAC_MAX_VERTICES)]
-        public uint[] vboId;
+        public fixed uint vboId[7];
     }
 
     // Shader type (generic)
@@ -548,17 +553,43 @@ namespace Raylib
         public Color color;
         public float value;
     }
+    public unsafe struct _MaterialMap_e_FixedBuffer
+    {
 
+        public MaterialMap maps0;
+        public MaterialMap maps1;
+        public MaterialMap maps2;
+        public MaterialMap maps3;
+        public MaterialMap maps4;
+        public MaterialMap maps5;
+        public MaterialMap maps6;
+        public MaterialMap maps7;
+        public MaterialMap maps8;
+        public MaterialMap maps9;
+        public MaterialMap maps10;
+        public MaterialMap maps11;
+
+        public ref MaterialMap this[int index]
+        {
+            get
+            {
+                fixed (MaterialMap* e = &maps0)
+                    return ref e[index];
+            }
+        }
+    }
     // Material type (generic)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Material
     {
+
+       
+
         public Shader shader;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_MATERIAL_MAPS)]
-        public MaterialMap[] maps;
+        public _MaterialMap_e_FixedBuffer maps;
 
-        public float[] param;
+        public IntPtr param;
     }
 
     // Model type
