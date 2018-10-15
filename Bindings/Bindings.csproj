@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2B3BBC8-3D48-46DD-B3CF-263F554E4474}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Raylib</RootNamespace>
     <AssemblyName>Bindings</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
