@@ -506,43 +506,28 @@ namespace Raylib
 
     // Vertex data definning a mesh
     // NOTE: Data stored in CPU memory (and GPU)
-    [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Ansi,Size = 128)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public unsafe struct Mesh
     {
-        [FieldOffset(0)]
         public int vertexCount;
-        [FieldOffset(4)]
         public int triangleCount;
 
-        [FieldOffset(8)]
         public IntPtr vertices;
-        [FieldOffset(16)]
         public IntPtr texcoords;
-        [FieldOffset(24)]
         public IntPtr texcoords2;
-        [FieldOffset(32)]
         public IntPtr normals;
-        [FieldOffset(40)]
         public IntPtr tangents;
-        [FieldOffset(48)]
         public IntPtr colors;
-        [FieldOffset(56)]
         public IntPtr indices;
 
-        [FieldOffset(64)]
         public IntPtr baseVertices;
-        [FieldOffset(72)]
         public IntPtr baseNormals;
-        [FieldOffset(80)]
         public IntPtr weightBias;
-        [FieldOffset(88)]
         public IntPtr weightId;
 
 
-        [FieldOffset(96)]
         public uint vaoId;
 
-        [FieldOffset(100)]
         public fixed uint vboId[7];
     }
 
@@ -594,7 +579,7 @@ namespace Raylib
         }
     }
     // Material type (generic)
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi,Size = 480)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Material
     {
 
