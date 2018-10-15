@@ -568,7 +568,7 @@ namespace Raylib
         public Color color;
         public float value;
     }
-    public unsafe struct FixedMaterials
+    public unsafe struct _MaterialMap_e_FixedBuffer
     {
 
         public MaterialMap maps0;
@@ -602,7 +602,7 @@ namespace Raylib
 
         public Shader shader;
 
-        public FixedMaterials maps;
+        public _MaterialMap_e_FixedBuffer maps;
 
         public IntPtr param;
     }
