@@ -14,11 +14,8 @@ Bindings:
 Currently the only difference to raylib is changing interger constants to enums.
 For example KEY_ENTER becomes Key.ENTER.
 
-## Installation
-Tested on windows 10 64 bit using the mono compiler.
-
-1. Download the repository 
-2. Run Examples.exe in Examples/bin/Debug/
+## Usage
+Run Build.bat in Examples folder. Currently requires mingw32-make and mono.
 
 ```csharp
 using Raylib;
