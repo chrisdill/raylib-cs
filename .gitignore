@@ -16,11 +16,13 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.exe
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
+[Bb]in/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -29,6 +31,7 @@ bld/
 [Dd]ebug
 [Oo]bj/
 [Ll]og/
+[Ee]xamples/
 
 # Visual Studio 2015 cache/options directory
 .vs/

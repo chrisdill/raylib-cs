@@ -1,41 +1,46 @@
 ﻿using System;
 using System.IO;
 
-namespace Raylibcs
+namespace Generator
 {
     /// <summary>
-    /// Rough generator for Raylib-cs to help automate binding + porting raylib code
-    /// Output will still need to be modified
+    /// Rough generator for creating bindings and ports for raylib
+    /// Not a full parser so generated code is not perfect
     /// </summary>
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Raylib-cs generator");
-
             GenerateBindings();
-            GenerateExamples();
-            GenerateTemplates();
-            GenerateGames();
-
+            // GeneratePort("Examples");
+            // GeneratePort("Templates");
+            // GeneratePort("Games");
             Console.WriteLine("Finished generating. Enjoy! :)");
             Console.WriteLine("Press enter to exit");
             Console.Read();
         }
 
+        /// <summary>
+        /// Requires raylib headers
+        /// </summary>
         static void GenerateBindings()
         {
             Console.WriteLine("Generating bindings");
             Generator.Process("raylib.h", "RLAPI");
+            Generator.Process("raymath.h", "RMDEF");
+            Generator.Process("physac.h", "PDEF");
             Generator.Process("rlgl.h", "RLGL");
         }
 
-        static void GenerateExamples()
+        /// <summary>
+        /// Porting C to C#
+        /// </summary>
+        static void GeneratePort(string folder)
         {
             Console.WriteLine("Generating examples");
 
             // output folder
-            var folder = "Examples";
             Directory.CreateDirectory(folder);
             var path = Generator.RaylibDirectory + folder.ToLower();
             var dirs = Directory.GetDirectories(path);
@@ -49,76 +54,6 @@ namespace Raylibcs
                 if (!Directory.Exists(folder + name))
                     Directory.CreateDirectory(folder + "//" + name);
                 Generator.ProcessExample(file, folder, folder + "//" + name);
-            }
-        }
-
-        static void GenerateTemplates()
-        {
-            Console.WriteLine("Generating templates");
-
-            // output folder
-            var folder = "Templates";
-            Directory.CreateDirectory(folder);
-            var path = Generator.RaylibDirectory2 + folder.ToLower();
-            var dirs = Directory.GetDirectories(path);
-
-            // copy folder structure
-            foreach (string dirPath in Directory.GetDirectories(path, "*",
-    SearchOption.AllDirectories))
-                Directory.CreateDirectory(dirPath.Replace(path, folder));
-
-            // process all c files in directory and output result
-            var files = Directory.GetFiles(path, "*.c", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
-                var dirName = Path.GetDirectoryName(file);
-                var name = new DirectoryInfo(dirName).Name;
-                if (name == folder.ToLower())
-                {
-                    Generator.ProcessExample(file, folder, folder);
-                }
-                else
-                {
-                    var t = file;
-                    t = folder + t.Replace(path, "");
-                    t = new FileInfo(t).Directory.FullName;
-                    Generator.ProcessExample(file, folder, t);
-                }
-            }
-        }
-
-        static void GenerateGames()
-        {
-            Console.WriteLine("Generating games");
-          
-            // output folder
-            var folder = "Games";
-            Directory.CreateDirectory(folder);
-            var path = Generator.RaylibDirectory2 + folder.ToLower();
-            var dirs = Directory.GetDirectories(path);
-
-            // copy folder structure
-            foreach (string dirPath in Directory.GetDirectories(path, "*",
-    SearchOption.AllDirectories))
-                Directory.CreateDirectory(dirPath.Replace(path, folder));
-
-            // process all c files in directory and output result
-            var files = Directory.GetFiles(path, "*.c", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
-                var dirName = Path.GetDirectoryName(file);
-                var name = new DirectoryInfo(dirName).Name;
-                if (name == folder.ToLower())
-                {
-                    Generator.ProcessExample(file, folder, folder);
-                }
-                else
-                {
-                    var t = file;
-                    t = folder + t.Replace(path, "");
-                    t = new FileInfo(t).Directory.FullName;
-                    Generator.ProcessExample(file, folder, t);
-                }
             }
         }
     }

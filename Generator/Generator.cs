@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Raylibcs
+namespace Generator
 {
     static class Generator
     {
@@ -36,10 +36,6 @@ namespace Raylibcs
             {
                 //Console.WriteLine(match.Value);
             }
-            // Console.WriteLine(matches.Count);
-            //return input;
- 
-            //var match = Regex.IsMatch(input, pattern);
             return Regex.Replace(input, pattern, replacement);
         }
 
@@ -71,9 +67,6 @@ namespace Raylibcs
             //output += text;
             output += "\n}";
 
-            // convert syntax to c#
-            //output = template.Replace("{{ CONTENT }}", output);
-
             output = output.Replace("(void)", "()");
             output = output.Replace("const char *", "string ");
             output = output.Replace("const char * ", "string");
@@ -99,12 +92,6 @@ namespace Raylibcs
         // Design is close to raylib so only a few changes needed
         public static void ProcessExample(string file, string folder, string path)
         {
-            // fix #defines
-            // fix structs
-            // fix enums
-            // remove return 0 for main
-            // fix {} initialization(not all cases covered)
-
             // load and setup
             var fileName = Path.GetFileNameWithoutExtension(file);
             var text = File.ReadAllText(file);

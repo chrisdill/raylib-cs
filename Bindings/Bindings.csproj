@@ -3,10 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Bindings</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Testing C# bindings for raylib, a simple and easy-to-use library to learn videogames programming.</Description>
+    <PackageLicenseUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/Logo/raylib-cs.ico</PackageIconUrl>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageProjectUrl>https://github.com/ChrisDill/Raylib-cs</PackageProjectUrl>
+    <PackageReleaseNotes>Made for raylib 2.0</PackageReleaseNotes>
+    <PackageTags>raylib csharp binding opengl gamedev</PackageTags>
+    <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+    <OutputPath>bin\Debug</OutputPath>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+  </ItemGroup>
 
 </Project>
