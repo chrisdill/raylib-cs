@@ -24,7 +24,12 @@ namespace Raylib
             this.y = y;
         }
 
-        // extensions
+        public Vector2(float value)
+        {
+            this.x = value;
+            this.y = value;
+        }
+
         public override bool Equals(object obj)
         {
             return (obj is Vector2) && Equals((Vector2)obj);
@@ -39,36 +44,25 @@ namespace Raylib
         {
             return "Vector2(" + x + " " + y + ")";
         }
-        
-        public static bool operator ==(Vector2 v1, Vector2 v2)
+
+        public static Vector2 Zero
         {
-            return (v1.x == v2.x && v1.y == v2.y);
+            get { return Raylib.Vector2Zero(); }
         }
 
-        public static bool operator !=(Vector2 v1, Vector2 v2)
+        public static Vector2 One
         {
-            return !(v1 == v2);
+            get { return Raylib.Vector2One(); }
         }
 
-        public static bool operator >(Vector2 v1, Vector2 v2)
+        public static Vector2 UnitX
         {
-            return v1.x > v2.x && v1.y > v2.y;
+            get { return new Vector2(1, 0); }
         }
 
-        public static bool operator <(Vector2 v1, Vector2 v2)
+        public static Vector2 UnitY
         {
-            return v1.x < v2.x && v1.y < v2.y;
-        }
-
-        // utility for c functions Vector2Zero() -> Vector2.Zero() etc
-        public static Vector2 Zero()
-        {
-            return Raylib.Vector2Zero();
-        }
-
-        public static Vector2 One()
-        {
-            return Raylib.Vector2One();
+            get { return new Vector2(0, 1); }
         }
 
         public static float Length(Vector2 v)
@@ -91,12 +85,12 @@ namespace Raylib
             return Raylib.Vector2Angle(v1, v2);
         }
 
-        public static Vector2 Scale(Vector2 v, float scale)        
+        public static Vector2 Scale(Vector2 v, float scale)
         {
             return Raylib.Vector2Scale(v, scale);
         }
 
-        public static Vector2 Negate(Vector2 v)        
+        public static Vector2 Negate(Vector2 v)
         {
             return Raylib.Vector2Negate(v);
         }
@@ -105,30 +99,70 @@ namespace Raylib
         {
             return Raylib.Vector2Divide(v, div);
         }
- 
+
         public static Vector2 Normalize(Vector2 v)
-        {         
+        {
             return Raylib.Vector2Normalize(v);
         }
 
-        // operators
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Add")]
-        public static extern Vector2 operator +(Vector2 v1, Vector2 v3);
+        #region Public Static Operators
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Subtract")]
-        public static extern Vector2 operator -(Vector2 v1, Vector2 v3);
+        public static bool operator ==(Vector2 v1, Vector2 v2)
+        {
+            return (v1.x == v2.x && v1.y == v2.y);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2MultiplyV")]
-        public static extern Vector2 operator *(Vector2 v1, Vector2 v3);
+        public static bool operator !=(Vector2 v1, Vector2 v2)
+        {
+            return !(v1 == v2);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Scale")]
-        public static extern Vector2 operator *(Vector2 v1, float scale);
+        public static bool operator >(Vector2 v1, Vector2 v2)
+        {
+            return v1.x > v2.x && v1.y > v2.y;
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Divide")]
-        public static extern Vector2 operator /(Vector2 v1, Vector2 v3);
+        public static bool operator <(Vector2 v1, Vector2 v2)
+        {
+            return v1.x < v2.x && v1.y < v2.y;
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector2Negate")]
-        public static extern Vector2 operator -(Vector2 v1);
+        public static Vector2 operator +(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2Add(v1, v2);
+        }
+
+        public static Vector2 operator -(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2Subtract(v1, v2);
+        }
+
+        public static Vector2 operator *(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2Multiplyv(v1, v2);
+        }
+
+        public static Vector2 operator *(Vector2 v, float scale)
+        {
+            return Raylib.Vector2Scale(v, scale);
+        }
+
+        public static Vector2 operator /(Vector2 v1, Vector2 v2)
+        {
+            return Raylib.Vector2DivideV(v1, v2);
+        }
+
+        public static Vector2 operator /(Vector2 v1, float div)
+        {
+            return Raylib.Vector2Divide(v1, div);
+        }
+
+        public static Vector2 operator -(Vector2 v1)
+        {
+            return Raylib.Vector2Negate(v1);
+        }
+
+        #endregion
     }
 
     // Vector3 type
@@ -145,6 +179,14 @@ namespace Raylib
             this.z = z;
         }
 
+        public Vector3(float value)
+        {
+            this.x = value;
+            this.y = value;
+            this.z = value;
+        }
+
+        // extensions
         public override bool Equals(object obj)
         {
             return (obj is Vector3) && Equals((Vector3)obj);
@@ -160,6 +202,33 @@ namespace Raylib
             return "Vector3(" + x + " " + y + " " + z + ")";
         }
 
+        public static Vector3 Zero
+        {
+            get { return Raylib.Vector3Zero(); }
+        }
+
+        public static Vector3 One
+        {
+            get { return Raylib.Vector3One(); }
+        }
+
+        public static Vector3 UnitX
+        {
+            get { return new Vector3(1, 0, 0); }
+        }
+
+        public static Vector3 UnitY
+        {
+            get { return new Vector3(0, 1, 0); }
+        }
+
+        public static Vector3 UnitZ
+        {
+            get { return new Vector3(0, 0, 1); }
+        }
+
+        #region Public Static Operators
+
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
             return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
@@ -170,65 +239,52 @@ namespace Raylib
             return !(v1 == v2);
         }
 
-        /*public bool operator >(Vector2 v1, Vector2 v2)
+        public static bool operator >(Vector3 v1, Vector3 v2)
         {
-            return v1.x > v2.x && v1.y > v2.y;
+            return v1.x > v2.x && v1.y > v2.y && v1.z > v2.z;
         }
 
-        public static bool operator <(Vector2 v1, Vector2 v2)
+        public static bool operator <(Vector3 v1, Vector3 v2)
         {
-            return v1.x < v2.x && v1.y < v2.y;
-        }*/
+            return v1.x < v2.x && v1.y < v2.y && v1.z < v2.z;
+        }
 
-        // utility for c functions Vector3Zero -> Zero etc
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Zero")]
-        public static extern Vector3 Zero();
+        public static Vector3 operator +(Vector3 v1, Vector3 v2)
+        {
+            return Raylib.Vector3Add(v1, v2);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3One")]
-        public static extern Vector3 One();
+        public static Vector3 operator -(Vector3 v1, Vector3 v2)
+        {
+            return Raylib.Vector3Subtract(v1, v2);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Add")]
-        public static extern Vector3 operator +(Vector3 v1, Vector3 v3);
+        public static Vector3 operator *(Vector3 v1, Vector3 v2)
+        {
+            return Raylib.Vector3MultiplyV(v1, v2);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Subtract")]
-        public static extern Vector3 operator -(Vector3 v1, Vector3 v3);
+        public static Vector3 operator *(Vector3 v, float scale)
+        {
+            return Raylib.Vector3Scale(v, scale);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Length")]
-        public static extern float Length(Vector3 v);
+        public static Vector3 operator /(Vector3 v1, Vector3 v2)
+        {
+            return Raylib.Vector3DivideV(v1, v2);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3DotProduct")]
-        public static extern float DotProduct(Vector3 v1, Vector3 v3);
+        public static Vector3 operator /(Vector3 v1, float div)
+        {
+            return Raylib.Vector3Divide(v1, div);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Distance")]
-        public static extern float Distance(Vector3 v1, Vector3 v3);
+        public static Vector3 operator -(Vector3 v1)
+        {
+            return Raylib.Vector3Negate(v1);
+        }
 
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Angle")]
-        public static extern float Angle(Vector3 v1, Vector3 v3);
-
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Scale")]
-        public static extern Vector3 Scale(Vector3 v, float scale);
-
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Negate")]
-        public static extern Vector3 Negate(Vector3 v);
-
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Divide")]
-        public static extern Vector3 Divide(Vector3 v, float div);
-
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Normalize")]
-        public static extern Vector3 Normalize(Vector3 v);
-
-        // operators
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3MultiplyV")]
-        public static extern Vector3 operator *(Vector3 v1, Vector3 v3);
-
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Multiply")]
-        public static extern Vector3 operator *(Vector3 v1, float scale);
-        
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Divide")]
-        public static extern Vector3 operator /(Vector3 v1, Vector3 v3);
-
-        [DllImport(Raylib.nativeLibName, EntryPoint = "Vector3Negate")]
-        public static extern Vector3 operator -(Vector3 v1);
+        #endregion
     }
 
     // Vector4 type
@@ -245,6 +301,14 @@ namespace Raylib
             this.y = y;
             this.z = z;
             this.w = w;
+        }
+
+        public Vector4(float value)
+        {
+            this.x = value;
+            this.y = value;
+            this.z = value;
+            this.w = value;
         }
 
         public override bool Equals(object obj)
@@ -336,8 +400,12 @@ namespace Raylib
         public static extern float Vector2Angle(Vector2 v1, Vector2 v2);
 
         // Scale vector (multiply by value)
-        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Scale(Vector2 v, float scale);
+
+        // Multiply vector by a vector
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Multiplyv(Vector2 v1, Vector2 v2);
 
         // Negate vector
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -346,6 +414,10 @@ namespace Raylib
         // Divide vector by a float value
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Divide(Vector2 v, float div);
+
+        // Divide vector by a vector
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2DivideV(Vector2 v1, Vector2 v2);
 
         // Normalize provided vector
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -402,6 +474,14 @@ namespace Raylib
         // Negate provided vector (invert direction)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Negate(Vector3 v);
+
+        // Divide vector by a float value
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3Divide(Vector3 v, float div);
+
+        // Divide vector by a vector
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3DivideV(Vector3 v1, Vector3 v2);
 
         // Normalize provided vector
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]

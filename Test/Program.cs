@@ -8,9 +8,6 @@ class Program
 { 
     public static void Main()
     {
-        //RayForms.Run();
-        //return;
-
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
@@ -18,6 +15,9 @@ class Program
 
         // SetConfigFlags((int)Flag.WINDOW_UNDECORATED);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+
+        var model = LoadModel("bridge.obj");
+        model.mesh.Vertices[0] = 5f;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------      
@@ -45,6 +45,6 @@ class Program
         // De-Initialization
         //--------------------------------------------------------------------------------------   
         CloseWindow();        // Close window and OpenGL context
-                              //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
     }
 }

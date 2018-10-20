@@ -4,7 +4,6 @@
  * Original - https://github.com/raysan5/raylib/blob/master/src/raylib.h
  * 
 **********************************************************************************************/
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -431,9 +430,6 @@ namespace Raylib
         public Texture2D depth;
     }
 
-    // RenderTexture type, same as RenderTexture2D
-    // typedef RenderTexture2D RenderTexture;
-
     // Font character info
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct CharInfo
@@ -512,6 +508,7 @@ namespace Raylib
         public int vertexCount;
         public int triangleCount;
 
+        public Span<float> Vertices => new Span<float>(vertices.ToPointer(), vertexCount * 3);
         public IntPtr vertices;
         public IntPtr texcoords;
         public IntPtr texcoords2;
@@ -553,9 +550,9 @@ namespace Raylib
         public Color color;
         public float value;
     }
+
     public unsafe struct _MaterialMap_e_FixedBuffer
     {
-
         public MaterialMap maps0;
         public MaterialMap maps1;
         public MaterialMap maps2;
@@ -578,17 +575,13 @@ namespace Raylib
             }
         }
     }
+
     // Material type (generic)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Material
     {
-
-       
-
         public Shader shader;
-
         public _MaterialMap_e_FixedBuffer maps;
-
         public IntPtr param;
     }
 
