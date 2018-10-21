@@ -2,8 +2,6 @@
 using Raylib;
 using static Raylib.Raylib;
 
-// example to quickly test bindings
-// otherwise build as a class library to use in other projects
 class Program
 { 
     public static void Main()
