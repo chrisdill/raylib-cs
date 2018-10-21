@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{063F21F1-12D3-41C6-B598-125C725955B1}</ProjectGuid>
+    <ProjectGuid>{55D7BB37-3DC7-4A33-B21E-4F549EC988B5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Generator</RootNamespace>
-    <AssemblyName>Generator</AssemblyName>
+    <RootNamespace>Test.NetFX</RootNamespace>
+    <AssemblyName>Test.NetFX</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,6 +74,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -85,7 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,7 +94,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bindings\Bindings.csproj">
+      <Project>{9f30944c-415b-4763-91c7-81721117879d}</Project>
+      <Name>Bindings</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="raylib-cs.ico" />
   </ItemGroup>
+  <Import Project="..\Test.Common\Test.Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="lib\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
+  </Target>
 </Project>
