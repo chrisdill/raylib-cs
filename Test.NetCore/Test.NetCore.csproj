@@ -1,19 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
-  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bindings\Bindings.csproj" />
   </ItemGroup>
-  
-  <Target Name="AfterBuild">
+  <Import Project="..\Test.Common\Test.Common.projitems" Label="Shared" />
+  <Target Name="TestTarget" AfterTargets="Build">
     <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
     <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
     <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="lib\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
   </Target>
-  
 </Project>
