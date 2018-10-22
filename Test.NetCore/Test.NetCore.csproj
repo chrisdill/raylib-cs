@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <StartupObject>Test.NetCore.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -11,7 +12,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Bindings\Bindings.csproj" />
   </ItemGroup>
-  <Import Project="..\Test.Common\Test.Common.projitems" Label="Shared" />
+  <Import Project="..\Examples\Examples.projitems" Label="Shared" />
+  <Import Project="..\Examples\Examples.projitems" Label="Shared" />
   <Target Name="TestTarget" AfterTargets="Build">
     <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
     <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
