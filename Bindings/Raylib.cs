@@ -11,6 +11,10 @@ namespace Raylib
 {
     #region Raylib-cs Enums
 
+    //----------------------------------------------------------------------------------
+    // Enumerators Definition
+    //----------------------------------------------------------------------------------
+    // Trace log type
     public enum LogType
     {
         LOG_INFO = 1,
@@ -20,6 +24,7 @@ namespace Raylib
         LOG_OTHER = 16
     }
 
+    // Shader location point type
     public enum ShaderLocationIndex
     {
         LOC_VERTEX_POSITION = 0,
@@ -49,6 +54,7 @@ namespace Raylib
         LOC_MAP_BRDF = 24
     }
 
+    // Material map type
     public enum TexmapIndex
     {
         MAP_ALBEDO = 0,
@@ -64,7 +70,9 @@ namespace Raylib
         MAP_BRDF = 10
     }
 
-    public enum PixelFormat
+    // Pixel formats
+    // NOTE: Support depends on OpenGL version and platform
+    public enum PixelFormat : int
     {
         UNCOMPRESSED_GRAYSCALE = 1,
         UNCOMPRESSED_GRAY_ALPHA = 2,
@@ -89,6 +97,9 @@ namespace Raylib
         COMPRESSED_ASTC_8x8RGBA = 21
     }
 
+    // Texture parameters: filter mode
+    // NOTE 1: Filtering considers mipmaps if available in the texture
+    // NOTE 2: Filter is accordingly set for minification and magnification
     public enum TextureFilterMode
     {
         FILTER_POINT = 0,
@@ -99,6 +110,7 @@ namespace Raylib
         FILTER_ANISOTROPIC_16X = 5
     }
 
+    // Texture parameters: wrap mode
     public enum TextureWrapMode
     {
         WRAP_REPEAT = 0,
@@ -106,6 +118,15 @@ namespace Raylib
         WRAP_MIRROR = 2
     }
 
+    // Font type, defines generation method
+    public enum FontType
+    {
+        FONT_DEFAULT = 0,   // Default font generation, anti-aliased
+        FONT_BITMAP,        // Bitmap font generation, no anti-aliasing
+        FONT_SDF            // SDF font generation, requires external shader
+    }
+
+    // Color blending modes (pre-defined)
     public enum BlendMode
     {
         BLEND_ALPHA = 0,
@@ -113,7 +134,8 @@ namespace Raylib
         BLEND_MULTIPLIED = 2
     }
 
-    [Flags]
+    // Gestures type
+    // NOTE: It could be used as flags to enable only some gestures
     public enum Gestures
     {
         GESTURE_NONE = 0,
@@ -129,6 +151,7 @@ namespace Raylib
         GESTURE_PINCH_OUT = 512
     }
 
+    // Camera system modes
     public enum CameraMode
     {
         CAMERA_CUSTOM = 0,
@@ -138,12 +161,14 @@ namespace Raylib
         CAMERA_THIRD_PERSON = 4
     }
 
+    // Camera projection modes
     public enum CameraType
     {
         CAMERA_PERSPECTIVE = 0,
         CAMERA_ORTHOGRAPHIC = 1
     }
 
+    // Head Mounted Display devices
     public enum VrDeviceType
     {
         HMD_DEFAULT_DEVICE = 0,
@@ -154,177 +179,175 @@ namespace Raylib
         HMD_SONY_PSVR = 5
     }
 
-    [Flags]
-    public enum Flag
+    // Type of n-patch
+    public enum NPatchType
     {
-        SHOW_LOGO = 1,
-        FULLSCREEN_MODE = 2,
-        WINDOW_RESIZABLE = 4,
-        WINDOW_UNDECORATED = 8,
-        WINDOW_TRANSPARENT = 16,
-        MSAA_4X_HINT = 32,
-        VSYNC_HINT = 64
-    }
+        NPT_9PATCH = 0,         // 3x3
+        NPT_3PATCH_VERTICAL,    // 1x3
+        NPT_3PATCH_HORIZONTAL   // 3x1
+    } 
 
+    // enum extension for constants
+    
     // Keyboard Function Keys
-    public enum Key
+    public enum Key : int
     {
-        SPACE = 32,
-        ESCAPE = 256,
-        ENTER = 257,
-        TAB = 258,
-        BACKSPACE = 259,
-        INSERT = 260,
-        DELETE = 261,
-        RIGHT = 262,
-        LEFT = 263,
-        DOWN = 264,
-        UP = 265,
-        PAGE_UP = 266,
-        PAGE_DOWN = 267,
-        HOME = 268,
-        END = 269,
-        CAPS_LOCK = 280,
-        SCROLL_LOCK = 281,
-        NUM_LOCK = 282,
-        PRINT_SCREEN = 283,
-        PAUSE = 284,
-        F1 = 290,
-        F2 = 291,
-        F3 = 292,
-        F4 = 293,
-        F5 = 294,
-        F6 = 295,
-        F7 = 296,
-        F8 = 297,
-        F9 = 298,
-        F10 = 299,
-        F11 = 300,
-        F12 = 301,
-        LEFT_SHIFT = 340,
-        LEFT_CONTROL = 341,
-        LEFT_ALT = 342,
-        RIGHT_SHIFT = 344,
-        RIGHT_CONTROL = 345,
-        RIGHT_ALT = 346,
-        GRAVE = 96,
-        SLASH = 47,
-        BACKSLASH = 92,
+        KEY_SPACE = 32,
+        KEY_ESCAPE = 256,
+        KEY_ENTER = 257,
+        KEY_TAB = 258,
+        KEY_BACKSPACE = 259,
+        KEY_INSERT = 260,
+        KEY_DELETE = 261,
+        KEY_RIGHT = 262,
+        KEY_LEFT = 263,
+        KEY_DOWN = 264,
+        KEY_UP = 265,
+        KEY_PAGE_UP = 266,
+        KEY_PAGE_DOWN = 267,
+        KEY_HOME = 268,
+        KEY_END = 269,
+        KEY_CAPS_LOCK = 280,
+        KEY_SCROLL_LOCK = 281,
+        KEY_NUM_LOCK = 282,
+        KEY_PRINT_SCREEN = 283,
+        KEY_PAUSE = 284,
+        KEY_F1 = 290,
+        KEY_F2 = 291,
+        KEY_F3 = 292,
+        KEY_F4 = 293,
+        KEY_F5 = 294,
+        KEY_F6 = 295,
+        KEY_F7 = 296,
+        KEY_F8 = 297,
+        KEY_F9 = 298,
+        KEY_F10 = 299,
+        KEY_F11 = 300,
+        KEY_F12 = 301,
+        KEY_LEFT_SHIFT = 340,
+        KEY_LEFT_CONTROL = 341,
+        KEY_LEFT_ALT = 342,
+        KEY_RIGHT_SHIFT = 344,
+        KEY_RIGHT_CONTROL = 345,
+        KEY_RIGHT_ALT = 346,
+        KEY_GRAVE = 96,
+        KEY_SLASH = 47,
+        KEY_BACKSLASH = 92,
 
         // Keyboard Alpha Numeric Keys
-        ZERO = 48,
-        ONE = 49,
-        TWO = 50,
-        THREE = 51,
-        FOUR = 52,
-        FIVE = 53,
-        SIX = 54,
-        SEVEN = 55,
-        EIGHT = 56,
-        NINE = 57,
-        A = 65,
-        B = 66,
-        C = 67,
-        D = 68,
-        E = 69,
-        F = 70,
-        G = 71,
-        H = 72,
-        I = 73,
-        J = 74,
-        K = 75,
-        L = 76,
-        M = 77,
-        N = 78,
-        O = 79,
-        P = 80,
-        Q = 81,
-        R = 82,
-        S = 83,
-        T = 84,
-        U = 85,
-        V = 86,
-        W = 87,
-        X = 88,
-        Y = 89,
-        Z = 90,
+        KEY_ZERO = 48,
+        KEY_ONE = 49,
+        KEY_TWO = 50,
+        KEY_THREE = 51,
+        KEY_FOUR = 52,
+        KEY_FIVE = 53,
+        KEY_SIX = 54,
+        KEY_SEVEN = 55,
+        KEY_EIGHT = 56,
+        KEY_NINE = 57,
+        KEY_A = 65,
+        KEY_B = 66,
+        KEY_C = 67,
+        KEY_D = 68,
+        KEY_E = 69,
+        KEY_F = 70,
+        KEY_G = 71,
+        KEY_H = 72,
+        KEY_I = 73,
+        KEY_J = 74,
+        KEY_K = 75,
+        KEY_L = 76,
+        KEY_M = 77,
+        KEY_N = 78,
+        KEY_O = 79,
+        KEY_P = 80,
+        KEY_Q = 81,
+        KEY_R = 82,
+        KEY_S = 83,
+        KEY_T = 84,
+        KEY_U = 85,
+        KEY_V = 86,
+        KEY_W = 87,
+        KEY_X = 88,
+        KEY_Y = 89,
+        KEY_Z = 90,
 
         // Android Physical Buttons
-        BACK = 4,
-        MENU = 82,
-        VOLUME_UP = 24,
-        VOLUME_DOWN = 25
+        KEY_BACK = 4,
+        KEY_MENU = 82,
+        KEY_VOLUME_UP = 24,
+        KEY_VOLUME_DOWN = 25
     }
 
     // Mouse Buttons
     public enum Mouse
     {
-        LEFT_BUTTON = 0,
-        RIGHT_BUTTON = 1,
-        MIDDLE_BUTTON = 2
+        MOUSE_LEFT_BUTTON = 0,
+        MOUSE_RIGHT_BUTTON = 1,
+        MOUSE_MIDDLE_BUTTON = 2
     }
 
     public enum Gamepad
     {
-        PLAYER1 = 0,
-        PLAYER2 = 1,
-        PLAYER3 = 2,
-        PLAYER4 = 3,
-        PS3BUTTON_TRIANGLE = 0,
-        PS3BUTTON_CIRCLE = 1,
-        PS3BUTTON_CROSS = 2,
-        PS3BUTTON_SQUARE = 3,
-        PS3BUTTON_L1 = 6,
-        PS3BUTTON_R1 = 7,
-        PS3BUTTON_L2 = 4,
-        PS3BUTTON_R2 = 5,
-        PS3BUTTON_START = 8,
-        PS3BUTTON_SELECT = 9,
-        PS3BUTTON_UP = 24,
-        PS3BUTTON_RIGHT = 25,
-        PS3BUTTON_DOWN = 26,
-        PS3BUTTON_LEFT = 27,
-        PS3BUTTON_PS = 12,
-        PS3AXIS_LEFT_X = 0,
-        PS3AXIS_LEFT_Y = 1,
-        PS3AXIS_RIGHT_X = 2,
-        PS3AXIS_RIGHT_Y = 5,
-        PS3AXIS_L2 = 3,
-        PS3AXIS_R2 = 4,
-        XBOX_BUTTON_A = 0,
-        XBOX_BUTTON_B = 1,
-        XBOX_BUTTON_X = 2,
-        XBOX_BUTTON_Y = 3,
-        XBOX_BUTTON_LB = 4,
-        XBOX_BUTTON_RB = 5,
-        XBOX_BUTTON_SELECT = 6,
-        XBOX_BUTTON_START = 7,
-        XBOX_BUTTON_UP = 10,
-        XBOX_BUTTON_RIGHT = 11,
-        XBOX_BUTTON_DOWN = 12,
-        XBOX_BUTTON_LEFT = 13,
-        XBOX_BUTTON_HOME = 8,
-        ANDROID_DPAD_UP = 19,
-        ANDROID_DPAD_DOWN = 20,
-        ANDROID_DPAD_LEFT = 21,
-        ANDROID_DPAD_RIGHT = 22,
-        ANDROID_DPAD_CENTER = 23,
-        ANDROID_BUTTON_A = 96,
-        ANDROID_BUTTON_B = 97,
-        ANDROID_BUTTON_C = 98,
-        ANDROID_BUTTON_X = 99,
-        ANDROID_BUTTON_Y = 100,
-        ANDROID_BUTTON_Z = 101,
-        ANDROID_BUTTON_L1 = 102,
-        ANDROID_BUTTON_R1 = 103,
-        ANDROID_BUTTON_L2 = 104,
-        ANDROID_BUTTON_R2 = 105,
-        XBOX_AXIS_LEFT_X = 0,
-        XBOX_AXIS_LEFT_Y = 1,
-        XBOX_AXIS_RIGHT_X = 2,
-        XBOX_AXIS_RIGHT_Y = 3,
-        XBOX_AXIS_LT = 4,
-        XBOX_AXIS_RT = 5
+        GAMEPAD_PLAYER1 = 0,
+        GAMEPAD_PLAYER2 = 1,
+        GAMEPAD_PLAYER3 = 2,
+        GAMEPAD_PLAYER4 = 3,
+        GAMEPAD_PS3_BUTTON_TRIANGLE = 0,
+        GAMEPAD_PS3_BUTTON_CIRCLE = 1,
+        GAMEPAD_PS3_BUTTON_CROSS = 2,
+        GAMEPAD_PS3_BUTTON_SQUARE = 3,
+        GAMEPAD_PS3_BUTTON_L1 = 6,
+        GAMEPAD_PS3_BUTTON_R1 = 7,
+        GAMEPAD_PS3_BUTTON_L2 = 4,
+        GAMEPAD_PS3_BUTTON_R2 = 5,
+        GAMEPAD_PS3_BUTTON_START = 8,
+        GAMEPAD_PS3_BUTTON_SELECT = 9,
+        GAMEPAD_PS3_BUTTON_UP = 24,
+        GAMEPAD_PS3_BUTTON_RIGHT = 25,
+        GAMEPAD_PS3_BUTTON_DOWN = 26,
+        GAMEPAD_PS3_BUTTON_LEFT = 27,
+        GAMEPAD_PS3_BUTTON_PS = 12,
+        GAMEPAD_PS3_AXIS_LEFT_X = 0,
+        GAMEPAD_PS3_AXIS_LEFT_Y = 1,
+        GAMEPAD_PS3_AXIS_RIGHT_X = 2,
+        GAMEPAD_PS3_AXIS_RIGHT_Y = 5,
+        GAMEPAD_PS3_AXIS_L2 = 3,
+        GAMEPAD_PS3_AXIS_R2 = 4,
+        GAMEPAD_XBOX_BUTTON_A = 0,
+        GAMEPAD_XBOX_BUTTON_B = 1,
+        GAMEPAD_XBOX_BUTTON_X = 2,
+        GAMEPAD_XBOX_BUTTON_Y = 3,
+        GAMEPAD_XBOX_BUTTON_LB = 4,
+        GAMEPAD_XBOX_BUTTON_RB = 5,
+        GAMEPAD_XBOX_BUTTON_SELECT = 6,
+        GAMEPAD_XBOX_BUTTON_START = 7,
+        GAMEPAD_XBOX_BUTTON_UP = 10,
+        GAMEPAD_XBOX_BUTTON_RIGHT = 11,
+        GAMEPAD_XBOX_BUTTON_DOWN = 12,
+        GAMEPAD_XBOX_BUTTON_LEFT = 13,
+        GAMEPAD_XBOX_BUTTON_HOME = 8,
+        GAMEPAD_ANDROID_DPAD_UP = 19,
+        GAMEPAD_ANDROID_DPAD_DOWN = 20,
+        GAMEPAD_ANDROID_DPAD_LEFT = 21,
+        GAMEPAD_ANDROID_DPAD_RIGHT = 22,
+        GAMEPAD_ANDROID_DPAD_CENTER = 23,
+        GAMEPAD_ANDROID_BUTTON_A = 96,
+        GAMEPAD_ANDROID_BUTTON_B = 97,
+        GAMEPAD_ANDROID_BUTTON_C = 98,
+        GAMEPAD_ANDROID_BUTTON_X = 99,
+        GAMEPAD_ANDROID_BUTTON_Y = 100,
+        GAMEPAD_ANDROID_BUTTON_Z = 101,
+        GAMEPAD_ANDROID_BUTTON_L1 = 102,
+        GAMEPAD_ANDROID_BUTTON_R1 = 103,
+        GAMEPAD_ANDROID_BUTTON_L2 = 104,
+        GAMEPAD_ANDROID_BUTTON_R2 = 105,
+        GAMEPAD_XBOX_AXIS_LEFT_X = 0,
+        GAMEPAD_XBOX_AXIS_LEFT_Y = 1,
+        GAMEPAD_XBOX_AXIS_RIGHT_X = 2,
+        GAMEPAD_XBOX_AXIS_RIGHT_Y = 3,
+        GAMEPAD_XBOX_AXIS_LT = 4,
+        GAMEPAD_XBOX_AXIS_RT = 5
     }
 
     #endregion
@@ -347,10 +370,17 @@ namespace Raylib
             this.b = b;
             this.a = a;
         }
-	    
-	    // Access colours from struct extension
-	    // By default accessed from Raylib class
-	    // Custom raylib color palette for amazing visuals
+
+        public Color(int r, int g, int b, int a)
+        {
+            this.r = (byte)r;
+            this.g = (byte)g;
+            this.b = (byte)b;
+            this.a = (byte)a;
+        }
+
+        // extension to access colours from struct
+        // Custom raylib color palette for amazing visuals
         public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
         public static Color GRAY = new Color(130, 130, 130, 255);
         public static Color DARKGRAY = new Color(80, 80, 80, 255);
@@ -456,7 +486,7 @@ namespace Raylib
         // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
         // public unsafe CharInfo* data;
         //public CharInfo[] chars;
-        public IntPtr data;
+        public IntPtr chars;
     }
 
     // Camera type, defines a camera position/orientation in 3d space
@@ -498,6 +528,12 @@ namespace Raylib
     {
         public Vector3 min;
         public Vector3 max;
+
+        public BoundingBox(Vector3 min, Vector3 max)
+        {
+            this.min = min;
+            this.max = max;
+        }
     }
 
     // Vertex data definning a mesh
@@ -508,7 +544,7 @@ namespace Raylib
         public int vertexCount;
         public int triangleCount;
 
-        public Span<float> Vertices => new Span<float>(vertices.ToPointer(), vertexCount * 3);
+        // public Span<float> Vertices => new Span<float>(vertices.ToPointer(), vertexCount * 3);
         public IntPtr vertices;
         public IntPtr texcoords;
         public IntPtr texcoords2;
@@ -616,6 +652,14 @@ namespace Raylib
         public float distance;
         public Vector3 position;
         public Vector3 normal;
+
+        public RayHitInfo(bool hit, float distance, Vector3 position, Vector3 normal)
+        {
+            this.hit = hit;
+            this.distance = distance;
+            this.position = position;
+            this.normal = normal;
+        }
     }
 
     // Wave type, defines audio wave data
@@ -679,10 +723,184 @@ namespace Raylib
 
         // Used by DllImport to load the native library.
         public const string nativeLibName = "raylib.dll";
-        public const int MAX_SHADER_LOCATIONS = 32;
-        public const int MAX_MATERIAL_MAPS = 12;
+        public const float DEG2RAD = (float)Math.PI / 180.0f;
+        public const float RAD2DEG = 180.0f / (float)Math.PI;
 
-        // colors
+        // raylib Config Flags
+        public const int FLAG_SHOW_LOGO = 1;
+        public const int FLAG_FULLSCREEN_MODE = 2;
+        public const int FLAG_WINDOW_RESIZABLE = 4;
+        public const int FLAG_WINDOW_UNDECORATED = 8;
+        public const int FLAG_WINDOW_TRANSPARENT = 16;
+        public const int FLAG_MSAA_4X_HINT = 32;
+        public const int FLAG_VSYNC_HINT = 64;
+
+        // Keyboard Function Keys
+        public const int KEY_SPACE = 32;
+        public const int KEY_ESCAPE = 256;
+        public const int KEY_ENTER = 257;
+        public const int KEY_TAB = 258;
+        public const int KEY_BACKSPACE = 259;
+        public const int KEY_INSERT = 260;
+        public const int KEY_DELETE = 261;
+        public const int KEY_RIGHT = 262;
+        public const int KEY_LEFT = 263;
+        public const int KEY_DOWN = 264;
+        public const int KEY_UP = 265;
+        public const int KEY_PAGE_UP = 266;
+        public const int KEY_PAGE_DOWN = 267;
+        public const int KEY_HOME = 268;
+        public const int KEY_END = 269;
+        public const int KEY_CAPS_LOCK = 280;
+        public const int KEY_SCROLL_LOCK = 281;
+        public const int KEY_NUM_LOCK = 282;
+        public const int KEY_PRINT_SCREEN = 283;
+        public const int KEY_PAUSE = 284;
+        public const int KEY_F1 = 290;
+        public const int KEY_F2 = 291;
+        public const int KEY_F3 = 292;
+        public const int KEY_F4 = 293;
+        public const int KEY_F5 = 294;
+        public const int KEY_F6 = 295;
+        public const int KEY_F7 = 296;
+        public const int KEY_F8 = 297;
+        public const int KEY_F9 = 298;
+        public const int KEY_F10 = 299;
+        public const int KEY_F11 = 300;
+        public const int KEY_F12 = 301;
+        public const int KEY_LEFT_SHIFT = 340;
+        public const int KEY_LEFT_CONTROL = 341;
+        public const int KEY_LEFT_ALT = 342;
+        public const int KEY_RIGHT_SHIFT = 344;
+        public const int KEY_RIGHT_CONTROL = 345;
+        public const int KEY_RIGHT_ALT = 346;
+        public const int KEY_GRAVE = 96;
+        public const int KEY_SLASH = 47;
+        public const int KEY_BACKSLASH = 92;
+
+        // Keyboard Alpha Numeric Keys
+        public const int KEY_ZERO = 48;
+        public const int KEY_ONE = 49;
+        public const int KEY_TWO = 50;
+        public const int KEY_THREE = 51;
+        public const int KEY_FOUR = 52;
+        public const int KEY_FIVE = 53;
+        public const int KEY_SIX = 54;
+        public const int KEY_SEVEN = 55;
+        public const int KEY_EIGHT = 56;
+        public const int KEY_NINE = 57;
+        public const int KEY_A = 65;
+        public const int KEY_B = 66;
+        public const int KEY_C = 67;
+        public const int KEY_D = 68;
+        public const int KEY_E = 69;
+        public const int KEY_F = 70;
+        public const int KEY_G = 71;
+        public const int KEY_H = 72;
+        public const int KEY_I = 73;
+        public const int KEY_J = 74;
+        public const int KEY_K = 75;
+        public const int KEY_L = 76;
+        public const int KEY_M = 77;
+        public const int KEY_N = 78;
+        public const int KEY_O = 79;
+        public const int KEY_P = 80;
+        public const int KEY_Q = 81;
+        public const int KEY_R = 82;
+        public const int KEY_S = 83;
+        public const int KEY_T = 84;
+        public const int KEY_U = 85;
+        public const int KEY_V = 86;
+        public const int KEY_W = 87;
+        public const int KEY_X = 88;
+        public const int KEY_Y = 89;
+        public const int KEY_Z = 90;
+
+        // Android Physical Buttons
+        public const int KEY_BACK = 4;
+        public const int KEY_MENU = 82;
+        public const int KEY_VOLUME_UP = 24;
+        public const int KEY_VOLUME_DOWN = 25;
+
+        // Mouse Buttons
+        public const int MOUSE_LEFT_BUTTON = 0;
+        public const int MOUSE_RIGHT_BUTTON = 1;
+        public const int MOUSE_MIDDLE_BUTTON = 2;
+
+        // Touch points registered
+        public const int MAX_TOUCH_POINTS = 2;
+
+        // Gamepad Number
+        public const int GAMEPAD_PLAYER1 = 0;
+        public const int GAMEPAD_PLAYER2 = 1;
+        public const int GAMEPAD_PLAYER3 = 2;
+        public const int GAMEPAD_PLAYER4 = 3;
+
+        // Gamepad Buttons/Axis
+        // PS3 USB Controller Buttons
+        public const int GAMEPAD_PS3_BUTTON_TRIANGLE = 0;
+        public const int GAMEPAD_PS3_BUTTON_CIRCLE = 1;
+        public const int GAMEPAD_PS3_BUTTON_CROSS = 2;
+        public const int GAMEPAD_PS3_BUTTON_SQUARE = 3;
+        public const int GAMEPAD_PS3_BUTTON_L1 = 6;
+        public const int GAMEPAD_PS3_BUTTON_R1 = 7;
+        public const int GAMEPAD_PS3_BUTTON_L2 = 4;
+        public const int GAMEPAD_PS3_BUTTON_R2 = 5;
+        public const int GAMEPAD_PS3_BUTTON_START = 8;
+        public const int GAMEPAD_PS3_BUTTON_SELECT = 9;
+        public const int GAMEPAD_PS3_BUTTON_UP = 24;
+        public const int GAMEPAD_PS3_BUTTON_RIGHT = 25;
+        public const int GAMEPAD_PS3_BUTTON_DOWN = 26;
+        public const int GAMEPAD_PS3_BUTTON_LEFT = 27;
+        public const int GAMEPAD_PS3_BUTTON_PS = 12;
+        // PS3 USB Controller Axis
+        public const int GAMEPAD_PS3_AXIS_LEFT_X = 0;
+        public const int GAMEPAD_PS3_AXIS_LEFT_Y = 1;
+        public const int GAMEPAD_PS3_AXIS_RIGHT_X = 2;
+        public const int GAMEPAD_PS3_AXIS_RIGHT_Y = 5;
+        public const int GAMEPAD_PS3_AXIS_L2 = 3;
+        public const int GAMEPAD_PS3_AXIS_R2 = 4;
+
+        // Xbox360 USB Controller Buttons
+        public const int GAMEPAD_XBOX_BUTTON_A = 0;
+        public const int GAMEPAD_XBOX_BUTTON_B = 1;
+        public const int GAMEPAD_XBOX_BUTTON_X = 2;
+        public const int GAMEPAD_XBOX_BUTTON_Y = 3;
+        public const int GAMEPAD_XBOX_BUTTON_LB = 4;
+        public const int GAMEPAD_XBOX_BUTTON_RB = 5;
+        public const int GAMEPAD_XBOX_BUTTON_SELECT = 6;
+        public const int GAMEPAD_XBOX_BUTTON_START = 7;
+        public const int GAMEPAD_XBOX_BUTTON_UP = 10;
+        public const int GAMEPAD_XBOX_BUTTON_RIGHT = 11;
+        public const int GAMEPAD_XBOX_BUTTON_DOWN = 12;
+        public const int GAMEPAD_XBOX_BUTTON_LEFT = 13;
+        public const int GAMEPAD_XBOX_BUTTON_HOME = 8;
+
+        // Android Gamepad Controller (SNES CLASSIC)
+        public const int GAMEPAD_ANDROID_DPAD_UP = 19;
+        public const int GAMEPAD_ANDROID_DPAD_DOWN = 20;
+        public const int GAMEPAD_ANDROID_DPAD_LEFT = 21;
+        public const int GAMEPAD_ANDROID_DPAD_RIGHT = 22;
+        public const int GAMEPAD_ANDROID_DPAD_CENTER = 23;
+        public const int GAMEPAD_ANDROID_BUTTON_A = 96;
+        public const int GAMEPAD_ANDROID_BUTTON_B = 97;
+        public const int GAMEPAD_ANDROID_BUTTON_C = 98;
+        public const int GAMEPAD_ANDROID_BUTTON_X = 99;
+        public const int GAMEPAD_ANDROID_BUTTON_Y = 100;
+        public const int GAMEPAD_ANDROID_BUTTON_Z = 101;
+        public const int GAMEPAD_ANDROID_BUTTON_L1 = 102;
+        public const int GAMEPAD_ANDROID_BUTTON_R1 = 103;
+        public const int GAMEPAD_ANDROID_BUTTON_L2 = 104;
+        public const int GAMEPAD_ANDROID_BUTTON_R2 = 105;
+
+        // Xbox360 USB Controller Axis
+        // TODO: For Raspberry Pi, axis must be reconfigured
+        public const int GAMEPAD_XBOX_AXIS_LEFT_X = 0;
+        public const int GAMEPAD_XBOX_AXIS_LEFT_Y = 1;
+        public const int GAMEPAD_XBOX_AXIS_RIGHT_X = 2;
+        public const int GAMEPAD_XBOX_AXIS_RIGHT_Y = 3;
+        public const int GAMEPAD_XBOX_AXIS_LT = 4;
+        public const int GAMEPAD_XBOX_AXIS_RT = 5;
 
         // Custom raylib color palette for amazing visuals
         public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
@@ -712,11 +930,14 @@ namespace Raylib
         public static Color MAGENTA = new Color(255, 0, 255, 255);
         public static Color RAYWHITE = new Color(245, 245, 245, 255);
 
+        public const int MAX_SHADER_LOCATIONS = 32;
+        public const int MAX_MATERIAL_MAPS = 12;
+
         #endregion
 
         #region Raylib-cs Functions 
 
-	    // Initialize window and OpenGL context
+        // Initialize window and OpenGL context
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr InitWindow(int width, int height, string title);
 
@@ -1782,7 +2003,7 @@ namespace Raylib
 
         // Get collision info between ray and model
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-		public static extern RayHitInfo GetCollisionRayModel(Ray ray, Model model);
+		public static extern RayHitInfo GetCollisionRayModel(Ray ray, ref Model model);
 
         // Get collision info between ray and triangle
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
