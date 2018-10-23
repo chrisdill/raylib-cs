@@ -11,6 +11,7 @@ public enum LightType
 };
 
 //TODO: move the light system out into it's own class file, rlights.h original
+//also make it work properly
 public struct Light
 {
 	public bool enabled;
