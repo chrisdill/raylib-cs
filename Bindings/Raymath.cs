@@ -457,7 +457,7 @@ namespace Raylib
 
         // Calculate vector length
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-		public static extern float Vector3Length(Vector3 v);
+        public static extern float Vector3Length(Vector3 v);
 
         // Calculate two vectors dot product
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -675,7 +675,7 @@ namespace Raylib
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Quaternion QuaternionTransform(Quaternion q, Matrix mat);
 
-		#endregion
+        #endregion
 
     }
 }
