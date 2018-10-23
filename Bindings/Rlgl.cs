@@ -23,7 +23,7 @@ namespace Raylib
     {
         #region Raylib-cs Variables
 
-		#endregion
+        #endregion
 
         #region Raylib-cs Functions
 

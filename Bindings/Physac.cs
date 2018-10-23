@@ -39,7 +39,7 @@ namespace Raylib
 
         [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
         public Vector2[] positions;     // Polygon vertex positions vectors
-	    
+        
         [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
         public Vector2[] normals;       // Polygon vertex normals vectors
     }
@@ -86,7 +86,7 @@ namespace Raylib
         public PhysicsBodyData bodyB;                          // Manifold second physics body reference
         public float penetration;                          // Depth of penetration from collision
         public Vector2 normal;                             // Normal direction vector from 'a' to 'b'
-	    
+        
         [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = 2)]
         public Vector2[] contacts;                        // Points of contact during collision
        

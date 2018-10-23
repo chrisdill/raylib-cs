@@ -188,14 +188,14 @@ namespace Raylib
         LISTVIEW_TEXT_COLOR_DISABLED
     }
 
-	// GUI controls state
-	public enum GuiControlState 
-	{ 
-	    DISABLED = 0, 
-	    NORMAL, 
-	    FOCUSED, 
-	    PRESSED 
-	}
+    // GUI controls state
+    public enum GuiControlState 
+    { 
+        DISABLED = 0, 
+        NORMAL, 
+        FOCUSED, 
+        PRESSED 
+    }
 
     #endregion
 
@@ -203,7 +203,7 @@ namespace Raylib
     {
         #region Raylib-cs Variables
 
-		#endregion
+        #endregion
 
         #region Raylib-cs Functions
 
