@@ -1354,7 +1354,7 @@ namespace Raylib
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTouchPointsCount();
 
-        // Get gesture hold time in milliseconds	    
+        // Get gesture hold time in milliseconds    
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetGestureHoldDuration();
 
@@ -2396,7 +2396,7 @@ namespace Raylib
         // Set pitch for audio stream (1.0 is base level)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
-	    
-		#endregion
+        
+        #endregion
     }
 }

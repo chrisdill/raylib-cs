@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using Raylib;
 using static Raylib.Raylib;
@@ -30,7 +31,20 @@ namespace Test.NetFX
                 Console.WriteLine("Running example " + test + "...");
 
                 ChangeDirectory(Path.GetDirectoryName(ofd.FileName));
-                Type.GetType(test)?.GetMethod("Main")?.Invoke(null, args);
+
+                var call = Type.GetType(test)?.GetMethod("Main");
+
+                try
+                {
+                    call?.Invoke(null, args);
+                }
+                catch (TargetInvocationException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.InnerException.Message);
+                    Console.ReadLine();
+                }
+
                 Console.WriteLine();
             }
         }
