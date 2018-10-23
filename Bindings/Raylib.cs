@@ -5,6 +5,7 @@
  * 
 **********************************************************************************************/
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Raylib
@@ -72,7 +73,7 @@ namespace Raylib
 
     // Pixel formats
     // NOTE: Support depends on OpenGL version and platform
-    public enum PixelFormat : int
+    public enum PixelFormat
     {
         UNCOMPRESSED_GRAYSCALE = 1,
         UNCOMPRESSED_GRAY_ALPHA = 2,
@@ -188,9 +189,8 @@ namespace Raylib
     } 
 
     // enum extension for constants
-    
     // Keyboard Function Keys
-    public enum Key : int
+    public enum Key
     {
         KEY_SPACE = 32,
         KEY_ESCAPE = 256,
@@ -720,7 +720,7 @@ namespace Raylib
         #region Raylib-cs Variables
 
         // Used by DllImport to load the native library.
-        public const string nativeLibName = "raylib.dll";
+        public const string nativeLibName = "raylib";
         public const float DEG2RAD = (float)Math.PI / 180.0f;
         public const float RAD2DEG = 180.0f / (float)Math.PI;
 

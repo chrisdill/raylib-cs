@@ -6,7 +6,7 @@
     <SharedGUID>36e54e2a-5899-4d4d-9d78-120db1b4c7b2</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Test.Common</Import_RootNamespace>
+    <Import_RootNamespace>Examples</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)audio\audio_module_playing.cs" />
@@ -57,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)shapes\shapes_lines_bezier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)shapes\shapes_logo_raylib.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)shapes\shapes_logo_raylib_anim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)textures\textures_image_drawing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)textures\textures_image_generation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)textures\textures_image_loading.cs" />
