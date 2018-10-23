@@ -11,6 +11,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Examples", "Examples\Exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.NetFX", "Test.NetFX\Test.NetFX.csproj", "{55D7BB37-3DC7-4A33-B21E-4F549EC988B5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.NetCoreRT", "Test.NetCoreRT\Test.NetCoreRT.csproj", "{98B914D1-8CCF-4895-A9E7-CE4AA8067528}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Examples\Examples.projitems*{36e54e2a-5899-4d4d-9d78-120db1b4c7b2}*SharedItemsImports = 13
@@ -61,6 +63,18 @@ Global
 		{55D7BB37-3DC7-4A33-B21E-4F549EC988B5}.Release|x64.Build.0 = Release|x64
 		{55D7BB37-3DC7-4A33-B21E-4F549EC988B5}.Release|x86.ActiveCfg = Release|x86
 		{55D7BB37-3DC7-4A33-B21E-4F549EC988B5}.Release|x86.Build.0 = Release|x86
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Debug|x64.ActiveCfg = Debug|x64
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Debug|x64.Build.0 = Debug|x64
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Debug|x86.ActiveCfg = Debug|x86
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Debug|x86.Build.0 = Debug|x86
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Release|x64.ActiveCfg = Release|x64
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Release|x64.Build.0 = Release|x64
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Release|x86.ActiveCfg = Release|x86
+		{98B914D1-8CCF-4895-A9E7-CE4AA8067528}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
