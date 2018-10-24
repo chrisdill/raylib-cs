@@ -13,24 +13,24 @@ public partial class text_writing_anim
     *   Copyright (c) 2016 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [text] example - text writing anim");
-        
+
         string message = "This sample illustrates a text writing\nanimation effect! Check it out! ;)";
-        
+
         int framesCounter = 0;
-        
+
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
@@ -38,30 +38,30 @@ public partial class text_writing_anim
             //----------------------------------------------------------------------------------
             if (IsKeyDown(KEY_SPACE)) framesCounter += 8;
             else framesCounter++;
-            
+
             if (IsKeyPressed(KEY_ENTER)) framesCounter = 0;
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
-    
+
                 DrawText(SubText(message, 0, framesCounter/10), 210, 160, 20, MAROON);
-                
+
                 DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, LIGHTGRAY);
                 DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, LIGHTGRAY);
-    
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
-        //--------------------------------------------------------------------------------------   
+        //--------------------------------------------------------------------------------------
         CloseWindow();        // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }

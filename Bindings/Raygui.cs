@@ -1,9 +1,4 @@
-/**********************************************************************************************
- * 
- * Raygui
- * Original - https://github.com/raysan5/raygui/blob/master/src/raygui.h
- * 
-**********************************************************************************************/
+// Raygui - https://github.com/raysan5/raygui/blob/master/src/raygui.h
 
 using System;
 using System.Runtime.InteropServices;

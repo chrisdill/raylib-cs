@@ -14,21 +14,21 @@ public partial class text_font_sdf
     *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [text] example - SDF fonts");
-    
+
         // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
-        
+
         string msg = "Signed Distance Fields";
-    
+
         // Default font generation from TTF font
         Font fontDefault = new Font();
         fontDefault.baseSize = 16;
@@ -40,7 +40,7 @@ public partial class text_font_sdf
         //Image atlas = GenImageFontAtlas(fontDefault.chars, 95, 16, 4, 0);
         //fontDefault.texture = LoadTextureFromImage(atlas);
         //UnloadImage(atlas);
-        
+
         // SDF font generation from TTF font
         // NOTE: SDF chars data is generated with LoadFontData(), it's just a bool option
         Font fontSDF = new Font();
@@ -54,82 +54,82 @@ public partial class text_font_sdf
         //atlas = GenImageFontAtlas(fontSDF.chars, 95, 16, 0, 1);
         //fontSDF.texture = LoadTextureFromImage(atlas);
         //UnloadImage(atlas);
-        
+
         // Load SDF required shader (we use default vertex shader)
         Shader shader = LoadShader(null, "resources/shaders/sdf.fs");
         SetTextureFilter(fontSDF.texture, (int)FILTER_BILINEAR);    // Required for SDF font
-    
+
         Vector2 fontPosition = new Vector2( 40, screenHeight/2 - 50 );
         Vector2 textSize = new Vector2( 0.0f );
         float fontSize = 16.0f;
         int currentFont = 0;    // 0 - fontDefault, 1 - fontSDF
-    
+
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
-        
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
             // Update
             //----------------------------------------------------------------------------------
             fontSize += GetMouseWheelMove()*8.0f;
-            
+
             if (fontSize < 6) fontSize = 6;
-            
+
             if (IsKeyDown(KEY_SPACE)) currentFont = 1;
             else currentFont = 0;
-            
+
             if (currentFont == 0) textSize = MeasureTextEx(fontDefault, msg, fontSize, 0);
             else textSize = MeasureTextEx(fontSDF, msg, fontSize, 0);
-            
+
             fontPosition.x = GetScreenWidth()/2 - textSize.x/2;
             fontPosition.y = GetScreenHeight()/2 - textSize.y/2 + 80;
             //----------------------------------------------------------------------------------
-            
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            
+
                 ClearBackground(RAYWHITE);
-                
+
                 if (currentFont == 1)
                 {
                     // NOTE: SDF fonts require a custom SDf shader to compute fragment color
                     BeginShaderMode(shader);    // Activate SDF font shader
                         DrawTextEx(fontSDF, msg, fontPosition, fontSize, 0, BLACK);
                     EndShaderMode();            // Activate our default shader for next drawings
-                    
+
                     DrawTexture(fontSDF.texture, 10, 10, BLACK);
                 }
-                else 
+                else
                 {
                     DrawTextEx(fontDefault, msg, fontPosition, fontSize, 0, BLACK);
                     DrawTexture(fontDefault.texture, 10, 10, BLACK);
                 }
-                
+
                 if (currentFont == 1) DrawText("SDF!", 320, 20, 80, RED);
                 else DrawText("default font", 315, 40, 30, GRAY);
-    
+
                 DrawText("FONT SIZE: 16.0", GetScreenWidth() - 240, 20, 20, DARKGRAY);
                 DrawText(FormatText("RENDER SIZE: %02.02f", fontSize), GetScreenWidth() - 240, 50, 20, DARKGRAY);
                 DrawText("Use MOUSE WHEEL to SCALE TEXT!", GetScreenWidth() - 240, 90, 10, DARKGRAY);
-    
+
                 DrawText("PRESS SPACE to USE SDF FONT VERSION!", 340, GetScreenHeight() - 30, 20, MAROON);
-          
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         UnloadFont(fontDefault);    // Default font unloading
         UnloadFont(fontSDF);        // SDF font unloading
-        
+
         UnloadShader(shader);       // Unload SDF shader
-        
+
         CloseWindow();              // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-        
+
         return 0;
-    }    
+    }
 }
