@@ -1,9 +1,4 @@
-/**********************************************************************************************
- * 
- * Rlgl
- * Original - https://github.com/raysan5/raylib/blob/master/src/rlgl.h
- * 
-**********************************************************************************************/
+ // Rlgl - https://github.com/raysan5/raylib/blob/master/src/rlgl.h
 
 using System;
 using System.Runtime.InteropServices;
@@ -28,6 +23,5 @@ namespace Raylib
         #region Raylib-cs Functions
 
         #endregion
-        
     }
 }

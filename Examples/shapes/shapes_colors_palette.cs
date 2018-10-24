@@ -13,20 +13,20 @@ public partial class shapes_colors_palette
     *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [shapes] example - raylib color palette");
-        
+
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
@@ -34,15 +34,15 @@ public partial class shapes_colors_palette
             //----------------------------------------------------------------------------------
             // TODO: Update your variables here
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
-    
+
                 DrawText("raylib color palette", 28, 42, 20, BLACK);
-    
+
                 DrawRectangle(26, 80, 100, 100, DARKGRAY);
                 DrawRectangle(26, 188, 100, 100, GRAY);
                 DrawRectangle(26, 296, 100, 100, LIGHTGRAY);
@@ -64,8 +64,8 @@ public partial class shapes_colors_palette
                 DrawRectangle(674, 80, 100, 100, DARKBROWN);
                 DrawRectangle(674, 188, 100, 100, BROWN);
                 DrawRectangle(674, 296, 100, 100, BEIGE);
-    
-    
+
+
                 DrawText("DARKGRAY", 65, 166, 10, BLACK);
                 DrawText("GRAY", 93, 274, 10, BLACK);
                 DrawText("LIGHTGRAY", 61, 382, 10, BLACK);
@@ -87,16 +87,16 @@ public partial class shapes_colors_palette
                 DrawText("DARKBROWN", 705, 166, 10, BLACK);
                 DrawText("BROWN", 733, 274, 10, BLACK);
                 DrawText("BEIGE", 737, 382, 10, BLACK);
-    
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         CloseWindow();        // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }

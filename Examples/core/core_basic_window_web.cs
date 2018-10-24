@@ -17,23 +17,23 @@ public partial class Examples
     *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     //#define PLATFORM_WEB
-    
+
         #include <emscripten/emscripten.h>
-    
+
     //----------------------------------------------------------------------------------
     // Global Variables Definition
     //----------------------------------------------------------------------------------
     int screenWidth = 800;
     int screenHeight = 450;
-    
+
     //----------------------------------------------------------------------------------
     // Module Functions Declaration
     //----------------------------------------------------------------------------------
     void UpdateDrawFrame(void);     // Update and Draw one frame
-    
+
     //----------------------------------------------------------------------------------
     // Main Enry Point
     //----------------------------------------------------------------------------------
@@ -42,26 +42,26 @@ public partial class Examples
         // Initialization
         //--------------------------------------------------------------------------------------
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-    
+
         emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
     #else
         SetTargetFPS(60);   // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
-        
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
             UpdateDrawFrame();
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         CloseWindow();        // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
     }
-    
+
     //----------------------------------------------------------------------------------
     // Module Functions Definition
     //----------------------------------------------------------------------------------
@@ -71,16 +71,16 @@ public partial class Examples
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-    
+
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-    
+
             ClearBackground(RAYWHITE);
-    
+
             DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-    
+
         EndDrawing();
         //----------------------------------------------------------------------------------
-    }    
+    }
 }

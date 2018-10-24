@@ -15,25 +15,25 @@ public partial class textures_image_loading
     *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [textures] example - image loading");
-    
+
         // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
-    
+
         Image image = LoadImage("resources/raylib_logo.png");     // Loaded in CPU memory (RAM)
         Texture2D texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
-    
+
         UnloadImage(image);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
         //---------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
@@ -41,28 +41,28 @@ public partial class textures_image_loading
             //----------------------------------------------------------------------------------
             // TODO: Update your variables here
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
-    
+
                 DrawTexture(texture, screenWidth/2 - texture.width/2, screenHeight/2 - texture.height/2, WHITE);
-    
+
                 DrawText("this IS a texture loaded from an image!", 300, 370, 10, GRAY);
-    
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         UnloadTexture(texture);       // Texture unloading
-    
+
         CloseWindow();                // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }

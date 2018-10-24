@@ -13,39 +13,39 @@ public partial class text_sprite_fonts
     *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [text] example - sprite fonts usage");
-    
+
         string msg1 = "THIS IS A custom SPRITE FONT...";
         string msg2 = "...and this is ANOTHER CUSTOM font...";
         string msg3 = "...and a THIRD one! GREAT! :D";
-    
+
         // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
         Font font1 = LoadFont("resources/custom_mecha.png");          // Font loading
         Font font2 = LoadFont("resources/custom_alagard.png");        // Font loading
         Font font3 = LoadFont("resources/custom_jupiter_crash.png");  // Font loading
-    
+
         Vector2 fontPosition1, fontPosition2, fontPosition3;
-    
+
         fontPosition1.x = screenWidth/2 - MeasureTextEx(font1, msg1, font1.baseSize, -3).x/2;
         fontPosition1.y = screenHeight/2 - font1.baseSize/2 - 80;
-    
+
         fontPosition2.x = screenWidth/2 - MeasureTextEx(font2, msg2, font2.baseSize, -2).x/2;
         fontPosition2.y = screenHeight/2 - font2.baseSize/2 - 10;
-    
+
         fontPosition3.x = screenWidth/2 - MeasureTextEx(font3, msg3, font3.baseSize, 2).x/2;
         fontPosition3.y = screenHeight/2 - font3.baseSize/2 + 50;
-    
+
         //--------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
@@ -53,30 +53,30 @@ public partial class text_sprite_fonts
             //----------------------------------------------------------------------------------
             // TODO: Update variables here...
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
-    
+
                 DrawTextEx(font1, msg1, fontPosition1, font1.baseSize, -3, WHITE);
                 DrawTextEx(font2, msg2, fontPosition2, font2.baseSize, -2, WHITE);
                 DrawTextEx(font3, msg3, fontPosition3, font3.baseSize, 2, WHITE);
-    
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         UnloadFont(font1);      // Font unloading
         UnloadFont(font2);      // Font unloading
         UnloadFont(font3);      // Font unloading
-    
+
         CloseWindow();                // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }

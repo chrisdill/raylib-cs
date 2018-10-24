@@ -20,26 +20,26 @@ public partial class shaders_shapes_textures
     *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - shapes and texture shaders");
-        
+
         Texture2D fudesumi = LoadTexture("resources/fudesumi.png");
-    
-        // NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version 
-        Shader shader = LoadShader("resources/shaders/glsl330/base.vs", 
+
+        // NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
+        Shader shader = LoadShader("resources/shaders/glsl330/base.vs",
                                    "resources/shaders/glsl330/grayscale.fs");
-    
+
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
@@ -47,68 +47,68 @@ public partial class shaders_shapes_textures
             //----------------------------------------------------------------------------------
             // TODO: Update your variables here
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
-                
+
                 // Start drawing with default shader
-    
+
                 DrawText("USING DEFAULT SHADER", 20, 40, 10, RED);
-                
+
                 DrawCircle(80, 120, 35, DARKBLUE);
                 DrawCircleGradient(80, 220, 60, GREEN, SKYBLUE);
                 DrawCircleLines(80, 340, 80, DARKBLUE);
-    
-                
+
+
                 // Activate our custom shader to be applied on next shapes/textures drawings
                 BeginShaderMode(shader);
-                
+
                     DrawText("USING CUSTOM SHADER", 190, 40, 10, RED);
-    
+
                     DrawRectangle(250 - 60, 90, 120, 60, RED);
                     DrawRectangleGradientH(250 - 90, 170, 180, 130, MAROON, GOLD);
                     DrawRectangleLines(250 - 40, 320, 80, 60, ORANGE);
-    
+
                 // Activate our default shader for next drawings
                 EndShaderMode();
-                
+
                 DrawText("USING DEFAULT SHADER", 370, 40, 10, RED);
-                
+
                 DrawTriangle(new Vector2(430, 80),
                              new Vector2(430 - 60, 150),
                              new Vector2(430 + 60, 150), VIOLET);
-                             
+
                 DrawTriangleLines(new Vector2(430, 160),
                                   new Vector2(430 - 20, 230),
                                   new Vector2(430 + 20, 230), DARKBLUE);
-    
+
                 DrawPoly(new Vector2(430, 320), 6, 80, 0, BROWN);
-                
+
                 // Activate our custom shader to be applied on next shapes/textures drawings
                 BeginShaderMode(shader);
-    
+
                     DrawTexture(fudesumi, 500, -30, WHITE);    // Using custom shader
-                
+
                 // Activate our default shader for next drawings
                 EndShaderMode();
-                
+
                 DrawText("(c) Fudesumi sprite by Eiden Marsal", 380, screenHeight - 20, 10, GRAY);
-                
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         UnloadShader(shader);       // Unload shader
         UnloadTexture(fudesumi);    // Unload texture
-        
+
         CloseWindow();              // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }

@@ -23,19 +23,19 @@ public partial class shaders_model_shader
     *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
-    
+
+
     public static int Main()
     {
         // Initialization
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-        
+
         SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
-    
+
         // Define the camera to look into our 3d world
         Camera3D camera = new Camera3D();
         camera.position = new Vector3( 4.0f, 4.0f, 4.0f );
@@ -43,22 +43,22 @@ public partial class shaders_model_shader
         camera.up = new Vector3( 0.0f, 1.0f, 0.0f );
         camera.fovy = 45.0f;
         camera.type = CAMERA_PERSPECTIVE;
-    
+
         Model model = LoadModel("resources/models/watermill.obj");                   // Load OBJ model
         Texture2D texture = LoadTexture("resources/models/watermill_diffuse.png");   // Load model texture
-        Shader shader = LoadShader("resources/shaders/glsl330/base.vs", 
+        Shader shader = LoadShader("resources/shaders/glsl330/base.vs",
                                    "resources/shaders/glsl330/grayscale.fs");   // Load model shader
-    
+
         model.material.shader = shader;                     // Set shader effect to 3d model
         model.material.maps[(int)MAP_ALBEDO].texture = texture; // Bind texture to model
-        
+
         Vector3 position = new Vector3( 0.0f, 0.0f, 0.0f );    // Set model position
-        
+
         SetCameraMode(camera, (int)CAMERA_FREE);         // Set an orbital camera mode
-    
+
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())                // Detect window close button or ESC key
         {
@@ -66,41 +66,41 @@ public partial class shaders_model_shader
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera);                  // Update camera
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
-    
+
                 BeginMode3D(camera);
-    
+
                     DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
-    
+
                     DrawGrid(10, 1.0f);     // Draw a grid
-    
+
                 EndMode3D();
-                
+
                 DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, GRAY);
-                
+
                 DrawText(FormatText("Camera3D position: (%.2f, %.2f, %.2f)", camera.position.x, camera.position.y, camera.position.z), 600, 20, 10, BLACK);
                 DrawText(FormatText("Camera3D target: (%.2f, %.2f, %.2f)", camera.target.x, camera.target.y, camera.target.z), 600, 40, 10, GRAY);
-    
+
                 DrawFPS(10, 10);
-    
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
         //--------------------------------------------------------------------------------------
         UnloadShader(shader);       // Unload shader
         UnloadTexture(texture);     // Unload texture
         UnloadModel(model);         // Unload model
-    
+
         CloseWindow();              // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }

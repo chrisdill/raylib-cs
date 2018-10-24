@@ -13,7 +13,7 @@ public partial class core_storage_values
     *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
     *
     ********************************************************************************************/
-    
+
     // NOTE: Storage positions must start with 0, directly related to file memory layout
     enum StorageData { STORAGE_SCORE = 0, STORAGE_HISCORE };
 
@@ -23,17 +23,17 @@ public partial class core_storage_values
         //--------------------------------------------------------------------------------------
         int screenWidth = 800;
         int screenHeight = 450;
-    
+
         InitWindow(screenWidth, screenHeight, "raylib [core] example - storage save/load values");
-        
+
         int score = 0;
         int hiscore = 0;
-        
+
         int framesCounter = 0;
-        
+
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
-    
+
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
@@ -44,7 +44,7 @@ public partial class core_storage_values
                 score = GetRandomValue(1000, 2000);
                 hiscore = GetRandomValue(2000, 4000);
             }
-            
+
             if (IsKeyPressed(KEY_ENTER))
             {
                 StorageSaveValue((int)StorageData.STORAGE_SCORE, score);
@@ -56,14 +56,14 @@ public partial class core_storage_values
                 score = StorageLoadValue((int)StorageData.STORAGE_SCORE);
                 hiscore = StorageLoadValue((int)StorageData.STORAGE_HISCORE);
             }
-            
+
             framesCounter++;
             //----------------------------------------------------------------------------------
-    
+
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-    
+
                 ClearBackground(RAYWHITE);
 
                 // DrawText(FormatText("SCORE: %i", score), 280, 130, 40, MAROON);
@@ -77,16 +77,16 @@ public partial class core_storage_values
                 DrawText("Press R to generate random numbers", 220, 40, 20, LIGHTGRAY);
                 DrawText("Press ENTER to SAVE values", 250, 310, 20, LIGHTGRAY);
                 DrawText("Press SPACE to LOAD values", 252, 350, 20, LIGHTGRAY);
-    
+
             EndDrawing();
             //----------------------------------------------------------------------------------
         }
-    
+
         // De-Initialization
-        //--------------------------------------------------------------------------------------   
+        //--------------------------------------------------------------------------------------
         CloseWindow();        // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
-    
+
         return 0;
-    }    
+    }
 }
