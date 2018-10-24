@@ -1,9 +1,4 @@
-/**********************************************************************************************
- * 
- * Raymath v1.2 bindings - Math functions to work with Vector3, Matrix and Quaternions
- * Original - https://github.com/raysan5/raylib/blob/master/src/raymath.h 
- * 
-**********************************************************************************************/
+// Raymath - https://github.com/raysan5/raylib/blob/master/src/raymath.h
 
 using System;
 using System.Runtime.InteropServices;
