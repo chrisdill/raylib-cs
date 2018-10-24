@@ -29,25 +29,36 @@ public struct Light
 
 public partial class models_material_pbr
 {
+
+
+
+
+
+
+
+
+
 	/*******************************************************************************************	*	*   raylib [models] example - PBR material	*	*   This example has been created using raylib 1.8 (www.raylib.com)	*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)	*	*   Copyright (c) 2017 Ramon Santamaria (@raysan5)	*	********************************************************************************************/
 
 	public const int CUBEMAP_SIZE = 512;
 	public const int IRRADIANCE_SIZE = 32;
 	public const int PREFILTERED_SIZE = 256;
 	public const int BRDF_SIZE = 512;
+	public const int MAX_LIGHTS = 4;
+	public static int lightsCount = 0;
+	public const float LIGHT_DISTANCE = 3.5f;
+	public const float LIGHT_HEIGHT = 1.0f;
 
 	// PBR material loading
 	//private static Material LoadMaterialPBR(Color albedo, float metalness, float roughness);
 
-	public static int Main()
+	public unsafe static int Main()
 	{
 		// Initialization
 		//--------------------------------------------------------------------------------------
 		int screenWidth = 800;
 		int screenHeight = 450;
 
-		float LIGHT_DISTANCE = 3.5f;
-		float LIGHT_HEIGHT = 1.0f;
 
 		SetConfigFlags(FLAG_MSAA_4X_HINT);  // Enable Multi Sampling Anti Aliasing 4x (if available)
 		InitWindow(screenWidth, screenHeight, "raylib [models] example - pbr material");
@@ -83,23 +94,24 @@ public partial class models_material_pbr
 
 			// Send to material PBR shader camera view position
 			float[] cameraPos = { camera.position.x, camera.position.y, camera.position.z };
-			SetShaderValue(model.material.shader, 0, cameraPos, 3); //(int)model.material.shader.locs, cameraPos, 3);
-																	//----------------------------------------------------------------------------------
-																	// Draw
-																	//----------------------------------------------------------------------------------
+			SetShaderValue(model.material.shader, model.material.shader.locs[(int)ShaderLocationIndex.LOC_VECTOR_VIEW], cameraPos, 3);
+
+			//----------------------------------------------------------------------------------
+			// Draw
+			//----------------------------------------------------------------------------------
 			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+				ClearBackground(RAYWHITE);
 
-			BeginMode3D(camera);
+				BeginMode3D(camera);
 
-			DrawModel(model, Vector3Zero(), 1.0f, WHITE);
+				DrawModel(model, Vector3Zero(), 1.0f, WHITE);
 
-			DrawGrid(10, 1.0f);
+				DrawGrid(10, 1.0f);
 
-			EndMode3D();
+				EndMode3D();
 
-			DrawFPS(10, 10);
+				DrawFPS(10, 10);
 
 			EndDrawing();
 			//----------------------------------------------------------------------------------
@@ -111,51 +123,7 @@ public partial class models_material_pbr
 
 		CloseWindow();              // Close window and OpenGL context
 									//--------------------------------------------------------------------------------------
-		return 0;	}	public static Light CreateLight(LightType type, Vector3 pos, Vector3 targ, Color color, Shader shader)
-	{
-		Light light = new Light() {
-			enabled = true,
-			type = type,
-			position = pos,
-			target = targ,
-			color = color,
-		};
-
-		string enabledName = "lights[x].enabled\0";
-		string typeName = "lights[x].type\0";
-		string posName = "lights[x].position\0";
-		string targetName = "lights[x].target\0";
-		string colorName = "lights[x].color\0";
-
-		light.enabledLoc = GetShaderLocation(shader, enabledName);
-		light.typeLoc = GetShaderLocation(shader, typeName);
-		light.posLoc = GetShaderLocation(shader, posName);
-		light.targetLoc = GetShaderLocation(shader, targetName);
-		light.colorLoc = GetShaderLocation(shader, colorName);
-
-		UpdateLightValues(shader, light);
-
-		return light;
-	}
-
-	public static void UpdateLightValues(Shader shader, Light light)
-	{
-		// Send to shader light enabled state and type
-		SetShaderValuei(shader, light.enabledLoc, new int[] { Convert.ToInt32(light.enabled) }, 1);
-		SetShaderValuei(shader, light.typeLoc, new int[] { Convert.ToInt32(light.type) }, 1);
-
-		// Send to shader light position values
-		float[] position = { light.position.x, light.position.y, light.position.z };
-		SetShaderValue(shader, light.posLoc, position, 3);
-
-		// Send to shader light target position values
-		float[] target = { light.target.x, light.target.y, light.target.z };
-		SetShaderValue(shader, light.targetLoc, target, 3);
-
-		// Send to shader light color values
-		float[] diff = { light.color.r / 255, light.color.g / 255, light.color.b / 255, light.color.a / 255 };
-		SetShaderValue(shader, light.colorLoc, diff, 4);
-	}
+		return 0;	}	
 
 	// Load PBR material (Supports: ALBEDO, NORMAL, METALNESS, ROUGHNESS, AO, EMMISIVE, HEIGHT maps)
 	// NOTE: PBR shader is loaded inside this function
@@ -192,16 +160,16 @@ public partial class models_material_pbr
 		mat.maps[(int)TexmapIndex.MAP_NORMAL].texture = LoadTexture("resources/pbr/trooper_normals.png");
 		mat.maps[(int)TexmapIndex.MAP_METALNESS].texture = LoadTexture("resources/pbr/trooper_metalness.png");
 		mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].texture = LoadTexture("resources/pbr/trooper_roughness.png");
-		mat.maps[(int)TexmapIndex.MAP_OCCLUSION].texture = LoadTexture("resources/pbr/trooper_ao.png");	
-		
+		mat.maps[(int)TexmapIndex.MAP_OCCLUSION].texture = LoadTexture("resources/pbr/trooper_ao.png");
+
 		// Set environment maps
-		 const string PATH_CUBEMAP_VS = "resources/shaders/cubemap.vs";
-		 const string PATH_CUBEMAP_FS = "resources/shaders/cubemap.fs";
-		 const string PATH_SKYBOX_VS = "resources/shaders/skybox.vs";
-		 const string PATH_IRRADIANCE_FS = "resources/shaders/irradiance.fs";
-		 const string PATH_PREFILTER_FS = "resources/shaders/prefilter.fs";
-		 const string PATH_BRDF_VS = "resources/shaders/brdf.vs";
-		 const string PATH_BRDF_FS = "resources/shaders/brdf.fs";
+		const string PATH_CUBEMAP_VS = "resources/shaders/cubemap.vs"; // Path to equirectangular to cubemap vertex shader
+		const string PATH_CUBEMAP_FS = "resources/shaders/cubemap.fs"; // Path to equirectangular to cubemap fragment shader
+		const string PATH_SKYBOX_VS = "resources/shaders/skybox.vs";  // Path to skybox vertex shader
+		const string PATH_IRRADIANCE_FS = "resources/shaders/irradiance.fs"; // Path to irradiance (GI) calculation fragment shader
+		const string PATH_PREFILTER_FS = "resources/shaders/prefilter.fs"; // Path to reflection prefilter calculation fragment shader
+		const string PATH_BRDF_VS = "resources/shaders/brdf.vs"; // Path to bidirectional reflectance distribution function vertex shader 
+		const string PATH_BRDF_FS = "resources/shaders/brdf.fs"; // Path to bidirectional reflectance distribution function fragment shader
 
 		Shader shdrCubemap = LoadShader(PATH_CUBEMAP_VS, PATH_CUBEMAP_FS);
 		Shader shdrIrradiance = LoadShader(PATH_SKYBOX_VS, PATH_IRRADIANCE_FS);
@@ -209,7 +177,9 @@ public partial class models_material_pbr
 		Shader shdrBRDF = LoadShader(PATH_BRDF_VS, PATH_BRDF_FS);
 
 		// Setup required shader locations
-		SetShaderValuei(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), new int[] { 0 }, 1);		SetShaderValuei(shdrIrradiance, GetShaderLocation(shdrIrradiance, "environmentMap"), new int[] { 0 }, 1);		SetShaderValuei(shdrPrefilter, GetShaderLocation(shdrPrefilter, "environmentMap"), new int[] { 0 }, 1);			Texture2D texHDR = LoadTexture("resources/dresden_square.hdr");
+		SetShaderValuei(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), new int[] { 0 }, 1);		SetShaderValuei(shdrIrradiance, GetShaderLocation(shdrIrradiance, "environmentMap"), new int[] { 0 }, 1);		SetShaderValuei(shdrPrefilter, GetShaderLocation(shdrPrefilter, "environmentMap"), new int[] { 0 }, 1);
+
+		Texture2D texHDR = LoadTexture("resources/dresden_square.hdr");
 		Texture2D cubemap = GenTextureCubemap(shdrCubemap, texHDR, CUBEMAP_SIZE);
 		mat.maps[(int)TexmapIndex.MAP_IRRADIANCE].texture = GenTextureIrradiance(shdrIrradiance, cubemap, IRRADIANCE_SIZE);
 		mat.maps[(int)TexmapIndex.MAP_PREFILTER].texture = GenTexturePrefilter(shdrPrefilter, cubemap, PREFILTERED_SIZE);
@@ -231,9 +201,66 @@ public partial class models_material_pbr
 		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_OCCLUSION].texture, (int)TextureFilterMode.FILTER_BILINEAR);
 
 		// Enable sample usage in shader for assigned textures
-		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "albedo.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "normals.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "metalness.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "roughness.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "occlusion.useSampler"), new int[] { 1 }, 1);				int renderModeLoc = GetShaderLocation(mat.shader, "renderMode");
-		SetShaderValuei(mat.shader, renderModeLoc, new int[] { 0 }, 1);					// Set up material properties color		mat.maps[(int)TexmapIndex.MAP_ALBEDO].color = albedo;		mat.maps[(int)TexmapIndex.MAP_NORMAL].color = new Color( 128, 128, 255, 255 );
-		mat.maps[(int)TexmapIndex.MAP_METALNESS].value = metalness;		mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].value = roughness;		mat.maps[(int)TexmapIndex.MAP_OCCLUSION].value = 1.0f;		mat.maps[(int)TexmapIndex.MAP_EMISSION].value = 0.5f;		mat.maps[(int)TexmapIndex.MAP_HEIGHT].value = 0.5f;			return mat;
+		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "albedo.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "normals.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "metalness.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "roughness.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "occlusion.useSampler"), new int[] { 1 }, 1);
+
+		int renderModeLoc = GetShaderLocation(mat.shader, "renderMode");
+		SetShaderValuei(mat.shader, renderModeLoc, new int[] { 0 }, 1);
+
+		// Set up material properties color
+		mat.maps[(int)TexmapIndex.MAP_ALBEDO].color = albedo;		mat.maps[(int)TexmapIndex.MAP_NORMAL].color = new Color(128, 128, 255, 255);
+		mat.maps[(int)TexmapIndex.MAP_METALNESS].value = metalness;		mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].value = roughness;		mat.maps[(int)TexmapIndex.MAP_OCCLUSION].value = 1.0f;		mat.maps[(int)TexmapIndex.MAP_EMISSION].value = 0.5f;		mat.maps[(int)TexmapIndex.MAP_HEIGHT].value = 0.5f;
+
+		return mat;
+	}
+
+	public static Light CreateLight(LightType type, Vector3 pos, Vector3 targ, Color color, Shader shader)
+	{
+
+		Light light = new Light();
+
+		if (lightsCount < MAX_LIGHTS)
+		{
+			light.enabled = true;
+			light.type = type;
+			light.position = pos;
+			light.target = targ;
+			light.color = color;
+
+			string enabledName = $"lights[{lightsCount}].enabled\0";
+			string typeName = $"lights[{lightsCount}].type\0";
+			string posName = $"lights[{lightsCount}].position\0";
+			string targetName = $"lights[{lightsCount}].target\0";
+			string colorName = $"lights[{lightsCount}].color\0";
+
+			light.enabledLoc = GetShaderLocation(shader, enabledName);
+			light.typeLoc = GetShaderLocation(shader, typeName);
+			light.posLoc = GetShaderLocation(shader, posName);
+			light.targetLoc = GetShaderLocation(shader, targetName);
+			light.colorLoc = GetShaderLocation(shader, colorName);
+
+			UpdateLightValues(shader, light);
+			lightsCount++;
+		}
+		return light;
+	}
+
+	public static void UpdateLightValues(Shader shader, Light light)
+	{
+		// Send to shader light enabled state and type
+		SetShaderValuei(shader, light.enabledLoc, new int[] { light.enabled ? 1 : 0 }, 1);
+		SetShaderValuei(shader, light.typeLoc, new int[] { (int)light.type }, 1);
+
+		// Send to shader light position values
+		float[] position = { light.position.x, light.position.y, light.position.z };
+		SetShaderValue(shader, light.posLoc, position, 3);
+
+		// Send to shader light target position values
+		float[] target = { light.target.x, light.target.y, light.target.z };
+		SetShaderValue(shader, light.targetLoc, target, 3);
+
+		// Send to shader light color values
+		float[] diff = { light.color.r / 255, light.color.g / 255, light.color.b / 255, light.color.a / 255 };
+		SetShaderValue(shader, light.colorLoc, diff, 4);
 	}
 }
 
