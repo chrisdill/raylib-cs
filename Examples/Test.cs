@@ -19,8 +19,7 @@ namespace Examples
                 var name = Path.GetFileNameWithoutExtension(filePath);
 
                 Console.WriteLine("Running example " + filePath);
-
-                ChangeDirectory(filePath);
+                ChangeDirectory(Path.GetDirectoryName(filePath));
                 Type.GetType(name)?.GetMethod("Main")?.Invoke(null, args);
 
                 Console.WriteLine();
