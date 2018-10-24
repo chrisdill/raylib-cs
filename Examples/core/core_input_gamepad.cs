@@ -4,21 +4,43 @@ using static Raylib.Raylib;
 
 public partial class core_input_gamepad
 {
-    /*******************************************************************************************    *    *   raylib [core] example - Gamepad input    *    *   NOTE: This example requires a Gamepad connected to the system    *         raylib is configured to work with the following gamepads:     *                - Xbox 360 Controller (Xbox 360, Xbox One)    *                - PLAYSTATION(R)3 Controller     *         Check raylib.h for buttons configuration    *    *   This example has been created using raylib 1.6 (www.raylib.com)    *   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)    *    *   Copyright (c) 2013-2016 Ramon Santamaria (@raysan5)    *    ********************************************************************************************/
+    /*******************************************************************************************
+    *
+    *   raylib [core] example - Gamepad input
+    *
+    *   NOTE: This example requires a Gamepad connected to the system
+    *         raylib is configured to work with the following gamepads:
+    *                - Xbox 360 Controller (Xbox 360, Xbox One)
+    *                - PLAYSTATION(R)3 Controller
+    *         Check raylib.h for buttons configuration
+    *
+    *   This example has been created using raylib 1.6 (www.raylib.com)
+    *   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
+    *
+    *   Copyright (c) 2013-2016 Ramon Santamaria (@raysan5)
+    *
+    ********************************************************************************************/
 
 
     // NOTE: Gamepad name ID depends on drivers and OS
-    //public const string XBOX360_NAME_ID = "Microsoft;    //public const string PS3_NAME_ID = "PLAYSTATION(R)3;    public const string XBOX360_NAME_ID = "Xbox";    public const string PS3_NAME_ID = "PLAYSTATION(R)3";
-    public static int Main()    {
+    //public const string XBOX360_NAME_ID = "Microsoft;
+    //public const string PS3_NAME_ID = "PLAYSTATION(R)3;
+    public const string XBOX360_NAME_ID = "Xbox";
+    public const string PS3_NAME_ID = "PLAYSTATION(R)3";
+
+    public static int Main()
+    {
         // Initialization
         //--------------------------------------------------------------------------------------
-        int screenWidth = 800;        int screenHeight = 450;
+        int screenWidth = 800;
+        int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation  
+        SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - gamepad input");
 
-        Texture2D texPs3Pad = LoadTexture("resources/ps3.png");        Texture2D texXboxPad = LoadTexture("resources/xbox.png");
+        Texture2D texPs3Pad = LoadTexture("resources/ps3.png");
+        Texture2D texXboxPad = LoadTexture("resources/xbox.png");
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -134,7 +156,9 @@ public partial class core_input_gamepad
                     DrawRectangle(611, 48, 15, 70, GRAY);
                     DrawRectangle(169, 48, 15, (int)(((1.0f - GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_PS3_AXIS_L2)) / 2.0f) * 70), RED);
                     DrawRectangle(611, 48, 15, (int)(((1.0f - GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_PS3_AXIS_R2)) / 2.0f) * 70), RED);
-                }                    else                    {
+                }
+                    else
+                    {
                     DrawText("- GENERIC GAMEPAD -", 280, 180, 20, GRAY);
 
                     // TODO: Draw generic gamepad
@@ -163,10 +187,12 @@ public partial class core_input_gamepad
 
         // De-Initialization
         //--------------------------------------------------------------------------------------
-        UnloadTexture(texPs3Pad);        UnloadTexture(texXboxPad);
+        UnloadTexture(texPs3Pad);
+        UnloadTexture(texXboxPad);
 
         CloseWindow();        // Close window and OpenGL context
                               //--------------------------------------------------------------------------------------
 
-        return 0;    }
+        return 0;
+    }
 }

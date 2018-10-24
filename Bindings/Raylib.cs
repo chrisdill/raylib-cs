@@ -1,9 +1,5 @@
-/**********************************************************************************************
- * 
- * Raylib - A simple and easy-to-use library to learn videogames programming (www.raylib.com)
- * Original - https://github.com/raysan5/raylib/blob/master/src/raylib.h
- * 
-**********************************************************************************************/
+// Raylib - https://github.com/raysan5/raylib/blob/master/src/raylib.h
+
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -186,7 +182,7 @@ namespace Raylib
         NPT_9PATCH = 0,         // 3x3
         NPT_3PATCH_VERTICAL,    // 1x3
         NPT_3PATCH_HORIZONTAL   // 3x1
-    } 
+    }
 
     // enum extension for constants
     // Keyboard Function Keys
@@ -933,7 +929,7 @@ namespace Raylib
 
         #endregion
 
-        #region Raylib-cs Functions 
+        #region Raylib-cs Functions
 
         //------------------------------------------------------------------------------------
         // Window and Graphics Device Functions (Module: core)
@@ -1354,7 +1350,7 @@ namespace Raylib
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTouchPointsCount();
 
-        // Get gesture hold time in milliseconds    
+        // Get gesture hold time in milliseconds
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetGestureHoldDuration();
 
@@ -2396,7 +2392,7 @@ namespace Raylib
         // Set pitch for audio stream (1.0 is base level)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
-        
+
         #endregion
     }
 }
