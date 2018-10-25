@@ -54,8 +54,7 @@ public partial class core_random_values
 
                 DrawText("Every 2 seconds a new random value is generated:", 130, 100, 20, MAROON);
 
-                //DrawText(FormatText("%i", randValue), 360, 180, 80, LIGHTGRAY);
-                DrawText($"{randValue}", 360, 180, 80, LIGHTGRAY);
+                DrawText(string.Format("{0}", randValue), 360, 180, 80, LIGHTGRAY);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
