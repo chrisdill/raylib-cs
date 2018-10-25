@@ -642,14 +642,20 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct RayHitInfo
     {
-        public bool hit;
+        public bool hit
+        {
+            get { return Convert.ToBoolean(isHit); }
+            set { isHit = Convert.ToByte(hit);  }
+        }
+
+        public byte isHit;
         public float distance;
         public Vector3 position;
         public Vector3 normal;
 
         public RayHitInfo(bool hit, float distance, Vector3 position, Vector3 normal)
         {
-            this.hit = hit;
+            this.isHit = Convert.ToByte(hit);
             this.distance = distance;
             this.position = position;
             this.normal = normal;
