@@ -84,7 +84,7 @@ public partial class text_input_box
 
                 DrawText(name.ToString(), (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
 
-                DrawText(FormatText("INPUT CHARS: %i/%i", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
+                DrawText(string.Format("INPUT CHARS: {0}/{1}", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
 
                 if (mouseOnText)
                 {

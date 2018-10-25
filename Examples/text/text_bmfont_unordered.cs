@@ -49,9 +49,8 @@ public partial class text_bmfont_unordered
 			ClearBackground(RAYWHITE);
 
 			DrawText("Font name:       PixAntiqua", 40, 50, 20, GRAY);
-			//TODO: Uncomment this code when FormatText is fixed.
-			// DrawText(FormatText("Font base size:           %i", font.baseSize), 40, 80, 20, GRAY);
-			// DrawText(FormatText("Font chars number:     %i", font.charsCount), 40, 110, 20, GRAY);
+		    DrawText(string.Format("Font base size:           {0}", font.baseSize), 40, 80, 20, GRAY);
+			DrawText(string.Format("Font chars number:     {0}", font.charsCount), 40, 110, 20, GRAY);
 
 			DrawTextEx(font, msg, new Vector2(40, 180), font.baseSize, 0, MAROON);
 

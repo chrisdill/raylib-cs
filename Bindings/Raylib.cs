@@ -1835,17 +1835,11 @@ namespace Raylib
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing);
 
-        // Formatting of text with variables to 'embed'
-        [DllImport(nativeLibName, EntryPoint = "FormatText", CallingConvention = CallingConvention.Cdecl)]
-        private static extern string FormatTextInternal(string text, __arglist);
-        public static string FormatText(string text, params object[] args)
+        // extension providing SubText
+        public static string SubText(this string input, int position, int length)
         {
-            return FormatTextInternal(text, __arglist(args));
+            return input.Substring(position, Math.Min(length, input.Length));
         }
-
-        // Get a piece of a text string
-        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern string SubText(string text, int position, int length);
 
         // Get index position for a unicode character on font
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]

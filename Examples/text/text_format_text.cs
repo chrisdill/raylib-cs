@@ -44,14 +44,14 @@ public partial class text_format_text
             BeginDrawing();
 
                 ClearBackground(RAYWHITE);
+            
+                DrawText(string.Format("Score: {0:00000000}", score), 200, 80, 20, RED);
 
-                DrawText(FormatText("Score: %08i", score), 200, 80, 20, RED);
+                DrawText(string.Format("HiScore: {0:00000000}", hiscore), 200, 120, 20, GREEN);
 
-                DrawText(FormatText("HiScore: %08i", hiscore), 200, 120, 20, GREEN);
+                DrawText(string.Format("Lives: {0:00}", lives), 200, 160, 40, BLUE);
 
-                DrawText(FormatText("Lives: %02i", lives), 200, 160, 40, BLUE);
-
-                DrawText(FormatText("Elapsed Time: %02.02f ms", GetFrameTime()*1000), 200, 220, 20, BLACK);
+                DrawText(string.Format("Elapsed Time: {0:00.00} ms", GetFrameTime()*1000), 200, 220, 20, BLACK);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

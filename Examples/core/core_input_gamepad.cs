@@ -61,7 +61,7 @@ public partial class core_input_gamepad
 
             if (IsGamepadAvailable(GAMEPAD_PLAYER1))
             {
-                DrawText(FormatText("GP1: %s", GetGamepadName(GAMEPAD_PLAYER1)), 10, 10, 10, BLACK);
+                DrawText(string.Format("GP1: {0}", GetGamepadName(GAMEPAD_PLAYER1)), 10, 10, 10, BLACK);
 
                 if (IsGamepadName(GAMEPAD_PLAYER1, XBOX360_NAME_ID))
                 {
@@ -108,8 +108,8 @@ public partial class core_input_gamepad
                     DrawRectangle(170, 30, 15, (int)(((1.0f + GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_XBOX_AXIS_LT)) / 2.0f) * 70), RED);
                     DrawRectangle(604, 30, 15, (int)(((1.0f + GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_XBOX_AXIS_RT)) / 2.0f) * 70), RED);
 
-                    //DrawText(FormatText("Xbox axis LT: %02.02f", GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_XBOX_AXIS_LT)), 10, 40, 10, BLACK);
-                    //DrawText(FormatText("Xbox axis RT: %02.02f", GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_XBOX_AXIS_RT)), 10, 60, 10, BLACK);
+                    //DrawText(string.Format("Xbox axis LT: {0:00.00}", GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_XBOX_AXIS_LT)), 10, 40, 10, BLACK);
+                    //DrawText(string.Format("Xbox axis RT: {0:00.00}", GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_XBOX_AXIS_RT)), 10, 60, 10, BLACK);
                 }
                 else if (IsGamepadName(GAMEPAD_PLAYER1, PS3_NAME_ID))
                 {
@@ -157,21 +157,21 @@ public partial class core_input_gamepad
                     DrawRectangle(169, 48, 15, (int)(((1.0f - GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_PS3_AXIS_L2)) / 2.0f) * 70), RED);
                     DrawRectangle(611, 48, 15, (int)(((1.0f - GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_PS3_AXIS_R2)) / 2.0f) * 70), RED);
                 }
-                    else
-                    {
+                else
+                {
                     DrawText("- GENERIC GAMEPAD -", 280, 180, 20, GRAY);
 
                     // TODO: Draw generic gamepad
                 }
 
-                DrawText(FormatText("DETECTED AXIS [%i]:", GetGamepadAxisCount(GAMEPAD_PLAYER1)), 10, 50, 10, MAROON);
+                DrawText(string.Format("DETECTED AXIS [{0}]:", GetGamepadAxisCount(GAMEPAD_PLAYER1)), 10, 50, 10, MAROON);
 
                 for (int i = 0; i < GetGamepadAxisCount(GAMEPAD_PLAYER1); i++)
                 {
-                    DrawText(FormatText("AXIS %i: %.02f", i, GetGamepadAxisMovement(GAMEPAD_PLAYER1, i)), 20, 70 + 20 * i, 10, DARKGRAY);
+                    DrawText(string.Format("AXIS {0}: {0:0.02}", i, GetGamepadAxisMovement(GAMEPAD_PLAYER1, i)), 20, 70 + 20 * i, 10, DARKGRAY);
                 }
 
-                if (GetGamepadButtonPressed() != -1) DrawText(FormatText("DETECTED BUTTON: %i", GetGamepadButtonPressed()), 10, 430, 10, RED);
+                if (GetGamepadButtonPressed() != -1) DrawText(string.Format("DETECTED BUTTON: {0}", GetGamepadButtonPressed()), 10, 430, 10, RED);
                 else DrawText("DETECTED BUTTON: NONE", 10, 430, 10, GRAY);
             }
             else
