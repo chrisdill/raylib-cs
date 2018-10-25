@@ -8,6 +8,7 @@ namespace Raylib
     #region Raylib-cs Types
 
     // Vector2 type
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Vector2
     {
         public float x;
@@ -161,6 +162,7 @@ namespace Raylib
     }
 
     // Vector3 type
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Vector3
     {
         public float x;
@@ -283,6 +285,7 @@ namespace Raylib
     }
 
     // Vector4 type
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Vector4
     {
         public float x;

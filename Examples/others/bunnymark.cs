@@ -87,8 +87,7 @@ public partial class bunnymark
 
                 DrawRectangle(0, 0, screenWidth, 40, LIGHTGRAY);
                 DrawText("raylib bunnymark", 10, 10, 20, DARKGRAY);
-                // DrawText(FormatText("bunnies: %i", bunniesCount), 400, 10, 20, RED);
-                DrawText($"bunnies: {bunniesCount}", 400, 10, 20, RED);
+                DrawText(string.Format("bunnies: {0}", bunniesCount), 400, 10, 20, RED);
                 DrawFPS(260, 10);
 
             EndDrawing();

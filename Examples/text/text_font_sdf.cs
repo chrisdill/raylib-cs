@@ -111,7 +111,7 @@ public partial class text_font_sdf
                 else DrawText("default font", 315, 40, 30, GRAY);
 
                 DrawText("FONT SIZE: 16.0", GetScreenWidth() - 240, 20, 20, DARKGRAY);
-                DrawText(FormatText("RENDER SIZE: %02.02f", fontSize), GetScreenWidth() - 240, 50, 20, DARKGRAY);
+                DrawText(string.Format("RENDER SIZE: {0:00.00}", fontSize), GetScreenWidth() - 240, 50, 20, DARKGRAY);
                 DrawText("Use MOUSE WHEEL to SCALE TEXT!", GetScreenWidth() - 240, 90, 10, DARKGRAY);
 
                 DrawText("PRESS SPACE to USE SDF FONT VERSION!", 340, GetScreenHeight() - 30, 20, MAROON);

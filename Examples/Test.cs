@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using static Raylib.Raylib;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Examples
 {
@@ -32,12 +34,20 @@ namespace Examples
                 var filePath = Console.ReadLine();
                 var name = Path.GetFileNameWithoutExtension(filePath);
                 var dir = examples + filePath + ".cs";
-                
+              
                 // run example if it exists
                 if (File.Exists(dir))
                 {
                     ChangeDirectory(Path.GetDirectoryName(dir));
-                    Type.GetType(name)?.GetMethod("Main")?.Invoke(null, args);
+                    try
+                    {
+                        Type.GetType(name)?.GetMethod("Main")?.Invoke(null, args);
+                    }
+                    catch(TargetInvocationException e)
+                    {
+                        Console.WriteLine(e.InnerException.Message);
+                        Console.WriteLine(e.InnerException.StackTrace);      
+                    }
                     Console.WriteLine();
                 }
                 else

@@ -48,7 +48,7 @@ public partial class text_writing_anim
 
                 ClearBackground(RAYWHITE);
 
-                DrawText(SubText(message, 0, framesCounter/10), 210, 160, 20, MAROON);
+                DrawText(message.SubText(0, framesCounter/10), 210, 160, 20, MAROON);
 
                 DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, LIGHTGRAY);
                 DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, LIGHTGRAY);

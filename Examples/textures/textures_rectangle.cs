@@ -75,7 +75,7 @@ public partial class textures_rectangle
                 DrawRectangleLines(15 + (int)frameRec.x, 40 + (int)frameRec.y, (int)frameRec.width, (int)frameRec.height, RED);
 
                 DrawText("FRAME SPEED: ", 165, 210, 10, DARKGRAY);
-                DrawText(FormatText("%02i FPS", framesSpeed), 575, 210, 10, DARKGRAY);
+                DrawText(string.Format("{0:00} FPS", framesSpeed), 575, 210, 10, DARKGRAY);
                 DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, DARKGRAY);
 
                 for (int i = 0; i < MAX_FRAME_SPEED; i++)
