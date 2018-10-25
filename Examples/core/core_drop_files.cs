@@ -35,12 +35,14 @@ public partial class core_drop_files
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
-            // Update
-            //----------------------------------------------------------------------------------
-            if (IsFileDropped())
-            {
-                droppedFiles = GetDroppedFiles(ref count);
-            }
+			// Update
+			//----------------------------------------------------------------------------------
+			if (IsFileDropped())
+			{
+				droppedFiles = GetDroppedFiles();
+				count = droppedFiles.Length;
+			}
+            
             //----------------------------------------------------------------------------------
 
             // Draw
