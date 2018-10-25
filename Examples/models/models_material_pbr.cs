@@ -105,9 +105,9 @@ public partial class models_material_pbr
 
 				BeginMode3D(camera);
 
-				DrawModel(model, Vector3Zero(), 1.0f, WHITE);
+					DrawModel(model, Vector3Zero(), 1.0f, WHITE);
 
-				DrawGrid(10, 1.0f);
+					DrawGrid(10, 1.0f);
 
 				EndMode3D();
 
@@ -138,7 +138,6 @@ public partial class models_material_pbr
 
 		// Get required locations points for PBR material
 		// NOTE: Those location names must be available and used in the shader code
-
 		mat.shader.locs[(int)ShaderLocationIndex.LOC_MAP_ALBEDO] = GetShaderLocation(mat.shader, "albedo.sampler");
 		mat.shader.locs[(int)ShaderLocationIndex.LOC_MAP_METALNESS] = GetShaderLocation(mat.shader, "metalness.sampler");
 		mat.shader.locs[(int)ShaderLocationIndex.LOC_MAP_NORMAL] = GetShaderLocation(mat.shader, "normals.sampler");
@@ -152,7 +151,7 @@ public partial class models_material_pbr
 
 		// Set view matrix location
 		mat.shader.locs[(int)ShaderLocationIndex.LOC_MATRIX_MODEL] = GetShaderLocation(mat.shader, "matModel");
-		mat.shader.locs[(int)ShaderLocationIndex.LOC_MATRIX_VIEW] = GetShaderLocation(mat.shader, "view");
+		mat.shader.locs[(int)ShaderLocationIndex.LOC_MATRIX_VIEW] = GetShaderLocation(mat.shader, "view"); //TODO: figure out why this is the one run warning we get, and it may be all that's needed to fix lights.
 		mat.shader.locs[(int)ShaderLocationIndex.LOC_VECTOR_VIEW] = GetShaderLocation(mat.shader, "viewPos");
 
 		// Set PBR standard maps
