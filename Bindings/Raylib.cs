@@ -1,6 +1,7 @@
 // Raylib - https://github.com/raysan5/raylib/blob/master/src/raylib.h
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -1198,7 +1199,43 @@ namespace Raylib
 
         // Get dropped files names
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern string[] GetDroppedFiles(ref int count);
+		private static extern IntPtr GetDroppedFiles( ref int count);
+		// Get Dropped files Pointer translation
+		public static string[] GetDroppedFiles()
+		{
+			int count = 0;
+			IntPtr pointer = GetDroppedFiles(ref count);
+
+			string[] s = new string[count];
+			char[] word;
+			int i, j, size;
+
+			//TODO: this is a mess, find a better way
+			unsafe
+			{
+				byte** str = (byte**)pointer.ToPointer();
+
+				i = 0;
+				while (i < count)
+				{
+					j = 0;
+					while (str[i][j] != 0)
+						j++;
+					size = j;
+					word = new char[size];
+					j = 0;
+					while (str[i][j] != 0)
+					{
+						word[j] = (char)str[i][j];
+						j++;
+					}
+					s[i] = new string(word);
+
+					i++;
+				}
+			}
+			return s;
+		}
 
         // Clear dropped files paths buffer
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
