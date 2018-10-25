@@ -17,8 +17,8 @@ public partial class textures_image_processing
     *
     ********************************************************************************************/
 
-
-
+    
+    
     public const int NUM_PROCESSES = 8;
 
     enum ImageProcess
@@ -107,7 +107,7 @@ public partial class textures_image_processing
                     default: break;
                 }
 
-                Color[] pixels = GetImageData(image);        // Get pixel data from image (RGBA 32bit)
+                var pixels = GetImageData(image);        // Get pixel data from image (RGBA 32bit)
                 UpdateTexture(texture, pixels);             // Update texture with new image data
                 // free(pixels);                               // Unload pixels data from RAM
 
