@@ -35,11 +35,11 @@ public partial class text_font_sdf
         fontDefault.charsCount = 95;
         // Parameters > font size: 16, no chars array provided (0), chars count: 95 (autogenerate chars array)
         // TODO: fix conversion
-        //fontDefault.chars = LoadFontData("resources/AnonymousPro-Bold.ttf", 16, null, 95, false);
+        fontDefault.chars = LoadFontData("resources/AnonymousPro-Bold.ttf", 16, null, 95, false);
         // Parameters > chars count: 95, font size: 16, chars padding in image: 4 px, pack method: 0 (default)
-        //Image atlas = GenImageFontAtlas(fontDefault.chars, 95, 16, 4, 0);
-        //fontDefault.texture = LoadTextureFromImage(atlas);
-        //UnloadImage(atlas);
+        Image atlas = GenImageFontAtlas(fontDefault.chars, 95, 16, 4, 0);
+        fontDefault.texture = LoadTextureFromImage(atlas);
+        UnloadImage(atlas);
 
         // SDF font generation from TTF font
         // NOTE: SDF chars data is generated with LoadFontData(), it's just a bool option
@@ -47,13 +47,11 @@ public partial class text_font_sdf
         fontSDF.baseSize = 16;
         fontSDF.charsCount = 95;
         // Parameters > font size: 16, no chars array provided (0), chars count: 0 (defaults to 95)
-        // TODO: fix conversion
-        //fontSDF.chars = LoadFontData("resources/AnonymousPro-Bold.ttf", 16, null, 0, true);
-        // Parameters > chars count: 95, font size: 16, chars padding in image: 0 px, pack method: 1 (Skyline algorythm)
-        // TODO: fix conversion
-        //atlas = GenImageFontAtlas(fontSDF.chars, 95, 16, 0, 1);
-        //fontSDF.texture = LoadTextureFromImage(atlas);
-        //UnloadImage(atlas);
+        fontSDF.chars = LoadFontData("resources/AnonymousPro-Bold.ttf", 16, null, 0, true);
+        // Parameters > chars count: 95, font size: 16, chars padding in image: 0 px, pack method: 1 (Skyline algorythm)        
+        atlas = GenImageFontAtlas(fontSDF.chars, 95, 16, 0, 1);
+        fontSDF.texture = LoadTextureFromImage(atlas);
+        UnloadImage(atlas);
 
         // Load SDF required shader (we use default vertex shader)
         Shader shader = LoadShader(null, "resources/shaders/sdf.fs");

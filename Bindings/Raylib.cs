@@ -695,7 +695,7 @@ namespace Raylib
         public int format;
 
         public uint source;
-        public uint[] buffers = new uint[2];
+        public IntPtr buffers;
     }
 
     // Head-Mounted-Display device parameters
@@ -709,10 +709,9 @@ namespace Raylib
         public float vScreenCenter;
         public float eyeToScreenDistance;
         public float lensSeparationDistance;
-
         public float interpupillaryDistance;
-        public float[] lensDistortionValues = new float[4];
-        public float[] chromaAbCorrection = new float[4];
+        public IntPtr lensDistortionValues;
+        public IntPtr chromaAbCorrection;
     }
 
     #endregion
@@ -1582,7 +1581,7 @@ namespace Raylib
 
         // Get pixel data from image as a Color struct array
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color[] GetImageData(Image image);
+        public static extern IntPtr GetImageData(Image image);
 
         // Get pixel data from image as Vector4 array (float normalized)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1598,7 +1597,7 @@ namespace Raylib
 
         // Update GPU texture with new data
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateTexture(Texture2D texture, Color[] pixels);
+        public static extern void UpdateTexture(Texture2D texture, IntPtr pixels);
 
         // Image manipulation functions
         // Create an image duplicate (useful for transformations)
@@ -1803,11 +1802,11 @@ namespace Raylib
 
         // Load font data for further use
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern CharInfo[] LoadFontData(string fileName, int fontSize, int[] fontChars, int charsCount, bool sdf);
+        public static extern IntPtr LoadFontData(string fileName, int fontSize, int[] fontChars, int charsCount, bool sdf);
 
         // Generate image font atlas using chars info
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image GenImageFontAtlas(CharInfo[] chars, int fontSize, int charsCount, int padding, int packMethod);
+        public static extern Image GenImageFontAtlas(IntPtr chars, int fontSize, int charsCount, int padding, int packMethod);
 
         // Unload Font from GPU memory (VRAM)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]

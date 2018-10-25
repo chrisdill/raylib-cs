@@ -31,6 +31,7 @@ public partial class core_vr_simulator
 
         // Init VR simulator (Oculus Rift CV1 parameters)
         // fails?
+        var a = GetVrDeviceInfo((int)HMD_OCULUS_RIFT_CV1);
         InitVrSimulator(GetVrDeviceInfo((int)HMD_OCULUS_RIFT_CV1));
 
         // Define the camera to look into our 3d world
