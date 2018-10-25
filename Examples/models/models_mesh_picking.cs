@@ -32,20 +32,20 @@ public partial class models_mesh_picking
 
         // Define the camera to look into our 3d world
         Camera3D camera;
-        camera.position = new Vector3( 20.0f, 20.0f, 20.0f );  // Camera3D position
-        camera.target = new Vector3( 0.0f, 8.0f, 0.0f );      // Camera3D looking at point
-        camera.up = new Vector3( 0.0f, 1.6f, 0.0f );          // Camera3D up vector (rotation towards target)
-        camera.fovy = 45.0f;                                // Camera3D field-of-view Y
-        camera.type = CAMERA_PERSPECTIVE;                   // Camera3D mode type
+        camera.position = new Vector3( 20.0f, 20.0f, 20.0f );	// Camera3D position
+        camera.target = new Vector3( 0.0f, 8.0f, 0.0f );		// Camera3D looking at point
+        camera.up = new Vector3( 0.0f, 1.6f, 0.0f );			// Camera3D up vector (rotation towards target)
+        camera.fovy = 45.0f;									// Camera3D field-of-view Y
+        camera.type = CAMERA_PERSPECTIVE;						// Camera3D mode type
 
         Ray ray;        // Picking ray
 
-        Model tower = LoadModel("resources/models/turret.obj");                 // Load OBJ model
-        Texture2D texture = LoadTexture("resources/models/turret_diffuse.png"); // Load model texture
+        Model tower = LoadModel("resources/models/turret.obj");						// Load OBJ model
+        Texture2D texture = LoadTexture("resources/models/turret_diffuse.png");		// Load model texture
         tower.material.maps[(int)MAP_ALBEDO].texture = texture;                     // Set model diffuse texture
 
-        Vector3 towerPos = new Vector3( 0.0f, 0.0f, 0.0f );                    // Set model position
-        BoundingBox towerBBox = MeshBoundingBox(tower.mesh);        // Get mesh bounding box
+        Vector3 towerPos = new Vector3( 0.0f, 0.0f, 0.0f );		// Set model position
+        BoundingBox towerBBox = MeshBoundingBox(tower.mesh);	// Get mesh bounding box
         bool hitMeshBBox = false;
         bool hitTriangle = false;
 
@@ -59,13 +59,16 @@ public partial class models_mesh_picking
         SetCameraMode(camera, (int)CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-        //--------------------------------------------------------------------------------------
-        // Main game loop
-        while (!WindowShouldClose())        // Detect window close button or ESC key
+
+		//----------------------------------------------------------------------------------
+		// Main game loop
+		//--------------------------------------------------------------------------------------
+		while (!WindowShouldClose())        // Detect window close button or ESC key
         {
-            // Update
-            //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera);          // Update camera
+			//----------------------------------------------------------------------------------
+			// Update
+			//----------------------------------------------------------------------------------
+			UpdateCamera(ref camera);          // Update camera
 
             // Display information about closest hit
             RayHitInfo nearestHit = new RayHitInfo();
@@ -121,7 +124,6 @@ public partial class models_mesh_picking
 
             } hitMeshBBox = false;
             //----------------------------------------------------------------------------------
-
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();

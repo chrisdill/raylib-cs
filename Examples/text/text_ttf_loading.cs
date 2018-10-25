@@ -44,8 +44,7 @@ public partial class text_ttf_loading
         int currentFontFilter = 0;      // FILTER_POINT
 
         // NOTE: Drag and drop support only available for desktop platforms: Windows, Linux, OSX
-        int count = 0;
-        string[] droppedFiles;
+		string[] droppedFiles;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -83,12 +82,13 @@ public partial class text_ttf_loading
             // Load a dropped TTF file dynamically (at current fontSize)
             if (IsFileDropped())
             {
-                droppedFiles = GetDroppedFiles(ref count);
+                droppedFiles = GetDroppedFiles();
+				
 
-                if (count == 1) // Only support one ttf file dropped
+                if (droppedFiles.Length == 1) // Only support one ttf file dropped
                 {
                     UnloadFont(font);
-                    font = LoadFontEx(droppedFiles[0], (int)fontSize, 0, null);
+                    font = LoadFontEx(droppedFiles[0].ToString(), (int)fontSize, 0, null);
                     ClearDroppedFiles();
                 }
             }
@@ -108,11 +108,12 @@ public partial class text_ttf_loading
                 DrawTextEx(font, msg, fontPosition, fontSize, 0, BLACK);
 
                 // TODO: It seems texSize measurement is not accurate due to chars offsets...
+				//TODO also fix the format text parts
                 //DrawRectangleLines(fontPosition.x, fontPosition.y, textSize.x, textSize.y, RED);
 
                 DrawRectangle(0, screenHeight - 80, screenWidth, 80, LIGHTGRAY);
-                DrawText(FormatText("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, DARKGRAY);
-                DrawText(FormatText("Text size: [%02.02f, %02.02f]", textSize.x, textSize.y), 20, screenHeight - 30, 10, DARKGRAY);
+               // DrawText(FormatText("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, DARKGRAY);
+               // DrawText(FormatText("Text size: [%02.02f, %02.02f]", textSize.x, textSize.y), 20, screenHeight - 30, 10, DARKGRAY);
                 DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, GRAY);
 
                 if (currentFontFilter == 0) DrawText("POINT", 570, 400, 20, BLACK);
