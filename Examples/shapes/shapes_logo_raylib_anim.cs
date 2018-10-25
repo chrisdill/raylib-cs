@@ -145,9 +145,7 @@ public partial class shapes_logo_raylib_anim
 
                     DrawRectangle(screenWidth/2 - 112, screenHeight/2 - 112, 224, 224, Fade(RAYWHITE, alpha));
 
-                    // DrawText(SubText("raylib", 0, lettersCount), screenWidth/2 - 44, screenHeight/2 + 48, 50, Fade(BLACK, alpha));
-                    var text = "raylib";
-                    DrawText(text.Substring(0, Math.Min(text.Length, lettersCount)), screenWidth/2 - 44, screenHeight/2 + 48, 50, Fade(BLACK, alpha));
+                    DrawText("raylib".SubText(0, lettersCount), screenWidth/2 - 44, screenHeight/2 + 48, 50, Fade(BLACK, alpha));
                 }
                 else if (state == 4)
                 {

@@ -164,25 +164,26 @@ public partial class models_mesh_picking
                 EndMode3D();
 
                 // Draw some debug GUI text
-                DrawText(FormatText("Hit Object: %s", hitObjectName), 10, 50, 10, BLACK);
+                DrawText(string.Format("Hit Object: {0}", hitObjectName), 10, 50, 10, BLACK);
 
                 if (nearestHit.hit)
                 {
                     int ypos = 70;
 
-                    DrawText(FormatText("Distance: %3.2f", nearestHit.distance), 10, ypos, 10, BLACK);
+                    var x = string.Format("Distance: {0:000.00}", nearestHit.distance);
+                    DrawText(string.Format("Distance: {0:000.00}", nearestHit.distance), 10, ypos, 10, BLACK);
 
-                    DrawText(FormatText("Hit Pos: %3.2f %3.2f %3.2f",
+                    DrawText(string.Format("Hit Pos: {0:000.00} {1:000.00} {2:000.00}",
                                         nearestHit.position.x,
                                         nearestHit.position.y,
                                         nearestHit.position.z), 10, ypos + 15, 10, BLACK);
 
-                    DrawText(FormatText("Hit Norm: %3.2f %3.2f %3.2f",
+                    DrawText(string.Format("Hit Norm: {0:000.00} {1:000.00} {2:000.00}",
                                         nearestHit.normal.x,
                                         nearestHit.normal.y,
                                         nearestHit.normal.z), 10, ypos + 30, 10, BLACK);
 
-                    if (hitTriangle) DrawText(FormatText("Barycenter: %3.2f %3.2f %3.2f",  bary.x, bary.y, bary.z), 10, ypos + 45, 10, BLACK);
+                    if (hitTriangle) DrawText(string.Format("Barycenter:{0:000.00} {1:000.00} {2:000.00}",  bary.x, bary.y, bary.z), 10, ypos + 45, 10, BLACK);
                 }
 
                 DrawText("Use Mouse to Move Camera", 10, 430, 10, GRAY);

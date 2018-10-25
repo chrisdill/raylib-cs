@@ -200,7 +200,7 @@ public partial class models_yaw_pitch_roll
 
         DrawTexturePro(angleGauge, srcRec, dstRec, origin, angle, color);
 
-        DrawText(FormatText("%5.1f", angle), x - MeasureText(FormatText("%5.1f", angle), textSize) / 2, y + 10, textSize, DARKGRAY);
+        DrawText(string.Format("{0:00000.0}", angle), x - MeasureText(string.Format("0:00000.0", angle), textSize) / 2, y + 10, textSize, DARKGRAY);
         DrawText(title, x - MeasureText(title, textSize) / 2, y + 60, textSize, DARKGRAY);
     }
 }
