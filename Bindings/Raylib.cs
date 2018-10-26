@@ -711,8 +711,8 @@ namespace Raylib
         public float eyeToScreenDistance;
         public float lensSeparationDistance;
         public float interpupillaryDistance;
-        public IntPtr lensDistortionValues;
-        public IntPtr chromaAbCorrection;
+        public float[] lensDistortionValues = new float[4];
+        public float[] chromaAbCorrection = new float[4];
     }
 
     #endregion
