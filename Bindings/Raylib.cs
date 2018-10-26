@@ -712,8 +712,8 @@ namespace Raylib
         public float eyeToScreenDistance;
         public float lensSeparationDistance;
         public float interpupillaryDistance;
-        public float[] lensDistortionValues = new float[4];
-        public float[] chromaAbCorrection = new float[4];
+        public float[] lensDistortionValues;
+        public float[] chromaAbCorrection;
     }
 
     #endregion
@@ -2210,7 +2210,10 @@ namespace Raylib
 		{
 			VrDeviceInfo hmd = new VrDeviceInfo(); // Current VR device info
 
-			switch (vrDeviceType)
+            hmd.lensDistortionValues = new float[4];
+            hmd.chromaAbCorrection = new float[4];
+
+            switch (vrDeviceType)
 			{
 				case VrDeviceType.HMD_DEFAULT_DEVICE:
 				case VrDeviceType.HMD_OCULUS_RIFT_CV1:
