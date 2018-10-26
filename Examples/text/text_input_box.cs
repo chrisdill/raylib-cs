@@ -27,7 +27,7 @@ public partial class text_input_box
 
         InitWindow(screenWidth, screenHeight, "raylib [text] example - input box");
 
-        StringBuilder name = new StringBuilder(' ', MAX_INPUT_CHARS + 1);      // NOTE: One extra space required for line ending char '\0'
+        StringBuilder name = new StringBuilder(" ", MAX_INPUT_CHARS + 1);      // NOTE: One extra space required for line ending char '\0'
         int letterCount = 0;
 
         Rectangle textBox = new Rectangle( screenWidth/2 - 100, 180, 225, 50 );

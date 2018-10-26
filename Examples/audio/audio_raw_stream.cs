@@ -17,7 +17,7 @@ public partial class audio_raw_stream
     *
     ********************************************************************************************/
 
-
+ 
 
     public const int MAX_SAMPLES = 22050;
     public const int MAX_SAMPLES_PER_UPDATE = 4096;
@@ -105,7 +105,6 @@ public partial class audio_raw_stream
 
         // De-Initialization
         //--------------------------------------------------------------------------------------
-        // free(data);                 // Unload sine wave data
 
         CloseAudioStream(stream);   // Close raw audio stream and delete buffers from RAM
 
