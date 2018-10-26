@@ -29,10 +29,8 @@ public partial class core_vr_simulator
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
 
-        // Init VR simulator (Oculus Rift CV1 parameters)
-        // fails?
-        var a = GetVrDeviceInfo((int)HMD_OCULUS_RIFT_CV1);
-        InitVrSimulator(GetVrDeviceInfo((int)HMD_OCULUS_RIFT_CV1));
+		// Init VR simulator (Oculus Rift CV1 parameters)
+        InitVrSimulator(GetVrDeviceInfo(HMD_OCULUS_RIFT_CV1));
 
         // Define the camera to look into our 3d world
         Camera3D camera;
