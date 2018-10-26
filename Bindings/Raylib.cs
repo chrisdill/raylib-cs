@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Raylib
 {
@@ -687,7 +688,7 @@ namespace Raylib
     // Audio stream type
     // NOTE: Useful to create custom audio streams not bound to a specific file
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public class AudioStream
+    public struct AudioStream
     {
         public uint sampleRate;
         public uint sampleSize;
@@ -701,7 +702,7 @@ namespace Raylib
 
     // Head-Mounted-Display device parameters
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public class VrDeviceInfo
+    public struct VrDeviceInfo
     {
         public int hResolution;
         public int vResolution;
@@ -717,6 +718,7 @@ namespace Raylib
 
     #endregion
 
+    [SuppressUnmanagedCodeSecurity]
     public static partial class Raylib
     {
         #region Raylib-cs Variables
@@ -2391,7 +2393,7 @@ namespace Raylib
 
         // Update audio stream buffers with data
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateAudioStream(AudioStream stream, byte[] data, int samplesCount);
+        public static extern void UpdateAudioStream(AudioStream stream, short[] data, int samplesCount);
 
         // Close audio stream and free memory
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
