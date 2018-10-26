@@ -27,7 +27,7 @@ public partial class text_input_box
 
         InitWindow(screenWidth, screenHeight, "raylib [text] example - input box");
 
-        StringBuilder name = new StringBuilder(" ", MAX_INPUT_CHARS + 1);      // NOTE: One extra space required for line ending char '\0'
+        char[] name = new char[MAX_INPUT_CHARS];      // NOTE: One extra space required for line ending char '\0'
         int letterCount = 0;
 
         Rectangle textBox = new Rectangle( screenWidth/2 - 100, 180, 225, 50 );
@@ -60,9 +60,9 @@ public partial class text_input_box
                 if (IsKeyPressed(KEY_BACKSPACE))
                 {
                     letterCount--;
-                    name[letterCount] = '\0';
-
                     if (letterCount < 0) letterCount = 0;
+
+                    name[letterCount] = '\0';
                 }
             }
 
@@ -82,7 +82,7 @@ public partial class text_input_box
                 if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
                 else DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, DARKGRAY);
 
-                DrawText(name.ToString(), (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
+                DrawText(new string(name), (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
 
                 DrawText(string.Format("INPUT CHARS: {0}/{1}", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
 
@@ -91,7 +91,7 @@ public partial class text_input_box
                     if (letterCount < MAX_INPUT_CHARS)
                     {
                         // Draw blinking underscore char
-                        if (((framesCounter/20)%2) == 0) DrawText("_", (int)textBox.x + 8 + MeasureText(name.ToString(), 40), (int)textBox.y + 12, 40, MAROON);
+                        if (((framesCounter/20)%2) == 0) DrawText("_", (int)textBox.x + 8 + MeasureText(new string(name), 40), (int)textBox.y + 12, 40, MAROON);
                     }
                     else DrawText("Press BACKSPACE to delete chars...", 230, 300, 20, GRAY);
                 }
