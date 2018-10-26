@@ -711,8 +711,8 @@ namespace Raylib
         public float eyeToScreenDistance;
         public float lensSeparationDistance;
         public float interpupillaryDistance;
-        public IntPtr lensDistortionValues;
-        public IntPtr chromaAbCorrection;
+        public float[] lensDistortionValues = new float[4];
+        public float[] chromaAbCorrection = new float[4];
     }
 
     #endregion
@@ -2200,9 +2200,89 @@ namespace Raylib
         public static extern void EndBlendMode();
 
         // VR control functions
+		// TODO: fix this, it's not using the original raylib dll function
         // Get VR device information for some standard devices
-        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);
+        //[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        //public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);
+		public static VrDeviceInfo GetVrDeviceInfo(VrDeviceType vrDeviceType)
+		{
+			VrDeviceInfo hmd = new VrDeviceInfo(); // Current VR device info
+
+			switch (vrDeviceType)
+			{
+				case VrDeviceType.HMD_DEFAULT_DEVICE:
+				case VrDeviceType.HMD_OCULUS_RIFT_CV1:
+					{
+						// Oculus Rift CV1 parameters
+						// NOTE: CV1 represents a complete HMD redesign compared to previous versions,
+						// new Fresnel-hybrid-asymmetric lenses have been added and, consequently,
+						// previous parameters (DK2) and distortion shader (DK2) doesn't work any more.
+						// I just defined a set of parameters for simulator that approximate to CV1 stereo rendering
+						// but result is not the same obtained with Oculus PC SDK.
+						hmd.hResolution = 2160;                 // HMD horizontal resolution in pixels
+						hmd.vResolution = 1200;                 // HMD vertical resolution in pixels
+						hmd.hScreenSize = 0.133793f;            // HMD horizontal size in meters
+						hmd.vScreenSize = 0.0669f;              // HMD vertical size in meters
+						hmd.vScreenCenter = 0.04678f;           // HMD screen center in meters
+						hmd.eyeToScreenDistance = 0.041f;       // HMD distance between eye and display in meters
+						hmd.lensSeparationDistance = 0.07f;     // HMD lens separation distance in meters
+						hmd.interpupillaryDistance = 0.07f;     // HMD IPD (distance between pupils) in meters
+						hmd.lensDistortionValues[0] = 1.0f;     // HMD lens distortion constant parameter 0
+						hmd.lensDistortionValues[1] = 0.22f;    // HMD lens distortion constant parameter 1
+						hmd.lensDistortionValues[2] = 0.24f;    // HMD lens distortion constant parameter 2
+						hmd.lensDistortionValues[3] = 0.0f;     // HMD lens distortion constant parameter 3
+						hmd.chromaAbCorrection[0] = 0.996f;     // HMD chromatic aberration correction parameter 0
+						hmd.chromaAbCorrection[1] = -0.004f;    // HMD chromatic aberration correction parameter 1
+						hmd.chromaAbCorrection[2] = 1.014f;     // HMD chromatic aberration correction parameter 2
+						hmd.chromaAbCorrection[3] = 0.0f;       // HMD chromatic aberration correction parameter 3
+
+						TraceLog((int)LogType.LOG_INFO, "Initializing VR Simulator (Oculus Rift CV1)");
+					}
+					break;
+				case VrDeviceType.HMD_OCULUS_RIFT_DK2:
+					{
+						// Oculus Rift DK2 parameters
+						hmd.hResolution = 1280;                 // HMD horizontal resolution in pixels
+						hmd.vResolution = 800;                  // HMD vertical resolution in pixels
+						hmd.hScreenSize = 0.14976f;             // HMD horizontal size in meters
+						hmd.vScreenSize = 0.09356f;             // HMD vertical size in meters
+						hmd.vScreenCenter = 0.04678f;           // HMD screen center in meters
+						hmd.eyeToScreenDistance = 0.041f;       // HMD distance between eye and display in meters
+						hmd.lensSeparationDistance = 0.0635f;   // HMD lens separation distance in meters
+						hmd.interpupillaryDistance = 0.064f;    // HMD IPD (distance between pupils) in meters
+						hmd.lensDistortionValues[0] = 1.0f;     // HMD lens distortion constant parameter 0
+						hmd.lensDistortionValues[1] = 0.22f;    // HMD lens distortion constant parameter 1
+						hmd.lensDistortionValues[2] = 0.24f;    // HMD lens distortion constant parameter 2
+						hmd.lensDistortionValues[3] = 0.0f;     // HMD lens distortion constant parameter 3
+						hmd.chromaAbCorrection[0] = 0.996f;     // HMD chromatic aberration correction parameter 0
+						hmd.chromaAbCorrection[1] = -0.004f;    // HMD chromatic aberration correction parameter 1
+						hmd.chromaAbCorrection[2] = 1.014f;     // HMD chromatic aberration correction parameter 2
+						hmd.chromaAbCorrection[3] = 0.0f;       // HMD chromatic aberration correction parameter 3
+
+						TraceLog((int)LogType.LOG_INFO, "Initializing VR Simulator (Oculus Rift DK2)");
+					}
+					break;
+				case VrDeviceType.HMD_OCULUS_GO:
+					{
+						// TODO: Provide device display and lens parameters
+						break;
+					}
+				case VrDeviceType.HMD_VALVE_HTC_VIVE:
+					{
+						// TODO: Provide device display and lens parameters
+						break;
+					}
+				case VrDeviceType.HMD_SONY_PSVR:
+					{
+						// TODO: Provide device display and lens parameters
+						break;
+					}
+				default: break;
+			}
+
+			return hmd;
+		}
+
 
         // Init VR simulator for selected device parameters
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
