@@ -1,10 +1,7 @@
 // Raylib - https://github.com/raysan5/raylib/blob/master/src/raylib.h
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Runtime.InteropServices;
-using System.Security;
 
 namespace Raylib
 {
@@ -371,10 +368,10 @@ namespace Raylib
 
         public Color(int r, int g, int b, int a)
         {
-            this.r = (byte)r;
-            this.g = (byte)g;
-            this.b = (byte)b;
-            this.a = (byte)a;
+            this.r = Convert.ToByte(r);
+            this.g = Convert.ToByte(g);
+            this.b = Convert.ToByte(b);
+            this.a = Convert.ToByte(a);
         }
 
         // extension to access colours from struct
@@ -569,7 +566,7 @@ namespace Raylib
         // public IntPtr locs;
         // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.I1, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
         // [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
-        //[MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_I4)]
+        // [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_I4)]
         // public int[] locs;
         public fixed int locs[Raylib.MAX_SHADER_LOCATIONS];
     }
@@ -644,20 +641,21 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct RayHitInfo
     {
-        public bool hit
-        {
-            get { return Convert.ToBoolean(isHit); }
-            set { isHit = Convert.ToByte(hit);  }
-        }
-
-        public byte isHit;
+        public byte bHit;
         public float distance;
         public Vector3 position;
         public Vector3 normal;
 
+        // convert c bool(stored as byte) to bool
+        public bool hit
+        {
+            get { return Convert.ToBoolean(bHit); }
+            set { bHit = Convert.ToByte(hit); }
+        }
+
         public RayHitInfo(bool hit, float distance, Vector3 position, Vector3 normal)
         {
-            this.isHit = Convert.ToByte(hit);
+            this.bHit = Convert.ToByte(hit);
             this.distance = distance;
             this.position = position;
             this.normal = normal;
@@ -702,7 +700,7 @@ namespace Raylib
 
     // Head-Mounted-Display device parameters
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct VrDeviceInfo
+    public unsafe struct VrDeviceInfo
     {
         public int hResolution;
         public int vResolution;
@@ -712,13 +710,15 @@ namespace Raylib
         public float eyeToScreenDistance;
         public float lensSeparationDistance;
         public float interpupillaryDistance;
-        public float[] lensDistortionValues;
-        public float[] chromaAbCorrection;
+        public fixed float lensDistortionValues[4];
+        public fixed float chromaAbCorrection[4];
+        //public float[] lensDistortionValues;
+        //public float[] chromaAbCorrection;
     }
 
     #endregion
 
-    [SuppressUnmanagedCodeSecurity]
+    //[SuppressUnmanagedCodeSecurity]
     public static partial class Raylib
     {
         #region Raylib-cs Variables
@@ -2202,92 +2202,9 @@ namespace Raylib
         public static extern void EndBlendMode();
 
         // VR control functions
-		// TODO: fix this, it's not using the original raylib dll function
         // Get VR device information for some standard devices
-        //[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        //public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);
-		public static VrDeviceInfo GetVrDeviceInfo(VrDeviceType vrDeviceType)
-		{
-			VrDeviceInfo hmd = new VrDeviceInfo(); // Current VR device info
-
-            hmd.lensDistortionValues = new float[4];
-            hmd.chromaAbCorrection = new float[4];
-
-            switch (vrDeviceType)
-			{
-				case VrDeviceType.HMD_DEFAULT_DEVICE:
-				case VrDeviceType.HMD_OCULUS_RIFT_CV1:
-					{
-						// Oculus Rift CV1 parameters
-						// NOTE: CV1 represents a complete HMD redesign compared to previous versions,
-						// new Fresnel-hybrid-asymmetric lenses have been added and, consequently,
-						// previous parameters (DK2) and distortion shader (DK2) doesn't work any more.
-						// I just defined a set of parameters for simulator that approximate to CV1 stereo rendering
-						// but result is not the same obtained with Oculus PC SDK.
-						hmd.hResolution = 2160;                 // HMD horizontal resolution in pixels
-						hmd.vResolution = 1200;                 // HMD vertical resolution in pixels
-						hmd.hScreenSize = 0.133793f;            // HMD horizontal size in meters
-						hmd.vScreenSize = 0.0669f;              // HMD vertical size in meters
-						hmd.vScreenCenter = 0.04678f;           // HMD screen center in meters
-						hmd.eyeToScreenDistance = 0.041f;       // HMD distance between eye and display in meters
-						hmd.lensSeparationDistance = 0.07f;     // HMD lens separation distance in meters
-						hmd.interpupillaryDistance = 0.07f;     // HMD IPD (distance between pupils) in meters
-						hmd.lensDistortionValues[0] = 1.0f;     // HMD lens distortion constant parameter 0
-						hmd.lensDistortionValues[1] = 0.22f;    // HMD lens distortion constant parameter 1
-						hmd.lensDistortionValues[2] = 0.24f;    // HMD lens distortion constant parameter 2
-						hmd.lensDistortionValues[3] = 0.0f;     // HMD lens distortion constant parameter 3
-						hmd.chromaAbCorrection[0] = 0.996f;     // HMD chromatic aberration correction parameter 0
-						hmd.chromaAbCorrection[1] = -0.004f;    // HMD chromatic aberration correction parameter 1
-						hmd.chromaAbCorrection[2] = 1.014f;     // HMD chromatic aberration correction parameter 2
-						hmd.chromaAbCorrection[3] = 0.0f;       // HMD chromatic aberration correction parameter 3
-
-						TraceLog((int)LogType.LOG_INFO, "Initializing VR Simulator (Oculus Rift CV1)");
-					}
-					break;
-				case VrDeviceType.HMD_OCULUS_RIFT_DK2:
-					{
-						// Oculus Rift DK2 parameters
-						hmd.hResolution = 1280;                 // HMD horizontal resolution in pixels
-						hmd.vResolution = 800;                  // HMD vertical resolution in pixels
-						hmd.hScreenSize = 0.14976f;             // HMD horizontal size in meters
-						hmd.vScreenSize = 0.09356f;             // HMD vertical size in meters
-						hmd.vScreenCenter = 0.04678f;           // HMD screen center in meters
-						hmd.eyeToScreenDistance = 0.041f;       // HMD distance between eye and display in meters
-						hmd.lensSeparationDistance = 0.0635f;   // HMD lens separation distance in meters
-						hmd.interpupillaryDistance = 0.064f;    // HMD IPD (distance between pupils) in meters
-						hmd.lensDistortionValues[0] = 1.0f;     // HMD lens distortion constant parameter 0
-						hmd.lensDistortionValues[1] = 0.22f;    // HMD lens distortion constant parameter 1
-						hmd.lensDistortionValues[2] = 0.24f;    // HMD lens distortion constant parameter 2
-						hmd.lensDistortionValues[3] = 0.0f;     // HMD lens distortion constant parameter 3
-						hmd.chromaAbCorrection[0] = 0.996f;     // HMD chromatic aberration correction parameter 0
-						hmd.chromaAbCorrection[1] = -0.004f;    // HMD chromatic aberration correction parameter 1
-						hmd.chromaAbCorrection[2] = 1.014f;     // HMD chromatic aberration correction parameter 2
-						hmd.chromaAbCorrection[3] = 0.0f;       // HMD chromatic aberration correction parameter 3
-
-						TraceLog((int)LogType.LOG_INFO, "Initializing VR Simulator (Oculus Rift DK2)");
-					}
-					break;
-				case VrDeviceType.HMD_OCULUS_GO:
-					{
-						// TODO: Provide device display and lens parameters
-						break;
-					}
-				case VrDeviceType.HMD_VALVE_HTC_VIVE:
-					{
-						// TODO: Provide device display and lens parameters
-						break;
-					}
-				case VrDeviceType.HMD_SONY_PSVR:
-					{
-						// TODO: Provide device display and lens parameters
-						break;
-					}
-				default: break;
-			}
-
-			return hmd;
-		}
-
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);
 
         // Init VR simulator for selected device parameters
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -2475,8 +2392,20 @@ namespace Raylib
         public static extern AudioStream InitAudioStream(uint sampleRate, uint sampleSize, uint channels);
 
         // Update audio stream buffers with data
-        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateAudioStream(AudioStream stream, short[] data, int samplesCount);
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl, EntryPoint = "UpdateAudioStream")]
+        private static extern void UpdateAudioStreamInternal(AudioStream stream, IntPtr data, int samplesCount);
+
+        // Update audio stream buffers with data(byte)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UpdateAudioStream(AudioStream stream, ref byte[] data, int samplesCount);
+
+        // Update audio stream buffers with data(short)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UpdateAudioStream(AudioStream stream, ref short[] data, int samplesCount);
+
+        // Update audio stream buffers with data(float)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UpdateAudioStream(AudioStream stream, ref float[] data, int samplesCount);
 
         // Close audio stream and free memory
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]

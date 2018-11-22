@@ -26,19 +26,18 @@ public partial class core_vr_simulator
         int screenHeight = 600;
 
         // NOTE: screenWidth/screenHeight should match VR device aspect ratio
-
         InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
 
 		// Init VR simulator (Oculus Rift CV1 parameters)
-        InitVrSimulator(GetVrDeviceInfo(HMD_OCULUS_RIFT_CV1));
+        InitVrSimulator(GetVrDeviceInfo((int)HMD_OCULUS_RIFT_CV1));
 
         // Define the camera to look into our 3d world
         Camera3D camera;
         camera.position = new Vector3( 5.0f, 2.0f, 5.0f );    // Camera3D position
         camera.target = new Vector3( 0.0f, 2.0f, 0.0f );      // Camera3D looking at point
         camera.up = new Vector3( 0.0f, 1.0f, 0.0f );          // Camera3D up vector (rotation towards target)
-        camera.fovy = 60.0f;                                // Camera3D field-of-view Y
-        camera.type = (int)CAMERA_PERSPECTIVE;                   // Camera3D type
+        camera.fovy = 60.0f;                                  // Camera3D field-of-view Y
+        camera.type = (int)CAMERA_PERSPECTIVE;                // Camera3D type
 
         Vector3 cubePosition = new Vector3( 0.0f, 0.0f, 0.0f );
 
