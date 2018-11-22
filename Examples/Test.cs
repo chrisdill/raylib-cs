@@ -34,7 +34,7 @@ namespace Examples
                 var filePath = Console.ReadLine();
                 var name = Path.GetFileNameWithoutExtension(filePath);
                 var dir = examples + filePath + ".cs";
-              
+
                 // run example if it exists
                 if (File.Exists(dir))
                 {
@@ -46,14 +46,14 @@ namespace Examples
                     catch(TargetInvocationException e)
                     {
                         Console.WriteLine(e.InnerException.Message);
-                        Console.WriteLine(e.InnerException.StackTrace);      
+                        Console.WriteLine(e.InnerException.StackTrace);
                     }
                     Console.WriteLine();
                 }
                 else
                 {
                     Console.WriteLine(filePath + " is not a valid example");
-                } 
+                }
             }
         }
     }

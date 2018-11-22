@@ -1,8 +1,5 @@
 using Raylib;
 using static Raylib.Raylib;
-using static Raylib.Model;
-using static Raylib.CameraMode;
-using System;
 
 public enum LightType
 {
@@ -26,18 +23,8 @@ public struct Light
 	public int colorLoc;
 }
 
-
 public partial class models_material_pbr
 {
-
-
-
-
-
-
-
-
-
 	/*******************************************************************************************	*	*   raylib [models] example - PBR material	*	*   This example has been created using raylib 1.8 (www.raylib.com)	*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)	*	*   Copyright (c) 2017 Ramon Santamaria (@raysan5)	*	********************************************************************************************/
 
 	public const int CUBEMAP_SIZE = 512;
@@ -124,7 +111,6 @@ public partial class models_material_pbr
 		CloseWindow();              // Close window and OpenGL context
 									//--------------------------------------------------------------------------------------
 		return 0;	}	
-
 	// Load PBR material (Supports: ALBEDO, NORMAL, METALNESS, ROUGHNESS, AO, EMMISIVE, HEIGHT maps)
 	// NOTE: PBR shader is loaded inside this function
 	unsafe public static Material LoadMaterialPBR(Color albedo, float metalness, float roughness)
@@ -262,5 +248,3 @@ public partial class models_material_pbr
 		SetShaderValue(shader, light.colorLoc, diff, 4);
 	}
 }
-
-
