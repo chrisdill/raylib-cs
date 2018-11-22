@@ -4,18 +4,11 @@
 
 C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
-Bindings:
-* Easings
-* Physac
-* Raygui
-* Raylib
-* Raymath
+## Installation
+So far, I have only tested on Windows. Tips on making things work smoothly on all platforms is appreciated.
 
-Currently the only difference to raylib is changing interger constants to enums.
-For example KEY_ENTER becomes Key.ENTER.
-
-## Usage
-Run Build.bat in Examples folder. Currently requires mingw32-make and mono.
+1. Install from nuget package(coming soon)
+2. Start coding!
 
 ```csharp
 using Raylib;
@@ -43,11 +36,11 @@ static class Program
 ```
 
 ## Custom build
-Raylib-cs uses a custom build for raylib to give access to some features that are not accessible by default.
+Gives access to extra modules so c# can use them.
 
 1. Add [raygui](https://github.com/raysan5/raygui)
-2. Add a C file with the following
-```
+2. Add a c file with the following
+```c
 #include "raylib.h"
 #include "easings.h"
 
