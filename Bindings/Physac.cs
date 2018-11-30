@@ -20,74 +20,100 @@ namespace Raylib
     // Mat2 type (used for polygon shape rotation matrix)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Mat2
-    {
+    {      
         public float m00;
         public float m01;
         public float m10;
         public float m11;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct PolygonData
+    // [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Explicit, Size = 388)]
+    public unsafe struct PolygonData
     {
-        public uint vertexCount;                           // Current used vertex and normals count
-
-        //[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
-        //public Vector2[] positions;     // Polygon vertex positions vectors
+        [FieldOffset(0)]
+        public uint vertexCount;                           // Current used vertex and normals count       
+        [FieldOffset(4)]
         public unsafe Vector2* positions;
-
-        //[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
-        //public Vector2[] normals;       // Polygon vertex normals vectors
+        [FieldOffset(196)]
         public unsafe Vector2* normals;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    // [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Explicit, Size = 424)]
     public struct PhysicsShape
     {
-        public PhysicsShapeType type;                      // Physics shape type (circle or polygon)
-        public IntPtr body;                       // Shape physics body reference
-        public float radius;                               // Circle shape radius (used for circle shapes)
-        public Mat2 transform;                             // Vertices transform matrix 2x2
+        [FieldOffset(0)]
+        public PhysicsShapeType type;                      // Physics shape type (circle or polygon)  
+        [FieldOffset(8)]
+        public IntPtr body;                                // Shape physics body reference      
+        [FieldOffset(16)]
+        public float radius;                               // Circle shape radius (used for circle shapes)      
+        [FieldOffset(20)]
+        public Mat2 transform;                             // Vertices transform matrix 2x2     
+        [FieldOffset(36)]
         public PolygonData vertexData;                     // Polygon shape vertices position and normals data (just used for polygon shapes)
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct PhysicsBodyData
-    {
-        public uint id;                                    // Reference unique identifier
-        public bool enabled;                               // Enabled dynamics state (collisions are calculated anyway)
-        public Vector2 position;                           // Physics body shape pivot
-        public Vector2 velocity;                           // Current linear velocity applied to position
-        public Vector2 force;                              // Current linear force (reset to 0 every step)
-        public float angularVelocity;                      // Current angular velocity applied to orient
-        public float torque;                               // Current angular force (reset to 0 every step)
-        public float orient;                               // Rotation in radians
-        public float inertia;                              // Moment of inertia
-        public float inverseInertia;                       // Inverse value of inertia
-        public float mass;                                 // Physics body mass
-        public float inverseMass;                          // Inverse value of mass
-        public float staticFriction;                       // Friction when the body has not movement (0 to 1)
-        public float dynamicFriction;                      // Friction when the body has movement (0 to 1)
-        public float restitution;                          // Restitution coefficient of the body (0 to 1)
-        public bool useGravity;                            // Apply gravity force to dynamics
-        public bool isGrounded;                            // Physics grounded on other body state
-        public bool freezeOrient;                          // Physics rotation constraint
-        public PhysicsShape shape;                         // Physics body shape information (type, radius, vertices, normals)
+    public partial struct PhysicsBodyData
+    {      
+        public uint id;    
+        public bool enabled;
+        public Vector2 position;    
+        public Vector2 velocity;    
+        public Vector2 force;
+        public float angularVelocity;  
+        public float torque;
+        public float orient;
+        public float inertia;
+        public float inverseInertia;
+        public float mass;
+        public float inverseMass;
+        public float staticFriction;
+        public float dynamicFriction;
+        public float restitution;
+        public bool useGravity;
+        public bool isGrounded; 
+        public bool freezeOrient;
+        public PhysicsShape shape;
+    
+        // convert c bool(stored as byte) to bool
+        /*public bool enabled
+        {
+            get { return Convert.ToBoolean(bEnabled); }
+            set {
+                bEnabled = Convert.ToByte(value); }
+        }
+
+        public bool useGravity
+        {
+            get { return Convert.ToBoolean(bUseGravity); }
+            set { bUseGravity = Convert.ToByte(value); }
+        }
+
+        public bool isGrounded
+        {
+            get { return bIsGrounded != 0; }
+            set { bIsGrounded = (byte)(value ? 1 : 0); }
+        }
+
+        public bool freezeOrient
+        {
+            get { return Convert.ToBoolean(bFreezeOrient); }
+            set { bFreezeOrient = Convert.ToByte(value); }
+        }*/
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public unsafe struct PhysicsManifoldData
-    {
-        public uint id;                            // Reference unique identifier
-        public PhysicsBodyData bodyA;                          // Manifold first physics body reference
-        public PhysicsBodyData bodyB;                          // Manifold second physics body reference
+    {        
+        public uint id;                            // Reference unique identifier  
+        public IntPtr bodyA;                          // Manifold first physics body reference   
+        public IntPtr bodyB;                          // Manifold second physics body reference
         public float penetration;                          // Depth of penetration from collision
         public Vector2 normal;                             // Normal direction vector from 'a' to 'b'
-
-        //[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = 2)]
-        // public fixed Vector2[] contacts;                        // Points of contact during collision
-        public unsafe Vector2* contacts;
-
+        public unsafe Vector2* contacts;       // Points of contact during collision
         public uint contactsCount;                 // Current collision number of contacts
         public float restitution;                          // Mixed restitution during collision
         public float dynamicFriction;                      // Mixed dynamic friction during collision
@@ -100,8 +126,6 @@ namespace Raylib
     {
         #region Raylib-cs Variables
 
-        // Used by DllImport to load the native library.
-        // private const string nativeLibName = "raylib.dll";
         public const int PHYSAC_MAX_BODIES = 64;
         public const int PHYSAC_MAX_MANIFOLDS = 4096;
         public const int PHYSAC_MAX_VERTICES = 24;
@@ -138,7 +162,6 @@ namespace Raylib
 
         // Creates a new circle physics body with generic parameters
         [DllImport(nativeLibName, EntryPoint = "CreatePhysicsBodyCircle")]
-        // [return: MarshalAs(UnmanagedType.LPStruct)]
         private static extern IntPtr CreatePhysicsBodyCircleImport(Vector2 pos, float radius, float density);
         public static PhysicsBodyData CreatePhysicsBodyCircle(Vector2 pos, float radius, float density)
         {
