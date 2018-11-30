@@ -1,6 +1,9 @@
 using Raylib;
 using static Raylib.Raylib;
 
+using System;
+using System.Runtime.InteropServices;
+
 public partial class physics_demo
 {
     /*******************************************************************************************
@@ -18,9 +21,7 @@ public partial class physics_demo
     *   Copyright (c) 2016-2018 Victor Fisac
     *
     ********************************************************************************************/
-
-
-
+ 
     public static int Main()
     {
         // Initialization
@@ -40,8 +41,14 @@ public partial class physics_demo
         InitPhysics();
 
         // Create floor rectangle physics body
-        var floor = CreatePhysicsBodyRectangle(new Vector2( screenWidth/2, screenHeight ), 500, 100, 10);
+        var floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2, screenHeight), 500, 100, 10);
         floor.enabled = false; // Disable body state to convert it to static (no dynamics, but collisions)
+        floor.isGrounded = true;
+
+        Console.WriteLine(Marshal.SizeOf<PhysicsBodyData>());
+        Console.WriteLine(Marshal.SizeOf<PhysicsShape>());
+        Console.WriteLine(Marshal.SizeOf<PolygonData>());
+        Console.WriteLine(Marshal.SizeOf<bool>());
 
         // Create obstacle circle physics body
         var circle = CreatePhysicsBodyCircle(new Vector2( screenWidth/2, screenHeight/2 ), 45, 10);
@@ -56,6 +63,8 @@ public partial class physics_demo
             // Update
             //----------------------------------------------------------------------------------
             // Delay initialization of variables due to physics reset async
+            RunPhysicsStep();
+
             if (needsReset)
             {
                 floor = CreatePhysicsBodyRectangle(new Vector2( screenWidth/2, screenHeight ), 500, 100, 10);
@@ -81,7 +90,8 @@ public partial class physics_demo
             for (int i = bodiesCount - 1; i >= 0; i--)
             {
                 var body = GetPhysicsBody(i);
-                if (body.id != 0 && (body.position.y > screenHeight*2)) DestroyPhysicsBody(body);
+                if (!body.Equals(default(PhysicsBodyData)) && (body.position.y > screenHeight*2))
+                    DestroyPhysicsBody(body);
             }
             //----------------------------------------------------------------------------------
 
