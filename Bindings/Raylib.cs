@@ -16,13 +16,13 @@ namespace Raylib
     // NOTE: Used for bit masks
     public enum ConfigFlag
     {
-        FLAG_SHOW_LOGO = 1,    // Set to show raylib logo at startup
-        FLAG_FULLSCREEN_MODE = 2,    // Set to run program in fullscreen
+        FLAG_SHOW_LOGO = 1,           // Set to show raylib logo at startup
+        FLAG_FULLSCREEN_MODE = 2,     // Set to run program in fullscreen
         FLAG_WINDOW_RESIZABLE = 4,    // Set to allow resizable window
-        FLAG_WINDOW_UNDECORATED = 8,    // Set to disable window decoration (frame and buttons)
-        FLAG_WINDOW_TRANSPARENT = 16,   // Set to allow transparent window
-        FLAG_MSAA_4X_HINT = 32,   // Set to try enabling MSAA 4X
-        FLAG_VSYNC_HINT = 64 // Set to try enabling V-Sync on GPU
+        FLAG_WINDOW_UNDECORATED = 8,  // Set to disable window decoration (frame and buttons)
+        FLAG_WINDOW_TRANSPARENT = 16, // Set to allow transparent window
+        FLAG_MSAA_4X_HINT = 32,       // Set to try enabling MSAA 4X
+        FLAG_VSYNC_HINT = 64          // Set to try enabling V-Sync on GPU
     }
 
     // Trace log type
@@ -236,10 +236,10 @@ namespace Raylib
     {
         GAMEPAD_XBOX_AXIS_LEFT_X = 0,    // [-1..1] (left->right)
         GAMEPAD_XBOX_AXIS_LEFT_Y = 1,    // [1..-1] (up->down)
-        GAMEPAD_XBOX_AXIS_RIGHT_X = 2,    // [-1..1] (left->right)
-        GAMEPAD_XBOX_AXIS_RIGHT_Y = 3,    // [1..-1] (up->down)
-        GAMEPAD_XBOX_AXIS_LT = 4,    // [-1..1] (pressure-level)
-        GAMEPAD_XBOX_AXIS_RT = 5     // [-1..1] (pressure-level)
+        GAMEPAD_XBOX_AXIS_RIGHT_X = 2,   // [-1..1] (left->right)
+        GAMEPAD_XBOX_AXIS_RIGHT_Y = 3,   // [1..-1] (up->down)
+        GAMEPAD_XBOX_AXIS_LT = 4,        // [-1..1] (pressure-level)
+        GAMEPAD_XBOX_AXIS_RT = 5         // [-1..1] (pressure-level)
     }
 
     // Android Gamepad Controller (SNES CLASSIC)
@@ -295,7 +295,7 @@ namespace Raylib
     // Material map type
     public enum TexmapIndex
     {
-        MAP_ALBEDO = 0,       // MAP_DIFFUSE
+        MAP_ALBEDO = 0,          // MAP_DIFFUSE
         MAP_METALNESS = 1,       // MAP_SPECULAR
         MAP_NORMAL = 2,
         MAP_ROUGHNESS = 3,
@@ -332,7 +332,7 @@ namespace Raylib
         COMPRESSED_PVRT_RGB,            // 4 bpp
         COMPRESSED_PVRT_RGBA,           // 4 bpp
         COMPRESSED_ASTC_4x4_RGBA,       // 8 bpp
-        COMPRESSED_ASTC_8x8_RGBA // 2 bpp
+        COMPRESSED_ASTC_8x8_RGBA        // 2 bpp
     }
 
     // Texture parameters: filter mode
