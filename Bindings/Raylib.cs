@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Raylib
 {
@@ -10,8 +11,23 @@ namespace Raylib
     //----------------------------------------------------------------------------------
     // Enumerators Definition
     //----------------------------------------------------------------------------------
+
+    // System config flags
+    // NOTE: Used for bit masks
+    public enum ConfigFlag
+    {
+        FLAG_SHOW_LOGO = 1,    // Set to show raylib logo at startup
+        FLAG_FULLSCREEN_MODE = 2,    // Set to run program in fullscreen
+        FLAG_WINDOW_RESIZABLE = 4,    // Set to allow resizable window
+        FLAG_WINDOW_UNDECORATED = 8,    // Set to disable window decoration (frame and buttons)
+        FLAG_WINDOW_TRANSPARENT = 16,   // Set to allow transparent window
+        FLAG_MSAA_4X_HINT = 32,   // Set to try enabling MSAA 4X
+        FLAG_VSYNC_HINT = 64 // Set to try enabling V-Sync on GPU
+    }
+
     // Trace log type
-    public enum LogType
+    // NOTE: Used for bit masks
+    public enum TraceLogType
     {
         LOG_INFO = 1,
         LOG_WARNING = 2,
@@ -20,173 +36,57 @@ namespace Raylib
         LOG_OTHER = 16
     }
 
-    // Shader location point type
-    public enum ShaderLocationIndex
-    {
-        LOC_VERTEX_POSITION = 0,
-        LOC_VERTEX_TEXCOORD01 = 1,
-        LOC_VERTEX_TEXCOORD02 = 2,
-        LOC_VERTEX_NORMAL = 3,
-        LOC_VERTEX_TANGENT = 4,
-        LOC_VERTEX_COLOR = 5,
-        LOC_MATRIX_MVP = 6,
-        LOC_MATRIX_MODEL = 7,
-        LOC_MATRIX_VIEW = 8,
-        LOC_MATRIX_PROJECTION = 9,
-        LOC_VECTOR_VIEW = 10,
-        LOC_COLOR_DIFFUSE = 11,
-        LOC_COLOR_SPECULAR = 12,
-        LOC_COLOR_AMBIENT = 13,
-        LOC_MAP_ALBEDO = 14,
-        LOC_MAP_METALNESS = 15,
-        LOC_MAP_NORMAL = 16,
-        LOC_MAP_ROUGHNESS = 17,
-        LOC_MAP_OCCLUSION = 18,
-        LOC_MAP_EMISSION = 19,
-        LOC_MAP_HEIGHT = 20,
-        LOC_MAP_CUBEMAP = 21,
-        LOC_MAP_IRRADIANCE = 22,
-        LOC_MAP_PREFILTER = 23,
-        LOC_MAP_BRDF = 24
-    }
-
-    // Material map type
-    public enum TexmapIndex
-    {
-        MAP_ALBEDO = 0,
-        MAP_METALNESS = 1,
-        MAP_NORMAL = 2,
-        MAP_ROUGHNESS = 3,
-        MAP_OCCLUSION = 4,
-        MAP_EMISSION = 5,
-        MAP_HEIGHT = 6,
-        MAP_CUBEMAP = 7,
-        MAP_IRRADIANCE = 8,
-        MAP_PREFILTER = 9,
-        MAP_BRDF = 10
-    }
-
-    // Pixel formats
-    // NOTE: Support depends on OpenGL version and platform
-    public enum PixelFormat
-    {
-        UNCOMPRESSED_GRAYSCALE = 1,
-        UNCOMPRESSED_GRAY_ALPHA = 2,
-        UNCOMPRESSED_R5G6B5 = 3,
-        UNCOMPRESSED_R8G8B8 = 4,
-        UNCOMPRESSED_R5G5B5A1 = 5,
-        UNCOMPRESSED_R4G4B4A4 = 6,
-        UNCOMPRESSED_R8G8B8A8 = 7,
-        UNCOMPRESSED_R32 = 8,
-        UNCOMPRESSED_R32G32B32 = 9,
-        UNCOMPRESSED_R32G32B32A32 = 10,
-        COMPRESSED_DXT1RGB = 11,
-        COMPRESSED_DXT1RGBA = 12,
-        COMPRESSED_DXT3RGBA = 13,
-        COMPRESSED_DXT5RGBA = 14,
-        COMPRESSED_ETC1RGB = 15,
-        COMPRESSED_ETC2RGB = 16,
-        COMPRESSED_ETC2EAC_RGBA = 17,
-        COMPRESSED_PVRT_RGB = 18,
-        COMPRESSED_PVRT_RGBA = 19,
-        COMPRESSED_ASTC_4x4RGBA = 20,
-        COMPRESSED_ASTC_8x8RGBA = 21
-    }
-
-    // Texture parameters: filter mode
-    // NOTE 1: Filtering considers mipmaps if available in the texture
-    // NOTE 2: Filter is accordingly set for minification and magnification
-    public enum TextureFilterMode
-    {
-        FILTER_POINT = 0,
-        FILTER_BILINEAR = 1,
-        FILTER_TRILINEAR = 2,
-        FILTER_ANISOTROPIC_4X = 3,
-        FILTER_ANISOTROPIC_8X = 4,
-        FILTER_ANISOTROPIC_16X = 5
-    }
-
-    // Texture parameters: wrap mode
-    public enum TextureWrapMode
-    {
-        WRAP_REPEAT = 0,
-        WRAP_CLAMP = 1,
-        WRAP_MIRROR = 2
-    }
-
-    // Font type, defines generation method
-    public enum FontType
-    {
-        FONT_DEFAULT = 0,   // Default font generation, anti-aliased
-        FONT_BITMAP,        // Bitmap font generation, no anti-aliasing
-        FONT_SDF            // SDF font generation, requires external shader
-    }
-
-    // Color blending modes (pre-defined)
-    public enum BlendMode
-    {
-        BLEND_ALPHA = 0,
-        BLEND_ADDITIVE = 1,
-        BLEND_MULTIPLIED = 2
-    }
-
-    // Gestures type
-    // NOTE: It could be used as flags to enable only some gestures
-    public enum Gestures
-    {
-        GESTURE_NONE = 0,
-        GESTURE_TAP = 1,
-        GESTURE_DOUBLETAP = 2,
-        GESTURE_HOLD = 4,
-        GESTURE_DRAG = 8,
-        GESTURE_SWIPE_RIGHT = 16,
-        GESTURE_SWIPE_LEFT = 32,
-        GESTURE_SWIPE_UP = 64,
-        GESTURE_SWIPE_DOWN = 128,
-        GESTURE_PINCH_IN = 256,
-        GESTURE_PINCH_OUT = 512
-    }
-
-    // Camera system modes
-    public enum CameraMode
-    {
-        CAMERA_CUSTOM = 0,
-        CAMERA_FREE = 1,
-        CAMERA_ORBITAL = 2,
-        CAMERA_FIRST_PERSON = 3,
-        CAMERA_THIRD_PERSON = 4
-    }
-
-    // Camera projection modes
-    public enum CameraType
-    {
-        CAMERA_PERSPECTIVE = 0,
-        CAMERA_ORTHOGRAPHIC = 1
-    }
-
-    // Head Mounted Display devices
-    public enum VrDeviceType
-    {
-        HMD_DEFAULT_DEVICE = 0,
-        HMD_OCULUS_RIFT_DK2 = 1,
-        HMD_OCULUS_RIFT_CV1 = 2,
-        HMD_OCULUS_GO = 3,
-        HMD_VALVE_HTC_VIVE = 4,
-        HMD_SONY_PSVR = 5
-    }
-
-    // Type of n-patch
-    public enum NPatchType
-    {
-        NPT_9PATCH = 0,         // 3x3
-        NPT_3PATCH_VERTICAL,    // 1x3
-        NPT_3PATCH_HORIZONTAL   // 3x1
-    }
-
+    // Keyboard keys
     // enum extension for constants
     // Keyboard Function Keys
-    public enum Key
+    public enum KeyboardKey
     {
+        // Alphanumeric keys
+        KEY_APOSTROPHE = 39,
+        KEY_COMMA = 44,
+        KEY_MINUS = 45,
+        KEY_PERIOD = 46,
+        KEY_SLASH = 47,
+        KEY_ZERO = 48,
+        KEY_ONE = 49,
+        KEY_TWO = 50,
+        KEY_THREE = 51,
+        KEY_FOUR = 52,
+        KEY_FIVE = 53,
+        KEY_SIX = 54,
+        KEY_SEVEN = 55,
+        KEY_EIGHT = 56,
+        KEY_NINE = 57,
+        KEY_SEMICOLON = 59,
+        KEY_EQUAL = 61,
+        KEY_A = 65,
+        KEY_B = 66,
+        KEY_C = 67,
+        KEY_D = 68,
+        KEY_E = 69,
+        KEY_F = 70,
+        KEY_G = 71,
+        KEY_H = 72,
+        KEY_I = 73,
+        KEY_J = 74,
+        KEY_K = 75,
+        KEY_L = 76,
+        KEY_M = 77,
+        KEY_N = 78,
+        KEY_O = 79,
+        KEY_P = 80,
+        KEY_Q = 81,
+        KEY_R = 82,
+        KEY_S = 83,
+        KEY_T = 84,
+        KEY_U = 85,
+        KEY_V = 86,
+        KEY_W = 87,
+        KEY_X = 88,
+        KEY_Y = 89,
+        KEY_Z = 90,
+
+        // Function keys
         KEY_SPACE = 32,
         KEY_ESCAPE = 256,
         KEY_ENTER = 257,
@@ -222,52 +122,40 @@ namespace Raylib
         KEY_LEFT_SHIFT = 340,
         KEY_LEFT_CONTROL = 341,
         KEY_LEFT_ALT = 342,
+        KEY_LEFT_SUPER = 343,
         KEY_RIGHT_SHIFT = 344,
         KEY_RIGHT_CONTROL = 345,
         KEY_RIGHT_ALT = 346,
-        KEY_GRAVE = 96,
-        KEY_SLASH = 47,
+        KEY_RIGHT_SUPER = 347,
+        KEY_KB_MENU = 348,
+        KEY_LEFT_BRACKET = 91,
         KEY_BACKSLASH = 92,
+        KEY_RIGHT_BRACKET = 93,
+        KEY_GRAVE = 96,
 
-        // Keyboard Alpha Numeric Keys
-        KEY_ZERO = 48,
-        KEY_ONE = 49,
-        KEY_TWO = 50,
-        KEY_THREE = 51,
-        KEY_FOUR = 52,
-        KEY_FIVE = 53,
-        KEY_SIX = 54,
-        KEY_SEVEN = 55,
-        KEY_EIGHT = 56,
-        KEY_NINE = 57,
-        KEY_A = 65,
-        KEY_B = 66,
-        KEY_C = 67,
-        KEY_D = 68,
-        KEY_E = 69,
-        KEY_F = 70,
-        KEY_G = 71,
-        KEY_H = 72,
-        KEY_I = 73,
-        KEY_J = 74,
-        KEY_K = 75,
-        KEY_L = 76,
-        KEY_M = 77,
-        KEY_N = 78,
-        KEY_O = 79,
-        KEY_P = 80,
-        KEY_Q = 81,
-        KEY_R = 82,
-        KEY_S = 83,
-        KEY_T = 84,
-        KEY_U = 85,
-        KEY_V = 86,
-        KEY_W = 87,
-        KEY_X = 88,
-        KEY_Y = 89,
-        KEY_Z = 90,
+        // Keypad keys
+        KEY_KP_0 = 320,
+        KEY_KP_1 = 321,
+        KEY_KP_2 = 322,
+        KEY_KP_3 = 323,
+        KEY_KP_4 = 324,
+        KEY_KP_5 = 325,
+        KEY_KP_6 = 326,
+        KEY_KP_7 = 327,
+        KEY_KP_8 = 328,
+        KEY_KP_9 = 329,
+        KEY_KP_DECIMAL = 330,
+        KEY_KP_DIVIDE = 331,
+        KEY_KP_MULTIPLY = 332,
+        KEY_KP_SUBTRACT = 333,
+        KEY_KP_ADD = 334,
+        KEY_KP_ENTER = 335,
+        KEY_KP_EQUAL = 336
+    }
 
-        // Android Physical Buttons
+    // Android buttons
+    public enum AndroidButton
+    {
         KEY_BACK = 4,
         KEY_MENU = 82,
         KEY_VOLUME_UP = 24,
@@ -275,19 +163,27 @@ namespace Raylib
     }
 
     // Mouse Buttons
-    public enum Mouse
+    public enum MouseButton
     {
         MOUSE_LEFT_BUTTON = 0,
         MOUSE_RIGHT_BUTTON = 1,
         MOUSE_MIDDLE_BUTTON = 2
     }
 
-    public enum Gamepad
+    // Gamepad number
+    public enum GamepadNumber
     {
         GAMEPAD_PLAYER1 = 0,
         GAMEPAD_PLAYER2 = 1,
         GAMEPAD_PLAYER3 = 2,
-        GAMEPAD_PLAYER4 = 3,
+        GAMEPAD_PLAYER4 = 3
+    }
+
+    // PS3 USB Controller Buttons
+    // TODO: Provide a generic way to list gamepad controls schemes,
+    // defining specific controls schemes is not a good option
+    public enum GamepadPS3Button
+    {
         GAMEPAD_PS3_BUTTON_TRIANGLE = 0,
         GAMEPAD_PS3_BUTTON_CIRCLE = 1,
         GAMEPAD_PS3_BUTTON_CROSS = 2,
@@ -298,17 +194,27 @@ namespace Raylib
         GAMEPAD_PS3_BUTTON_R2 = 5,
         GAMEPAD_PS3_BUTTON_START = 8,
         GAMEPAD_PS3_BUTTON_SELECT = 9,
+        GAMEPAD_PS3_BUTTON_PS = 12,
         GAMEPAD_PS3_BUTTON_UP = 24,
         GAMEPAD_PS3_BUTTON_RIGHT = 25,
         GAMEPAD_PS3_BUTTON_DOWN = 26,
-        GAMEPAD_PS3_BUTTON_LEFT = 27,
-        GAMEPAD_PS3_BUTTON_PS = 12,
+        GAMEPAD_PS3_BUTTON_LEFT = 27
+    }
+
+    // PS3 USB Controller Axis
+    public enum GamepadPS3Axis
+    {
         GAMEPAD_PS3_AXIS_LEFT_X = 0,
         GAMEPAD_PS3_AXIS_LEFT_Y = 1,
         GAMEPAD_PS3_AXIS_RIGHT_X = 2,
         GAMEPAD_PS3_AXIS_RIGHT_Y = 5,
-        GAMEPAD_PS3_AXIS_L2 = 3,
-        GAMEPAD_PS3_AXIS_R2 = 4,
+        GAMEPAD_PS3_AXIS_L2 = 3,    // [1..-1] (pressure-level)
+        GAMEPAD_PS3_AXIS_R2 = 4     // [1..-1] (pressure-level)
+    }
+
+    // Xbox360 USB Controller Buttons
+    public enum GamepadXbox360Button
+    {
         GAMEPAD_XBOX_BUTTON_A = 0,
         GAMEPAD_XBOX_BUTTON_B = 1,
         GAMEPAD_XBOX_BUTTON_X = 2,
@@ -317,11 +223,28 @@ namespace Raylib
         GAMEPAD_XBOX_BUTTON_RB = 5,
         GAMEPAD_XBOX_BUTTON_SELECT = 6,
         GAMEPAD_XBOX_BUTTON_START = 7,
+        GAMEPAD_XBOX_BUTTON_HOME = 8,
         GAMEPAD_XBOX_BUTTON_UP = 10,
         GAMEPAD_XBOX_BUTTON_RIGHT = 11,
         GAMEPAD_XBOX_BUTTON_DOWN = 12,
-        GAMEPAD_XBOX_BUTTON_LEFT = 13,
-        GAMEPAD_XBOX_BUTTON_HOME = 8,
+        GAMEPAD_XBOX_BUTTON_LEFT = 13
+    }
+
+    // Xbox360 USB Controller Axis,
+    // NOTE: For Raspberry Pi, axis must be reconfigured
+    public enum GamepadXbox360Axis
+    {
+        GAMEPAD_XBOX_AXIS_LEFT_X = 0,    // [-1..1] (left->right)
+        GAMEPAD_XBOX_AXIS_LEFT_Y = 1,    // [1..-1] (up->down)
+        GAMEPAD_XBOX_AXIS_RIGHT_X = 2,    // [-1..1] (left->right)
+        GAMEPAD_XBOX_AXIS_RIGHT_Y = 3,    // [1..-1] (up->down)
+        GAMEPAD_XBOX_AXIS_LT = 4,    // [-1..1] (pressure-level)
+        GAMEPAD_XBOX_AXIS_RT = 5     // [-1..1] (pressure-level)
+    }
+
+    // Android Gamepad Controller (SNES CLASSIC)
+    public enum GamepadAndroid
+    {
         GAMEPAD_ANDROID_DPAD_UP = 19,
         GAMEPAD_ANDROID_DPAD_DOWN = 20,
         GAMEPAD_ANDROID_DPAD_LEFT = 21,
@@ -336,13 +259,171 @@ namespace Raylib
         GAMEPAD_ANDROID_BUTTON_L1 = 102,
         GAMEPAD_ANDROID_BUTTON_R1 = 103,
         GAMEPAD_ANDROID_BUTTON_L2 = 104,
-        GAMEPAD_ANDROID_BUTTON_R2 = 105,
-        GAMEPAD_XBOX_AXIS_LEFT_X = 0,
-        GAMEPAD_XBOX_AXIS_LEFT_Y = 1,
-        GAMEPAD_XBOX_AXIS_RIGHT_X = 2,
-        GAMEPAD_XBOX_AXIS_RIGHT_Y = 3,
-        GAMEPAD_XBOX_AXIS_LT = 4,
-        GAMEPAD_XBOX_AXIS_RT = 5
+        GAMEPAD_ANDROID_BUTTON_R2 = 105
+    }
+
+    // Shader location point type
+    public enum ShaderLocationIndex
+    {
+        LOC_VERTEX_POSITION = 0,
+        LOC_VERTEX_TEXCOORD01 = 1,
+        LOC_VERTEX_TEXCOORD02 = 2,
+        LOC_VERTEX_NORMAL = 3,
+        LOC_VERTEX_TANGENT = 4,
+        LOC_VERTEX_COLOR = 5,
+        LOC_MATRIX_MVP = 6,
+        LOC_MATRIX_MODEL = 7,
+        LOC_MATRIX_VIEW = 8,
+        LOC_MATRIX_PROJECTION = 9,
+        LOC_VECTOR_VIEW = 10,
+        LOC_COLOR_DIFFUSE = 11,
+        LOC_COLOR_SPECULAR = 12,
+        LOC_COLOR_AMBIENT = 13,
+        LOC_MAP_ALBEDO = 14,
+        LOC_MAP_METALNESS = 15,
+        LOC_MAP_NORMAL = 16,
+        LOC_MAP_ROUGHNESS = 17,
+        LOC_MAP_OCCLUSION = 18,
+        LOC_MAP_EMISSION = 19,
+        LOC_MAP_HEIGHT = 20,
+        LOC_MAP_CUBEMAP = 21,
+        LOC_MAP_IRRADIANCE = 22,
+        LOC_MAP_PREFILTER = 23,
+        LOC_MAP_BRDF = 24
+    }
+
+    // Material map type
+    public enum TexmapIndex
+    {
+        MAP_ALBEDO = 0,       // MAP_DIFFUSE
+        MAP_METALNESS = 1,       // MAP_SPECULAR
+        MAP_NORMAL = 2,
+        MAP_ROUGHNESS = 3,
+        MAP_OCCLUSION,
+        MAP_EMISSION,
+        MAP_HEIGHT,
+        MAP_CUBEMAP,             // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        MAP_IRRADIANCE,          // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        MAP_PREFILTER,           // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        MAP_BRDF
+    }
+
+    // Pixel formats
+    // NOTE: Support depends on OpenGL version and platform
+    public enum PixelFormat
+    {
+        UNCOMPRESSED_GRAYSCALE = 1,     // 8 bit per pixel (no alpha)
+        UNCOMPRESSED_GRAY_ALPHA,        // 8*2 bpp (2 channels)
+        UNCOMPRESSED_R5G6B5,            // 16 bpp
+        UNCOMPRESSED_R8G8B8,            // 24 bpp
+        UNCOMPRESSED_R5G5B5A1,          // 16 bpp (1 bit alpha)
+        UNCOMPRESSED_R4G4B4A4,          // 16 bpp (4 bit alpha)
+        UNCOMPRESSED_R8G8B8A8,          // 32 bpp
+        UNCOMPRESSED_R32,               // 32 bpp (1 channel - float)
+        UNCOMPRESSED_R32G32B32,         // 32*3 bpp (3 channels - float)
+        UNCOMPRESSED_R32G32B32A32,      // 32*4 bpp (4 channels - float)
+        COMPRESSED_DXT1_RGB,            // 4 bpp (no alpha)
+        COMPRESSED_DXT1_RGBA,           // 4 bpp (1 bit alpha)
+        COMPRESSED_DXT3_RGBA,           // 8 bpp
+        COMPRESSED_DXT5_RGBA,           // 8 bpp
+        COMPRESSED_ETC1_RGB,            // 4 bpp
+        COMPRESSED_ETC2_RGB,            // 4 bpp
+        COMPRESSED_ETC2_EAC_RGBA,       // 8 bpp
+        COMPRESSED_PVRT_RGB,            // 4 bpp
+        COMPRESSED_PVRT_RGBA,           // 4 bpp
+        COMPRESSED_ASTC_4x4_RGBA,       // 8 bpp
+        COMPRESSED_ASTC_8x8_RGBA // 2 bpp
+    }
+
+    // Texture parameters: filter mode
+    // NOTE 1: Filtering considers mipmaps if available in the texture
+    // NOTE 2: Filter is accordingly set for minification and magnification
+    public enum TextureFilterMode
+    {
+        FILTER_POINT = 0,               // No filter, just pixel aproximation
+        FILTER_BILINEAR,                // Linear filtering
+        FILTER_TRILINEAR,               // Trilinear filtering (linear with mipmaps)
+        FILTER_ANISOTROPIC_4X,          // Anisotropic filtering 4x
+        FILTER_ANISOTROPIC_8X,          // Anisotropic filtering 8x
+        FILTER_ANISOTROPIC_16X,         // Anisotropic filtering 16x
+    }
+
+    // Texture parameters: wrap mode
+    public enum TextureWrapMode
+    {
+        WRAP_REPEAT = 0,        // Repeats texture in tiled mode
+        WRAP_CLAMP,             // Clamps texture to edge pixel in tiled mode
+        WRAP_MIRROR_REPEAT,     // Mirrors and repeats the texture in tiled mode
+        WRAP_MIRROR_CLAMP       // Mirrors and clamps to border the texture in tiled mode
+    }
+
+    // Font type, defines generation method
+    public enum FontType
+    {
+        FONT_DEFAULT = 0,       // Default font generation, anti-aliased
+        FONT_BITMAP,            // Bitmap font generation, no anti-aliasing
+        FONT_SDF                // SDF font generation, requires external shader
+    }
+
+    // Color blending modes (pre-defined)
+    public enum BlendMode
+    {
+        BLEND_ALPHA = 0,        // Blend textures considering alpha (default)
+        BLEND_ADDITIVE,         // Blend textures adding colors
+        BLEND_MULTIPLIED        // Blend textures multiplying colors
+    }
+
+    // Gestures type
+    // NOTE: It could be used as flags to enable only some gestures
+    public enum Gestures
+    {
+        GESTURE_NONE = 0,
+        GESTURE_TAP = 1,
+        GESTURE_DOUBLETAP = 2,
+        GESTURE_HOLD = 4,
+        GESTURE_DRAG = 8,
+        GESTURE_SWIPE_RIGHT = 16,
+        GESTURE_SWIPE_LEFT = 32,
+        GESTURE_SWIPE_UP = 64,
+        GESTURE_SWIPE_DOWN = 128,
+        GESTURE_PINCH_IN = 256,
+        GESTURE_PINCH_OUT = 512
+    }
+
+    // Camera system modes
+    public enum CameraMode
+    {
+        CAMERA_CUSTOM = 0,
+        CAMERA_FREE,
+        CAMERA_ORBITAL,
+        CAMERA_FIRST_PERSON,
+        CAMERA_THIRD_PERSON
+    }
+
+    // Camera projection modes
+    public enum CameraType
+    {
+        CAMERA_PERSPECTIVE = 0,
+        CAMERA_ORTHOGRAPHIC
+    }
+
+    // Head Mounted Display devices
+    public enum VrDeviceType
+    {
+        HMD_DEFAULT_DEVICE = 0,
+        HMD_OCULUS_RIFT_DK2,
+        HMD_OCULUS_RIFT_CV1,
+        HMD_OCULUS_GO,
+        HMD_VALVE_HTC_VIVE,
+        HMD_SONY_PSVR
+    }
+
+    // Type of n-patch
+    public enum NPatchType
+    {
+        NPT_9PATCH = 0,         // Npatch defined by 3x3 tiles
+        NPT_3PATCH_VERTICAL,    // Npatch defined by 1x3 tiles
+        NPT_3PATCH_HORIZONTAL   // Npatch defined by 3x1 tiles
     }
 
     #endregion
@@ -464,9 +545,6 @@ namespace Raylib
         public int offsetX;
         public int offsetY;
         public int advanceX;
-
-        // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
-        // public unsafe void* data;
         public IntPtr data;
     }
 
@@ -477,10 +555,6 @@ namespace Raylib
         public Texture2D texture;
         public int baseSize;
         public int charsCount;
-
-        // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = Raylib.PHYSAC_MAX_VERTICES)]
-        // public unsafe CharInfo* data;
-        //public CharInfo[] chars;
         public IntPtr chars;
     }
 
@@ -562,12 +636,6 @@ namespace Raylib
     public unsafe struct Shader
     {
         public uint id;
-
-        // public IntPtr locs;
-        // [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.I1, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
-        // [MarshalAs(UnmanagedType.ByValArray, SizeConst = Raylib.MAX_SHADER_LOCATIONS)]
-        // [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_I4)]
-        // public int[] locs;
         public fixed int locs[Raylib.MAX_SHADER_LOCATIONS];
     }
 
@@ -712,13 +780,11 @@ namespace Raylib
         public float interpupillaryDistance;
         public fixed float lensDistortionValues[4];
         public fixed float chromaAbCorrection[4];
-        //public float[] lensDistortionValues;
-        //public float[] chromaAbCorrection;
     }
 
     #endregion
 
-    //[SuppressUnmanagedCodeSecurity]
+    [SuppressUnmanagedCodeSecurity]
     public static partial class Raylib
     {
         #region Raylib-cs Variables

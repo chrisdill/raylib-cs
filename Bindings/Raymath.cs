@@ -674,6 +674,5 @@ namespace Raylib
         public static extern Quaternion QuaternionTransform(Quaternion q, Matrix mat);
 
         #endregion
-
     }
 }
