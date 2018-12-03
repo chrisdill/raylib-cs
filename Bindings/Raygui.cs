@@ -351,7 +351,6 @@ namespace Raylib
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GuiMessageBox(Rectangle bounds, string windowTitle, string message);           
 
-        #endregion
-        
+        #endregion      
     }
 }
