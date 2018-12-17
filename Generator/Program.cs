@@ -57,7 +57,7 @@ namespace Generator
         public Function(string name, string returnType, params FunctionParam[] parameters)
         {
             var Isreturnpointer = name[0] == '*';
-            Name = Isreturnpointer ? name.Substring(1) : name;
+            Name = Isreturnpointer ? name.Replace("*","") : name;
             ReturnType = new Type(returnType, Isreturnpointer);
             Params = new List<FunctionParam>(parameters);
 
@@ -112,14 +112,14 @@ namespace Generator
             if (FullParam.Split(' ').Length == 2)
             {
                 var Isreturnpointer = FullParam.Split(' ')[1][0] == '*';
-                Name = Isreturnpointer ? FullParam.Split(' ')[1].Substring(1) : FullParam.Split(' ')[1];
-                Type = new Type(FullParam.Split(' ')[0], Isreturnpointer);
+                Name = Isreturnpointer ? FullParam.Replace("*", "").Split(' ')[1] : FullParam.Split(' ')[1];
+                Type = new Type(FullParam.Replace("*", "").Split(' ')[0], Isreturnpointer);
             }
             else
             {
                 var Isreturnpointer = FullParam.Split(' ')[2][0] == '*';
-                Name = Isreturnpointer ? FullParam.Split(' ')[2].Substring(1) : FullParam.Split(' ')[2];
-                Type = new Type(FullParam.Split(' ')[0] + " " + FullParam.Split(' ')[1], Isreturnpointer);
+                Name = Isreturnpointer ? FullParam.Replace("*","").Split(' ')[2] : FullParam.Split(' ')[2];
+                Type = new Type(FullParam.Replace("*", "").Split(' ')[0] + " " + FullParam.Replace("*", "").Split(' ')[1], Isreturnpointer);
             }
         }
 
@@ -599,7 +599,8 @@ namespace Generator
                     RaylibClass = RaylibClass.AddMembers(LibraryNameField);
                     foreach (var Func in Funcs)
                     {
-                        var Function = MethodDeclaration(ParseTypeName(Func.ReturnType.Name),
+                        var typename = Func.ReturnType.IsPointer ? "IntPtr" : Func.ReturnType.Name;
+                        var Function = MethodDeclaration(ParseTypeName(typename),
                         Identifier(Func.Name))
                     .WithAttributeLists(
                         SingletonList(
@@ -630,12 +631,19 @@ namespace Generator
                             Token(SyntaxKind.ExternKeyword)
                             })).WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
 
-                        foreach (var Param in Func.Params)
+                        for (int i=0; i < Func.Params.Count;i++)
                         {
+                            var Param = Func.Params[i];
                             var TypeName = (Param.Type.IsPointer ? "IntPtr" : Param.Type.Name).Trim();
                             if (TypeName.Contains("unsigned int"))
                             {
                                 TypeName = TypeName.Replace("unsigned int", "uint");
+                            }
+
+                            if (TypeName.Contains("..."))
+                            {
+                                TypeName = "params object[]";
+                                Param.Name = "args";
                             }
 
                             if (TypeName.Contains("unsigned char"))
@@ -647,13 +655,11 @@ namespace Generator
                             {
                                 TypeName = TypeName.Substring(TypeName.LastIndexOf("struct") + "struct".Length);
                             }
-                            Function = Function.WithParameterList(
-                    ParameterList(
-                        SingletonSeparatedList(
+                            Function = Function.AddParameterListParameters(
                             Parameter(
                                 Identifier(Param.Name))
                             .WithType(
-                                IdentifierName(TypeName)))));
+                                IdentifierName(TypeName)));
                         }
 
                         RaylibClass = RaylibClass.AddMembers(Function);
