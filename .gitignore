@@ -26,7 +26,6 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-bld/
 [Bb]uild/
 [Dd]ebug
 [Oo]bj/
@@ -62,7 +61,7 @@ artifacts/
 *.ilk
 *.meta
 *.pch
-*.pdb
+# *.pdb
 *.pgc
 *.pgd
 *.rsp
