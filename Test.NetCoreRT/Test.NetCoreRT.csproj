@@ -24,7 +24,7 @@
     <ProjectReference Include="..\Bindings\Bindings.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-27022-01" />
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-27217-01" />
   </ItemGroup>
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
