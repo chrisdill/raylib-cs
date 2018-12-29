@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>Raylib-cs</id>
     <version>1.3</version>
@@ -14,7 +14,19 @@
     <tags>raylib csharp binding opengl gamedev</tags>
   </metadata>
   <files>
-    <file src="Bindings\lib\**\*.dll*" target="lib" />
-    <file src="Bindings\*.cs" target="Content\raylib-cs" />
+    <file src="Raylib-cs.targets" target="build" />
+
+    <file src="*Bindings\Easings.cs" target="Content\raylib-cs" />
+    <!--<file src="*Bindings\Physac.cs" target="Content\raylib-cs" />-->
+    <file src="*Bindings\Raygui.cs" target="Content\raylib-cs" />
+    <file src="*Bindings\Raylib.cs" target="Content\raylib-cs" />
+    <file src="*Bindings\Raymath.cs" target="Content\raylib-cs" />
+    <!--<file src="*Bindings\Rlgl.cs" target="Content\raylib-cs" />-->
+
+    <!-- Native Libs -->
+    <file src="Bindings\native\x86\raylib.dll" target="native\x86" />
+    <file src="Bindings\native\x86\raylib.pdb" target="native\x86" />
+    <file src="Bindings\native\x64\raylib.dll" target="native\x64" />
+    <file src="Bindings\native\x64\raylib.pdb" target="native\x64" />
   </files>
 </package>
