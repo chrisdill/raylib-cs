@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Bindings</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>Testing C# bindings for raylib, a simple and easy-to-use library to learn videogames programming.</Description>
     <PackageLicenseUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/Logo/raylib-cs.ico</PackageIconUrl>
@@ -42,7 +42,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>false</Optimize>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="System.Memory" Version="4.5.1" />
   </ItemGroup>

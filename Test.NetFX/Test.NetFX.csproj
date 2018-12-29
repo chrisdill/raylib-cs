@@ -123,8 +123,8 @@
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="lib\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\Bindings\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
