@@ -3,8 +3,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-    <StartupObject>physics_demo</StartupObject>
+    <Platforms>x64</Platforms>
+    <StartupObject>Test.NetCore.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -29,8 +29,8 @@
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
   <Target Name="TestTarget" AfterTargets="Build">
-    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="lib\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="lib\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\Bindings\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
