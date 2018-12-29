@@ -7,7 +7,7 @@ C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames
 ## Installation
 So far, I have only tested on Windows. Tips on making things work smoothly on all platforms is appreciated.
 
-You can use the nuget package or install manually from this repo. 
+Use the [nuget package](https://www.nuget.org/packages/Raylib-cs/) or install manually from this repo. 
 
 Look at the Examples and Test projects for reference.
 
