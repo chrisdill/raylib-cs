@@ -7,11 +7,9 @@ C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames
 ## Installation
 So far, I have only tested on Windows. Tips on making things work smoothly on all platforms is appreciated.
 
-Use the [nuget package](https://www.nuget.org/packages/Raylib-cs/) or install manually from this repo. 
+1. Add the [nuget package](https://www.nuget.org/packages/Raylib-cs/)
 
-Look at the Examples and Test projects for reference.
-
-Enjoy!
+2. Start coding!
 
 ```csharp
 using Raylib;
@@ -21,7 +19,7 @@ static class Program
 {
 	public static void Main() 
 	{
-		InitWindow(640, 480, "Raylib-cs");
+		InitWindow(640, 480, "Hello World");
 
 		while (!WindowShouldClose())
 		{
@@ -32,17 +30,16 @@ static class Program
 
 			EndDrawing();
 		}
-	
+
 		CloseWindow();
 	}
 }
 ```
 
 ## Custom build
-Gives access to extra modules from C#.
-
+If you need to build raylib yourself these are the current changes required.
 1. Add [raygui](https://github.com/raysan5/raygui)
-2. Add a C file with the following
+2. Add a file with the following
 ```c
 #include "raylib.h"
 #include "easings.h"
