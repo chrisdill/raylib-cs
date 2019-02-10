@@ -24,7 +24,16 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bindings\Bindings.csproj" />
+    <Compile Remove="raylib-cs\**" />
+    <EmbeddedResource Remove="raylib-cs\**" />
+    <None Remove="raylib-cs\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Bindings\Easings.cs" Link="Easings.cs" />
+    <Compile Include="..\Bindings\Physac.cs" Link="Physac.cs" />
+    <Compile Include="..\Bindings\Raygui.cs" Link="Raygui.cs" />
+    <Compile Include="..\Bindings\Raylib.cs" Link="Raylib.cs" />
+    <Compile Include="..\Bindings\Raymath.cs" Link="Raymath.cs" />
   </ItemGroup>
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
   <Import Project="..\Examples\Examples.projitems" Label="Shared" />
