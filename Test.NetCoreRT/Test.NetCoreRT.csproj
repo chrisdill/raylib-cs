@@ -21,7 +21,11 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bindings\Bindings.csproj" />
+    <Compile Include="..\Bindings\Easings.cs" Link="Easings.cs" />
+    <Compile Include="..\Bindings\Physac.cs" Link="Physac.cs" />
+    <Compile Include="..\Bindings\Raygui.cs" Link="Raygui.cs" />
+    <Compile Include="..\Bindings\Raylib.cs" Link="Raylib.cs" />
+    <Compile Include="..\Bindings\Raymath.cs" Link="Raymath.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-27217-01" />

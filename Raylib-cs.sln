@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bindings", "Bindings\Bindings.csproj", "{9F30944C-415B-4763-91C7-81721117879D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.NetCore", "Test.NetCore\Test.NetCore.csproj", "{1298EE9D-E480-4014-BED0-C7CFE94C4AD7}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Examples", "Examples\Examples.shproj", "{36E54E2A-5899-4D4D-9D78-120DB1B4C7B2}"
@@ -29,18 +27,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F30944C-415B-4763-91C7-81721117879D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F30944C-415B-4763-91C7-81721117879D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F30944C-415B-4763-91C7-81721117879D}.Debug|x64.ActiveCfg = Debug|x64
-		{9F30944C-415B-4763-91C7-81721117879D}.Debug|x64.Build.0 = Debug|x64
-		{9F30944C-415B-4763-91C7-81721117879D}.Debug|x86.ActiveCfg = Debug|x86
-		{9F30944C-415B-4763-91C7-81721117879D}.Debug|x86.Build.0 = Debug|x86
-		{9F30944C-415B-4763-91C7-81721117879D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F30944C-415B-4763-91C7-81721117879D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F30944C-415B-4763-91C7-81721117879D}.Release|x64.ActiveCfg = Release|x64
-		{9F30944C-415B-4763-91C7-81721117879D}.Release|x64.Build.0 = Release|x64
-		{9F30944C-415B-4763-91C7-81721117879D}.Release|x86.ActiveCfg = Release|x86
-		{9F30944C-415B-4763-91C7-81721117879D}.Release|x86.Build.0 = Release|x86
 		{1298EE9D-E480-4014-BED0-C7CFE94C4AD7}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{1298EE9D-E480-4014-BED0-C7CFE94C4AD7}.Debug|x64.ActiveCfg = Debug|x64
 		{1298EE9D-E480-4014-BED0-C7CFE94C4AD7}.Debug|x64.Build.0 = Debug|x64
