@@ -36,10 +36,10 @@ public partial class text_writing_anim
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KEY_SPACE)) framesCounter += 8;
+            if (IsKeyDown(KeyboardKey.KEY_SPACE)) framesCounter += 8;
             else framesCounter++;
 
-            if (IsKeyPressed(KEY_ENTER)) framesCounter = 0;
+            if (IsKeyPressed(KeyboardKey.KEY_ENTER)) framesCounter = 0;
             //----------------------------------------------------------------------------------
 
             // Draw

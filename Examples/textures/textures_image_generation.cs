@@ -62,7 +62,7 @@ public partial class textures_image_generation
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsKeyPressed(KEY_RIGHT))
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) || IsKeyPressed(KeyboardKey.KEY_RIGHT))
             {
                 currentTexture = (currentTexture + 1)%NUM_TEXTURES; // Cycle between the textures
             }

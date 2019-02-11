@@ -25,7 +25,16 @@ public struct Light
 
 public partial class models_material_pbr
 {
-	/*******************************************************************************************	*	*   raylib [models] example - PBR material	*	*   This example has been created using raylib 1.8 (www.raylib.com)	*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)	*	*   Copyright (c) 2017 Ramon Santamaria (@raysan5)	*	********************************************************************************************/
+	/*******************************************************************************************
+	*
+	*   raylib [models] example - PBR material
+	*
+	*   This example has been created using raylib 1.8 (www.raylib.com)
+	*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
+	*
+	*   Copyright (c) 2017 Ramon Santamaria (@raysan5)
+	*
+	********************************************************************************************/
 
 	public const int CUBEMAP_SIZE = 512;
 	public const int IRRADIANCE_SIZE = 32;
@@ -47,7 +56,7 @@ public partial class models_material_pbr
 		int screenHeight = 450;
 
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);  // Enable Multi Sampling Anti Aliasing 4x (if available)
+		SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);  // Enable Multi Sampling Anti Aliasing 4x (if available)
 		InitWindow(screenWidth, screenHeight, "raylib [models] example - pbr material");
 
 		// Define the camera to look into our 3d world
@@ -64,10 +73,11 @@ public partial class models_material_pbr
 		{
 			CreateLight(LightType.LIGHT_POINT, new Vector3( LIGHT_DISTANCE, LIGHT_HEIGHT, 0.0f ), new Vector3( 0.0f, 0.0f, 0.0f ), new Color( 255, 0, 0, 255 ), model.material.shader),
 			CreateLight(LightType.LIGHT_POINT, new Vector3( 0.0f, LIGHT_HEIGHT, LIGHT_DISTANCE ), new Vector3( 0.0f, 0.0f, 0.0f ), new Color( 0, 255, 0, 255 ), model.material.shader),
-			CreateLight(LightType.LIGHT_POINT, new Vector3( -LIGHT_DISTANCE, LIGHT_HEIGHT, 0.0f ), new Vector3( 0.0f, 0.0f, 0.0f ),new Color( 0, 0, 255, 255 ), model.material.shader),			CreateLight(LightType.LIGHT_DIRECTIONAL, new Vector3(0.0f, LIGHT_HEIGHT * 2.0f, -LIGHT_DISTANCE ), new Vector3( 0.0f, 0.0f, 0.0f ), new Color(255, 0, 255, 255 ), model.material.shader)
+			CreateLight(LightType.LIGHT_POINT, new Vector3( -LIGHT_DISTANCE, LIGHT_HEIGHT, 0.0f ), new Vector3( 0.0f, 0.0f, 0.0f ),new Color( 0, 0, 255, 255 ), model.material.shader),
+			CreateLight(LightType.LIGHT_DIRECTIONAL, new Vector3(0.0f, LIGHT_HEIGHT * 2.0f, -LIGHT_DISTANCE ), new Vector3( 0.0f, 0.0f, 0.0f ), new Color(255, 0, 255, 255 ), model.material.shader)
 		};
 
-		SetCameraMode(camera, (int)CameraMode.CAMERA_ORBITAL);  // Set an orbital camera mode
+		SetCameraMode(camera, CameraMode.CAMERA_ORBITAL);  // Set an orbital camera mode
 
 		SetTargetFPS(60); // Set our game to run at 60 frames-per-second
 						  //--------------------------------------------------------------------------------------
@@ -110,7 +120,9 @@ public partial class models_material_pbr
 
 		CloseWindow();              // Close window and OpenGL context
 									//--------------------------------------------------------------------------------------
-		return 0;	}	
+		return 0;
+	}
+	
 	// Load PBR material (Supports: ALBEDO, NORMAL, METALNESS, ROUGHNESS, AO, EMMISIVE, HEIGHT maps)
 	// NOTE: PBR shader is loaded inside this function
 	unsafe public static Material LoadMaterialPBR(Color albedo, float metalness, float roughness)
@@ -162,7 +174,9 @@ public partial class models_material_pbr
 		Shader shdrBRDF = LoadShader(PATH_BRDF_VS, PATH_BRDF_FS);
 
 		// Setup required shader locations
-		SetShaderValuei(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), new int[] { 0 }, 1);		SetShaderValuei(shdrIrradiance, GetShaderLocation(shdrIrradiance, "environmentMap"), new int[] { 0 }, 1);		SetShaderValuei(shdrPrefilter, GetShaderLocation(shdrPrefilter, "environmentMap"), new int[] { 0 }, 1);
+		SetShaderValuei(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), new int[] { 0 }, 1);
+		SetShaderValuei(shdrIrradiance, GetShaderLocation(shdrIrradiance, "environmentMap"), new int[] { 0 }, 1);
+		SetShaderValuei(shdrPrefilter, GetShaderLocation(shdrPrefilter, "environmentMap"), new int[] { 0 }, 1);
 
 		Texture2D texHDR = LoadTexture("resources/dresden_square.hdr");
 		Texture2D cubemap = GenTextureCubemap(shdrCubemap, texHDR, CUBEMAP_SIZE);
@@ -179,21 +193,30 @@ public partial class models_material_pbr
 		UnloadShader(shdrBRDF);
 
 		// Set textures filtering for better quality
-		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_ALBEDO].texture, (int)TextureFilterMode.FILTER_BILINEAR);
-		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_NORMAL].texture, (int)TextureFilterMode.FILTER_BILINEAR);
-		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_METALNESS].texture, (int)TextureFilterMode.FILTER_BILINEAR);
-		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].texture, (int)TextureFilterMode.FILTER_BILINEAR);
-		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_OCCLUSION].texture, (int)TextureFilterMode.FILTER_BILINEAR);
+		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_ALBEDO].texture, TextureFilterMode.FILTER_BILINEAR);
+		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_NORMAL].texture, TextureFilterMode.FILTER_BILINEAR);
+		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_METALNESS].texture, TextureFilterMode.FILTER_BILINEAR);
+		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].texture, TextureFilterMode.FILTER_BILINEAR);
+		SetTextureFilter(mat.maps[(int)TexmapIndex.MAP_OCCLUSION].texture, TextureFilterMode.FILTER_BILINEAR);
 
 		// Enable sample usage in shader for assigned textures
-		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "albedo.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "normals.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "metalness.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "roughness.useSampler"), new int[] { 1 }, 1);		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "occlusion.useSampler"), new int[] { 1 }, 1);
+		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "albedo.useSampler"), new int[] { 1 }, 1);
+		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "normals.useSampler"), new int[] { 1 }, 1);
+		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "metalness.useSampler"), new int[] { 1 }, 1);
+		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "roughness.useSampler"), new int[] { 1 }, 1);
+		SetShaderValuei(mat.shader, GetShaderLocation(mat.shader, "occlusion.useSampler"), new int[] { 1 }, 1);
 
 		int renderModeLoc = GetShaderLocation(mat.shader, "renderMode");
 		SetShaderValuei(mat.shader, renderModeLoc, new int[] { 0 }, 1);
 
 		// Set up material properties color
-		mat.maps[(int)TexmapIndex.MAP_ALBEDO].color = albedo;		mat.maps[(int)TexmapIndex.MAP_NORMAL].color = new Color(128, 128, 255, 255);
-		mat.maps[(int)TexmapIndex.MAP_METALNESS].value = metalness;		mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].value = roughness;		mat.maps[(int)TexmapIndex.MAP_OCCLUSION].value = 1.0f;		mat.maps[(int)TexmapIndex.MAP_EMISSION].value = 0.5f;		mat.maps[(int)TexmapIndex.MAP_HEIGHT].value = 0.5f;
+		mat.maps[(int)TexmapIndex.MAP_ALBEDO].color = albedo;
+		mat.maps[(int)TexmapIndex.MAP_NORMAL].color = new Color(128, 128, 255, 255);
+		mat.maps[(int)TexmapIndex.MAP_METALNESS].value = metalness;
+		mat.maps[(int)TexmapIndex.MAP_ROUGHNESS].value = roughness;
+		mat.maps[(int)TexmapIndex.MAP_OCCLUSION].value = 1.0f;
+		mat.maps[(int)TexmapIndex.MAP_EMISSION].value = 0.5f;
+		mat.maps[(int)TexmapIndex.MAP_HEIGHT].value = 0.5f;
 
 		return mat;
 	}

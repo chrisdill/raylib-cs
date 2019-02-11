@@ -70,7 +70,7 @@ public partial class shaders_postprocessing
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
 
@@ -108,7 +108,7 @@ public partial class shaders_postprocessing
         RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
 
         // Setup orbital camera
-        SetCameraMode(camera, (int)CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_ORBITAL);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -120,8 +120,8 @@ public partial class shaders_postprocessing
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera);              // Update camera
 
-            if (IsKeyPressed(KEY_RIGHT)) currentShader++;
-            else if (IsKeyPressed(KEY_LEFT)) currentShader--;
+            if (IsKeyPressed(KeyboardKey.KEY_RIGHT)) currentShader++;
+            else if (IsKeyPressed(KeyboardKey.KEY_LEFT)) currentShader--;
 
             if (currentShader >= MAX_POSTPRO_SHADERS) currentShader = 0;
             else if (currentShader < 0) currentShader = MAX_POSTPRO_SHADERS - 1;
@@ -134,8 +134,9 @@ public partial class shaders_postprocessing
                 ClearBackground(RAYWHITE);
 
                 BeginTextureMode(target);   // Enable drawing to texture
+                ClearBackground(RAYWHITE);
 
-                    BeginMode3D(camera);
+                BeginMode3D(camera);
 
                         DrawModel(model, position, 0.1f, WHITE);   // Draw 3d model with texture
 

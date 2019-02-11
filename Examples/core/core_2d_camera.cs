@@ -58,12 +58,12 @@ public partial class core_2d_camera
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KEY_RIGHT))
+            if (IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
                 player.x += 2;              // Player movement
                 camera.offset.x -= 2;       // Camera3D displacement with player movement
             }
-            else if (IsKeyDown(KEY_LEFT))
+            else if (IsKeyDown(KeyboardKey.KEY_LEFT))
             {
                 player.x -= 2;              // Player movement
                 camera.offset.x += 2;       // Camera3D displacement with player movement
@@ -73,8 +73,8 @@ public partial class core_2d_camera
             camera.target = new Vector2( player.x + 20, player.y + 20 );
 
             // Camera3D rotation controls
-            if (IsKeyDown(KEY_A)) camera.rotation--;
-            else if (IsKeyDown(KEY_S)) camera.rotation++;
+            if (IsKeyDown(KeyboardKey.KEY_A)) camera.rotation--;
+            else if (IsKeyDown(KeyboardKey.KEY_S)) camera.rotation++;
 
             // Limit camera rotation to 80 degrees (-40 to 40)
             if (camera.rotation > 40) camera.rotation = 40;
@@ -87,7 +87,7 @@ public partial class core_2d_camera
             else if (camera.zoom < 0.1f) camera.zoom = 0.1f;
 
             // Camera3D reset (zoom and rotation)
-            if (IsKeyPressed((int)KEY_R))
+            if (IsKeyPressed(KeyboardKey.KEY_R))
             {
                 camera.zoom = 1.0f;
                 camera.rotation = 0.0f;

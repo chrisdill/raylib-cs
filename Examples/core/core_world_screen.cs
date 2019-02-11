@@ -38,7 +38,7 @@ public partial class core_world_screen
 
         Vector2 cubeScreenPosition;
 
-        SetCameraMode(camera, (int)CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

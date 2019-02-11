@@ -42,7 +42,7 @@ public partial class models_orthographic_projection
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
                 if (camera.type == CAMERA_PERSPECTIVE)
                 {

@@ -55,7 +55,7 @@ public partial class text_font_sdf
 
         // Load SDF required shader (we use default vertex shader)
         Shader shader = LoadShader(null, "resources/shaders/sdf.fs");
-        SetTextureFilter(fontSDF.texture, (int)FILTER_BILINEAR);    // Required for SDF font
+        SetTextureFilter(fontSDF.texture, TextureFilterMode.FILTER_BILINEAR);    // Required for SDF font
 
         Vector2 fontPosition = new Vector2( 40, screenHeight/2 - 50 );
         Vector2 textSize = new Vector2( 0.0f );
@@ -74,7 +74,7 @@ public partial class text_font_sdf
 
             if (fontSize < 6) fontSize = 6;
 
-            if (IsKeyDown(KEY_SPACE)) currentFont = 1;
+            if (IsKeyDown(KeyboardKey.KEY_SPACE)) currentFont = 1;
             else currentFont = 0;
 
             if (currentFont == 0) textSize = MeasureTextEx(fontDefault, msg, fontSize, 0);

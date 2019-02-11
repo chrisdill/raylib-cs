@@ -37,7 +37,7 @@ public partial class models_billboard
         Texture2D bill = LoadTexture("resources/billboard.png");     // Our texture billboard
         Vector3 billPosition = new Vector3( 0.0f, 2.0f, 0.0f );                 // Position where draw billboard
 
-        SetCameraMode(camera, (int)CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_ORBITAL);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

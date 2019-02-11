@@ -41,7 +41,7 @@ public partial class core_3d_picking
 
         bool collision = false;
 
-        SetCameraMode(camera, (int)CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ public partial class core_3d_picking
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera);          // Update camera
 
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
             {
                 ray = GetMouseRay(GetMousePosition(), camera);
 

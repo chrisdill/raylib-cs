@@ -48,7 +48,7 @@ public partial class core_3d_camera_first_person
             colors[i] = new Color( GetRandomValue(20, 255), GetRandomValue(10, 55), 30, 255 );
         }
 
-        SetCameraMode(camera, (int)CAMERA_FIRST_PERSON); // Set a first person camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FIRST_PERSON); // Set a first person camera mode
 
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

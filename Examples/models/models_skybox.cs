@@ -52,7 +52,7 @@ public partial class models_skybox
         UnloadTexture(texHDR);      // Texture not required anymore, cubemap already generated
         UnloadShader(shdrCubemap);  // Unload cubemap generation shader, not required anymore
 
-        SetCameraMode(camera, (int)CAMERA_FIRST_PERSON);  // Set a first person camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FIRST_PERSON);  // Set a first person camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

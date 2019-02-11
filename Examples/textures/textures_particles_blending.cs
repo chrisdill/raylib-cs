@@ -56,7 +56,7 @@ public partial class textures_particles_blending
 
         Texture2D smoke = LoadTexture("resources/smoke.png");
 
-        int blending = (int)BLEND_ALPHA;
+        var blending = BlendMode.BLEND_ALPHA;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -95,10 +95,10 @@ public partial class textures_particles_blending
                 }
             }
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
-                if (blending == (int)BLEND_ALPHA) blending = (int)BLEND_ADDITIVE;
-                else blending = (int)BLEND_ALPHA;
+                if (blending == BlendMode.BLEND_ALPHA) blending = BlendMode.BLEND_ADDITIVE;
+                else blending = BlendMode.BLEND_ALPHA;
             }
             //----------------------------------------------------------------------------------
 

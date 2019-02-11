@@ -34,7 +34,7 @@ public partial class audio_module_playing
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // NOTE: Try to enable MSAA 4X
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);      // NOTE: Try to enable MSAA 4X
 
         InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
 
@@ -74,14 +74,14 @@ public partial class audio_module_playing
             UpdateMusicStream(xm);        // Update music buffer with new stream data
 
             // Restart music playing (stop and play)
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
                 StopMusicStream(xm);
                 PlayMusicStream(xm);
             }
 
             // Pause/Resume music playing
-            if (IsKeyPressed(KEY_P))
+            if (IsKeyPressed(KeyboardKey.KEY_P))
             {
                 pause = !pause;
 
