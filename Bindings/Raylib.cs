@@ -794,182 +794,6 @@ namespace Raylib
         public const float DEG2RAD = (float)Math.PI / 180.0f;
         public const float RAD2DEG = 180.0f / (float)Math.PI;
 
-        // raylib Config Flags
-        public const int FLAG_SHOW_LOGO = 1;
-        public const int FLAG_FULLSCREEN_MODE = 2;
-        public const int FLAG_WINDOW_RESIZABLE = 4;
-        public const int FLAG_WINDOW_UNDECORATED = 8;
-        public const int FLAG_WINDOW_TRANSPARENT = 16;
-        public const int FLAG_MSAA_4X_HINT = 32;
-        public const int FLAG_VSYNC_HINT = 64;
-
-        // Keyboard Function Keys
-        public const int KEY_SPACE = 32;
-        public const int KEY_ESCAPE = 256;
-        public const int KEY_ENTER = 257;
-        public const int KEY_TAB = 258;
-        public const int KEY_BACKSPACE = 259;
-        public const int KEY_INSERT = 260;
-        public const int KEY_DELETE = 261;
-        public const int KEY_RIGHT = 262;
-        public const int KEY_LEFT = 263;
-        public const int KEY_DOWN = 264;
-        public const int KEY_UP = 265;
-        public const int KEY_PAGE_UP = 266;
-        public const int KEY_PAGE_DOWN = 267;
-        public const int KEY_HOME = 268;
-        public const int KEY_END = 269;
-        public const int KEY_CAPS_LOCK = 280;
-        public const int KEY_SCROLL_LOCK = 281;
-        public const int KEY_NUM_LOCK = 282;
-        public const int KEY_PRINT_SCREEN = 283;
-        public const int KEY_PAUSE = 284;
-        public const int KEY_F1 = 290;
-        public const int KEY_F2 = 291;
-        public const int KEY_F3 = 292;
-        public const int KEY_F4 = 293;
-        public const int KEY_F5 = 294;
-        public const int KEY_F6 = 295;
-        public const int KEY_F7 = 296;
-        public const int KEY_F8 = 297;
-        public const int KEY_F9 = 298;
-        public const int KEY_F10 = 299;
-        public const int KEY_F11 = 300;
-        public const int KEY_F12 = 301;
-        public const int KEY_LEFT_SHIFT = 340;
-        public const int KEY_LEFT_CONTROL = 341;
-        public const int KEY_LEFT_ALT = 342;
-        public const int KEY_RIGHT_SHIFT = 344;
-        public const int KEY_RIGHT_CONTROL = 345;
-        public const int KEY_RIGHT_ALT = 346;
-        public const int KEY_GRAVE = 96;
-        public const int KEY_SLASH = 47;
-        public const int KEY_BACKSLASH = 92;
-
-        // Keyboard Alpha Numeric Keys
-        public const int KEY_ZERO = 48;
-        public const int KEY_ONE = 49;
-        public const int KEY_TWO = 50;
-        public const int KEY_THREE = 51;
-        public const int KEY_FOUR = 52;
-        public const int KEY_FIVE = 53;
-        public const int KEY_SIX = 54;
-        public const int KEY_SEVEN = 55;
-        public const int KEY_EIGHT = 56;
-        public const int KEY_NINE = 57;
-        public const int KEY_A = 65;
-        public const int KEY_B = 66;
-        public const int KEY_C = 67;
-        public const int KEY_D = 68;
-        public const int KEY_E = 69;
-        public const int KEY_F = 70;
-        public const int KEY_G = 71;
-        public const int KEY_H = 72;
-        public const int KEY_I = 73;
-        public const int KEY_J = 74;
-        public const int KEY_K = 75;
-        public const int KEY_L = 76;
-        public const int KEY_M = 77;
-        public const int KEY_N = 78;
-        public const int KEY_O = 79;
-        public const int KEY_P = 80;
-        public const int KEY_Q = 81;
-        public const int KEY_R = 82;
-        public const int KEY_S = 83;
-        public const int KEY_T = 84;
-        public const int KEY_U = 85;
-        public const int KEY_V = 86;
-        public const int KEY_W = 87;
-        public const int KEY_X = 88;
-        public const int KEY_Y = 89;
-        public const int KEY_Z = 90;
-
-        // Android Physical Buttons
-        public const int KEY_BACK = 4;
-        public const int KEY_MENU = 82;
-        public const int KEY_VOLUME_UP = 24;
-        public const int KEY_VOLUME_DOWN = 25;
-
-        // Mouse Buttons
-        public const int MOUSE_LEFT_BUTTON = 0;
-        public const int MOUSE_RIGHT_BUTTON = 1;
-        public const int MOUSE_MIDDLE_BUTTON = 2;
-
-        // Touch points registered
-        public const int MAX_TOUCH_POINTS = 2;
-
-        // Gamepad Number
-        public const int GAMEPAD_PLAYER1 = 0;
-        public const int GAMEPAD_PLAYER2 = 1;
-        public const int GAMEPAD_PLAYER3 = 2;
-        public const int GAMEPAD_PLAYER4 = 3;
-
-        // Gamepad Buttons/Axis
-        // PS3 USB Controller Buttons
-        public const int GAMEPAD_PS3_BUTTON_TRIANGLE = 0;
-        public const int GAMEPAD_PS3_BUTTON_CIRCLE = 1;
-        public const int GAMEPAD_PS3_BUTTON_CROSS = 2;
-        public const int GAMEPAD_PS3_BUTTON_SQUARE = 3;
-        public const int GAMEPAD_PS3_BUTTON_L1 = 6;
-        public const int GAMEPAD_PS3_BUTTON_R1 = 7;
-        public const int GAMEPAD_PS3_BUTTON_L2 = 4;
-        public const int GAMEPAD_PS3_BUTTON_R2 = 5;
-        public const int GAMEPAD_PS3_BUTTON_START = 8;
-        public const int GAMEPAD_PS3_BUTTON_SELECT = 9;
-        public const int GAMEPAD_PS3_BUTTON_UP = 24;
-        public const int GAMEPAD_PS3_BUTTON_RIGHT = 25;
-        public const int GAMEPAD_PS3_BUTTON_DOWN = 26;
-        public const int GAMEPAD_PS3_BUTTON_LEFT = 27;
-        public const int GAMEPAD_PS3_BUTTON_PS = 12;
-        // PS3 USB Controller Axis
-        public const int GAMEPAD_PS3_AXIS_LEFT_X = 0;
-        public const int GAMEPAD_PS3_AXIS_LEFT_Y = 1;
-        public const int GAMEPAD_PS3_AXIS_RIGHT_X = 2;
-        public const int GAMEPAD_PS3_AXIS_RIGHT_Y = 5;
-        public const int GAMEPAD_PS3_AXIS_L2 = 3;
-        public const int GAMEPAD_PS3_AXIS_R2 = 4;
-
-        // Xbox360 USB Controller Buttons
-        public const int GAMEPAD_XBOX_BUTTON_A = 0;
-        public const int GAMEPAD_XBOX_BUTTON_B = 1;
-        public const int GAMEPAD_XBOX_BUTTON_X = 2;
-        public const int GAMEPAD_XBOX_BUTTON_Y = 3;
-        public const int GAMEPAD_XBOX_BUTTON_LB = 4;
-        public const int GAMEPAD_XBOX_BUTTON_RB = 5;
-        public const int GAMEPAD_XBOX_BUTTON_SELECT = 6;
-        public const int GAMEPAD_XBOX_BUTTON_START = 7;
-        public const int GAMEPAD_XBOX_BUTTON_UP = 10;
-        public const int GAMEPAD_XBOX_BUTTON_RIGHT = 11;
-        public const int GAMEPAD_XBOX_BUTTON_DOWN = 12;
-        public const int GAMEPAD_XBOX_BUTTON_LEFT = 13;
-        public const int GAMEPAD_XBOX_BUTTON_HOME = 8;
-
-        // Android Gamepad Controller (SNES CLASSIC)
-        public const int GAMEPAD_ANDROID_DPAD_UP = 19;
-        public const int GAMEPAD_ANDROID_DPAD_DOWN = 20;
-        public const int GAMEPAD_ANDROID_DPAD_LEFT = 21;
-        public const int GAMEPAD_ANDROID_DPAD_RIGHT = 22;
-        public const int GAMEPAD_ANDROID_DPAD_CENTER = 23;
-        public const int GAMEPAD_ANDROID_BUTTON_A = 96;
-        public const int GAMEPAD_ANDROID_BUTTON_B = 97;
-        public const int GAMEPAD_ANDROID_BUTTON_C = 98;
-        public const int GAMEPAD_ANDROID_BUTTON_X = 99;
-        public const int GAMEPAD_ANDROID_BUTTON_Y = 100;
-        public const int GAMEPAD_ANDROID_BUTTON_Z = 101;
-        public const int GAMEPAD_ANDROID_BUTTON_L1 = 102;
-        public const int GAMEPAD_ANDROID_BUTTON_R1 = 103;
-        public const int GAMEPAD_ANDROID_BUTTON_L2 = 104;
-        public const int GAMEPAD_ANDROID_BUTTON_R2 = 105;
-
-        // Xbox360 USB Controller Axis
-        // TODO: For Raspberry Pi, axis must be reconfigured
-        public const int GAMEPAD_XBOX_AXIS_LEFT_X = 0;
-        public const int GAMEPAD_XBOX_AXIS_LEFT_Y = 1;
-        public const int GAMEPAD_XBOX_AXIS_RIGHT_X = 2;
-        public const int GAMEPAD_XBOX_AXIS_RIGHT_Y = 3;
-        public const int GAMEPAD_XBOX_AXIS_LT = 4;
-        public const int GAMEPAD_XBOX_AXIS_RT = 5;
-
         // Custom raylib color palette for amazing visuals
         public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
         public static Color GRAY = new Color(130, 130, 130, 255);
@@ -1217,7 +1041,7 @@ namespace Raylib
 
         // Setup window configuration flags (view FLAGS)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetConfigFlags(byte flags);
+        public static extern void SetConfigFlags(ConfigFlag flags);
 
         // Enable trace log message types (bit flags based)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1225,7 +1049,7 @@ namespace Raylib
 
         // Show trace log messages (LOG_INFO, LOG_WARNING, LOG_ERROR, LOG_DEBUG)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void TraceLog(int logType, string text, params object[] args);
+        public static extern void TraceLog(TraceLogType logType, string text, params object[] args);
 
         // Takes a screenshot of current screen (saved a .png)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1324,19 +1148,19 @@ namespace Raylib
         // Input-related functions: keyboard
         // Detect if a key has been pressed once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsKeyPressed(int key);
+        public static extern bool IsKeyPressed(KeyboardKey key);
 
         // Detect if a key is being pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsKeyDown(int key);
+        public static extern bool IsKeyDown(KeyboardKey key);
 
         // Detect if a key has been released once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsKeyReleased(int key);
+        public static extern bool IsKeyReleased(KeyboardKey key);
 
         // Detect if a key is NOT being pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsKeyUp(int key);
+        public static extern bool IsKeyUp(KeyboardKey key);
 
         // Get latest key pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1344,28 +1168,28 @@ namespace Raylib
 
         // Set a custom key to exit program (default is ESC)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetExitKey(int key);
+        public static extern void SetExitKey(KeyboardKey key);
 
         // Input-related functions: gamepads
         // Detect if a gamepad is available
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGamepadAvailable(int gamepad);
+        public static extern bool IsGamepadAvailable(GamepadNumber gamepad);
 
         // Check gamepad name (if available)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGamepadName(int gamepad, string name);
+        public static extern bool IsGamepadName(GamepadNumber gamepad, string name);
 
         // Return gamepad internal name id
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetGamepadName(int gamepad);
+        public static extern string GetGamepadName(GamepadNumber gamepad);
 
         // Detect if a gamepad button has been pressed once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGamepadButtonPressed(int gamepad, int button);
+        public static extern bool IsGamepadButtonPressed(GamepadNumber gamepad, int button);
 
         // Detect if a gamepad button is being pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGamepadButtonDown(int gamepad, int button);
+        public static extern bool IsGamepadButtonDown(GamepadNumber gamepad, int button);
 
         // Detect if a gamepad button has been released once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1381,28 +1205,28 @@ namespace Raylib
 
         // Return gamepad axis count for a gamepad
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetGamepadAxisCount(int gamepad);
+        public static extern int GetGamepadAxisCount(GamepadNumber gamepad);
 
         // Return axis movement value for a gamepad axis
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GetGamepadAxisMovement(int gamepad, int axis);
+        public static extern float GetGamepadAxisMovement(GamepadNumber gamepad, int axis);
 
         // Input-related functions: mouse
         // Detect if a mouse button has been pressed once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsMouseButtonPressed(int button);
+        public static extern bool IsMouseButtonPressed(MouseButton button);
 
         // Detect if a mouse button is being pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsMouseButtonDown(int button);
+        public static extern bool IsMouseButtonDown(MouseButton button);
 
         // Detect if a mouse button has been released once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsMouseButtonReleased(int button);
+        public static extern bool IsMouseButtonReleased(MouseButton button);
 
         // Detect if a mouse button is NOT being pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsMouseButtonUp(int button);
+        public static extern bool IsMouseButtonUp(MouseButton button);
 
         // Returns mouse position X
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1422,7 +1246,11 @@ namespace Raylib
 
         // Set mouse scaling
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMouseScale(float scale);
+        public static extern void SetMouseScale(float scaleX, float scaleY);
+
+        // Set mouse scaling XY
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetMouseOffset(float offsetX, float offsetY);
 
         // Returns mouse wheel movement Y
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1446,11 +1274,11 @@ namespace Raylib
         //------------------------------------------------------------------------------------
         // Enable a set of gestures using flags
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetGesturesEnabled(uint gestureFlags);
+        public static extern void SetGesturesEnabled(Gestures gestureFlags);
 
         // Check if a gesture have been detected
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGestureDetected(int gesture);
+        public static extern bool IsGestureDetected(Gestures gesture);
 
         // Get latest detected gesture
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1486,7 +1314,7 @@ namespace Raylib
 
         // Set camera mode (multiple camera modes available)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetCameraMode(Camera3D camera, int mode);
+        public static extern void SetCameraMode(Camera3D camera, CameraMode mode);
 
         // Update camera position for selected mode
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1861,11 +1689,11 @@ namespace Raylib
 
         // Set texture scaling filter mode
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetTextureFilter(Texture2D texture, int filterMode);
+        public static extern void SetTextureFilter(Texture2D texture, TextureFilterMode filterMode);
 
         // Set texture wrapping mode
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetTextureWrap(Texture2D texture, int wrapMode);
+        public static extern void SetTextureWrap(Texture2D texture, TextureWrapMode wrapMode);
 
         // Texture2D drawing functions
         // Draw a Texture2D
@@ -2261,7 +2089,7 @@ namespace Raylib
 
         // Begin blending mode (alpha, additive, multiplied)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void BeginBlendMode(int mode);
+        public static extern void BeginBlendMode(BlendMode mode);
 
         // End blending mode (reset to default: alpha blending)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -2270,7 +2098,7 @@ namespace Raylib
         // VR control functions
         // Get VR device information for some standard devices
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern VrDeviceInfo GetVrDeviceInfo(int vrDeviceType);
+        public static extern VrDeviceInfo GetVrDeviceInfo(VrDeviceType vrDeviceType);
 
         // Init VR simulator for selected device parameters
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
