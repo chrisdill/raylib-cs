@@ -40,7 +40,6 @@ static class Program
 The bindings are close to the original with a few changes and extensions.
 - Enums are passed in as type instead of int to avoid explicit casting to a int every time.
 - Added constructors for some of the types.
-- Color contains
 
 ## Custom build
 1. Add [raygui](https://github.com/raysan5/raygui)
