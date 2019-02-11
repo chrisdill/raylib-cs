@@ -54,7 +54,7 @@ public partial class models_mesh_generation
 
         int currentModel = 0;
 
-        SetCameraMode(camera, (int)CAMERA_ORBITAL);  // Set a orbital camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_ORBITAL);  // Set a orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ public partial class models_mesh_generation
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera);      // Update internal camera and our camera
 
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
             {
                 currentModel = (currentModel + 1)%NUM_MODELS; // Cycle between the textures
             }

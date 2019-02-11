@@ -34,10 +34,10 @@ public partial class core_input_keys
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 2.0f;
-            if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 2.0f;
-            if (IsKeyDown(KEY_UP)) ballPosition.y -= 2.0f;
-            if (IsKeyDown(KEY_DOWN)) ballPosition.y += 2.0f;
+            if (IsKeyDown(KeyboardKey.KEY_RIGHT)) ballPosition.x += 2.0f;
+            if (IsKeyDown(KeyboardKey.KEY_LEFT)) ballPosition.x -= 2.0f;
+            if (IsKeyDown(KeyboardKey.KEY_UP)) ballPosition.y -= 2.0f;
+            if (IsKeyDown(KeyboardKey.KEY_DOWN)) ballPosition.y += 2.0f;
             //----------------------------------------------------------------------------------
 
             // Draw

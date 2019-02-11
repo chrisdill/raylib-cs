@@ -59,7 +59,7 @@ public partial class core_color_select
                 {
                     colors[i].a = 120;
 
-                    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) selected[i] = !selected[i];
+                    if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON)) selected[i] = !selected[i];
                 }
                 else colors[i].a = 255;
             }

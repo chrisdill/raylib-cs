@@ -56,7 +56,7 @@ public partial class models_mesh_picking
 
         Vector3 bary = new Vector3( 0.0f, 0.0f, 0.0f );
 
-        SetCameraMode(camera, (int)CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 

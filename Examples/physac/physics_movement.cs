@@ -30,7 +30,7 @@ public partial class physics_movement
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);
         InitWindow(screenWidth, screenHeight, "Physac [raylib] - Physics movement");
 
         // Physac logo drawing position
@@ -68,7 +68,7 @@ public partial class physics_movement
             //----------------------------------------------------------------------------------
             RunPhysicsStep();
 
-            if (IsKeyPressed('R'))    // Reset physics input
+            if (IsKeyPressed(KeyboardKey.KEY_R))    // Reset physics input
             {
                 // Reset movement physics body position, velocity and rotation
                 body.position = new Vector2( screenWidth/2, screenHeight/2 );
@@ -77,11 +77,11 @@ public partial class physics_movement
             }
 
             // Horizontal movement input
-            if (IsKeyDown(KEY_RIGHT)) body.velocity.x = VELOCITY;
-            else if (IsKeyDown(KEY_LEFT)) body.velocity.x = -VELOCITY;
+            if (IsKeyDown(KeyboardKey.KEY_RIGHT)) body.velocity.x = VELOCITY;
+            else if (IsKeyDown(KeyboardKey.KEY_LEFT)) body.velocity.x = -VELOCITY;
 
             // Vertical movement input checking if player physics body is grounded
-            if (IsKeyDown(KEY_UP) && body.isGrounded) body.velocity.y = -VELOCITY*4;
+            if (IsKeyDown(KeyboardKey.KEY_UP) && body.isGrounded) body.velocity.y = -VELOCITY*4;
             //----------------------------------------------------------------------------------
 
             // Draw

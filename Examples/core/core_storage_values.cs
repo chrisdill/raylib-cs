@@ -39,18 +39,18 @@ public partial class core_storage_values
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KEY_R))
+            if (IsKeyPressed(KeyboardKey.KEY_R))
             {
                 score = GetRandomValue(1000, 2000);
                 hiscore = GetRandomValue(2000, 4000);
             }
 
-            if (IsKeyPressed(KEY_ENTER))
+            if (IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
                 StorageSaveValue((int)StorageData.STORAGE_SCORE, score);
                 StorageSaveValue((int)StorageData.STORAGE_HISCORE, hiscore);
             }
-            else if (IsKeyPressed(KEY_SPACE))
+            else if (IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
                 // NOTE: If requested position could not be found, value 0 is returned
                 score = StorageLoadValue((int)StorageData.STORAGE_SCORE);

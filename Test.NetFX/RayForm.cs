@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Raylib;
 using static Raylib.Raylib;
 
 namespace Test.NetFX
@@ -54,7 +55,7 @@ namespace Test.NetFX
 
         private void Test()
         {
-            SetConfigFlags(FLAG_WINDOW_UNDECORATED);
+            SetConfigFlags(ConfigFlag.FLAG_WINDOW_UNDECORATED);
             InitWindow(800, 480, "Rayforms test");
             SetTargetFPS(60);
 

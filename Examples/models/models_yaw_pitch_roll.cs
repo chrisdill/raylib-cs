@@ -70,8 +70,8 @@ public partial class models_yaw_pitch_roll
             //----------------------------------------------------------------------------------
 
             // Plane roll (x-axis) controls
-            if (IsKeyDown(KEY_LEFT)) roll += 1.0f;
-            else if (IsKeyDown(KEY_RIGHT)) roll -= 1.0f;
+            if (IsKeyDown(KeyboardKey.KEY_LEFT)) roll += 1.0f;
+            else if (IsKeyDown(KeyboardKey.KEY_RIGHT)) roll -= 1.0f;
             else
             {
                 if (roll > 0.0f) roll -= 0.5f;
@@ -79,8 +79,8 @@ public partial class models_yaw_pitch_roll
             }
 
             // Plane yaw (y-axis) controls
-            if (IsKeyDown(KEY_S)) yaw += 1.0f;
-            else if (IsKeyDown(KEY_A)) yaw -= 1.0f;
+            if (IsKeyDown(KeyboardKey.KEY_S)) yaw += 1.0f;
+            else if (IsKeyDown(KeyboardKey.KEY_A)) yaw -= 1.0f;
             else
             {
                 if (yaw > 0.0f) yaw -= 0.5f;
@@ -88,8 +88,8 @@ public partial class models_yaw_pitch_roll
             }
 
             // Plane pitch (z-axis) controls
-            if (IsKeyDown(KEY_DOWN)) pitch += 0.6f;
-            else if (IsKeyDown(KEY_UP)) pitch -= 0.6f;
+            if (IsKeyDown(KeyboardKey.KEY_DOWN)) pitch += 0.6f;
+            else if (IsKeyDown(KeyboardKey.KEY_UP)) pitch -= 0.6f;
             else
             {
                 if (pitch > 0.3f) pitch -= 0.3f;

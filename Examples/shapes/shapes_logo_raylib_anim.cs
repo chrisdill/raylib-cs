@@ -95,7 +95,7 @@ public partial class shapes_logo_raylib_anim
             }
             else if (state == 4)            // State 4: Reset and Replay
             {
-                if (IsKeyPressed('R'))
+                if (IsKeyPressed(KeyboardKey.KEY_R))
                 {
                     framesCounter = 0;
                     lettersCount = 0;

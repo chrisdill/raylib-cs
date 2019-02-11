@@ -40,7 +40,7 @@ public partial class text_ttf_loading
         Vector2 fontPosition = new Vector2( 40, screenHeight/2 - 80 );
         Vector2 textSize;
 
-        SetTextureFilter(font.texture, (int)FILTER_POINT);
+        SetTextureFilter(font.texture, TextureFilterMode.FILTER_POINT);
         int currentFontFilter = 0;      // FILTER_POINT
 
         // NOTE: Drag and drop support only available for desktop platforms: Windows, Linux, OSX
@@ -57,27 +57,27 @@ public partial class text_ttf_loading
             fontSize += GetMouseWheelMove()*4.0f;
 
             // Choose font texture filter method
-            if (IsKeyPressed(KEY_ONE))
+            if (IsKeyPressed(KeyboardKey.KEY_ONE))
             {
-                SetTextureFilter(font.texture, (int)FILTER_POINT);
+                SetTextureFilter(font.texture, TextureFilterMode.FILTER_POINT);
                 currentFontFilter = 0;
             }
-            else if (IsKeyPressed(KEY_TWO))
+            else if (IsKeyPressed(KeyboardKey.KEY_TWO))
             {
-                SetTextureFilter(font.texture, (int)FILTER_BILINEAR);
+                SetTextureFilter(font.texture, TextureFilterMode.FILTER_BILINEAR);
                 currentFontFilter = 1;
             }
-            else if (IsKeyPressed(KEY_THREE))
+            else if (IsKeyPressed(KeyboardKey.KEY_THREE))
             {
                 // NOTE: Trilinear filter won't be noticed on 2D drawing
-                SetTextureFilter(font.texture, (int)FILTER_TRILINEAR);
+                SetTextureFilter(font.texture, TextureFilterMode.FILTER_TRILINEAR);
                 currentFontFilter = 2;
             }
 
             textSize = MeasureTextEx(font, msg, fontSize, 0);
 
-            if (IsKeyDown(KEY_LEFT)) fontPosition.x -= 10;
-            else if (IsKeyDown(KEY_RIGHT)) fontPosition.x += 10;
+            if (IsKeyDown(KeyboardKey.KEY_LEFT)) fontPosition.x -= 10;
+            else if (IsKeyDown(KeyboardKey.KEY_RIGHT)) fontPosition.x += 10;
 
             // Load a dropped TTF file dynamically (at current fontSize)
             if (IsFileDropped())

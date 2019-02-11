@@ -49,10 +49,10 @@ public partial class models_box_collisions
             //----------------------------------------------------------------------------------
 
             // Move player
-            if (IsKeyDown(KEY_RIGHT)) playerPosition.x += 0.2f;
-            else if (IsKeyDown(KEY_LEFT)) playerPosition.x -= 0.2f;
-            else if (IsKeyDown(KEY_DOWN)) playerPosition.z += 0.2f;
-            else if (IsKeyDown(KEY_UP)) playerPosition.z -= 0.2f;
+            if (IsKeyDown(KeyboardKey.KEY_RIGHT)) playerPosition.x += 0.2f;
+            else if (IsKeyDown(KeyboardKey.KEY_LEFT)) playerPosition.x -= 0.2f;
+            else if (IsKeyDown(KeyboardKey.KEY_DOWN)) playerPosition.z += 0.2f;
+            else if (IsKeyDown(KeyboardKey.KEY_UP)) playerPosition.z -= 0.2f;
 
             collision = false;
 

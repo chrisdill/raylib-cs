@@ -40,7 +40,7 @@ public partial class models_heightmap
 
         UnloadImage(image);                     // Unload heightmap image from RAM, already uploaded to VRAM
 
-        SetCameraMode(camera, (int)CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_ORBITAL);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

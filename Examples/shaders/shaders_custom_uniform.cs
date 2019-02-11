@@ -32,7 +32,7 @@ public partial class shaders_custom_uniform
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - custom uniform variable");
 
@@ -63,7 +63,7 @@ public partial class shaders_custom_uniform
         RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
 
         // Setup orbital camera
-        SetCameraMode(camera, (int)CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_ORBITAL);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -91,6 +91,7 @@ public partial class shaders_custom_uniform
                 ClearBackground(RAYWHITE);
 
                 BeginTextureMode(target);   // Enable drawing to texture
+                ClearBackground(RAYWHITE);
 
                     BeginMode3D(camera);
 

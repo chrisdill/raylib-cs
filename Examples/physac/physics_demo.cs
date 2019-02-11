@@ -29,7 +29,7 @@ public partial class physics_demo
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);
         InitWindow(screenWidth, screenHeight, "Physac [raylib] - Physics demo");
 
         // Physac logo drawing position
@@ -75,15 +75,15 @@ public partial class physics_demo
             }
 
             // Reset physics input
-            if (IsKeyPressed('R'))
+            if (IsKeyPressed(KeyboardKey.KEY_R))
             {
                 ResetPhysics();
                 needsReset = true;
             }
 
             // Physics body creation inputs
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) CreatePhysicsBodyPolygon(GetMousePosition(), GetRandomValue(20, 80), GetRandomValue(3, 8), 10);
-            else if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) CreatePhysicsBodyCircle(GetMousePosition(), GetRandomValue(10, 45), 10);
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON)) CreatePhysicsBodyPolygon(GetMousePosition(), GetRandomValue(20, 80), GetRandomValue(3, 8), 10);
+            else if (IsMouseButtonPressed(MouseButton.MOUSE_RIGHT_BUTTON)) CreatePhysicsBodyCircle(GetMousePosition(), GetRandomValue(10, 45), 10);
 
             // Destroy falling physics bodies
             int bodiesCount = GetPhysicsBodiesCount();

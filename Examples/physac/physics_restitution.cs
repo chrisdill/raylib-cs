@@ -28,7 +28,7 @@ public partial class physics_restitution
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);
         InitWindow(screenWidth, screenHeight, "Physac [raylib] - Physics restitution");
 
         // Physac logo drawing position
@@ -61,7 +61,7 @@ public partial class physics_restitution
             //----------------------------------------------------------------------------------
             RunPhysicsStep();
 
-            if (IsKeyPressed('R'))    // Reset physics input
+            if (IsKeyPressed(KeyboardKey.KEY_R))    // Reset physics input
             {
                 // Reset circles physics bodies position and velocity
                 circleA.position = new Vector2( screenWidth*0.25f, screenHeight/2 );

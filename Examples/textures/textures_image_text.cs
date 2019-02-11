@@ -47,7 +47,7 @@ public partial class textures_image_text
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KEY_SPACE)) showFont = true;
+            if (IsKeyDown(KeyboardKey.KEY_SPACE)) showFont = true;
             else showFont = false;
             //----------------------------------------------------------------------------------
 

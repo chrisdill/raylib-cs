@@ -28,7 +28,7 @@ public partial class physics_friction
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);
         InitWindow(screenWidth, screenHeight, "Physac [raylib] - Physics friction");
 
         // Physac logo drawing position
@@ -73,7 +73,7 @@ public partial class physics_friction
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed('R'))    // Reset physics input
+            if (IsKeyPressed(KeyboardKey.KEY_R))    // Reset physics input
             {
                 // Reset dynamic physics bodies position, velocity and rotation
                 bodyA.position = new Vector2( 35, screenHeight*0.6f );

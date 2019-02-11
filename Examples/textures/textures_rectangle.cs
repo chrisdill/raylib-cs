@@ -57,8 +57,8 @@ public partial class textures_rectangle
                 frameRec.x = (float)currentFrame*(float)scarfy.width/6;
             }
 
-            if (IsKeyPressed(KEY_RIGHT)) framesSpeed++;
-            else if (IsKeyPressed(KEY_LEFT)) framesSpeed--;
+            if (IsKeyPressed(KeyboardKey.KEY_RIGHT)) framesSpeed++;
+            else if (IsKeyPressed(KeyboardKey.KEY_LEFT)) framesSpeed--;
 
             if (framesSpeed > MAX_FRAME_SPEED) framesSpeed = MAX_FRAME_SPEED;
             else if (framesSpeed < MIN_FRAME_SPEED) framesSpeed = MIN_FRAME_SPEED;

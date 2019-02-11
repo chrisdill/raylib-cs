@@ -57,7 +57,7 @@ public partial class text_input_box
                     letterCount++;
                 }
 
-                if (IsKeyPressed(KEY_BACKSPACE))
+                if (IsKeyPressed(KeyboardKey.KEY_BACKSPACE))
                 {
                     letterCount--;
                     if (letterCount < 0) letterCount = 0;
@@ -109,7 +109,7 @@ public partial class text_input_box
     }
 
     // Check if any key is pressed
-    // NOTE: We limit keys check to keys between 32 (KEY_SPACE) and 126
+    // NOTE: We limit keys check to keys between 32 (KeyboardKey.KEY_SPACE) and 126
     bool IsAnyKeyPressed()
     {
         bool keyPressed = false;

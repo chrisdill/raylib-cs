@@ -74,13 +74,13 @@ public partial class textures_image_processing
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KEY_DOWN))
+            if (IsKeyPressed(KeyboardKey.KEY_DOWN))
             {
                 currentProcess++;
                 if (currentProcess > 7) currentProcess = 0;
                 textureReload = true;
             }
-            else if (IsKeyPressed(KEY_UP))
+            else if (IsKeyPressed(KeyboardKey.KEY_UP))
             {
                 currentProcess--;
                 if (currentProcess < 0) currentProcess = 7;

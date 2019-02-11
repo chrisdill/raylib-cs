@@ -32,7 +32,7 @@ public partial class shaders_model_shader
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
 
@@ -54,7 +54,7 @@ public partial class shaders_model_shader
 
         Vector3 position = new Vector3( 0.0f, 0.0f, 0.0f );    // Set model position
 
-        SetCameraMode(camera, (int)CAMERA_FREE);         // Set an orbital camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FREE);         // Set an orbital camera mode
 
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

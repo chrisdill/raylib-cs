@@ -37,9 +37,9 @@ public partial class core_input_mouse
             //----------------------------------------------------------------------------------
             ballPosition = GetMousePosition();
 
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) ballColor = MAROON;
-            else if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) ballColor = LIME;
-            else if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) ballColor = DARKBLUE;
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON)) ballColor = MAROON;
+            else if (IsMouseButtonPressed(MouseButton.MOUSE_MIDDLE_BUTTON)) ballColor = LIME;
+            else if (IsMouseButtonPressed(MouseButton.MOUSE_RIGHT_BUTTON)) ballColor = DARKBLUE;
             //----------------------------------------------------------------------------------
 
             // Draw

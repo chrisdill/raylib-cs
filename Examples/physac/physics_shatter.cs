@@ -28,7 +28,7 @@ public partial class physics_shatter
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);
         InitWindow(screenWidth, screenHeight, "Physac [raylib] - Body shatter");
 
         // Physac logo drawing position
@@ -60,13 +60,13 @@ public partial class physics_shatter
                 CreatePhysicsBodyPolygon(new Vector2( screenWidth/2, screenHeight/2 ), GetRandomValue(80, 200), GetRandomValue(3, 8), 10);
             }
 
-            if (IsKeyPressed('R'))    // Reset physics input
+            if (IsKeyPressed(KeyboardKey.KEY_R))    // Reset physics input
             {
                 ResetPhysics();
                 needsReset = true;
             }
 
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))    // Physics shatter input
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))    // Physics shatter input
             {
                 // Note: some values need to be stored in variables due to asynchronous changes during main thread
                 int count = GetPhysicsBodiesCount();

@@ -22,7 +22,7 @@ public partial class shapes_lines_bezier
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlag.FLAG_MSAA_4X_HINT);
         InitWindow(screenWidth, screenHeight, "raylib [shapes] example - cubic-bezier lines");
 
         Vector2 start = new Vector2( 0, 0 );
@@ -36,8 +36,8 @@ public partial class shapes_lines_bezier
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) start = GetMousePosition();
-            else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) end = GetMousePosition();
+            if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON)) start = GetMousePosition();
+            else if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON)) end = GetMousePosition();
             //----------------------------------------------------------------------------------
 
             // Draw

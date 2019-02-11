@@ -29,7 +29,7 @@ public partial class core_vr_simulator
         InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
 
 		// Init VR simulator (Oculus Rift CV1 parameters)
-        InitVrSimulator(GetVrDeviceInfo((int)HMD_OCULUS_RIFT_CV1));
+        InitVrSimulator(GetVrDeviceInfo(HMD_OCULUS_RIFT_CV1));
 
         // Define the camera to look into our 3d world
         Camera3D camera;
@@ -41,7 +41,7 @@ public partial class core_vr_simulator
 
         Vector3 cubePosition = new Vector3( 0.0f, 0.0f, 0.0f );
 
-        SetCameraMode(camera, (int)CAMERA_FIRST_PERSON);         // Set first person camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FIRST_PERSON);         // Set first person camera mode
 
         SetTargetFPS(90);                   // Set our game to run at 90 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ public partial class core_vr_simulator
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera);          // Update camera (simulator mode)
 
-            if (IsKeyPressed(KEY_SPACE)) ToggleVrMode();    // Toggle VR mode
+            if (IsKeyPressed(KeyboardKey.KEY_SPACE)) ToggleVrMode();    // Toggle VR mode
             //----------------------------------------------------------------------------------
 
             // Draw

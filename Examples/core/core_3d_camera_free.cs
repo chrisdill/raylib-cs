@@ -36,7 +36,7 @@ public partial class core_3d_camera_free
 
         Vector3 cubePosition = new Vector3( 0.0f, 0.0f, 0.0f );
 
-        SetCameraMode(camera, (int)CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraMode.CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ public partial class core_3d_camera_free
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera);          // Update camera
 
-            if (IsKeyDown('Z')) camera.target = new Vector3( 0.0f, 0.0f, 0.0f );
+            if (IsKeyDown(KeyboardKey.KEY_Z)) camera.target = new Vector3( 0.0f, 0.0f, 0.0f );
             //----------------------------------------------------------------------------------
 
             // Draw

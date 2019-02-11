@@ -39,8 +39,8 @@ public partial class audio_sound_loading
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KEY_SPACE)) PlaySound(fxWav);      // Play WAV sound
-            if (IsKeyPressed(KEY_ENTER)) PlaySound(fxOgg);      // Play OGG sound
+            if (IsKeyPressed(KeyboardKey.KEY_SPACE)) PlaySound(fxWav);      // Play WAV sound
+            if (IsKeyPressed(KeyboardKey.KEY_ENTER)) PlaySound(fxOgg);      // Play OGG sound
             //----------------------------------------------------------------------------------
 
             // Draw
