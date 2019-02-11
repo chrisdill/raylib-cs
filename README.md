@@ -25,8 +25,8 @@ static class Program
 		{
 			BeginDraw();
 
-			ClearBackground(WHITE);
-			DrawText("Hello, world!", 12, 12, 20, BLACK);
+			ClearBackground(Color.WHITE);
+			DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
 
 			EndDrawing();
 		}
@@ -36,8 +36,13 @@ static class Program
 }
 ```
 
+# Tech notes
+The bindings are close to the original with a few changes and extensions.
+- Enums are passed in as type instead of int to avoid explicit casting to a int every time.
+- Added constructors for some of the types.
+- Color contains
+
 ## Custom build
-If you need to build raylib yourself these are the current changes required.
 1. Add [raygui](https://github.com/raysan5/raygui)
 2. Add a file with the following
 ```c
