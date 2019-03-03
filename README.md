@@ -2,7 +2,7 @@
 
 # Raylib-cs
 
-C# bindings for raylib 2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 ## Installation
 So far, I have only tested on Windows. Tips on making things work smoothly on all platforms is appreciated.
@@ -29,7 +29,7 @@ static class Program
 
 			rl.EndDrawing();
 		}
-
+		
 		rl.CloseWindow();
 	}
 }
