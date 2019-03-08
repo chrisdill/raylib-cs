@@ -97,21 +97,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Bindings\Easings.cs">
-      <Link>Easings.cs</Link>
-    </Compile>
-    <Compile Include="..\Bindings\Physac.cs">
-      <Link>Physac.cs</Link>
-    </Compile>
-    <Compile Include="..\Bindings\Raygui.cs">
-      <Link>Raygui.cs</Link>
-    </Compile>
-    <Compile Include="..\Bindings\Raylib.cs">
-      <Link>Raylib.cs</Link>
-    </Compile>
-    <Compile Include="..\Bindings\Raymath.cs">
-      <Link>Raymath.cs</Link>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RayForm.cs">
@@ -130,11 +115,12 @@
     <Content Include="raylib-cs.ico" />
   </ItemGroup>
   <ItemGroup />
-  <Import Project="..\Examples\Examples.projitems" Label="Shared" />
+  <Import Project="..\..\Examples\Examples.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\Bindings\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\..\Bindings\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
   </Target>
+  <Import Project="..\..\Bindings\Raylib.projitems" Label="Shared" />
 </Project>

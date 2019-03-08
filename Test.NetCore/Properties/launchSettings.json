@@ -1,7 +1,0 @@
-{
-  "profiles": {
-    "Test.NetCore": {
-      "commandName": "Project"
-    }
-  }
-}

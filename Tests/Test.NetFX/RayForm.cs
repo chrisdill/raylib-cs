@@ -3,7 +3,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Raylib;
-using static Raylib.Raylib;
+using rl = Raylib.Raylib;
+using Color = Raylib.Color;
 
 namespace Test.NetFX
 {
@@ -55,11 +56,11 @@ namespace Test.NetFX
 
         private void Test()
         {
-            SetConfigFlags(ConfigFlag.FLAG_WINDOW_UNDECORATED);
-            InitWindow(800, 480, "Rayforms test");
-            SetTargetFPS(60);
+            rl.SetConfigFlags(ConfigFlag.FLAG_WINDOW_UNDECORATED);
+            rl.InitWindow(800, 480, "Rayforms test");
+            rl.SetTargetFPS(60);
 
-            IntPtr winHandle = GetWindowHandle();
+            IntPtr winHandle = rl.GetWindowHandle();
             Invoke(new Action(() =>
             {
                 SetWindowPos(winHandle, Handle, 0, 0, 0, 0, 0x0401 /*NOSIZE | SHOWWINDOW */);
@@ -68,8 +69,7 @@ namespace Test.NetFX
                 windowAttached = true;
             }));
 
-            // Main game loop
-            while (!WindowShouldClose())    // Detect window close button or ESC key
+            while (!rl.WindowShouldClose())    // Detect window close button or ESC key
             {
                 // Update
                 //----------------------------------------------------------------------------------
@@ -78,20 +78,17 @@ namespace Test.NetFX
 
                 // Draw
                 //----------------------------------------------------------------------------------
-                BeginDrawing();
+                rl.BeginDrawing();
+                rl.ClearBackground(Color.RAYWHITE);
 
-                ClearBackground(RAYWHITE);
+                rl.DrawText("Congrats! You created your first window!", 190, 200, 20, Color.MAROON);
+                rl.DrawText(rl.GetFrameTime().ToString(), 100, 10, 15, Color.MAROON);
+                rl.DrawFPS(10, 10);
 
-                DrawText("Congrats! You created your first window!", 190, 200, 20, MAROON);
-
-                DrawText(GetFrameTime().ToString(), 100, 10, 15, MAROON);
-
-                DrawFPS(10, 10);
-
-                EndDrawing();
+                rl.EndDrawing();
                 //----------------------------------------------------------------------------------
             }
-            CloseWindow();
+            rl.CloseWindow();
         }
 
         public static void Run()
