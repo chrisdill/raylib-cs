@@ -21,20 +21,14 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Bindings\Easings.cs" Link="Easings.cs" />
-    <Compile Include="..\Bindings\Physac.cs" Link="Physac.cs" />
-    <Compile Include="..\Bindings\Raygui.cs" Link="Raygui.cs" />
-    <Compile Include="..\Bindings\Raylib.cs" Link="Raylib.cs" />
-    <Compile Include="..\Bindings\Raymath.cs" Link="Raymath.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-27217-01" />
   </ItemGroup>
-  <Import Project="..\Examples\Examples.projitems" Label="Shared" />
-  <Import Project="..\Examples\Examples.projitems" Label="Shared" />
+  <Import Project="..\..\Examples\Examples.projitems" Label="Shared" />
+  <Import Project="..\..\Examples\Examples.projitems" Label="Shared" />
+  <Import Project="..\..\Bindings\Raylib.projitems" Label="Shared" />
   <Target Name="TestTarget" AfterTargets="Build">
-    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\Bindings\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\..\Bindings\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\..\Bindings\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
