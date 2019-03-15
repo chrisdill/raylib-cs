@@ -1,5 +1,3 @@
-// Physac - https://github.com/raysan5/raylib/blob/master/src/physac.h
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -27,31 +25,63 @@ namespace Raylib
         public float m11;
     }
 
-    // [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    [StructLayout(LayoutKind.Explicit, Size = 388)]
-    public unsafe struct PolygonData
+    // @TODO Custom array marshall issue https://github.com/ChrisDill/Raylib-cs/issues/9
+    // hack same as raylib.cs _MaterialMap_e_FixedBuffer
+    // no easy way to marshall arrays of custom types. no idea why?!?!
+    // Span<T> seems to need ref struct.
+    public unsafe struct _Polygon_e_FixedBuffer
     {
-        [FieldOffset(0)]
-        public uint vertexCount;                           // Current used vertex and normals count       
-        [FieldOffset(4)]
-        public unsafe Vector2* positions;
-        [FieldOffset(196)]
-        public unsafe Vector2* normals;
+        public Vector2 v0;
+        public Vector2 v1;
+        public Vector2 v2;
+        public Vector2 v3;
+        public Vector2 v4;
+        public Vector2 v5;
+        public Vector2 v6;
+        public Vector2 v7;
+        public Vector2 v8;
+        public Vector2 v9;
+        public Vector2 v10;
+        public Vector2 v11;
+        public Vector2 v12;
+        public Vector2 v13;
+        public Vector2 v14;
+        public Vector2 v15;
+        public Vector2 v16;
+        public Vector2 v17;
+        public Vector2 v18;
+        public Vector2 v19;
+        public Vector2 v20;
+        public Vector2 v21;
+        public Vector2 v22;
+        public Vector2 v23;
+        public Vector2 v24;
+
+        public Vector2 this[int index]
+        {
+            get
+            {
+                fixed (Vector2* e = &v0)
+                    return e[index];
+            }
+        }
     }
 
-    // [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    [StructLayout(LayoutKind.Explicit, Size = 424)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct PolygonData
+    {
+        public uint vertexCount;                           // Current used vertex and normals count       
+        public _Polygon_e_FixedBuffer positions;           // Polygon vertex positions vectors
+        public _Polygon_e_FixedBuffer normals;             // Polygon vertex normals vectors
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct PhysicsShape
     {
-        [FieldOffset(0)]
         public PhysicsShapeType type;                      // Physics shape type (circle or polygon)  
-        [FieldOffset(8)]
         public IntPtr body;                                // Shape physics body reference      
-        [FieldOffset(16)]
         public float radius;                               // Circle shape radius (used for circle shapes)      
-        [FieldOffset(20)]
         public Mat2 transform;                             // Vertices transform matrix 2x2     
-        [FieldOffset(36)]
         public PolygonData vertexData;                     // Polygon shape vertices position and normals data (just used for polygon shapes)
     }
 
@@ -59,6 +89,7 @@ namespace Raylib
     public partial struct PhysicsBodyData
     {      
         public uint id;    
+        [MarshalAs(UnmanagedType.Bool)]
         public bool enabled;
         public Vector2 position;    
         public Vector2 velocity;    
@@ -73,48 +104,26 @@ namespace Raylib
         public float staticFriction;
         public float dynamicFriction;
         public float restitution;
+        [MarshalAs(UnmanagedType.Bool)]
         public bool useGravity;
+        [MarshalAs(UnmanagedType.Bool)]
         public bool isGrounded; 
+        [MarshalAs(UnmanagedType.Bool)]
         public bool freezeOrient;
         public PhysicsShape shape;
-    
-        // convert c bool(stored as byte) to bool
-        /*public bool enabled
-        {
-            get { return Convert.ToBoolean(bEnabled); }
-            set {
-                bEnabled = Convert.ToByte(value); }
-        }
-
-        public bool useGravity
-        {
-            get { return Convert.ToBoolean(bUseGravity); }
-            set { bUseGravity = Convert.ToByte(value); }
-        }
-
-        public bool isGrounded
-        {
-            get { return bIsGrounded != 0; }
-            set { bIsGrounded = (byte)(value ? 1 : 0); }
-        }
-
-        public bool freezeOrient
-        {
-            get { return Convert.ToBoolean(bFreezeOrient); }
-            set { bFreezeOrient = Convert.ToByte(value); }
-        }*/
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public unsafe struct PhysicsManifoldData
-    {        
-        public uint id;                            // Reference unique identifier  
-        public IntPtr bodyA;                          // Manifold first physics body reference   
-        public IntPtr bodyB;                          // Manifold second physics body reference
+    public struct PhysicsManifoldData
+    {      
+        public uint id;                                    // Reference unique identifier  
+        public IntPtr bodyA;                               // Manifold first physics body reference   
+        public IntPtr bodyB;                               // Manifold second physics body reference
         public float penetration;                          // Depth of penetration from collision
         public Vector2 normal;                             // Normal direction vector from 'a' to 'b'
-        public unsafe Vector2* contacts;       // Points of contact during collision
-        public uint contactsCount;                 // Current collision number of contacts
+        public Vector2 contactsA;                            // Points of contact during collision
+        public Vector2 contactsB;                            // Points of contact during collision
+        public uint contactsCount;                         // Current collision number of contacts
         public float restitution;                          // Mixed restitution during collision
         public float dynamicFriction;                      // Mixed dynamic friction during collision
         public float staticFriction;                       // Mixed static friction during collision

@@ -1,5 +1,3 @@
-// Easings - https://github.com/raysan5/raylib/blob/master/src/easings.h
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -7,8 +5,6 @@ namespace Raylib
 {
     public static partial class Raylib
     {
-        #region Raylib-cs Functions
-
         // Linear Easing functions
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float EaseLinearNone(float t, float b, float c, float d);
@@ -100,8 +96,6 @@ namespace Raylib
         public static extern float EaseElasticOut(float t, float b, float c, float d);
 
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern float EaseElasticInOut(float t, float b, float c, float d);
-
-        #endregion
+        public static extern float EaseElasticInOut(float t, float b, float c, float d); 
     }
 }
