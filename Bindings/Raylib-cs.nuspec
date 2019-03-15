@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata minClientVersion="3.3.0">
+    <id>Raylib-cs</id>
+    <version>1.4</version>
+    <authors>mysterious_space</authors>
+    <owners>mysterious_space</owners>
+    <licenseUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ChrisDill/Raylib-cs</projectUrl>
+    <iconUrl>https://github.com/ChrisDill/Raylib-cs/blob/master/Logo/raylib-cs.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# bindings for raylib, a simple and easy-to-use library to learn videogames programming.</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>raylib csharp binding opengl gamedev</tags>
+
+    <contentFiles>
+	    <files include="Easings.cs" buildAction="Content" />
+      <files include="Raygui.cs" buildAction="Content" />
+      <files include="Raymath.cs" buildAction="Content" />
+      <files include="Raylib.cs" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <!-- <file src="Raylib.cs" target="contentFiles" /> -->
+    <file src="Raylib.cs" target="contentFiles" />
+  </files>
+</package>
