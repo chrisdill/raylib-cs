@@ -1,207 +1,129 @@
-// Raygui - https://github.com/raysan5/raygui/blob/master/src/raygui.h
-
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Raylib
 {
-    #region Raylib-cs Enums
-
-    // Gui properties enumeration
-    enum GuiProperty
+    // Gui global state enum
+    enum GuiControlState
     {
-        //--------------------------------------------
-        // NOTE: This first set of properties is for general style,
-        // following control-specific properties overwritte those styles
-        DEFAULT_BACKGROUND_COLOR = 0,
-        DEFAULT_LINES_COLOR,
-        DEFAULT_TEXT_FONT,
-        DEFAULT_TEXT_SIZE,
-        DEFAULT_BORDER_WIDTH,
-        DEFAULT_BORDER_COLOR_NORMAL,
-        DEFAULT_BASE_COLOR_NORMAL,
-        DEFAULT_TEXT_COLOR_NORMAL,
-        DEFAULT_BORDER_COLOR_FOCUSED,
-        DEFAULT_BASE_COLOR_FOCUSED,
-        DEFAULT_TEXT_COLOR_FOCUSED,
-        DEFAULT_BORDER_COLOR_PRESSED,
-        DEFAULT_BASE_COLOR_PRESSED,
-        DEFAULT_TEXT_COLOR_PRESSED,
-        DEFAULT_BORDER_COLOR_DISABLED,
-        DEFAULT_BASE_COLOR_DISABLED,
-        DEFAULT_TEXT_COLOR_DISABLED,
-        //--------------------------------------------
-        // Label
-        LABEL_TEXT_COLOR_NORMAL,
-        LABEL_TEXT_COLOR_FOCUSED,
-        LABEL_TEXT_COLOR_PRESSED,
-        LABEL_TEXT_COLOR_DISABLED,
-        // Button
-        BUTTON_BORDER_WIDTH,
-        BUTTON_BORDER_COLOR_NORMAL,
-        BUTTON_BASE_COLOR_NORMAL,
-        BUTTON_TEXT_COLOR_NORMAL,
-        BUTTON_BORDER_COLOR_FOCUSED,
-        BUTTON_BASE_COLOR_FOCUSED,
-        BUTTON_TEXT_COLOR_FOCUSED,
-        BUTTON_BORDER_COLOR_PRESSED,
-        BUTTON_BASE_COLOR_PRESSED,
-        BUTTON_TEXT_COLOR_PRESSED,
-        BUTTON_BORDER_COLOR_DISABLED,
-        BUTTON_BASE_COLOR_DISABLED,
-        BUTTON_TEXT_COLOR_DISABLED,
-        // Toggle
-        TOGGLE_BORDER_WIDTH,
-        TOGGLE_BORDER_COLOR_NORMAL,
-        TOGGLE_BASE_COLOR_NORMAL,
-        TOGGLE_TEXT_COLOR_NORMAL,
-        TOGGLE_BORDER_COLOR_FOCUSED,
-        TOGGLE_BASE_COLOR_FOCUSED,
-        TOGGLE_TEXT_COLOR_FOCUSED,
-        TOGGLE_BORDER_COLOR_PRESSED,
-        TOGGLE_BASE_COLOR_PRESSED,
-        TOGGLE_TEXT_COLOR_PRESSED,
-        TOGGLE_BORDER_COLOR_DISABLED,
-        TOGGLE_BASE_COLOR_DISABLED,
-        TOGGLE_TEXT_COLOR_DISABLED,
-        TOGGLEGROUP_PADDING,
-        // Slider
-        SLIDER_BORDER_WIDTH,
-        SLIDER_SLIDER_WIDTH,
-        SLIDER_BORDER_COLOR_NORMAL,
-        SLIDER_BASE_COLOR_NORMAL,
-        SLIDER_BORDER_COLOR_FOCUSED,
-        SLIDER_BASE_COLOR_FOCUSED,
-        SLIDER_BORDER_COLOR_PRESSED,
-        SLIDER_BASE_COLOR_PRESSED,
-        SLIDER_BORDER_COLOR_DISABLED,
-        SLIDER_BASE_COLOR_DISABLED,
-        // SliderBar
-        SLIDERBAR_INNER_PADDING,
-        SLIDERBAR_BORDER_WIDTH,
-        SLIDERBAR_BORDER_COLOR_NORMAL,
-        SLIDERBAR_BASE_COLOR_NORMAL,
-        SLIDERBAR_BORDER_COLOR_FOCUSED,
-        SLIDERBAR_BASE_COLOR_FOCUSED,
-        SLIDERBAR_BORDER_COLOR_PRESSED,
-        SLIDERBAR_BASE_COLOR_PRESSED,
-        SLIDERBAR_BORDER_COLOR_DISABLED,
-        SLIDERBAR_BASE_COLOR_DISABLED,
-        // ProgressBar
-        PROGRESSBAR_INNER_PADDING,
-        PROGRESSBAR_BORDER_WIDTH,
-        PROGRESSBAR_BORDER_COLOR_NORMAL,
-        PROGRESSBAR_BASE_COLOR_NORMAL,
-        PROGRESSBAR_BORDER_COLOR_FOCUSED,
-        PROGRESSBAR_BASE_COLOR_FOCUSED,
-        PROGRESSBAR_BORDER_COLOR_PRESSED,
-        PROGRESSBAR_BASE_COLOR_PRESSED,
-        PROGRESSBAR_BORDER_COLOR_DISABLED,
-        PROGRESSBAR_BASE_COLOR_DISABLED,
-        // ValueBox
-        VALUEBOX_BUTTON_PADDING,
-        VALUEBOX_BUTTONS_WIDTH,
-        VALUEBOX_BORDER_COLOR_NORMAL,
-        VALUEBOX_BASE_COLOR_NORMAL,
-        VALUEBOX_TEXT_COLOR_NORMAL,
-        VALUEBOX_BORDER_COLOR_FOCUSED,
-        VALUEBOX_BASE_COLOR_FOCUSED,
-        VALUEBOX_TEXT_COLOR_FOCUSED,
-        VALUEBOX_BORDER_COLOR_PRESSED,
-        VALUEBOX_BASE_COLOR_PRESSED,
-        VALUEBOX_TEXT_COLOR_PRESSED,
-        VALUEBOX_BORDER_COLOR_DISABLED,
-        VALUEBOX_BASE_COLOR_DISABLED,
-        VALUEBOX_TEXT_COLOR_DISABLED,
-        // ComboBox
-        COMBOBOX_BORDER_WIDTH,
-        COMBOBOX_BUTTON_PADDING,
-        COMBOBOX_SELECTOR_WIDTH,
-        COMBOBOX_BORDER_COLOR_NORMAL,
-        COMBOBOX_BASE_COLOR_NORMAL,
-        COMBOBOX_TEXT_COLOR_NORMAL,
-        COMBOBOX_BORDER_COLOR_FOCUSED,
-        COMBOBOX_BASE_COLOR_FOCUSED,
-        COMBOBOX_TEXT_COLOR_FOCUSED,
-        COMBOBOX_BORDER_COLOR_PRESSED,
-        COMBOBOX_BASE_COLOR_PRESSED,
-        COMBOBOX_TEXT_COLOR_PRESSED,
-        COMBOBOX_BORDER_COLOR_DISABLED,
-        COMBOBOX_BASE_COLOR_DISABLED,
-        COMBOBOX_TEXT_COLOR_DISABLED,
-        // CheckBox
-        CHECKBOX_BORDER_WIDTH,
-        CHECKBOX_INNER_PADDING,
-        CHECKBOX_BORDER_COLOR_NORMAL,
-        CHECKBOX_BASE_COLOR_NORMAL,
-        CHECKBOX_BORDER_COLOR_FOCUSED,
-        CHECKBOX_BASE_COLOR_FOCUSED,
-        CHECKBOX_BORDER_COLOR_PRESSED,
-        CHECKBOX_BASE_COLOR_PRESSED,
-        CHECKBOX_BORDER_COLOR_DISABLED,
-        CHECKBOX_BASE_COLOR_DISABLED,
-        // TextBox
-        TEXTBOX_BORDER_WIDTH,
-        TEXTBOX_BORDER_COLOR_NORMAL,
-        TEXTBOX_BASE_COLOR_NORMAL,
-        TEXTBOX_TEXT_COLOR_NORMAL,
-        TEXTBOX_BORDER_COLOR_FOCUSED,
-        TEXTBOX_BASE_COLOR_FOCUSED,
-        TEXTBOX_TEXT_COLOR_FOCUSED,
-        TEXTBOX_BORDER_COLOR_PRESSED,
-        TEXTBOX_BASE_COLOR_PRESSED,
-        TEXTBOX_TEXT_COLOR_PRESSED,
-        TEXTBOX_BORDER_COLOR_DISABLED,
-        TEXTBOX_BASE_COLOR_DISABLED,
-        TEXTBOX_TEXT_COLOR_DISABLED,
-        // ColorPicker
-        COLORPICKER_BARS_THICK,
-        COLORPICKER_BARS_PADDING,
-        COLORPICKER_BORDER_COLOR_NORMAL,
-        COLORPICKER_BASE_COLOR_NORMAL,
-        COLORPICKER_BORDER_COLOR_FOCUSED,
-        COLORPICKER_BASE_COLOR_FOCUSED,
-        COLORPICKER_BORDER_COLOR_PRESSED,
-        COLORPICKER_BASE_COLOR_PRESSED,
-        COLORPICKER_BORDER_COLOR_DISABLED,
-        COLORPICKER_BASE_COLOR_DISABLED,
-        // ListView
-        LISTVIEW_ELEMENTS_HEIGHT,
-        LISTVIEW_ELEMENTS_PADDING,
-        LISTVIEW_BAR_WIDTH,
-        LISTVIEW_BORDER_COLOR_NORMAL,
-        LISTVIEW_BASE_COLOR_NORMAL,
-        LISTVIEW_TEXT_COLOR_NORMAL,
-        LISTVIEW_BORDER_COLOR_FOCUSED,
-        LISTVIEW_BASE_COLOR_FOCUSED,
-        LISTVIEW_TEXT_COLOR_FOCUSED,
-        LISTVIEW_BORDER_COLOR_PRESSED,
-        LISTVIEW_BASE_COLOR_PRESSED,
-        LISTVIEW_TEXT_COLOR_PRESSED,
-        LISTVIEW_BORDER_COLOR_DISABLED,
-        LISTVIEW_BASE_COLOR_DISABLED,
-        LISTVIEW_TEXT_COLOR_DISABLED
+        GUI_STATE_NORMAL = 0,
+        GUI_STATE_FOCUSED,
+        GUI_STATE_PRESSED,
+        GUI_STATE_DISABLED,
     }
 
-    // GUI controls state
-    public enum GuiControlState 
-    { 
-        DISABLED = 0, 
-        NORMAL, 
-        FOCUSED, 
-        PRESSED 
+    // Gui standard controls
+    enum GuiControlStandard
+    {
+        DEFAULT = 0,
+        LABEL,          // LABELBUTTON
+        BUTTON,         // IMAGEBUTTON
+        TOGGLE,         // TOGGLEGROUP
+        SLIDER,         // SLIDERBAR
+        PROGRESSBAR,
+        CHECKBOX,
+        COMBOBOX,
+        DROPDOWNBOX,
+        TEXTBOX,        // VALUEBOX, SPINNER
+        LISTVIEW,
+        COLORPICKER
     }
 
-    #endregion
+    // Gui default properties for every control
+    enum GuiControlProperty
+    {
+        BORDER_COLOR_NORMAL = 0,
+        BASE_COLOR_NORMAL,
+        TEXT_COLOR_NORMAL,
+        BORDER_COLOR_FOCUSED,
+        BASE_COLOR_FOCUSED,
+        TEXT_COLOR_FOCUSED,
+        BORDER_COLOR_PRESSED,
+        BASE_COLOR_PRESSED,
+        TEXT_COLOR_PRESSED,
+        BORDER_COLOR_DISABLED,
+        BASE_COLOR_DISABLED,
+        TEXT_COLOR_DISABLED,
+        BORDER_WIDTH,
+        INNER_PADDING,
+        RESERVED01,
+        RESERVED02
+    }
+
+    // Gui extended properties depending on control type
+    // NOTE: We reserve a fixed size of additional properties per control (8)
+
+    // Default properties
+    enum GuiDefaultProperty
+    {
+        TEXT_SIZE = 16,
+        TEXT_SPACING,
+        LINES_COLOR,
+        BACKGROUND_COLOR,
+    }
+
+    // Toggle / ToggleGroup
+    enum GuiToggleProperty
+    {
+        GROUP_PADDING = 16,
+    }
+
+    // Slider / SliderBar
+    enum GuiSliderProperty
+    {
+        SLIDER_WIDTH = 16,
+        EX_TEXT_PADDING
+    }
+
+    // TextBox / ValueBox / Spinner
+    enum GuiTextBoxProperty
+    {
+        MULTILINE_PADDING = 16,
+        SPINNER_BUTTON_WIDTH,
+        SPINNER_BUTTON_PADDING,
+        SPINNER_BUTTON_BORDER_WIDTH
+    }
+
+    // CheckBox
+    enum GuiCheckBoxProperty
+    {
+        CHECK_TEXT_PADDING = 16
+    }
+    
+    // ComboBox
+    enum GuiComboBoxProperty
+    {
+        SELECTOR_WIDTH = 16,
+        SELECTOR_PADDING
+    }
+
+    // DropdownBox
+    enum GuiDropdownBoxProperty
+    {
+        ARROW_RIGHT_PADDING = 16,
+    }
+    
+    // ColorPicker
+    enum GuiColorPickerProperty
+    {
+        COLOR_SELECTOR_SIZE = 16,
+        BAR_WIDTH,                  // Lateral bar width
+        BAR_PADDING,                // Lateral bar separation from panel
+        BAR_SELECTOR_HEIGHT,        // Lateral bar selector height
+        BAR_SELECTOR_PADDING        // Lateral bar selector outer padding
+    }
+
+    // ListView
+    enum GuiListViewProperty
+    {
+        ELEMENTS_HEIGHT = 16,
+        ELEMENTS_PADDING,
+        SCROLLBAR_WIDTH,
+    }
 
     public static partial class Raylib
     {
-        #region Raylib-cs Variables
-
-        #endregion
-
-        #region Raylib-cs Functions
-
         // Global gui modification functions
         // Enable gui controls (global state)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -209,8 +131,24 @@ namespace Raylib
         
         // Disable gui controls (global state)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiDisable();                                        
-        
+        public static extern void GuiDisable();
+
+        // Lock gui controls (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiLock();
+
+        // Unlock gui controls (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiUnlock();
+
+        // Set gui state (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiState(int state);
+
+        // Set gui custom font (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiFont(Font font);
+
         // Set gui controls alpha (global state), alpha goes from 0.0f to 1.0f
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiFade(float alpha);                                    
@@ -218,11 +156,11 @@ namespace Raylib
         // Style set/get functions
         // Set one style property
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiSetStyleProperty(int guiProperty, int value);         
+        public static extern void GuiSetStyle(int control, int property, int value);         
         
         // Get one style property
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GuiGetStyleProperty(int guiProperty);                     
+        public static extern int GuiGetStyle(int control, int property);                     
              
         // Container/separator controls, useful for controls organization
         // Window Box control, shows a window that can be closed
@@ -300,11 +238,11 @@ namespace Raylib
         
         // Text Box control, updates input text
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool GuiTextBox(Rectangle bounds, char text, int textSize, bool freeEdit);                   
-        
+        public static extern bool GuiTextBox(Rectangle bounds, StringBuilder text, int textSize, bool freeEdit);                   
+                
         // Text Box control with multiple lines
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool GuiTextBoxMulti(Rectangle bounds, string text, int textSize, bool editMode);          
+        public static extern bool GuiTextBoxMulti(Rectangle bounds, StringBuilder text, int textSize, bool editMode);         
         
         // Slider control, returns selected value
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -349,8 +287,6 @@ namespace Raylib
         
         // Message Box control, displays a message
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool GuiMessageBox(Rectangle bounds, string windowTitle, string message);           
-
-        #endregion      
+        public static extern bool GuiMessageBox(Rectangle bounds, string windowTitle, string message);    
     }
 }

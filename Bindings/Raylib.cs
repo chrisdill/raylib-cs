@@ -1,13 +1,9 @@
-// Raylib - https://github.com/raysan5/raylib/blob/master/src/raylib.h
-
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
 namespace Raylib
 {
-    #region Raylib-cs Enums
-
     //----------------------------------------------------------------------------------
     // Enumerators Definition
     //----------------------------------------------------------------------------------
@@ -426,34 +422,14 @@ namespace Raylib
         NPT_3PATCH_HORIZONTAL   // Npatch defined by 3x1 tiles
     }
 
-    #endregion
-
-    #region Raylib-cs Types
-
     // Color type, RGBA (32bit)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Color
+    public partial struct Color
     {
         public byte r;
         public byte g;
         public byte b;
         public byte a;
-
-        public Color(byte r, byte g, byte b, byte a)
-        {
-            this.r = r;
-            this.g = g;
-            this.b = b;
-            this.a = a;
-        }
-
-        public Color(int r, int g, int b, int a)
-        {
-            this.r = Convert.ToByte(r);
-            this.g = Convert.ToByte(g);
-            this.b = Convert.ToByte(b);
-            this.a = Convert.ToByte(a);
-        }
 
         // extension to access colours from struct
         // Custom raylib color palette for amazing visuals
@@ -648,6 +624,7 @@ namespace Raylib
         public float value;
     }
 
+    // @TODO Custom array marshall issue https://github.com/ChrisDill/Raylib-cs/issues/9
     public unsafe struct _MaterialMap_e_FixedBuffer
     {
         public MaterialMap maps0;
@@ -782,24 +759,52 @@ namespace Raylib
         public fixed float chromaAbCorrection[4];
     }
 
-    #endregion
+    
 
     [SuppressUnmanagedCodeSecurity]
     public static partial class Raylib
     {
-        #region Raylib-cs Variables
+        
 
         // Used by DllImport to load the native library.
         public const string nativeLibName = "raylib";
         public const float DEG2RAD = (float)Math.PI / 180.0f;
         public const float RAD2DEG = 180.0f / (float)Math.PI;
-        
+
+        // Custom raylib color palette for amazing visuals
+        public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
+        public static Color GRAY = new Color(130, 130, 130, 255);
+        public static Color DARKGRAY = new Color(80, 80, 80, 255);
+        public static Color YELLOW = new Color(253, 249, 0, 255);
+        public static Color GOLD = new Color(255, 203, 0, 255);
+        public static Color ORANGE = new Color(255, 161, 0, 255);
+        public static Color PINK = new Color(255, 109, 194, 255);
+        public static Color RED = new Color(230, 41, 55, 255);
+        public static Color MAROON = new Color(190, 33, 55, 255);
+        public static Color GREEN = new Color(0, 228, 48, 255);
+        public static Color LIME = new Color(0, 158, 47, 255);
+        public static Color DARKGREEN = new Color(0, 117, 44, 255);
+        public static Color SKYBLUE = new Color(102, 191, 255, 255);
+        public static Color BLUE = new Color(0, 121, 241, 255);
+        public static Color DARKBLUE = new Color(0, 82, 172, 255);
+        public static Color PURPLE = new Color(200, 122, 255, 255);
+        public static Color VIOLET = new Color(135, 60, 190, 255);
+        public static Color DARKPURPLE = new Color(112, 31, 126, 255);
+        public static Color BEIGE = new Color(211, 176, 131, 255);
+        public static Color BROWN = new Color(127, 106, 79, 255);
+        public static Color DARKBROWN = new Color(76, 63, 47, 255);
+        public static Color WHITE = new Color(255, 255, 255, 255);
+        public static Color BLACK = new Color(0, 0, 0, 255);
+        public static Color BLANK = new Color(0, 0, 0, 0);
+        public static Color MAGENTA = new Color(255, 0, 255, 255);
+        public static Color RAYWHITE = new Color(245, 245, 245, 255);
+
         public const int MAX_SHADER_LOCATIONS = 32;
         public const int MAX_MATERIAL_MAPS = 12;
 
-        #endregion
+        
 
-        #region Raylib-cs Functions
+        
 
         //------------------------------------------------------------------------------------
         // Window and Graphics Device Functions (Module: core)
@@ -890,12 +895,12 @@ namespace Raylib
         public static extern IntPtr GetWindowHandle();
 
         // Get current clipboard text
-        //[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        //public static extern string GetClipboard();
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        public static extern string GetClipboard();
 
         // Set current clipboard text
-        //[DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        //public static extern void SetClipboard(string text);
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetClipboard(string text);
 
         // Cursor-related functions
         // Shows cursor
@@ -1165,11 +1170,11 @@ namespace Raylib
 
         // Detect if a gamepad button has been released once
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGamepadButtonReleased(int gamepad, int button);
+        public static extern bool IsGamepadButtonReleased(GamepadNumber gamepad, int button);
 
         // Detect if a gamepad button is NOT being pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool IsGamepadButtonUp(int gamepad, int button);
+        public static extern bool IsGamepadButtonUp(GamepadNumber gamepad, int button);
 
         // Get the last gamepad button pressed
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -1683,6 +1688,10 @@ namespace Raylib
         // Draw a part of a texture defined by a rectangle
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint);
+
+        // Draw texture quad with tiling and offset parameters
+        [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
+        public static extern void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
 
         // Draw a part of a texture defined by a rectangle with 'pro' parameters
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -2307,8 +2316,6 @@ namespace Raylib
 
         // Set pitch for audio stream (1.0 is base level)
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
-
-        #endregion
+        public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);    
     }
 }

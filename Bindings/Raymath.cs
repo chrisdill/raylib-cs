@@ -1,328 +1,33 @@
-// Raymath - https://github.com/raysan5/raylib/blob/master/src/raymath.h
-
 using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib
 {
-    #region Raylib-cs Types
-
     // Vector2 type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Vector2
+    public partial struct Vector2
     {
         public float x;
         public float y;
-
-        public Vector2(float x, float y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public Vector2(float value)
-        {
-            this.x = value;
-            this.y = value;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector2) && Equals((Vector2)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return x.GetHashCode() + y.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "Vector2(" + x + " " + y + ")";
-        }
-
-        public static Vector2 Zero
-        {
-            get { return Raylib.Vector2Zero(); }
-        }
-
-        public static Vector2 One
-        {
-            get { return Raylib.Vector2One(); }
-        }
-
-        public static Vector2 UnitX
-        {
-            get { return new Vector2(1, 0); }
-        }
-
-        public static Vector2 UnitY
-        {
-            get { return new Vector2(0, 1); }
-        }
-
-        public static float Length(Vector2 v)
-        {
-            return Raylib.Vector2Length(v);
-        }
-
-        public static float DotProduct(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2DotProduct(v1, v2);
-        }
-
-        public static float Distance(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2Distance(v1, v2);
-        }
-
-        public static float Angle(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2Angle(v1, v2);
-        }
-
-        public static Vector2 Scale(Vector2 v, float scale)
-        {
-            return Raylib.Vector2Scale(v, scale);
-        }
-
-        public static Vector2 Negate(Vector2 v)
-        {
-            return Raylib.Vector2Negate(v);
-        }
-
-        public static Vector2 Divide(Vector2 v, float div)
-        {
-            return Raylib.Vector2Divide(v, div);
-        }
-
-        public static Vector2 Normalize(Vector2 v)
-        {
-            return Raylib.Vector2Normalize(v);
-        }
-
-        #region Public Static Operators
-
-        public static bool operator ==(Vector2 v1, Vector2 v2)
-        {
-            return (v1.x == v2.x && v1.y == v2.y);
-        }
-
-        public static bool operator !=(Vector2 v1, Vector2 v2)
-        {
-            return !(v1 == v2);
-        }
-
-        public static bool operator >(Vector2 v1, Vector2 v2)
-        {
-            return v1.x > v2.x && v1.y > v2.y;
-        }
-
-        public static bool operator <(Vector2 v1, Vector2 v2)
-        {
-            return v1.x < v2.x && v1.y < v2.y;
-        }
-
-        public static Vector2 operator +(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2Add(v1, v2);
-        }
-
-        public static Vector2 operator -(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2Subtract(v1, v2);
-        }
-
-        public static Vector2 operator *(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2Multiplyv(v1, v2);
-        }
-
-        public static Vector2 operator *(Vector2 v, float scale)
-        {
-            return Raylib.Vector2Scale(v, scale);
-        }
-
-        public static Vector2 operator /(Vector2 v1, Vector2 v2)
-        {
-            return Raylib.Vector2DivideV(v1, v2);
-        }
-
-        public static Vector2 operator /(Vector2 v1, float div)
-        {
-            return Raylib.Vector2Divide(v1, div);
-        }
-
-        public static Vector2 operator -(Vector2 v1)
-        {
-            return Raylib.Vector2Negate(v1);
-        }
-
-        #endregion
     }
 
     // Vector3 type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Vector3
+    public partial struct Vector3
     {
         public float x;
         public float y;
         public float z;
-
-        public Vector3(float x, float y, float z)
-        {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-
-        public Vector3(float value)
-        {
-            this.x = value;
-            this.y = value;
-            this.z = value;
-        }
-
-        // extensions
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector3) && Equals((Vector3)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return x.GetHashCode() + y.GetHashCode() + z.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "Vector3(" + x + " " + y + " " + z + ")";
-        }
-
-        public static Vector3 Zero
-        {
-            get { return Raylib.Vector3Zero(); }
-        }
-
-        public static Vector3 One
-        {
-            get { return Raylib.Vector3One(); }
-        }
-
-        public static Vector3 UnitX
-        {
-            get { return new Vector3(1, 0, 0); }
-        }
-
-        public static Vector3 UnitY
-        {
-            get { return new Vector3(0, 1, 0); }
-        }
-
-        public static Vector3 UnitZ
-        {
-            get { return new Vector3(0, 0, 1); }
-        }
-
-        #region Public Static Operators
-
-        public static bool operator ==(Vector3 v1, Vector3 v2)
-        {
-            return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
-        }
-
-        public static bool operator !=(Vector3 v1, Vector3 v2)
-        {
-            return !(v1 == v2);
-        }
-
-        public static bool operator >(Vector3 v1, Vector3 v2)
-        {
-            return v1.x > v2.x && v1.y > v2.y && v1.z > v2.z;
-        }
-
-        public static bool operator <(Vector3 v1, Vector3 v2)
-        {
-            return v1.x < v2.x && v1.y < v2.y && v1.z < v2.z;
-        }
-
-        public static Vector3 operator +(Vector3 v1, Vector3 v2)
-        {
-            return Raylib.Vector3Add(v1, v2);
-        }
-
-        public static Vector3 operator -(Vector3 v1, Vector3 v2)
-        {
-            return Raylib.Vector3Subtract(v1, v2);
-        }
-
-        public static Vector3 operator *(Vector3 v1, Vector3 v2)
-        {
-            return Raylib.Vector3MultiplyV(v1, v2);
-        }
-
-        public static Vector3 operator *(Vector3 v, float scale)
-        {
-            return Raylib.Vector3Scale(v, scale);
-        }
-
-        public static Vector3 operator /(Vector3 v1, Vector3 v2)
-        {
-            return Raylib.Vector3DivideV(v1, v2);
-        }
-
-        public static Vector3 operator /(Vector3 v1, float div)
-        {
-            return Raylib.Vector3Divide(v1, div);
-        }
-
-        public static Vector3 operator -(Vector3 v1)
-        {
-            return Raylib.Vector3Negate(v1);
-        }
-
-        #endregion
     }
 
     // Vector4 type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Vector4
+    public partial struct Vector4
     {
         public float x;
         public float y;
         public float z;
         public float w;
-
-        public Vector4(float x, float y, float z, float w)
-        {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.w = w;
-        }
-
-        public Vector4(float value)
-        {
-            this.x = value;
-            this.y = value;
-            this.z = value;
-            this.w = value;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector4) && Equals((Vector4)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return x.GetHashCode() + y.GetHashCode() + z.GetHashCode() + w.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "Vector4(" + x + " " + y + " " + z + " " + w + ")";
-        }
     }
 
     // Matrix type (OpenGL style 4x4 - right handed, column major)
@@ -355,15 +60,31 @@ namespace Raylib
         }
     }
 
-    #endregion
-
     public static partial class Raylib
     {
-        #region Raylib-cs Functions 
-
         // Clamp float value
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
         public static extern float Clamp(float value, float min, float max);
+
+        /// <summary>
+        /// Linearly interpolates between two values.
+        /// </summary>
+        /// <param name="value1">Source value.</param>
+        /// <param name="value2">Source value.</param>
+        /// <param name="amount">
+        /// Value between 0 and 1 indicating the weight of value2.
+        /// </param>
+        /// <returns>Interpolated value.</returns>
+        /// <remarks>
+        /// This method performs the linear interpolation based on the following formula.
+        /// <c>value1 + (value2 - value1) * amount</c>
+        /// Passing amount a value of 0 will cause value1 to be returned, a value of 1 will
+        /// cause value2 to be returned.
+        /// </remarks>
+        public static float Lerp(float value1, float value2, float amount)
+        {
+            return value1 + (value2 - value1) * amount;
+        }
 
         // Vector with components value 0.0f
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
@@ -671,8 +392,6 @@ namespace Raylib
        
         // Transform a quaternion given a transformation matrix
         [DllImport(nativeLibName,CallingConvention = CallingConvention.Cdecl)]
-        public static extern Quaternion QuaternionTransform(Quaternion q, Matrix mat);
-
-        #endregion
+        public static extern Quaternion QuaternionTransform(Quaternion q, Matrix mat);  
     }
 }

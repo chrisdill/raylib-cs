@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f660ff67-d70e-4ae0-9080-d922243e9b6e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Raylib</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Easings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physac.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Raygui.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Raylib.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Raymath.cs" />
+  </ItemGroup>
+</Project>
