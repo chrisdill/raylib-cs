@@ -1,3 +1,11 @@
+/* Raylib-cs
+ * Raylib.cs - Core bindings to raylib
+ * Copyright 2019 Chris Dill
+ *
+ * Release under zLib License.
+ * See LICENSE for details.
+ */
+
 using System;
 using System.Runtime.InteropServices;
 using System.Security;

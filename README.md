@@ -22,7 +22,7 @@ static class Program
 
 		while (!rl.WindowShouldClose())
 		{
-			rl.BeginDraw();
+			rl.BeginDrawing();
 
 			rl.ClearBackground(Color.WHITE);
 			rl.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
