@@ -8,6 +8,7 @@ C# bindings for raylib, a simple and easy-to-use library to learn videogames pro
 So far, I have only tested on Windows. Tips on making things work smoothly on all platforms is appreciated.
 
 1. Add the [nuget package](https://www.nuget.org/packages/Raylib-cs/)
+
 2. Start coding!
 
 ```csharp
