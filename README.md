@@ -5,10 +5,19 @@
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 # Installation
-So far, I have only tested on Windows. Tips on making things work smoothly on all platforms is appreciated.
+So far, I have only done a few tests on Windows and Linux.
 
-1. Add the [nuget package](https://www.nuget.org/packages/Raylib-cs/)
+## Package
+1. Install the [nuget package](https://www.nuget.org/packages/Raylib-cs/)
+
 2. Start coding!
+
+## Manual
+1. Copy or reference the bindings into your project. See Tests for reference.
+
+2. Make sure your project finds the native library that matches your platform and configuration.
+
+3. Start coding!
 
 ```csharp
 using Raylib;
@@ -39,10 +48,8 @@ static class Program
 - Enums are passed as `int` to prevent the need for explicit casts.
 - Color defines stored inside `Color`.
 - Uses `string.Format` in place of `TextFormat`.
-
-# Extras
 - Structs have constructors.
-- Operator overloading for math types.
+- Operator overloads for math types.
 
 # Contributing
 If you have any ideas, feel free to open an issue and tell me what you think.

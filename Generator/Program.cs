@@ -185,29 +185,27 @@ namespace Generator
             var TypeMap = new Dictionary<string, string>();
             typesfile = typesfile.Where(x => x != "").ToArray();
 
+            Console.WriteLine("Enter the path to raylib.");
+            var raylibPath = Console.ReadLine() + "/src/";
+
             var sources = new KeyValuePair<string, string>[] {
-                new KeyValuePair<string, string>( "raylib.h","RLAPI"),
-                // new KeyValuePair<string, string>("physac.h", "PHYSACDEF"),
-                // new KeyValuePair<string, string>( "easings.h","EASEDEF"),
-                // new KeyValuePair<string, string>( "raygui.h","RAYGUIDEF")
+                new KeyValuePair<string, string>("raylib.h","RLAPI"),
+                new KeyValuePair<string, string>("raymath.h", "RMDEF"),
+                new KeyValuePair<string, string>("physac.h", "PHYSACDEF"),
+                new KeyValuePair<string, string>( "easings.h","EASEDEF"),
+                new KeyValuePair<string, string>( "raygui.h","RAYGUIDEF")
             };
 
-            foreach (var sourcefilenameandexporttag in sources)
+            foreach (var sourceAndExportTag in sources)
             {
-                var functions = new List<string>();
-                var types = new HashSet<string>();
-                var enums = new HashSet<string>();
-                var Funcs = new List<Function>();
-
-                var sourcefilename = sourcefilenameandexporttag.Key;
+                var sourcefilename = sourceAndExportTag.Key;
                 var FileName = new CultureInfo("en-us", false).TextInfo.ToTitleCase(sourcefilename.Replace(".h", ""));
-                var ExportTag = sourcefilenameandexporttag.Value;
-                var sourcefile = File.ReadAllLines(sourcefilename);
+                var ExportTag = sourceAndExportTag.Value;
+                var sourcefile = File.ReadAllLines(raylibPath + sourcefilename);
             
                 var syntax = GetSyntax(sourcefile, ExportTag, TypeMap, typesfile);
                 GenerateBinding(syntax, FileName);
             }
-            return;
         }
 
         // Takes the source from a raylib module and stores the syntax data
@@ -708,6 +706,7 @@ namespace Generator
                         new[]{
                         Token(SyntaxKind.PublicKeyword),
                         Token(SyntaxKind.ConstKeyword)}));
+                
                 RaylibClass = RaylibClass.AddMembers(LibraryNameField);
                 foreach (var Func in Funcs)
                 {
@@ -784,6 +783,14 @@ namespace Generator
    
             Console.WriteLine("Finished generating bindings for file ");
             Console.ReadLine();
+
+            /* Raylib-cs
+            * Raylib.cs - Core bindings to raylib
+            * Copyright 2019 Chris Dill
+            *
+            * Release under zLib License.
+            * See LICENSE for details.
+            */
         }
     }
 }

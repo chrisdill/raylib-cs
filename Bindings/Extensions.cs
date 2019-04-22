@@ -1,5 +1,5 @@
 /* Raylib-cs
- * Extensions.cs - Extra features
+ * Extensions.cs - Higher level features over bindings. This file is not automatically generated.
  * Copyright 2019 Chris Dill
  *
  * Release under zLib License.
@@ -7,10 +7,74 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
+using System.Text;
+using System.Numerics;
 
 namespace Raylib
 {
+    // Extensions to the raylib bindings.
+    // Seperate for easier code generation.
+    public partial class Raylib
+    {
+        // extension providing SubText
+        public static string SubText(this string input, int position, int length)
+        {
+            return input.Substring(position, Math.Min(length, input.Length));
+        }
+
+        // Here (in the public method) we hide some low level details
+        // memory allocation, string manipulations etc.
+        public static bool CoreGuiTextBox(Rectangle bounds, ref string text, int textSize, bool freeEdit) 
+        {
+            if (null == text)
+            {
+                return false; // or throw exception; or assign "" to text
+            }
+
+            StringBuilder sb = new StringBuilder(text);  
+
+            // If we allow editing we should allocate enough size (Length) within StringBuilder
+            if (textSize > sb.Length)
+            {
+                sb.Length = textSize;
+            }
+
+            bool result = GuiTextBox(bounds, sb, sb.Length, freeEdit);   
+
+            // Back to string (StringBuilder can have been edited)
+            // You may want to add some logic here; e.g. trim trailing '\0'  
+            text = sb.ToString();
+
+            return result;
+        }
+
+        // Text Box control with multiple lines
+        public static bool CoreTextBoxMulti(Rectangle bounds, ref string text, int textSize, bool freeEdit)
+        {
+            if (null == text)
+            {
+                return false; // or throw exception; or assign "" to text
+            }
+
+            StringBuilder sb = new StringBuilder(text);  
+
+            // If we allow editing we should allocate enough size (Length) within StringBuilder
+            if (textSize > sb.Length)
+            {
+                sb.Length = textSize;
+            }
+
+            bool result = GuiTextBoxMulti(bounds, sb, sb.Length, freeEdit);   
+
+            // Back to string (StringBuilder can have been edited)
+            // You may want to add some logic here; e.g. trim trailing '\0'  
+            text = sb.ToString();
+
+            return result;
+        } 
+    }
+	
+    // Small utility for tweening values
     public struct Tween
     {
         public delegate float Callback(float t, float b, float c, float d);
@@ -50,7 +114,36 @@ namespace Raylib
     }
 
     public partial struct Color
-    {   
+    {
+        // Example - Color.RED instead of RED
+        // Custom raylib color palette for amazing visuals
+        public static Color LIGHTGRAY = new Color(200, 200, 200, 255);
+        public static Color GRAY = new Color(130, 130, 130, 255);
+        public static Color DARKGRAY = new Color(80, 80, 80, 255);
+        public static Color YELLOW = new Color(253, 249, 0, 255);
+        public static Color GOLD = new Color(255, 203, 0, 255);
+        public static Color ORANGE = new Color(255, 161, 0, 255);
+        public static Color PINK = new Color(255, 109, 194, 255);
+        public static Color RED = new Color(230, 41, 55, 255);
+        public static Color MAROON = new Color(190, 33, 55, 255);
+        public static Color GREEN = new Color(0, 228, 48, 255);
+        public static Color LIME = new Color(0, 158, 47, 255);
+        public static Color DARKGREEN = new Color(0, 117, 44, 255);
+        public static Color SKYBLUE = new Color(102, 191, 255, 255);
+        public static Color BLUE = new Color(0, 121, 241, 255);
+        public static Color DARKBLUE = new Color(0, 82, 172, 255);
+        public static Color PURPLE = new Color(200, 122, 255, 255);
+        public static Color VIOLET = new Color(135, 60, 190, 255);
+        public static Color DARKPURPLE = new Color(112, 31, 126, 255);
+        public static Color BEIGE = new Color(211, 176, 131, 255);
+        public static Color BROWN = new Color(127, 106, 79, 255);
+        public static Color DARKBROWN = new Color(76, 63, 47, 255);
+        public static Color WHITE = new Color(255, 255, 255, 255);
+        public static Color BLACK = new Color(0, 0, 0, 255);
+        public static Color BLANK = new Color(0, 0, 0, 0);
+        public static Color MAGENTA = new Color(255, 0, 255, 255);
+        public static Color RAYWHITE = new Color(245, 245, 245, 255);
+
         public Color(byte r, byte g, byte b, byte a)
         {
             this.r = r;
@@ -68,43 +161,86 @@ namespace Raylib
         }
 
         internal string DebugDisplayString
-		{
-			get
-			{
-				return string.Concat(
-					r.ToString(), " ",
-					g.ToString(), " ",
-					b.ToString(), " ",
-					a.ToString()
-				);
-			}
-		}
+        {
+            get
+            {
+                return string.Concat(
+                    r.ToString(), " ",
+                    g.ToString(), " ",
+                    b.ToString(), " ",
+                    a.ToString()
+                );
+            }
+        }
 
-        /// <summary>
-		/// Performs linear interpolation of <see cref="Color"/>.
-		/// </summary>
-		/// <param name="value1">Source <see cref="Color"/>.</param>
-		/// <param name="value2">Destination <see cref="Color"/>.</param>
-		/// <param name="amount">Interpolation factor.</param>
-		/// <returns>Interpolated <see cref="Color"/>.</returns>
+		// Performs linear interpolation of <see cref="Color"/>.
 		public static Color Lerp(Color value1, Color value2, float amount)
-		{
-			amount = Raylib.Clamp(amount, 0.0f, 1.0f);
-			return new Color(
-				(int) Raylib.Lerp(value1.r, value2.r, amount),
-				(int) Raylib.Lerp(value1.g, value2.g, amount),
-				(int) Raylib.Lerp(value1.b, value2.b, amount),
-				(int) Raylib.Lerp(value1.a, value2.a, amount)
-			);
-		}
+        {
+            amount = Raylib.Clamp(amount, 0.0f, 1.0f);
+            return new Color(
+                (int)Raylib.Lerp(value1.r, value2.r, amount),
+                (int)Raylib.Lerp(value1.g, value2.g, amount),
+                (int)Raylib.Lerp(value1.b, value2.b, amount),
+                (int)Raylib.Lerp(value1.a, value2.a, amount)
+            );
+        }
+    }
+
+    public partial struct Rectangle
+    {
+        public Rectangle(float x, float y, float width, float height)
+        {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+        }
+    }
+
+    public partial struct BoundingBox
+    {
+        public BoundingBox(Vector3 min, Vector3 max)
+        {
+            this.min = min;
+            this.max = max;
+        }
+    }
+    
+    public partial struct Camera3D
+    {
+        public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy = 90, CameraType type = CameraType.CAMERA_PERSPECTIVE)
+        {
+            this.position = position;
+            this.target = target;
+            this.up = up;
+            this.fovy = fovy;
+            this.type = type;
+        }
+    }
+
+    public partial struct Ray
+    {
+        public Ray(Vector3 position, Vector3 direction)
+        {
+            this.position = position;
+            this.direction = direction;
+        }
+    }
+
+    public partial struct RayHitInfo
+    {
+        public RayHitInfo(bool hit, float distance, Vector3 position, Vector3 normal)
+        {
+            this.hit = hit;
+            this.distance = distance;
+            this.position = position;
+            this.normal = normal;
+        }
     }
 
     // Utlity for accessing math functions through struct
     public partial struct Vector2
     {
-        public float X {get{return x;} set {x = value;}}
-        public float Y {get{return y;} set {y = value;}}
-
         public Vector2(float x, float y)
         {
             this.x = x;
@@ -130,43 +266,90 @@ namespace Raylib
 
         // common values
         public static Vector2 Zero { get { return Raylib.Vector2Zero(); } }
+
         public static Vector2 One { get { return Raylib.Vector2One(); } }
+
         public static Vector2 UnitX { get { return new Vector2(1, 0); } }
+
         public static Vector2 UnitY { get { return new Vector2(0, 1); } }
 
         // convienient operators
         public static bool operator ==(Vector2 v1, Vector2 v2) => (v1.x == v2.x && v1.y == v2.y);
-        public static bool operator !=(Vector2 v1, Vector2 v2) => !(v1 == v2);
-        public static bool operator >(Vector2 v1, Vector2 v2) => v1.x > v2.x && v1.y > v2.y;
-        public static bool operator <(Vector2 v1, Vector2 v2) => v1.x < v2.x && v1.y < v2.y;
-        public static Vector2 operator +(Vector2 v1, Vector2 v2) => Raylib.Vector2Add(v1, v2);
-        public static Vector2 operator -(Vector2 v1, Vector2 v2) => Raylib.Vector2Subtract(v1, v2);
-        public static Vector2 operator *(Vector2 v1, Vector2 v2) => Raylib.Vector2Multiplyv(v1, v2);
-        public static Vector2 operator *(Vector2 v, float scale) => Raylib.Vector2Scale(v, scale);
-        public static Vector2 operator *(float scale, Vector2 v) => Raylib.Vector2Scale(v, scale);
-        public static Vector2 operator /(Vector2 v1, Vector2 v2) => Raylib.Vector2DivideV(v1, v2);
-        public static Vector2 operator /(Vector2 v1, float div) => Raylib.Vector2Divide(v1, div);
-        public static Vector2 operator -(Vector2 v1) => Raylib.Vector2Negate(v1);
+
+        public static bool operator !=(Vector2 v1, Vector2 v2) 
+        { 
+            return !(v1 == v2);
+        }
+
+        public static bool operator >(Vector2 v1, Vector2 v2) 
+        {
+            return v1.x > v2.x && v1.y > v2.y;
+        }
+
+        public static bool operator <(Vector2 v1, Vector2 v2) 
+        { 
+            return v1.x < v2.x && v1.y < v2.y;
+        }
+
+        public static Vector2 operator +(Vector2 v1, Vector2 v2) 
+        { 
+            return Raylib.Vector2Add(v1, v2);
+        }
+
+        public static Vector2 operator -(Vector2 v1, Vector2 v2) 
+        {
+            return Raylib.Vector2Subtract(v1, v2);
+        }
+
+        public static Vector2 operator *(Vector2 v1, Vector2 v2) 
+        {
+            return Raylib.Vector2Multiplyv(v1, v2);
+        }
+
+        public static Vector2 operator *(Vector2 v, float scale) 
+        {
+            return Raylib.Vector2Scale(v, scale);
+        }
+
+        public static Vector2 operator *(float scale, Vector2 v) 
+        {
+            return Raylib.Vector2Scale(v, scale);
+        }
+
+        public static Vector2 operator /(Vector2 v1, Vector2 v2) 
+        { 
+            return Raylib.Vector2DivideV(v1, v2);
+        }
+
+        public static Vector2 operator /(Vector2 v1, float div) 
+        { 
+            return Raylib.Vector2Divide(v1, div);
+        }
+
+        public static Vector2 operator -(Vector2 v1) 
+        { 
+            return Raylib.Vector2Negate(v1);
+        }
 
         public static Vector2 Lerp(Vector2 value1, Vector2 value2, float amount)
         {
             return new Vector2(
-                Raylib.Lerp(value1.X, value2.X, amount),
-                Raylib.Lerp(value1.Y, value2.Y, amount)
+                Raylib.Lerp(value1.x, value2.x, amount),
+                Raylib.Lerp(value1.y, value2.y, amount)
             );
         }
 
-        public static float Length(Vector2 v) 
+        public static float Length(Vector2 v)
         {
             return Raylib.Vector2Length(v);
         }
 
-        public static float Dot(Vector2 v1, Vector2 v2) 
+        public static float Dot(Vector2 v1, Vector2 v2)
         {
             return Raylib.Vector2DotProduct(v1, v2);
         }
 
-        public static void Dot(ref Vector2 v1, ref Vector2 v2, out float result) 
+        public static void Dot(ref Vector2 v1, ref Vector2 v2, out float result)
         {
             result = Raylib.Vector2DotProduct(v1, v2);
         }
@@ -183,7 +366,7 @@ namespace Raylib
 
         public static float DistanceSquared(Vector2 v1, Vector2 v2)
         {
-            float a = v1.X - v2.X, b = v1.Y - v2.Y;
+            float a = v1.x - v2.x, b = v1.y - v2.y;
             return (a * a) + (b * b);
         }
 
@@ -217,12 +400,12 @@ namespace Raylib
             return Raylib.Vector2Normalize(v);
         }
 
-		// Creates a new <see cref="Vector2"/> that contains a maximal values from the two vectors.
+        // Creates a new <see cref="Vector2"/> that contains a maximal values from the two vectors.
         public static Vector2 Max(Vector2 v1, Vector2 v2)
         {
             return new Vector2(
-				v1.X > v2.X ? v1.X : v2.X,
-				v1.Y > v2.Y ? v1.Y : v2.Y
+                v1.x > v2.x ? v1.x : v2.x,
+                v1.y > v2.y ? v1.y : v2.y
             );
         }
 
@@ -230,30 +413,25 @@ namespace Raylib
         public static Vector2 Min(Vector2 v1, Vector2 v2)
         {
             return new Vector2(
-				v1.X < v2.X ? v1.X : v2.X,
-                v1.Y < v2.Y ? v1.Y : v2.Y
+                v1.x < v2.x ? v1.x : v2.x,
+                v1.y < v2.y ? v1.y : v2.y
             );
         }
 
-		// Clamps the specified value within a range.
-		public static Vector2 Clamp(Vector2 value1, Vector2 min, Vector2 max)
-		{
-			return new Vector2(
-				Raylib.Clamp(value1.X, min.X, max.X),
-				Raylib.Clamp(value1.Y, min.Y, max.Y)
-			);
+        // Clamps the specified value within a range.
+        public static Vector2 Clamp(Vector2 value1, Vector2 min, Vector2 max)
+        {
+            return new Vector2(
+                Raylib.Clamp(value1.x, min.x, max.x),
+                Raylib.Clamp(value1.y, min.y, max.y)
+            );
         }
     }
-    
+
 
     // Vector3 type
     public partial struct Vector3
     {
-        // captial option for xna/fna/monogame compatability
-        public float X { get => x; set => x = value; }
-        public float Y { get => y; set => y = value; } 
-        public float Z { get => z; set => z = value; } 
-
         public Vector3(float x, float y, float z)
         {
             this.x = x;
@@ -296,20 +474,20 @@ namespace Raylib
         public static Vector3 operator *(float scale, Vector3 v) => Raylib.Vector3Scale(v, scale);
         public static Vector3 operator /(Vector3 v1, Vector3 v2) => Raylib.Vector3DivideV(v1, v2);
         public static Vector3 operator /(Vector3 v1, float div) => Raylib.Vector3Divide(v1, div);
-        public static Vector3 operator -(Vector3 v1) => Raylib.Vector3Negate(v1);  
+        public static Vector3 operator -(Vector3 v1) => Raylib.Vector3Negate(v1);
 
         public static Vector3 Lerp(Vector3 value1, Vector3 value2, float amount)
-		{
-			return new Vector3(
-				Raylib.Lerp(value1.X, value2.X, amount),
-				Raylib.Lerp(value1.Y, value2.Y, amount),
-				Raylib.Lerp(value1.Z, value2.Z, amount)
-			);
+        {
+            return new Vector3(
+                Raylib.Lerp(value1.x, value2.x, amount),
+                Raylib.Lerp(value1.y, value2.y, amount),
+                Raylib.Lerp(value1.z, value2.z, amount)
+            );
         }
     }
 
     // Vector4 type
-    public partial struct Vector4 
+    public partial struct Vector4
     {
         public Vector4(float x, float y, float z, float w)
         {
@@ -321,13 +499,14 @@ namespace Raylib
 
         public Vector4(float value)
         {
-            this.x = value;
-            this.y = value;
-            this.z = value;
-            this.w = value;
+            x = value;
+            y = value;
+            z = value;
+            w = value;
         }
 
         public override bool Equals(object obj) => (obj is Vector4) && Equals((Vector4)obj);
+
         public override int GetHashCode() => x.GetHashCode() + y.GetHashCode() + z.GetHashCode() + w.GetHashCode();
 
         public override string ToString()
@@ -337,8 +516,11 @@ namespace Raylib
 
         // convienient operators
         public static bool operator ==(Vector4 v1, Vector4 v2) => (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w);
+
         public static bool operator !=(Vector4 v1, Vector4 v2) => !(v1 == v2);
+
         public static bool operator >(Vector4 v1, Vector4 v2) => v1.x > v2.x && v1.y > v2.y && v1.z > v2.z && v2.w > v2.w;
+
         public static bool operator <(Vector4 v1, Vector4 v2) => v1.x < v2.x && v1.y < v2.y && v1.z < v2.z && v1.w < v2.w;
     }
 }
