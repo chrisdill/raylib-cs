@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
     <Platforms>x64</Platforms>
-    <StartupObject>physics_demo</StartupObject>
+    <!-- <StartupObject>Test.NetCore.Program</StartupObject> -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
