@@ -46,8 +46,8 @@ static class Program
 ```
 
 # Tech notes
-- Certain funtions take a enum instead of a int such as 'IsKeyPressed'.
-- Colors stored in the `Color` struct. 'RED' changes to 'Color.RED'
+- Certain funtions take a enum instead of a int such as `IsKeyPressed`.
+- Colors stored in the `Color` struct. `RED` changes to `Color.RED`
 - Uses `string.Format` instead of `TextFormat`.
 - Adds constructors for structs.
 - Adds operator overloads for math structs.
