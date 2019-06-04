@@ -5,16 +5,14 @@
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 # Installation
-So far, I have only done a few tests on Windows and Linux. 
-
-There is a [nuget package](https://www.nuget.org/packages/Raylib-cs/) although it is currently out of date.
+So far, I have only done a few tests on Windows and Linux.
 
 1. Copy or reference the bindings folder in your project. See the test projects for reference.
 
 2. The bindings need a native library to load. It should match your platform and configuration. You can either:
     - Download a raylib [release](https://github.com/raysan5/raylib/releases).
 
-    - Build raylib from source. Use this if your using module bindings that are not built in releases.
+    - Build raylib from source. Use this if your using module bindings that are not built in relesaes by default.
 
 3. Make sure the native library is in a place your project can find it. This will vary for your platform. See https://www.mono-project.com/docs/advanced/pinvoke/ for more details.
 
