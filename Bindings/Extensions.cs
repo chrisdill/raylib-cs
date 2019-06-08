@@ -519,7 +519,7 @@ namespace Raylib
 
         public static bool operator !=(Vector4 v1, Vector4 v2) => !(v1 == v2);
 
-        public static bool operator >(Vector4 v1, Vector4 v2) => v1.x > v2.x && v1.y > v2.y && v1.z > v2.z && v2.w > v2.w;
+        public static bool operator >(Vector4 v1, Vector4 v2) => v1.x > v2.x && v1.y > v2.y && v1.z > v2.z && v1.w > v2.w;
 
         public static bool operator <(Vector4 v1, Vector4 v2) => v1.x < v2.x && v1.y < v2.y && v1.z < v2.z && v1.w < v2.w;
     }
