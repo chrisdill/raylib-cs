@@ -546,7 +546,6 @@ namespace Raylib
         // Maybe that is okay for games. Not using right now until I know it is worth it.
         public Span<float> Vertices => new Span<float>(vertices.ToPointer(), vertexCount * 3);
         public Span<float> TexCoords => new Span<float>(vertices.ToPointer(), vertexCount * 3);
-        public Span<float> Vertices => new Span<float>(vertices.ToPointer(), vertexCount * 3);
 
         // public Span<float> vertices;
         public IntPtr vertices;
