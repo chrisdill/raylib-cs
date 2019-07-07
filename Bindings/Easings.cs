@@ -1,10 +1,10 @@
-/* Raylib-cs
- * Easings.cs - Useful easing functions for values animation
- * Copyright 2019 Chris Dill
- *
- * Release under zLib License.
- * See LICENSE for details.
- */
+/* Easings.cs
+*
+* Copyright 2019 Chris Dill
+*
+* Release under zLib License.
+* See LICENSE for details.
+*/
 
 using System;
 
