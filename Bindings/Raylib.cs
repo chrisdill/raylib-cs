@@ -311,11 +311,6 @@ namespace Raylib
         public int format;                // Audio format specifier
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public partial struct MusicData
-    {
-    }
-
     // Audio stream type
     // NOTE: Useful to create custom audio streams not bound to a specific file
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -329,7 +324,7 @@ namespace Raylib
         public uint source;                                                                         // Audio source id
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-        public uint[] buffers;        // Audio buffers (double buffering)
+        public uint[] buffers;                                                                      // Audio buffers (double buffering)
     }
 
     // Head-Mounted-Display device parameters
@@ -346,15 +341,16 @@ namespace Raylib
         public float interpupillaryDistance;                                                                      // HMD IPD (distance between pupils) in meters
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public float[] lensDistortionValues;        // HMD lens distortion constant parameters
+        public float[] lensDistortionValues;                                                                      // HMD lens distortion constant parameters
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public float[] chromaAbCorrection;          // HMD chromatic aberration correction parameters
+        public float[] chromaAbCorrection;                                                                        // HMD chromatic aberration correction parameters
     }
 
     // ----------------------------------------------------------------------------------
     // Enumerators Definition
     // ----------------------------------------------------------------------------------
+
     // System config flags
     // NOTE: Used for bit masks
     public enum ConfigFlag
@@ -2444,56 +2440,56 @@ namespace Raylib
 
         // Load music stream from file
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern MusicData LoadMusicStream(string fileName);
+        public static extern IntPtr LoadMusicStream(string fileName);
 
         // Unload music stream
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadMusicStream(MusicData music);
+        public static extern void UnloadMusicStream(IntPtr music);
 
         // Start music playing
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void PlayMusicStream(MusicData music);
+        public static extern void PlayMusicStream(IntPtr music);
 
         // Updates buffers for music streaming
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateMusicStream(MusicData music);
+        public static extern void UpdateMusicStream(IntPtr music);
 
         // Stop music playing
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void StopMusicStream(MusicData music);
+        public static extern void StopMusicStream(IntPtr music);
 
         // Pause music playing
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void PauseMusicStream(MusicData music);
+        public static extern void PauseMusicStream(IntPtr music);
 
         // Resume playing paused music
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ResumeMusicStream(MusicData music);
+        public static extern void ResumeMusicStream(IntPtr music);
 
         // Check if music is playing
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMusicPlaying(MusicData music);
+        public static extern bool IsMusicPlaying(IntPtr music);
 
         // Set volume for music (1.0 is max level)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicVolume(MusicData music, float volume);
+        public static extern void SetMusicVolume(IntPtr music, float volume);
 
         // Set pitch for a music (1.0 is base level)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicPitch(MusicData music, float pitch);
+        public static extern void SetMusicPitch(IntPtr music, float pitch);
 
         // Set music loop count (loop repeats)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicLoopCount(MusicData music, int count);
+        public static extern void SetMusicLoopCount(IntPtr music, int count);
 
         // Get music time length (in seconds)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GetMusicTimeLength(MusicData music);
+        public static extern float GetMusicTimeLength(IntPtr music);
 
         // Get current music time played (in seconds)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GetMusicTimePlayed(MusicData music);
+        public static extern float GetMusicTimePlayed(IntPtr music);
 
         // AudioStream management functions
 
