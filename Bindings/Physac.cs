@@ -150,7 +150,7 @@ namespace Raylib
 
         // Creates a new circle physics body with generic parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr CreatePhysicsBodyCircle(Vector2 pos, float radius, float density);
+        public static extern IntPtr CreatePhysicsBodyCircle(Vector2 pos, float radius, float density);
 
         // Creates a new rectangle physics body with generic parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -178,7 +178,7 @@ namespace Raylib
 
         // Returns a physics body of the bodies pool at a specific index
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetPhysicsBodyImport(int index);
+        public static extern IntPtr GetPhysicsBody(int index);
 
         // Returns the physics body shape type (PHYSICS_CIRCLE or PHYSICS_POLYGON)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
