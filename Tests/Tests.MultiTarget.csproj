@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net46;net461;net462;netcoreapp2.1</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
+    <TargetFrameworks>net40;net45;net46;net461;net462;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+    <ApplicationIcon>../Logo/raylib-cs.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -14,15 +10,11 @@
   <ItemGroup>
     <Compile Include="../Bindings/*.cs" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-27217-01" />
-  </ItemGroup>
-  
+
   <!-- Option to copy native lib to output folder -->
   <!--<Target Name="TestTarget" AfterTargets="Build">
-    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="..\..\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="..\..\native\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="..\..\native\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="../../libs\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="../../libs\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
+    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="../../libs\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
   </Target>-->
 </Project>
