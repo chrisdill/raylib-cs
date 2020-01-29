@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ApplicationIcon>raylib-cs.ico</ApplicationIcon>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+    <ApplicationIcon>../Logo/raylib-cs.ico</ApplicationIcon>
     <Platforms>x64</Platforms>
   </PropertyGroup>
+
   <ItemGroup>
     <Content Include="Dia2Dump.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -13,7 +15,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.10.0"/>
   </ItemGroup>
+
 </Project>

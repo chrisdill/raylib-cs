@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net40;net45;net46;net461;net462;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net461;net462;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
     <ApplicationIcon>../Logo/raylib-cs.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -11,10 +12,4 @@
     <Compile Include="../Bindings/*.cs" />
   </ItemGroup>
 
-  <!-- Option to copy native lib to output folder -->
-  <!--<Target Name="TestTarget" AfterTargets="Build">
-    <Copy Condition=" '$(Platform)' == 'x86' " SourceFiles="../../libs\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'AnyCPU' " SourceFiles="../../libs\x86\raylib.dll" DestinationFolder="$(TargetDir)" />
-    <Copy Condition=" '$(Platform)' == 'x64' " SourceFiles="../../libs\x64\raylib.dll" DestinationFolder="$(TargetDir)" />
-  </Target>-->
 </Project>
