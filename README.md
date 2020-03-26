@@ -2,19 +2,22 @@
 
 # Raylib-cs
 
-C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+C# bindings for raylib 2.5, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+
+# UPDATE
+
+Currently raygui and physac are a work in progress and are not easy to setup. I do not recommend using them at this time.
+I am also nearly ready to update the master branch with alot changes for raylib 3.0 so be prepared.
 
 # Installation
+
 So far, I have only done a few tests on Windows and Linux.
 
-1. Copy or reference the bindings folder in your project. See the test projects for reference.
+1. Add the bindings to your project. See the test projects for reference.
 
-2. The bindings need a native library to load. It should match your platform and configuration. You can either:
-    - Download a raylib [release](https://github.com/raysan5/raylib/releases).
+2. Download the native libraries using the [official 2.5 release](https://github.com/raysan5/raylib/releases/tag/2.5.0).
 
-    - Build raylib from source. Use this if your using module bindings that are not built in relesaes by default.
-
-3. Make sure the native library is in a place your project can find it. This will vary for your platform. See https://www.mono-project.com/docs/advanced/pinvoke/ for more details.
+3. Make sure the native library matches the platform you are using and can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for more details.
 
 4. Start coding!
 
@@ -44,6 +47,7 @@ static class Program
 ```
 
 # Tech notes
+
 - Certain funtions take a enum instead of a int such as `IsKeyPressed`.
 - Colors stored in the `Color` struct. `RED` changes to `Color.RED`
 - Uses `string.Format` instead of `TextFormat`.
@@ -51,6 +55,7 @@ static class Program
 - Adds operator overloads for math structs.
 
 # Contributing
+
 If you have any ideas, feel free to open an issue and tell me what you think.
 If you'd like to contribute, please fork the repository and make changes as
 you'd like. Pull requests are warmly welcome.
@@ -58,4 +63,5 @@ you'd like. Pull requests are warmly welcome.
 If you want to [request features](https://github.com/raysan5/raylib/pulls) or [report bugs](https://github.com/raysan5/raylib/issues) related to the library (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
 
 # License
+
 raylib-cs (and raylib) is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
