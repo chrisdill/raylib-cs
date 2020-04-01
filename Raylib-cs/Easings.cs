@@ -1,6 +1,6 @@
 /* Easings.cs
 *
-* Copyright 2019 Chris Dill
+* Copyright 2020 Chris Dill
 *
 * Release under zLib License.
 * See LICENSE for details.
@@ -8,9 +8,9 @@
 
 using System;
 
-namespace Raylib
+namespace Raylib_cs
 {
-    public static partial class Raylib
+    public static class Easings
     {
         // Linear Easing functions
         public static float EaseLinearNone(float t, float b, float c, float d)

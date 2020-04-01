@@ -1,6 +1,6 @@
 /* Physac.cs
 *
-* Copyright 2019 Chris Dill
+* Copyright 2020 Chris Dill
 *
 * Release under zLib License.
 * See LICENSE for details.
@@ -8,8 +8,9 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
-namespace Raylib
+namespace Raylib_cs
 {
     public enum PhysicsShapeType
     {
@@ -71,7 +72,7 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct PolygonData
     {
-        public uint vertexCount;                           // Current used vertex and normals count       
+        public uint vertexCount;                           // Current used vertex and normals count
         public _Polygon_e_FixedBuffer positions;           // Polygon vertex positions vectors
         public _Polygon_e_FixedBuffer normals;             // Polygon vertex normals vectors
     }
@@ -79,10 +80,10 @@ namespace Raylib
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct PhysicsShape
     {
-        public PhysicsShapeType type;                      // Physics shape type (circle or polygon)  
-        public IntPtr body;                                // Shape physics body reference      
-        public float radius;                               // Circle shape radius (used for circle shapes)      
-        public Mat2 transform;                             // Vertices transform matrix 2x2     
+        public PhysicsShapeType type;                      // Physics shape type (circle or polygon)
+        public IntPtr body;                                // Shape physics body reference
+        public float radius;                               // Circle shape radius (used for circle shapes)
+        public Mat2 transform;                             // Vertices transform matrix 2x2
         public PolygonData vertexData;                     // Polygon shape vertices position and normals data (just used for polygon shapes)
     }
 
@@ -90,8 +91,10 @@ namespace Raylib
     public partial struct PhysicsBodyData
     {
         public uint id;
+
         [MarshalAs(UnmanagedType.Bool)]
         public bool enabled;
+
         public Vector2 position;
         public Vector2 velocity;
         public Vector2 force;
@@ -105,20 +108,24 @@ namespace Raylib
         public float staticFriction;
         public float dynamicFriction;
         public float restitution;
+
         [MarshalAs(UnmanagedType.Bool)]
         public bool useGravity;
+
         [MarshalAs(UnmanagedType.Bool)]
         public bool isGrounded;
+
         [MarshalAs(UnmanagedType.Bool)]
         public bool freezeOrient;
+
         public PhysicsShape shape;
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct PhysicsManifoldData
     {
-        public uint id;                                    // Reference unique identifier  
-        public IntPtr bodyA;                               // Manifold first physics body reference   
+        public uint id;                                    // Reference unique identifier
+        public IntPtr bodyA;                               // Manifold first physics body reference
         public IntPtr bodyB;                               // Manifold second physics body reference
         public float penetration;                          // Depth of penetration from collision
         public Vector2 normal;                             // Normal direction vector from 'a' to 'b'
@@ -130,8 +137,21 @@ namespace Raylib
         public float staticFriction;                       // Mixed static friction during collision
     }
 
-    public static partial class Raylib
+    [SuppressUnmanagedCodeSecurity]
+    public static class Physac
     {
+        // Used by DllImport to load the native library.
+        public const string nativeLibName = "physac";
+
+        public const int PHYSAC_MAX_BODIES = 64;
+        public const int PHYSAC_MAX_MANIFOLDS = 4096;
+        public const int PHYSAC_MAX_VERTICES = 24;
+        public const int PHYSAC_CIRCLE_VERTICES = 24;
+
+        public const int PHYSAC_COLLISION_ITERATIONS = 100;
+        public const float PHYSAC_PENETRATION_ALLOWANCE = 0.05f;
+        public const float PHYSAC_PENETRATION_CORRECTION = 0.4f;
+
         // Initializes physics values, pointers and creates physics loop thread
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitPhysics();
@@ -139,6 +159,10 @@ namespace Raylib
         // Run physics step, to be used if PHYSICS_NO_THREADS is set in your main loop
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunPhysicsStep();
+
+        // Sets physics fixed time step in milliseconds. 1.666666 by default
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetPhysicsTimeStep(double delta);
 
         // Returns true if physics thread is currently enabled
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -149,14 +173,17 @@ namespace Raylib
         public static extern void SetPhysicsGravity(float x, float y);
 
         // Creates a new circle physics body with generic parameters
+        // IntPtr refers to a PhysicsBodyData *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CreatePhysicsBodyCircle(Vector2 pos, float radius, float density);
 
         // Creates a new rectangle physics body with generic parameters
+        // IntPtr refers to a PhysicsBodyData *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CreatePhysicsBodyRectangle(Vector2 pos, float width, float height, float density);
 
         // Creates a new polygon physics body with generic parameters
+        // IntPtr refers to a PhysicsBodyData *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CreatePhysicsBodyPolygon(Vector2 pos, float radius, int sides, float density);
 
@@ -177,6 +204,7 @@ namespace Raylib
         public static extern int GetPhysicsBodiesCount();
 
         // Returns a physics body of the bodies pool at a specific index
+        // IntPtr refers to a PhysicsBodyData *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetPhysicsBody(int index);
 
