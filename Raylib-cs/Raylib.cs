@@ -1829,7 +1829,7 @@ namespace Raylib_cs
 
         // Draw lines sequence
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawLineStrip(ref Vector2 points, int numPoints, Color color);
+        public static extern void DrawLineStrip(Vector2[] points, int numPoints, Color color);
 
         // Draw a color-filled circle
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
