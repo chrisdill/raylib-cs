@@ -1,29 +1,37 @@
 /* Raymath.cs
 *
-* Copyright 2019 Chris Dill
+* Copyright 2020 Chris Dill
 *
 * Release under zLib License.
 * See LICENSE for details.
 */
 
+using System;
 using System.Runtime.InteropServices;
-using Quaternion = Raylib.Vector4;
+using System.Security;
+using Quaternion = Raylib_cs.Vector4;
 
-namespace Raylib
+namespace Raylib_cs
 {
     // NOTE: Helper types to be used instead of array return types for *ToFloat functions
-    public unsafe struct float3
+    public struct float3
     {
-        public fixed float v[3];
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        public float[] v;
     }
 
-    public unsafe struct float16
+    public struct float16
     {
-        public fixed float v[16];
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        public float[] v;
     }
 
-    public static partial class Raylib
+    [SuppressUnmanagedCodeSecurity]
+    public static class Raymath
     {
+        // Used by DllImport to load the native library.
+        public const string nativeLibName = "raylib";
+
         // Clamp float value
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Clamp(float value, float min, float max);
@@ -237,6 +245,10 @@ namespace Raylib
         // NOTE: Angle should be provided in radians
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix MatrixRotate(Vector3 axis, float angle);
+
+        // Returns xyz-rotation matrix (angles in radians)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix MatrixRotateXYZ(Vector3 ang);
 
         // Returns x-rotation matrix (angle in radians)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

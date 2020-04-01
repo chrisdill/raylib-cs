@@ -1,16 +1,26 @@
 /* Raygui.cs
 *
-* Copyright 2019 Chris Dill
+* Copyright 2020 Chris Dill
 *
 * Release under zLib License.
 * See LICENSE for details.
 */
 
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 
-namespace Raylib
+namespace Raylib_cs
 {
+    // Style property
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    struct GuiStyleProp
+    {
+        ushort controlId;
+        ushort propertyId;
+        int propertyValue;
+    }
+
     // Gui global state enum
     public enum GuiControlState
     {
@@ -46,7 +56,7 @@ namespace Raylib
         LISTVIEW,
         COLORPICKER,
         SCROLLBAR,
-        RESERVED
+        STATUSBAR
     }
 
     // Gui default properties for every control
@@ -65,13 +75,13 @@ namespace Raylib
         BASE_COLOR_DISABLED,
         TEXT_COLOR_DISABLED,
         BORDER_WIDTH,
-        INNER_PADDING,
+        TEXT_PADDING,
         TEXT_ALIGNMENT,
-        RESERVED02
+        RESERVED
     }
 
     // Gui extended properties depending on control type
-    // NOTE: We reserve a fixed size of additional properties per control (8)
+    // NOTE: We reserve a fixed size of additional properties per control
 
     // Default properties
     public enum GuiDefaultProperty
@@ -95,10 +105,16 @@ namespace Raylib
         TEXT_PADDING
     }
 
+    // ProgressBar
+    public enum GuiProgressBarProperty
+    {
+        PROGRESS_PADDING = 16,
+    }
+
     // CheckBox
     public enum GuiCheckBoxProperty
     {
-        CHECK_TEXT_PADDING = 16
+        CHECK_PADDING = 16
     }
 
     // ComboBox
@@ -111,32 +127,35 @@ namespace Raylib
     // DropdownBox
     public enum GuiDropdownBoxProperty
     {
-        ARROW_RIGHT_PADDING = 16,
+        ARROW_PADDING = 16,
+        DROPDOWN_ITEMS_PADDING
     }
 
     // TextBox / TextBoxMulti / ValueBox / Spinner
     public enum GuiTextBoxProperty
     {
-        MULTILINE_PADDING = 16,
+        TEXT_INNER_PADDING = 16,
+        TEXT_LINES_PADDING,
         COLOR_SELECTED_FG,
         COLOR_SELECTED_BG
     }
 
+    // Spinner
     public enum GuiSpinnerProperty
     {
-        SELECT_BUTTON_WIDTH = 16,
-        SELECT_BUTTON_PADDING,
-        SELECT_BUTTON_BORDER_WIDTH
+        SPIN_BUTTON_WIDTH = 16,
+        SPIN_BUTTON_PADDING,
     }
 
     // ScrollBar
     public enum GuiScrollBarProperty
     {
         ARROWS_SIZE = 16,
-        SLIDER_PADDING,
-        SLIDER_SIZE,
+        ARROWS_VISIBLE,
+        SCROLL_SLIDER_PADDING,
+        SCROLL_SLIDER_SIZE,
+        SCROLL_PADDING,
         SCROLL_SPEED,
-        SHOW_SPINNER_BUTTONS
     }
 
     // ScrollBar side
@@ -149,24 +168,36 @@ namespace Raylib
     // ListView
     public enum GuiListViewProperty
     {
-        ELEMENTS_HEIGHT = 16,
-        ELEMENTS_PADDING,
+        LIST_ITEMS_HEIGHT = 16,
+        LIST_ITEMS_PADDING,
         SCROLLBAR_WIDTH,
-        SCROLLBAR_SIDE,             // This property defines vertical scrollbar side (SCROLLBAR_LEFT_SIDE or SCROLLBAR_RIGHT_SIDE)
+        SCROLLBAR_SIDE,
     }
 
     // ColorPicker
     public enum GuiColorPickerProperty
     {
         COLOR_SELECTOR_SIZE = 16,
-        BAR_WIDTH,                  // Lateral bar width
-        BAR_PADDING,                // Lateral bar separation from panel
-        BAR_SELECTOR_HEIGHT,        // Lateral bar selector height
-        BAR_SELECTOR_PADDING        // Lateral bar selector outer padding
+        HUEBAR_WIDTH,                  // Right hue bar width
+        HUEBAR_PADDING,                // Right hue bar separation from panel
+        HUEBAR_SELECTOR_HEIGHT,        // Right hue bar selector height
+        HUEBAR_SELECTOR_OVERFLOW       // Right hue bar selector overflow
     }
 
-    public static partial class Raylib
+    [SuppressUnmanagedCodeSecurity]
+    public static class Raygui
     {
+        // Used by DllImport to load the native library.
+        public const string nativeLibName = "raygui";
+
+        public const string RAYGUI_VERSION = "2.6-dev";
+
+        public const int NUM_CONTROLS = 16;                      // Number of standard controls
+        public const int NUM_PROPS_DEFAULT = 16;                 // Number of standard properties
+        public const int NUM_PROPS_EXTENDED = 8;                 // Number of extended properties
+
+        public const int TEXTEDIT_CURSOR_BLINK_FRAMES = 20;      // Text edit controls cursor blink timming
+
         // Global gui modification functions
 
         // Enable gui controls (global state)
@@ -185,17 +216,26 @@ namespace Raylib
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiUnlock();
 
-        // Set gui state (global state)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiState(int state);
-
-        // Set gui custom font (global state)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiFont(Font font);
-
         // Set gui controls alpha (global state), alpha goes from 0.0f to 1.0f
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiFade(float alpha);
+
+        // Set gui state (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiSetState(int state);
+
+        // Get gui state (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GuiGetState();
+
+        // Get gui custom font (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiSetFont(Font font);
+
+        // Set gui custom font (global state)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Font GuiGetFont();
+
 
         // Style set/get functions
 
@@ -206,6 +246,7 @@ namespace Raylib
         // Get one style property
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiGetStyle(GuiControlStandard control, GuiControlProperty property);
+
 
         // Container/separator controls, useful for controls organization
 
@@ -230,8 +271,9 @@ namespace Raylib
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Rectangle GuiScrollPanel(Rectangle bounds, Rectangle content, ref Vector2 scroll);
 
+
         // Basic controls set
-        
+
         // Label control, shows text
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiLabel(Rectangle bounds, string text);
@@ -331,6 +373,7 @@ namespace Raylib
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiGrid(Rectangle bounds, float spacing, int subdivs);
 
+
         // Advance controls set
 
         // List View control, returns selected list element index
@@ -355,28 +398,47 @@ namespace Raylib
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Color GuiColorPicker(Rectangle bounds, Color color);
 
+
         // Styles loading functions
 
         // Load style file (.rgs)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiLoadStyle(string fileName);
 
-        // Load style properties from array
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiLoadStyleProps(int[] props, int count);
-
         // Load style default over global style
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool GuiLoadStyleDefault();
 
-        // Updates full style properties set with default values
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color GuiUpdateStyleComplete();
-
         // Get text with icon id prepended
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern string GuiIconText(int iconId, string text);
+
+
+        // Gui icons functionality
+
+        // Get full icons data pointer
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint[] GuiGetIcons();
+
+        // Get icon bit data
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint[] GuiGetIconData(int iconId, string text);
+
+        // Set icon bit data
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GuiSetIconData(int iconId, uint[] data);
+
+        // Set icon pixel value
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern string GuiSetIconPixel(int iconId, int x, int y);
+
+        // Clear icon pixel value
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern string GuiClearIconPixel(int iconId, int x, int y);
+
+        // Check icon pixel value
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern string GuiCheckIconPixel(int iconId, int x, int y);
     }
 }
