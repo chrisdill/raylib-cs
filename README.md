@@ -2,56 +2,62 @@
 
 # Raylib-cs
 
-C# bindings for raylib 2.5, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
-# UPDATE
+[![GitHub contributors](https://img.shields.io/github/contributors/ChrisDill/Raylib-cs)](https://github.com/ChrisDill/Raylib-cs/graphs/contributors)
 
-Currently raygui and physac are a work in progress and are not easy to setup. I do not recommend using them at this time.
-I am also nearly ready to update the master branch with alot changes for raylib 3.0 so be prepared.
+[![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE.md)
+[![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/VkzNHUE)
+[![GitHub stars](https://img.shields.io/github/stars/ChrisDill/Raylib-cs?style=social)](https://github.com/ChrisDill/Raylib-cs/stargazers)
+
+![.NET Core](https://github.com/ChrisDill/Raylib-cs/workflows/.NET%20Core/badge.svg)
 
 # Installation
 
-So far, I have only done a few tests on Windows and Linux.
+1. Add Raylib-cs to your project. See the Tests projects for reference.
 
-1. Add the bindings to your project. See the test projects for reference.
+2. Download the native libraries using the [official 3.0 release](https://github.com/raysan5/raylib/releases/tag/3.0.0).
 
-2. Download the native libraries using the [official 2.5 release](https://github.com/raysan5/raylib/releases/tag/2.5.0).
-
-3. Make sure the native library matches the platform you are using and can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for more details.
+3. Make sure the native library matches the platform you are using and can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for details.
 
 4. Start coding!
 
 ```csharp
-using Raylib;
-using rl = Raylib.Raylib;
+using Raylib_cs;
 
 static class Program
 {
-    public static void Main() 
+    public static void Main()
     {
-        rl.InitWindow(640, 480, "Hello World");
+        Raylib.InitWindow(800, 480, "Hello World");
 
-        while (!rl.WindowShouldClose())
+        while (!Raylib.WindowShouldClose())
         {
-            rl.BeginDrawing();
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.WHITE);
 
-            rl.ClearBackground(Color.WHITE);
-            rl.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
+            Raylib.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
 
-            rl.EndDrawing();
+            Raylib.EndDrawing();
         }
 
-        rl.CloseWindow();
+        Raylib.CloseWindow();
     }
 }
 ```
 
+The Examples for Raylib-cs have moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
+
 # Tech notes
 
 - Certain funtions take a enum instead of a int such as `IsKeyPressed`.
-- Colors stored in the `Color` struct. `RED` changes to `Color.RED`
+
+- Colors moved into the `Color` struct as static members. `RED` changes to `Color.RED`.
+
 - Uses `string.Format` instead of `TextFormat`.
-- Adds constructors for structs.
+
+- Adds constructors for some of the structs(WIP).
+
 - Adds operator overloads for math structs.
 
 # Contributing
@@ -64,4 +70,4 @@ If you want to [request features](https://github.com/raysan5/raylib/pulls) or [r
 
 # License
 
-raylib-cs (and raylib) is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+raylib-cs (and raylib) is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE.md) for further details.
