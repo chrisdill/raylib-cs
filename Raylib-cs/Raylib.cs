@@ -486,6 +486,14 @@ namespace Raylib_cs
         public Vector2 target;        // Camera target (rotation and zoom origin)
         public float rotation;        // Camera rotation in degrees
         public float zoom;            // Camera zoom (scaling), should be 1.0f by default
+
+        public Camera2D(Vector2 offset, Vector2 target, float rotation, float zoom)
+        {
+            this.offset = offset;
+            this.target = target;
+            this.rotation = rotation;
+            this.zoom = zoom;
+        }
     }
 
     // Vertex data definning a mesh
@@ -2407,10 +2415,6 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetGlyphIndex(Font font, int character);
 
-        // Returns next codepoint in a UTF8 encoded string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetNextCodepoint(string text, ref int count);
-
         // Text strings management functions
         // NOTE: Some strings allocate memory internally for returned strings, just be careful!
 
@@ -2474,6 +2478,29 @@ namespace Raylib_cs
         // Get integer value from text (negative values not supported)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int TextToInteger(string text);
+
+        // Get total number of characters (codepoints) in a UTF8 encoded string
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern string TextToUtf8(string text, int length);
+
+
+        // UTF8 text strings management functions
+
+        // Returns next codepoint in a UTF8 encoded string
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int[] GetCodepoints(string text, ref int count);
+
+        // Get all codepoints in a string, codepoints count returned by parameters
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetCodepointsCount(string text);
+
+        // Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetNextCodepoint(string text, ref int bytesProcessed);
+
+        // Encode codepoint into utf8 text (char array length returned as parameter)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern string CodepointToUtf8(string text, ref int byteLength);
 
         //------------------------------------------------------------------------------------
         // Basic 3d Shapes Drawing Functions (Module: models)
