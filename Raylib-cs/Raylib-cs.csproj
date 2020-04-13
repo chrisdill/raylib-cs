@@ -19,6 +19,7 @@
         <Compile Include="Raylib.cs" />
         <Compile Include="Raymath.cs" />
         <Compile Include="Rlgl.cs" />
+        <Compile Include="Rlights.cs" />
     </ItemGroup>
 
     <ItemGroup>
