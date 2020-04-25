@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFrameworks>net47;netcoreapp3.1</TargetFrameworks>
     <Platforms>x64</Platforms>
   </PropertyGroup>
