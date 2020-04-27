@@ -1213,7 +1213,8 @@ namespace Raylib_cs
 
         // Check if window is currently fullscreen
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void IsWindowFullscreen();
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowFullscreen();
 
         // Toggle fullscreen mode (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
