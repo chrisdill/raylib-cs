@@ -9,8 +9,9 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using Raylib_cs;
 
-namespace Raylib_cs
+namespace Physac_cs
 {
     public enum PhysicsShapeType
     {

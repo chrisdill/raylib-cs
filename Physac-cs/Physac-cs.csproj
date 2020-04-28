@@ -6,16 +6,17 @@
 
   <PropertyGroup>
     <EnableDefaultItems>false</EnableDefaultItems>
-    <AssemblyName>Raylib-cs</AssemblyName>
-    <RootNamespace>Raylib_cs</RootNamespace>
+    <AssemblyName>Physac-cs</AssemblyName>
+    <RootNamespace>Physac_cs</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Easings.cs" />
-    <Compile Include="Raylib.cs" />
-    <Compile Include="Raymath.cs" />
-    <Compile Include="Rlgl.cs" />
+    <Compile Include="Physac.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
   </ItemGroup>
 </Project>
