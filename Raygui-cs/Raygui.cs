@@ -9,8 +9,9 @@
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+using Raylib_cs;
 
-namespace Raylib_cs
+namespace Raygui_cs
 {
     // Style property
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]

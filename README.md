@@ -48,6 +48,10 @@ static class Program
 
 The Examples for Raylib-cs have moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
 
+# Physac-cs and Raygui-cs
+
+These are unfinished EXPERIMENTAL bindings to physac and raygui. They were initially added as a test to Raylib-cs but caused confusion and issues in project setup so they were moved into their own libraries Physac-cs and Raygui-cs that depend on Raylib-cs.
+
 # Tech notes
 
 - Certain funtions take a enum instead of a int such as `IsKeyPressed`.
