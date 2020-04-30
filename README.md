@@ -12,7 +12,7 @@ C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames
 
 ![.NET Core](https://github.com/ChrisDill/Raylib-cs/workflows/.NET%20Core/badge.svg)
 
-# Installation
+## Installation
 
 1. Add Raylib-cs to your project. See the Tests projects for reference.
 
@@ -46,17 +46,19 @@ static class Program
 }
 ```
 
-The Examples for Raylib-cs have moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
-
-# Physac-cs and Raygui-cs
+## Physac-cs and Raygui-cs
 
 These are unfinished EXPERIMENTAL bindings to physac and raygui. They were initially added as a test to Raylib-cs but caused confusion and issues in project setup so they were moved into their own libraries Physac-cs and Raygui-cs that depend on Raylib-cs.
 
-# Tech notes
+## Examples
 
-- Certain funtions take a enum instead of a int such as `IsKeyPressed`.
+The Examples for Raylib-cs have moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
 
-- Colors moved into the `Color` struct as static members. `RED` changes to `Color.RED`.
+## Tech notes
+
+- Certain functions take a enum instead of a int such as `IsKeyPressed`.
+
+- Colours moved into the `Color` struct as static members. `RED` changes to `Color.RED`.
 
 - Uses `string.Format` instead of `TextFormat`.
 
@@ -64,7 +66,7 @@ These are unfinished EXPERIMENTAL bindings to physac and raygui. They were initi
 
 - Adds operator overloads for math structs.
 
-# Contributing
+## Contributing
 
 If you have any ideas, feel free to open an issue and tell me what you think.
 If you'd like to contribute, please fork the repository and make changes as
@@ -72,6 +74,6 @@ you'd like. Pull requests are warmly welcome.
 
 If you want to [request features](https://github.com/raysan5/raylib/pulls) or [report bugs](https://github.com/raysan5/raylib/issues) related to the library (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
 
-# License
+## License
 
 raylib-cs (and raylib) is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE.md) for further details.
