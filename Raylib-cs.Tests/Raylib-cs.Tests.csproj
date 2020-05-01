@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net47;netcoreapp3.1</TargetFrameworks>
-    <Platforms>x64</Platforms>
+    <Platforms>AnyCPU</Platforms>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup>
