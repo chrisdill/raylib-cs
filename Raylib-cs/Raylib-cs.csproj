@@ -14,10 +14,19 @@
   </PropertyGroup>
 
 <PropertyGroup>
-  <Version>3.0.0</Version>
+  <Version>3.0.1</Version>
   <PackProject>true</PackProject>
   <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetNativeLibraryFiles</TargetsForTfmSpecificBuildOutput>
   <PackageLicenseExpression>Zlib</PackageLicenseExpression>
+  <Title>Raylib-cs - C# Bindings for Raylib</Title>
+  <Description>
+    C# bindings for raylib - A simple and easy-to-use library to learn videogames programming http://www.raylib.com/
+  </Description>
+  <PackageIcon>raylib-cs_64x64.png</PackageIcon>
+  <PackageTags>Game;Raylib;Raysan;Games;Game-Engine;Engine</PackageTags>
+  <RepositoryType>git</RepositoryType>
+  <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
+  <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
 </PropertyGroup>
   
   <ItemGroup>
@@ -25,6 +34,7 @@
     <Compile Include="Raylib.cs" />
     <Compile Include="Raymath.cs" />
     <Compile Include="Rlgl.cs" />
+    <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath=""/>
   </ItemGroup>
   
   <Target Name="GetNativeLibraryFiles">
