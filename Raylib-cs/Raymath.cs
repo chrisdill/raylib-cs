@@ -6,10 +6,9 @@
 * See LICENSE for details.
 */
 
-using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
-using Quaternion = Raylib_cs.Vector4;
 
 namespace Raylib_cs
 {
