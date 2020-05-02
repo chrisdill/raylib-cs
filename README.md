@@ -5,22 +5,42 @@
 C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/ChrisDill/Raylib-cs)](https://github.com/ChrisDill/Raylib-cs/graphs/contributors)
-
 [![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE.md)
-[![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/VkzNHUE)
+![.NET Core](https://github.com/ChrisDill/Raylib-cs/workflows/.NET%20Core/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/ChrisDill/Raylib-cs?style=social)](https://github.com/ChrisDill/Raylib-cs/stargazers)
 
-![.NET Core](https://github.com/ChrisDill/Raylib-cs/workflows/.NET%20Core/badge.svg)
+[![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/VkzNHUE)
 
-## Installation
 
-1. Add Raylib-cs to your project. See the Tests projects for reference.
 
-2. Download the native libraries using the [official 3.0 release](https://github.com/raysan5/raylib/releases/tag/3.0.0).
+## Installation - NuGet
 
-3. Make sure the native library matches the platform you are using and can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for details.
+This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
 
-4. Start coding!
+```
+dotnet add package Raylib-cs
+```
+
+[![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
+
+
+Currently supported are netstandard2.0 (which should include Framework 4.7.2+) and netcore3.1
+
+If you need to edit Raylib-cs source then you will need to add the bindings as a project (see below).
+
+## Installation - Manual
+
+1. Download/Clone this repo
+
+2. Add Raylib-cs/Raylib-cs.csproj to your project as an exisitng project. See the Tests projects for reference.
+
+3. Download the native libraries for the platforms you want to build for using the [official 3.0 release](https://github.com/raysan5/raylib/releases/tag/3.0.0).    
+   **NOTE: the MSVC version is required for Windows platforms**  
+
+4. **(Recommended)** Put the native library for each platform under `Raylib-cs/runtimes/{platform}/native/`  
+   **(Optional)** If you want to handle the native libraries yourself, make sure they are either in the same directory as the executable and/or can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for details.
+
+5. Start coding!
 
 ```csharp
 using Raylib_cs;
