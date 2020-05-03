@@ -13,28 +13,6 @@ using System.Security;
 
 namespace Raylib_cs
 {
-    // Matrix type (OpenGL style 4x4 - right handed, column major)
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Matrix
-    {
-        public float m0;
-        public float m4;
-        public float m8;
-        public float m12;
-        public float m1;
-        public float m5;
-        public float m9;
-        public float m13;
-        public float m2;
-        public float m6;
-        public float m10;
-        public float m14;
-        public float m3;
-        public float m7;
-        public float m11;
-        public float m15;
-    }
-
     // Color type, RGBA (32bit)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Color
@@ -328,7 +306,7 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Model
     {
-        public Matrix transform;           // Local transform matrix
+        public Matrix4x4 transform;           // Local transform matrix
         public int meshCount;              // Number of meshes
 
         // meshes refers to a Mesh *
@@ -1111,11 +1089,11 @@ namespace Raylib_cs
 
         // Returns camera transform matrix (view matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetCameraMatrix(Camera3D camera);
+        public static extern Matrix4x4 GetCameraMatrix(Camera3D camera);
 
         // Returns camera 2d transform matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetCameraMatrix2D(Camera2D camera);
+        public static extern Matrix4x4 GetCameraMatrix2D(Camera2D camera);
 
         // Returns the screen space position for a 3d world space position
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2586,7 +2564,7 @@ namespace Raylib_cs
 
         // Set shader uniform value (matrix 4x4)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix mat);
+        public static extern void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix4x4 mat);
 
         // Set shader uniform value for texture
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2594,19 +2572,19 @@ namespace Raylib_cs
 
         // Set a custom projection matrix (replaces internal projection matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMatrixProjection(Matrix proj);
+        public static extern void SetMatrixProjection(Matrix4x4 proj);
 
         // Set a custom modelview matrix (replaces internal modelview matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMatrixModelview(Matrix view);
+        public static extern void SetMatrixModelview(Matrix4x4 view);
 
         // Get internal modelview matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetMatrixModelview();
+        public static extern Matrix4x4 GetMatrixModelview();
 
         // Get internal projection matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetMatrixProjection();
+        public static extern Matrix4x4 GetMatrixProjection();
 
 
         // Texture maps generation (PBR)
