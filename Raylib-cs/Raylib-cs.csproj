@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Platforms>AnyCPU;osx-x64;linux-x64;win-x64</Platforms>
+    <Platforms>AnyCPU;osx-x64;linux-x64;win-x64;win-x86;linux-x86</Platforms>
     <Configurations>Debug;Release</Configurations>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -14,16 +14,17 @@
   </PropertyGroup>
 
 <PropertyGroup>
-  <Version>3.0.2</Version>
+  <Version>3.1.0</Version>
+  <PackageVersion>3.1.0</PackageVersion>
+  <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
   <PackProject>true</PackProject>
   <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetNativeLibraryFiles</TargetsForTfmSpecificBuildOutput>
   <PackageLicenseExpression>Zlib</PackageLicenseExpression>
   <Title>Raylib-cs - C# Bindings for Raylib</Title>
-  <Description>
-    C# bindings for raylib - A simple and easy-to-use library to learn videogames programming http://www.raylib.com/
+  <Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming http://www.raylib.com/
   </Description>
   <PackageIcon>raylib-cs_64x64.png</PackageIcon>
-  <PackageTags>Game;Raylib;Raysan;Games;Game-Engine;Engine</PackageTags>
+  <PackageTags>Raylib;Raysan;Games;Game-Engine;Engine;Game</PackageTags>
   <RepositoryType>git</RepositoryType>
   <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
   <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
@@ -34,7 +35,11 @@
     <Compile Include="Raylib.cs" />
     <Compile Include="Raymath.cs" />
     <Compile Include="Rlgl.cs" />
-    <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath=""/>
+    <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="Raylib-cs.targets" />
   </ItemGroup>
   
   <Target Name="GetNativeLibraryFiles">
