@@ -99,6 +99,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Lerp(Vector2 v1, Vector2 v2, float amount);
 
+        // Calculate linear interpolation between two vectors
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Rotate(Vector2 v, float degs);
+
         // Vector with components value 0.0f
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Zero();
@@ -117,11 +121,11 @@ namespace Raylib_cs
 
         // Multiply vector by scalar
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 Vector3Multiply(Vector3 v, float scalar);
+        public static extern Vector3 Vector3Scale(Vector3 v, float scalar);
 
         // Multiply vector by vector
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 Vector3MultiplyV(Vector3 v1, Vector3 v2);
+        public static extern Vector3 Vector3Multiply(Vector3 v1, Vector3 v2);
 
         // Calculate two vectors cross product
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -143,11 +147,6 @@ namespace Raylib_cs
         // Calculate distance between two vectors
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector3Distance(Vector3 v1, Vector3 v2);
-
-        // Scale provided vector
-
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 Vector3Scale(Vector3 v, float scale);
 
         // Negate provided vector (invert direction)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
