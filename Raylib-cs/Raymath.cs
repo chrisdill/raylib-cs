@@ -6,10 +6,9 @@
 * See LICENSE for details.
 */
 
-using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
-using Quaternion = Raylib_cs.Vector4;
 
 namespace Raylib_cs
 {
@@ -174,7 +173,7 @@ namespace Raylib_cs
 
         // Transforms a Vector3 by a given Matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 Vector3Transform(Vector3 v, Matrix mat);
+        public static extern Vector3 Vector3Transform(Vector3 v, Matrix4x4 mat);
 
         // Transform a vector by quaternion rotation
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -207,90 +206,90 @@ namespace Raylib_cs
 
         // Compute matrix determinant
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float MatrixDeterminant(Matrix mat);
+        public static extern float MatrixDeterminant(Matrix4x4 mat);
 
         // Returns the trace of the matrix (sum of the values along the diagonal)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float MatrixTrace(Matrix mat);
+        public static extern float MatrixTrace(Matrix4x4 mat);
 
         // Transposes provided matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixTranspose(Matrix mat);
+        public static extern Matrix4x4 MatrixTranspose(Matrix4x4 mat);
 
         // Invert provided matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixInvert(Matrix mat);
+        public static extern Matrix4x4 MatrixInvert(Matrix4x4 mat);
 
         // Normalize provided matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixNormalize(Matrix mat);
+        public static extern Matrix4x4 MatrixNormalize(Matrix4x4 mat);
 
         // Returns identity matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixIdentity();
+        public static extern Matrix4x4 MatrixIdentity();
 
         // Add two matrices
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixAdd(Matrix left, Matrix right);
+        public static extern Matrix4x4 MatrixAdd(Matrix4x4 left, Matrix4x4 right);
 
         // Subtract two matrices (left - right)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixSubtract(Matrix left, Matrix right);
+        public static extern Matrix4x4 MatrixSubtract(Matrix4x4 left, Matrix4x4 right);
 
         // Returns translation matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixTranslate(float x, float y, float z);
+        public static extern Matrix4x4 MatrixTranslate(float x, float y, float z);
 
         // Create rotation matrix from axis and angle
         // NOTE: Angle should be provided in radians
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixRotate(Vector3 axis, float angle);
+        public static extern Matrix4x4 MatrixRotate(Vector3 axis, float angle);
 
         // Returns xyz-rotation matrix (angles in radians)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixRotateXYZ(Vector3 ang);
+        public static extern Matrix4x4 MatrixRotateXYZ(Vector3 ang);
 
         // Returns x-rotation matrix (angle in radians)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixRotateX(float angle);
+        public static extern Matrix4x4 MatrixRotateX(float angle);
 
         // Returns y-rotation matrix (angle in radians)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixRotateY(float angle);
+        public static extern Matrix4x4 MatrixRotateY(float angle);
 
         // Returns z-rotation matrix (angle in radians)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixRotateZ(float angle);
+        public static extern Matrix4x4 MatrixRotateZ(float angle);
 
         // Returns scaling matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixScale(float x, float y, float z);
+        public static extern Matrix4x4 MatrixScale(float x, float y, float z);
 
         // Returns two matrix multiplication
         // NOTE: When multiplying matrices... the order matters!
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixMultiply(Matrix left, Matrix right);
+        public static extern Matrix4x4 MatrixMultiply(Matrix4x4 left, Matrix4x4 right);
 
         // Returns perspective projection matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixFrustum(double left, double right, double bottom, double top, double near, double far);
+        public static extern Matrix4x4 MatrixFrustum(double left, double right, double bottom, double top, double near, double far);
 
         // Returns perspective projection matrix
         // NOTE: Angle should be provided in radians
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixPerspective(double fovy, double aspect, double near, double far);
+        public static extern Matrix4x4 MatrixPerspective(double fovy, double aspect, double near, double far);
 
         // Returns orthographic projection matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixOrtho(double left, double right, double bottom, double top, double near, double far);
+        public static extern Matrix4x4 MatrixOrtho(double left, double right, double bottom, double top, double near, double far);
 
         // Returns camera look-at matrix (view matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix MatrixLookAt(Vector3 eye, Vector3 target, Vector3 up);
+        public static extern Matrix4x4 MatrixLookAt(Vector3 eye, Vector3 target, Vector3 up);
 
         // Returns float array of matrix data
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float16 MatrixToFloatV(Matrix mat);
+        public static extern float16 MatrixToFloatV(Matrix4x4 mat);
 
         // Returns identity quaternion
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -330,11 +329,11 @@ namespace Raylib_cs
 
         // Returns a quaternion for a given rotation matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Quaternion QuaternionFromMatrix(Matrix mat);
+        public static extern Quaternion QuaternionFromMatrix(Matrix4x4 mat);
 
         // Returns a matrix for a given quaternion
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix QuaternionToMatrix(Quaternion q);
+        public static extern Matrix4x4 QuaternionToMatrix(Quaternion q);
 
         // Returns rotation quaternion for an angle and axis
         // NOTE: angle must be provided in radians
@@ -356,6 +355,6 @@ namespace Raylib_cs
 
         // Transform a quaternion given a transformation matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Quaternion QuaternionTransform(Quaternion q, Matrix mat);
+        public static extern Quaternion QuaternionTransform(Quaternion q, Matrix4x4 mat);
     }
 }

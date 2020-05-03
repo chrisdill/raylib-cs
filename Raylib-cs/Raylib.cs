@@ -7,304 +7,12 @@
 */
 
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
 
 namespace Raylib_cs
 {
-    // Vector2 type
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Vector2
-    {
-        public float x;
-        public float y;
-
-        public Vector2(float x, float y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public Vector2(float value)
-        {
-            this.x = value;
-            this.y = value;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector2) && Equals((Vector2)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return x.GetHashCode() + y.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "Vector2(" + x + " " + y + ")";
-        }
-
-        // Common values
-        public static Vector2 Zero { get { return Raymath.Vector2Zero(); } }
-        public static Vector2 One { get { return Raymath.Vector2One(); } }
-        public static Vector2 UnitX { get { return new Vector2(1, 0); } }
-        public static Vector2 UnitY { get { return new Vector2(0, 1); } }
-
-        // Convienient operators
-        public static bool operator ==(Vector2 v1, Vector2 v2)
-        {
-            return (v1.x == v2.x && v1.y == v2.y);
-        }
-
-        public static bool operator !=(Vector2 v1, Vector2 v2)
-        {
-            return !(v1 == v2);
-        }
-
-        public static bool operator >(Vector2 v1, Vector2 v2)
-        {
-            return v1.x > v2.x && v1.y > v2.y;
-        }
-
-        public static bool operator <(Vector2 v1, Vector2 v2)
-        {
-            return v1.x < v2.x && v1.y < v2.y;
-        }
-
-        public static Vector2 operator +(Vector2 v1, Vector2 v2)
-        {
-            return Raymath.Vector2Add(v1, v2);
-        }
-
-        public static Vector2 operator -(Vector2 v1, Vector2 v2)
-        {
-            return Raymath.Vector2Subtract(v1, v2);
-        }
-
-        public static Vector2 operator *(Vector2 v1, Vector2 v2)
-        {
-            return Raymath.Vector2MultiplyV(v1, v2);
-        }
-
-        public static Vector2 operator *(Vector2 v, float scale)
-        {
-            return Raymath.Vector2Scale(v, scale);
-        }
-
-        public static Vector2 operator *(float scale, Vector2 v)
-        {
-            return Raymath.Vector2Scale(v, scale);
-        }
-
-        public static Vector2 operator /(Vector2 v1, Vector2 v2)
-        {
-            return  Raymath.Vector2DivideV(v1, v2);
-        }
-
-        public static Vector2 operator /(Vector2 v1, float div)
-        {
-            return  Raymath.Vector2Divide(v1, div);
-        }
-
-        public static Vector2 operator -(Vector2 v1)
-        {
-            return  Raymath.Vector2Negate(v1);
-        }
-    }
-
-    // Vector3 type
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Vector3
-    {
-        public float x;
-        public float y;
-        public float z;
-
-        public Vector3(float x, float y, float z)
-        {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-
-        public Vector3(float value)
-        {
-            this.x = value;
-            this.y = value;
-            this.z = value;
-        }
-
-        // Extensions
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector3) && Equals((Vector3)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return x.GetHashCode() + y.GetHashCode() + z.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "Vector3(" + x + " " + y + " " + z + ")";
-        }
-
-        // Common values
-        public static Vector3 Zero { get { return Raymath.Vector3Zero(); } }
-        public static Vector3 One { get { return Raymath.Vector3One(); } }
-        public static Vector3 UnitX { get { return new Vector3(1, 0, 0); } }
-        public static Vector3 UnitY { get { return new Vector3(0, 1, 0); } }
-        public static Vector3 UnitZ { get { return new Vector3(0, 0, 1); } }
-
-        // Convienient operators
-        public static bool operator ==(Vector3 v1, Vector3 v2)
-        {
-            return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
-        }
-
-        public static bool operator !=(Vector3 v1, Vector3 v2)
-        {
-            return !(v1 == v2);
-        }
-
-        public static bool operator >(Vector3 v1, Vector3 v2)
-        {
-            return v1.x > v2.x && v1.y > v2.y && v1.z > v2.z;
-        }
-
-        public static bool operator <(Vector3 v1, Vector3 v2)
-        {
-            return  v1.x < v2.x && v1.y < v2.y && v1.z < v2.z;
-        }
-
-        public static Vector3 operator +(Vector3 v1, Vector3 v2)
-        {
-            return Raymath.Vector3Add(v1, v2);
-        }
-
-        public static Vector3 operator -(Vector3 v1, Vector3 v2)
-        {
-            return Raymath.Vector3Subtract(v1, v2);
-        }
-
-        public static Vector3 operator *(Vector3 v1, Vector3 v2)
-        {
-            return Raymath.Vector3MultiplyV(v1, v2);
-        }
-
-        public static Vector3 operator *(Vector3 v, float scale)
-        {
-            return Raymath.Vector3Scale(v, scale);
-        }
-
-        public static Vector3 operator *(float scale, Vector3 v)
-        {
-            return Raymath.Vector3Scale(v, scale);
-        }
-
-        public static Vector3 operator /(Vector3 v1, Vector3 v2)
-        {
-            return Raymath.Vector3DivideV(v1, v2);
-        }
-
-        public static Vector3 operator /(Vector3 v1, float div)
-        {
-            return Raymath.Vector3Divide(v1, div);
-        }
-
-        public static Vector3 operator -(Vector3 v1)
-        {
-            return Raymath.Vector3Negate(v1);
-        }
-    }
-
-    // Vector4 type
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Vector4
-    {
-        public float x;
-        public float y;
-        public float z;
-        public float w;
-
-        public Vector4(float x, float y, float z, float w)
-        {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.w = w;
-        }
-
-        public Vector4(float value)
-        {
-            x = value;
-            y = value;
-            z = value;
-            w = value;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector4) && Equals((Vector4)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return x.GetHashCode() + y.GetHashCode() + z.GetHashCode() + w.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "Vector4(" + x + " " + y + " " + z + " " + w + ")";
-        }
-
-        // convienient operators
-        public static bool operator ==(Vector4 v1, Vector4 v2)
-        {
-            return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w);
-        }
-
-        public static bool operator !=(Vector4 v1, Vector4 v2)
-        {
-            return !(v1 == v2);
-        }
-
-        public static bool operator >(Vector4 v1, Vector4 v2)
-        {
-            return v1.x > v2.x && v1.y > v2.y && v1.z > v2.z && v1.w > v2.w;
-        }
-
-        public static bool operator <(Vector4 v1, Vector4 v2)
-        {
-            return v1.x < v2.x && v1.y < v2.y && v1.z < v2.z && v1.w < v2.w;
-        }
-    }
-
-    // Matrix type (OpenGL style 4x4 - right handed, column major)
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct Matrix
-    {
-        public float m0;
-        public float m4;
-        public float m8;
-        public float m12;
-        public float m1;
-        public float m5;
-        public float m9;
-        public float m13;
-        public float m2;
-        public float m6;
-        public float m10;
-        public float m14;
-        public float m3;
-        public float m7;
-        public float m11;
-        public float m15;
-    }
-
     // Color type, RGBA (32bit)
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Color
@@ -598,7 +306,7 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Model
     {
-        public Matrix transform;           // Local transform matrix
+        public Matrix4x4 transform;           // Local transform matrix
         public int meshCount;              // Number of meshes
 
         // meshes refers to a Mesh *
@@ -1381,11 +1089,11 @@ namespace Raylib_cs
 
         // Returns camera transform matrix (view matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetCameraMatrix(Camera3D camera);
+        public static extern Matrix4x4 GetCameraMatrix(Camera3D camera);
 
         // Returns camera 2d transform matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetCameraMatrix2D(Camera2D camera);
+        public static extern Matrix4x4 GetCameraMatrix2D(Camera2D camera);
 
         // Returns the screen space position for a 3d world space position
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2856,7 +2564,7 @@ namespace Raylib_cs
 
         // Set shader uniform value (matrix 4x4)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix mat);
+        public static extern void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix4x4 mat);
 
         // Set shader uniform value for texture
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2864,19 +2572,19 @@ namespace Raylib_cs
 
         // Set a custom projection matrix (replaces internal projection matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMatrixProjection(Matrix proj);
+        public static extern void SetMatrixProjection(Matrix4x4 proj);
 
         // Set a custom modelview matrix (replaces internal modelview matrix)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMatrixModelview(Matrix view);
+        public static extern void SetMatrixModelview(Matrix4x4 view);
 
         // Get internal modelview matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetMatrixModelview();
+        public static extern Matrix4x4 GetMatrixModelview();
 
         // Get internal projection matrix
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix GetMatrixProjection();
+        public static extern Matrix4x4 GetMatrixProjection();
 
 
         // Texture maps generation (PBR)

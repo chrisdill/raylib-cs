@@ -6,6 +6,7 @@
 * See LICENSE for details.
 */
 
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;

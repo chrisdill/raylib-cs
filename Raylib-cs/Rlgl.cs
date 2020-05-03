@@ -7,6 +7,7 @@
 */
 
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -282,7 +283,7 @@ namespace Raylib_cs
 
         // Get world coordinates from screen coordinates
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 rlUnproject(Vector3 source, Matrix proj, Matrix view);
+        public static extern Vector3 rlUnproject(Vector3 source, Matrix4x4 proj, Matrix4x4 view);
 
         // Textures data management
         // Load texture in GPU
@@ -354,7 +355,7 @@ namespace Raylib_cs
 
         // Draw a 3d mesh with material and transform
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawMesh(Mesh mesh, Material material, Matrix transform);
+        public static extern void rlDrawMesh(Mesh mesh, Material material, Matrix4x4 transform);
 
         // Unload mesh data from CPU and GPU
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
