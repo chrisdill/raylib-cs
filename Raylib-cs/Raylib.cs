@@ -456,6 +456,7 @@ namespace Raylib_cs
 
     // System config flags
     // NOTE: Used for bit masks
+    [Flags]
     public enum ConfigFlag
     {
         FLAG_RESERVED           = 1,    // Reserved
@@ -816,6 +817,7 @@ namespace Raylib_cs
 
     // Gestures type
     // NOTE: It could be used as flags to enable only some gestures
+    [Flags]
     public enum GestureType
     {
         GESTURE_NONE        = 0,
