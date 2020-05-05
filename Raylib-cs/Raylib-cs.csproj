@@ -15,7 +15,7 @@
 
 <PropertyGroup>
   <Version>3.1.0</Version>
-  <PackageVersion>3.1.0</PackageVersion>
+  <PackageVersion>3.1.3</PackageVersion>
   <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
   <PackProject>true</PackProject>
   <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetNativeLibraryFiles</TargetsForTfmSpecificBuildOutput>
