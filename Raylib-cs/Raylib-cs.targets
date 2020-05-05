@@ -3,25 +3,25 @@
 
     <ItemGroup Condition=" '$(Platform)' == 'osx-x64' ">
         <Reference Include="raylib">
-            <HintPath>..\..\runtime\osx-x64\native\libraylib.dylib</HintPath>
+            <HintPath>..\..\runtimes\osx-x64\native\libraylib.dylib</HintPath>
         </Reference>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(Platform)' == 'win-x86' Or '$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'x86'">
         <Reference Include="raylib">
-            <HintPath>..\..\runtime\win-x86\native\raylib.dll</HintPath>
+            <HintPath>..\..\runtimes\win-x86\native\raylib.dll</HintPath>
         </Reference>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(Platform)' == 'win-x64' Or '$(Platform)' == 'x64'">
         <Reference Include="raylib">
-            <HintPath>..\..\runtime\win-x64\native\raylib.dll</HintPath>
+            <HintPath>..\..\runtimes\win-x64\native\raylib.dll</HintPath>
         </Reference>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(Platform)' == 'linux-x64'">
         <Reference Include="raylib">
-            <HintPath>..\..\runtime\linux-x64\native\raylib.so</HintPath>
+            <HintPath>..\..\runtimes\linux-x64\native\raylib.so</HintPath>
         </Reference>
     </ItemGroup>
 </Project>
