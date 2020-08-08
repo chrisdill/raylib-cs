@@ -101,7 +101,7 @@ namespace Raylib_cs
         public int width;          // Image base width
         public int height;         // Image base height
         public int mipmaps;        // Mipmap levels, 1 by default
-        public int format;         // Data format (PixelFormat type)
+        public PixelFormat format; // Data format (PixelFormat type)
     }
 
     // Texture2D type
@@ -113,7 +113,7 @@ namespace Raylib_cs
         public int width;          // Texture base width
         public int height;         // Texture base height
         public int mipmaps;        // Mipmap levels, 1 by default
-        public int format;         // Data format (PixelFormat type)
+        public PixelFormat format; // Data format (PixelFormat type)
     }
 
     // RenderTexture2D type, for texture rendering
@@ -137,7 +137,7 @@ namespace Raylib_cs
         public int top;                    // top border offset
         public int right;                  // right border offset
         public int bottom;                 // bottom border offset
-        public int type;                   // layout of the n-patch: 3x3, 1x3 or 3x1
+        public NPatchType type;            // layout of the n-patch: 3x3, 1x3 or 3x1
     }
 
     // Font character info
