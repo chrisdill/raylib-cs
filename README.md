@@ -18,7 +18,7 @@ C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames
 This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
 
 ```
-dotnet add package Raylib-cs
+dotnet add package Raylib-cs --version 3.1.5
 ```
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
