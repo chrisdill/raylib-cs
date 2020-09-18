@@ -1,11 +1,3 @@
-/* Raymath.cs
-*
-* Copyright 2020 Chris Dill
-*
-* Release under zLib License.
-* See LICENSE for details.
-*/
-
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;

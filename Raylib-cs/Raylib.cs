@@ -1,11 +1,3 @@
-/* Raylib.cs
-*
-* Copyright 2020 Chris Dill
-*
-* Release under zLib License.
-* See LICENSE for details.
-*/
-
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
