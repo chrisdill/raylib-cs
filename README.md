@@ -11,8 +11,6 @@ C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames
 
 [![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/VkzNHUE)
 
-
-
 ## Installation - NuGet
 
 This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
@@ -23,8 +21,8 @@ dotnet add package Raylib-cs --version 3.1.5
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
 
-
-Currently supported are netstandard2.0 (which should include Framework 4.7.2+) and netcore3.1
+Currently supports netstandard2.0 and netcore3.1.
+There is also some support for Framework 4.7.2+ although it is experimental.
 
 If you need to edit Raylib-cs source then you will need to add the bindings as a project (see below).
 
@@ -45,34 +43,37 @@ If you need to edit Raylib-cs source then you will need to add the bindings as a
 ```csharp
 using Raylib_cs;
 
-static class Program
+namespace HelloWorld
 {
-    public static void Main()
+    static class Program
     {
-        Raylib.InitWindow(800, 480, "Hello World");
-
-        while (!Raylib.WindowShouldClose())
+        public static void Main()
         {
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.WHITE);
+            Raylib.InitWindow(800, 480, "Hello World");
 
-            Raylib.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
+            while (!Raylib.WindowShouldClose())
+            {
+                Raylib.BeginDrawing();
+                Raylib.ClearBackground(Color.WHITE);
 
-            Raylib.EndDrawing();
+                Raylib.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
+
+                Raylib.EndDrawing();
+            }
+
+            Raylib.CloseWindow();
         }
-
-        Raylib.CloseWindow();
     }
 }
 ```
 
 ## Physac-cs and Raygui-cs
 
-These are unfinished EXPERIMENTAL bindings to physac and raygui. They were initially added as a test to Raylib-cs but caused confusion and issues in project setup so they were moved into their own libraries Physac-cs and Raygui-cs that depend on Raylib-cs.
+These are unfinished EXPERIMENTAL bindings to physac and raygui. Added as a test to Raylib-cs but caused confusion in project setup so they were moved into their own libraries.
 
 ## Examples
 
-The Examples for Raylib-cs have moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
+The Examples for Raylib-cs were moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
 
 ## Tech notes
 
@@ -96,4 +97,4 @@ If you want to [request features](https://github.com/raysan5/raylib/pulls) or [r
 
 ## License
 
-raylib-cs (and raylib) is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE.md) for further details.
+See [LICENSE](LICENSE) for details.
