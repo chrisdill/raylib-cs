@@ -1640,7 +1640,7 @@ namespace Raylib_cs
 
         // Draw a triangle strip defined by points
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleStrip(ref Vector2 points, int pointsCount, Color color);
+        public static extern void DrawTriangleStrip(Vector2[] points, int pointsCount, Color color);
 
         // Draw a regular polygon (Vector version)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
