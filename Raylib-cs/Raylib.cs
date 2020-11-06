@@ -868,12 +868,6 @@ namespace Raylib_cs
         // Callback delegate used in SetTraceLogCallback to allow for custom logging
         public delegate void TraceLogCallback(TraceLogType logType, string text, IntPtr args);
 
-        // Extension providing SubText
-        public static string SubText(this string input, int position, int length)
-        {
-            return input.Substring(position, Math.Min(length, input.Length));
-        }
-
         //------------------------------------------------------------------------------------
         // Window and Graphics Device Functions (Module: core)
         //------------------------------------------------------------------------------------
