@@ -2115,19 +2115,6 @@ namespace Raylib_cs
         // Text strings management functions
         // NOTE: Some strings allocate memory internally for returned strings, just be careful!
 
-        // Check if two text string are equal
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool TextIsEqual(string text1, string text2);
-
-        // Get text length, checks for '\0' ending
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint TextLength(string text);
-
-        // Get total number of characters (codepoints) in a UTF8 encoded string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint TextCountCodepoints(string text);
-
         // Text formatting with variables (sprintf style)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern string TextFormat(string text);
@@ -2136,37 +2123,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern string TextSubtext(string text, int position, int length);
 
-        // Replace text string (memory should be freed!)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string TextReplace(string text, string replace, string by);
-
-        // Insert text in a position (memory should be freed!)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string TextInsert(string text, string insert, int position);
-
-        // Join text strings with delimiter
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string TextJoin(string[] textList, int count, string delimiter);
-
-        // Split text into multiple strings
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string[] TextSplit(string text, char delimiter, ref int count);
-
         // Append text at specific position and move cursor!
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void TextAppend(ref char text, string append, ref int position);
-
-        // Find first text occurrence within a string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int TextFindIndex(string text, string find);
-
-        // Get upper case version of provided string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string TextToUpper(string text);
-
-        // Get lower case version of provided string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string TextToLower(string text);
 
         // Get Pascal case notation version of provided string
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2176,18 +2135,18 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int TextToInteger(string text);
 
-        // Get total number of characters (codepoints) in a UTF8 encoded string
+        // Encode text codepoint into utf8 text (memory must be freed!)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern string TextToUtf8(string text, int length);
 
 
         // UTF8 text strings management functions
 
-        // Returns next codepoint in a UTF8 encoded string
+        // Get all codepoints in a string, codepoints count returned by parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int[] GetCodepoints(string text, ref int count);
 
-        // Get all codepoints in a string, codepoints count returned by parameters
+        // Get total number of characters (codepoints) in a UTF8 encoded string
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepointsCount(string text);
 
