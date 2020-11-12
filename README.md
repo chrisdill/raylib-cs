@@ -11,6 +11,8 @@ C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames
 
 [![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/VkzNHUE)
 
+Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0.
+
 ## Installation - NuGet
 
 This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
@@ -20,9 +22,6 @@ dotnet add package Raylib-cs --version 3.1.5
 ```
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
-
-Currently supports netstandard2.0 and netcore3.1.
-There is also some support for Framework 4.7.2+ although it is experimental.
 
 If you need to edit Raylib-cs source then you will need to add the bindings as a project (see below).
 

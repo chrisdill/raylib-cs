@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <Platforms>osx-x64;linux-x64;win-x64;win-x86;linux-x86</Platforms>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Compile Include="Easings.cs"/>
-    <Compile Include="Platform.cs"/>
     <Compile Include="Raylib.cs"/>
     <Compile Include="Raymath.cs"/>
     <Compile Include="Rlgl.cs"/>
@@ -41,9 +40,6 @@
 
   <ItemGroup>
     <Content Include="Raylib-cs.targets"/>
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="runtimes\**" CopyToOutputDirectory="PreserveNewest" Link="runtimes\%(RecursiveDir)\%(Filename)%(Extension)"/>
   </ItemGroup>
 
