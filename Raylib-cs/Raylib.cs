@@ -858,8 +858,8 @@ namespace Raylib_cs
 
         public const string RAYLIB_VERSION = "3.0";
 
-        public const float DEG2RAD = (float)Math.PI / 180.0f;
-        public const float RAD2DEG = 180.0f / (float)Math.PI;
+        public const float DEG2RAD = MathF.PI / 180.0f;
+        public const float RAD2DEG = 180.0f / MathF.PI;
 
         public const int MAX_SHADER_LOCATIONS = 32;
         public const int MAX_MATERIAL_MAPS = 12;
