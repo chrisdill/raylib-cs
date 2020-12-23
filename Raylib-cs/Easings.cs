@@ -28,37 +28,37 @@ namespace Raylib_cs
         // Sine Easing functions
         public static float EaseSineIn(float t, float b, float c, float d)
         {
-            return (-c * (float)Math.Cos(t / d * ((float)Math.PI / 2)) + c + b);
+            return (-c * MathF.Cos(t / d * (MathF.PI / 2)) + c + b);
         }
 
         public static float EaseSineOut(float t, float b, float c, float d)
         {
-            return (c * (float)Math.Sin(t / d * ((float)Math.PI / 2)) + b);
+            return (c * MathF.Sin(t / d * (MathF.PI / 2)) + b);
         }
 
         public static float EaseSineInOut(float t, float b, float c, float d)
         {
-            return (-c / 2 * ((float)Math.Cos((float)Math.PI * t / d) - 1) + b);
+            return (-c / 2 * (MathF.Cos(MathF.PI * t / d) - 1) + b);
         }
 
         // Circular Easing functions
         public static float EaseCircIn(float t, float b, float c, float d)
         {
-            return (-c * ((float)Math.Sqrt(1 - (t /= d) * t) - 1) + b);
+            return (-c * (MathF.Sqrt(1 - (t /= d) * t) - 1) + b);
         }
 
         public static float EaseCircOut(float t, float b, float c, float d)
         {
-            return (c * (float)Math.Sqrt(1 - (t = t / d - 1) * t) + b);
+            return (c * MathF.Sqrt(1 - (t = t / d - 1) * t) + b);
         }
 
         public static float EaseCircInOut(float t, float b, float c, float d)
         {
             if ((t /= d / 2) < 1)
             {
-                return (-c / 2 * ((float)Math.Sqrt(1 - t * t) - 1) + b);
+                return (-c / 2 * (MathF.Sqrt(1 - t * t) - 1) + b);
             }
-            return (c / 2 * ((float)Math.Sqrt(1 - t * (t -= 2)) + 1) + b);
+            return (c / 2 * (MathF.Sqrt(1 - t * (t -= 2)) + 1) + b);
         }
 
         // Cubic Easing functions
@@ -104,12 +104,12 @@ namespace Raylib_cs
         // Exponential Easing functions
         public static float EaseExpoIn(float t, float b, float c, float d)
         {
-            return (t == 0) ? b : (c * (float)Math.Pow(2, 10 * (t / d - 1)) + b);
+            return (t == 0) ? b : (c * MathF.Pow(2, 10 * (t / d - 1)) + b);
         }
 
         public static float EaseExpoOut(float t, float b, float c, float d)
         {
-            return (t == d) ? (b + c) : (c * (-(float)Math.Pow(2, -10 * t / d) + 1) + b);
+            return (t == d) ? (b + c) : (c * (-MathF.Pow(2, -10 * t / d) + 1) + b);
         }
 
         public static float EaseExpoInOut(float t, float b, float c, float d)
@@ -124,9 +124,9 @@ namespace Raylib_cs
             }
             if ((t /= d / 2) < 1)
             {
-                return (c / 2 * (float)Math.Pow(2, 10 * (t - 1)) + b);
+                return (c / 2 * MathF.Pow(2, 10 * (t - 1)) + b);
             }
-            return (c / 2 * (-(float)Math.Pow(2, -10 * --t) + 2) + b);
+            return (c / 2 * (-MathF.Pow(2, -10 * --t) + 2) + b);
         }
 
         // Back Easing functions
@@ -211,9 +211,9 @@ namespace Raylib_cs
             float p = d * 0.3f;
             float a = c;
             float s = p / 4;
-            float postFix = a * (float)Math.Pow(2, 10 * (t -= 1));
+            float postFix = a * MathF.Pow(2, 10 * (t -= 1));
 
-            return (-(postFix * (float)Math.Sin((t * d - s) * (2 * (float)Math.PI) / p)) + b);
+            return (-(postFix * MathF.Sin((t * d - s) * (2 * MathF.PI) / p)) + b);
         }
 
         public static float EaseElasticOut(float t, float b, float c, float d)
@@ -231,7 +231,7 @@ namespace Raylib_cs
             float a = c;
             float s = p / 4;
 
-            return (a * (float)Math.Pow(2, -10 * t) * (float)Math.Sin((t * d - s) * (2 * (float)Math.PI) / p) + c + b);
+            return (a * MathF.Pow(2, -10 * t) * MathF.Sin((t * d - s) * (2 * MathF.PI) / p) + c + b);
         }
 
         public static float EaseElasticInOut(float t, float b, float c, float d)
@@ -252,13 +252,13 @@ namespace Raylib_cs
             float postFix = 0f;
             if (t < 1)
             {
-                postFix = a * (float)Math.Pow(2, 10 * (t -= 1));
-                return -0.5f * (postFix * (float)Math.Sin((t * d - s) * (2 * (float)Math.PI) / p)) + b;
+                postFix = a * MathF.Pow(2, 10 * (t -= 1));
+                return -0.5f * (postFix * MathF.Sin((t * d - s) * (2 * MathF.PI) / p)) + b;
             }
 
-            postFix = a * (float)Math.Pow(2, -10 * (t -= 1));
+            postFix = a * MathF.Pow(2, -10 * (t -= 1));
 
-            return (postFix * (float)Math.Sin((t * d - s) * (2 * (float)Math.PI) / p) * 0.5f + c + b);
+            return (postFix * MathF.Sin((t * d - s) * (2 * MathF.PI) / p) * 0.5f + c + b);
         }
     }
 }
