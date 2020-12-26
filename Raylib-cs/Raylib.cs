@@ -88,8 +88,7 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Image
     {
-        // data refers to a void *
-        public IntPtr data;        // Image raw data
+        public IntPtr data;        // Image raw data (void *)
         public int width;          // Image base width
         public int height;         // Image base height
         public int mipmaps;        // Mipmap levels, 1 by default
@@ -115,9 +114,6 @@ namespace Raylib_cs
         public uint id;                  // OpenGL Framebuffer Object (FBO) id
         public Texture2D texture;        // Color buffer attachment texture
         public Texture2D depth;          // Depth buffer attachment texture
-
-        [MarshalAs(UnmanagedType.I1)]
-        public bool depthTexture;        // Track if depth attachment is a texture or renderbuffer
     }
 
     // N-Patch layout info
@@ -149,13 +145,10 @@ namespace Raylib_cs
     {
         public int baseSize;             // Base size (default chars height)
         public int charsCount;           // Number of characters
-        public Texture2D texture;        // Font texture
-
-        // recs refers to a Rectangle *
-        public IntPtr recs;              // Characters rectangles in texture
-
-        // chars refers to a CharInfo *
-        public IntPtr chars;             // Characters info data
+        int charsPadding;                // Padding around the chars
+        public Texture2D texture;        // Characters texture atals
+        public IntPtr recs;              // Characters rectangles in texture (Rectangle *)
+        public IntPtr chars;             // Characters info data (CharInfo *)
     }
 
     // Camera type, defines a camera position/orientation in 3d space
@@ -205,43 +198,23 @@ namespace Raylib_cs
         public int triangleCount;                  // Number of triangles stored (indexed or not)
 
         // Default vertex data
-        // vertices refers to a float *
-        public IntPtr vertices;                    // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-        // texcoords refers to a float *
-        public IntPtr texcoords;                   // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-        // texcoords2 refers to a float *
-        public IntPtr texcoords2;                  // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
-
-        // normals refers to a float *
-        public IntPtr normals;                     // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
-
-        // tangents refers to a float *
-        public IntPtr tangents;                    // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
-
-        // colors refers to a unsigned char *
-        public IntPtr colors;                      // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
-
-        // indices refers to a unsigned short *
-        public IntPtr indices;                     // Vertex indices (in case vertex data comes indexed)
+        public IntPtr vertices;                    // Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
+        public IntPtr texcoords;                   // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
+        public IntPtr texcoords2;                  // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5, float *)
+        public IntPtr normals;                     // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2, float *)
+        public IntPtr tangents;                    // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4, float *)
+        public IntPtr colors;                      // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3,  unsigned char *)
+        public IntPtr indices;                     // Vertex indices (in case vertex data comes indexed, unsigned short *)
 
         // Animation vertex data
-        // animVertices refers to a float *
-        public IntPtr animVertices;                // Animated vertex positions (after bones transformations)
-
-        // animNormals refers to a float *
-        public IntPtr animNormals;                 // Animated normals (after bones transformations)
-
-        // vertices refers to a int *
-        public IntPtr boneIds;                     // Vertex bone ids, up to 4 bones influence by vertex (skinning)
-
-        // boneWeights refers to a float *
-        public IntPtr boneWeights;                 // Vertex bone weight, up to 4 bones influence by vertex (skinning)
+        public IntPtr animVertices;                // Animated vertex positions (after bones transformations, float *)
+        public IntPtr animNormals;                 // Animated normals (after bones transformations, float *)
+        public IntPtr boneIds;                     // Vertex bone ids, up to 4 bones influence by vertex (skinning, int *)
+        public IntPtr boneWeights;                 // Vertex bone weight, up to 4 bones influence by vertex (skinning, float *)
 
         // OpenGL identifiers
         public uint vaoId;                         // OpenGL Vertex Array Object id
-
-        // vboId refers to a uint[]
-        public IntPtr vboId;                       // OpenGL Vertex Buffer Objects id (default vertex data)
+        public IntPtr vboId;                       // OpenGL Vertex Buffer Objects id (default vertex data, uint[])
     }
 
     // Shader type (generic)
@@ -249,9 +222,7 @@ namespace Raylib_cs
     public struct Shader
     {
         public uint id;            // Shader program id
-
-        // locs refers to a int *
-        public IntPtr locs;        // Shader locations array (MAX_SHADER_LOCATIONS)
+        public IntPtr locs;        // Shader locations array (MAX_SHADER_LOCATIONS,  int *)
     }
 
     // Material texture map
@@ -268,12 +239,8 @@ namespace Raylib_cs
     public struct Material
     {
         public Shader shader;             // Material shader
-
-        // maps refers to a MaterialMap *
-        public IntPtr maps;               // Material maps
-
-        // params refers to a float *
-        public IntPtr param;              // Material generic parameters (if required)
+        public IntPtr maps;               // Material maps (MaterialMap *)
+        public IntPtr param;              // Material generic parameters (if required, float *)
     }
 
     // Transformation properties
@@ -298,39 +265,25 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Model
     {
-        public Matrix4x4 transform;           // Local transform matrix
+        public Matrix4x4 transform;        // Local transform matrix
         public int meshCount;              // Number of meshes
-
-        // meshes refers to a Mesh *
-        public IntPtr meshes;              // Meshes array
         public int materialCount;          // Number of materials
-
-        // materials refers to a Material *
-        public IntPtr materials;		   // Materials array refers to a Material *
-
-        // meshMaterial refers to a int *
-        public IntPtr meshMaterial;        // Mesh material number
+        public IntPtr meshes;              // Meshes array (Mesh *)
+        public IntPtr materials;		   // Materials array (Material *)
+        public IntPtr meshMaterial;        // Mesh material number (int *)
         public int boneCount;              // Number of bones
-
-        // bones refers to a BoneInfo *
-        public IntPtr bones;               // Bones information (skeleton)
-
-        // bindPose refers to a Transform *
-        public IntPtr bindPose;            // Bones base transformation (pose)
+        public IntPtr bones;               // Bones information (skeleton, BoneInfo *)
+        public IntPtr bindPose;            // Bones base transformation (pose, Transform *)
     }
 
     // Model animation
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct ModelAnimation
     {
-        public int boneCount;                 // Number of bones
-
-        // bones refers to a BoneInfo *
-        public IntPtr bones;                  // Bones information (skeleton)
-        public int frameCount;                // Number of animation frames
-
-        // framePoses refers to a Transform **
-        public IntPtr framePoses;      // Poses array by frame
+        public int boneCount;              // Number of bones
+        public int frameCount;             // Number of animation frames
+        public IntPtr bones;               // Bones information (skeleton, BoneInfo *)
+        public IntPtr framePoses;          // Poses array by frame (Transform **)
     }
 
     // Ray type (useful for raycast)
@@ -380,9 +333,7 @@ namespace Raylib_cs
         public uint sampleRate;         // Frequency (samples per second)
         public uint sampleSize;         // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
         public uint channels;           // Number of channels (1-mono, 2-stereo)
-
-        // data refers to a void *
-        public IntPtr data;             // Buffer data pointer
+        public IntPtr data;             // Buffer data pointer (void *)
     }
 
     // Audio stream type
@@ -390,20 +341,18 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct AudioStream
     {
+        public IntPtr audioBuffer;     // Pointer to internal data(rAudioBuffer *) used by the audio system
         public uint sampleRate;        // Frequency (samples per second)
         public uint sampleSize;        // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
         public uint channels;          // Number of channels (1-mono, 2-stereo)
-
-        // audioBuffer refers to a rAudioBuffer *
-        public IntPtr audioBuffer;     // Pointer to internal data used by the audio system
     }
 
     // Sound source type
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Sound
     {
-        public uint sampleCount;          // Total number of samples
         public AudioStream stream;        // Audio stream
+        public uint sampleCount;          // Total number of samples
     }
 
     // Music stream type (audio file streaming from memory)
@@ -411,35 +360,32 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Music
     {
-        public int ctxType;               // Type of music context (audio filetype)
-
-        // ctxData refers to a void *
-        public IntPtr ctxData;            // Audio context data, depends on type
-
-        public uint sampleCount;          // Total number of samples
-        public uint loopCount;            // Loops count (times music will play), 0 means infinite loop
-
         public AudioStream stream;        // Audio stream
+        public uint sampleCount;          // Total number of samples
+        [MarshalAs(UnmanagedType.I1)]
+        public bool looping;              // Music looping enable
+        public int ctxType;               // Type of music context (audio filetype)
+        public IntPtr ctxData;            // Audio context data, depends on type (void *)
     }
 
     // Head-Mounted-Display device parameters
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct VrDeviceInfo
     {
-        public int hResolution;                                                                                   // HMD horizontal resolution in pixels
-        public int vResolution;                                                                                   // HMD vertical resolution in pixels
-        public float hScreenSize;                                                                                 // HMD horizontal size in meters
-        public float vScreenSize;                                                                                 // HMD vertical size in meters
-        public float vScreenCenter;                                                                               // HMD screen center in meters
-        public float eyeToScreenDistance;                                                                         // HMD distance between eye and display in meters
-        public float lensSeparationDistance;                                                                      // HMD lens separation distance in meters
-        public float interpupillaryDistance;                                                                      // HMD IPD (distance between pupils) in meters
+        public int hResolution;                                         // HMD horizontal resolution in pixels
+        public int vResolution;                                         // HMD vertical resolution in pixels
+        public float hScreenSize;                                       // HMD horizontal size in meters
+        public float vScreenSize;                                       // HMD vertical size in meters
+        public float vScreenCenter;                                     // HMD screen center in meters
+        public float eyeToScreenDistance;                               // HMD distance between eye and display in meters
+        public float lensSeparationDistance;                            // HMD lens separation distance in meters
+        public float interpupillaryDistance;                            // HMD IPD (distance between pupils) in meters
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public float[] lensDistortionValues;                                                                      // HMD lens distortion constant parameters
+        public float[] lensDistortionValues;                            // HMD lens distortion constant parameters
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public float[] chromaAbCorrection;                                                                        // HMD chromatic aberration correction parameters
+        public float[] chromaAbCorrection;                              // HMD chromatic aberration correction parameters
     }
 
     // ----------------------------------------------------------------------------------
