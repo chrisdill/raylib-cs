@@ -830,7 +830,7 @@ namespace Raylib_cs
         // Used by DllImport to load the native library.
         public const string nativeLibName = "raylib";
 
-        public const string RAYLIB_VERSION = "3.0";
+        public const string RAYLIB_VERSION = "3.5";
 
         public const float DEG2RAD = MathF.PI / 180.0f;
         public const float RAD2DEG = 180.0f / MathF.PI;
@@ -866,37 +866,65 @@ namespace Raylib_cs
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool IsWindowReady();
 
-        // Check if window has been minimized (or lost focus)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowMinimized();
-
-        // Check if window has been resized
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowResized();
-
-        // Check if window is currently hidden
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowHidden();
-
         // Check if window is currently fullscreen
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool IsWindowFullscreen();
 
+        // Check if window is currently hidden (only PLATFORM_DESKTOP)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowHidden();
+
+        // Check if window is currently minimized (only PLATFORM_DESKTOP)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowMinimized();
+
+        // Check if window is currently maximized (only PLATFORM_DESKTOP)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowMaximized();
+
+        // Check if window is currently focused (only PLATFORM_DESKTOP)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowFocused();
+
+        // Check if window has been resized last frame
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowResized();
+
+        // Check if one specific window flag is enabled
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsWindowState(ConfigFlag flag);
+
+        // Set window configuration state using flags
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool SetWindowState(ConfigFlag flag);
+
+        // Clear window configuration state flags
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ClearWindowState();
+
         // Toggle fullscreen mode (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ToggleFullscreen();
 
-        // Show the window
+        // Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnhideWindow();
+        public static extern void MaximizeWindow();
 
-        // Hide the window
+        // Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void HideWindow();
+        public static extern void MinimizeWindow();
+
+        // Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RestoreWindow();
 
         // Set icon for window (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -939,6 +967,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorCount();
 
+        // Get specified monitor position
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 GetMonitorPosition();
+
         // Get primary monitor width
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorWidth(int monitor);
@@ -955,9 +987,17 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalHeight(int monitor);
 
+        // Get specified monitor refresh rate
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetMonitorRefreshRate(int monitor);
+
         // Get window position XY on monitor
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetWindowPosition();
+
+        // Get window scale DPI factor
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 GetWindowScaleDPI();
 
         // Get the human-readable, UTF-8 encoded name of the primary monitor
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -994,6 +1034,11 @@ namespace Raylib_cs
         // Disables cursor (lock cursor)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DisableCursor();
+
+        // Disables cursor (lock cursor)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool IsCursorOnScreen();
 
 
         // Drawing-related functions
