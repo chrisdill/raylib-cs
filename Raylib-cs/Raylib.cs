@@ -1138,37 +1138,6 @@ namespace Raylib_cs
         public static extern double GetTime();
 
 
-        // Color-related functions
-
-        // Returns hexadecimal value for a Color
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ColorToInt(Color color);
-
-        // Returns color normalized as float [0..1]
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector4 ColorNormalize(Color color);
-
-        // Returns color from normalized values [0..1]
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color ColorFromNormalized(Vector4 normalized);
-
-        // Returns HSV values for a Color
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 ColorToHSV(Color color);
-
-        // Returns a Color from HSV values
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color ColorFromHSV(Vector3 hsv);
-
-        // Returns a Color struct from hexadecimal value
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color GetColor(int hexValue);
-
-        // Color fade-in or fade-out, alpha goes from 0.0f to 1.0f
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color Fade(Color color, float alpha);
-
-
         // Misc. functions
 
         // Setup window configuration flags (view FLAGS)
@@ -2049,11 +2018,51 @@ namespace Raylib_cs
         public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle destRec, Vector2 origin, float rotation, Color tint);
 
 
-        // Image/Texture misc functions
+        // Color/pixel related functions
 
-        // Get pixel data size in bytes (image or texture)
+        // Returns hexadecimal value for a Color
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetPixelDataSize(int width, int height, int format);
+        public static extern int ColorToInt(Color color);
+
+        // Returns color normalized as float [0..1]
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector4 ColorNormalize(Color color);
+
+        // Returns color from normalized values [0..1]
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Color ColorFromNormalized(Vector4 normalized);
+
+        // Returns HSV values for a Color
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 ColorToHSV(Color color);
+
+        // Returns a Color from HSV values
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Color ColorFromHSV(float hue, float saturation, float value);
+
+        // Returns color with alpha applied, alpha goes from 0.0f to 1.0f
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Color ColorAlpha(Color color, float alpha);
+
+        // Returns src alpha-blended into dst color with tint
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Color ColorAlphaBlend(Color dst, Color src, Color tint);
+
+        // Get Color structure from hexadecimal value
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Color GetColor(int hexValue);
+
+        // Get Color from a source pixel pointer of certain format
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Color GetPixelColor(IntPtr srcPtr, PixelFormat format);
+
+        // Set color formatted into destination pixel pointer
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetPixelColor(IntPtr srcPtr, Color color, PixelFormat format);
+
+        // Get pixel data size in bytes for certain format
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetPixelDataSize(int width, int height, PixelFormat format);
 
         //------------------------------------------------------------------------------------
         // Font Loading and Text Drawing Functions (Module: text)
