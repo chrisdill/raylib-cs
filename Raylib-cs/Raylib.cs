@@ -1930,18 +1930,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
 
-        // Draw text (default font) within an image (destination)
+        // Draw text (using default font) within an image (destination)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawText(ref Image dst, Vector2 position, string text, int fontSize, Color color);
+        public static extern void ImageDrawText(ref Image dst, string text, int x, int y, int fontSize, Color color);
 
         // Draw text (custom sprite font) within an image (destination)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawTextEx(ref Image dst, Vector2 position, Font font, string text, float fontSize, float spacing, Color color);
-
-        // Draw a source image within a destination image (tint applied to source)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec);
-
+        public static extern void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint);
 
         // Texture loading functions
         // NOTE: These functions require GPU access
@@ -2020,6 +2015,10 @@ namespace Raylib_cs
         // Draw texture quad with tiling and offset parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
+
+        // Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest.
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void DrawTextureTiled(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
 
         // Draw a part of a texture defined by a rectangle with 'pro' parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2215,6 +2214,14 @@ namespace Raylib_cs
         // Draw a circle in 3D world space
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color);
+
+        // Draw a color-filled triangle (vertex in counter-clockwise order!)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color);
+
+        // Draw a triangle strip defined by points
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color);
 
         // Draw cube
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
