@@ -1197,7 +1197,7 @@ namespace Raylib_cs
 
         // Get pointer to extension for a filename string
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetExtension(string fileName);
+        public static extern string GetFileExtension(string fileName);
 
         // Get pointer to filename for a path string
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
