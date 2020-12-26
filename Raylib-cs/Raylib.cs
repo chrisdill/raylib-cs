@@ -2713,10 +2713,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Wave LoadWave(string fileName);
 
-        // Load wave data from raw array data
-        // data refers to a void *
+        // Load wave from memory buffer, fileType refers to extension: i.e. "wav"
+        // fileData refers to a const unsigned char *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Wave LoadWaveEx(IntPtr data, int sampleCount, int sampleRate, int sampleSize, int channels);
+        public static extern Wave LoadWaveFromMemory(string fileType, IntPtr fileData, int dataSize);
 
         // Load sound from file
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2804,9 +2804,14 @@ namespace Raylib_cs
         public static extern void WaveCrop(ref Wave wave, int initSample, int finalSample);
 
         // Get samples data from wave as a floats array
+        // IntPtr refers to float *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float[] GetWaveData(Wave wave);
+        public static extern IntPtr LoadWaveSamples(Wave wave);
 
+        // Unload samples data loaded with LoadWaveSamples()
+        // samples refers to float *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadWaveSamples(IntPtr samples);
 
         // Music management functions
 
@@ -2850,10 +2855,6 @@ namespace Raylib_cs
         // Set pitch for a music (1.0 is base level)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetMusicPitch(Music music, float pitch);
-
-        // Set music loop count (loop repeats)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMusicLoopCount(Music music, int count);
 
         // Get music time length (in seconds)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2912,5 +2913,9 @@ namespace Raylib_cs
         // Set pitch for audio stream (1.0 is base level)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
+
+        // Default size for new audio streams
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetAudioStreamBufferSizeDefault(int size);
     }
 }
