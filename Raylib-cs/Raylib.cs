@@ -2319,6 +2319,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadModel(Model model);
 
+        // Unload model (but not meshes) from memory (RAM and/or VRAM)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadModelKeepMeshes(Model model);
 
         // Mesh loading/unloading functions
 
@@ -2326,14 +2329,14 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Mesh[] LoadMeshes(string fileName, ref int meshCount);
 
-        // Export mesh data to file
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ExportMesh(Mesh mesh, string fileName);
-
         // Unload mesh from memory (RAM and/or VRAM)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadMesh(ref Mesh mesh);
 
+        // Export mesh data to file, returns true on success
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool ExportMesh(Mesh mesh, string fileName);
 
         // Material loading/unloading functions
 
@@ -2436,6 +2439,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void MeshBinormals(ref Mesh mesh);
 
+        // Smooth (average) vertex normals
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void MeshNormalsSmooth(ref Mesh mesh);
 
         // Model drawing functions
 
