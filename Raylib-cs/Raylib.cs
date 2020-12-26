@@ -1692,18 +1692,18 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image LoadImage(string fileName);
 
-        // Load image from Color array data (RGBA - 32bit)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image LoadImageEx(Color[] pixels, int width, int height);
-
-        // Load image from raw data with parameters
-        // data refers to a void *
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image LoadImagePro(IntPtr data, int width, int height, int format);
-
         // Load image from RAW file data
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image LoadImageRaw(string fileName, int width, int height, int format, int headerSize);
+        public static extern Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize);
+
+        // Load image sequence from file (frames appended to image.data)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Image LoadImageAnim(string fileName, ref int frames);
+
+        // Load image from memory buffer, fileType refers to extension: i.e. "png"
+        // fileData refers to const unsigned char *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Image LoadImageFromMemory(string fileType, IntPtr fileData, int dataSize);
 
         // Unload image from CPU memory (RAM)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1716,16 +1716,6 @@ namespace Raylib_cs
         // Export image as code file defining an array of bytes
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ExportImageAsCode(Image image, string fileName);
-
-        // Get pixel data from image as a Color struct array
-        // IntPtr refers to a Color *
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetImageData(Image image);
-
-        // Get pixel data from image as Vector4 array (float normalized)
-        // IntPtr refers to a Vector4 *
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetImageDataNormalized(Image image);
 
 
         // Image generation functions
@@ -1783,7 +1773,7 @@ namespace Raylib_cs
 
         // Convert image to POT (power-of-two)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageToPOT(ref Image image, Color fillColor);
+        public static extern void ImageToPOT(ref Image image, Color fill);
 
         // Convert image data to desired format
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1869,10 +1859,25 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImageColorReplace(ref Image image, Color color, Color replace);
 
-        // Extract color palette from image to maximum size (memory should be freed)
-        // IntPtr refers to a Color *
+        // Load color data from image as a Color array (RGBA - 32bit)
+        // IntPtr refers to Color *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ImageExtractPalette(Image image, int maxPaletteSize, ref int extractCount);
+        public static extern IntPtr LoadImageColors(Image image);
+
+        // Load colors palette from image as a Color array (RGBA - 32bit)
+        // IntPtr refers to Color *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr LoadImagePaletee(Image image, int maxPaletteSize, ref int colorsCount);
+
+        // Unload color data loaded with LoadImageColors()
+        // colors refers to Color *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadImageColors(IntPtr colors);
+
+        // Unload colors palette loaded with LoadImagePalette()
+        // colors refers to Color *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadImagePaletee(IntPtr colors);
 
         // Get image alpha border rectangle
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1969,6 +1974,11 @@ namespace Raylib_cs
         // pixels refers to a const void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateTexture(Texture2D texture, IntPtr pixels);
+
+        // Update GPU texture rectangle with new data
+        // pixels refers to a const void *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels);
 
         // Get pixel data from GPU texture and return an Image
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2097,13 +2107,25 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Font LoadFontFromImage(Image image, Color key, int firstChar);
 
-        // Load font data for further use
+        // Load font from memory buffer, fileType refers to extension: i.e. "ttf"
+        // fileData refers to const unsigned char *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadFontData(string fileName, int fontSize, int[] fontChars, int charsCount, FontType type);
+        public static extern Font LoadFontFromMemory(string fileType, IntPtr fileData, int dataSize, int fontSize, int[] fontChars, int charsCount);
+
+        // Load font data for further use
+        // fileData refers to const unsigned char *
+        // IntPtr refers to CharInfo *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr LoadFontData(IntPtr fileData, int fontSize, int[] fontChars, int charsCount, FontType type);
 
         // Generate image font atlas using chars info
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image GenImageFontAtlas(IntPtr chars, ref IntPtr recs, int charsCount, int fontSize, int padding, int packMethod);
+
+        // Unload font chars info data (RAM)
+        // chars refers to CharInfo *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadFontData(IntPtr chars, int charsCount);
 
         // Unload Font from GPU memory (VRAM)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
