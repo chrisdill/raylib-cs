@@ -1302,9 +1302,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetExitKey(KeyboardKey key);
 
-        // Get key pressed, call it multiple times for chars queued
+        // Get key pressed (keycode), call it multiple times for keys queued
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetKeyPressed();
+
+        // Get char pressed (unicode), call it multiple times for chars queued
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetCharPressed();
 
 
         // Input-related functions: gamepads
@@ -1404,7 +1408,15 @@ namespace Raylib_cs
 
         // Returns mouse wheel movement Y
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetMouseWheelMove();
+        public static extern float GetMouseWheelMove();
+
+        // Returns mouse cursor
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern MouseCursor GetMouseCursor();
+
+        // Set mouse cursor
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetMouseCursor(MouseCursor cursor);
 
 
         // Input-related functions: touch
