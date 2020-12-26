@@ -393,19 +393,25 @@ namespace Raylib_cs
     // ----------------------------------------------------------------------------------
 
     // System config flags
-    // NOTE: Used for bit masks
+    // NOTE: Every bit registers one state (use it with bit masks)
+    // By default all flags are set to 0
     [Flags]
     public enum ConfigFlag
     {
-        FLAG_RESERVED           = 1,    // Reserved
-        FLAG_FULLSCREEN_MODE    = 2,    // Set to run program in fullscreen
-        FLAG_WINDOW_RESIZABLE   = 4,    // Set to allow resizable window
-        FLAG_WINDOW_UNDECORATED = 8,    // Set to disable window decoration (frame and buttons)
-        FLAG_WINDOW_TRANSPARENT = 16,   // Set to allow transparent window
-        FLAG_WINDOW_HIDDEN      = 128,  // Set to create the window initially hidden
-        FLAG_WINDOW_ALWAYS_RUN  = 256,  // Set to allow windows running while minimized
-        FLAG_MSAA_4X_HINT       = 32,   // Set to try enabling MSAA 4X
-        FLAG_VSYNC_HINT         = 64    // Set to try enabling V-Sync on GPU
+        FLAG_VSYNC_HINT         = 0x00000040,   // Set to try enabling V-Sync on GPU
+        FLAG_FULLSCREEN_MODE    = 0x00000002,   // Set to run program in fullscreen
+        FLAG_WINDOW_RESIZABLE   = 0x00000004,   // Set to allow resizable window
+        FLAG_WINDOW_UNDECORATED = 0x00000008,   // Set to disable window decoration (frame and buttons)
+        FLAG_WINDOW_HIDDEN      = 0x00000080,   // Set to hide window
+        FLAG_WINDOW_MINIMIZED   = 0x00000200,   // Set to minimize window (iconify)
+        FLAG_WINDOW_MAXIMIZED   = 0x00000400,   // Set to maximize window (expanded to monitor)
+        FLAG_WINDOW_UNFOCUSED   = 0x00000800,   // Set to window non focused
+        FLAG_WINDOW_TOPMOST     = 0x00001000,   // Set to window always on top
+        FLAG_WINDOW_ALWAYS_RUN  = 0x00000100,   // Set to allow windows running while minimized
+        FLAG_WINDOW_TRANSPARENT = 0x00000010,   // Set to allow transparent framebuffer
+        FLAG_WINDOW_HIGHDPI     = 0x00002000,   // Set to support HighDPI
+        FLAG_MSAA_4X_HINT       = 0x00000020,   // Set to try enabling MSAA 4X
+        FLAG_INTERLACED_HINT    = 0x00010000,   // Set to try enabling interlaced video format (for V3D)
     }
 
     // Trace log type
@@ -421,7 +427,9 @@ namespace Raylib_cs
         LOG_NONE            // Disable logging
     }
 
-    // Keyboard keys
+    // Keyboard keys (US keyboard layout)
+    // NOTE: Use GetKeyPressed() to allow redefining
+    // required keys for alternative layouts
     public enum KeyboardKey
     {
         // Alphanumeric keys
@@ -553,6 +561,22 @@ namespace Raylib_cs
         MOUSE_MIDDLE_BUTTON = 2
     }
 
+    // Mouse cursor types
+    public enum MouseCursor
+    {
+        MOUSE_CURSOR_DEFAULT       = 0,
+        MOUSE_CURSOR_ARROW         = 1,
+        MOUSE_CURSOR_IBEAM         = 2,
+        MOUSE_CURSOR_CROSSHAIR     = 3,
+        MOUSE_CURSOR_POINTING_HAND = 4,
+        MOUSE_CURSOR_RESIZE_EW     = 5,     // The horizontal resize/move arrow shape
+        MOUSE_CURSOR_RESIZE_NS     = 6,     // The vertical resize/move arrow shape
+        MOUSE_CURSOR_RESIZE_NWSE   = 7,     // The top-left to bottom-right diagonal resize/move arrow shape
+        MOUSE_CURSOR_RESIZE_NESW   = 8,     // The top-right to bottom-left diagonal resize/move arrow shape
+        MOUSE_CURSOR_RESIZE_ALL    = 9,     // The omni-directional resize/move cursor shape
+        MOUSE_CURSOR_NOT_ALLOWED   = 10     // The operation-not-allowed shape
+    }
+
     // Gamepad number
     public enum GamepadNumber
     {
@@ -562,7 +586,7 @@ namespace Raylib_cs
         GAMEPAD_PLAYER4     = 3
     }
 
-    // Gamepad Buttons
+    // Gamepad buttons
     public enum GamepadButton
     {
         // This is here just for error checking
@@ -599,6 +623,7 @@ namespace Raylib_cs
         GAMEPAD_BUTTON_RIGHT_THUMB
     }
 
+    // Gamepad axis
     public enum GamepadAxis
     {
         // This is here just for error checking
@@ -617,7 +642,7 @@ namespace Raylib_cs
         GAMEPAD_AXIS_RIGHT_TRIGGER      // [1..-1] (pressure-level)
     }
 
-    // Shader location point type
+    // Shader location points
     public enum ShaderLocationIndex
     {
         LOC_VERTEX_POSITION = 0,
@@ -661,7 +686,7 @@ namespace Raylib_cs
         UNIFORM_SAMPLER2D
     }
 
-    // Material map type
+    // Material maps
     public enum MaterialMapType
     {
         MAP_ALBEDO    = 0,       // MAP_DIFFUSE
@@ -717,7 +742,16 @@ namespace Raylib_cs
         FILTER_ANISOTROPIC_16X,         // Anisotropic filtering 16x
     }
 
-    // Cubemap layout type
+    // Texture parameters: wrap mode
+    public enum TextureWrapMode
+    {
+        WRAP_REPEAT = 0,        // Repeats texture in tiled mode
+        WRAP_CLAMP,             // Clamps texture to edge pixel in tiled mode
+        WRAP_MIRROR_REPEAT,     // Mirrors and repeats the texture in tiled mode
+        WRAP_MIRROR_CLAMP       // Mirrors and clamps to border the texture in tiled mode
+    }
+
+    // Cubemap layouts
     public enum CubemapLayoutType
     {
         CUBEMAP_AUTO_DETECT = 0,        // Automatically detect layout type
@@ -726,15 +760,6 @@ namespace Raylib_cs
         CUBEMAP_CROSS_THREE_BY_FOUR,    // Layout is defined by a 3x4 cross with cubemap faces
         CUBEMAP_CROSS_FOUR_BY_THREE,    // Layout is defined by a 4x3 cross with cubemap faces
         CUBEMAP_PANORAMA                // Layout is defined by a panorama image (equirectangular map)
-    }
-
-    // Texture parameters: wrap mode
-    public enum TextureWrapMode
-    {
-        WRAP_REPEAT = 0,        // Repeats texture in tiled mode
-        WRAP_CLAMP,             // Clamps texture to edge pixel in tiled mode
-        WRAP_MIRROR_REPEAT,     // Mirrors and repeats the texture in tiled mode
-        WRAP_MIRROR_CLAMP       // Mirrors and clamps to border the texture in tiled mode
     }
 
     // Font type, defines generation method
@@ -750,7 +775,10 @@ namespace Raylib_cs
     {
         BLEND_ALPHA = 0,        // Blend textures considering alpha (default)
         BLEND_ADDITIVE,         // Blend textures adding colors
-        BLEND_MULTIPLIED        // Blend textures multiplying colors
+        BLEND_MULTIPLIED,       // Blend textures multiplying colors
+        BLEND_ADD_COLORS,       // Blend textures adding colors (alternative)
+        BLEND_SUBTRACT_COLORS,  // Blend textures subtracting colors (alternative)
+        BLEND_CUSTOM            // Belnd textures using custom src/dst factors (use SetBlendModeCustom())
     }
 
     // Gestures type
@@ -788,7 +816,7 @@ namespace Raylib_cs
         CAMERA_ORTHOGRAPHIC
     }
 
-    // Type of n-patch
+    // N-patch types
     public enum NPatchType
     {
         NPT_9PATCH = 0,         // Npatch defined by 3x3 tiles
