@@ -908,7 +908,7 @@ namespace Raylib_cs
 
         // Clear window configuration state flags
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ClearWindowState();
+        public static extern void ClearWindowState(ConfigFlag flag);
 
         // Toggle fullscreen mode (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
