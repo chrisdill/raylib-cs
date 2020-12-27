@@ -2614,7 +2614,7 @@ namespace Raylib_cs
 
         // Generate cubemap texture from HDR texture
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Texture2D GenTextureCubemap(Shader shader, Texture2D skyHDR, int size);
+        public static extern Texture2D GenTextureCubemap(Shader shader, Texture2D skyHDR, int size, PixelFormat format);
 
         // Generate irradiance texture using cubemap data
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
