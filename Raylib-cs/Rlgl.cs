@@ -201,25 +201,21 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlDisableWireMode();
 
-        // Delete OpenGL texture from GPU
+        // Set the line drawing width
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDeleteTextures(uint id);
+        public static extern void rlSetLineWidth(float width);
 
-        // Delete render textures (fbo) from GPU
+        // Get the line drawing width
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDeleteRenderTextures(RenderTexture2D target);
+        public static extern float rlGetLineWidth();
 
-        // Delete OpenGL shader program from GPU
+        // Enable line aliasing
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDeleteShader(uint id);
+        public static extern void rlEnableSmoothLines();
 
-        // Unload vertex data (VAO) from GPU memory
+        // Disable line aliasing
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDeleteVertexArrays(uint id);
-
-        // Unload vertex data (VBO) from GPU memory
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDeleteBuffers(uint id);
+        public static extern void rlDisableSmoothLines();
 
         // Clear color buffer with color
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -255,6 +251,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlglDraw();
 
+        // Check and log OpenGL error codes
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlCheckErrors();
+
         // Returns current OpenGL version
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern GlVersion rlGetVersion();
@@ -268,16 +268,18 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlSetDebugMarker(string text);
 
+        // Set blending mode factor and equation (using OpenGL factors)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlSetBlendMode(int glSrcFactor, int glDstFactor, int glEquation);
+
         // Load OpenGL extensions
         // loader refers to a void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlLoadExtensions(IntPtr loader);
 
-        // Get world coordinates from screen coordinates
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector3 rlUnproject(Vector3 source, Matrix4x4 proj, Matrix4x4 view);
 
         // Textures data management
+
         // Load texture in GPU
         // data refers to a void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -318,19 +320,26 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte[] rlReadScreenPixels(int width, int height);
 
-        // Render texture management (fbo)
-        // Load a render texture (with color and depth attachments)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern RenderTexture2D rlLoadRenderTexture(int width, int height, int format, int depthBits, bool useDepthTexture);
 
-        // Attach texture/renderbuffer to an fbo
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlRenderTextureAttach(RenderTexture2D target, uint id, int attachType);
+        // Framebuffer management (fbo)
 
-        // Verify render texture is complete
+        // Load an empty framebuffer
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint rlLoadFrameBuffer(int width, int height);
+
+        // Attach texture/renderbuffer to a framebuffer
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlFrameBufferAttach(uint fboId, uint texId, int attachType, int texType);
+
+        // Verify framebuffer is complete
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlRenderTextureComplete(RenderTexture2D target);
+        public static extern bool rlFrameBufferComplete(uint id);
+
+        // Delete framebuffer from GPU
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
+        public static extern bool rlUnloadFrameBuffer(uint id);
 
         // Vertex data management
         // Upload vertex data into GPU and provided VAO/VBO ids
@@ -348,6 +357,10 @@ namespace Raylib_cs
         // Draw a 3d mesh with material and transform
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlDrawMesh(Mesh mesh, Material material, Matrix4x4 transform);
+
+        // Draw a 3d mesh with material and transform
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlDrawMeshInstanced(Mesh mesh, Material material, Matrix4x4[] transforms, int count);
 
         // Unload mesh data from CPU and GPU
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

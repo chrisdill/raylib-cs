@@ -2,7 +2,7 @@
 
 # Raylib-cs
 
-C# bindings for raylib 3.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+C# bindings for raylib 3.5.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/ChrisDill/Raylib-cs)](https://github.com/ChrisDill/Raylib-cs/graphs/contributors)
 [![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE.md)
@@ -15,7 +15,9 @@ Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0.
 
 ## Installation - NuGet
 
-This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
+This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues). 
+
+**NOTE** The nuget package uses raylib 3.0. It will soon be updated to raylib 3.5.0.
 
 ```
 dotnet add package Raylib-cs --version 3.1.5
@@ -31,10 +33,10 @@ If you need to edit Raylib-cs source then you will need to add the bindings as a
 
 2. Add Raylib-cs/Raylib-cs.csproj to your project as an existing project.
 
-3. Download the native libraries for the platforms you want to build for using the [official 3.0 release](https://github.com/raysan5/raylib/releases/tag/3.0.0).    
-   **NOTE: the MSVC version is required for Windows platforms**  
+3. Download the native libraries for the platforms you want to build for using the [official 3.5.0 release](https://github.com/raysan5/raylib/releases/tag/3.5.0).
+   **NOTE: the MSVC version is required for Windows platforms**
 
-4. **(Recommended)** Put the native library for each platform under `Raylib-cs/runtimes/{platform}/native/`  
+4. **(Recommended)** Put the native library for each platform under `Raylib-cs/runtimes/{platform}/native/`
    **(Optional)** If you want to handle the native libraries yourself, make sure they are either in the same directory as the executable and/or can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for details.
 
 5. Start coding!
