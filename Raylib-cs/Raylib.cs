@@ -2564,6 +2564,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetShaderLocation(Shader shader, string uniformName);
 
+        // Get shader attribute location
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetShaderLocationAttrib(Shader shader, string attribName);
+
         // Set shader uniform value
         // value refers to a const void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
