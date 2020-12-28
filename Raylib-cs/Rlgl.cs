@@ -16,18 +16,45 @@ namespace Raylib_cs
         OPENGL_ES_20
     }
 
+    public enum FramebufferAttachType
+    {
+        RL_ATTACHMENT_COLOR_CHANNEL0 = 0,
+        RL_ATTACHMENT_COLOR_CHANNEL1,
+        RL_ATTACHMENT_COLOR_CHANNEL2,
+        RL_ATTACHMENT_COLOR_CHANNEL3,
+        RL_ATTACHMENT_COLOR_CHANNEL4,
+        RL_ATTACHMENT_COLOR_CHANNEL5,
+        RL_ATTACHMENT_COLOR_CHANNEL6,
+        RL_ATTACHMENT_COLOR_CHANNEL7,
+        RL_ATTACHMENT_DEPTH = 100,
+        RL_ATTACHMENT_STENCIL = 200,
+    }
+
+    public enum FramebufferTexType
+    {
+        RL_ATTACHMENT_CUBEMAP_POSITIVE_X = 0,
+        RL_ATTACHMENT_CUBEMAP_NEGATIVE_X,
+        RL_ATTACHMENT_CUBEMAP_POSITIVE_Y,
+        RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y,
+        RL_ATTACHMENT_CUBEMAP_POSITIVE_Z,
+        RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z,
+        RL_ATTACHMENT_TEXTURE2D = 100,
+        RL_ATTACHMENT_RENDERBUFFER = 200,
+    }
+
     [SuppressUnmanagedCodeSecurity]
     public static class Rlgl
     {
         // Used by DllImport to load the native library.
         public const string nativeLibName = "raylib";
 
-        public const float MAX_BATCH_ELEMENTS = 8192;
-        public const float MAX_BATCH_BUFFERING = 1;
-        public const float MAX_MATRIX_STACK_SIZE = 32;
-        public const float MAX_DRAWCALL_REGISTERED = 256;
-        public const float DEFAULT_NEAR_CULL_DISTANCE = 0.01f;
-        public const float DEFAULT_FAR_CULL_DISTANCE = 1000.0f;
+        public const int DEFAULT_BATCH_BUFFER_ELEMENTS = 8192;
+        public const int DEFAULT_BATCH_BUFFERS = 1;
+        public const int DEFAULT_BATCH_DRAWCALLS = 256;
+        public const int MAX_BATCH_ACTIVE_TEXTURES = 4;
+        public const int MAX_MATRIX_STACK_SIZE = 32;
+        public const float RL_CULL_DISTANCE_NEAR = 0.01f;
+        public const float RL_CULL_DISTANCE_FAR = 1000.0f;
         public const int RL_TEXTURE_WRAP_S = 0x2802;
         public const int RL_TEXTURE_WRAP_T = 0x2803;
         public const int RL_TEXTURE_MAG_FILTER = 0x2800;
@@ -159,11 +186,11 @@ namespace Raylib_cs
 
         // Enable render texture (fbo)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableRenderTexture(uint id);
+        public static extern void rlEnableFramebuffer(uint id);
 
         // Disable render texture (fbo), return to default framebuffer
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableRenderTexture();
+        public static extern void rlDisableFramebuffer();
 
         // Enable depth test
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -172,6 +199,14 @@ namespace Raylib_cs
         // Disable depth test
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlDisableDepthTest();
+
+        // Enable depth write
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlEnableDepthMask();
+
+        // Disable depth write
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlDisableDepthMask();
 
         // Enable backface culling
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -283,7 +318,7 @@ namespace Raylib_cs
         // Load texture in GPU
         // data refers to a void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadTexture(IntPtr data, int width, int height, int format, int mipmapCount);
+        public static extern uint rlLoadTexture(IntPtr data, int width, int height, PixelFormat format, int mipmapCount);
 
         // Load depth texture/renderbuffer (to be attached to fbo)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -292,16 +327,16 @@ namespace Raylib_cs
         // Load texture cubemap
         // data refers to a void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadTextureCubemap(IntPtr data, int size, int format);
+        public static extern uint rlLoadTextureCubemap(IntPtr data, int size, PixelFormat format);
 
         // Update GPU texture with new data
         // data refers to a const void *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateTexture(uint id, int width, int height, int format, IntPtr data);
+        public static extern void rlUpdateTexture(uint id, int width, int height, PixelFormat format, IntPtr data);
 
         // Get OpenGL internal formats
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlGetGlTextureFormats(int format, ref uint glInternalFormat, ref uint glFormat, ref uint glType);
+        public static extern void rlGetGlTextureFormats(PixelFormat format, ref uint glInternalFormat, ref uint glFormat, ref uint glType);
 
         // Unload texture from GPU memory
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -329,7 +364,7 @@ namespace Raylib_cs
 
         // Attach texture/renderbuffer to a framebuffer
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlFrameBufferAttach(uint fboId, uint texId, int attachType, int texType);
+        public static extern void rlFrameBufferAttach(uint fboId, uint texId, FramebufferAttachType attachType, FramebufferTexType texType);
 
         // Verify framebuffer is complete
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
