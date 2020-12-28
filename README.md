@@ -17,7 +17,7 @@ Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0.
 
 This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues). 
 
-**NOTE** The nuget package uses raylib 3.0. It will soon be updated to raylib 3.5.0.
+**NOTE:** The nuget package uses raylib 3.0. It will soon be updated to raylib 3.5.0.
 
 ```
 dotnet add package Raylib-cs --version 3.1.5
@@ -72,21 +72,11 @@ namespace HelloWorld
 
 These are unfinished EXPERIMENTAL bindings to physac and raygui. Added as a test to Raylib-cs but caused confusion in project setup so they were moved into their own libraries.
 
-## Examples
+## Documentation
 
-The Examples for Raylib-cs were moved and can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
+Examples for Raylib-cs can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
 
-## Tech notes
-
-- Certain functions take a enum instead of a int such as `IsKeyPressed`.
-
-- Colours moved into the `Color` struct as static members. `RED` changes to `Color.RED`.
-
-- Uses `string.Format` instead of `TextFormat`.
-
-- Adds constructors for some of the structs(WIP).
-
-- Adds operator overloads for math structs.
+Details about Raylib-cs can be found on the [Raylib-cs wiki](https://github.com/ChrisDill/Raylib-cs/wiki).
 
 ## Contributing
 
