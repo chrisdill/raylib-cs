@@ -842,6 +842,10 @@ namespace Raylib_cs
         // Callback delegate used in SetTraceLogCallback to allow for custom logging
         public delegate void TraceLogCallback(TraceLogType logType, string text, IntPtr args);
 
+        // Returns color with alpha applied, alpha goes from 0.0f to 1.0f
+        // NOTE: Added for compatability with previous versions
+        public static Color Fade(Color color, float alpha) => ColorAlpha(color, alpha);
+
         //------------------------------------------------------------------------------------
         // Window and Graphics Device Functions (Module: core)
         //------------------------------------------------------------------------------------
