@@ -1177,64 +1177,16 @@ namespace Raylib_cs
 
         // Load file data as byte array (read)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
         public static extern byte[] LoadFileData(string fileName, ref int bytesRead);
 
         // Save data to file from byte array (write)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SaveFileData(string fileName, IntPtr data, int bytesToWrite);
 
-        // Check if file exists
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool FileExists(string fileName);
-
         // Check file extension
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool IsFileExtension(string fileName, string ext);
-
-        // Check if a directory path exists
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool DirectoryExists(string dirPath);
-
-        // Get pointer to extension for a filename string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetFileExtension(string fileName);
-
-        // Get pointer to filename for a path string
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetFileName(string filePath);
-
-        // Get filename string without extension (uses static string)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetFileNameWithoutExt(ref string filePath);
-
-        // Get full path for a given fileName (uses static string)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetDirectoryPath(string fileName);
-
-        // Get previous directory path for a given path (uses static string)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetPrevDirectoryPath(string dirPath);
-
-        // Get current working directory (uses static string)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetWorkingDirectory();
-
-        // Get filenames in a directory path (memory should be freed)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string[] GetDirectoryFiles(string dirPath, ref int count);
-
-        // Clear directory files paths buffers (free memory)
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ClearDirectoryFiles();
-
-        // Change working directory, returns true if success
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool ChangeDirectory(string dir);
 
         // Check if a file has been dropped into window
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
