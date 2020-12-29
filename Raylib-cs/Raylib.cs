@@ -1004,12 +1004,20 @@ namespace Raylib_cs
         public static extern Vector2 GetWindowScaleDPI();
 
         // Get the human-readable, UTF-8 encoded name of the primary monitor
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetMonitorName(int monitor);
+        [DllImport(nativeLibName, EntryPoint = "GetMonitorName", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetMonitorName(int monitor);
+        public static string GetMonitorName(int monitor)
+        {
+            return Marshal.PtrToStringAnsi(INTERNAL_GetMonitorName(monitor));
+        }
 
         // Get clipboard text content
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetClipboardText();
+        [DllImport(nativeLibName, EntryPoint = "GetClipboardText", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetClipboardText();
+        public static string GetClipboardText()
+        {
+            return Marshal.PtrToStringAnsi(INTERNAL_GetClipboardText());
+        }
 
         // Set clipboard text content
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1280,8 +1288,12 @@ namespace Raylib_cs
         public static extern bool IsGamepadName(GamepadNumber gamepad, string name);
 
         // Return gamepad internal name id
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string GetGamepadName(GamepadNumber gamepad);
+        [DllImport(nativeLibName, EntryPoint = "GetGamepadName", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr INTERNAL_GetGamepadName(GamepadNumber gamepad);
+        public static string GetGamepadName(GamepadNumber gamepad)
+        {
+            return Marshal.PtrToStringAnsi(INTERNAL_GetGamepadName(gamepad));
+        }
 
         // Detect if a gamepad button has been pressed once
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1637,7 +1649,7 @@ namespace Raylib_cs
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
-        // Check the collision between two lines defined by two points each, returns collision point by reference   
+        // Check the collision between two lines defined by two points each, returns collision point by reference
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
