@@ -1,11 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1</TargetFrameworks>
-    <Platforms>osx-x64;linux-x64;win-x64;win-x86;linux-x86</Platforms>
-    <Configurations>Debug;Release</Configurations>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <EnableDefaultItems>false</EnableDefaultItems>
     <AssemblyName>Raylib-cs</AssemblyName>
     <RootNamespace>Raylib_cs</RootNamespace>
