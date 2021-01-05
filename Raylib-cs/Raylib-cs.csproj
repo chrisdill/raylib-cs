@@ -9,15 +9,13 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>3.1.0</Version>
-    <PackageVersion>3.1.7</PackageVersion>
+    <Version>3.5.0</Version>
+    <PackageVersion>3.5.0</PackageVersion>
     <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
     <PackProject>true</PackProject>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetNativeLibraryFiles</TargetsForTfmSpecificBuildOutput>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
-    <Title>Raylib-cs - C# Bindings for Raylib</Title>
-    <Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming http://www.raylib.com/
-    </Description>
+    <Title>Raylib-cs</Title>
+    <Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming</Description>
     <PackageIcon>raylib-cs_64x64.png</PackageIcon>
     <PackageTags>Raylib;Raysan;Games;Game-Engine;Engine;Game</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -35,34 +33,8 @@
 
   <ItemGroup>
     <Content Include="Raylib-cs.targets"/>
-    <Content Include="runtimes\**" CopyToOutputDirectory="PreserveNewest" Link="runtimes\%(RecursiveDir)\%(Filename)%(Extension)"/>
+    <Content Include="runtimes/**" CopyToOutputDirectory="PreserveNewest" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
+      <PackagePath>runtimes/</PackagePath>
+    </Content>
   </ItemGroup>
-
-  <Target Name="AfterBuild">
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFiles="@(MySourceFiles->'$(OutputPath)\%(RecursiveDir)%(Filename)%(Extension)')"/>
-  </Target>
-
-  <ItemGroup>
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0"/>
-  </ItemGroup>
-
-  <Target Name="GetNativeLibraryFiles">
-    <ItemGroup>
-      <TfmSpecificPackageFile Include="$(BaseOutputPath)\..\runtimes\linux-x64\native\libraylib.so">
-        <PackagePath>runtimes/linux-x64/native</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="$(BaseOutputPath)\..\runtimes\linux-x86\native\libraylib.so">
-        <PackagePath>runtimes/linux-x86/native</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="$(BaseOutputPath)\..\runtimes\win-x64\native\raylib.dll">
-        <PackagePath>runtimes/win-x64/native</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="$(BaseOutputPath)\..\runtimes\win-x86\native\raylib.dll">
-        <PackagePath>runtimes/win-x86/native</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="$(BaseOutputPath)\..\runtimes\osx-x64\native\libraylib.dylib">
-        <PackagePath>runtimes/osx-x64/native</PackagePath>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
-  </Target>
 </Project>
