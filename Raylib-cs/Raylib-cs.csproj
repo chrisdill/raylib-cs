@@ -32,9 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Raylib-cs.targets"/>
-    <Content Include="runtimes/**" CopyToOutputDirectory="PreserveNewest" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
+    <Content Include="runtimes/**" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
       <PackagePath>runtimes/</PackagePath>
+      <Pack>true</Pack>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 </Project>
