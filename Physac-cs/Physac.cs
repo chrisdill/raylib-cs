@@ -168,6 +168,7 @@ namespace Physac_cs
 
         // Returns true if physics thread is currently enabled
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool IsPhysicsEnabled();
 
         // Sets physics global gravity force
