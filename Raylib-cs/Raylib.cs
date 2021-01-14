@@ -840,6 +840,7 @@ namespace Raylib_cs
         public const int MAX_TOUCH_POINTS = 10;
 
         // Callback delegate used in SetTraceLogCallback to allow for custom logging
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void TraceLogCallback(TraceLogType logType, string text, IntPtr args);
 
         // Returns color with alpha applied, alpha goes from 0.0f to 1.0f
@@ -1289,7 +1290,7 @@ namespace Raylib_cs
 
         // Return gamepad internal name id
         [DllImport(nativeLibName, EntryPoint = "GetGamepadName", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr INTERNAL_GetGamepadName(GamepadNumber gamepad);
+        private static extern IntPtr INTERNAL_GetGamepadName(GamepadNumber gamepad);
         public static string GetGamepadName(GamepadNumber gamepad)
         {
             return Marshal.PtrToStringAnsi(INTERNAL_GetGamepadName(gamepad));
