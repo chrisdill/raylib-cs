@@ -1009,7 +1009,7 @@ namespace Raylib_cs
         private static extern IntPtr INTERNAL_GetMonitorName(int monitor);
         public static string GetMonitorName(int monitor)
         {
-            return Marshal.PtrToStringAnsi(INTERNAL_GetMonitorName(monitor));
+            return Marshal.PtrToStringUTF8(INTERNAL_GetMonitorName(monitor));
         }
 
         // Get clipboard text content
@@ -1017,7 +1017,7 @@ namespace Raylib_cs
         private static extern IntPtr INTERNAL_GetClipboardText();
         public static string GetClipboardText()
         {
-            return Marshal.PtrToStringAnsi(INTERNAL_GetClipboardText());
+            return Marshal.PtrToStringUTF8(INTERNAL_GetClipboardText());
         }
 
         // Set clipboard text content
