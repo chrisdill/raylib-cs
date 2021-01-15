@@ -21,7 +21,7 @@ This is the prefered method to get started - The package is still new so please 
 **NOTE:** The nuget package uses raylib 3.0. It will soon be updated to raylib 3.5.0.
 
 ```
-dotnet add package Raylib-cs --version 3.1.5
+dotnet add package Raylib-cs --version 3.5.0
 ```
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
