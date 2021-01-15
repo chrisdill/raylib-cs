@@ -19,5 +19,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-      - name: Build with dotnet
+      - name: Build project
         run: dotnet build -c Release
+      - name: Test project
+        run: dotnet test
