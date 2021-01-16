@@ -71,7 +71,7 @@ namespace HelloWorld
 
 ## Physac-cs and Raygui-cs
 
-These are unfinished EXPERIMENTAL bindings to physac and raygui. Added as a test to Raylib-cs but caused confusion in project setup so they were moved into their own libraries.
+There are **UNSUPPORTED & EXPERIMENTAL** bindings to physac and raygui. They are in separate projects not included in releases or via NuGet. Pull requests are welcome and encouraged.
 
 ## Documentation
 
