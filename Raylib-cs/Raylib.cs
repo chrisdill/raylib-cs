@@ -855,7 +855,7 @@ namespace Raylib_cs
 
         // Initialize window and OpenGL context
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void InitWindow(int width, int height, string title);
+        public static extern void InitWindow(int width, int height, [MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
         // Check if KEY_ESCAPE pressed or Close icon pressed
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -937,7 +937,7 @@ namespace Raylib_cs
 
         // Set title for window (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetWindowTitle(string title);
+        public static extern void SetWindowTitle([MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
         // Set window position on screen (only PLATFORM_DESKTOP)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1022,7 +1022,7 @@ namespace Raylib_cs
 
         // Set clipboard text content
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetClipboardText(string text);
+        public static extern void SetClipboardText([MarshalAs(UnmanagedType.LPUTF8Str)] string text);
 
 
         // Cursor-related functions
@@ -1739,11 +1739,11 @@ namespace Raylib_cs
 
         // Create an image from text (default font)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image ImageText(string text, int fontSize, Color color);
+        public static extern Image ImageText([MarshalAs(UnmanagedType.LPUTF8Str)] string text, int fontSize, Color color);
 
         // Create an image from text (custom sprite font)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint);
+        public static extern Image ImageTextEx(Font font, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, float fontSize, float spacing, Color tint);
 
         // Convert image to POT (power-of-two)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1911,11 +1911,11 @@ namespace Raylib_cs
 
         // Draw text (using default font) within an image (destination)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawText(ref Image dst, string text, int x, int y, int fontSize, Color color);
+        public static extern void ImageDrawText(ref Image dst, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, int x, int y, int fontSize, Color color);
 
         // Draw text (custom sprite font) within an image (destination)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void ImageDrawTextEx(ref Image dst, Font font, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, Vector2 position, float fontSize, float spacing, Color tint);
 
         // Texture loading functions
         // NOTE: These functions require GPU access
@@ -2114,19 +2114,19 @@ namespace Raylib_cs
 
         // Draw text (using default font)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawText(string text, int posX, int posY, int fontSize, Color color);
+        public static extern void DrawText([MarshalAs(UnmanagedType.LPUTF8Str)] string text, int posX, int posY, int fontSize, Color color);
 
         // Draw text using font and additional parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void DrawTextEx(Font font, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, Vector2 position, float fontSize, float spacing, Color tint);
 
         // Draw text using font inside rectangle limits
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextRec(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint);
+        public static extern void DrawTextRec(Font font, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint);
 
         // Draw text using font inside rectangle limits with support for text selection
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextRecEx(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectText, Color selectBack);
+        public static extern void DrawTextRecEx(Font font, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectText, Color selectBack);
 
         // Draw one character (codepoint)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2137,11 +2137,11 @@ namespace Raylib_cs
 
         // Measure string width for default font
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int MeasureText(string text, int fontSize);
+        public static extern int MeasureText([MarshalAs(UnmanagedType.LPUTF8Str)] string text, int fontSize);
 
         // Measure string size for Font
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing);
+        public static extern Vector2 MeasureTextEx(Font font, [MarshalAs(UnmanagedType.LPUTF8Str)] string text, float fontSize, float spacing);
 
         // Get index position for a unicode character on font
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
