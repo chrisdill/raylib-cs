@@ -1189,6 +1189,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadFileData(string fileName, ref int bytesRead);
 
+        // Unload file data allocated by LoadFileData()
+        // data refers to a unsigned char *
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadFileData(IntPtr data);
+
         // Save data to file from byte array (write)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SaveFileData(string fileName, IntPtr data, int bytesToWrite);
