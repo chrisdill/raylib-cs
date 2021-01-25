@@ -1185,8 +1185,9 @@ namespace Raylib_cs
         // Files management functions
 
         // Load file data as byte array (read)
+        // IntPtr refers to unsigned char *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte[] LoadFileData(string fileName, ref int bytesRead);
+        public static extern IntPtr LoadFileData(string fileName, ref int bytesRead);
 
         // Save data to file from byte array (write)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2090,7 +2091,7 @@ namespace Raylib_cs
         // fileData refers to const unsigned char *
         // IntPtr refers to CharInfo *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadFontData(IntPtr fileData, int fontSize, int[] fontChars, int charsCount, FontType type);
+        public static extern IntPtr LoadFontData(IntPtr fileData, int dataSize, int fontSize, int[] fontChars, int charsCount, FontType type);
 
         // Generate image font atlas using chars info
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
