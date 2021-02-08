@@ -360,21 +360,21 @@ namespace Raylib_cs
 
         // Load an empty framebuffer
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadFrameBuffer(int width, int height);
+        public static extern uint rlLoadFramebuffer(int width, int height);
 
         // Attach texture/renderbuffer to a framebuffer
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlFrameBufferAttach(uint fboId, uint texId, FramebufferAttachType attachType, FramebufferTexType texType);
+        public static extern void rlFramebufferAttach(uint fboId, uint texId, FramebufferAttachType attachType, FramebufferTexType texType);
 
         // Verify framebuffer is complete
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlFrameBufferComplete(uint id);
+        public static extern bool rlFramebufferComplete(uint id);
 
         // Delete framebuffer from GPU
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlUnloadFrameBuffer(uint id);
+        public static extern bool rlUnloadFramebuffer(uint id);
 
         // Vertex data management
         // Upload vertex data into GPU and provided VAO/VBO ids
