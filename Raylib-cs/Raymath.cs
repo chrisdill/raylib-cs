@@ -5,16 +5,14 @@ using System.Security;
 namespace Raylib_cs
 {
     // NOTE: Helper types to be used instead of array return types for *ToFloat functions
-    public struct float3
+    public unsafe struct float3
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
-        public float[] v;
+        public fixed float v[3];
     }
 
-    public struct float16
+    public unsafe struct float16
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
-        public float[] v;
+        public fixed float v[16];
     }
 
     [SuppressUnmanagedCodeSecurity]

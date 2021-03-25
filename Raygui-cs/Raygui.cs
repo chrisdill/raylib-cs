@@ -8,7 +8,7 @@ using Raylib_cs;
 namespace Raygui_cs
 {
     // Style property
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential)]
     struct GuiStyleProp
     {
         ushort controlId;
@@ -412,11 +412,11 @@ namespace Raygui_cs
 
         // Color Bar Alpha control
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern  float GuiColorBarAlpha(Rectangle bounds, float alpha);
+        public static extern float GuiColorBarAlpha(Rectangle bounds, float alpha);
 
         // Color Bar Hue control
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern  float GuiColorBarHue(Rectangle bounds, float value);
+        public static extern float GuiColorBarHue(Rectangle bounds, float value);
 
 
         // Styles loading functions

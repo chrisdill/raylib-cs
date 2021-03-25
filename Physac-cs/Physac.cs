@@ -13,7 +13,7 @@ namespace Physac_cs
     }
 
     // Mat2 type (used for polygon shape rotation matrix)
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct Mat2
     {
         public float m00;
@@ -63,7 +63,7 @@ namespace Physac_cs
         }
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct PolygonData
     {
         public uint vertexCount;                           // Current used vertex and normals count
@@ -71,7 +71,7 @@ namespace Physac_cs
         public _Polygon_e_FixedBuffer normals;             // Polygon vertex normals vectors
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct PhysicsShape
     {
         public PhysicsShapeType type;                      // Physics shape type (circle or polygon)
@@ -81,14 +81,11 @@ namespace Physac_cs
         public PolygonData vertexData;                     // Polygon shape vertices position and normals data (just used for polygon shapes)
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public partial struct PhysicsBodyData
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PhysicsBodyData
     {
         public uint id;
-
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool enabled;
-
+        public byte enabled;
         public Vector2 position;
         public Vector2 velocity;
         public Vector2 force;
@@ -102,20 +99,13 @@ namespace Physac_cs
         public float staticFriction;
         public float dynamicFriction;
         public float restitution;
-
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool useGravity;
-
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool isGrounded;
-
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool freezeOrient;
-
+        public byte useGravity;
+        public byte isGrounded;
+        public byte freezeOrient;
         public PhysicsShape shape;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct PhysicsManifoldData
     {
         public uint id;                                    // Reference unique identifier

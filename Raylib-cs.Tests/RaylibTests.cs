@@ -24,18 +24,18 @@ namespace Raylib_cs.Tests
             Assert.True(BlittableHelper.IsBlittable<MaterialMap>());
             Assert.True(BlittableHelper.IsBlittable<Material>());
             Assert.True(BlittableHelper.IsBlittable<Transform>());
-            // Assert.True(BlittableHelper.IsBlittable<BoneInfo>());
+            Assert.True(BlittableHelper.IsBlittable<BoneInfo>());
             Assert.True(BlittableHelper.IsBlittable<Model>());
             Assert.True(BlittableHelper.IsBlittable<Model>());
             Assert.True(BlittableHelper.IsBlittable<ModelAnimation>());
             Assert.True(BlittableHelper.IsBlittable<Ray>());
-            // Assert.True(BlittableHelper.IsBlittable<RayHitInfo>());
+            Assert.True(BlittableHelper.IsBlittable<RayHitInfo>());
             Assert.True(BlittableHelper.IsBlittable<BoundingBox>());
             Assert.True(BlittableHelper.IsBlittable<Wave>());
             Assert.True(BlittableHelper.IsBlittable<AudioStream>());
             Assert.True(BlittableHelper.IsBlittable<Sound>());
-            // Assert.True(BlittableHelper.IsBlittable<Music>());
-            // Assert.True(BlittableHelper.IsBlittable<VrDeviceInfo>());
+            Assert.True(BlittableHelper.IsBlittable<Music>());
+            Assert.True(BlittableHelper.IsBlittable<VrDeviceInfo>());
         }
     }
 }
