@@ -425,6 +425,8 @@ namespace Raylib_cs
     // required keys for alternative layouts
     public enum KeyboardKey
     {
+        KEY_NULL = 0,
+        
         // Alphanumeric keys
         KEY_APOSTROPHE = 39,
         KEY_COMMA = 44,
