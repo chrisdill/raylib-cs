@@ -145,7 +145,7 @@ namespace Raylib_cs
     {
         public int baseSize;             // Base size (default chars height)
         public int charsCount;           // Number of characters
-        int charsPadding;                // Padding around the chars
+        public int charsPadding;         // Padding around the chars
         public Texture2D texture;        // Characters texture atals
         public IntPtr recs;              // Characters rectangles in texture (Rectangle *)
         public IntPtr chars;             // Characters info data (CharInfo *)
@@ -161,7 +161,7 @@ namespace Raylib_cs
         public float fovy;              // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
         public CameraType type;         // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
 
-        public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy = 90, CameraType type = CameraType.CAMERA_PERSPECTIVE)
+        public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy, CameraType type)
         {
             this.position = position;
             this.target = target;
@@ -1296,7 +1296,7 @@ namespace Raylib_cs
         private static extern IntPtr INTERNAL_GetGamepadName(GamepadNumber gamepad);
         public static string GetGamepadName(GamepadNumber gamepad)
         {
-            return Marshal.PtrToStringAnsi(INTERNAL_GetGamepadName(gamepad));
+            return Marshal.PtrToStringUTF8(INTERNAL_GetGamepadName(gamepad));
         }
 
         // Detect if a gamepad button has been pressed once
