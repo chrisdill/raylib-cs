@@ -12,9 +12,9 @@ namespace Physac_cs
         PHYSICS_POLYGON
     }
 
-    // Mat2 type (used for polygon shape rotation matrix)
+    // Matrix2x2 type (used for polygon shape rotation matrix)
     [StructLayout(LayoutKind.Sequential)]
-    public struct Mat2
+    public struct Matrix2x2
     {
         public float m00;
         public float m01;
@@ -64,45 +64,45 @@ namespace Physac_cs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct PolygonData
+    public struct PhysicsVertexData
     {
-        public uint vertexCount;                           // Current used vertex and normals count
-        public _Polygon_e_FixedBuffer positions;           // Polygon vertex positions vectors
-        public _Polygon_e_FixedBuffer normals;             // Polygon vertex normals vectors
+        public uint vertexCount;                           // Vertex count (positions and normals)
+        public _Polygon_e_FixedBuffer positions;           // Vertex positions vectors
+        public _Polygon_e_FixedBuffer normals;             // Vertex normals vectors
     }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicsShape
     {
-        public PhysicsShapeType type;                      // Physics shape type (circle or polygon)
+        public PhysicsShapeType type;                      // Shape type (circle or polygon)
         public IntPtr body;                                // Shape physics body reference
-        public float radius;                               // Circle shape radius (used for circle shapes)
-        public Mat2 transform;                             // Vertices transform matrix 2x2
-        public PolygonData vertexData;                     // Polygon shape vertices position and normals data (just used for polygon shapes)
+        public PhysicsVertexData vertexData;               // Shape vertices data (used for polygon shapes)
+        public float radius;                               // Shape radius (used for circle shapes)
+        public Matrix2x2 transform;                        // Vertices transform matrix 2x2
     }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicsBodyData
     {
-        public uint id;
-        public byte enabled;
-        public Vector2 position;
-        public Vector2 velocity;
-        public Vector2 force;
-        public float angularVelocity;
-        public float torque;
-        public float orient;
-        public float inertia;
-        public float inverseInertia;
-        public float mass;
-        public float inverseMass;
-        public float staticFriction;
-        public float dynamicFriction;
-        public float restitution;
-        public byte useGravity;
-        public byte isGrounded;
-        public byte freezeOrient;
-        public PhysicsShape shape;
+        public uint id;                                    // Unique identifier
+        public byte enabled;                               // Enabled dynamics state (collisions are calculated anyway)
+        public Vector2 position;                           // Physics body shape pivot
+        public Vector2 velocity;                           // Current linear velocity applied to position
+        public Vector2 force;                              // Current linear force (reset to 0 every step)
+        public float angularVelocity;                      // Current angular velocity applied to orient
+        public float torque;                               // Current angular force (reset to 0 every step)
+        public float orient;                               // Rotation in radians
+        public float inertia;                              // Moment of inertia
+        public float inverseInertia;                       // Inverse value of inertia
+        public float mass;                                 // Physics body mass
+        public float inverseMass;                          // Inverse value of mass
+        public float staticFriction;                       // Friction when the body has not movement (0 to 1)
+        public float dynamicFriction;                      // Friction when the body has movement (0 to 1)
+        public float restitution;                          // Restitution coefficient of the body (0 to 1)
+        public byte useGravity;                            // Apply gravity force to dynamics
+        public byte isGrounded;                            // Physics grounded on other body state
+        public byte freezeOrient;                          // Physics rotation constraint
+        public PhysicsShape shape;                         // Physics body shape information (type, radius, vertices, transform)
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -136,26 +136,34 @@ namespace Physac_cs
         public const float PHYSAC_PENETRATION_ALLOWANCE = 0.05f;
         public const float PHYSAC_PENETRATION_CORRECTION = 0.4f;
 
+        // Physics system management
+
         // Initializes physics values, pointers and creates physics loop thread
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitPhysics();
 
-        // Run physics step, to be used if PHYSICS_NO_THREADS is set in your main loop
+        // Update physics system
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunPhysicsStep();
+        public static extern void UpdatePhysics();
+
+        // Reset physics system (global variables)
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ResetPhysics();
+
+        // Close physics system and unload used memory
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ClosePhysics();
 
         // Sets physics fixed time step in milliseconds. 1.666666 by default
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetPhysicsTimeStep(double delta);
 
-        // Returns true if physics thread is currently enabled
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsPhysicsEnabled();
-
         // Sets physics global gravity force
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetPhysicsGravity(float x, float y);
+
+
+        // Physic body creation/destroy
 
         // Creates a new circle physics body with generic parameters
         // IntPtr refers to a PhysicsBodyData *
@@ -172,6 +180,13 @@ namespace Physac_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CreatePhysicsBodyPolygon(Vector2 pos, float radius, int sides, float density);
 
+        // Destroy a physics body
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void DestroyPhysicsBody(PhysicsBodyData body);
+
+
+        // Physic body forces
+
         // Adds a force to a physics body
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void PhysicsAddForce(PhysicsBodyData body, Vector2 force);
@@ -184,14 +199,21 @@ namespace Physac_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void PhysicsShatter(PhysicsBodyData body, Vector2 position, float force);
 
-        // Returns the current amount of created physics bodies
+        // Sets physics body shape transform based on radians parameter
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetPhysicsBodiesCount();
+        public static extern void SetPhysicsBodyRotation(PhysicsBodyData body, float radians);
+
+
+        // Query physics info
 
         // Returns a physics body of the bodies pool at a specific index
         // IntPtr refers to a PhysicsBodyData *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetPhysicsBody(int index);
+
+        // Returns the current amount of created physics bodies
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetPhysicsBodiesCount();
 
         // Returns the physics body shape type (PHYSICS_CIRCLE or PHYSICS_POLYGON)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -204,21 +226,5 @@ namespace Physac_cs
         // Returns transformed position of a body shape (body position + vertex transformed position)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetPhysicsShapeVertex(PhysicsBodyData body, int vertex);
-
-        // Sets physics body shape transform based on radians parameter
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetPhysicsBodyRotation(PhysicsBodyData body, float radians);
-
-        // Unitializes and destroy a physics body
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DestroyPhysicsBody(PhysicsBodyData body);
-
-        // Destroys created physics bodies and manifolds and resets global values
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ResetPhysics();
-
-        // Unitializes physics pointers and closes physics loop thread
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ClosePhysics();
     }
 }

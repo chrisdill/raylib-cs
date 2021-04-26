@@ -2541,10 +2541,6 @@ namespace Raylib_cs
 
         // Mesh generation functions
 
-        // Generate an empty mesh with vertex: position, texcoords, normals, colors
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Mesh GenMeshDefault(int vertexCount);
-
         // Generate polygonal mesh
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Mesh GenMeshPoly(int sides, float radius);

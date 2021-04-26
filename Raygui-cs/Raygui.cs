@@ -34,7 +34,7 @@ namespace Raygui_cs
     }
 
     // Gui standard controls
-    public enum GuiControlStandard
+    public enum GuiControl
     {
         DEFAULT = 0,
         LABEL,          // LABELBUTTON
@@ -185,7 +185,7 @@ namespace Raygui_cs
         // Used by DllImport to load the native library.
         public const string nativeLibName = "raygui";
 
-        public const string RAYGUI_VERSION = "2.6-dev";
+        public const string RAYGUI_VERSION = "2.9-dev";
 
         public const int NUM_CONTROLS = 16;                      // Number of standard controls
         public const int NUM_PROPS_DEFAULT = 16;                 // Number of standard properties
@@ -193,7 +193,7 @@ namespace Raygui_cs
 
         public const int TEXTEDIT_CURSOR_BLINK_FRAMES = 20;      // Text edit controls cursor blink timming
 
-        // Global gui modification functions
+        // State modification functions
 
         // Enable gui controls (global state)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -223,6 +223,9 @@ namespace Raygui_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiGetState();
 
+
+        // Font set/get functions
+
         // Get gui custom font (global state)
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiSetFont(Font font);
@@ -241,25 +244,6 @@ namespace Raygui_cs
         // Get one style property
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GuiGetStyle(GuiControlStandard control, GuiControlProperty property);
-
-
-        // Tooltips set functions
-
-        // Enable gui tooltips
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiEnableTooltip();
-
-        // Disable gui tooltips
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiDisableTooltip();
-
-        // Set current tooltip for display
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiSetTooltip(string tooltip);
-
-        // Clear any tooltip registered
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiClearTooltip();
 
 
         // Container/separator controls, useful for controls organization
@@ -305,12 +289,12 @@ namespace Raygui_cs
         // Image button control, returns true when clicked
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiImageButton(Rectangle bounds, Texture2D texture);
+        public static extern bool GuiImageButton(Rectangle bounds, string text, Texture2D texture);
 
         // Image button extended control, returns true when clicked
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiImageButtonEx(Rectangle bounds, Texture2D texture, Rectangle texSource, string text);
+        public static extern bool GuiImageButtonEx(Rectangle bounds, string text, Texture2D texture, Rectangle texSource);
 
         // Toggle Button control, returns true when active
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -324,7 +308,7 @@ namespace Raygui_cs
         // Check Box control, returns true when active
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiCheckBox(Rectangle bounds, bool isChecked);
+        public static extern bool GuiCheckBox(Rectangle bounds, string text, bool isChecked);
 
         // Combo Box control, returns selected item index
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -333,17 +317,17 @@ namespace Raygui_cs
         // Dropdown Box control, returns selected item
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiDropdownBox(Rectangle bounds, string[] text, ref int active, bool edit);
+        public static extern bool GuiDropdownBox(Rectangle bounds, string text, ref int active, bool editMode);
 
         // Spinner control, returns selected value
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiSpinner(Rectangle bounds, ref int value, int maxValue, int btnWidth);
+        public static extern bool GuiSpinner(Rectangle bounds, string text, ref int value, int minValue, int maxValue, bool editMode);
 
         // Value Box control, updates input text with numbers
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GuiValueBox(Rectangle bounds, int value, int maxValue);
+        public static extern bool GuiValueBox(Rectangle bounds, string text, ref int value, int minValue, int maxValue, bool editMode);
 
         // Text Box control, updates input text
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -357,15 +341,15 @@ namespace Raygui_cs
 
         // Slider control, returns selected value
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GuiSlider(Rectangle bounds, float value, float minValue, float maxValue, bool showValue);
+        public static extern float GuiSlider(Rectangle bounds, string textLeft, string textRight, float value, float minValue, float maxValue);
 
         // Slider Bar control, returns selected value
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GuiSliderBar(Rectangle bounds, float value, float minValue, float maxValue, bool showValue);
+        public static extern float GuiSliderBar(Rectangle bounds, float value, float minValue, float maxValue);
 
         // Progress Bar control, shows current progress value
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float GuiProgressBar(Rectangle bounds, float value, float minValue, float maxValue, bool showValue);
+        public static extern float GuiProgressBar(Rectangle bounds, float value, float minValue, float maxValue);
 
         // Status Bar control, shows info text
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -377,30 +361,30 @@ namespace Raygui_cs
 
         // Scroll Bar control
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiScrollBar(Rectangle bounds, int value, int minValue, int maxValue);
+        public static extern int GuiScrollBar(Rectangle bounds, int value, int minValue, int maxValue);
 
         // Grid
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiGrid(Rectangle bounds, float spacing, int subdivs);
+        public static extern Vector2 GuiGrid(Rectangle bounds, float spacing, int subdivs);
 
 
         // Advance controls set
 
         // List View control, returns selected list element index
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GuiListView(Rectangle bounds, string text, ref int active, ref int scrollIndex, bool editMode);
+        public static extern int GuiListView(Rectangle bounds, string text, ref int scrollIndex, ref int active);
 
         // List View with extended parameters
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GuiListViewEx(Rectangle bounds, string text, int count, ref int enabled, ref int active, ref int focus, ref int scrollIndex, bool editMode);
+        public static extern int GuiListViewEx(Rectangle bounds, string text, int count, ref int focus, ref int scrollIndex, ref int active);
 
         // Message Box control, displays a message
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GuiMessageBox(Rectangle bounds, string windowTitle, string message);
+        public static extern int GuiMessageBox(Rectangle bounds, string title, string message);
 
         // Text Input Box control, ask for text
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GuiTextInputBox(Rectangle bounds, string windowTitle, string message, string buttons);
+        public static extern int GuiTextInputBox(Rectangle bounds, string windowTitle, string message, string buttons, string text);
 
         // Color Picker control
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -429,25 +413,26 @@ namespace Raygui_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GuiLoadStyleDefault();
 
-        // Get text with icon id prepended
-        // Get the human-readable, UTF-8 encoded name of the primary monitor
+        // Get text with icon id prepended (if supported)
         [DllImport(nativeLibName, EntryPoint = "GetMonitorName", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_GuiIconText(int iconId, string text);
         public static string GuiIconText(int iconId, string text)
         {
-            return Marshal.PtrToStringAnsi(INTERNAL_GuiIconText(iconId, text));
+            return Marshal.PtrToStringUTF8(INTERNAL_GuiIconText(iconId, text));
         }
 
 
         // Gui icons functionality
 
         // Get full icons data pointer
+        // IntPtr refers to a unsigned int *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint[] GuiGetIcons();
+        public static extern IntPtr GuiGetIcons();
 
         // Get icon bit data
+        // IntPtr refers to a unsigned int *
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint[] GuiGetIconData(int iconId, string text);
+        public static extern IntPtr GuiGetIconData(int iconId, string text);
 
         // Set icon bit data
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

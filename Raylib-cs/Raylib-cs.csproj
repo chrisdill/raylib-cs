@@ -9,15 +9,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>3.5.0</Version>
-    <PackageVersion>3.5.0</PackageVersion>
+    <Version>3.7.0</Version>
+    <PackageVersion>3.7.0</PackageVersion>
     <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
     <Title>Raylib-cs</Title>
     <Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming</Description>
     <PackageIcon>raylib-cs_64x64.png</PackageIcon>
-    <PackageTags>Raylib;Raysan;Games;Game-Engine;Engine;Game</PackageTags>
+    <PackageTags>Raylib;Raysan;Gamedev;Binding</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
     <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
