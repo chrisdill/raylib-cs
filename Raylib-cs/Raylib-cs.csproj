@@ -21,6 +21,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
     <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
