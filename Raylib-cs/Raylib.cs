@@ -640,88 +640,94 @@ namespace Raylib_cs
     /// <summary>Material map index</summary>
     public enum MaterialMapIndex
     {
-        MAP_ALBEDO = 0,          // MAP_DIFFUSE
-        MAP_METALNESS = 1,       // MAP_SPECULAR
-        MAP_NORMAL = 2,
-        MAP_ROUGHNESS = 3,
-        MAP_OCCLUSION,
-        MAP_EMISSION,
-        MAP_HEIGHT,
-        MAP_CUBEMAP,             // NOTE: Uses GL_TEXTURE_CUBE_MAP
-        MAP_IRRADIANCE,          // NOTE: Uses GL_TEXTURE_CUBE_MAP
-        MAP_PREFILTER,           // NOTE: Uses GL_TEXTURE_CUBE_MAP
-        MAP_BRDF
+        MATERIAL_MAP_ALBEDO = 0,          // MAP_DIFFUSE
+        MATERIAL_MAP_METALNESS = 1,       // MAP_SPECULAR
+        MATERIAL_MAP_NORMAL = 2,
+        MATERIAL_MAP_ROUGHNESS = 3,
+        MATERIAL_MAP_OCCLUSION,
+        MATERIAL_MAP_EMISSION,
+        MATERIAL_MAP_HEIGHT,
+        MATERIAL_MAP_CUBEMAP,             // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        MATERIAL_MAP_IRRADIANCE,          // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        MATERIAL_MAP_PREFILTER,           // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        MATERIAL_MAP_BRDF,
+
+        MATERIAL_MAP_DIFFUSE = MATERIAL_MAP_ALBEDO,
+        MATERIAL_MAP_SPECULAR = MATERIAL_MAP_METALNESS,
     }
 
     /// <summary>Shader location index</summary>
     public enum ShaderLocationIndex
     {
-        LOC_VERTEX_POSITION = 0,
-        LOC_VERTEX_TEXCOORD01,
-        LOC_VERTEX_TEXCOORD02,
-        LOC_VERTEX_NORMAL,
-        LOC_VERTEX_TANGENT,
-        LOC_VERTEX_COLOR,
-        LOC_MATRIX_MVP,
-        LOC_MATRIX_MODEL,
-        LOC_MATRIX_VIEW,
-        LOC_MATRIX_PROJECTION,
-        LOC_VECTOR_VIEW,
-        LOC_COLOR_DIFFUSE,
-        LOC_COLOR_SPECULAR,
-        LOC_COLOR_AMBIENT,
-        LOC_MAP_ALBEDO,          // LOC_MAP_DIFFUSE
-        LOC_MAP_METALNESS,       // LOC_MAP_SPECULAR
-        LOC_MAP_NORMAL,
-        LOC_MAP_ROUGHNESS,
-        LOC_MAP_OCCLUSION,
-        LOC_MAP_EMISSION,
-        LOC_MAP_HEIGHT,
-        LOC_MAP_CUBEMAP,
-        LOC_MAP_IRRADIANCE,
-        LOC_MAP_PREFILTER,
-        LOC_MAP_BRDF
+        SHADER_LOC_VERTEX_POSITION = 0,
+        SHADER_LOC_VERTEX_TEXCOORD01,
+        SHADER_LOC_VERTEX_TEXCOORD02,
+        SHADER_LOC_VERTEX_NORMAL,
+        SHADER_LOC_VERTEX_TANGENT,
+        SHADER_LOC_VERTEX_COLOR,
+        SHADER_LOC_MATRIX_MVP,
+        SHADER_LOC_MATRIX_MODEL,
+        SHADER_LOC_MATRIX_VIEW,
+        SHADER_LOC_MATRIX_PROJECTION,
+        SHADER_LOC_VECTOR_VIEW,
+        SHADER_LOC_COLOR_DIFFUSE,
+        SHADER_LOC_COLOR_SPECULAR,
+        SHADER_LOC_COLOR_AMBIENT,
+        SHADER_LOC_MAP_ALBEDO,          // SHADER_LOC_MAP_DIFFUSE
+        SHADER_LOC_MAP_METALNESS,       // SHADER_LOC_MAP_SPECULAR
+        SHADER_LOC_MAP_NORMAL,
+        SHADER_LOC_MAP_ROUGHNESS,
+        SHADER_LOC_MAP_OCCLUSION,
+        SHADER_LOC_MAP_EMISSION,
+        SHADER_LOC_MAP_HEIGHT,
+        SHADER_LOC_MAP_CUBEMAP,
+        SHADER_LOC_MAP_IRRADIANCE,
+        SHADER_LOC_MAP_PREFILTER,
+        SHADER_LOC_MAP_BRDF,
+
+        SHADER_LOC_MAP_DIFFUSE = SHADER_LOC_MAP_ALBEDO,
+        SHADER_LOC_MAP_SPECULAR = SHADER_LOC_MAP_METALNESS,
     }
 
     /// <summary>Shader uniform data type</summary>
     public enum ShaderUniformDataType
     {
-        UNIFORM_FLOAT = 0,
-        UNIFORM_VEC2,
-        UNIFORM_VEC3,
-        UNIFORM_VEC4,
-        UNIFORM_INT,
-        UNIFORM_IVEC2,
-        UNIFORM_IVEC3,
-        UNIFORM_IVEC4,
-        UNIFORM_SAMPLER2D
+        SHADER_UNIFORM_FLOAT = 0,
+        SHADER_UNIFORM_VEC2,
+        SHADER_UNIFORM_VEC3,
+        SHADER_UNIFORM_VEC4,
+        SHADER_UNIFORM_INT,
+        SHADER_UNIFORM_IVEC2,
+        SHADER_UNIFORM_IVEC3,
+        SHADER_UNIFORM_IVEC4,
+        SHADER_UNIFORM_SAMPLER2D
     }
 
     /// <summary>Pixel formats
     /// NOTE: Support depends on OpenGL version and platform</summary>
     public enum PixelFormat
     {
-        UNCOMPRESSED_GRAYSCALE = 1,     // 8 bit per pixel (no alpha)
-        UNCOMPRESSED_GRAY_ALPHA,        // 8*2 bpp (2 channels)
-        UNCOMPRESSED_R5G6B5,            // 16 bpp
-        UNCOMPRESSED_R8G8B8,            // 24 bpp
-        UNCOMPRESSED_R5G5B5A1,          // 16 bpp (1 bit alpha)
-        UNCOMPRESSED_R4G4B4A4,          // 16 bpp (4 bit alpha)
-        UNCOMPRESSED_R8G8B8A8,          // 32 bpp
-        UNCOMPRESSED_R32,               // 32 bpp (1 channel - float)
-        UNCOMPRESSED_R32G32B32,         // 32*3 bpp (3 channels - float)
-        UNCOMPRESSED_R32G32B32A32,      // 32*4 bpp (4 channels - float)
-        COMPRESSED_DXT1_RGB,            // 4 bpp (no alpha)
-        COMPRESSED_DXT1_RGBA,           // 4 bpp (1 bit alpha)
-        COMPRESSED_DXT3_RGBA,           // 8 bpp
-        COMPRESSED_DXT5_RGBA,           // 8 bpp
-        COMPRESSED_ETC1_RGB,            // 4 bpp
-        COMPRESSED_ETC2_RGB,            // 4 bpp
-        COMPRESSED_ETC2_EAC_RGBA,       // 8 bpp
-        COMPRESSED_PVRT_RGB,            // 4 bpp
-        COMPRESSED_PVRT_RGBA,           // 4 bpp
-        COMPRESSED_ASTC_4x4_RGBA,       // 8 bpp
-        COMPRESSED_ASTC_8x8_RGBA        // 2 bpp
+        PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1,     // 8 bit per pixel (no alpha)
+        PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,        // 8*2 bpp (2 channels)
+        PIXELFORMAT_UNCOMPRESSED_R5G6B5,            // 16 bpp
+        PIXELFORMAT_UNCOMPRESSED_R8G8B8,            // 24 bpp
+        PIXELFORMAT_UNCOMPRESSED_R5G5B5A1,          // 16 bpp (1 bit alpha)
+        PIXELFORMAT_UNCOMPRESSED_R4G4B4A4,          // 16 bpp (4 bit alpha)
+        PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,          // 32 bpp
+        PIXELFORMAT_UNCOMPRESSED_R32,               // 32 bpp (1 channel - float)
+        PIXELFORMAT_UNCOMPRESSED_R32G32B32,         // 32*3 bpp (3 channels - float)
+        PIXELFORMAT_UNCOMPRESSED_R32G32B32A32,      // 32*4 bpp (4 channels - float)
+        PIXELFORMAT_COMPRESSED_DXT1_RGB,            // 4 bpp (no alpha)
+        PIXELFORMAT_COMPRESSED_DXT1_RGBA,           // 4 bpp (1 bit alpha)
+        PIXELFORMAT_COMPRESSED_DXT3_RGBA,           // 8 bpp
+        PIXELFORMAT_COMPRESSED_DXT5_RGBA,           // 8 bpp
+        PIXELFORMAT_COMPRESSED_ETC1_RGB,            // 4 bpp
+        PIXELFORMAT_COMPRESSED_ETC2_RGB,            // 4 bpp
+        PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA,       // 8 bpp
+        PIXELFORMAT_COMPRESSED_PVRT_RGB,            // 4 bpp
+        PIXELFORMAT_COMPRESSED_PVRT_RGBA,           // 4 bpp
+        PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA,       // 8 bpp
+        PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA        // 2 bpp
     }
 
     /// <summary>Texture parameters: filter mode
@@ -729,21 +735,21 @@ namespace Raylib_cs
     /// NOTE 2: Filter is accordingly set for minification and magnification</summary>
     public enum TextureFilter
     {
-        FILTER_POINT = 0,               // No filter, just pixel aproximation
-        FILTER_BILINEAR,                // Linear filtering
-        FILTER_TRILINEAR,               // Trilinear filtering (linear with mipmaps)
-        FILTER_ANISOTROPIC_4X,          // Anisotropic filtering 4x
-        FILTER_ANISOTROPIC_8X,          // Anisotropic filtering 8x
-        FILTER_ANISOTROPIC_16X,         // Anisotropic filtering 16x
+        TEXTURE_FILTER_POINT = 0,               // No filter, just pixel aproximation
+        TEXTURE_FILTER_BILINEAR,                // Linear filtering
+        TEXTURE_FILTER_TRILINEAR,               // Trilinear filtering (linear with mipmaps)
+        TEXTURE_FILTER_ANISOTROPIC_4X,          // Anisotropic filtering 4x
+        TEXTURE_FILTER_ANISOTROPIC_8X,          // Anisotropic filtering 8x
+        TEXTURE_FILTER_ANISOTROPIC_16X,         // Anisotropic filtering 16x
     }
 
     /// <summary>Texture parameters: wrap mode</summary>
     public enum TextureWrap
     {
-        WRAP_REPEAT = 0,        // Repeats texture in tiled mode
-        WRAP_CLAMP,             // Clamps texture to edge pixel in tiled mode
-        WRAP_MIRROR_REPEAT,     // Mirrors and repeats the texture in tiled mode
-        WRAP_MIRROR_CLAMP       // Mirrors and clamps to border the texture in tiled mode
+        TEXTURE_WRAP_REPEAT = 0,        // Repeats texture in tiled mode
+        TEXTURE_WRAP_CLAMP,             // Clamps texture to edge pixel in tiled mode
+        TEXTURE_WRAP_MIRROR_REPEAT,     // Mirrors and repeats the texture in tiled mode
+        TEXTURE_WRAP_MIRROR_CLAMP       // Mirrors and clamps to border the texture in tiled mode
     }
 
     /// <summary>Cubemap layouts</summary>
@@ -773,7 +779,7 @@ namespace Raylib_cs
         BLEND_MULTIPLIED,       // Blend textures multiplying colors
         BLEND_ADD_COLORS,       // Blend textures adding colors (alternative)
         BLEND_SUBTRACT_COLORS,  // Blend textures subtracting colors (alternative)
-        BLEND_CUSTOM            // Belnd textures using custom src/dst factors (use SetBlendModeCustom())
+        BLEND_CUSTOM            // Belnd textures using custom src/dst factors (use rlSetBlendMode())
     }
 
     /// <summary>Gestures
