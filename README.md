@@ -16,7 +16,7 @@ Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0.
 
 ## Installation - NuGet
 
-This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues). 
+This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
 
 ```
 dotnet add package Raylib-cs --version 3.7.0
