@@ -36,6 +36,8 @@ namespace Raylib_cs.Tests
             Assert.True(BlittableHelper.IsBlittable<Sound>());
             Assert.True(BlittableHelper.IsBlittable<Music>());
             Assert.True(BlittableHelper.IsBlittable<VrDeviceInfo>());
+            Assert.True(BlittableHelper.IsBlittable<VrStereoConfig>());
+            Assert.True(BlittableHelper.IsBlittable<RenderBatch>());
         }
     }
 }
