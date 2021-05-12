@@ -239,11 +239,11 @@ namespace Raygui_cs
 
         // Set one style property
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GuiSetStyle(GuiControlStandard control, GuiControlProperty property, int value);
+        public static extern void GuiSetStyle(GuiControl control, GuiControlProperty property, int value);
 
         // Get one style property
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GuiGetStyle(GuiControlStandard control, GuiControlProperty property);
+        public static extern int GuiGetStyle(GuiControl control, GuiControlProperty property);
 
 
         // Container/separator controls, useful for controls organization
