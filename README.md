@@ -83,7 +83,7 @@ If you have any ideas, feel free to open an issue and tell me what you think.
 If you'd like to contribute, please fork the repository and make changes as
 you'd like. Pull requests are warmly welcome.
 
-If you want to [request features](https://github.com/raysan5/raylib/pulls) or [report bugs](https://github.com/raysan5/raylib/issues) related to the library (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
+If you want to request features or report bugs related to raylib directly (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
 
 ## License
 
