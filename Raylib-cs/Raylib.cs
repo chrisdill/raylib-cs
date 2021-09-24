@@ -1002,7 +1002,7 @@ namespace Raylib_cs
 
         /// <summary>Get specified monitor position</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector2 GetMonitorPosition();
+        public static extern Vector2 GetMonitorPosition(int monitor);
 
         /// <summary>Get primary monitor width</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
