@@ -1539,10 +1539,6 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetMouseWheelMove();
 
-        /// <summary>Returns mouse cursor</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern MouseCursor GetMouseCursor();
-
         /// <summary>Set mouse cursor</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetMouseCursor(MouseCursor cursor);
