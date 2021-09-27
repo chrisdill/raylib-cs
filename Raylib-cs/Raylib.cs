@@ -621,20 +621,12 @@ namespace Raylib_cs
     /// <summary>Gamepad axis</summary>
     public enum GamepadAxis
     {
-        // This is here just for error checking
-        GAMEPAD_AXIS_UNKNOWN = 0,
-
-        // Left stick
-        GAMEPAD_AXIS_LEFT_X,
-        GAMEPAD_AXIS_LEFT_Y,
-
-        // Right stick
-        GAMEPAD_AXIS_RIGHT_X,
-        GAMEPAD_AXIS_RIGHT_Y,
-
-        // Pressure levels for the back triggers
-        GAMEPAD_AXIS_LEFT_TRIGGER,      // [1..-1] (pressure-level)
-        GAMEPAD_AXIS_RIGHT_TRIGGER      // [1..-1] (pressure-level)
+        GAMEPAD_AXIS_LEFT_X        = 0,     // Gamepad left stick X axis
+        GAMEPAD_AXIS_LEFT_Y        = 1,     // Gamepad left stick Y axis
+        GAMEPAD_AXIS_RIGHT_X       = 2,     // Gamepad right stick X axis
+        GAMEPAD_AXIS_RIGHT_Y       = 3,     // Gamepad right stick Y axis
+        GAMEPAD_AXIS_LEFT_TRIGGER  = 4,     // Gamepad back trigger left, pressure level: [1..-1]
+        GAMEPAD_AXIS_RIGHT_TRIGGER = 5      // Gamepad back trigger right, pressure level: [1..-1]
     }
 
     /// <summary>Material map index</summary>
