@@ -59,20 +59,32 @@ jobs:
         with:
           args: unzip -qq raylib-${{steps.get-tag.outputs.info}}_win64_mingw-w64.zip -d raylib-win64
 
-      - name: output zip dir
-        run: "ls -la raylib-win64"
-
       - name: copy win-x64
         uses: canastro/copy-file-action@master
         with:
           source: "raylib-win64/raylib-${{steps.get-tag.outputs.info}}_win64_mingw-w64/lib/raylib.dll"
           target: "Raylib-cs/runtimes/win-x64/native/raylib.dll"
 
+      - name: extract linux-x64
+        run: tar -xvf raylib-${{steps.get-tag.outputs.info}}_linux_amd64.tar.gz -C raylib-linux64
+
+      - name: output zip dir
+        run: "ls -la raylib-linux64"
+
+      - name: copy win-x64
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-linux/raylib-${{steps.get-tag.outputs.info}}_linux_amd64/lib/raylib.so.${{steps.get-tag.outputs.info}}"
+          target: "Raylib-cs/runtimes/linux-x64/native/raylib.so"
+
+
       - name: output directory
         run: "ls -la ."
 
       - name: output native lib directory
-        run: "ls -la Raylib-cs/runtimes/win-x64/native/"
+        run: "ls -la Raylib-cs/runtimes/linux-x64/native/"
+
+
 
 
 
