@@ -39,19 +39,19 @@ jobs:
 
       - id: get-tag
         name: Get Target Raylib Version
-        uses: QwerMike/xpath-action@v1
+        uses: mavrosxristoforos/get-xml-info@1.0
         with:
-          filename: "./app.config"
-          expression: "string(//appSettings/add[@key='raylib-release-tag']/@value)"
+          xml-file: "./Raylib-cs/Raylib-cs.csproj"
+          xpath: "//TargetRaylibTag"
 
       - name: echo tag
-        run: echo ${{ steps.get-tag.outputs.results }}
+        run: echo ${{ steps.get-tag.outputs.info }}
 
       - name: Download raylib Release
         uses: robinraju/release-downloader@v1.2
         with:
           repository: "raysan5/raylib"
-          tag: ${{ steps.get-tag.outputs.results }}
+          tag: ${{ steps.get-tag.outputs.info }}
           fileName: "*"
 
       - name: output directory
