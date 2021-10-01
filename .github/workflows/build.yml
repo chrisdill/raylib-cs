@@ -34,12 +34,15 @@ jobs:
       - name: ls repo
         run: "ls -la ."
 
+      - name: cat app.config
+        run: "cat ./app.config"
+
       - id: get-tag
         name: Get Target Raylib Version
         uses: QwerMike/xpath-action@v1
         with:
           filename: "./app.config"
-          expression: "//appSettings/add[@key='raylib-release-tag']/@value"
+          expression: "string(//appSettings/add[@key='raylib-release-tag']/@value)"
 
       - name: echo tag
         run: echo ${{ steps.get-tag.outputs.results }}
