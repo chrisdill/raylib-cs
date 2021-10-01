@@ -23,3 +23,27 @@ jobs:
         run: dotnet build -c Release
       - name: Test project
         run: dotnet test
+  publish:
+    name: Build Release Package
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download Repo
+        uses: actions/checkout@v2
+        
+      - name: Get Target Raylib Version
+          id: get-tag
+        uses: QwerMike/xpath-action@v1
+        with:
+          filename: "app.config"
+          expression: "//appSettings/add[@key='raylib-release-tag']/@value"
+
+      - name: Download raylib Release
+        uses: robinraju/release-downloader@v1.2
+        with:
+          repository: "raysan5/raylib"
+          tag: steps.get-tag.outputs.results
+          fileName: "*"
+      - name: output directory
+         run: "ls -la ."
+
