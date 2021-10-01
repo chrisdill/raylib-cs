@@ -38,6 +38,9 @@ jobs:
           filename: "app.config"
           expression: "//appSettings/add[@key='raylib-release-tag']/@value"
 
+      - name: echo tag
+        run: echo ${{ steps.get-tag.outputs.results }}
+
       - name: Download raylib Release
         uses: robinraju/release-downloader@v1.2
         with:
