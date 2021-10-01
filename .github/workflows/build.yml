@@ -71,10 +71,10 @@ jobs:
       - name: output zip dir
         run: "ls -la raylib-linux64"
 
-      - name: copy win-x64
+      - name: copy linux-x64
         uses: canastro/copy-file-action@master
         with:
-          source: "raylib-linux/raylib-${{steps.get-tag.outputs.info}}_linux_amd64/lib/raylib.so.${{steps.get-tag.outputs.info}}"
+          source: "raylib-linux64/raylib-${{steps.get-tag.outputs.info}}_linux_amd64/lib/raylib.so.${{steps.get-tag.outputs.info}}"
           target: "Raylib-cs/runtimes/linux-x64/native/raylib.so"
 
 
