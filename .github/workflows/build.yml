@@ -65,7 +65,7 @@ jobs:
       - name: copy win-x64
         uses: canastro/copy-file-action@master
         with:
-          source: "raylib-win64/lib/raylib.dll"
+          source: "raylib-win64/raylib-${{steps.get-tag.outputs.info}}_win64_mingw-w64/lib/raylib.dll"
           target: "Raylib-cs/runtimes/win-x64/native/raylib.dll"
 
       - name: output directory
