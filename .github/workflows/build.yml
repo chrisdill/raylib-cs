@@ -31,6 +31,9 @@ jobs:
       - name: Download Repo
         uses: actions/checkout@v2
         
+      - name: ls repo
+        run: "ls -la ."
+
       - id: get-tag
         name: Get Target Raylib Version
         uses: QwerMike/xpath-action@v1
