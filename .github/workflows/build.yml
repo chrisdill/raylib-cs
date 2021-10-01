@@ -31,8 +31,8 @@ jobs:
       - name: Download Repo
         uses: actions/checkout@v2
         
-      - name: Get Target Raylib Version
-          id: get-tag
+      - id: get-tag
+        name: Get Target Raylib Version
         uses: QwerMike/xpath-action@v1
         with:
           filename: "app.config"
@@ -42,8 +42,9 @@ jobs:
         uses: robinraju/release-downloader@v1.2
         with:
           repository: "raysan5/raylib"
-          tag: steps.get-tag.outputs.results
+          tag: ${{ steps.get-tag.outputs.results }}
           fileName: "*"
+
       - name: output directory
          run: "ls -la ."
 
