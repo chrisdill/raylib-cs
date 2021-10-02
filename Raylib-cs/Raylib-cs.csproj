@@ -7,9 +7,11 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>$(NoWarn);1591</NoWarn>
+
   </PropertyGroup>
 
   <PropertyGroup>
+  	<TargetRaylibTag>3.7.0</TargetRaylibTag>
     <Version>3.7.0</Version>
     <PackageVersion>3.7.0</PackageVersion>
     <Authors>Chris Dill, Raysan5 &amp; Others</Authors>

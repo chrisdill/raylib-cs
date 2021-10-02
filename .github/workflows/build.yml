@@ -3,7 +3,7 @@ on:
   push:
     branches: master
   pull_request:
-    branches: master
+    branches: '*'
   workflow_dispatch:
 
 jobs:
@@ -23,3 +23,89 @@ jobs:
         run: dotnet build -c Release
       - name: Test project
         run: dotnet test
+  publish:
+    name: Build Release Package
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download Repo
+        uses: actions/checkout@v2
+
+      - id: get-tag
+        name: Get Target Raylib Version
+        uses: mavrosxristoforos/get-xml-info@1.0
+        with:
+          xml-file: "./Raylib-cs/Raylib-cs.csproj"
+          xpath: "//TargetRaylibTag"
+
+      - name: echo tag
+        run: echo ${{ steps.get-tag.outputs.info }}
+
+      - name: Download raylib Release
+        uses: robinraju/release-downloader@v1.2
+        with:
+          repository: "raysan5/raylib"
+          tag: ${{ steps.get-tag.outputs.info }}
+          fileName: "*"
+
+      - name: extract win-x64
+        uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq raylib-${{steps.get-tag.outputs.info}}_win64_msvc16.zip -d raylib-win64
+
+      - name: copy win-x64
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-win64/raylib-${{steps.get-tag.outputs.info}}_win64_msvc16/lib/raylib.dll"
+          target: "Raylib-cs/runtimes/win-x64/native/raylib.dll"
+
+      - name: extract win-x86
+        uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq raylib-${{steps.get-tag.outputs.info}}_win32_msvc16.zip -d raylib-win86
+
+      - name: copy win-x86
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-win86/raylib-${{steps.get-tag.outputs.info}}_win32_msvc16/lib/raylib.dll"
+          target: "Raylib-cs/runtimes/win-x86/native/raylib.dll"
+
+      - name: extract linux-x64
+        run: mkdir -p raylib-linux64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_linux_amd64.tar.gz -C raylib-linux64
+
+      - name: copy linux-x64
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-linux64/raylib-${{steps.get-tag.outputs.info}}_linux_amd64/lib/libraylib.so.${{steps.get-tag.outputs.info}}"
+          target: "Raylib-cs/runtimes/linux-x64/native/libraylib.so"
+
+      - name: extract osx-x64
+        run: mkdir -p raylib-osx64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_macos.tar.gz -C raylib-osx64
+
+      - name: copy osx-x64
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-osx64/raylib-${{steps.get-tag.outputs.info}}_macos/lib/libraylib.dylib"
+          target: "Raylib-cs/runtimes/osx-x64/native/libraylib.dylib"
+
+      - id: get-nuget-version
+        name: Get NuGet Package Version
+        uses: mavrosxristoforos/get-xml-info@1.0
+        with:
+          xml-file: "./Raylib-cs/Raylib-cs.csproj"
+          xpath: "//PackageVersion"
+
+      - name: Create NuGet Package
+        run:  dotnet pack -c Release
+
+      - name: Upload NuGet Package As Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Raylib-cs.${{steps.get-nuget-version.outputs.info}}.nupkg
+          path: Raylib-cs/bin/Release/Raylib-cs.${{steps.get-nuget-version.outputs.info}}.nupkg
+
+      - name: Upload NuGet Package As Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with: 
+          files: Raylib-cs/bin/Release/Raylib-cs.${{steps.get-nuget-version.outputs.info}}.nupkg

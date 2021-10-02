@@ -1298,7 +1298,7 @@ namespace Raylib_cs
         MATERIAL_MAP_OCCLUSION,
         MATERIAL_MAP_EMISSION,
         MATERIAL_MAP_HEIGHT,
-
+        MATERIAL_MAP_BRDF,
         /// <summary>
         /// NOTE: Uses GL_TEXTURE_CUBE_MAP
         /// </summary>
@@ -1313,7 +1313,6 @@ namespace Raylib_cs
         /// NOTE: Uses GL_TEXTURE_CUBE_MAP
         /// </summary>
         MATERIAL_MAP_PREFILTER,           
-        MATERIAL_MAP_BRDF,
 
         MATERIAL_MAP_DIFFUSE = MATERIAL_MAP_ALBEDO,
         MATERIAL_MAP_SPECULAR = MATERIAL_MAP_METALNESS,
@@ -1555,32 +1554,32 @@ namespace Raylib_cs
         /// <summary>
         /// Automatically detect layout type
         /// </summary>
-        CUBEMAP_AUTO_DETECT = 0,        
+        CUBEMAP_LAYOUT_AUTO_DETECT = 0,        
 
         /// <summary>
         /// Layout is defined by a vertical line with faces
         /// </summary>
-        CUBEMAP_LINE_VERTICAL,          
+        CUBEMAP_LAYOUT_LINE_VERTICAL,          
 
         /// <summary>
         /// Layout is defined by an horizontal line with faces
         /// </summary>
-        CUBEMAP_LINE_HORIZONTAL,        
+        CUBEMAP_LAYOUT_LINE_HORIZONTAL,        
 
         /// <summary>
         /// Layout is defined by a 3x4 cross with cubemap faces
         /// </summary>
-        CUBEMAP_CROSS_THREE_BY_FOUR,    
+        CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR,    
 
         /// <summary>
         /// Layout is defined by a 4x3 cross with cubemap faces
         /// </summary>
-        CUBEMAP_CROSS_FOUR_BY_THREE,    
+        CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE,    
 
         /// <summary>
         /// Layout is defined by a panorama image (equirectangular map)
         /// </summary>
-        CUBEMAP_PANORAMA                
+        CUBEMAP_LAYOUT_PANORAMA                
     }
 
     /// <summary>Font type, defines generation method</summary>
@@ -2440,7 +2439,7 @@ namespace Raylib_cs
 
         /// <summary>Get latest detected gesture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetGestureDetected();
+        public static extern Gestures GetGestureDetected();
 
         /// <summary>Get touch points count</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
