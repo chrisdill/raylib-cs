@@ -5,7 +5,9 @@ using System.Security;
 
 namespace Raylib_cs
 {
-    /// <summary>Color type, RGBA (32bit)</summary>
+    /// <summary>
+    /// Color type, RGBA (32bit)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Color
     {
@@ -65,7 +67,9 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Rectangle type</summary>
+    /// <summary>
+    /// Rectangle type
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Rectangle
     {
@@ -83,83 +87,232 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Image type, bpp always RGBA (32bit)
-    /// NOTE: Data stored in CPU memory (RAM)</summary>
+    /// <summary>
+    /// Image type, bpp always RGBA (32bit)
+    /// <br/>
+    /// NOTE: Data stored in CPU memory (RAM)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Image
     {
-        public IntPtr data;        // Image raw data (void *)
-        public int width;          // Image base width
-        public int height;         // Image base height
-        public int mipmaps;        // Mipmap levels, 1 by default
-        public PixelFormat format; // Data format (PixelFormat type)
+        /// <summary>
+        /// Image raw data (void *)
+        /// </summary>
+        public IntPtr data;      
+        
+        /// <summary>
+        /// Image base width
+        /// </summary>
+        public int width;   
+        
+        /// <summary>
+        /// Image base height
+        /// </summary>
+        public int height;        
+        
+        /// <summary>
+        /// Mipmap levels, 1 by default
+        /// </summary>
+        public int mipmaps;       
+        
+        /// <summary>
+        /// Data format (PixelFormat type)
+        /// </summary>
+        public PixelFormat format; 
     }
 
-    /// <summary>Texture2D type
-    /// NOTE: Data stored in GPU memory</summary>
+    /// <summary>
+    /// Texture2D type
+    /// <br />
+    /// NOTE: Data stored in GPU memory
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Texture2D
     {
-        public uint id;            // OpenGL texture id
-        public int width;          // Texture base width
-        public int height;         // Texture base height
-        public int mipmaps;        // Mipmap levels, 1 by default
-        public PixelFormat format; // Data format (PixelFormat type)
+        /// <summary>
+        /// OpenGL texture id
+        /// </summary>
+        public uint id;            
+        
+        /// <summary>
+        /// Texture base width
+        /// </summary>
+        public int width;          
+        
+        /// <summary>
+        /// Texture base height
+        /// </summary>
+        public int height;     
+        
+        /// <summary>
+        /// Mipmap levels, 1 by default
+        /// </summary>
+        public int mipmaps;        
+        
+        /// <summary>
+        /// Data format (PixelFormat type)
+        /// </summary>
+        public PixelFormat format; 
     }
 
-    /// <summary>RenderTexture2D type, for texture rendering</summary>
+    /// <summary>
+    /// RenderTexture2D type, for texture rendering
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct RenderTexture2D
     {
-        public uint id;                  // OpenGL Framebuffer Object (FBO) id
-        public Texture2D texture;        // Color buffer attachment texture
-        public Texture2D depth;          // Depth buffer attachment texture
+        /// <summary>
+        /// OpenGL Framebuffer Object (FBO) id
+        /// </summary>
+        public uint id;                  
+        
+        /// <summary>
+        ///  Color buffer attachment texture
+        /// </summary>
+        public Texture2D texture;       
+        
+        /// <summary>
+        /// Depth buffer attachment texture
+        /// </summary>
+        public Texture2D depth;         
     }
 
-    /// <summary>N-Patch layout info</summary>
+    /// <summary>
+    /// N-Patch layout info
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NPatchInfo
     {
-        public Rectangle sourceRec;        // Region in the texture
-        public int left;                   // left border offset
-        public int top;                    // top border offset
-        public int right;                  // right border offset
-        public int bottom;                 // bottom border offset
-        public NPatchLayout layout;        // layout of the n-patch: 3x3, 1x3 or 3x1
+        /// <summary>
+        /// Region in the texture
+        /// </summary>
+        public Rectangle sourceRec;        
+        
+        /// <summary>
+        /// left border offset
+        /// </summary>
+        public int left;                   
+        
+        /// <summary>
+        /// top border offset
+        /// </summary>
+        public int top;                    
+        
+        /// <summary>
+        /// right border offset
+        /// </summary>
+        public int right;
+
+        /// <summary>
+        /// bottom border offset
+        /// </summary>
+        public int bottom;
+        
+        /// <summary>
+        /// layout of the n-patch: 3x3, 1x3 or 3x1
+        /// </summary>
+        public NPatchLayout layout;        
     }
 
-    /// <summary>Font character info</summary>
+    /// <summary>
+    /// Font character info
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CharInfo
     {
-        public int value;                  // Character value (Unicode)
-        public int offsetX;                // Character offset X when drawing
-        public int offsetY;                // Character offset Y when drawing
-        public int advanceX;               // Character advance position X
-        public Image image;                // Character image data
+        /// <summary>
+        /// Character value (Unicode)
+        /// </summary>
+        public int value;
+        
+        /// <summary>
+        /// Character offset X when drawing
+        /// </summary>
+        public int offsetX;                
+        
+        /// <summary>
+        /// Character offset Y when drawing
+        /// </summary>
+        public int offsetY;                 
+        
+        /// <summary>
+        /// Character advance position X
+        /// </summary>
+        public int advanceX;               
+        
+        /// <summary>
+        /// Character image data
+        /// </summary>
+        public Image image;                
     }
 
-    /// <summary>Font type, includes texture and charSet array data</summary>
+    /// <summary>
+    /// Font type, includes texture and charSet array data
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Font
     {
-        public int baseSize;             // Base size (default chars height)
-        public int charsCount;           // Number of characters
-        public int charsPadding;         // Padding around the chars
-        public Texture2D texture;        // Characters texture atals
-        public IntPtr recs;              // Characters rectangles in texture (Rectangle *)
-        public IntPtr chars;             // Characters info data (CharInfo *)
+        /// <summary>
+        /// Base size (default chars height)
+        /// </summary>
+        public int baseSize;    
+        
+        /// <summary>
+        /// Number of characters
+        /// </summary>
+        public int charsCount;           
+        
+        /// <summary>
+        /// Padding around the chars
+        /// </summary>
+        public int charsPadding;    
+        
+        /// <summary>
+        /// Characters texture atals
+        /// </summary>
+        public Texture2D texture;        
+        
+        /// <summary>
+        /// Characters rectangles in texture (Rectangle *)
+        /// </summary>
+        public IntPtr recs;             
+        
+        /// <summary>
+        /// Characters info data (CharInfo *)
+        /// </summary>
+        public IntPtr chars;            
     }
 
-    /// <summary>Camera type, defines a camera position/orientation in 3d space</summary>
+    /// <summary>
+    /// Camera type, defines a camera position/orientation in 3d space
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera3D
     {
-        public Vector3 position;              // Camera position
-        public Vector3 target;                // Camera target it looks-at
-        public Vector3 up;                    // Camera up vector (rotation over its axis)
-        public float fovy;                    // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-        public CameraProjection projection;   // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        /// <summary>
+        /// Camera position
+        /// </summary>
+        public Vector3 position;              
+        
+        /// <summary>
+        /// Camera target it looks-at
+        /// </summary>
+        public Vector3 target;                
+        
+        /// <summary>
+        /// Camera up vector (rotation over its axis)
+        /// </summary>
+        public Vector3 up;                    
+        
+        /// <summary>
+        /// Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        /// </summary>
+        public float fovy;                    
+        
+        /// <summary>
+        /// Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        /// </summary>
+        public CameraProjection projection;   
 
         public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy, CameraProjection projection)
         {
@@ -175,10 +328,25 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera2D
     {
-        public Vector2 offset;        // Camera offset (displacement from target)
-        public Vector2 target;        // Camera target (rotation and zoom origin)
-        public float rotation;        // Camera rotation in degrees
-        public float zoom;            // Camera zoom (scaling), should be 1.0f by default
+        /// <summary>
+        /// Camera offset (displacement from target)
+        /// </summary>
+        public Vector2 offset;        
+        
+        /// <summary>
+        /// Camera target (rotation and zoom origin)
+        /// </summary>
+        public Vector2 target;        
+        
+        /// <summary>
+        ///  Camera rotation in degrees
+        /// </summary>
+        public float rotation;        
+        
+        /// <summary>
+        /// Camera zoom (scaling), should be 1.0f by default
+        /// </summary>
+        public float zoom;            
 
         public Camera2D(Vector2 offset, Vector2 target, float rotation, float zoom)
         {
@@ -189,70 +357,187 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Vertex data definning a mesh
-    /// NOTE: Data stored in CPU memory (and GPU)</summary>
+    /// <summary>
+    /// Vertex data definning a mesh
+    /// NOTE: Data stored in CPU memory (and GPU)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Mesh
     {
-        public int vertexCount;                    // Number of vertices stored in arrays
-        public int triangleCount;                  // Number of triangles stored (indexed or not)
+        /// <summary>
+        ///  Number of vertices stored in arrays
+        /// </summary>
+        public int vertexCount;                    
+        
+        /// <summary>
+        /// Number of triangles stored (indexed or not)
+        /// </summary>
+        public int triangleCount;                  
 
-        // Default vertex data
-        public IntPtr vertices;                    // Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
-        public IntPtr texcoords;                   // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
-        public IntPtr texcoords2;                  // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5, float *)
-        public IntPtr normals;                     // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2, float *)
-        public IntPtr tangents;                    // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4, float *)
-        public IntPtr colors;                      // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3,  unsigned char *)
-        public IntPtr indices;                     // Vertex indices (in case vertex data comes indexed, unsigned short *)
+#region Default vertex data
+        
+        /// <summary>
+        /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
+        /// </summary>
+        public IntPtr vertices;                    
+        
+        /// <summary>
+        /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
+        /// </summary>
+        public IntPtr texcoords;                   
+        
+        /// <summary>
+        /// Vertex second texture coordinates (useful for lightmaps) (shader-location = 5, float *)
+        /// </summary>
+        public IntPtr texcoords2;                  
+        
+        /// <summary>
+        /// Vertex normals (XYZ - 3 components per vertex) (shader-location = 2, float *)
+        /// </summary>
+        public IntPtr normals;                   
+        
+        /// <summary>
+        /// Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4, float *)
+        /// </summary>
+        public IntPtr tangents;         
+        
+        /// <summary>
+        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3,  unsigned char *)
+        /// </summary>
+        public IntPtr colors;                      
+        
+        /// <summary>
+        /// Vertex indices (in case vertex data comes indexed, unsigned short *)
+        /// </summary>
+        public IntPtr indices;                     
+        
+#endregion
+        
+#region Animation vertex data
 
-        // Animation vertex data
-        public IntPtr animVertices;                // Animated vertex positions (after bones transformations, float *)
-        public IntPtr animNormals;                 // Animated normals (after bones transformations, float *)
-        public IntPtr boneIds;                     // Vertex bone ids, up to 4 bones influence by vertex (skinning, int *)
-        public IntPtr boneWeights;                 // Vertex bone weight, up to 4 bones influence by vertex (skinning, float *)
+        /// <summary>
+        /// Animated vertex positions (after bones transformations, float *)
+        /// </summary>
+        public IntPtr animVertices;                
 
-        // OpenGL identifiers
-        public uint vaoId;                         // OpenGL Vertex Array Object id
-        public IntPtr vboId;                       // OpenGL Vertex Buffer Objects id (default vertex data, uint[])
+        /// <summary>
+        /// Animated normals (after bones transformations, float *)
+        /// </summary>
+        public IntPtr animNormals;                 
+        
+        /// <summary>
+        /// Vertex bone ids, up to 4 bones influence by vertex (skinning, int *)
+        /// </summary>
+        public IntPtr boneIds;                     
+        
+        /// <summary>
+        /// Vertex bone weight, up to 4 bones influence by vertex (skinning, float *)
+        /// </summary>
+        public IntPtr boneWeights;                 
+        
+#endregion
+
+#region OpenGL identifiers
+
+        /// <summary>
+        /// OpenGL Vertex Array Object id
+        /// </summary>
+        public uint vaoId;                         
+        
+        /// <summary>
+        /// OpenGL Vertex Buffer Objects id (default vertex data, uint[])
+        /// </summary>
+        public IntPtr vboId;                       
+        
+#endregion
     }
 
-    /// <summary>Shader type (generic)</summary>
+    /// <summary>
+    /// Shader type (generic)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Shader
     {
-        public uint id;            // Shader program id
-        public IntPtr locs;        // Shader locations array (MAX_SHADER_LOCATIONS,  int *)
+        /// <summary>
+        /// Shader program id
+        /// </summary>
+        public uint id;            
+        
+        /// <summary>
+        /// Shader locations array (MAX_SHADER_LOCATIONS,  int *)
+        /// </summary>
+        public IntPtr locs;        
     }
 
-    /// <summary>Material texture map</summary>
+    /// <summary>
+    /// Material texture map
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MaterialMap
     {
-        public Texture2D texture;        // Material map texture
-        public Color color;              // Material map color
-        public float value;              // Material map value
+        /// <summary>
+        /// Material map texture
+        /// </summary>
+        public Texture2D texture;        
+        
+        /// <summary>
+        /// Material map color
+        /// </summary>
+        public Color color;           
+        
+        /// <summary>
+        /// Material map value
+        /// </summary>
+        public float value;              
     }
 
-    /// <summary>Material type (generic)</summary>
+    /// <summary>
+    /// Material type (generic)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Material
     {
-        public Shader shader;             // Material shader
-        public IntPtr maps;               // Material maps (MaterialMap *)
-        public IntPtr param;              // Material generic parameters (if required, float *)
+        /// <summary>
+        /// Material shader
+        /// </summary>
+        public Shader shader;             
+        
+        /// <summary>
+        /// Material maps (MaterialMap *)
+        /// </summary>
+        public IntPtr maps; 
+        
+        /// <summary>
+        /// Material generic parameters (if required, float *)
+        /// </summary>
+        public IntPtr param;              
     }
 
-    /// <summary>Transformation properties</summary>
+    /// <summary>
+    /// Transformation properties
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Transform
     {
-        public Vector3 translation;        // Translation
-        public Vector4 rotation;           // Rotation
-        public Vector3 scale;              // Scale
+        /// <summary>
+        /// Translation
+        /// </summary>
+        public Vector3 translation;        
+        
+        /// <summary>
+        /// Rotation
+        /// </summary>
+        public Vector4 rotation;           
+        
+        /// <summary>
+        /// Scale
+        /// </summary>
+        public Vector3 scale;              
     }
 
-    /// <summary>Bone information</summary>
+    /// <summary>
+    /// Bone information
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BoneInfo
     {
