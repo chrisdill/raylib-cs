@@ -106,7 +106,8 @@ jobs:
       - name: output native lib directory
         run: "ls -la Raylib-cs/runtimes/linux-x64/native/"
 
-
-
-
-
+      - name: 'Upload runtimes'
+        uses: actions/upload-artifact@v2
+        with:
+          name: runtimes
+          path: Raylib-cs/runtimes
