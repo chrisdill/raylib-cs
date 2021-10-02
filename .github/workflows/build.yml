@@ -57,13 +57,24 @@ jobs:
       - name: extract win-x64
         uses: montudor/action-zip@v1
         with:
-          args: unzip -qq raylib-${{steps.get-tag.outputs.info}}_win64_mingw-w64.zip -d raylib-win64
+          args: unzip -qq raylib-${{steps.get-tag.outputs.info}}_win64_msvc16.zip -d raylib-win64
 
       - name: copy win-x64
         uses: canastro/copy-file-action@master
         with:
-          source: "raylib-win64/raylib-${{steps.get-tag.outputs.info}}_win64_mingw-w64/lib/raylib.dll"
+          source: "raylib-win64/raylib-${{steps.get-tag.outputs.info}}_win64_msvc16/lib/raylib.dll"
           target: "Raylib-cs/runtimes/win-x64/native/raylib.dll"
+
+      - name: extract win-x86
+        uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq raylib-${{steps.get-tag.outputs.info}}_win32_msvc16.zip -d raylib-win86
+
+      - name: copy win-x86
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-win86/raylib-${{steps.get-tag.outputs.info}}_win32_msvc16/lib/raylib.dll"
+          target: "Raylib-cs/runtimes/win-x86/native/raylib.dll"
 
       - name: extract linux-x64
         run: mkdir -p raylib-linux64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_linux_amd64.tar.gz -C raylib-linux64
