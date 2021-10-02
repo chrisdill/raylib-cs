@@ -5,7 +5,9 @@ using System.Security;
 
 namespace Raylib_cs
 {
-    /// <summary>Color type, RGBA (32bit)</summary>
+    /// <summary>
+    /// Color type, RGBA (32bit)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Color
     {
@@ -65,7 +67,9 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Rectangle type</summary>
+    /// <summary>
+    /// Rectangle type
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Rectangle
     {
@@ -83,83 +87,232 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Image type, bpp always RGBA (32bit)
-    /// NOTE: Data stored in CPU memory (RAM)</summary>
+    /// <summary>
+    /// Image type, bpp always RGBA (32bit)
+    /// <br/>
+    /// NOTE: Data stored in CPU memory (RAM)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Image
     {
-        public IntPtr data;        // Image raw data (void *)
-        public int width;          // Image base width
-        public int height;         // Image base height
-        public int mipmaps;        // Mipmap levels, 1 by default
-        public PixelFormat format; // Data format (PixelFormat type)
+        /// <summary>
+        /// Image raw data (void *)
+        /// </summary>
+        public IntPtr data;      
+        
+        /// <summary>
+        /// Image base width
+        /// </summary>
+        public int width;   
+        
+        /// <summary>
+        /// Image base height
+        /// </summary>
+        public int height;        
+        
+        /// <summary>
+        /// Mipmap levels, 1 by default
+        /// </summary>
+        public int mipmaps;       
+        
+        /// <summary>
+        /// Data format (PixelFormat type)
+        /// </summary>
+        public PixelFormat format; 
     }
 
-    /// <summary>Texture2D type
-    /// NOTE: Data stored in GPU memory</summary>
+    /// <summary>
+    /// Texture2D type
+    /// <br />
+    /// NOTE: Data stored in GPU memory
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Texture2D
     {
-        public uint id;            // OpenGL texture id
-        public int width;          // Texture base width
-        public int height;         // Texture base height
-        public int mipmaps;        // Mipmap levels, 1 by default
-        public PixelFormat format; // Data format (PixelFormat type)
+        /// <summary>
+        /// OpenGL texture id
+        /// </summary>
+        public uint id;            
+        
+        /// <summary>
+        /// Texture base width
+        /// </summary>
+        public int width;          
+        
+        /// <summary>
+        /// Texture base height
+        /// </summary>
+        public int height;     
+        
+        /// <summary>
+        /// Mipmap levels, 1 by default
+        /// </summary>
+        public int mipmaps;        
+        
+        /// <summary>
+        /// Data format (PixelFormat type)
+        /// </summary>
+        public PixelFormat format; 
     }
 
-    /// <summary>RenderTexture2D type, for texture rendering</summary>
+    /// <summary>
+    /// RenderTexture2D type, for texture rendering
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct RenderTexture2D
     {
-        public uint id;                  // OpenGL Framebuffer Object (FBO) id
-        public Texture2D texture;        // Color buffer attachment texture
-        public Texture2D depth;          // Depth buffer attachment texture
+        /// <summary>
+        /// OpenGL Framebuffer Object (FBO) id
+        /// </summary>
+        public uint id;                  
+        
+        /// <summary>
+        ///  Color buffer attachment texture
+        /// </summary>
+        public Texture2D texture;       
+        
+        /// <summary>
+        /// Depth buffer attachment texture
+        /// </summary>
+        public Texture2D depth;         
     }
 
-    /// <summary>N-Patch layout info</summary>
+    /// <summary>
+    /// N-Patch layout info
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NPatchInfo
     {
-        public Rectangle sourceRec;        // Region in the texture
-        public int left;                   // left border offset
-        public int top;                    // top border offset
-        public int right;                  // right border offset
-        public int bottom;                 // bottom border offset
-        public NPatchLayout layout;        // layout of the n-patch: 3x3, 1x3 or 3x1
+        /// <summary>
+        /// Region in the texture
+        /// </summary>
+        public Rectangle sourceRec;        
+        
+        /// <summary>
+        /// left border offset
+        /// </summary>
+        public int left;                   
+        
+        /// <summary>
+        /// top border offset
+        /// </summary>
+        public int top;                    
+        
+        /// <summary>
+        /// right border offset
+        /// </summary>
+        public int right;
+
+        /// <summary>
+        /// bottom border offset
+        /// </summary>
+        public int bottom;
+        
+        /// <summary>
+        /// layout of the n-patch: 3x3, 1x3 or 3x1
+        /// </summary>
+        public NPatchLayout layout;        
     }
 
-    /// <summary>Font character info</summary>
+    /// <summary>
+    /// Font character info
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CharInfo
     {
-        public int value;                  // Character value (Unicode)
-        public int offsetX;                // Character offset X when drawing
-        public int offsetY;                // Character offset Y when drawing
-        public int advanceX;               // Character advance position X
-        public Image image;                // Character image data
+        /// <summary>
+        /// Character value (Unicode)
+        /// </summary>
+        public int value;
+        
+        /// <summary>
+        /// Character offset X when drawing
+        /// </summary>
+        public int offsetX;                
+        
+        /// <summary>
+        /// Character offset Y when drawing
+        /// </summary>
+        public int offsetY;                 
+        
+        /// <summary>
+        /// Character advance position X
+        /// </summary>
+        public int advanceX;               
+        
+        /// <summary>
+        /// Character image data
+        /// </summary>
+        public Image image;                
     }
 
-    /// <summary>Font type, includes texture and charSet array data</summary>
+    /// <summary>
+    /// Font type, includes texture and charSet array data
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Font
     {
-        public int baseSize;             // Base size (default chars height)
-        public int charsCount;           // Number of characters
-        public int charsPadding;         // Padding around the chars
-        public Texture2D texture;        // Characters texture atals
-        public IntPtr recs;              // Characters rectangles in texture (Rectangle *)
-        public IntPtr chars;             // Characters info data (CharInfo *)
+        /// <summary>
+        /// Base size (default chars height)
+        /// </summary>
+        public int baseSize;    
+        
+        /// <summary>
+        /// Number of characters
+        /// </summary>
+        public int charsCount;           
+        
+        /// <summary>
+        /// Padding around the chars
+        /// </summary>
+        public int charsPadding;    
+        
+        /// <summary>
+        /// Characters texture atals
+        /// </summary>
+        public Texture2D texture;        
+        
+        /// <summary>
+        /// Characters rectangles in texture (Rectangle *)
+        /// </summary>
+        public IntPtr recs;             
+        
+        /// <summary>
+        /// Characters info data (CharInfo *)
+        /// </summary>
+        public IntPtr chars;            
     }
 
-    /// <summary>Camera type, defines a camera position/orientation in 3d space</summary>
+    /// <summary>
+    /// Camera type, defines a camera position/orientation in 3d space
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera3D
     {
-        public Vector3 position;              // Camera position
-        public Vector3 target;                // Camera target it looks-at
-        public Vector3 up;                    // Camera up vector (rotation over its axis)
-        public float fovy;                    // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-        public CameraProjection projection;   // Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        /// <summary>
+        /// Camera position
+        /// </summary>
+        public Vector3 position;              
+        
+        /// <summary>
+        /// Camera target it looks-at
+        /// </summary>
+        public Vector3 target;                
+        
+        /// <summary>
+        /// Camera up vector (rotation over its axis)
+        /// </summary>
+        public Vector3 up;                    
+        
+        /// <summary>
+        /// Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        /// </summary>
+        public float fovy;                    
+        
+        /// <summary>
+        /// Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        /// </summary>
+        public CameraProjection projection;   
 
         public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy, CameraProjection projection)
         {
@@ -175,10 +328,25 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera2D
     {
-        public Vector2 offset;        // Camera offset (displacement from target)
-        public Vector2 target;        // Camera target (rotation and zoom origin)
-        public float rotation;        // Camera rotation in degrees
-        public float zoom;            // Camera zoom (scaling), should be 1.0f by default
+        /// <summary>
+        /// Camera offset (displacement from target)
+        /// </summary>
+        public Vector2 offset;        
+        
+        /// <summary>
+        /// Camera target (rotation and zoom origin)
+        /// </summary>
+        public Vector2 target;        
+        
+        /// <summary>
+        ///  Camera rotation in degrees
+        /// </summary>
+        public float rotation;        
+        
+        /// <summary>
+        /// Camera zoom (scaling), should be 1.0f by default
+        /// </summary>
+        public float zoom;            
 
         public Camera2D(Vector2 offset, Vector2 target, float rotation, float zoom)
         {
@@ -189,108 +357,293 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Vertex data definning a mesh
-    /// NOTE: Data stored in CPU memory (and GPU)</summary>
+    /// <summary>
+    /// Vertex data definning a mesh
+    /// NOTE: Data stored in CPU memory (and GPU)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Mesh
     {
-        public int vertexCount;                    // Number of vertices stored in arrays
-        public int triangleCount;                  // Number of triangles stored (indexed or not)
+        /// <summary>
+        ///  Number of vertices stored in arrays
+        /// </summary>
+        public int vertexCount;                    
+        
+        /// <summary>
+        /// Number of triangles stored (indexed or not)
+        /// </summary>
+        public int triangleCount;                  
 
-        // Default vertex data
-        public IntPtr vertices;                    // Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
-        public IntPtr texcoords;                   // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
-        public IntPtr texcoords2;                  // Vertex second texture coordinates (useful for lightmaps) (shader-location = 5, float *)
-        public IntPtr normals;                     // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2, float *)
-        public IntPtr tangents;                    // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4, float *)
-        public IntPtr colors;                      // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3,  unsigned char *)
-        public IntPtr indices;                     // Vertex indices (in case vertex data comes indexed, unsigned short *)
+#region Default vertex data
+        
+        /// <summary>
+        /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
+        /// </summary>
+        public IntPtr vertices;                    
+        
+        /// <summary>
+        /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
+        /// </summary>
+        public IntPtr texcoords;                   
+        
+        /// <summary>
+        /// Vertex second texture coordinates (useful for lightmaps) (shader-location = 5, float *)
+        /// </summary>
+        public IntPtr texcoords2;                  
+        
+        /// <summary>
+        /// Vertex normals (XYZ - 3 components per vertex) (shader-location = 2, float *)
+        /// </summary>
+        public IntPtr normals;                   
+        
+        /// <summary>
+        /// Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4, float *)
+        /// </summary>
+        public IntPtr tangents;         
+        
+        /// <summary>
+        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3,  unsigned char *)
+        /// </summary>
+        public IntPtr colors;                      
+        
+        /// <summary>
+        /// Vertex indices (in case vertex data comes indexed, unsigned short *)
+        /// </summary>
+        public IntPtr indices;                     
+        
+#endregion
+        
+#region Animation vertex data
 
-        // Animation vertex data
-        public IntPtr animVertices;                // Animated vertex positions (after bones transformations, float *)
-        public IntPtr animNormals;                 // Animated normals (after bones transformations, float *)
-        public IntPtr boneIds;                     // Vertex bone ids, up to 4 bones influence by vertex (skinning, int *)
-        public IntPtr boneWeights;                 // Vertex bone weight, up to 4 bones influence by vertex (skinning, float *)
+        /// <summary>
+        /// Animated vertex positions (after bones transformations, float *)
+        /// </summary>
+        public IntPtr animVertices;                
 
-        // OpenGL identifiers
-        public uint vaoId;                         // OpenGL Vertex Array Object id
-        public IntPtr vboId;                       // OpenGL Vertex Buffer Objects id (default vertex data, uint[])
+        /// <summary>
+        /// Animated normals (after bones transformations, float *)
+        /// </summary>
+        public IntPtr animNormals;                 
+        
+        /// <summary>
+        /// Vertex bone ids, up to 4 bones influence by vertex (skinning, int *)
+        /// </summary>
+        public IntPtr boneIds;                     
+        
+        /// <summary>
+        /// Vertex bone weight, up to 4 bones influence by vertex (skinning, float *)
+        /// </summary>
+        public IntPtr boneWeights;                 
+        
+#endregion
+
+#region OpenGL identifiers
+
+        /// <summary>
+        /// OpenGL Vertex Array Object id
+        /// </summary>
+        public uint vaoId;                         
+        
+        /// <summary>
+        /// OpenGL Vertex Buffer Objects id (default vertex data, uint[])
+        /// </summary>
+        public IntPtr vboId;                       
+        
+#endregion
     }
 
-    /// <summary>Shader type (generic)</summary>
+    /// <summary>
+    /// Shader type (generic)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Shader
     {
-        public uint id;            // Shader program id
-        public IntPtr locs;        // Shader locations array (MAX_SHADER_LOCATIONS,  int *)
+        /// <summary>
+        /// Shader program id
+        /// </summary>
+        public uint id;            
+        
+        /// <summary>
+        /// Shader locations array (MAX_SHADER_LOCATIONS,  int *)
+        /// </summary>
+        public IntPtr locs;        
     }
 
-    /// <summary>Material texture map</summary>
+    /// <summary>
+    /// Material texture map
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MaterialMap
     {
-        public Texture2D texture;        // Material map texture
-        public Color color;              // Material map color
-        public float value;              // Material map value
+        /// <summary>
+        /// Material map texture
+        /// </summary>
+        public Texture2D texture;        
+        
+        /// <summary>
+        /// Material map color
+        /// </summary>
+        public Color color;           
+        
+        /// <summary>
+        /// Material map value
+        /// </summary>
+        public float value;              
     }
 
-    /// <summary>Material type (generic)</summary>
+    /// <summary>
+    /// Material type (generic)
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Material
     {
-        public Shader shader;             // Material shader
-        public IntPtr maps;               // Material maps (MaterialMap *)
-        public IntPtr param;              // Material generic parameters (if required, float *)
+        /// <summary>
+        /// Material shader
+        /// </summary>
+        public Shader shader;             
+        
+        /// <summary>
+        /// Material maps (MaterialMap *)
+        /// </summary>
+        public IntPtr maps; 
+        
+        /// <summary>
+        /// Material generic parameters (if required, float *)
+        /// </summary>
+        public IntPtr param;              
     }
 
-    /// <summary>Transformation properties</summary>
+    /// <summary>
+    /// Transformation properties
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Transform
     {
-        public Vector3 translation;        // Translation
-        public Vector4 rotation;           // Rotation
-        public Vector3 scale;              // Scale
+        /// <summary>
+        /// Translation
+        /// </summary>
+        public Vector3 translation;        
+        
+        /// <summary>
+        /// Rotation
+        /// </summary>
+        public Vector4 rotation;           
+        
+        /// <summary>
+        /// Scale
+        /// </summary>
+        public Vector3 scale;              
     }
 
-    /// <summary>Bone information</summary>
+    /// <summary>
+    /// Bone information
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BoneInfo
     {
-        public IntPtr name;        // Bone name (char[32])
-        public int parent;         // Bone parent
+        /// <summary>
+        /// Bone name (char[32])
+        /// </summary>
+        public IntPtr name;        
+        
+        /// <summary>
+        /// Bone parent
+        /// </summary>
+        public int parent;         
     }
 
-    /// <summary>Model type</summary>
+    /// <summary>
+    /// Model type
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Model
     {
-        public Matrix4x4 transform;        // Local transform matrix
-        public int meshCount;              // Number of meshes
-        public int materialCount;          // Number of materials
-        public IntPtr meshes;              // Meshes array (Mesh *)
-        public IntPtr materials;		   // Materials array (Material *)
-        public IntPtr meshMaterial;        // Mesh material number (int *)
-        public int boneCount;              // Number of bones
-        public IntPtr bones;               // Bones information (skeleton, BoneInfo *)
-        public IntPtr bindPose;            // Bones base transformation (pose, Transform *)
+        /// <summary>
+        /// Local transform matrix
+        /// </summary>
+        public Matrix4x4 transform;
+        
+        /// <summary>
+        /// Number of meshes
+        /// </summary>
+        public int meshCount;  
+        
+        /// <summary>
+        /// Number of materials
+        /// </summary>
+        public int materialCount;
+        
+        /// <summary>
+        /// Meshes array (Mesh *)
+        /// </summary>
+        public IntPtr meshes;
+
+        /// <summary>
+        /// Materials array (Material *)
+        /// </summary>
+        public IntPtr materials;
+
+        /// <summary>
+        /// Mesh material number (int *)
+        /// </summary>
+        public IntPtr meshMaterial;
+
+        /// <summary>
+        /// Number of bones
+        /// </summary>
+        public int boneCount;
+
+        /// <summary>
+        /// Bones information (skeleton, BoneInfo *)
+        /// </summary>
+        public IntPtr bones;
+
+        /// <summary>
+        /// Bones base transformation (pose, Transform *)
+        /// </summary>
+        public IntPtr bindPose;
     }
 
     /// <summary>Model animation</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ModelAnimation
     {
-        public int boneCount;              // Number of bones
-        public int frameCount;             // Number of animation frames
-        public IntPtr bones;               // Bones information (skeleton, BoneInfo *)
-        public IntPtr framePoses;          // Poses array by frame (Transform **)
+
+        /// <summary>
+        /// Number of bones
+        /// </summary>
+        public int boneCount;
+
+        /// <summary>
+        /// Number of animation frames
+        /// </summary>
+        public int frameCount;
+
+        /// <summary>
+        /// Bones information (skeleton, BoneInfo *)
+        /// </summary>
+        public IntPtr bones;
+
+        /// <summary>
+        /// Poses array by frame (Transform **)
+        /// </summary>
+        public IntPtr framePoses;
     }
 
     /// <summary>Ray type (useful for raycast)</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Ray
     {
-        public Vector3 position;         // Ray position (origin)
-        public Vector3 direction;        // Ray direction
+
+        /// <summary>
+        /// Ray position (origin)
+        /// </summary>
+        public Vector3 position;
+
+        /// <summary>
+        /// Ray direction
+        /// </summary>
+        public Vector3 direction;
 
         public Ray(Vector3 position, Vector3 direction)
         {
@@ -303,18 +656,42 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct RayHitInfo
     {
-        public byte hit;                // Did the ray hit something?
-        public float distance;          // Distance to nearest hit
-        public Vector3 position;        // Position of nearest hit
-        public Vector3 normal;          // Surface normal of hit
+
+        /// <summary>
+        /// Did the ray hit something?
+        /// </summary>
+        public byte hit;
+
+        /// <summary>
+        /// Distance to nearest hit
+        /// </summary>
+        public float distance;
+
+        /// <summary>
+        /// Position of nearest hit
+        /// </summary>
+        public Vector3 position;
+
+        /// <summary>
+        /// Surface normal of hit
+        /// </summary>
+        public Vector3 normal;
     }
 
     /// <summary>Bounding box type</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BoundingBox
     {
-        public Vector3 min;        // Minimum vertex box-corner
-        public Vector3 max;        // Maximum vertex box-corner
+
+        /// <summary>
+        /// Minimum vertex box-corner
+        /// </summary>
+        public Vector3 min;
+
+        /// <summary>
+        /// Maximum vertex box-corner
+        /// </summary>
+        public Vector3 max;
 
         public BoundingBox(Vector3 min, Vector3 max)
         {
@@ -327,11 +704,31 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct Wave
     {
-        public uint sampleCount;        // Number of samples
-        public uint sampleRate;         // Frequency (samples per second)
-        public uint sampleSize;         // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-        public uint channels;           // Number of channels (1-mono, 2-stereo)
-        public IntPtr data;             // Buffer data pointer (void *)
+
+        /// <summary>
+        /// Number of samples
+        /// </summary>
+        public uint sampleCount;
+
+        /// <summary>
+        /// Frequency (samples per second)
+        /// </summary>
+        public uint sampleRate;
+
+        /// <summary>
+        /// Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+        /// </summary>
+        public uint sampleSize;
+
+        /// <summary>
+        /// Number of channels (1-mono, 2-stereo)
+        /// </summary>
+        public uint channels;
+
+        /// <summary>
+        /// Buffer data pointer (void *)
+        /// </summary>
+        public IntPtr data;
     }
 
     /// <summary>Audio stream type
@@ -339,18 +736,42 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct AudioStream
     {
-        public IntPtr audioBuffer;     // Pointer to internal data(rAudioBuffer *) used by the audio system
-        public uint sampleRate;        // Frequency (samples per second)
-        public uint sampleSize;        // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-        public uint channels;          // Number of channels (1-mono, 2-stereo)
+
+        /// <summary>
+        /// Pointer to internal data(rAudioBuffer *) used by the audio system
+        /// </summary>
+        public IntPtr audioBuffer;
+
+        /// <summary>
+        /// Frequency (samples per second)
+        /// </summary>
+        public uint sampleRate;
+
+        /// <summary>
+        /// Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+        /// </summary>
+        public uint sampleSize;
+
+        /// <summary>
+        /// Number of channels (1-mono, 2-stereo)
+        /// </summary>
+        public uint channels;
     }
 
     /// <summary>Sound source type</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Sound
     {
-        public AudioStream stream;        // Audio stream
-        public uint sampleCount;          // Total number of samples
+
+        /// <summary>
+        /// Audio stream
+        /// </summary>
+        public AudioStream stream;
+
+        /// <summary>
+        /// Total number of samples
+        /// </summary>
+        public uint sampleCount;
     }
 
     /// <summary>Music stream type (audio file streaming from memory)
@@ -358,43 +779,143 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct Music
     {
-        public AudioStream stream;        // Audio stream
-        public uint sampleCount;          // Total number of samples
-        public byte looping;              // Music looping enable
-        public int ctxType;               // Type of music context (audio filetype)
-        public IntPtr ctxData;            // Audio context data, depends on type (void *)
+
+        /// <summary>
+        /// Audio stream
+        /// </summary>
+        public AudioStream stream;
+
+        /// <summary>
+        /// Total number of samples
+        /// </summary>
+        public uint sampleCount;
+
+        /// <summary>
+        /// Music looping enable
+        /// </summary>
+        public byte looping;
+
+        /// <summary>
+        /// Type of music context (audio filetype)
+        /// </summary>
+        public int ctxType;
+
+        /// <summary>
+        /// Audio context data, depends on type (void *)
+        /// </summary>
+        public IntPtr ctxData;
     }
 
     /// <summary>Head-Mounted-Display device parameters</summary>
     [StructLayout(LayoutKind.Sequential)]
     public unsafe struct VrDeviceInfo
     {
-        public int hResolution;                                         // HMD horizontal resolution in pixels
-        public int vResolution;                                         // HMD vertical resolution in pixels
-        public float hScreenSize;                                       // HMD horizontal size in meters
-        public float vScreenSize;                                       // HMD vertical size in meters
-        public float vScreenCenter;                                     // HMD screen center in meters
-        public float eyeToScreenDistance;                               // HMD distance between eye and display in meters
-        public float lensSeparationDistance;                            // HMD lens separation distance in meters
-        public float interpupillaryDistance;                            // HMD IPD (distance between pupils) in meters
-        public fixed float lensDistortionValues[4];                     // HMD lens distortion constant parameters
-        public fixed float chromaAbCorrection[4];                       // HMD chromatic aberration correction parameters
+
+        /// <summary>
+        /// HMD horizontal resolution in pixels
+        /// </summary>
+        public int hResolution;
+
+        /// <summary>
+        /// HMD vertical resolution in pixels
+        /// </summary>
+        public int vResolution;
+
+        /// <summary>
+        /// HMD horizontal size in meters
+        /// </summary>
+        public float hScreenSize;
+
+        /// <summary>
+        /// HMD vertical size in meters
+        /// </summary>
+        public float vScreenSize;
+
+        /// <summary>
+        /// HMD screen center in meters
+        /// </summary>
+        public float vScreenCenter;
+
+        /// <summary>
+        /// HMD distance between eye and display in meters
+        /// </summary>
+        public float eyeToScreenDistance;
+
+        /// <summary>
+        /// HMD lens separation distance in meters
+        /// </summary>
+        public float lensSeparationDistance;
+
+        /// <summary>
+        /// HMD IPD (distance between pupils) in meters
+        /// </summary>
+        public float interpupillaryDistance;
+
+        /// <summary>
+        /// HMD lens distortion constant parameters
+        /// </summary>
+        public fixed float lensDistortionValues[4];
+
+        /// <summary>
+        /// HMD chromatic aberration correction parameters
+        /// </summary>
+        public fixed float chromaAbCorrection[4];
     }
 
     /// <summary>VR Stereo rendering configuration for simulator</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct VrStereoConfig
     {
-        public Matrix4x4 projection1;         // VR projection matrices (per eye)
-        public Matrix4x4 projection2;         // VR projection matrices (per eye)
-        public Matrix4x4 viewOffset1;         // VR view offset matrices (per eye)
-        public Matrix4x4 viewOffset2;         // VR view offset matrices (per eye)
-        public Vector2 leftLensCenter;        // VR left lens center
-        public Vector2 rightLensCenter;       // VR right lens center
-        public Vector2 leftScreenCenter;      // VR left screen center
-        public Vector2 rightScreenCenter;     // VR right screen center
-        public Vector2 scale;                 // VR distortion scale
-        public Vector2 scaleIn;               // VR distortion scale in
+
+        /// <summary>
+        /// VR projection matrices (per eye)
+        /// </summary>
+        public Matrix4x4 projection1;
+
+        /// <summary>
+        /// VR projection matrices (per eye)
+        /// </summary>
+        public Matrix4x4 projection2;
+
+        /// <summary>
+        /// VR view offset matrices (per eye)
+        /// </summary>
+        public Matrix4x4 viewOffset1;
+
+        /// <summary>
+        /// VR view offset matrices (per eye)
+        /// </summary>
+        public Matrix4x4 viewOffset2;
+
+        /// <summary>
+        /// VR left lens center
+        /// </summary>
+        public Vector2 leftLensCenter;
+
+        /// <summary>
+        /// VR right lens center
+        /// </summary>
+        public Vector2 rightLensCenter;
+
+        /// <summary>
+        /// VR left screen center
+        /// </summary>
+        public Vector2 leftScreenCenter;
+
+        /// <summary>
+        /// VR right screen center
+        /// </summary>
+        public Vector2 rightScreenCenter;
+
+        /// <summary>
+        /// VR distortion scale
+        /// </summary>
+        public Vector2 scale;
+
+        /// <summary>
+        /// VR distortion scale in
+        /// </summary>
+        public Vector2 scaleIn;
     }
 
     /// <summary>System config flags
@@ -403,33 +924,97 @@ namespace Raylib_cs
     [Flags]
     public enum ConfigFlags
     {
-        FLAG_VSYNC_HINT = 0x00000040,   // Set to try enabling V-Sync on GPU
-        FLAG_FULLSCREEN_MODE = 0x00000002,   // Set to run program in fullscreen
-        FLAG_WINDOW_RESIZABLE = 0x00000004,   // Set to allow resizable window
-        FLAG_WINDOW_UNDECORATED = 0x00000008,   // Set to disable window decoration (frame and buttons)
-        FLAG_WINDOW_HIDDEN = 0x00000080,   // Set to hide window
-        FLAG_WINDOW_MINIMIZED = 0x00000200,   // Set to minimize window (iconify)
-        FLAG_WINDOW_MAXIMIZED = 0x00000400,   // Set to maximize window (expanded to monitor)
-        FLAG_WINDOW_UNFOCUSED = 0x00000800,   // Set to window non focused
-        FLAG_WINDOW_TOPMOST = 0x00001000,   // Set to window always on top
-        FLAG_WINDOW_ALWAYS_RUN = 0x00000100,   // Set to allow windows running while minimized
-        FLAG_WINDOW_TRANSPARENT = 0x00000010,   // Set to allow transparent framebuffer
-        FLAG_WINDOW_HIGHDPI = 0x00002000,   // Set to support HighDPI
-        FLAG_MSAA_4X_HINT = 0x00000020,   // Set to try enabling MSAA 4X
-        FLAG_INTERLACED_HINT = 0x00010000,   // Set to try enabling interlaced video format (for V3D)
+
+        /// <summary>
+        /// Set to try enabling V-Sync on GPU
+        /// </summary>
+        FLAG_VSYNC_HINT = 0x00000040,
+
+        /// <summary>
+        /// Set to run program in fullscreen
+        /// </summary>
+        FLAG_FULLSCREEN_MODE = 0x00000002,
+
+        /// <summary>
+        /// Set to allow resizable window
+        /// </summary>
+        FLAG_WINDOW_RESIZABLE = 0x00000004,
+
+        /// <summary>
+        /// Set to disable window decoration (frame and buttons)
+        /// </summary>
+        FLAG_WINDOW_UNDECORATED = 0x00000008,
+
+        /// <summary>
+        /// Set to hide window
+        /// </summary>
+        FLAG_WINDOW_HIDDEN = 0x00000080,
+
+        /// <summary>
+        /// Set to minimize window (iconify)
+        /// </summary>
+        FLAG_WINDOW_MINIMIZED = 0x00000200,
+
+        /// <summary>
+        /// Set to maximize window (expanded to monitor)
+        /// </summary>
+        FLAG_WINDOW_MAXIMIZED = 0x00000400,
+
+        /// <summary>
+        /// Set to window non focused
+        /// </summary>
+        FLAG_WINDOW_UNFOCUSED = 0x00000800,
+
+        /// <summary>
+        /// Set to window always on top
+        /// </summary>
+        FLAG_WINDOW_TOPMOST = 0x00001000,
+
+        /// <summary>
+        /// Set to allow windows running while minimized
+        /// </summary>
+        FLAG_WINDOW_ALWAYS_RUN = 0x00000100,
+
+        /// <summary>
+        /// Set to allow transparent framebuffer
+        /// </summary>
+        FLAG_WINDOW_TRANSPARENT = 0x00000010,
+
+        /// <summary>
+        /// Set to support HighDPI
+        /// </summary>
+        FLAG_WINDOW_HIGHDPI = 0x00002000,
+
+        /// <summary>
+        /// Set to try enabling MSAA 4X
+        /// </summary>
+        FLAG_MSAA_4X_HINT = 0x00000020,
+
+        /// <summary>
+        /// Set to try enabling interlaced video format (for V3D)
+        /// </summary>
+        FLAG_INTERLACED_HINT = 0x00010000,
     }
 
     /// <summary>Trace log level</summary>
     public enum TraceLogLevel
     {
-        LOG_ALL = 0,        // Display all logs
+
+        /// <summary>
+        /// Display all logs
+        /// </summary>
+        LOG_ALL = 0,
         LOG_TRACE,
         LOG_DEBUG,
         LOG_INFO,
         LOG_WARNING,
         LOG_ERROR,
         LOG_FATAL,
-        LOG_NONE            // Disable logging
+
+        /// <summary>
+        /// Disable logging
+        /// </summary>
+        LOG_NONE            
     }
 
     /// <summary>Keyboard keys (US keyboard layout)
@@ -573,12 +1158,36 @@ namespace Raylib_cs
         MOUSE_CURSOR_IBEAM = 2,
         MOUSE_CURSOR_CROSSHAIR = 3,
         MOUSE_CURSOR_POINTING_HAND = 4,
-        MOUSE_CURSOR_RESIZE_EW = 5,       // The horizontal resize/move arrow shape
-        MOUSE_CURSOR_RESIZE_NS = 6,       // The vertical resize/move arrow shape
-        MOUSE_CURSOR_RESIZE_NWSE = 7,     // The top-left to bottom-right diagonal resize/move arrow shape
-        MOUSE_CURSOR_RESIZE_NESW = 8,     // The top-right to bottom-left diagonal resize/move arrow shape
-        MOUSE_CURSOR_RESIZE_ALL = 9,      // The omni-directional resize/move cursor shape
-        MOUSE_CURSOR_NOT_ALLOWED = 10     // The operation-not-allowed shape
+
+        /// <summary>
+        /// The horizontal resize/move arrow shape
+        /// </summary>
+        MOUSE_CURSOR_RESIZE_EW = 5,
+
+        /// <summary>
+        /// The vertical resize/move arrow shape
+        /// </summary>
+        MOUSE_CURSOR_RESIZE_NS = 6,
+
+        /// <summary>
+        /// The top-left to bottom-right diagonal resize/move arrow shape
+        /// </summary>
+        MOUSE_CURSOR_RESIZE_NWSE = 7,
+
+        /// <summary>
+        /// The top-right to bottom-left diagonal resize/move arrow shape
+        /// </summary>
+        MOUSE_CURSOR_RESIZE_NESW = 8,
+
+        /// <summary>
+        /// The omni-directional resize/move cursor shape
+        /// </summary>
+        MOUSE_CURSOR_RESIZE_ALL = 9,
+
+        /// <summary>
+        /// The operation-not-allowed shape
+        /// </summary>
+        MOUSE_CURSOR_NOT_ALLOWED = 10     
     }
 
     /// <summary>Gamepad buttons</summary>
@@ -609,40 +1218,101 @@ namespace Raylib_cs
         GAMEPAD_BUTTON_RIGHT_TRIGGER_2,
 
         // These are buttons in the center of the gamepad
-        GAMEPAD_BUTTON_MIDDLE_LEFT,     // PS3 Select
-        GAMEPAD_BUTTON_MIDDLE,          // PS Button/XBOX Button
-        GAMEPAD_BUTTON_MIDDLE_RIGHT,    // PS3 Start
 
-        // These are the joystick press in buttons
+        /// <summary>
+        /// PS3 Select
+        /// </summary>
+        GAMEPAD_BUTTON_MIDDLE_LEFT,
+
+        /// <summary>
+        /// PS Button/XBOX Button
+        /// </summary>
+        GAMEPAD_BUTTON_MIDDLE,
+
+        /// <summary>
+        /// PS3 Start
+        /// </summary>
+        GAMEPAD_BUTTON_MIDDLE_RIGHT,
+        
+        /// <summary>
+        /// Left joystick press button
+        /// </summary>
         GAMEPAD_BUTTON_LEFT_THUMB,
+        
+        /// <summary>
+        /// Right joystick press button
+        /// </summary>
         GAMEPAD_BUTTON_RIGHT_THUMB
     }
 
     /// <summary>Gamepad axis</summary>
     public enum GamepadAxis
     {
-        GAMEPAD_AXIS_LEFT_X        = 0,     // Gamepad left stick X axis
-        GAMEPAD_AXIS_LEFT_Y        = 1,     // Gamepad left stick Y axis
-        GAMEPAD_AXIS_RIGHT_X       = 2,     // Gamepad right stick X axis
-        GAMEPAD_AXIS_RIGHT_Y       = 3,     // Gamepad right stick Y axis
-        GAMEPAD_AXIS_LEFT_TRIGGER  = 4,     // Gamepad back trigger left, pressure level: [1..-1]
-        GAMEPAD_AXIS_RIGHT_TRIGGER = 5      // Gamepad back trigger right, pressure level: [1..-1]
+
+        /// <summary>
+        /// Gamepad left stick X axis
+        /// </summary>
+        GAMEPAD_AXIS_LEFT_X        = 0,
+
+        /// <summary>
+        /// Gamepad left stick Y axis
+        /// </summary>
+        GAMEPAD_AXIS_LEFT_Y        = 1,
+
+        /// <summary>
+        /// Gamepad right stick X axis
+        /// </summary>
+        GAMEPAD_AXIS_RIGHT_X       = 2,
+
+        /// <summary>
+        /// Gamepad right stick Y axis
+        /// </summary>
+        GAMEPAD_AXIS_RIGHT_Y       = 3,
+
+        /// <summary>
+        /// Gamepad back trigger left, pressure level: [1..-1]
+        /// </summary>
+        GAMEPAD_AXIS_LEFT_TRIGGER  = 4,     
+
+        /// <summary>
+        /// Gamepad back trigger right, pressure level: [1..-1]
+        /// </summary>
+        GAMEPAD_AXIS_RIGHT_TRIGGER = 5      
     }
 
     /// <summary>Material map index</summary>
     public enum MaterialMapIndex
     {
-        MATERIAL_MAP_ALBEDO = 0,          // MAP_DIFFUSE
-        MATERIAL_MAP_METALNESS = 1,       // MAP_SPECULAR
+
+        /// <summary>
+        /// MAP_DIFFUSE
+        /// </summary>
+        MATERIAL_MAP_ALBEDO = 0,          
+
+        /// <summary>
+        /// MAP_SPECULAR
+        /// </summary>
+        MATERIAL_MAP_METALNESS = 1,       
         MATERIAL_MAP_NORMAL = 2,
         MATERIAL_MAP_ROUGHNESS = 3,
         MATERIAL_MAP_OCCLUSION,
         MATERIAL_MAP_EMISSION,
         MATERIAL_MAP_HEIGHT,
         MATERIAL_MAP_BRDF,
-        MATERIAL_MAP_CUBEMAP,             // NOTE: Uses GL_TEXTURE_CUBE_MAP
-        MATERIAL_MAP_IRRADIANCE,          // NOTE: Uses GL_TEXTURE_CUBE_MAP
-        MATERIAL_MAP_PREFILTER,           // NOTE: Uses GL_TEXTURE_CUBE_MAP
+        /// <summary>
+        /// NOTE: Uses GL_TEXTURE_CUBE_MAP
+        /// </summary>
+        MATERIAL_MAP_CUBEMAP,             
+
+        /// <summary>
+        /// NOTE: Uses GL_TEXTURE_CUBE_MAP
+        /// </summary>
+        MATERIAL_MAP_IRRADIANCE,          
+
+        /// <summary>
+        /// NOTE: Uses GL_TEXTURE_CUBE_MAP
+        /// </summary>
+        MATERIAL_MAP_PREFILTER,
 
         MATERIAL_MAP_DIFFUSE = MATERIAL_MAP_ALBEDO,
         MATERIAL_MAP_SPECULAR = MATERIAL_MAP_METALNESS,
@@ -666,8 +1336,16 @@ namespace Raylib_cs
         SHADER_LOC_COLOR_DIFFUSE,
         SHADER_LOC_COLOR_SPECULAR,
         SHADER_LOC_COLOR_AMBIENT,
-        SHADER_LOC_MAP_ALBEDO,          // SHADER_LOC_MAP_DIFFUSE
-        SHADER_LOC_MAP_METALNESS,       // SHADER_LOC_MAP_SPECULAR
+
+        /// <summary>
+        /// SHADER_LOC_MAP_DIFFUSE
+        /// </summary>
+        SHADER_LOC_MAP_ALBEDO,          
+
+        /// <summary>
+        /// SHADER_LOC_MAP_SPECULAR
+        /// </summary>
+        SHADER_LOC_MAP_METALNESS,       
         SHADER_LOC_MAP_NORMAL,
         SHADER_LOC_MAP_ROUGHNESS,
         SHADER_LOC_MAP_OCCLUSION,
@@ -700,27 +1378,111 @@ namespace Raylib_cs
     /// NOTE: Support depends on OpenGL version and platform</summary>
     public enum PixelFormat
     {
-        PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1,     // 8 bit per pixel (no alpha)
-        PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,        // 8*2 bpp (2 channels)
-        PIXELFORMAT_UNCOMPRESSED_R5G6B5,            // 16 bpp
-        PIXELFORMAT_UNCOMPRESSED_R8G8B8,            // 24 bpp
-        PIXELFORMAT_UNCOMPRESSED_R5G5B5A1,          // 16 bpp (1 bit alpha)
-        PIXELFORMAT_UNCOMPRESSED_R4G4B4A4,          // 16 bpp (4 bit alpha)
-        PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,          // 32 bpp
-        PIXELFORMAT_UNCOMPRESSED_R32,               // 32 bpp (1 channel - float)
-        PIXELFORMAT_UNCOMPRESSED_R32G32B32,         // 32*3 bpp (3 channels - float)
-        PIXELFORMAT_UNCOMPRESSED_R32G32B32A32,      // 32*4 bpp (4 channels - float)
-        PIXELFORMAT_COMPRESSED_DXT1_RGB,            // 4 bpp (no alpha)
-        PIXELFORMAT_COMPRESSED_DXT1_RGBA,           // 4 bpp (1 bit alpha)
-        PIXELFORMAT_COMPRESSED_DXT3_RGBA,           // 8 bpp
-        PIXELFORMAT_COMPRESSED_DXT5_RGBA,           // 8 bpp
-        PIXELFORMAT_COMPRESSED_ETC1_RGB,            // 4 bpp
-        PIXELFORMAT_COMPRESSED_ETC2_RGB,            // 4 bpp
-        PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA,       // 8 bpp
-        PIXELFORMAT_COMPRESSED_PVRT_RGB,            // 4 bpp
-        PIXELFORMAT_COMPRESSED_PVRT_RGBA,           // 4 bpp
-        PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA,       // 8 bpp
-        PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA        // 2 bpp
+
+        /// <summary>
+        /// 8 bit per pixel (no alpha)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1,     
+
+        /// <summary>
+        /// 8*2 bpp (2 channels)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,        
+
+        /// <summary>
+        /// 16 bpp
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R5G6B5,            
+
+        /// <summary>
+        /// 24 bpp
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R8G8B8,            
+
+        /// <summary>
+        /// 16 bpp (1 bit alpha)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R5G5B5A1,          
+
+        /// <summary>
+        /// 16 bpp (4 bit alpha)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R4G4B4A4,          
+
+        /// <summary>
+        /// 32 bpp
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,          
+
+        /// <summary>
+        /// 32 bpp (1 channel - float)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R32,               
+
+        /// <summary>
+        /// 32*3 bpp (3 channels - float)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R32G32B32,         
+
+        /// <summary>
+        /// 32*4 bpp (4 channels - float)
+        /// </summary>
+        PIXELFORMAT_UNCOMPRESSED_R32G32B32A32,      
+
+        /// <summary>
+        /// 4 bpp (no alpha)
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_DXT1_RGB,            
+
+        /// <summary>
+        /// 4 bpp (1 bit alpha)
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_DXT1_RGBA,           
+
+        /// <summary>
+        /// 8 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_DXT3_RGBA,           
+
+        /// <summary>
+        /// 8 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_DXT5_RGBA,           
+
+        /// <summary>
+        /// 4 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_ETC1_RGB,            
+
+        /// <summary>
+        /// 4 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_ETC2_RGB,            
+
+        /// <summary>
+        /// 8 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA,       
+
+        /// <summary>
+        /// 4 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_PVRT_RGB,            
+
+        /// <summary>
+        /// 4 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_PVRT_RGBA,           
+
+        /// <summary>
+        /// 8 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA,       
+
+        /// <summary>
+        /// 2 bpp
+        /// </summary>
+        PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA        
     }
 
     /// <summary>Texture parameters: filter mode
@@ -728,51 +1490,151 @@ namespace Raylib_cs
     /// NOTE 2: Filter is accordingly set for minification and magnification</summary>
     public enum TextureFilter
     {
-        TEXTURE_FILTER_POINT = 0,               // No filter, just pixel aproximation
-        TEXTURE_FILTER_BILINEAR,                // Linear filtering
-        TEXTURE_FILTER_TRILINEAR,               // Trilinear filtering (linear with mipmaps)
-        TEXTURE_FILTER_ANISOTROPIC_4X,          // Anisotropic filtering 4x
-        TEXTURE_FILTER_ANISOTROPIC_8X,          // Anisotropic filtering 8x
-        TEXTURE_FILTER_ANISOTROPIC_16X,         // Anisotropic filtering 16x
+
+        /// <summary>
+        /// No filter, just pixel aproximation
+        /// </summary>
+        TEXTURE_FILTER_POINT = 0,               
+
+        /// <summary>
+        /// Linear filtering
+        /// </summary>
+        TEXTURE_FILTER_BILINEAR,                
+
+        /// <summary>
+        /// Trilinear filtering (linear with mipmaps)
+        /// </summary>
+        TEXTURE_FILTER_TRILINEAR,               
+
+        /// <summary>
+        /// Anisotropic filtering 4x
+        /// </summary>
+        TEXTURE_FILTER_ANISOTROPIC_4X,          
+
+        /// <summary>
+        /// Anisotropic filtering 8x
+        /// </summary>
+        TEXTURE_FILTER_ANISOTROPIC_8X,          
+
+        /// <summary>
+        /// Anisotropic filtering 16x
+        /// </summary>
+        TEXTURE_FILTER_ANISOTROPIC_16X,         
     }
 
     /// <summary>Texture parameters: wrap mode</summary>
     public enum TextureWrap
     {
-        TEXTURE_WRAP_REPEAT = 0,        // Repeats texture in tiled mode
-        TEXTURE_WRAP_CLAMP,             // Clamps texture to edge pixel in tiled mode
-        TEXTURE_WRAP_MIRROR_REPEAT,     // Mirrors and repeats the texture in tiled mode
-        TEXTURE_WRAP_MIRROR_CLAMP       // Mirrors and clamps to border the texture in tiled mode
+
+        /// <summary>
+        /// Repeats texture in tiled mode
+        /// </summary>
+        TEXTURE_WRAP_REPEAT = 0,        
+
+        /// <summary>
+        /// Clamps texture to edge pixel in tiled mode
+        /// </summary>
+        TEXTURE_WRAP_CLAMP,             
+
+        /// <summary>
+        /// Mirrors and repeats the texture in tiled mode
+        /// </summary>
+        TEXTURE_WRAP_MIRROR_REPEAT,     
+
+        /// <summary>
+        /// Mirrors and clamps to border the texture in tiled mode
+        /// </summary>
+        TEXTURE_WRAP_MIRROR_CLAMP       
     }
 
     /// <summary>Cubemap layouts</summary>
     public enum CubemapLayout
     {
-        CUBEMAP_LAYOUT_AUTO_DETECT = 0,        // Automatically detect layout type
-        CUBEMAP_LAYOUT_LINE_VERTICAL,          // Layout is defined by a vertical line with faces
-        CUBEMAP_LAYOUT_LINE_HORIZONTAL,        // Layout is defined by an horizontal line with faces
-        CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR,    // Layout is defined by a 3x4 cross with cubemap faces
-        CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE,    // Layout is defined by a 4x3 cross with cubemap faces
-        CUBEMAP_LAYOUT_PANORAMA                // Layout is defined by a panorama image (equirectangular map)
+
+        /// <summary>
+        /// Automatically detect layout type
+        /// </summary>
+        CUBEMAP_LAYOUT_AUTO_DETECT = 0,        
+
+        /// <summary>
+        /// Layout is defined by a vertical line with faces
+        /// </summary>
+        CUBEMAP_LAYOUT_LINE_VERTICAL,          
+
+        /// <summary>
+        /// Layout is defined by an horizontal line with faces
+        /// </summary>
+        CUBEMAP_LAYOUT_LINE_HORIZONTAL,        
+
+        /// <summary>
+        /// Layout is defined by a 3x4 cross with cubemap faces
+        /// </summary>
+        CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR,    
+
+        /// <summary>
+        /// Layout is defined by a 4x3 cross with cubemap faces
+        /// </summary>
+        CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE,    
+
+        /// <summary>
+        /// Layout is defined by a panorama image (equirectangular map)
+        /// </summary>
+        CUBEMAP_LAYOUT_PANORAMA                
     }
 
     /// <summary>Font type, defines generation method</summary>
     public enum FontType
     {
-        FONT_DEFAULT = 0,       // Default font generation, anti-aliased
-        FONT_BITMAP,            // Bitmap font generation, no anti-aliasing
-        FONT_SDF                // SDF font generation, requires external shader
+
+        /// <summary>
+        /// Default font generation, anti-aliased
+        /// </summary>
+        FONT_DEFAULT = 0,       
+
+        /// <summary>
+        /// Bitmap font generation, no anti-aliasing
+        /// </summary>
+        FONT_BITMAP,            
+
+        /// <summary>
+        /// SDF font generation, requires external shader
+        /// </summary>
+        FONT_SDF                
     }
 
     /// <summary>Color blending modes (pre-defined)</summary>
     public enum BlendMode
     {
-        BLEND_ALPHA = 0,        // Blend textures considering alpha (default)
-        BLEND_ADDITIVE,         // Blend textures adding colors
-        BLEND_MULTIPLIED,       // Blend textures multiplying colors
-        BLEND_ADD_COLORS,       // Blend textures adding colors (alternative)
-        BLEND_SUBTRACT_COLORS,  // Blend textures subtracting colors (alternative)
-        BLEND_CUSTOM            // Belnd textures using custom src/dst factors (use rlSetBlendMode())
+
+        /// <summary>
+        /// Blend textures considering alpha (default)
+        /// </summary>
+        BLEND_ALPHA = 0,        
+
+        /// <summary>
+        /// Blend textures adding colors
+        /// </summary>
+        BLEND_ADDITIVE,         
+
+        /// <summary>
+        /// Blend textures multiplying colors
+        /// </summary>
+        BLEND_MULTIPLIED,       
+
+        /// <summary>
+        /// Blend textures adding colors (alternative)
+        /// </summary>
+        BLEND_ADD_COLORS,       
+
+        /// <summary>
+        /// Blend textures subtracting colors (alternative)
+        /// </summary>
+        BLEND_SUBTRACT_COLORS,  
+
+        /// <summary>
+        /// Belnd textures using custom src/dst factors (use rlSetBlendMode())
+        /// </summary>
+        BLEND_CUSTOM            
     }
 
     /// <summary>Gestures
@@ -813,9 +1675,21 @@ namespace Raylib_cs
     /// <summary>N-patch layout</summary>
     public enum NPatchLayout
     {
-        NPATCH_NINE_PATCH = 0,           // Npatch defined by 3x3 tiles
-        NPATCH_THREE_PATCH_VERTICAL,     // Npatch defined by 1x3 tiles
-        NPATCH_THREE_PATCH_HORIZONTAL    // Npatch defined by 3x1 tiles
+
+        /// <summary>
+        /// Npatch defined by 3x3 tiles
+        /// </summary>
+        NPATCH_NINE_PATCH = 0,           
+
+        /// <summary>
+        /// Npatch defined by 1x3 tiles
+        /// </summary>
+        NPATCH_THREE_PATCH_VERTICAL,     
+
+        /// <summary>
+        /// Npatch defined by 3x1 tiles
+        /// </summary>
+        NPATCH_THREE_PATCH_HORIZONTAL    
     }
 
     [SuppressUnmanagedCodeSecurity]
