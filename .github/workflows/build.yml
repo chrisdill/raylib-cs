@@ -77,6 +77,17 @@ jobs:
           source: "raylib-linux64/raylib-${{steps.get-tag.outputs.info}}_linux_amd64/lib/libraylib.so.${{steps.get-tag.outputs.info}}"
           target: "Raylib-cs/runtimes/linux-x64/native/libraylib.so"
 
+      - name: extract osx-x64
+        run: mkdir -p raylib-osx64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_macos.tar.gz -C raylib-osx64
+
+      - name: output zip dir
+        run: "ls -la raylib-osx64"
+
+      - name: copy osx-x64
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-osx64/raylib-${{steps.get-tag.outputs.info}}_macos/lib/libraylib.dylib"
+          target: "Raylib-cs/runtimes/osx-x64/native/libraylib.dylib"
 
       - name: output directory
         run: "ls -la ."
