@@ -1312,7 +1312,7 @@ namespace Raylib_cs
         /// <summary>
         /// NOTE: Uses GL_TEXTURE_CUBE_MAP
         /// </summary>
-        MATERIAL_MAP_PREFILTER,           
+        MATERIAL_MAP_PREFILTER,
 
         MATERIAL_MAP_DIFFUSE = MATERIAL_MAP_ALBEDO,
         MATERIAL_MAP_SPECULAR = MATERIAL_MAP_METALNESS,
