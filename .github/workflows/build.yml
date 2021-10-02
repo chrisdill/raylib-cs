@@ -30,12 +30,6 @@ jobs:
     steps:
       - name: Download Repo
         uses: actions/checkout@v2
-        
-      - name: ls repo
-        run: "ls -la ."
-
-      - name: cat app.config
-        run: "cat ./app.config"
 
       - id: get-tag
         name: Get Target Raylib Version
@@ -79,9 +73,6 @@ jobs:
       - name: extract linux-x64
         run: mkdir -p raylib-linux64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_linux_amd64.tar.gz -C raylib-linux64
 
-      - name: output zip dir
-        run: "ls -la raylib-linux64"
-
       - name: copy linux-x64
         uses: canastro/copy-file-action@master
         with:
@@ -91,9 +82,6 @@ jobs:
       - name: extract osx-x64
         run: mkdir -p raylib-osx64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_macos.tar.gz -C raylib-osx64
 
-      - name: output zip dir
-        run: "ls -la raylib-osx64"
-
       - name: copy osx-x64
         uses: canastro/copy-file-action@master
         with:
@@ -102,9 +90,6 @@ jobs:
 
       - name: output directory
         run: "ls -la ."
-
-      - name: output native lib directory
-        run: "ls -la Raylib-cs/runtimes/linux-x64/native/"
 
       - name: 'Upload runtimes'
         uses: actions/upload-artifact@v2
