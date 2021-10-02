@@ -11,9 +11,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-  	<TargetRaylibTag>3.7.0</TargetRaylibTag>
-    <Version>3.7.0</Version>
-    <PackageVersion>3.7.0</PackageVersion>
+    <TargetRaylibTag>3.7.0</TargetRaylibTag>
+    <Version>3.7.0.1</Version>
+    <PackageVersion>3.7.0.1</PackageVersion>
     <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
