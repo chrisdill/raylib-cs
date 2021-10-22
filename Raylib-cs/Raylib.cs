@@ -184,32 +184,32 @@ namespace Raylib_cs
     public struct NPatchInfo
     {
         /// <summary>
-        /// Region in the texture
+        /// Texture source rectangle
         /// </summary>
-        public Rectangle sourceRec;
+        public Rectangle source;
 
         /// <summary>
-        /// left border offset
+        /// Left border offset
         /// </summary>
         public int left;
 
         /// <summary>
-        /// top border offset
+        /// Top border offset
         /// </summary>
         public int top;
 
         /// <summary>
-        /// right border offset
+        /// Right border offset
         /// </summary>
         public int right;
 
         /// <summary>
-        /// bottom border offset
+        /// Bottom border offset
         /// </summary>
         public int bottom;
 
         /// <summary>
-        /// layout of the n-patch: 3x3, 1x3 or 3x1
+        /// Layout of the n-patch: 3x3, 1x3 or 3x1
         /// </summary>
         public NPatchLayout layout;
     }
@@ -247,7 +247,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Font type, includes texture and charSet array data
+    /// Font, font texture and GlyphInfo array data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Font
@@ -260,31 +260,31 @@ namespace Raylib_cs
         /// <summary>
         /// Number of characters
         /// </summary>
-        public int charsCount;
+        public int glyphCount;
 
         /// <summary>
-        /// Padding around the chars
+        /// Padding around the glyph characters
         /// </summary>
-        public int charsPadding;
+        public int glyphPadding;
 
         /// <summary>
-        /// Characters texture atals
+        /// Texture atlas containing the glyphs
         /// </summary>
         public Texture2D texture;
 
         /// <summary>
-        /// Characters rectangles in texture (Rectangle *)
+        /// Rectangles in texture for the glyphs
         /// </summary>
         public IntPtr recs;
 
         /// <summary>
-        /// Characters info data (CharInfo *)
+        /// Glyphs info data
         /// </summary>
-        public IntPtr chars;
+        public IntPtr glyphs;
     }
 
     /// <summary>
-    /// Camera type, defines a camera position/orientation in 3d space
+    /// Camera3D, defines position/orientation in 3d space
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera3D
@@ -324,7 +324,7 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Camera2D type, defines a 2d camera</summary>
+    /// <summary>Camera2D, defines position/orientation in 2d space</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera2D
     {
@@ -514,7 +514,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Transformation properties
+    /// Transform, vectex transformation data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Transform
@@ -629,7 +629,7 @@ namespace Raylib_cs
         public IntPtr framePoses;
     }
 
-    /// <summary>Ray type (useful for raycast)</summary>
+    /// <summary>Ray, ray for raycasting</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Ray
     {
@@ -762,9 +762,9 @@ namespace Raylib_cs
         public AudioStream stream;
 
         /// <summary>
-        /// Total number of samples
+        /// Total number of frames (considering channels)
         /// </summary>
-        public uint sampleCount;
+        public uint frameCount;
     }
 
     /// <summary>Music stream type (audio file streaming from memory)
@@ -780,7 +780,7 @@ namespace Raylib_cs
         /// <summary>
         /// Total number of samples
         /// </summary>
-        public uint sampleCount;
+        public uint frameCount;
 
         /// <summary>
         /// Music looping enable
@@ -1175,6 +1175,26 @@ namespace Raylib_cs
         /// Mouse button middle (pressed wheel)
         /// </summary>
         MOUSE_BUTTON_MIDDLE = 2,
+
+        /// <summary>
+        /// Mouse button side (advanced mouse device)
+        /// </summary>
+        MOUSE_BUTTON_SIDE = 3,
+
+        /// <summary>
+        /// Mouse button extra (advanced mouse device)
+        /// </summary>
+        MOUSE_BUTTON_EXTRA = 4,
+
+        /// <summary>
+        /// Mouse button fordward (advanced mouse device)
+        /// </summary>
+        MOUSE_BUTTON_FORWARD = 5,
+
+        /// <summary>
+        /// Mouse button back (advanced mouse device)
+        /// </summary>
+        MOUSE_BUTTON_BACK = 6,
     }
 
     /// <summary>Mouse cursor</summary>
@@ -1438,6 +1458,15 @@ namespace Raylib_cs
         SHADER_UNIFORM_IVEC3,
         SHADER_UNIFORM_IVEC4,
         SHADER_UNIFORM_SAMPLER2D
+    }
+
+    // Shader attribute data types
+    public enum ShaderAttributeDataType
+    {
+        SHADER_ATTRIB_FLOAT = 0,
+        SHADER_ATTRIB_VEC2,
+        SHADER_ATTRIB_VEC3,
+        SHADER_ATTRIB_VEC4
     }
 
     /// <summary>Pixel formats
