@@ -15,7 +15,7 @@ namespace Raylib_cs.Tests
             Assert.True(BlittableHelper.IsBlittable<Texture2D>());
             Assert.True(BlittableHelper.IsBlittable<RenderTexture2D>());
             Assert.True(BlittableHelper.IsBlittable<NPatchInfo>());
-            Assert.True(BlittableHelper.IsBlittable<CharInfo>());
+            Assert.True(BlittableHelper.IsBlittable<GlyphInfo>());
             Assert.True(BlittableHelper.IsBlittable<Font>());
             Assert.True(BlittableHelper.IsBlittable<Camera3D>());
             Assert.True(BlittableHelper.IsBlittable<Camera2D>());
@@ -29,7 +29,7 @@ namespace Raylib_cs.Tests
             Assert.True(BlittableHelper.IsBlittable<Model>());
             Assert.True(BlittableHelper.IsBlittable<ModelAnimation>());
             Assert.True(BlittableHelper.IsBlittable<Ray>());
-            Assert.True(BlittableHelper.IsBlittable<RayHitInfo>());
+            Assert.True(BlittableHelper.IsBlittable<RayCollision>());
             Assert.True(BlittableHelper.IsBlittable<BoundingBox>());
             Assert.True(BlittableHelper.IsBlittable<Wave>());
             Assert.True(BlittableHelper.IsBlittable<AudioStream>());
