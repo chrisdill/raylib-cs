@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
     <EnableDefaultItems>false</EnableDefaultItems>
     <AssemblyName>Raylib-cs</AssemblyName>
     <RootNamespace>Raylib_cs</RootNamespace>
@@ -12,8 +12,8 @@
 
   <PropertyGroup>
     <TargetRaylibTag>3.7.0</TargetRaylibTag>
-    <Version>3.7.0.1</Version>
-    <PackageVersion>3.7.0.1</PackageVersion>
+    <Version>4.0.0-pre</Version>
+    <PackageVersion>4.0.0-pre</PackageVersion>
     <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
