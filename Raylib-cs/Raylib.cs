@@ -667,7 +667,7 @@ namespace Raylib_cs
         /// <summary>
         /// Position of nearest hit
         /// </summary>
-        public Vector3 position;
+        public Vector3 point;
 
         /// <summary>
         /// Surface normal of hit
@@ -1195,6 +1195,10 @@ namespace Raylib_cs
         /// Mouse button back (advanced mouse device)
         /// </summary>
         MOUSE_BUTTON_BACK = 6,
+
+        MOUSE_LEFT_BUTTON = MOUSE_BUTTON_LEFT,
+        MOUSE_RIGHT_BUTTON = MOUSE_BUTTON_RIGHT,
+        MOUSE_MIDDLE_BUTTON = MOUSE_BUTTON_MIDDLE,
     }
 
     /// <summary>Mouse cursor</summary>
@@ -3656,7 +3660,7 @@ namespace Raylib_cs
         /// <summary>Detect collision between two spheres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionSpheres(Vector3 centerA, float radiusA, Vector3 centerB, float radiusB);
+        public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
 
         /// <summary>Detect collision between two bounding boxes</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -3666,7 +3670,7 @@ namespace Raylib_cs
         /// <summary>Detect collision between box and sphere</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 centerSphere, float radiusSphere);
+        public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
 
         /// <summary>Detect collision between ray and sphere</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -3675,14 +3679,13 @@ namespace Raylib_cs
 
         /// <summary>Detect collision between ray and box</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
         public static extern RayCollision GetRayCollisionBox(Ray ray, BoundingBox box);
 
         /// <summary>Get collision info between ray and model</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern RayCollision GetRayCollisionModel(Ray ray, Model model);
 
-        /// <summary>Get collision info between ray and model</summary>
+        /// <summary>Get collision info between ray and mesh</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix4x4 transform);
 
