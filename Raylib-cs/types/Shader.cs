@@ -1,3 +1,6 @@
+using System;
+using System.Runtime.InteropServices;
+
 namespace Raylib_cs
 {
     /// <summary>Shader location index</summary>
@@ -32,5 +35,45 @@ namespace Raylib_cs
 
         SHADER_LOC_MAP_DIFFUSE = SHADER_LOC_MAP_ALBEDO,
         SHADER_LOC_MAP_SPECULAR = SHADER_LOC_MAP_METALNESS,
+    }
+
+    // Shader attribute data types
+    public enum ShaderAttributeDataType
+    {
+        SHADER_ATTRIB_FLOAT = 0,
+        SHADER_ATTRIB_VEC2,
+        SHADER_ATTRIB_VEC3,
+        SHADER_ATTRIB_VEC4
+    }
+
+    /// <summary>Shader uniform data type</summary>
+    public enum ShaderUniformDataType
+    {
+        SHADER_UNIFORM_FLOAT = 0,
+        SHADER_UNIFORM_VEC2,
+        SHADER_UNIFORM_VEC3,
+        SHADER_UNIFORM_VEC4,
+        SHADER_UNIFORM_INT,
+        SHADER_UNIFORM_IVEC2,
+        SHADER_UNIFORM_IVEC3,
+        SHADER_UNIFORM_IVEC4,
+        SHADER_UNIFORM_SAMPLER2D
+    }
+
+    /// <summary>
+    /// Shader type (generic)
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Shader
+    {
+        /// <summary>
+        /// Shader program id
+        /// </summary>
+        public uint id;
+
+        /// <summary>
+        /// Shader locations array (MAX_SHADER_LOCATIONS, int *)
+        /// </summary>
+        public IntPtr locs;
     }
 }

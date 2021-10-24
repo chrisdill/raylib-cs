@@ -5,8 +5,6 @@ using System.Security;
 
 namespace Raylib_cs
 {
-    // Shader attribute data types
-
     [SuppressUnmanagedCodeSecurity]
     public static class Raylib
     {

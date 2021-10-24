@@ -78,4 +78,83 @@ namespace Raylib_cs
         /// </summary>
         FLAG_INTERLACED_HINT = 0x00010000,
     }
+
+    /// <summary>Trace log level
+    /// NOTE: Organized by priority level</summary>
+    public enum TraceLogLevel
+    {
+        /// <summary>
+        /// Display all logs
+        /// </summary>
+        LOG_ALL = 0,
+
+        /// <summary>
+        /// Trace logging, intended for internal use only
+        /// </summary>
+        LOG_TRACE,
+
+        /// <summary>
+        /// Debug logging, used for internal debugging, it should be disabled on release builds
+        /// </summary>
+        LOG_DEBUG,
+
+        /// <summary>
+        /// Info logging, used for program execution info
+        /// </summary>
+        LOG_INFO,
+
+        /// <summary>
+        /// Warning logging, used on recoverable failures
+        /// </summary>
+        LOG_WARNING,
+
+        /// <summary>
+        /// Error logging, used on unrecoverable failures
+        /// </summary>
+        LOG_ERROR,
+
+        /// <summary>
+        /// Fatal logging, used to abort program: exit(EXIT_FAILURE)
+        /// </summary>
+        LOG_FATAL,
+
+        /// <summary>
+        /// Disable logging
+        /// </summary>
+        LOG_NONE
+    }
+
+    /// <summary>Color blending modes (pre-defined)</summary>
+    public enum BlendMode
+    {
+        /// <summary>
+        /// Blend textures considering alpha (default)
+        /// </summary>
+        BLEND_ALPHA = 0,
+
+        /// <summary>
+        /// Blend textures adding colors
+        /// </summary>
+        BLEND_ADDITIVE,
+
+        /// <summary>
+        /// Blend textures multiplying colors
+        /// </summary>
+        BLEND_MULTIPLIED,
+
+        /// <summary>
+        /// Blend textures adding colors (alternative)
+        /// </summary>
+        BLEND_ADD_COLORS,
+
+        /// <summary>
+        /// Blend textures subtracting colors (alternative)
+        /// </summary>
+        BLEND_SUBTRACT_COLORS,
+
+        /// <summary>
+        /// Blend textures using custom src/dst factors (use rlSetBlendMode())
+        /// </summary>
+        BLEND_CUSTOM
+    }
 }
