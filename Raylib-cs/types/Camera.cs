@@ -3,7 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Camera2D, defines position/orientation in 2d space</summary>
+    /// <summary>
+    /// Camera2D, defines position/orientation in 2d space
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Camera2D
     {

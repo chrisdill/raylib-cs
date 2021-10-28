@@ -44,7 +44,9 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Ray, ray for raycasting</summary>
+    /// <summary>
+    /// Ray, ray for raycasting
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Ray
     {
@@ -65,7 +67,9 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Raycast hit information</summary>
+    /// <summary>
+    /// Raycast hit information
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct RayCollision
     {

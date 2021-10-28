@@ -73,7 +73,9 @@ namespace Raylib_cs
         public IntPtr bindPose;
     }
 
-    /// <summary>Model animation</summary>
+    /// <summary>
+    /// Model animation
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ModelAnimation
     {

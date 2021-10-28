@@ -114,9 +114,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Image type, bpp always RGBA (32bit)
-    /// <br/>
-    /// NOTE: Data stored in CPU memory (RAM)
+    /// Image, pixel data stored in CPU memory (RAM)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Image
