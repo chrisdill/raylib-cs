@@ -1380,23 +1380,23 @@ namespace Raylib_cs
 
         /// <summary>Draw a part of a texture defined by a rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint);
+        public static extern void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
 
         /// <summary>Draw texture quad with tiling and offset parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
 
-        /// <summary>Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest.</summary>
+        /// <summary>Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextureTiled(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
 
         /// <summary>Draw a part of a texture defined by a rectangle with 'pro' parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTexturePro(Texture2D texture, Rectangle sourceRec, Rectangle destRec, Vector2 origin, float rotation, Color tint);
+        public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
         /// <summary>Draws a texture (or part of it) that stretches or shrinks nicely</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle destRec, Vector2 origin, float rotation, Color tint);
+        public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
         /// <summary>Draw a textured polygon</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1844,9 +1844,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 center, float size, Color tint);
 
-        /// <summary>Draw a billboard texture defined by sourceRec</summary>
+        /// <summary>Draw a billboard texture defined by source</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle sourceRec, Vector3 center, float size, Color tint);
+        public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 center, float size, Color tint);
 
         // Draw a billboard texture defined by source and rotation
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
