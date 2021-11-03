@@ -2115,14 +2115,14 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern AudioStream LoadAudioStream(uint sampleRate, uint sampleSize, uint channels);
 
+        /// <summary>Unload audio stream and free memory</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadAudioStream(AudioStream stream);
+
         /// <summary>Update audio stream buffers with data
         /// data refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateAudioStream(AudioStream stream, IntPtr data, int samplesCount);
-
-        /// <summary>Close audio stream and free memory</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CloseAudioStream(AudioStream stream);
 
         /// <summary>Check if any audio stream buffers requires refill</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
