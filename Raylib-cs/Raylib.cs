@@ -386,16 +386,6 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetShaderValue(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType);
 
-        /// <summary>Set shader uniform value
-        /// value refers to a const void *</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValue(Shader shader, int uniformLoc, ref int value, ShaderUniformDataType uniformType);
-
-        /// <summary>Set shader uniform value
-        /// value refers to a const void *</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValue(Shader shader, int uniformLoc, ref float value, ShaderUniformDataType uniformType);
-
         /// <summary>Set shader uniform value vector
         /// value refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
