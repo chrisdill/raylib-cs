@@ -16,10 +16,6 @@ namespace Raylib_cs
         public const float DEG2RAD = MathF.PI / 180.0f;
         public const float RAD2DEG = 180.0f / MathF.PI;
 
-        public const int MAX_SHADER_LOCATIONS = 32;
-        public const int MAX_MATERIAL_MAPS = 12;
-        public const int MAX_TOUCH_POINTS = 10;
-
         // Callbacks to hook some internal functions
         // WARNING: This callbacks are intended for advance users
 
