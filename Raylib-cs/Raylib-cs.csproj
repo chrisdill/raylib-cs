@@ -10,16 +10,16 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetRaylibTag>3.7.0</TargetRaylibTag>
+    <TargetRaylibTag>4.0.0</TargetRaylibTag>
     <Version>4.0.0-pre</Version>
     <PackageVersion>4.0.0-pre</PackageVersion>
-    <Authors>Chris Dill, Raysan5 &amp; Others</Authors>
+    <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
     <Title>Raylib-cs</Title>
     <Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming</Description>
     <PackageIcon>raylib-cs_64x64.png</PackageIcon>
-    <PackageTags>Raylib;Raysan;Gamedev;Binding</PackageTags>
+    <PackageTags>raylib;bindings;gamedev</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
     <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
@@ -29,7 +29,7 @@
   <ItemGroup>
     <Compile Include="./**/*.cs" />
     <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
-    <Compile Remove="obj\**" />
+    <Compile Remove="obj/**" />
   </ItemGroup>
 
   <ItemGroup>
