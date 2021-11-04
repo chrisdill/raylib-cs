@@ -29,6 +29,7 @@
   <ItemGroup>
     <Compile Include="./**/*.cs" />
     <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
+    <None Include="../README.md" Pack="true" PackagePath=""/>
     <Compile Remove="obj/**" />
   </ItemGroup>
 
