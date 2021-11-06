@@ -14,13 +14,10 @@ namespace Raylib_cs
             return input.Substring(position, Math.Min(length, input.Length));
         }
 
-        [DllImport(Raylib.nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static unsafe extern byte** GetDroppedFiles(int* count);
-
         public static unsafe string[] GetDroppedFiles()
         {
             int count;
-            var buffer = GetDroppedFiles(&count);
+            var buffer = Raylib.GetDroppedFiles(&count);
             var files = new string[count];
 
             for (int i = 0; i < count; i++)

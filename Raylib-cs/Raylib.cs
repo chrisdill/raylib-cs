@@ -542,7 +542,7 @@ namespace Raylib_cs
 
         /// <summary>Get dropped files names (memory should be freed)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetDroppedFiles(ref int count);
+        public static unsafe extern byte** GetDroppedFiles(int* count);
 
         /// <summary>Clear dropped files paths buffer (free memory)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
