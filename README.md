@@ -32,7 +32,7 @@ If you need to edit Raylib-cs source then you will need to add the bindings as a
 
 2. Add Raylib-cs/Raylib-cs.csproj to your project as an existing project.
 
-3. Download the native libraries for the platforms you want to build for using the [official 3.7.0 release](https://github.com/raysan5/raylib/releases/tag/4.0.0).
+3. Download the native libraries for the platforms you want to build for using the [official 4.0.0 release](https://github.com/raysan5/raylib/releases/tag/4.0.0).
    **NOTE: the MSVC version is required for Windows platforms**
 
 4. **(Recommended)** Put the native library for each platform under `Raylib-cs/runtimes/{platform}/native/`
