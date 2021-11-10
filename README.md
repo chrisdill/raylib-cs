@@ -12,7 +12,7 @@ C# bindings for raylib 4.0.0, a simple and easy-to-use library to learn videogam
 
 [![Build](https://github.com/ChrisDill/Raylib-cs/workflows/Build/badge.svg)](https://github.com/ChrisDill/Raylib-cs/actions?query=workflow%3ABuild)
 
-Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0.
+Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0+.
 
 ## Installation - NuGet
 
@@ -66,10 +66,6 @@ namespace HelloWorld
     }
 }
 ```
-
-## Physac-cs and Raygui-cs
-
-There are **UNSUPPORTED & EXPERIMENTAL** bindings to physac and raygui. They are in separate projects not included in releases or via NuGet. Pull requests are welcome and encouraged.
 
 ## Documentation
 
