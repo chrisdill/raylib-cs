@@ -19,30 +19,41 @@ namespace Raylib_cs
         // Callbacks to hook some internal functions
         // WARNING: This callbacks are intended for advance users
 
-        // Logging: Redirect trace log messages
+        /// <summary>
+        ///  Logging: Redirect trace log messages
+        /// </summary>  
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void TraceLogCallback(TraceLogLevel logLevel, string text, IntPtr args);
-
-        // FileIO: Load binary data
-        // IntPtr refers to a unsigned char *
+        /// <summary>
+        /// FileIO: Load binary data
+        /// </summary>  
+        /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns> 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate IntPtr LoadFileDataCallback(string fileName, ref int bytesRead);
 
-        // FileIO: Save binary data
-        // IntPtr refers to a void *
+        /// <summary>
+        /// FileIO: Save binary data
+        /// </summary>
+        /// <returns><see cref="IntPtr"/> refers to a void *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
 
-        // FileIO: Load text data
+        /// <summary>
+        /// FileIO: Load text data
+        /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate string LoadFileTextCallback(string fileName);
 
-        // FileIO: Save text data
+        /// <summary>
+        /// FileIO: Save text data
+        /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SaveFileTextCallback(string fileName, string text);
 
-        // Returns color with alpha applied, alpha goes from 0.0f to 1.0f
-        // NOTE: Added for compatability with previous versions
+        /// <summary>
+        /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f
+        /// NOTE: Added for compatability with previous versions
+        /// </summary>
         public static Color Fade(Color color, float alpha) => ColorAlpha(color, alpha);
 
 
@@ -52,7 +63,9 @@ namespace Raylib_cs
 
         // Window-related functions
 
-        /// <summary>Initialize window and OpenGL context</summary>
+        /// <summary>
+        /// Initialize window and OpenGL context
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitWindow(int width, int height, [MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
