@@ -42,7 +42,7 @@ namespace Raylib_cs
         /// </summary>
         /// <returns><see cref="IntPtr"/> refers to a void *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate bool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
+        public delegate CBool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
 
         /// <summary>
         /// FileIO: Load text data
@@ -56,7 +56,7 @@ namespace Raylib_cs
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate bool SaveFileTextCallback(string fileName, string text);
+        public delegate CBool SaveFileTextCallback(string fileName, string text);
 
         /// <summary>
         /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f
@@ -79,8 +79,7 @@ namespace Raylib_cs
 
         /// <summary>Check if KEY_ESCAPE pressed or Close icon pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool WindowShouldClose();
+        public static extern CBool WindowShouldClose();
 
         /// <summary>Close window and unload OpenGL context</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -88,48 +87,39 @@ namespace Raylib_cs
 
         /// <summary>Check if window has been initialized successfully</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowReady();
+        public static extern CBool IsWindowReady();
 
         /// <summary>Check if window is currently fullscreen</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowFullscreen();
+        public static extern CBool IsWindowFullscreen();
 
         /// <summary>Check if window is currently hidden (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowHidden();
+        public static extern CBool IsWindowHidden();
 
         /// <summary>Check if window is currently minimized (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowMinimized();
+        public static extern CBool IsWindowMinimized();
 
         /// <summary>Check if window is currently maximized (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowMaximized();
+        public static extern CBool IsWindowMaximized();
 
         /// <summary>Check if window is currently focused (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowFocused();
+        public static extern CBool IsWindowFocused();
 
         /// <summary>Check if window has been resized last frame</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowResized();
+        public static extern CBool IsWindowResized();
 
         /// <summary>Check if one specific window flag is enabled</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowState(ConfigFlags flag);
+        public static extern CBool IsWindowState(ConfigFlags flag);
 
         /// <summary>Set window configuration state using flags</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool SetWindowState(ConfigFlags flag);
+        public static extern CBool SetWindowState(ConfigFlags flag);
 
         /// <summary>Clear window configuration state flags</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -281,8 +271,7 @@ namespace Raylib_cs
 
         /// <summary>Check if cursor is not visible</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsCursorHidden();
+        public static extern CBool IsCursorHidden();
 
         /// <summary>Enables cursor (unlock cursor)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -294,8 +283,7 @@ namespace Raylib_cs
 
         /// <summary>Disables cursor (lock cursor)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsCursorOnScreen();
+        public static extern CBool IsCursorOnScreen();
 
 
         // Drawing-related functions
@@ -548,18 +536,15 @@ namespace Raylib_cs
 
         /// <summary>Save data to file from byte array (write)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool SaveFileData(string fileName, IntPtr data, int bytesToWrite);
+        public static extern CBool SaveFileData(string fileName, IntPtr data, int bytesToWrite);
 
         /// <summary>Check file extension</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsFileExtension(string fileName, string ext);
+        public static extern CBool IsFileExtension(string fileName, string ext);
 
         /// <summary>Check if a file has been dropped into window</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsFileDropped();
+        public static extern CBool IsFileDropped();
 
         /// <summary>Get dropped files names (memory should be freed)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -586,8 +571,7 @@ namespace Raylib_cs
 
         /// <summary>Save integer value to storage file (to defined position)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool SaveStorageValue(uint position, int value);
+        public static extern CBool SaveStorageValue(uint position, int value);
 
         /// <summary>Load integer value from storage file (from defined position)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -605,23 +589,19 @@ namespace Raylib_cs
 
         /// <summary>Detect if a key has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyPressed(KeyboardKey key);
+        public static extern CBool IsKeyPressed(KeyboardKey key);
 
         /// <summary>Detect if a key is being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyDown(KeyboardKey key);
+        public static extern CBool IsKeyDown(KeyboardKey key);
 
         /// <summary>Detect if a key has been released once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyReleased(KeyboardKey key);
+        public static extern CBool IsKeyReleased(KeyboardKey key);
 
         /// <summary>Detect if a key is NOT being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyUp(KeyboardKey key);
+        public static extern CBool IsKeyUp(KeyboardKey key);
 
         /// <summary>Set a custom key to exit program (default is ESC)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -640,8 +620,7 @@ namespace Raylib_cs
 
         /// <summary>Detect if a gamepad is available</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadAvailable(int gamepad);
+        public static extern CBool IsGamepadAvailable(int gamepad);
 
         /// <summary>Return gamepad internal name id</summary>
         [DllImport(nativeLibName, EntryPoint = "GetGamepadName", CallingConvention = CallingConvention.Cdecl)]
@@ -655,23 +634,19 @@ namespace Raylib_cs
 
         /// <summary>Detect if a gamepad button has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonPressed(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonPressed(int gamepad, GamepadButton button);
 
         /// <summary>Detect if a gamepad button is being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonDown(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonDown(int gamepad, GamepadButton button);
 
         /// <summary>Detect if a gamepad button has been released once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonReleased(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonReleased(int gamepad, GamepadButton button);
 
         /// <summary>Detect if a gamepad button is NOT being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonUp(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonUp(int gamepad, GamepadButton button);
 
         /// <summary>Get the last gamepad button pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -694,23 +669,19 @@ namespace Raylib_cs
 
         /// <summary>Detect if a mouse button has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonPressed(MouseButton button);
+        public static extern CBool IsMouseButtonPressed(MouseButton button);
 
         /// <summary>Detect if a mouse button is being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonDown(MouseButton button);
+        public static extern CBool IsMouseButtonDown(MouseButton button);
 
         /// <summary>Detect if a mouse button has been released once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonReleased(MouseButton button);
+        public static extern CBool IsMouseButtonReleased(MouseButton button);
 
         /// <summary>Detect if a mouse button is NOT being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonUp(MouseButton button);
+        public static extern CBool IsMouseButtonUp(MouseButton button);
 
         /// <summary>Returns mouse position X</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -781,8 +752,7 @@ namespace Raylib_cs
 
         /// <summary>Check if a gesture have been detected</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGestureDetected(Gesture gesture);
+        public static extern CBool IsGestureDetected(Gesture gesture);
 
         /// <summary>Get latest detected gesture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1005,42 +975,35 @@ namespace Raylib_cs
 
         /// <summary>Check collision between two rectangles</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
+        public static extern CBool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
 
         /// <summary>Check collision between two circles</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
+        public static extern CBool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
 
         /// <summary>Check collision between circle and rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+        public static extern CBool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 
         /// <summary>Check if point is inside rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
+        public static extern CBool CheckCollisionPointRec(Vector2 point, Rectangle rec);
 
         /// <summary>Check if point is inside circle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
+        public static extern CBool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
 
         /// <summary>Check if point is inside a triangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
+        public static extern CBool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
         /// <summary>Check the collision between two lines defined by two points each, returns collision point by reference</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
+        public static extern CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
 
         /// <summary> Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
+        public static extern CBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
         /// <summary>Get collision rectangle for two rectangles collision</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1718,7 +1681,7 @@ namespace Raylib_cs
 
         /// <summary>Upload vertex data into GPU and provided VAO/VBO ids</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UploadMesh(ref Mesh mesh, bool dynamic);
+        public static extern void UploadMesh(ref Mesh mesh, CBool dynamic);
 
         /// <summary>Update mesh vertex data in GPU for a specific buffer index</summary>
         /// <summary>data refers to a void *</summary>
@@ -1739,8 +1702,7 @@ namespace Raylib_cs
 
         /// <summary>Export mesh data to file, returns true on success</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool ExportMesh(Mesh mesh, string fileName);
+        public static extern CBool ExportMesh(Mesh mesh, string fileName);
 
         /// <summary>Compute mesh bounding box limits</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1757,8 +1719,8 @@ namespace Raylib_cs
 
         // Material loading/unloading functions
 
-        /// <summary>Load materials from model file</summary>
-        /// <summary>IntPtr refers to Material *</summary>
+        /// <summary>Load materials from model file
+        /// IntPtr refers to Material *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadMaterials(string fileName, ref int materialCount);
 
@@ -1880,30 +1842,25 @@ namespace Raylib_cs
 
         /// <summary>Check model animation skeleton match</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
+        public static extern CBool IsModelAnimationValid(Model model, ModelAnimation anim);
 
         // Collision detection functions
 
         /// <summary>Detect collision between two spheres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
+        public static extern CBool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
 
         /// <summary>Detect collision between two bounding boxes</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
+        public static extern CBool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
 
         /// <summary>Detect collision between box and sphere</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
+        public static extern CBool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
 
         /// <summary>Detect collision between ray and sphere</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
+        public static extern CBool GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
 
         /// <summary>Detect collision between ray and box</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1942,8 +1899,7 @@ namespace Raylib_cs
 
         /// <summary>Check if audio device has been initialized successfully</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsAudioDeviceReady();
+        public static extern CBool IsAudioDeviceReady();
 
         /// <summary>Set master volume (listener)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2023,8 +1979,7 @@ namespace Raylib_cs
 
         /// <summary>Check if a sound is currently playing</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsSoundPlaying(Sound sound);
+        public static extern CBool IsSoundPlaying(Sound sound);
 
         /// <summary>Set volume for a sound (1.0 is max level)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2076,8 +2031,7 @@ namespace Raylib_cs
 
         /// <summary>Check if music is playing</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMusicStreamPlaying(Music music);
+        public static extern CBool IsMusicStreamPlaying(Music music);
 
         /// <summary>Updates buffers for music streaming</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2133,8 +2087,7 @@ namespace Raylib_cs
 
         /// <summary>Check if any audio stream buffers requires refill</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsAudioStreamProcessed(AudioStream stream);
+        public static extern CBool IsAudioStreamProcessed(AudioStream stream);
 
         /// <summary>Play audio stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2150,8 +2103,7 @@ namespace Raylib_cs
 
         /// <summary>Check if audio stream is playing</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsAudioStreamPlaying(AudioStream stream);
+        public static extern CBool IsAudioStreamPlaying(AudioStream stream);
 
         /// <summary>Stop audio stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

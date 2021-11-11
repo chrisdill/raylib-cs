@@ -200,8 +200,7 @@ namespace Raylib_cs
 
         /// <summary>Enable vertex array (VAO, if supported)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlEnableVertexArray(uint vaoId);
+        public static extern CBool rlEnableVertexArray(uint vaoId);
 
         /// <summary>Disable vertex array (VAO, if supported)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -353,8 +352,7 @@ namespace Raylib_cs
 
         /// <summary>Check if stereo render is enabled</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlIsStereoRenderEnabled();
+        public static extern CBool rlIsStereoRenderEnabled();
 
         /// <summary>Clear color buffer with color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -439,8 +437,7 @@ namespace Raylib_cs
 
         /// <summary>Check internal buffer overflow for a given number of vertex</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlCheckRenderBatchLimit(int vCount);
+        public static extern CBool rlCheckRenderBatchLimit(int vCount);
 
         /// <summary>Set current texture for render batch and check buffers limits</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -455,11 +452,11 @@ namespace Raylib_cs
 
         /// <summary>Load a vertex buffer attribute</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadVertexBuffer(IntPtr buffer, int size, bool dynamic);
+        public static extern uint rlLoadVertexBuffer(IntPtr buffer, int size, CBool dynamic);
 
         /// <summary>Load a new attributes element buffer</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadVertexBufferElement(IntPtr buffer, int size, bool dynamic);
+        public static extern uint rlLoadVertexBufferElement(IntPtr buffer, int size, CBool dynamic);
 
         /// <summary>Update GPU buffer with new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -472,7 +469,7 @@ namespace Raylib_cs
         public static extern void rlUnloadVertexBuffer(uint vboId);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetVertexAttribute(uint index, int compSize, int type, bool normalized, int stride, IntPtr pointer);
+        public static extern void rlSetVertexAttribute(uint index, int compSize, int type, CBool normalized, int stride, IntPtr pointer);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlSetVertexAttributeDivisor(uint index, int divisor);
@@ -503,7 +500,7 @@ namespace Raylib_cs
 
         /// <summary>Load depth texture/renderbuffer (to be attached to fbo)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadTextureDepth(int width, int height, bool useRenderBuffer);
+        public static extern uint rlLoadTextureDepth(int width, int height, CBool useRenderBuffer);
 
         /// <summary>Load texture cubemap
         /// data refers to a void *</summary>
@@ -550,13 +547,11 @@ namespace Raylib_cs
 
         /// <summary>Verify framebuffer is complete</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlFramebufferComplete(uint id);
+        public static extern CBool rlFramebufferComplete(uint id);
 
         /// <summary>Delete framebuffer from GPU</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool rlUnloadFramebuffer(uint id);
+        public static extern CBool rlUnloadFramebuffer(uint id);
 
 
         // Shaders management
