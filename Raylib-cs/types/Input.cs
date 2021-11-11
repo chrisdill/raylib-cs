@@ -350,10 +350,10 @@ namespace Raylib_cs
         GAMEPAD_BUTTON_RIGHT_THUMB
     }
 
-    /// <summary>Gestures
+    /// <summary>Gesture
     /// NOTE: It could be used as flags to enable only some gestures</summary>
     [Flags]
-    public enum Gestures
+    public enum Gesture
     {
         GESTURE_NONE = 0,
         GESTURE_TAP = 1,

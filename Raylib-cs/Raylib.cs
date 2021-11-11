@@ -776,16 +776,16 @@ namespace Raylib_cs
 
         /// <summary>Enable a set of gestures using flags</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetGesturesEnabled(Gestures flags);
+        public static extern void SetGesturesEnabled(Gesture flags);
 
         /// <summary>Check if a gesture have been detected</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGestureDetected(Gestures gesture);
+        public static extern bool IsGestureDetected(Gesture gesture);
 
         /// <summary>Get latest detected gesture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Gestures GetGestureDetected();
+        public static extern Gesture GetGestureDetected();
 
         /// <summary>Get touch points count</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
