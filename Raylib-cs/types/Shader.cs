@@ -3,7 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Shader location index</summary>
+    /// <summary>
+    /// Shader location index
+    /// </summary>
     public enum ShaderLocationIndex
     {
         SHADER_LOC_VERTEX_POSITION = 0,
@@ -37,7 +39,9 @@ namespace Raylib_cs
         SHADER_LOC_MAP_SPECULAR = SHADER_LOC_MAP_METALNESS,
     }
 
-    // Shader attribute data types
+    /// <summary>
+    /// Shader attribute data types
+    /// </summary>
     public enum ShaderAttributeDataType
     {
         SHADER_ATTRIB_FLOAT = 0,
@@ -46,7 +50,9 @@ namespace Raylib_cs
         SHADER_ATTRIB_VEC4
     }
 
-    /// <summary>Shader uniform data type</summary>
+    /// <summary>
+    /// Shader uniform data type
+    /// </summary>
     public enum ShaderUniformDataType
     {
         SHADER_UNIFORM_FLOAT = 0,

@@ -40,7 +40,9 @@ namespace Raylib_cs
         TEXTURE_FILTER_ANISOTROPIC_16X,
     }
 
-    /// <summary>Texture parameters: wrap mode</summary>
+    /// <summary>
+    /// Texture parameters: wrap mode
+    /// </summary>
     public enum TextureWrap
     {
         /// <summary>
@@ -64,7 +66,9 @@ namespace Raylib_cs
         TEXTURE_WRAP_MIRROR_CLAMP
     }
 
-    /// <summary>Cubemap layouts</summary>
+    /// <summary>
+    /// Cubemap layouts
+    /// </summary>
     public enum CubemapLayout
     {
         /// <summary>
@@ -99,7 +103,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Texture2D type<br />
+    /// Texture2D type<br/>
     /// NOTE: Data stored in GPU memory
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]

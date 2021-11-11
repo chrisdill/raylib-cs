@@ -3,7 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Font type, defines generation method</summary>
+    /// <summary>
+    /// Font type, defines generation method
+    /// </summary>
     public enum FontType
     {
         /// <summary>

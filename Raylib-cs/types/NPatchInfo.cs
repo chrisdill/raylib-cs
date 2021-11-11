@@ -2,7 +2,9 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>N-patch layout</summary>
+    /// <summary>
+    /// N-patch layout
+    /// </summary>
     public enum NPatchLayout
     {
         /// <summary>

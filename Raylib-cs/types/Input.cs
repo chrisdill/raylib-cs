@@ -133,7 +133,9 @@ namespace Raylib_cs
         KEY_VOLUME_DOWN = 25
     }
 
-    /// <summary>Mouse buttons</summary>
+    /// <summary>
+    /// Mouse buttons
+    /// </summary>
     public enum MouseButton
     {
         /// <summary>
@@ -176,7 +178,9 @@ namespace Raylib_cs
         MOUSE_MIDDLE_BUTTON = MOUSE_BUTTON_MIDDLE,
     }
 
-    /// <summary>Mouse cursor</summary>
+    /// <summary>
+    /// Mouse cursor
+    /// </summary>
     public enum MouseCursor
     {
         /// <summary>
@@ -269,7 +273,9 @@ namespace Raylib_cs
         GAMEPAD_AXIS_RIGHT_TRIGGER = 5
     }
 
-    /// <summary>Gamepad buttons</summary>
+    /// <summary>
+    /// Gamepad buttons
+    /// </summary>
     public enum GamepadButton
     {
         /// <summary>
@@ -371,7 +377,9 @@ namespace Raylib_cs
         GESTURE_PINCH_OUT = 512
     }
 
-    /// <summary>Head-Mounted-Display device parameters</summary>
+    /// <summary>
+    /// Head-Mounted-Display device parameters
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public unsafe struct VrDeviceInfo
     {
@@ -426,7 +434,9 @@ namespace Raylib_cs
         public fixed float chromaAbCorrection[4];
     }
 
-    /// <summary>VR Stereo rendering configuration for simulator</summary>
+    /// <summary>
+    /// VR Stereo rendering configuration for simulator
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct VrStereoConfig
     {
