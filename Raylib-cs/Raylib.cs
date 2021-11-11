@@ -8,7 +8,9 @@ namespace Raylib_cs
     [SuppressUnmanagedCodeSecurity]
     public static class Raylib
     {
-        // Used by DllImport to load the native library.
+        /// <summary>
+        /// Used by DllImport to load the native library.
+        /// </summary>
         public const string nativeLibName = "raylib";
 
         public const string RAYLIB_VERSION = "4.0";
@@ -17,15 +19,17 @@ namespace Raylib_cs
         public const float RAD2DEG = 180.0f / MathF.PI;
 
         // Callbacks to hook some internal functions
-        // WARNING: This callbacks are intended for advance users
+        // WARNING: These callbacks are intended for advance users
 
         /// <summary>
-        ///  Logging: Redirect trace log messages
+        /// Logging: Redirect trace log messages
+        /// WARNING: This callback is intended for advance users
         /// </summary>  
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void TraceLogCallback(TraceLogLevel logLevel, string text, IntPtr args);
         /// <summary>
         /// FileIO: Load binary data
+        /// WARNING: This callback is intended for advance users
         /// </summary>  
         /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns> 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -33,6 +37,7 @@ namespace Raylib_cs
 
         /// <summary>
         /// FileIO: Save binary data
+        /// WARNING: This callback is intended for advance users
         /// </summary>
         /// <returns><see cref="IntPtr"/> refers to a void *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -40,12 +45,14 @@ namespace Raylib_cs
 
         /// <summary>
         /// FileIO: Load text data
+        /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate string LoadFileTextCallback(string fileName);
 
         /// <summary>
         /// FileIO: Save text data
+        /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SaveFileTextCallback(string fileName, string text);
