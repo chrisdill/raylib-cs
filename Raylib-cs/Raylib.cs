@@ -24,14 +24,15 @@ namespace Raylib_cs
         /// <summary>
         /// Logging: Redirect trace log messages
         /// WARNING: This callback is intended for advance users
-        /// </summary>  
+        /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void TraceLogCallback(TraceLogLevel logLevel, string text, IntPtr args);
+
         /// <summary>
         /// FileIO: Load binary data
         /// WARNING: This callback is intended for advance users
-        /// </summary>  
-        /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns> 
+        /// </summary>
+        /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate IntPtr LoadFileDataCallback(string fileName, ref int bytesRead);
 
@@ -776,16 +777,16 @@ namespace Raylib_cs
 
         /// <summary>Enable a set of gestures using flags</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetGesturesEnabled(Gestures flags);
+        public static extern void SetGesturesEnabled(Gesture flags);
 
         /// <summary>Check if a gesture have been detected</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGestureDetected(Gestures gesture);
+        public static extern bool IsGestureDetected(Gesture gesture);
 
         /// <summary>Get latest detected gesture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Gestures GetGestureDetected();
+        public static extern Gesture GetGestureDetected();
 
         /// <summary>Get touch points count</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1449,7 +1450,7 @@ namespace Raylib_cs
 
         /// <summary>Set color formatted into destination pixel pointer</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetPixelColor(IntPtr srcPtr, Color color, PixelFormat format);
+        public static extern void SetPixelColor(IntPtr dstPtr, Color color, PixelFormat format);
 
         /// <summary>Get pixel data size in bytes for certain format</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1854,7 +1855,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 center, float size, Color tint);
 
-        // Draw a billboard texture defined by source and rotation
+        /// <summary>Draw a billboard texture defined by source and rotation</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawBillboardPro(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 
