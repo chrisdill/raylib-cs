@@ -100,7 +100,7 @@ namespace Raylib_cs
         /// <summary>
         /// Music looping enable
         /// </summary>
-        public byte looping;
+        public CBool looping;
 
         /// <summary>
         /// Type of music context (audio filetype)

@@ -76,7 +76,7 @@ namespace Raylib_cs
         /// <summary>
         /// Did the ray hit something?
         /// </summary>
-        public byte hit;
+        public CBool hit;
 
         /// <summary>
         /// Distance to nearest hit
