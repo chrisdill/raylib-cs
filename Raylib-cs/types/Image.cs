@@ -3,8 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Pixel formats
-    /// NOTE: Support depends on OpenGL version and platform</summary>
+    /// <summary>
+    /// Pixel formats<br/>
+    /// NOTE: Support depends on OpenGL version and platform
+    /// </summary>
     public enum PixelFormat
     {
         /// <summary>

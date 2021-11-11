@@ -2,9 +2,11 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Texture parameters: filter mode
-    /// NOTE 1: Filtering considers mipmaps if available in the texture
-    /// NOTE 2: Filter is accordingly set for minification and magnification</summary>
+    /// <summary>
+    /// Texture parameters: filter mode<br/>
+    /// NOTE 1: Filtering considers mipmaps if available in the texture<br/>
+    /// NOTE 2: Filter is accordingly set for minification and magnification
+    /// </summary>
     public enum TextureFilter
     {
         /// <summary>
@@ -97,8 +99,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Texture2D type
-    /// <br />
+    /// Texture2D type<br />
     /// NOTE: Data stored in GPU memory
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]

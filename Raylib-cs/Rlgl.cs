@@ -493,7 +493,7 @@ namespace Raylib_cs
 
         // Textures data management
 
-        /// <summary>Load texture in GPU
+        /// <summary>Load texture in GPU<br/>
         /// data refers to a void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern uint rlLoadTexture(IntPtr data, int width, int height, PixelFormat format, int mipmapCount);
@@ -502,12 +502,12 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern uint rlLoadTextureDepth(int width, int height, CBool useRenderBuffer);
 
-        /// <summary>Load texture cubemap
+        /// <summary>Load texture cubemap<br/>
         /// data refers to a void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern uint rlLoadTextureCubemap(IntPtr data, int size, PixelFormat format);
 
-        /// <summary>Update GPU texture with new data
+        /// <summary>Update GPU texture with new data<br/>
         /// data refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlUpdateTexture(uint id, int width, int height, PixelFormat format, IntPtr data);
@@ -524,12 +524,12 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlGenerateMipmaps(ref Texture2D texture);
 
-        /// <summary>Read texture pixel data
+        /// <summary>Read texture pixel data<br/>
         /// IntPtr refers to a void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr rlReadTexturePixels(Texture2D texture);
 
-        /// <summary>Read screen pixel data (color buffer)
+        /// <summary>Read screen pixel data (color buffer)<br/>
         /// IntPtr refers to a unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr rlReadScreenPixels(int width, int height);

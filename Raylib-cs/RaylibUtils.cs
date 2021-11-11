@@ -4,7 +4,7 @@ using Raylib_cs;
 
 namespace Raylib_cs
 {
-   [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly struct CBool
     {
         private readonly byte value;

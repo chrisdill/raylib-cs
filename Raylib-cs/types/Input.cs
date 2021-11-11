@@ -4,9 +4,10 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Keyboard keys (US keyboard layout)
-    /// NOTE: Use GetKeyPressed() to allow redefining
-    /// required keys for alternative layouts</summary>
+    /// <summary>
+    /// Keyboard keys (US keyboard layout)<br/>
+    /// NOTE: Use GetKeyPressed() to allow redefining required keys for alternative layouts
+    /// </summary>
     public enum KeyboardKey
     {
         /// <summary>
@@ -350,8 +351,10 @@ namespace Raylib_cs
         GAMEPAD_BUTTON_RIGHT_THUMB
     }
 
-    /// <summary>Gesture
-    /// NOTE: It could be used as flags to enable only some gestures</summary>
+    /// <summary>
+    /// Gesture<br/>
+    /// NOTE: It could be used as flags to enable only some gestures
+    /// </summary>
     [Flags]
     public enum Gesture
     {

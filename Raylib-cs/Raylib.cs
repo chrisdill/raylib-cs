@@ -22,14 +22,14 @@ namespace Raylib_cs
         // WARNING: These callbacks are intended for advance users
 
         /// <summary>
-        /// Logging: Redirect trace log messages
+        /// Logging: Redirect trace log messages<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void TraceLogCallback(TraceLogLevel logLevel, string text, IntPtr args);
 
         /// <summary>
-        /// FileIO: Load binary data
+        /// FileIO: Load binary data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
         /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns>
@@ -37,29 +37,29 @@ namespace Raylib_cs
         public delegate IntPtr LoadFileDataCallback(string fileName, ref int bytesRead);
 
         /// <summary>
-        /// FileIO: Save binary data
+        /// FileIO: Save binary data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
-        /// <returns><see cref="IntPtr"/> refers to a void *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate CBool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
 
         /// <summary>
-        /// FileIO: Load text data
+        /// FileIO: Load text data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
+        /// <returns><see cref="IntPtr"/> refers to a char *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate string LoadFileTextCallback(string fileName);
+        public delegate IntPtr LoadFileTextCallback(string fileName);
 
         /// <summary>
-        /// FileIO: Save text data
+        /// FileIO: Save text data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate CBool SaveFileTextCallback(string fileName, string text);
 
         /// <summary>
-        /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f
+        /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f<br/>
         /// NOTE: Added for compatability with previous versions
         /// </summary>
         public static Color Fade(Color color, float alpha) => ColorAlpha(color, alpha);
@@ -71,9 +71,7 @@ namespace Raylib_cs
 
         // Window-related functions
 
-        /// <summary>
-        /// Initialize window and OpenGL context
-        /// </summary>
+        /// <summary>Initialize window and OpenGL context</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitWindow(int width, int height, [MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
@@ -165,7 +163,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetWindowSize(int width, int height);
 
-        /// <summary>Get native window handle
+        /// <summary>Get native window handle<br/>
         /// IntPtr refers to a void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetWindowHandle();
@@ -386,12 +384,12 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetShaderLocationAttrib(Shader shader, string attribName);
 
-        /// <summary>Set shader uniform value
-        /// value refers to a const void *</summary>
+        /// <summary>Set shader uniform value<br/>
+        /// refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetShaderValue(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType);
 
-        /// <summary>Set shader uniform value vector
+        /// <summary>Set shader uniform value vector<br/>
         /// value refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetShaderValueV(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType, int count);
@@ -524,12 +522,12 @@ namespace Raylib_cs
 
         // Files management functions
 
-        /// <summary>Load file data as byte array (read)
+        /// <summary>Load file data as byte array (read)<br/>
         /// IntPtr refers to unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadFileData(string fileName, ref int bytesRead);
 
-        /// <summary>Unload file data allocated by LoadFileData()
+        /// <summary>Unload file data allocated by LoadFileData()<br/>
         /// data refers to a unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadFileData(IntPtr data);
@@ -548,7 +546,7 @@ namespace Raylib_cs
 
         /// <summary>Get dropped files names (memory should be freed)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static unsafe extern byte** GetDroppedFiles(int* count);
+        public static extern unsafe byte** GetDroppedFiles(int* count);
 
         /// <summary>Clear dropped files paths buffer (free memory)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -814,9 +812,9 @@ namespace Raylib_cs
         // Basic Shapes Drawing Functions (Module: shapes)
         //------------------------------------------------------------------------------------
 
-        /// <summary>Set texture and rectangle to be used on shapes drawing
-        /// NOTE: It can be useful when using basic shapes and one single font,
-        /// defining a font char white rectangle would allow drawing everything in a single draw call</summary>
+        /// <summary>Set texture and rectangle to be used on shapes drawing<br/>
+        /// NOTE: It can be useful when using basic shapes and one single font.<br/>
+        /// Defining a white rectangle would allow drawing everything in a single draw call.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 
@@ -1001,7 +999,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
 
-        /// <summary> Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
+        /// <summary>Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
@@ -1029,7 +1027,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image LoadImageAnim(string fileName, ref int frames);
 
-        /// <summary>Load image from memory buffer, fileType refers to extension: i.e. "png"
+        /// <summary>Load image from memory buffer, fileType refers to extension: i.e. "png"<br/>
         /// fileData refers to const unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image LoadImageFromMemory(string fileType, IntPtr fileData, int dataSize);
@@ -1192,17 +1190,17 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImageColorReplace(ref Image image, Color color, Color replace);
 
-        /// <summary>Load color data from image as a Color array (RGBA - 32bit)
+        /// <summary>Load color data from image as a Color array (RGBA - 32bit)<br/>
         /// IntPtr refers to Color *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadImageColors(Image image);
 
-        /// <summary>Load colors palette from image as a Color array (RGBA - 32bit)
+        /// <summary>Load colors palette from image as a Color array (RGBA - 32bit)<br/>
         /// IntPtr refers to Color *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadImagePaletee(Image image, int maxPaletteSize, ref int colorsCount);
 
-        /// <summary>Unload color data loaded with LoadImageColors()
+        /// <summary>Unload color data loaded with LoadImageColors()<br/>
         /// colors refers to Color *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadImageColors(IntPtr colors);
@@ -1308,7 +1306,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadRenderTexture(RenderTexture2D target);
 
-        /// <summary>Update GPU texture with new data
+        /// <summary>Update GPU texture with new data<br/>
         /// pixels refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateTexture(Texture2D texture, IntPtr pixels);
@@ -1442,13 +1440,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Font LoadFontFromImage(Image image, Color key, int firstChar);
 
-        /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"
+        /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"<br/>
         /// fileData refers to const unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Font LoadFontFromMemory(string fileType, IntPtr fileData, int dataSize, int fontSize, int[] fontChars, int charsCount);
 
-        /// <summary>Load font data for further use
-        /// fileData refers to const unsigned char *
+        /// <summary>Load font data for further use<br/>
+        /// fileData refers to const unsigned char *<br/>
         /// IntPtr refers to GlyphInfo *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadFontData(IntPtr fileData, int dataSize, int fontSize, int[] fontChars, int charsCount, FontType type);
@@ -1457,7 +1455,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image GenImageFontAtlas(IntPtr chars, ref IntPtr recs, int charsCount, int fontSize, int padding, int packMethod);
 
-        /// <summary>Unload font chars info data (RAM)
+        /// <summary>Unload font chars info data (RAM)<br/>
         /// chars refers to GlpyhInfo *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadFontData(IntPtr chars, int charsCount);
@@ -1542,7 +1540,7 @@ namespace Raylib_cs
 
         // UTF8 text strings management functions
 
-        /// <summary>Get all codepoints in a string, codepoints count returned by parameters
+        /// <summary>Get all codepoints in a string, codepoints count returned by parameters<br/>
         /// IntPtr refers to a int *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetCodepoints(string text, ref int count);
@@ -1683,8 +1681,8 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UploadMesh(ref Mesh mesh, CBool dynamic);
 
-        /// <summary>Update mesh vertex data in GPU for a specific buffer index</summary>
-        /// <summary>data refers to a void *</summary>
+        /// <summary>Update mesh vertex data in GPU for a specific buffer index<br/>
+        /// data refers to a void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateMeshBuffer(Mesh mesh, int index, IntPtr data, int dataSize, int offset);
 
@@ -1719,7 +1717,7 @@ namespace Raylib_cs
 
         // Material loading/unloading functions
 
-        /// <summary>Load materials from model file
+        /// <summary>Load materials from model file<br/>
         /// IntPtr refers to Material *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadMaterials(string fileName, ref int materialCount);
@@ -1823,7 +1821,7 @@ namespace Raylib_cs
 
         // Model animations loading/unloading functions
 
-        /// <summary>Load model animations from file
+        /// <summary>Load model animations from file<br/>
         /// IntPtr refers to ModelAnimation *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadModelAnimations(string fileName, ref int animsCount);
@@ -1912,7 +1910,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Wave LoadWave(string fileName);
 
-        /// <summary>Load wave from memory buffer, fileType refers to extension: i.e. "wav"
+        /// <summary>Load wave from memory buffer, fileType refers to extension: i.e. "wav"<br/>
         /// fileData refers to a const unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Wave LoadWaveFromMemory(string fileType, IntPtr fileData, int dataSize);
@@ -1925,8 +1923,8 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Sound LoadSoundFromWave(Wave wave);
 
-        /// <summary>Update sound buffer with new data</summary>
-        /// <summary>data refers to a const void *</summary>
+        /// <summary>Update sound buffer with new data<br/>
+        /// refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateSound(Sound sound, IntPtr data, int samplesCount);
 
@@ -2001,12 +1999,12 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void WaveCrop(ref Wave wave, int initSample, int finalSample);
 
-        /// <summary>Get samples data from wave as a floats array
+        /// <summary>Get samples data from wave as a floats array<br/>
         /// IntPtr refers to float *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LoadWaveSamples(Wave wave);
 
-        /// <summary>Unload samples data loaded with LoadWaveSamples()
+        /// <summary>Unload samples data loaded with LoadWaveSamples()<br/>
         /// samples refers to float *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadWaveSamples(IntPtr samples);
@@ -2080,7 +2078,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadAudioStream(AudioStream stream);
 
-        /// <summary>Update audio stream buffers with data
+        /// <summary>Update audio stream buffers with data<br/>
         /// data refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateAudioStream(AudioStream stream, IntPtr data, int samplesCount);

@@ -36,7 +36,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Audio stream type
+    /// Audio stream type<br/>
     /// NOTE: Useful to create custom audio streams not bound to a specific file
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -81,7 +81,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Music stream type (audio file streaming from memory)
+    /// Music stream type (audio file streaming from memory)<br/>
     /// NOTE: Anything longer than ~10 seconds should be streamed
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]

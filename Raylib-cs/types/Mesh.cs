@@ -27,7 +27,7 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Vertex data definning a mesh
+    /// Vertex data definning a mesh<br/>
     /// NOTE: Data stored in CPU memory (and GPU)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
