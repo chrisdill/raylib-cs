@@ -162,7 +162,7 @@ namespace Raylib_cs
         MOUSE_BUTTON_EXTRA = 4,
 
         /// <summary>
-        /// Mouse button fordward (advanced mouse device)
+        /// Mouse button forward (advanced mouse device)
         /// </summary>
         MOUSE_BUTTON_FORWARD = 5,
 
