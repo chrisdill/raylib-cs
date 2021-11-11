@@ -8,12 +8,12 @@ namespace Raylib_cs
     /// Bone information
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BoneInfo
+    public unsafe struct BoneInfo
     {
         /// <summary>
         /// Bone name (char[32])
         /// </summary>
-        public IntPtr name;
+        public fixed sbyte name[32];
 
         /// <summary>
         /// Bone parent
@@ -25,7 +25,7 @@ namespace Raylib_cs
     /// Model type
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Model
+    public unsafe struct Model
     {
         /// <summary>
         /// Local transform matrix
@@ -45,17 +45,17 @@ namespace Raylib_cs
         /// <summary>
         /// Meshes array (Mesh *)
         /// </summary>
-        public IntPtr meshes;
+        public Mesh *meshes;
 
         /// <summary>
         /// Materials array (Material *)
         /// </summary>
-        public IntPtr materials;
+        public Material *materials;
 
         /// <summary>
         /// Mesh material number (int *)
         /// </summary>
-        public IntPtr meshMaterial;
+        public int *meshMaterial;
 
         /// <summary>
         /// Number of bones
@@ -65,19 +65,19 @@ namespace Raylib_cs
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
-        public IntPtr bones;
+        public BoneInfo *bones;
 
         /// <summary>
         /// Bones base transformation (pose, Transform *)
         /// </summary>
-        public IntPtr bindPose;
+        public Transform *bindPose;
     }
 
     /// <summary>
     /// Model animation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ModelAnimation
+    public unsafe struct ModelAnimation
     {
         /// <summary>
         /// Number of bones
@@ -92,11 +92,11 @@ namespace Raylib_cs
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
-        public IntPtr bones;
+        public BoneInfo *bones;
 
         /// <summary>
         /// Poses array by frame (Transform **)
         /// </summary>
-        public IntPtr framePoses;
+        public Transform *framePoses;
     }
 }

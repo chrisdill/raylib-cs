@@ -70,7 +70,7 @@ namespace Raylib_cs
     /// Shader type (generic)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Shader
+    public unsafe struct Shader
     {
         /// <summary>
         /// Shader program id
@@ -80,6 +80,6 @@ namespace Raylib_cs
         /// <summary>
         /// Shader locations array (MAX_SHADER_LOCATIONS, int *)
         /// </summary>
-        public IntPtr locs;
+        public int* locs;
     }
 }

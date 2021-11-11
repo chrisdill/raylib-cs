@@ -7,7 +7,7 @@ namespace Raylib_cs
     /// RenderBatch type
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct RenderBatch
+    public unsafe struct RenderBatch
     {
         /// <summary>
         /// Number of vertex buffers (multi-buffering support)
@@ -22,12 +22,12 @@ namespace Raylib_cs
         /// <summary>
         /// Dynamic buffer(s) for vertex data
         /// </summary>
-        IntPtr vertexBuffer;
+        VertexBuffer* vertexBuffer;
 
         /// <summary>
         /// Draw calls array, depends on textureId
         /// </summary>
-        IntPtr draws;
+        DrawCall* draws;
 
         /// <summary>
         /// Draw calls counter
@@ -52,26 +52,26 @@ namespace Raylib_cs
         public int elementCount;
 
         /// <summary>
-        /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
+        /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
         /// </summary>
-        public IntPtr vertices;
+        public float* vertices;
 
         /// <summary>
-        /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
+        /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
         /// </summary>
-        public IntPtr texcoords;
+        public float* texcoords;
 
         /// <summary>
-        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3, unsigned char *) 
+        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3) 
         /// </summary>
-        public IntPtr colors;
+        public byte* colors;
 
         /// <summary>
         /// Vertex indices (in case vertex data comes indexed) (6 indices per quad)<br/>
-        /// unsigned int * for GRAPHICS_API_OPENGL_11 or GRAPHICS_API_OPENGL_33<br/>
-        /// unsigned short * for GRAPHICS_API_OPENGL_ES2
+        /// unsigned int* for GRAPHICS_API_OPENGL_11 or GRAPHICS_API_OPENGL_33<br/>
+        /// unsigned short* for GRAPHICS_API_OPENGL_ES2
         /// </summary>
-        public IntPtr indices;
+        public void* indices;
 
         /// <summary>
         /// OpenGL Vertex Array Object id

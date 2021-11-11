@@ -71,7 +71,7 @@ namespace Raylib_cs
     /// Material type (generic)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Material
+    public unsafe struct Material
     {
         /// <summary>
         /// Material shader
@@ -79,13 +79,13 @@ namespace Raylib_cs
         public Shader shader;
 
         /// <summary>
-        /// Material maps (MaterialMap *)
+        /// Material maps
         /// </summary>
-        public IntPtr maps;
+        public MaterialMap *maps;
 
         /// <summary>
-        /// Material generic parameters (if required, float *)
+        /// Material generic parameters (if required)
         /// </summary>
-        public IntPtr param;
+        public float *param;
     }
 }

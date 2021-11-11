@@ -6,7 +6,7 @@ using System.Security;
 namespace Raylib_cs
 {
     [SuppressUnmanagedCodeSecurity]
-    public static class Raylib
+    public static unsafe class Raylib
     {
         /// <summary>
         /// Used by DllImport to load the native library.
@@ -384,15 +384,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetShaderLocationAttrib(Shader shader, string attribName);
 
-        /// <summary>Set shader uniform value<br/>
-        /// refers to a const void *</summary>
+        /// <summary>Set shader uniform value</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValue(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType);
+        public static extern void SetShaderValue(Shader shader, int uniformLoc, void* value, ShaderUniformDataType uniformType);
 
-        /// <summary>Set shader uniform value vector<br/>
-        /// value refers to a const void *</summary>
+        /// <summary>Set shader uniform value vector</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValueV(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType, int count);
+        public static extern void SetShaderValueV(Shader shader, int uniformLoc, void* value, ShaderUniformDataType uniformType, int count);
 
         /// <summary>Set shader uniform value (matrix 4x4)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -546,7 +544,7 @@ namespace Raylib_cs
 
         /// <summary>Get dropped files names (memory should be freed)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern unsafe byte** GetDroppedFiles(int* count);
+        public static extern byte** GetDroppedFiles(int* count);
 
         /// <summary>Clear dropped files paths buffer (free memory)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

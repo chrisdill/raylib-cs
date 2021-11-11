@@ -31,7 +31,7 @@ namespace Raylib_cs
     /// NOTE: Data stored in CPU memory (and GPU)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Mesh
+    public unsafe struct Mesh
     {
         /// <summary>
         ///  Number of vertices stored in arrays
@@ -46,63 +46,63 @@ namespace Raylib_cs
         #region Default vertex data
 
         /// <summary>
-        /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0, float *)
+        /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
         /// </summary>
-        public IntPtr vertices;
+        public float* vertices;
 
         /// <summary>
-        /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1, float *)
+        /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
         /// </summary>
-        public IntPtr texcoords;
+        public float* texcoords;
 
         /// <summary>
-        /// Vertex second texture coordinates (useful for lightmaps) (shader-location = 5, float *)
+        /// Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
         /// </summary>
-        public IntPtr texcoords2;
+        public float* texcoords2;
 
         /// <summary>
-        /// Vertex normals (XYZ - 3 components per vertex) (shader-location = 2, float *)
+        /// Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
         /// </summary>
-        public IntPtr normals;
+        public float* normals;
 
         /// <summary>
-        /// Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4, float *)
+        /// Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
         /// </summary>
-        public IntPtr tangents;
+        public float* tangents;
 
         /// <summary>
-        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3,  unsigned char *)
+        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
         /// </summary>
-        public IntPtr colors;
+        public byte* colors;
 
         /// <summary>
-        /// Vertex indices (in case vertex data comes indexed, unsigned short *)
+        /// Vertex indices (in case vertex data comes indexed)
         /// </summary>
-        public IntPtr indices;
+        public ushort* indices;
 
         #endregion
 
         #region Animation vertex data
 
         /// <summary>
-        /// Animated vertex positions (after bones transformations, float *)
+        /// Animated vertex positions (after bones transformations)
         /// </summary>
-        public IntPtr animVertices;
+        public float* animVertices;
 
         /// <summary>
-        /// Animated normals (after bones transformations, float *)
+        /// Animated normals (after bones transformations)
         /// </summary>
-        public IntPtr animNormals;
+        public float* animNormals;
 
         /// <summary>
-        /// Vertex bone ids, up to 4 bones influence by vertex (skinning, int *)
+        /// Vertex bone ids, up to 4 bones influence by vertex (skinning)
         /// </summary>
-        public IntPtr boneIds;
+        public byte* boneIds;
 
         /// <summary>
-        /// Vertex bone weight, up to 4 bones influence by vertex (skinning, float *)
+        /// Vertex bone weight, up to 4 bones influence by vertex (skinning)
         /// </summary>
-        public IntPtr boneWeights;
+        public float* boneWeights;
 
         #endregion
 
@@ -116,7 +116,7 @@ namespace Raylib_cs
         /// <summary>
         /// OpenGL Vertex Buffer Objects id (default vertex data, uint[])
         /// </summary>
-        public IntPtr vboId;
+        public uint* vboId;
 
         #endregion
     }
