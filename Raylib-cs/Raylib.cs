@@ -26,7 +26,7 @@ namespace Raylib_cs
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void TraceLogCallback(TraceLogLevel logLevel, string text, IntPtr args);
+        public delegate void TraceLogCallback(TraceLogLevel logLevel, IntPtr text, IntPtr args);
 
         /// <summary>
         /// FileIO: Load binary data<br/>
@@ -57,6 +57,8 @@ namespace Raylib_cs
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate CBool SaveFileTextCallback(string fileName, string text);
+
+        private static TraceLogCallback traceLogCallback;
 
         /// <summary>
         /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f<br/>
@@ -497,8 +499,15 @@ namespace Raylib_cs
         // WARNING: Callbacks setup is intended for advance users
 
         /// <summary>Set custom trace log</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetTraceLogCallback(TraceLogCallback callback);
+        [DllImport(nativeLibName, EntryPoint = "SetTraceLogCallback", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void SetTraceLogCallbackInternal(TraceLogCallback callback);
+
+        /// <summary>Set custom trace log</summary>
+        public static void SetTraceLogCallback(TraceLogCallback callback)
+        {
+            SetTraceLogCallbackInternal(callback);
+            traceLogCallback = callback;
+        }
 
         /// <summary>Set custom file binary data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
