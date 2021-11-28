@@ -86,6 +86,6 @@ namespace Raylib_cs
         /// <summary>
         /// Material generic parameters (if required)
         /// </summary>
-        public float *param;
+        public fixed float param[4];
     }
 }

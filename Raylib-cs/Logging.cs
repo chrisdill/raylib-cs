@@ -28,25 +28,25 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     struct VaListLinuxX64
     {
-        uint gp_offset;
-        uint fp_offset;
-        IntPtr overflow_arg_area;
-        IntPtr reg_save_area;
+        uint gpOffset;
+        uint fpOffset;
+        IntPtr overflowArgArea;
+        IntPtr regSaveArea;
     }
 
     /// <summary>
     /// Logging workaround for formatting strings from native code
     /// </summary>
-    public static class LoggingUtils
+    public static class Logging
     {
-        static LoggingUtils()
+        static Logging()
         {
             Raylib.SetTraceLogCallback(LogConsole);
         }
 
         public static void LogConsole(TraceLogLevel msgType, IntPtr text, IntPtr args)
         {
-            var message = LoggingUtils.GetLogMessage(text, args);
+            var message = GetLogMessage(text, args);
             Console.WriteLine(message);
         }
 
@@ -110,7 +110,6 @@ namespace Raylib_cs
             byteLength = Native.vsnprintf_linux(IntPtr.Zero, UIntPtr.Zero, format, listPointer) + 1;
 
             // Allocate buffer for result
-            // listPointer = Marshal.AllocHGlobal(Marshal.SizeOf(listStructure));
             Marshal.StructureToPtr(listStructure, listPointer, false);
 
             IntPtr utf8Buffer = IntPtr.Zero;
