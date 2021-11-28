@@ -104,7 +104,7 @@ namespace Raylib_cs
 
         /// <summary>Multiply the current matrix by another matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlMultMatrixf(float[] matf);
+        public static extern void rlMultMatrixf(float* matf);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlFrustum(double left, double right, double bottom, double top, double znear, double zfar);
@@ -422,11 +422,11 @@ namespace Raylib_cs
 
         /// <summary>Draw render batch data (Update->Draw->Reset)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawRenderBatch(ref RenderBatch batch);
+        public static extern void rlDrawRenderBatch(RenderBatch* batch);
 
         /// <summary>Set the active render batch for rlgl (NULL for default internal)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetRenderBatchActive(ref RenderBatch batch);
+        public static extern void rlSetRenderBatchActive(RenderBatch* batch);
 
         /// <summary>Update and draw internal render batch</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -508,7 +508,7 @@ namespace Raylib_cs
 
         /// <summary>Get OpenGL internal formats</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlGetGlTextureFormats(PixelFormat format, ref uint glInternalFormat, ref uint glFormat, ref uint glType);
+        public static extern void rlGetGlTextureFormats(PixelFormat format, int* glInternalFormat, int* glFormat, int* glType);
 
         /// <summary>Get OpenGL internal formats</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -520,7 +520,7 @@ namespace Raylib_cs
 
         /// <summary>Generate mipmap data for selected texture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlGenTextureMipmaps(uint id, int width, int height, PixelFormat format, ref int[] mipmaps);
+        public static extern void rlGenTextureMipmaps(uint id, int width, int height, PixelFormat format, int* mipmaps);
 
         /// <summary>Read texture pixel data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -644,7 +644,7 @@ namespace Raylib_cs
 
         /// <summary>Get internal modelview matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixModelView();
+        public static extern Matrix4x4 rlGetMatrixModelview();
 
         /// <summary>Get internal projection matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -668,7 +668,7 @@ namespace Raylib_cs
 
         /// <summary>Set a custom modelview matrix (replaces internal modelview matrix)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetMatrixModelView(Matrix4x4 proj);
+        public static extern void rlSetMatrixModelview(Matrix4x4 proj);
 
         /// <summary>Set eyes projection matrices for stereo rendering</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
