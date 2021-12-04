@@ -365,7 +365,7 @@ namespace Raylib_cs
 
         /// <summary>Set blending mode factor and equation (using OpenGL factors)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetBlendModeFactors(int glSrcFactor, int glDstFactor, int glEquation);
+        public static extern void rlSetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
 
 
         // ------------------------------------------------------------------------------------
