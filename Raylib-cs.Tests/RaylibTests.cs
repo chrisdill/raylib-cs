@@ -40,26 +40,5 @@ namespace Raylib_cs.Tests
             Assert.True(BlittableHelper.IsBlittable<VrStereoConfig>());
             Assert.True(BlittableHelper.IsBlittable<RenderBatch>());
         }
-
-        [Fact]
-        public void Debug()
-        {
-            // Initialization
-            //--------------------------------------------------------------------------------------
-            const int screenWidth = 800;
-            const int screenHeight = 450;
-
-            Raylib.InitWindow(screenWidth, screenHeight, "Aaåäö");
-
-            while (!Raylib.WindowShouldClose())
-            {
-                Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.RAYWHITE);
-                Raylib.EndDrawing();
-            }
-            
-            Raylib.CloseWindow();  
-            
-        }
     }
 }
