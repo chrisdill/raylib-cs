@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <EnableDefaultItems>false</EnableDefaultItems>
     <AssemblyName>Raylib-cs</AssemblyName>
     <RootNamespace>Raylib_cs</RootNamespace>
@@ -27,10 +27,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="./**/*.cs" />
     <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
-    <None Include="../README.md" Pack="true" PackagePath=""/>
-    <Compile Remove="obj/**" />
+    <None Include="../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,5 +41,10 @@
       <Pack>true</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="*.cs" />
+    <Compile Include="types\*.cs" />
   </ItemGroup>
 </Project>
