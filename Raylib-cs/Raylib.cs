@@ -7,7 +7,7 @@ using System.Xml;
 namespace Raylib_cs
 {
     [SuppressUnmanagedCodeSecurity]
-    public static unsafe class Raylib
+    public static unsafe partial class Raylib
     {
         /// <summary>
         /// Used by DllImport to load the native library
