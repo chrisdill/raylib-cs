@@ -11,8 +11,8 @@
 
   <PropertyGroup>
     <TargetRaylibTag>4.0.0</TargetRaylibTag>
-    <Version>4.0.0-pre</Version>
-    <PackageVersion>4.0.0-pre</PackageVersion>
+    <Version>4.0.0-pre.1</Version>
+    <PackageVersion>4.0.0-pre.1</PackageVersion>
     <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
@@ -46,5 +46,7 @@
   <ItemGroup>
     <Compile Include="*.cs" />
     <Compile Include="types\*.cs" />
+    <Compile Include="types\native\CBool.cs" />
+    <Compile Include="types\native\Utf8String.cs" />
   </ItemGroup>
 </Project>
