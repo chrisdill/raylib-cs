@@ -66,8 +66,8 @@ public readonly ref struct Utf8String
     public static Utf8String FromSpan(ReadOnlySpan<byte> span)
     {
         if (
-            (span.Length > 0)
-            && (span[^1] != 0)
+            span.Length > 0
+            && span[^1] != 0
         )
         {
             throw new ArgumentException("zero terminator required");
@@ -82,10 +82,8 @@ public readonly ref struct Utf8String
         {
             return new Utf8String(ReadOnlySpan<byte>.Empty);
         }
-        else
-        {
-            return new Utf8String(s.ToUtf8String());
-        }
+
+        return new Utf8String(s.ToUtf8String());
     }
 
     static unsafe long GetLength(byte* p)
@@ -112,14 +110,7 @@ public readonly ref struct Utf8String
     /// </summary>
     public static unsafe Utf8String FromPtr(byte* p)
     {
-        if (p == null)
-        {
-            return new Utf8String(ReadOnlySpan<byte>.Empty);
-        }
-        else
-        {
-            return new Utf8String(FindZeroTerminator(p));
-        }
+        return p == null ? new Utf8String(ReadOnlySpan<byte>.Empty) : new Utf8String(FindZeroTerminator(p));
     }
 
     // TODO maybe remove this and just use FromSpan?
@@ -144,30 +135,28 @@ public readonly ref struct Utf8String
         {
             return new Utf8String(ReadOnlySpan<byte>.Empty);
         }
-        else
-        {
-            // the given len does NOT include the zero terminator
-            var sp = new ReadOnlySpan<byte>(p, len + 1);
-            return FromSpan(sp);
-        }
+
+        // the given len does NOT include the zero terminator
+        var sp = new ReadOnlySpan<byte>(p, len + 1);
+        return FromSpan(sp);
     }
 
     public static unsafe Utf8String FromIntPtr(IntPtr p)
     {
-        if (p == IntPtr.Zero)
-        {
-            return new Utf8String(ReadOnlySpan<byte>.Empty);
-        }
-        else
-        {
-            return new Utf8String(FindZeroTerminator((byte*)(p.ToPointer())));
-        }
+        return p == IntPtr.Zero ? new Utf8String(ReadOnlySpan<byte>.Empty) : new Utf8String(FindZeroTerminator((byte*)p.ToPointer()));
     }
 
+    /// <summary>
+    /// UTF16 String representation
+    /// Returns "NUL" on Null native type 
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         if (sp.Length == 0)
         {
+            // object.ToString() should never thrown
+            // throw new NullReferenceException();
             return "NUL";
         }
 
