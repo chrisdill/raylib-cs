@@ -4,23 +4,49 @@ using Raylib_cs;
 
 namespace Raylib_cs
 {
+    [StructLayout(LayoutKind.Sequential)]
+    public readonly struct CBool
+    {
+        private readonly byte value;
+
+        private CBool(bool value)
+        {
+            this.value = Convert.ToByte(value);
+        }
+
+        public static implicit operator CBool(bool value)
+        {
+            return new CBool(value);
+        }
+
+        public static implicit operator bool(CBool x)
+        {
+            return Convert.ToBoolean(x.value);
+        }
+
+        public override string ToString()
+        {
+            return Convert.ToBoolean(value).ToString();
+        }
+    }
+
     /// <summary>
     /// Utility functions for parts of the api that are not easy to interact with via pinvoke.
     /// </summary>
-    public static class Utils
+    public static unsafe class Utils
     {
         public static string SubText(this string input, int position, int length)
         {
             return input.Substring(position, Math.Min(length, input.Length));
         }
 
-        public static unsafe string[] GetDroppedFiles()
+        public static string[] GetDroppedFiles()
         {
             int count;
             var buffer = Raylib.GetDroppedFiles(&count);
             var files = new string[count];
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
             }
@@ -30,67 +56,59 @@ namespace Raylib_cs
             return files;
         }
 
-        public unsafe static Material GetMaterial(ref Model model, int materialIndex)
+        public static Material GetMaterial(ref Model model, int materialIndex)
         {
-            Material* materials = (Material*)model.materials.ToPointer();
-            return *materials;
+            return model.materials[materialIndex];
         }
 
-        public unsafe static Texture2D GetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex)
+        public static Texture2D GetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex)
         {
-            Material* materials = (Material*)model.materials.ToPointer();
-            MaterialMap* maps = (MaterialMap*)materials[0].maps.ToPointer();
-            return maps[(int)mapIndex].texture;
+            return model.materials[materialIndex].maps[(int)mapIndex].texture;
         }
 
-        public unsafe static void SetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex, ref Texture2D texture)
+        public static void SetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex, ref Texture2D texture)
         {
-            Material* materials = (Material*)model.materials.ToPointer();
-            Raylib.SetMaterialTexture(ref materials[materialIndex], (int)mapIndex, texture);
+            Raylib.SetMaterialTexture(ref model.materials[materialIndex], (int)mapIndex, texture);
         }
 
-        public unsafe static void SetMaterialShader(ref Model model, int materialIndex, ref Shader shader)
+        public static void SetMaterialShader(ref Model model, int materialIndex, ref Shader shader)
         {
-            Material* materials = (Material*)model.materials.ToPointer();
-            materials[materialIndex].shader = shader;
+            model.materials[materialIndex].shader = shader;
         }
 
-        public static unsafe void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType, int count) where T : unmanaged
+        public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType, int count)
+        where T : unmanaged
         {
             SetShaderValueV(shader, uniformLoc, (Span<T>)values, uniformType, count);
         }
 
-        public static unsafe void SetShaderValueV<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType, int count) where T : unmanaged
+        public static void SetShaderValueV<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType, int count)
+        where T : unmanaged
         {
             fixed (T* valuePtr = values)
             {
-                Raylib.SetShaderValueV(shader, uniformLoc, (IntPtr)valuePtr, uniformType, count);
+                Raylib.SetShaderValueV(shader, uniformLoc, valuePtr, uniformType, count);
             }
         }
 
-        public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, ref T value, ShaderUniformDataType uniformType, int count = 0) where T : unmanaged
+        public static void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType)
+        where T : unmanaged
         {
-            fixed (T* valuePtr = &value)
-            {
-                Raylib.SetShaderValue(shader, uniformLoc, (IntPtr)valuePtr, uniformType);
-            }
+            Raylib.SetShaderValue(shader, uniformLoc, &value, uniformType);
         }
 
-        public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType) where T : unmanaged
-        {
-            Raylib.SetShaderValue(shader, uniformLoc, (IntPtr)(&value), uniformType);
-        }
-
-        public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType) where T : unmanaged
+        public static void SetShaderValue<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType)
+        where T : unmanaged
         {
             SetShaderValue(shader, uniformLoc, (Span<T>)values, uniformType);
         }
 
-        public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType) where T : unmanaged
+        public static void SetShaderValue<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType)
+        where T : unmanaged
         {
             fixed (T* valuePtr = values)
             {
-                Raylib.SetShaderValue(shader, uniformLoc, (IntPtr)valuePtr, uniformType);
+                Raylib.SetShaderValue(shader, uniformLoc, valuePtr, uniformType);
             }
         }
     }

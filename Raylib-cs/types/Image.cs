@@ -3,8 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Pixel formats
-    /// NOTE: Support depends on OpenGL version and platform</summary>
+    /// <summary>
+    /// Pixel formats<br/>
+    /// NOTE: Support depends on OpenGL version and platform
+    /// </summary>
     public enum PixelFormat
     {
         /// <summary>
@@ -117,12 +119,12 @@ namespace Raylib_cs
     /// Image, pixel data stored in CPU memory (RAM)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Image
+    public unsafe struct Image
     {
         /// <summary>
-        /// Image raw data (void *)
+        /// Image raw data
         /// </summary>
-        public IntPtr data;
+        public void* data;
 
         /// <summary>
         /// Image base width

@@ -18,7 +18,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 6.0.x
       - name: Build project
         run: dotnet build -c Release
       - name: Test project
@@ -96,7 +96,7 @@ jobs:
           xpath: "//PackageVersion"
 
       - name: Create NuGet Package
-        run:  dotnet pack -c Release
+        run:  dotnet pack -c Release Raylib-cs
 
       - name: Upload NuGet Package As Artifact
         uses: actions/upload-artifact@v2

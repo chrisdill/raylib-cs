@@ -6,10 +6,10 @@ using System.Security;
 namespace Raylib_cs
 {
     [SuppressUnmanagedCodeSecurity]
-    public static class Raylib
+    public static unsafe class Raylib
     {
         /// <summary>
-        /// Used by DllImport to load the native library.
+        /// Used by DllImport to load the native library
         /// </summary>
         public const string nativeLibName = "raylib";
 
@@ -22,43 +22,46 @@ namespace Raylib_cs
         // WARNING: These callbacks are intended for advance users
 
         /// <summary>
-        /// Logging: Redirect trace log messages
+        /// Logging: Redirect trace log messages<br/>
         /// WARNING: This callback is intended for advance users
-        /// </summary>  
+        /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void TraceLogCallback(TraceLogLevel logLevel, string text, IntPtr args);
+        public delegate void TraceLogCallback(TraceLogLevel logLevel, IntPtr text, IntPtr args);
+
         /// <summary>
-        /// FileIO: Load binary data
+        /// FileIO: Load binary data<br/>
         /// WARNING: This callback is intended for advance users
-        /// </summary>  
-        /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns> 
+        /// </summary>
+        /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate IntPtr LoadFileDataCallback(string fileName, ref int bytesRead);
 
         /// <summary>
-        /// FileIO: Save binary data
-        /// WARNING: This callback is intended for advance users
-        /// </summary>
-        /// <returns><see cref="IntPtr"/> refers to a void *</returns>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate bool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
-
-        /// <summary>
-        /// FileIO: Load text data
+        /// FileIO: Save binary data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate string LoadFileTextCallback(string fileName);
+        public delegate CBool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
 
         /// <summary>
-        /// FileIO: Save text data
+        /// FileIO: Load text data<br/>
+        /// WARNING: This callback is intended for advance users
+        /// </summary>
+        /// <returns><see cref="IntPtr"/> refers to a char *</returns>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate IntPtr LoadFileTextCallback(string fileName);
+
+        /// <summary>
+        /// FileIO: Save text data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate bool SaveFileTextCallback(string fileName, string text);
+        public delegate CBool SaveFileTextCallback(string fileName, string text);
+
+        private static TraceLogCallback traceLogCallback;
 
         /// <summary>
-        /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f
+        /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f<br/>
         /// NOTE: Added for compatability with previous versions
         /// </summary>
         public static Color Fade(Color color, float alpha) => ColorAlpha(color, alpha);
@@ -70,16 +73,13 @@ namespace Raylib_cs
 
         // Window-related functions
 
-        /// <summary>
-        /// Initialize window and OpenGL context
-        /// </summary>
+        /// <summary>Initialize window and OpenGL context</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitWindow(int width, int height, [MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
         /// <summary>Check if KEY_ESCAPE pressed or Close icon pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool WindowShouldClose();
+        public static extern CBool WindowShouldClose();
 
         /// <summary>Close window and unload OpenGL context</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -87,48 +87,39 @@ namespace Raylib_cs
 
         /// <summary>Check if window has been initialized successfully</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowReady();
+        public static extern CBool IsWindowReady();
 
         /// <summary>Check if window is currently fullscreen</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowFullscreen();
+        public static extern CBool IsWindowFullscreen();
 
         /// <summary>Check if window is currently hidden (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowHidden();
+        public static extern CBool IsWindowHidden();
 
         /// <summary>Check if window is currently minimized (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowMinimized();
+        public static extern CBool IsWindowMinimized();
 
         /// <summary>Check if window is currently maximized (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowMaximized();
+        public static extern CBool IsWindowMaximized();
 
         /// <summary>Check if window is currently focused (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowFocused();
+        public static extern CBool IsWindowFocused();
 
         /// <summary>Check if window has been resized last frame</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowResized();
+        public static extern CBool IsWindowResized();
 
         /// <summary>Check if one specific window flag is enabled</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsWindowState(ConfigFlags flag);
+        public static extern CBool IsWindowState(ConfigFlags flag);
 
         /// <summary>Set window configuration state using flags</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool SetWindowState(ConfigFlags flag);
+        public static extern CBool SetWindowState(ConfigFlags flag);
 
         /// <summary>Clear window configuration state flags</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -174,10 +165,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetWindowSize(int width, int height);
 
-        /// <summary>Get native window handle
-        /// IntPtr refers to a void *</summary>
+        /// <summary>Get native window handle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetWindowHandle();
+        public static extern void* GetWindowHandle();
 
         /// <summary>Get current screen width</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -280,8 +270,7 @@ namespace Raylib_cs
 
         /// <summary>Check if cursor is not visible</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsCursorHidden();
+        public static extern CBool IsCursorHidden();
 
         /// <summary>Enables cursor (unlock cursor)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -293,8 +282,7 @@ namespace Raylib_cs
 
         /// <summary>Disables cursor (lock cursor)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsCursorOnScreen();
+        public static extern CBool IsCursorOnScreen();
 
 
         // Drawing-related functions
@@ -397,15 +385,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetShaderLocationAttrib(Shader shader, string attribName);
 
-        /// <summary>Set shader uniform value
-        /// value refers to a const void *</summary>
+        /// <summary>Set shader uniform value</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValue(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType);
+        public static extern void SetShaderValue(Shader shader, int uniformLoc, void* value, ShaderUniformDataType uniformType);
 
-        /// <summary>Set shader uniform value vector
-        /// value refers to a const void *</summary>
+        /// <summary>Set shader uniform value vector</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValueV(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType, int count);
+        public static extern void SetShaderValueV(Shader shader, int uniformLoc, void* value, ShaderUniformDataType uniformType, int count);
 
         /// <summary>Set shader uniform value (matrix 4x4)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -498,23 +484,30 @@ namespace Raylib_cs
 
         /// <summary>Internal memory allocator</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr MemAlloc(int size);
+        public static extern void* MemAlloc(int size);
 
         /// <summary>Internal memory reallocator</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr MemRealloc(IntPtr ptr, int size);
+        public static extern void* MemRealloc(void* ptr, int size);
 
         /// <summary>Internal memory free</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void MemFree(IntPtr ptr);
+        public static extern void MemFree(void* ptr);
 
 
         // Set custom callbacks
         // WARNING: Callbacks setup is intended for advance users
 
         /// <summary>Set custom trace log</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetTraceLogCallback(TraceLogCallback callback);
+        [DllImport(nativeLibName, EntryPoint = "SetTraceLogCallback", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void SetTraceLogCallbackInternal(TraceLogCallback callback);
+
+        /// <summary>Set custom trace log</summary>
+        public static void SetTraceLogCallback(TraceLogCallback callback)
+        {
+            SetTraceLogCallbackInternal(callback);
+            traceLogCallback = callback;
+        }
 
         /// <summary>Set custom file binary data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -535,34 +528,29 @@ namespace Raylib_cs
 
         // Files management functions
 
-        /// <summary>Load file data as byte array (read)
-        /// IntPtr refers to unsigned char *</summary>
+        /// <summary>Load file data as byte array (read)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadFileData(string fileName, ref int bytesRead);
+        public static extern byte*  LoadFileData(string fileName, ref int bytesRead);
 
-        /// <summary>Unload file data allocated by LoadFileData()
-        /// data refers to a unsigned char *</summary>
+        /// <summary>Unload file data allocated by LoadFileData()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadFileData(IntPtr data);
+        public static extern void UnloadFileData(byte* data);
 
         /// <summary>Save data to file from byte array (write)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool SaveFileData(string fileName, IntPtr data, int bytesToWrite);
+        public static extern CBool SaveFileData(string fileName, void* data, int bytesToWrite);
 
         /// <summary>Check file extension</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsFileExtension(string fileName, string ext);
+        public static extern CBool IsFileExtension(string fileName, string ext);
 
         /// <summary>Check if a file has been dropped into window</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsFileDropped();
+        public static extern CBool IsFileDropped();
 
         /// <summary>Get dropped files names (memory should be freed)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static unsafe extern byte** GetDroppedFiles(int* count);
+        public static extern byte** GetDroppedFiles(int* count);
 
         /// <summary>Clear dropped files paths buffer (free memory)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -574,19 +562,18 @@ namespace Raylib_cs
 
         /// <summary>Compress data (DEFLATE algorythm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CompressData(byte[] data, int dataLength, ref int compDataLength);
+        public static extern byte* CompressData(byte[] data, int dataLength, ref int compDataLength);
 
         /// <summary>Decompress data (DEFLATE algorythm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr DecompressData(byte[] compData, int compDataLength, ref int dataLength);
+        public static extern byte* DecompressData(byte[] compData, int compDataLength, ref int dataLength);
 
 
         // Persistent storage management
 
         /// <summary>Save integer value to storage file (to defined position)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool SaveStorageValue(uint position, int value);
+        public static extern CBool SaveStorageValue(uint position, int value);
 
         /// <summary>Load integer value from storage file (from defined position)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -604,23 +591,19 @@ namespace Raylib_cs
 
         /// <summary>Detect if a key has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyPressed(KeyboardKey key);
+        public static extern CBool IsKeyPressed(KeyboardKey key);
 
         /// <summary>Detect if a key is being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyDown(KeyboardKey key);
+        public static extern CBool IsKeyDown(KeyboardKey key);
 
         /// <summary>Detect if a key has been released once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyReleased(KeyboardKey key);
+        public static extern CBool IsKeyReleased(KeyboardKey key);
 
         /// <summary>Detect if a key is NOT being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsKeyUp(KeyboardKey key);
+        public static extern CBool IsKeyUp(KeyboardKey key);
 
         /// <summary>Set a custom key to exit program (default is ESC)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -639,8 +622,7 @@ namespace Raylib_cs
 
         /// <summary>Detect if a gamepad is available</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadAvailable(int gamepad);
+        public static extern CBool IsGamepadAvailable(int gamepad);
 
         /// <summary>Return gamepad internal name id</summary>
         [DllImport(nativeLibName, EntryPoint = "GetGamepadName", CallingConvention = CallingConvention.Cdecl)]
@@ -654,23 +636,19 @@ namespace Raylib_cs
 
         /// <summary>Detect if a gamepad button has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonPressed(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonPressed(int gamepad, GamepadButton button);
 
         /// <summary>Detect if a gamepad button is being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonDown(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonDown(int gamepad, GamepadButton button);
 
         /// <summary>Detect if a gamepad button has been released once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonReleased(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonReleased(int gamepad, GamepadButton button);
 
         /// <summary>Detect if a gamepad button is NOT being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGamepadButtonUp(int gamepad, GamepadButton button);
+        public static extern CBool IsGamepadButtonUp(int gamepad, GamepadButton button);
 
         /// <summary>Get the last gamepad button pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -693,23 +671,19 @@ namespace Raylib_cs
 
         /// <summary>Detect if a mouse button has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonPressed(MouseButton button);
+        public static extern CBool IsMouseButtonPressed(MouseButton button);
 
         /// <summary>Detect if a mouse button is being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonDown(MouseButton button);
+        public static extern CBool IsMouseButtonDown(MouseButton button);
 
         /// <summary>Detect if a mouse button has been released once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonReleased(MouseButton button);
+        public static extern CBool IsMouseButtonReleased(MouseButton button);
 
         /// <summary>Detect if a mouse button is NOT being pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMouseButtonUp(MouseButton button);
+        public static extern CBool IsMouseButtonUp(MouseButton button);
 
         /// <summary>Returns mouse position X</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -783,6 +757,7 @@ namespace Raylib_cs
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool IsGestureDetected(Gesture gesture);
 
+
         /// <summary>Get latest detected gesture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Gesture GetGestureDetected();
@@ -843,9 +818,9 @@ namespace Raylib_cs
         // Basic Shapes Drawing Functions (Module: shapes)
         //------------------------------------------------------------------------------------
 
-        /// <summary>Set texture and rectangle to be used on shapes drawing
-        /// NOTE: It can be useful when using basic shapes and one single font,
-        /// defining a font char white rectangle would allow drawing everything in a single draw call</summary>
+        /// <summary>Set texture and rectangle to be used on shapes drawing<br/>
+        /// NOTE: It can be useful when using basic shapes and one single font.<br/>
+        /// Defining a white rectangle would allow drawing everything in a single draw call.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 
@@ -1004,42 +979,35 @@ namespace Raylib_cs
 
         /// <summary>Check collision between two rectangles</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
+        public static extern CBool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
 
         /// <summary>Check collision between two circles</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
+        public static extern CBool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
 
         /// <summary>Check collision between circle and rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+        public static extern CBool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 
         /// <summary>Check if point is inside rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
+        public static extern CBool CheckCollisionPointRec(Vector2 point, Rectangle rec);
 
         /// <summary>Check if point is inside circle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
+        public static extern CBool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
 
         /// <summary>Check if point is inside a triangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
+        public static extern CBool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
         /// <summary>Check the collision between two lines defined by two points each, returns collision point by reference</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
+        public static extern CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
 
-        /// <summary> Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
+        /// <summary>Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
+        public static extern CBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
         /// <summary>Get collision rectangle for two rectangles collision</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1065,10 +1033,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image LoadImageAnim(string fileName, ref int frames);
 
-        /// <summary>Load image from memory buffer, fileType refers to extension: i.e. "png"
-        /// fileData refers to const unsigned char *</summary>
+        /// <summary>Load image from memory buffer, fileType refers to extension: i.e. "png"</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image LoadImageFromMemory(string fileType, IntPtr fileData, int dataSize);
+        public static extern Image LoadImageFromMemory(string fileType, byte* fileData, int dataSize);
 
         /// <summary>Load image from GPU texture data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1228,25 +1195,21 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImageColorReplace(ref Image image, Color color, Color replace);
 
-        /// <summary>Load color data from image as a Color array (RGBA - 32bit)
-        /// IntPtr refers to Color *</summary>
+        /// <summary>Load color data from image as a Color array (RGBA - 32bit)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadImageColors(Image image);
+        public static extern Color* LoadImageColors(Image image);
 
-        /// <summary>Load colors palette from image as a Color array (RGBA - 32bit)
-        /// IntPtr refers to Color *</summary>
+        /// <summary>Load colors palette from image as a Color array (RGBA - 32bit)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadImagePaletee(Image image, int maxPaletteSize, ref int colorsCount);
+        public static extern Color* LoadImagePalette(Image image, int maxPaletteSize, ref int colorsCount);
 
-        /// <summary>Unload color data loaded with LoadImageColors()
-        /// colors refers to Color *</summary>
+        /// <summary>Unload color data loaded with LoadImageColors()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadImageColors(IntPtr colors);
+        public static extern void UnloadImageColors(Color* colors);
 
-        /// <summary>Unload colors palette loaded with LoadImagePalette()
-        /// colors refers to Color *</summary>
+        /// <summary>Unload colors palette loaded with LoadImagePalette()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadImagePaletee(IntPtr colors);
+        public static extern void UnloadImagePalette(Color* colors);
 
         /// <summary>Get image alpha border rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1344,15 +1307,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadRenderTexture(RenderTexture2D target);
 
-        /// <summary>Update GPU texture with new data
-        /// pixels refers to a const void *</summary>
+        /// <summary>Update GPU texture with new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateTexture(Texture2D texture, IntPtr pixels);
+        public static extern void UpdateTexture(Texture2D texture, void* pixels);
 
-        /// <summary>Update GPU texture rectangle with new data
-        /// pixels refers to a const void *</summary>
+        /// <summary>Update GPU texture rectangle with new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels);
+        public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, void* pixels);
 
 
         // Texture configuration functions
@@ -1445,11 +1406,11 @@ namespace Raylib_cs
 
         /// <summary>Get Color from a source pixel pointer of certain format</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color GetPixelColor(IntPtr srcPtr, PixelFormat format);
+        public static extern Color GetPixelColor(void* srcPtr, PixelFormat format);
 
         /// <summary>Set color formatted into destination pixel pointer</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetPixelColor(IntPtr srcPtr, Color color, PixelFormat format);
+        public static extern void SetPixelColor(void* dstPtr, Color color, PixelFormat format);
 
         /// <summary>Get pixel data size in bytes for certain format</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1478,25 +1439,22 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Font LoadFontFromImage(Image image, Color key, int firstChar);
 
-        /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"
+        /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"<br/>
         /// fileData refers to const unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Font LoadFontFromMemory(string fileType, IntPtr fileData, int dataSize, int fontSize, int[] fontChars, int charsCount);
+        public static extern Font LoadFontFromMemory(string fileType, byte* fileData, int dataSize, int fontSize, int[] fontChars, int charsCount);
 
-        /// <summary>Load font data for further use
-        /// fileData refers to const unsigned char *
-        /// IntPtr refers to GlyphInfo *</summary>
+        /// <summary>Load font data for further use</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadFontData(IntPtr fileData, int dataSize, int fontSize, int[] fontChars, int charsCount, FontType type);
+        public static extern GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int[] fontChars, int charsCount, FontType type);
 
         /// <summary>Generate image font atlas using chars info</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image GenImageFontAtlas(IntPtr chars, ref IntPtr recs, int charsCount, int fontSize, int padding, int packMethod);
+        public static extern Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int charsCount, int fontSize, int padding, int packMethod);
 
-        /// <summary>Unload font chars info data (RAM)
-        /// chars refers to GlpyhInfo *</summary>
+        /// <summary>Unload font chars info data (RAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadFontData(IntPtr chars, int charsCount);
+        public static extern void UnloadFontData(GlyphInfo* chars, int charsCount);
 
         /// <summary>Unload Font from GPU memory (VRAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1578,10 +1536,9 @@ namespace Raylib_cs
 
         // UTF8 text strings management functions
 
-        /// <summary>Get all codepoints in a string, codepoints count returned by parameters
-        /// IntPtr refers to a int *</summary>
+        /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetCodepoints(string text, ref int count);
+        public static extern int* GetCodepoints(string text, ref int count);
 
         /// <summary>Get total number of characters (codepoints) in a UTF8 encoded string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1717,12 +1674,11 @@ namespace Raylib_cs
 
         /// <summary>Upload vertex data into GPU and provided VAO/VBO ids</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UploadMesh(ref Mesh mesh, bool dynamic);
+        public static extern void UploadMesh(ref Mesh mesh, CBool dynamic);
 
         /// <summary>Update mesh vertex data in GPU for a specific buffer index</summary>
-        /// <summary>data refers to a void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateMeshBuffer(Mesh mesh, int index, IntPtr data, int dataSize, int offset);
+        public static extern void UpdateMeshBuffer(Mesh mesh, int index, void* data, int dataSize, int offset);
 
         /// <summary>Unload mesh from memory (RAM and/or VRAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1738,8 +1694,7 @@ namespace Raylib_cs
 
         /// <summary>Export mesh data to file, returns true on success</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool ExportMesh(Mesh mesh, string fileName);
+        public static extern CBool ExportMesh(Mesh mesh, string fileName);
 
         /// <summary>Compute mesh bounding box limits</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1757,9 +1712,8 @@ namespace Raylib_cs
         // Material loading/unloading functions
 
         /// <summary>Load materials from model file</summary>
-        /// <summary>IntPtr refers to Material *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadMaterials(string fileName, ref int materialCount);
+        public static extern Material* LoadMaterials(string fileName, ref int materialCount);
 
         /// <summary>Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1854,16 +1808,15 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 center, float size, Color tint);
 
-        // Draw a billboard texture defined by source and rotation
+        /// <summary>Draw a billboard texture defined by source and rotation</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawBillboardPro(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 
         // Model animations loading/unloading functions
 
-        /// <summary>Load model animations from file
-        /// IntPtr refers to ModelAnimation *</summary>
+        /// <summary>Load model animations from file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadModelAnimations(string fileName, ref int animsCount);
+        public static extern ModelAnimation* LoadModelAnimations(string fileName, ref int animsCount);
 
         /// <summary>Update model animation pose</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1879,30 +1832,25 @@ namespace Raylib_cs
 
         /// <summary>Check model animation skeleton match</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
+        public static extern CBool IsModelAnimationValid(Model model, ModelAnimation anim);
 
         // Collision detection functions
 
         /// <summary>Detect collision between two spheres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
+        public static extern CBool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
 
         /// <summary>Detect collision between two bounding boxes</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
+        public static extern CBool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
 
         /// <summary>Detect collision between box and sphere</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
+        public static extern CBool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
 
         /// <summary>Detect collision between ray and sphere</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
+        public static extern CBool GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
 
         /// <summary>Detect collision between ray and box</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1941,8 +1889,7 @@ namespace Raylib_cs
 
         /// <summary>Check if audio device has been initialized successfully</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsAudioDeviceReady();
+        public static extern CBool IsAudioDeviceReady();
 
         /// <summary>Set master volume (listener)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1955,10 +1902,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Wave LoadWave(string fileName);
 
-        /// <summary>Load wave from memory buffer, fileType refers to extension: i.e. "wav"
+        /// <summary>Load wave from memory buffer, fileType refers to extension: i.e. "wav"<br/>
         /// fileData refers to a const unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Wave LoadWaveFromMemory(string fileType, IntPtr fileData, int dataSize);
+        public static extern Wave LoadWaveFromMemory(string fileType, byte* fileData, int dataSize);
 
         /// <summary>Load sound from file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1969,9 +1916,8 @@ namespace Raylib_cs
         public static extern Sound LoadSoundFromWave(Wave wave);
 
         /// <summary>Update sound buffer with new data</summary>
-        /// <summary>data refers to a const void *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateSound(Sound sound, IntPtr data, int samplesCount);
+        public static extern void UpdateSound(Sound sound, void* data, int samplesCount);
 
         /// <summary>Unload wave data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2022,8 +1968,7 @@ namespace Raylib_cs
 
         /// <summary>Check if a sound is currently playing</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsSoundPlaying(Sound sound);
+        public static extern CBool IsSoundPlaying(Sound sound);
 
         /// <summary>Set volume for a sound (1.0 is max level)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2045,15 +1990,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void WaveCrop(ref Wave wave, int initSample, int finalSample);
 
-        /// <summary>Get samples data from wave as a floats array
-        /// IntPtr refers to float *</summary>
+        /// <summary>Get samples data from wave as a floats array</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LoadWaveSamples(Wave wave);
+        public static extern float* LoadWaveSamples(Wave wave);
 
-        /// <summary>Unload samples data loaded with LoadWaveSamples()
-        /// samples refers to float *</summary>
+        /// <summary>Unload samples data loaded with LoadWaveSamples()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadWaveSamples(IntPtr samples);
+        public static extern void UnloadWaveSamples(float* samples);
 
         // Music management functions
 
@@ -2063,7 +2006,7 @@ namespace Raylib_cs
 
         /// <summary>Load music stream from data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Music LoadMusicStreamFromMemory(string fileType, IntPtr data, int dataSize);
+        public static extern Music LoadMusicStreamFromMemory(string fileType, byte* data, int dataSize);
 
         /// <summary>Unload music stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2075,8 +2018,7 @@ namespace Raylib_cs
 
         /// <summary>Check if music is playing</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsMusicStreamPlaying(Music music);
+        public static extern CBool IsMusicStreamPlaying(Music music);
 
         /// <summary>Updates buffers for music streaming</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2125,15 +2067,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadAudioStream(AudioStream stream);
 
-        /// <summary>Update audio stream buffers with data
-        /// data refers to a const void *</summary>
+        /// <summary>Update audio stream buffers with data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateAudioStream(AudioStream stream, IntPtr data, int samplesCount);
+        public static extern void UpdateAudioStream(AudioStream stream, void* data, int samplesCount);
 
         /// <summary>Check if any audio stream buffers requires refill</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsAudioStreamProcessed(AudioStream stream);
+        public static extern CBool IsAudioStreamProcessed(AudioStream stream);
 
         /// <summary>Play audio stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2149,8 +2089,7 @@ namespace Raylib_cs
 
         /// <summary>Check if audio stream is playing</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsAudioStreamPlaying(AudioStream stream);
+        public static extern CBool IsAudioStreamPlaying(AudioStream stream);
 
         /// <summary>Stop audio stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

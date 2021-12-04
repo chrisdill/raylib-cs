@@ -3,21 +3,23 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>Material map index</summary>
+    /// <summary>
+    /// Material map index
+    /// </summary>
     public enum MaterialMapIndex
     {
         /// <summary>
-        /// MAP_DIFFUSE
+        /// NOTE: Same as MATERIAL_MAP_DIFFUSE
         /// </summary>
         MATERIAL_MAP_ALBEDO = 0,
 
         /// <summary>
-        /// MAP_SPECULAR
+        /// NOTE: Same as MATERIAL_MAP_SPECULAR
         /// </summary>
-        MATERIAL_MAP_METALNESS = 1,
+        MATERIAL_MAP_METALNESS,
 
-        MATERIAL_MAP_NORMAL = 2,
-        MATERIAL_MAP_ROUGHNESS = 3,
+        MATERIAL_MAP_NORMAL,
+        MATERIAL_MAP_ROUGHNESS,
         MATERIAL_MAP_OCCLUSION,
         MATERIAL_MAP_EMISSION,
         MATERIAL_MAP_HEIGHT,
@@ -69,7 +71,7 @@ namespace Raylib_cs
     /// Material type (generic)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Material
+    public unsafe struct Material
     {
         /// <summary>
         /// Material shader
@@ -77,13 +79,13 @@ namespace Raylib_cs
         public Shader shader;
 
         /// <summary>
-        /// Material maps (MaterialMap *)
+        /// Material maps
         /// </summary>
-        public IntPtr maps;
+        public MaterialMap *maps;
 
         /// <summary>
-        /// Material generic parameters (if required, float *)
+        /// Material generic parameters (if required)
         /// </summary>
-        public IntPtr param;
+        public fixed float param[4];
     }
 }

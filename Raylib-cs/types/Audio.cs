@@ -7,7 +7,7 @@ namespace Raylib_cs
     /// Wave type, defines audio wave data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Wave
+    public unsafe struct Wave
     {
         /// <summary>
         /// Number of samples
@@ -30,13 +30,13 @@ namespace Raylib_cs
         public uint channels;
 
         /// <summary>
-        /// Buffer data pointer (void *)
+        /// Buffer data pointer
         /// </summary>
-        public IntPtr data;
+        public void* data;
     }
 
     /// <summary>
-    /// Audio stream type
+    /// Audio stream type<br/>
     /// NOTE: Useful to create custom audio streams not bound to a specific file
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -45,7 +45,7 @@ namespace Raylib_cs
         /// <summary>
         /// Pointer to internal data(rAudioBuffer *) used by the audio system
         /// </summary>
-        public IntPtr audioBuffer;
+        public IntPtr buffer;
 
         /// <summary>
         /// Frequency (samples per second)
@@ -81,11 +81,11 @@ namespace Raylib_cs
     }
 
     /// <summary>
-    /// Music stream type (audio file streaming from memory)
+    /// Music stream type (audio file streaming from memory)<br/>
     /// NOTE: Anything longer than ~10 seconds should be streamed
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Music
+    public unsafe struct Music
     {
         /// <summary>
         /// Audio stream
@@ -100,7 +100,7 @@ namespace Raylib_cs
         /// <summary>
         /// Music looping enable
         /// </summary>
-        public byte looping;
+        public CBool looping;
 
         /// <summary>
         /// Type of music context (audio filetype)
@@ -108,8 +108,8 @@ namespace Raylib_cs
         public int ctxType;
 
         /// <summary>
-        /// Audio context data, depends on type (void *)
+        /// Audio context data, depends on type
         /// </summary>
-        public IntPtr ctxData;
+        public void* ctxData;
     }
 }

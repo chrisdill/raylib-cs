@@ -2,9 +2,11 @@ using System;
 
 namespace Raylib_cs
 {
-    /// <summary>System config flags
-    /// NOTE: Every bit registers one state (use it with bit masks)
-    /// By default all flags are set to 0</summary>
+    /// <summary>
+    /// System config flags<br/>
+    /// NOTE: Every bit registers one state (use it with bit masks)<br/>
+    /// By default all flags are set to 0
+    /// </summary>
     [Flags]
     public enum ConfigFlags
     {
@@ -79,8 +81,10 @@ namespace Raylib_cs
         FLAG_INTERLACED_HINT = 0x00010000,
     }
 
-    /// <summary>Trace log level
-    /// NOTE: Organized by priority level</summary>
+    /// <summary>
+    /// Trace log level<br/>
+    /// NOTE: Organized by priority level
+    /// </summary>
     public enum TraceLogLevel
     {
         /// <summary>
@@ -124,7 +128,9 @@ namespace Raylib_cs
         LOG_NONE
     }
 
-    /// <summary>Color blending modes (pre-defined)</summary>
+    /// <summary>
+    /// Color blending modes (pre-defined)
+    /// </summary>
     public enum BlendMode
     {
         /// <summary>

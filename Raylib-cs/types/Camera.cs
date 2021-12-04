@@ -38,7 +38,9 @@ namespace Raylib_cs
         }
     }
 
-    /// <summary>Camera system modes</summary>
+    /// <summary>
+    /// Camera system modes
+    /// </summary>
     public enum CameraMode
     {
         CAMERA_CUSTOM = 0,
@@ -48,7 +50,9 @@ namespace Raylib_cs
         CAMERA_THIRD_PERSON
     }
 
-    /// <summary>Camera projection</summary>
+    /// <summary>
+    /// Camera projection
+    /// </summary>
     public enum CameraProjection
     {
         CAMERA_PERSPECTIVE = 0,
