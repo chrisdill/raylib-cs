@@ -1657,66 +1657,85 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Encode text codepoint into utf8 text (memory must be freed!)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string TextToUtf8(byte* text, int length);
-
-        public static string TextToUtf8(Utf8String text, int length)
-        {
-            fixed (byte* p1 = text)
-            {
-                return TextToUtf8(p1, length);
-            }
-        }
-
-
         // UTF8 text strings management functions
 
         /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int* LoadCodepoints(byte* text, int* count);
 
-        public static ReadOnlySpan<int> LoadCodepoints(Utf8String text, int count)
+        public static int[] LoadCodepoints(Utf8String text, ref int count)
         {
             fixed (byte* p1 = text)
             {
-                var points = LoadCodepoints(p1, &count);
-                return new ReadOnlySpan<int>(points, count);
+                fixed (int* c = &count)
+                {
+                    var pointsPtr = LoadCodepoints(p1, c);
+                    var codepoints = new ReadOnlySpan<int>(pointsPtr, count).ToArray();
+                    UnloadCodepoints(pointsPtr);
+                    return codepoints;
+                }
             }
         }
 
+        /// <summary>Unload codepoints data from memory</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void UnloadCodepoints(int* codepoints);
+
         /// <summary>Get total number of characters (codepoints) in a UTF8 encoded string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetCodepointsCount(byte* text);
+        public static extern int GetCodepointCount(byte* text);
 
-        public static int GetCodepointsCount(Utf8String text)
+        public static int GetCodepointCount(Utf8String text)
         {
             fixed (byte* p1 = text)
             {
-                return GetCodepointsCount(p1);
+                return GetCodepointCount(p1);
             }
         }
 
         /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepoint(byte* text, int* bytesProcessed);
-        
+
         /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         /// <returns>single codepoint / "char"</returns>
-        public static Utf8String GetCodepoint(Utf8String text, int bytesProcessed)
+        public static int GetCodepoint(Utf8String text, ref int bytesProcessed)
         {
             fixed (byte* p1 = text)
             {
                 // this probably wont work
-                var point = GetCodepoint(p1, &bytesProcessed);
-                var c = (byte*)&point;
-                return Utf8String.FromPtr(c);
+                fixed (int* p = &bytesProcessed)
+                {
+                    return GetCodepoint(p1, p);
+                }
             }
         }
 
         /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern string CodepointToUtf8(string text, ref int byteLength);
+        public static extern byte* CodepointToUTF8(int codepoint, int* byteSize);
+
+        public static Utf8String CodepointToUTF8(int codepoint, ref int byteSize)
+        {
+            fixed (int* l1 = &byteSize)
+            {
+                var ptr = CodepointToUTF8(codepoint, l1);
+                return Utf8String.FromPtr(ptr);
+            }
+        }
+
+        /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* TextCodepointsToUTF8(int* codepoints, int length);
+
+        public static Utf8String TextCodepointsToUTF8(int[] codepoints, int length)
+        {
+            fixed (int* c1 = codepoints)
+            {
+                var ptr = TextCodepointsToUTF8(c1, length);
+                return Utf8String.FromPtr(ptr);
+            }
+        }
 
 
         //------------------------------------------------------------------------------------
