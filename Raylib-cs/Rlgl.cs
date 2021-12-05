@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -95,9 +96,27 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlScalef(float x, float y, float z);
 
-        /// <summary>Multiply the current matrix by another matrix</summary>
+        /// <summary>
+        /// Multiply the current matrix by another matrix
+        /// <br/>
+        /// Current Matrix can be set via <see cref="rlMatrixMode(int)"/>
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlMultMatrixf(float* matf);
+
+        public static void rlMultMatrixf(ref Matrix4x4 matf)
+        {
+            var pinned = new GCHandle();
+            try
+            {
+                pinned = GCHandle.Alloc(matf, GCHandleType.Pinned);
+                rlMultMatrixf((float*)pinned.AddrOfPinnedObject());
+            }
+            finally
+            {
+                pinned.Free();
+            }
+        }
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlFrustum(double left, double right, double bottom, double top, double znear, double zfar);
