@@ -11,8 +11,8 @@
 
   <PropertyGroup>
     <TargetRaylibTag>4.0.0</TargetRaylibTag>
-    <Version>4.0.0-pre.1</Version>
-    <PackageVersion>4.0.0-pre.1</PackageVersion>
+    <Version>4.0.0-alpha.1</Version>
+    <PackageVersion>4.0.0-alpha.1</PackageVersion>
     <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.HighPerformance" Version="7.1.2" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
   </ItemGroup>
 
