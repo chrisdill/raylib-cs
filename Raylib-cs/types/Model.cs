@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using Microsoft.Toolkit.HighPerformance;
 
 namespace Raylib_cs
 {
@@ -103,8 +101,53 @@ namespace Raylib_cs
         /// Poses array by frame (Transform **)
         /// </summary>
         public readonly Transform** framePoses;
-        
+
         /// <inheritdoc cref="framePoses"/>
-        public ReadOnlySpan2D<Transform> FramePoses => new(framePoses, frameCount,boneCount,sizeof(Transform));
+        public FramePosesCollection FramePoses => new(framePoses, frameCount, boneCount);
+        
+        public struct FramePosesCollection
+        {
+            readonly Transform** framePoses;
+            
+            readonly int frameCount;
+            
+            readonly int boneCount;
+            
+            public FramePoses this[int index]
+            {
+                get
+                {
+                    return new(framePoses[index], boneCount);
+                }
+            }
+            
+            internal FramePosesCollection(Transform** framePoses, int frameCount, int boneCount)
+            {
+                this.framePoses = framePoses;
+                this.frameCount = frameCount;
+                this.boneCount  = boneCount;
+            }
+        }
+    }
+
+    public unsafe struct FramePoses
+    {
+        readonly Transform* poses;
+
+        readonly int count;
+
+        public ref Transform this[int index]
+        {
+            get
+            {
+                return ref poses[index];
+            }
+        }
+        
+        internal FramePoses(Transform* poses, int count)
+        {
+            this.poses = poses;
+            this.count = count;
+        }
     }
 }
