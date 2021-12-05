@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Microsoft.Toolkit.HighPerformance;
 
 namespace Raylib_cs
 {
@@ -45,17 +47,17 @@ namespace Raylib_cs
         /// <summary>
         /// Meshes array (Mesh *)
         /// </summary>
-        public Mesh *meshes;
+        public Mesh* meshes;
 
         /// <summary>
         /// Materials array (Material *)
         /// </summary>
-        public Material *materials;
+        public Material* materials;
 
         /// <summary>
         /// Mesh material number (int *)
         /// </summary>
-        public int *meshMaterial;
+        public int* meshMaterial;
 
         /// <summary>
         /// Number of bones
@@ -65,38 +67,44 @@ namespace Raylib_cs
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
-        public BoneInfo *bones;
+        public BoneInfo* bones;
 
         /// <summary>
         /// Bones base transformation (pose, Transform *)
         /// </summary>
-        public Transform *bindPose;
+        public Transform* bindPose;
     }
 
     /// <summary>
     /// Model animation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ModelAnimation
+    public readonly unsafe struct ModelAnimation
     {
         /// <summary>
         /// Number of bones
         /// </summary>
-        public int boneCount;
+        public readonly int boneCount;
 
         /// <summary>
         /// Number of animation frames
         /// </summary>
-        public int frameCount;
+        public readonly int frameCount;
 
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
-        public BoneInfo *bones;
+        public readonly BoneInfo* bones;
+        
+        /// <inheritdoc cref="bones"/>
+        public ReadOnlySpan<BoneInfo> BoneInfo => new(bones, boneCount);
 
         /// <summary>
         /// Poses array by frame (Transform **)
         /// </summary>
-        public Transform *framePoses;
+        public readonly Transform** framePoses;
+        
+        /// <inheritdoc cref="framePoses"/>
+        public ReadOnlySpan2D<Transform> FramePoses => new(framePoses, frameCount,boneCount,sizeof(Transform));
     }
 }

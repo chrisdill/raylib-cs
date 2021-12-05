@@ -6,6 +6,7 @@ using System.Security;
 using System.Text;
 using System.Text.Unicode;
 using System.Xml;
+using Microsoft.Toolkit.HighPerformance;
 
 namespace Raylib_cs
 {
@@ -2001,7 +2002,25 @@ namespace Raylib_cs
 
         /// <summary>Load model animations from file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ModelAnimation* LoadModelAnimations(string fileName, ref int animsCount);
+        public static extern ModelAnimation* LoadModelAnimations(byte* fileName, int* animsCount);
+
+        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(Utf8String fileName, ref int animsCount)
+        {
+            fixed (byte* p1 = fileName)
+            {
+                fixed (int* p2 = &animsCount)
+                {
+                    var model = LoadModelAnimations(p1, p2);
+
+                    if ((IntPtr)model == IntPtr.Zero)
+                    {
+                        throw new ApplicationException("Failed to load animation");
+                    }
+                    
+                    return new ReadOnlySpan<ModelAnimation>(model, animsCount);
+                }
+            }
+        }
 
         /// <summary>Update model animation pose</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
