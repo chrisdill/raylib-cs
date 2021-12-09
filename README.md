@@ -1,4 +1,4 @@
-![Raylib-cs Logo](https://github.com/ChrisDill/Raylib-cs/blob/master/Logo/raylib-cs_256x256.png "Raylib-cs Logo")
+![Raylib-cs Logo](https://raw.githubusercontent.com/ChrisDill/Raylib-cs/master/Logo/raylib-cs_256x256.png "Raylib-cs Logo")
 
 # Raylib-cs
 
@@ -12,14 +12,14 @@ C# bindings for raylib 4.0.0, a simple and easy-to-use library to learn videogam
 
 [![Build](https://github.com/ChrisDill/Raylib-cs/workflows/Build/badge.svg)](https://github.com/ChrisDill/Raylib-cs/actions?query=workflow%3ABuild)
 
-Raylib-cs targets netstandard2.1 and supports netcoreapp3.0+ and net5.0+.
+Raylib-cs targets net6.0.
 
 ## Installation - NuGet
 
 This is the prefered method to get started - The package is still new so please report any [issues](https://github.com/ChrisDill/Raylib-cs/issues).
 
 ```
-dotnet add package Raylib-cs --version 4.0.0
+dotnet add package Raylib-cs --version 4.0.0-alpha.1
 ```
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
@@ -30,7 +30,7 @@ If you need to edit Raylib-cs source then you will need to add the bindings as a
 
 1. Download/Clone this repo
 
-2. Add Raylib-cs/Raylib-cs.csproj to your project as an existing project.
+2. Add [Raylib-cs/Raylib-cs.csproj](Raylib-cs/Raylib-cs.csproj) to your project as an existing project.
 
 3. Download the native libraries for the platforms you want to build for using the [official 4.0.0 release](https://github.com/raysan5/raylib/releases/tag/4.0.0).
    **NOTE: the MSVC version is required for Windows platforms**
@@ -39,6 +39,8 @@ If you need to edit Raylib-cs source then you will need to add the bindings as a
    **(Optional)** If you want to handle the native libraries yourself, make sure they are either in the same directory as the executable and/or can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for details.
 
 5. Start coding!
+
+## Hello, World!
 
 ```csharp
 using Raylib_cs;
