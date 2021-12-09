@@ -62,11 +62,13 @@ namespace Raylib_cs
         /// </summary>
         public int boneCount;
 
+        //TODO: Span
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
         public BoneInfo* bones;
 
+        //TODO: Span
         /// <summary>
         /// Bones base transformation (pose, Transform *)
         /// </summary>
@@ -88,7 +90,7 @@ namespace Raylib_cs
         /// Number of animation frames
         /// </summary>
         public readonly int frameCount;
-
+        
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>

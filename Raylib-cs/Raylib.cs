@@ -1897,6 +1897,7 @@ namespace Raylib_cs
 
         // Material loading/unloading functions
 
+        //TODO: safe Helper method
         /// <summary>Load materials from model file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Material* LoadMaterials(string fileName, ref int materialCount);
@@ -2194,10 +2195,12 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void WaveCrop(ref Wave wave, int initSample, int finalSample);
 
+        //TODO: Span
         /// <summary>Get samples data from wave as a floats array</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float* LoadWaveSamples(Wave wave);
 
+        //TODO: Span
         /// <summary>Unload samples data loaded with LoadWaveSamples()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadWaveSamples(float* samples);
@@ -2208,6 +2211,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Music LoadMusicStream(string fileName);
 
+        //TODO: Span/Helper method
         /// <summary>Load music stream from data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Music LoadMusicStreamFromMemory(string fileType, byte* data, int dataSize);

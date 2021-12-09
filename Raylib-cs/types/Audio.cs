@@ -28,7 +28,8 @@ namespace Raylib_cs
         /// Number of channels (1-mono, 2-stereo)
         /// </summary>
         public uint channels;
-
+        
+        //TODO: SPAN<byte>  ?
         /// <summary>
         /// Buffer data pointer
         /// </summary>
@@ -42,6 +43,7 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public struct AudioStream
     {
+        //TODO: convert
         /// <summary>
         /// Pointer to internal data(rAudioBuffer *) used by the audio system
         /// </summary>
@@ -107,6 +109,7 @@ namespace Raylib_cs
         /// </summary>
         public int ctxType;
 
+        //TODO span
         /// <summary>
         /// Audio context data, depends on type
         /// </summary>

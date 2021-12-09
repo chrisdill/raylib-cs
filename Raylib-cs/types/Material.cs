@@ -78,10 +78,11 @@ namespace Raylib_cs
         /// </summary>
         public Shader shader;
 
+        //TODO: convert
         /// <summary>
         /// Material maps
         /// </summary>
-        public MaterialMap *maps;
+        public MaterialMap* maps;
 
         /// <summary>
         /// Material generic parameters (if required)
