@@ -225,6 +225,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Unproject(Vector3 source, Matrix4x4 projection, Matrix4x4 view);
 
+        /// <summary>Get Vector3 as float array</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float3 Vector3ToFloatV(Vector3 v);
+
 
         /// <summary>Compute matrix determinant</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -312,6 +316,10 @@ namespace Raylib_cs
         /// <summary>Get camera look-at matrix (view matrix)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixLookAt(Vector3 eye, Vector3 target, Vector3 up);
+
+        /// <summary>Get float array of matrix data</summary>
+        [DllImport(Raylib.nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float16 MatrixToFloatV(Matrix4x4 m);
 
 
         /// <summary>Add 2 quaternions</summary>

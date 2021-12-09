@@ -104,18 +104,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlMultMatrixf(float* matf);
 
-        public static void rlMultMatrixf(ref Matrix4x4 matf)
+        /// <inheritdoc cref="rlMultMatrixf"/>
+        public static void rlMultMatrixf(Matrix4x4 matf)
         {
-            var pinned = new GCHandle();
-            try
-            {
-                pinned = GCHandle.Alloc(matf, GCHandleType.Pinned);
-                rlMultMatrixf((float*)pinned.AddrOfPinnedObject());
-            }
-            finally
-            {
-                pinned.Free();
-            }
+            float16 f = Raymath.MatrixToFloatV(matf);
+            rlMultMatrixf(f.v);
         }
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
