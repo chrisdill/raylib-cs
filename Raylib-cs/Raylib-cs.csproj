@@ -11,8 +11,8 @@
 
   <PropertyGroup>
     <TargetRaylibTag>4.0.0</TargetRaylibTag>
-    <Version>4.0.0-alpha.1</Version>
-    <PackageVersion>4.0.0-alpha.1</PackageVersion>
+    <Version>4.0.0-alpha.2</Version>
+    <PackageVersion>4.0.0-alpha.2</PackageVersion>
     <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
