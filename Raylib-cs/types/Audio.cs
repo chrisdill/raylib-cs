@@ -28,7 +28,7 @@ namespace Raylib_cs
         /// Number of channels (1-mono, 2-stereo)
         /// </summary>
         public uint channels;
-        
+
         //TODO: SPAN<byte>  ?
         /// <summary>
         /// Buffer data pointer

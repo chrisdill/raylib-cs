@@ -71,7 +71,7 @@ namespace Raylib_cs
 
             var buffer = Marshal.AllocHGlobal(byteLength);
             vsprintf(buffer, format, args);
-  
+
             string result = Marshal.PtrToStringUTF8(buffer);
             Marshal.FreeHGlobal(buffer);
 

@@ -84,7 +84,7 @@ namespace Raylib_cs
 
         public static void InitWindow(int width, int height, Utf8String title)
         {
-            fixed (byte* p = title) 
+            fixed (byte* p = title)
             {
                 InitWindow(width, height, p);
             }
@@ -559,7 +559,7 @@ namespace Raylib_cs
 
         /// <summary>Load file data as byte array (read)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte*  LoadFileData(string fileName, ref int bytesRead);
+        public static extern byte* LoadFileData(string fileName, ref int bytesRead);
 
         /// <summary>Unload file data allocated by LoadFileData()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -783,8 +783,7 @@ namespace Raylib_cs
 
         /// <summary>Check if a gesture have been detected</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.I1)]
-        public static extern bool IsGestureDetected(Gesture gesture);
+        public static extern CBool IsGestureDetected(Gesture gesture);
 
 
         /// <summary>Get latest detected gesture</summary>
@@ -1323,7 +1322,7 @@ namespace Raylib_cs
         {
             fixed (byte* p = text)
             {
-                ImageDrawText(ref dst, p, x,y,fontSize,color);
+                ImageDrawText(ref dst, p, x, y, fontSize, color);
             }
         }
 
@@ -1338,7 +1337,7 @@ namespace Raylib_cs
                 ImageDrawTextEx(ref dst, font, p, position, fontSize, spacing, tint);
             }
         }
-        
+
         // Texture loading functions
         // NOTE: These functions require GPU access
 
@@ -1542,7 +1541,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextEx(Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
-        public static  void DrawTextEx(Font font, Utf8String text, Vector2 position, float fontSize,
+        public static void DrawTextEx(Font font, Utf8String text, Vector2 position, float fontSize,
             float spacing, Color tint)
         {
             fixed (byte* p = text)
@@ -1560,7 +1559,7 @@ namespace Raylib_cs
         {
             fixed (byte* p = text)
             {
-                DrawTextEx(font, p, position, fontSize, spacing,  tint);
+                DrawTextEx(font, p, position, fontSize, spacing, tint);
             }
 
         }
@@ -1629,11 +1628,11 @@ namespace Raylib_cs
             {
                 fixed (byte* p2 = append)
                 {
-                    TextAppend(p1,p2, &position);
+                    TextAppend(p1, p2, &position);
                 }
             }
         }
-        
+
 
         /// <summary>Get Pascal case notation version of provided string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2017,7 +2016,7 @@ namespace Raylib_cs
                     {
                         throw new ApplicationException("Failed to load animation");
                     }
-                    
+
                     return new ReadOnlySpan<ModelAnimation>(model, animsCount);
                 }
             }

@@ -90,12 +90,12 @@ namespace Raylib_cs
         /// Number of animation frames
         /// </summary>
         public readonly int frameCount;
-        
+
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
         public readonly BoneInfo* bones;
-        
+
         /// <inheritdoc cref="bones"/>
         public ReadOnlySpan<BoneInfo> BoneInfo => new(bones, boneCount);
 
@@ -106,15 +106,15 @@ namespace Raylib_cs
 
         /// <inheritdoc cref="framePoses"/>
         public FramePosesCollection FramePoses => new(framePoses, frameCount, boneCount);
-        
+
         public struct FramePosesCollection
         {
             readonly Transform** framePoses;
-            
+
             readonly int frameCount;
-            
+
             readonly int boneCount;
-            
+
             public FramePoses this[int index]
             {
                 get
@@ -122,12 +122,12 @@ namespace Raylib_cs
                     return new(framePoses[index], boneCount);
                 }
             }
-            
+
             internal FramePosesCollection(Transform** framePoses, int frameCount, int boneCount)
             {
                 this.framePoses = framePoses;
                 this.frameCount = frameCount;
-                this.boneCount  = boneCount;
+                this.boneCount = boneCount;
             }
         }
     }
@@ -145,7 +145,7 @@ namespace Raylib_cs
                 return ref poses[index];
             }
         }
-        
+
         internal FramePoses(Transform* poses, int count)
         {
             this.poses = poses;

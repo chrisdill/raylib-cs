@@ -356,7 +356,7 @@ namespace Raylib_cs
         /// </summary>
         GAMEPAD_BUTTON_RIGHT_THUMB
     }
-    
+
     /// <summary>Gesture
     /// NOTE: It could be used as flags to enable only some gestures
     /// </summary>

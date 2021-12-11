@@ -41,7 +41,7 @@ namespace Raylib_cs
         public const int RL_TEXTURE_WRAP_CLAMP = 0x812F;
         public const int RL_TEXTURE_WRAP_MIRROR_REPEAT = 0x8370;
         public const int RL_TEXTURE_WRAP_MIRROR_CLAMP = 0x8742;
-        
+
 
         // GL equivalent data types
         public const int RL_UNSIGNED_BYTE = 0x1401;
@@ -737,7 +737,7 @@ namespace Raylib_cs
         /// </summary>
         QUADS = 0x0007
     }
-    
+
     /// <summary>
     /// Texture parameters (equivalent to OpenGL defines)
     /// </summary>
