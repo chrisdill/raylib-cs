@@ -40,5 +40,53 @@ namespace Raylib_cs.Tests
             Assert.True(BlittableHelper.IsBlittable<VrStereoConfig>());
             Assert.True(BlittableHelper.IsBlittable<RenderBatch>());
         }
+
+        [Fact]
+        public void TextToInteger()
+        {
+            int value = Raylib.TextToInteger("99999");
+            Assert.Equal(99999, value);
+        }
+
+        [Fact]
+        public void TextToPascal()
+        {
+            string input = "hello_world";
+            string text = Raylib.TextToPascal(input).ToString();
+            Assert.Equal("HelloWorld", text);
+        }
+
+        [Fact]
+        public void LoadCodepoints()
+        {
+            int count = 0;
+            string input = "aàáâãäāăąȧXǎȁȃeèéêẽëē";
+            int[] codepoints1 = Raylib.LoadCodepoints(input, ref count);
+      
+            for (int i = 0; i < input.Length; i++)
+            {
+                Assert.Equal(codepoints1[i], input[i]);
+            }
+        }
+
+        [Fact]
+        public void CodepointToUTF8()
+        {
+            int byteSize = 0;
+            string text = Raylib.CodepointToUTF8(224, ref byteSize).ToString();
+            Assert.Equal(text, "à");
+        }
+
+        [Fact]
+        public void TextCodepointsToUTF8()
+        {
+            string input = "aàáâãäāăąȧXǎȁȃeèéêẽëē";
+            
+            int count = 0;
+            int[] codepoints1 = Raylib.LoadCodepoints(input, ref count);
+
+            string text = Raylib.TextCodepointsToUTF8(codepoints1, codepoints1.Length).ToString();
+            Assert.Equal(text, input);
+        }
     }
 }
