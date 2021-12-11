@@ -65,7 +65,7 @@ namespace Raylib_cs.Tests
       
             for (int i = 0; i < input.Length; i++)
             {
-                Assert.Equal(codepoints1[i], input[i]);
+                Assert.Equal(input[i], codepoints1[i]);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Raylib_cs.Tests
         {
             int byteSize = 0;
             string text = Raylib.CodepointToUTF8(224, ref byteSize).ToString();
-            Assert.Equal(text, "à");
+            Assert.Equal("à", text);
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace Raylib_cs.Tests
             int[] codepoints1 = Raylib.LoadCodepoints(input, ref count);
 
             string text = Raylib.TextCodepointsToUTF8(codepoints1, codepoints1.Length).ToString();
-            Assert.Equal(text, input);
+            Assert.Equal(input, text);
         }
     }
 }
