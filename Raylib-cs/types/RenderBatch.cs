@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -62,7 +61,7 @@ namespace Raylib_cs
         public float* texcoords;
 
         /// <summary>
-        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3) 
+        /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
         /// </summary>
         public byte* colors;
 
@@ -144,5 +143,129 @@ namespace Raylib_cs
         RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z,
         RL_ATTACHMENT_TEXTURE2D = 100,
         RL_ATTACHMENT_RENDERBUFFER = 200,
+    }
+
+    /// <summary>
+    /// Matrix Modes (equivalent to OpenGL)
+    /// </summary>
+    public enum MatrixMode
+    {
+        /// <summary>
+        /// GL_MODELVIEW
+        /// </summary>
+        MODELVIEW = 0x1700,
+
+        /// <summary>
+        /// GL_PROJECTION
+        /// </summary>
+        PROJECTION = 0x1701,
+
+        /// <summary>
+        /// GL_TEXTURE
+        /// </summary>
+        TEXTURE = 0x1702
+    }
+
+    /// <summary>
+    /// Primitive assembly draw modes
+    /// </summary>
+    public enum DrawMode
+    {
+        /// <summary>
+        /// GL_LINES
+        /// </summary>
+        LINES = 0x0001,
+
+        /// <summary>
+        /// GL_TRIANGLES
+        /// </summary>
+        TRIANGLES = 0x0004,
+
+        /// <summary>
+        /// GL_QUADS
+        /// </summary>
+        QUADS = 0x0007
+    }
+
+    /// <summary>
+    /// Texture parameters (equivalent to OpenGL defines)
+    /// </summary>
+    public enum TextureFilters
+    {
+        /// <summary>
+        /// RL_TEXTURE_FILTER_NEAREST
+        /// <br/>
+        /// GL_NEAREST
+        /// </summary>
+        NEAREST = 0x2600,
+
+        /// <summary>
+        /// RL_TEXTURE_FILTER_LINEAR
+        /// <br/>
+        /// GL_LINEAR
+        /// </summary>
+        LINEAR = 0x2601,
+
+        /// <summary>
+        /// RL_TEXTURE_FILTER_MIP_NEAREST
+        /// <br/>
+        /// GL_NEAREST_MIPMAP_NEAREST
+        /// </summary>
+        MIP_NEAREST = 0x2700,
+
+        /// <summary>
+        /// RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR
+        /// <br/>
+        /// GL_NEAREST_MIPMAP_LINEAR
+        /// </summary>
+        NEAREST_MIP_LINEAR = 0x2702,
+
+        /// <summary>
+        /// RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST
+        /// <br/>
+        /// GL_LINEAR_MIPMAP_NEAREST
+        /// </summary>
+        LINEAR_MIP_NEAREST = 0x2701,
+
+        /// <summary>
+        /// RL_TEXTURE_FILTER_MIP_LINEAR
+        /// <br/>
+        /// GL_LINEAR_MIPMAP_LINEAR
+        /// </summary>
+        MIP_LINEAR = 0x2703,
+
+        /// <summary>
+        /// RL_TEXTURE_FILTER_ANISOTROPIC
+        /// <br/>
+        /// Anisotropic filter (custom identifier)
+        /// </summary>
+        ANISOTROPIC = 0x3000
+    }
+
+    /// <summary>
+    /// GL Shader type
+    /// </summary>
+    public enum ShaderType
+    {
+        /// <summary>
+        /// RL_FRAGMENT_SHADER
+        /// <br/>
+        /// GL_FRAGMENT_SHADER
+        /// </summary>
+        FRAGMENT = 0x8B30,
+
+        /// <summary>
+        /// RL_VERTEX_SHADER
+        /// <br/>
+        /// GL_VERTEX_SHADER
+        /// </summary>
+        VERTEX = 0x8B31,
+
+        /// <summary>
+        /// RL_COMPUTE_SHADER
+        /// <br/>
+        /// GL_COMPUTE_SHADER
+        /// </summary>
+        COMPUTE = 0x91b9
     }
 }

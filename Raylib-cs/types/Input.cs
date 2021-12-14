@@ -361,7 +361,7 @@ namespace Raylib_cs
     /// NOTE: It could be used as flags to enable only some gestures
     /// </summary>
     [Flags]
-    public enum Gesture
+    public enum Gesture : uint
     {
         GESTURE_NONE = 0,
         GESTURE_TAP = 1,
