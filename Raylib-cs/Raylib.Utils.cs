@@ -241,7 +241,7 @@ namespace Raylib_cs
 
         public static void SetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex, ref Texture2D texture)
         {
-            SetMaterialTexture(ref model.materials[materialIndex], (int)mapIndex, texture);
+            SetMaterialTexture(&model.materials[materialIndex], (int)mapIndex, texture);
         }
 
         public static void SetMaterialShader(ref Model model, int materialIndex, ref Shader shader)
