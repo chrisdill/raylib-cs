@@ -1,12 +1,7 @@
 using System;
-using System.Buffers;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Text.Unicode;
-using System.Xml;
-using Microsoft.Toolkit.HighPerformance;
 
 namespace Raylib_cs
 {
@@ -239,23 +234,23 @@ namespace Raylib_cs
         public static extern Vector2 GetWindowScaleDPI();
 
         /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
-        [DllImport(nativeLibName, EntryPoint = "GetMonitorName", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr INTERNAL_GetMonitorName(int monitor);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* GetMonitorName(int monitor);
 
         /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
-        public static string GetMonitorName(int monitor)
+        public static Utf8String GetMonitorName_(int monitor)
         {
-            return Marshal.PtrToStringUTF8(INTERNAL_GetMonitorName(monitor));
+            return Utf8String.FromPtr(GetMonitorName(monitor));
         }
 
         /// <summary>Get clipboard text content</summary>
-        [DllImport(nativeLibName, EntryPoint = "GetClipboardText", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr INTERNAL_GetClipboardText();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* GetClipboardText();
 
         /// <summary>Get clipboard text content</summary>
-        public static string GetClipboardText()
+        public static Utf8String GetClipboardText_()
         {
-            return Marshal.PtrToStringUTF8(INTERNAL_GetClipboardText());
+            return Utf8String.FromPtr(GetClipboardText());
         }
 
         /// <summary>Set clipboard text content</summary>
@@ -528,13 +523,13 @@ namespace Raylib_cs
         // WARNING: Callbacks setup is intended for advance users
 
         /// <summary>Set custom trace log</summary>
-        [DllImport(nativeLibName, EntryPoint = "SetTraceLogCallback", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void SetTraceLogCallbackInternal(TraceLogCallback callback);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetTraceLogCallback(TraceLogCallback callback);
 
         /// <summary>Set custom trace log</summary>
-        public static void SetTraceLogCallback(TraceLogCallback callback)
+        public static void SetTraceLogCallback_(TraceLogCallback callback)
         {
-            SetTraceLogCallbackInternal(callback);
+            SetTraceLogCallback(callback);
             traceLogCallback = callback;
         }
 
@@ -654,13 +649,13 @@ namespace Raylib_cs
         public static extern CBool IsGamepadAvailable(int gamepad);
 
         /// <summary>Return gamepad internal name id</summary>
-        [DllImport(nativeLibName, EntryPoint = "GetGamepadName", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr INTERNAL_GetGamepadName(int gamepad);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* GetGamepadName(int gamepad);
 
         /// <summary>Return gamepad internal name id</summary>
-        public static string GetGamepadName(int gamepad)
+        public static Utf8String GetGamepadName_(int gamepad)
         {
-            return Marshal.PtrToStringUTF8(INTERNAL_GetGamepadName(gamepad));
+            return Utf8String.FromPtr(GetGamepadName(gamepad));
         }
 
         /// <summary>Detect if a gamepad button has been pressed once</summary>
