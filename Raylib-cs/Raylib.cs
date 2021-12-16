@@ -77,14 +77,6 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitWindow(int width, int height, byte* title);
 
-        public static void InitWindow(int width, int height, Utf8String title)
-        {
-            fixed (byte* p = title)
-            {
-                InitWindow(width, height, p);
-            }
-        }
-
         /// <summary>Check if KEY_ESCAPE pressed or Close icon pressed</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool WindowShouldClose();
@@ -156,14 +148,6 @@ namespace Raylib_cs
         /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetWindowTitle(byte* title);
-
-        public static void SetWindowTitle(Utf8String title)
-        {
-            fixed (byte* p = title)
-            {
-                SetWindowTitle(p);
-            }
-        }
 
         /// <summary>Set window position on screen (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -237,33 +221,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetMonitorName(int monitor);
 
-        /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
-        public static Utf8String GetMonitorName_(int monitor)
-        {
-            return Utf8String.FromPtr(GetMonitorName(monitor));
-        }
-
         /// <summary>Get clipboard text content</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetClipboardText();
 
-        /// <summary>Get clipboard text content</summary>
-        public static Utf8String GetClipboardText_()
-        {
-            return Utf8String.FromPtr(GetClipboardText());
-        }
-
         /// <summary>Set clipboard text content</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetClipboardText(byte* text);
-
-        public static void SetClipboardText(Utf8String text)
-        {
-            fixed (byte* p = text)
-            {
-                SetClipboardText(p);
-            }
-        }
 
         // Custom frame control functions
         // NOTE: Those functions are intended for advance users that want full control over the frame processing
@@ -526,13 +490,6 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetTraceLogCallback(TraceLogCallback callback);
 
-        /// <summary>Set custom trace log</summary>
-        public static void SetTraceLogCallback_(TraceLogCallback callback)
-        {
-            SetTraceLogCallback(callback);
-            traceLogCallback = callback;
-        }
-
         /// <summary>Set custom file binary data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetLoadFileDataCallback(LoadFileDataCallback callback);
@@ -651,12 +608,6 @@ namespace Raylib_cs
         /// <summary>Return gamepad internal name id</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetGamepadName(int gamepad);
-
-        /// <summary>Return gamepad internal name id</summary>
-        public static Utf8String GetGamepadName_(int gamepad)
-        {
-            return Utf8String.FromPtr(GetGamepadName(gamepad));
-        }
 
         /// <summary>Detect if a gamepad button has been pressed once</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1311,27 +1262,12 @@ namespace Raylib_cs
 
         /// <summary>Draw text (using default font) within an image (destination)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawText(ref Image dst, byte* text, int x, int y, int fontSize, Color color);
-
-        public static void ImageDrawText(ref Image dst, Utf8String text, int x, int y, int fontSize, Color color)
-        {
-            fixed (byte* p = text)
-            {
-                ImageDrawText(ref dst, p, x, y, fontSize, color);
-            }
-        }
+        public static extern void ImageDrawText(Image* dst, byte* text, int x, int y, int fontSize, Color color);
 
         /// <summary>Draw text (custom sprite font) within an image (destination)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawTextEx(ref Image dst, Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void ImageDrawTextEx(Image* dst, Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
-        public static void ImageDrawTextEx(ref Image dst, Font font, Utf8String text, Vector2 position, float fontSize, float spacing, Color tint)
-        {
-            fixed (byte* p = text)
-            {
-                ImageDrawTextEx(ref dst, font, p, position, fontSize, spacing, tint);
-            }
-        }
 
         // Texture loading functions
         // NOTE: These functions require GPU access
@@ -1524,40 +1460,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawText(byte* text, int posX, int posY, int fontSize, Color color);
 
-        public static void DrawText(Utf8String text, int posX, int posY, int fontSize, Color color)
-        {
-            fixed (byte* p = text)
-            {
-                DrawText(p, posX, posY, fontSize, color);
-            }
-        }
-
         /// <summary>Draw text using font and additional parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextEx(Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
-        public static void DrawTextEx(Font font, Utf8String text, Vector2 position, float fontSize,
-            float spacing, Color tint)
-        {
-            fixed (byte* p = text)
-            {
-                DrawTextEx(font, p, position, fontSize, spacing, tint);
-            }
-        }
-
         /// <summary>Draw text using Font and pro parameters (rotation)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DrawTextPro(Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
-
-        public static void DrawTextPro(Font font, Utf8String text, Vector2 position, float fontSize,
-            float spacing, Color tint)
-        {
-            fixed (byte* p = text)
-            {
-                DrawTextEx(font, p, position, fontSize, spacing, tint);
-            }
-
-        }
 
         /// <summary>Draw one character (codepoint)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1570,25 +1479,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int MeasureText(byte* text, int fontSize);
 
-        public static int MeasureText(Utf8String text, int fontSize)
-        {
-            fixed (byte* p = text)
-            {
-                return MeasureText(p, fontSize);
-            }
-        }
-
         /// <summary>Measure string size for Font</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 MeasureTextEx(Font font, byte* text, float fontSize, float spacing);
-
-        public static Vector2 MeasureTextEx(Font font, Utf8String text, float fontSize, float spacing)
-        {
-            fixed (byte* p = text)
-            {
-                return MeasureTextEx(font, p, fontSize, spacing);
-            }
-        }
 
         /// <summary>Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1617,60 +1510,19 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void TextAppend(byte* text, byte* append, int* position);
 
-        public static void TextAppend(Utf8String text, Utf8String append, int position)
-        {
-            fixed (byte* p1 = text)
-            {
-                fixed (byte* p2 = append)
-                {
-                    TextAppend(p1, p2, &position);
-                }
-            }
-        }
-
-
         /// <summary>Get Pascal case notation version of provided string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* TextToPascal(byte* text);
-        public static Utf8String TextToPascal(Utf8String text)
-        {
-            fixed (byte* p1 = text)
-            {
-                return Utf8String.FromPtr(TextToPascal(p1));
-            }
-        }
 
         /// <summary>Get integer value from text (negative values not supported)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int TextToInteger(byte* text);
-
-        public static int TextToInteger(Utf8String text)
-        {
-            fixed (byte* p1 = text)
-            {
-                return TextToInteger(p1);
-            }
-        }
 
         // UTF8 text strings management functions
 
         /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int* LoadCodepoints(byte* text, int* count);
-
-        public static int[] LoadCodepoints(Utf8String text, ref int count)
-        {
-            fixed (byte* p1 = text)
-            {
-                fixed (int* c = &count)
-                {
-                    var pointsPtr = LoadCodepoints(p1, c);
-                    var codepoints = new ReadOnlySpan<int>(pointsPtr, count).ToArray();
-                    UnloadCodepoints(pointsPtr);
-                    return codepoints;
-                }
-            }
-        }
 
         /// <summary>Unload codepoints data from memory</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1680,57 +1532,17 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepointCount(byte* text);
 
-        public static int GetCodepointCount(Utf8String text)
-        {
-            fixed (byte* p1 = text)
-            {
-                return GetCodepointCount(p1);
-            }
-        }
-
         /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepoint(byte* text, int* bytesProcessed);
-
-        /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
-        /// <returns>single codepoint / "char"</returns>
-        public static int GetCodepoint(Utf8String text, ref int bytesProcessed)
-        {
-            fixed (byte* p1 = text)
-            {
-                // this probably wont work
-                fixed (int* p = &bytesProcessed)
-                {
-                    return GetCodepoint(p1, p);
-                }
-            }
-        }
 
         /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* CodepointToUTF8(int codepoint, int* byteSize);
 
-        public static Utf8String CodepointToUTF8(int codepoint, ref int byteSize)
-        {
-            fixed (int* l1 = &byteSize)
-            {
-                var ptr = CodepointToUTF8(codepoint, l1);
-                return Utf8String.FromPtr(ptr);
-            }
-        }
-
         /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* TextCodepointsToUTF8(int* codepoints, int length);
-
-        public static Utf8String TextCodepointsToUTF8(int[] codepoints, int length)
-        {
-            fixed (int* c1 = codepoints)
-            {
-                var ptr = TextCodepointsToUTF8(c1, length);
-                return Utf8String.FromPtr(ptr);
-            }
-        }
 
 
         //------------------------------------------------------------------------------------
@@ -1998,24 +1810,6 @@ namespace Raylib_cs
         /// <summary>Load model animations from file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern ModelAnimation* LoadModelAnimations(byte* fileName, int* animsCount);
-
-        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(Utf8String fileName, ref int animsCount)
-        {
-            fixed (byte* p1 = fileName)
-            {
-                fixed (int* p2 = &animsCount)
-                {
-                    var model = LoadModelAnimations(p1, p2);
-
-                    if ((IntPtr)model == IntPtr.Zero)
-                    {
-                        throw new ApplicationException("Failed to load animation");
-                    }
-
-                    return new ReadOnlySpan<ModelAnimation>(model, animsCount);
-                }
-            }
-        }
 
         /// <summary>Update model animation pose</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
