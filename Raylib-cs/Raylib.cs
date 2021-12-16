@@ -34,14 +34,14 @@ namespace Raylib_cs
         /// </summary>
         /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate IntPtr LoadFileDataCallback(string fileName, ref int bytesRead);
+        public delegate IntPtr LoadFileDataCallback(string fileName, int* bytesRead);
 
         /// <summary>
         /// FileIO: Save binary data<br/>
         /// WARNING: This callback is intended for advance users
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate CBool SaveFileDataCallback(string fileName, IntPtr data, ref int bytesToWrite);
+        public delegate CBool SaveFileDataCallback(string fileName, IntPtr data, int* bytesToWrite);
 
         /// <summary>
         /// FileIO: Load text data<br/>
@@ -511,7 +511,7 @@ namespace Raylib_cs
 
         /// <summary>Load file data as byte array (read)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* LoadFileData(string fileName, ref int bytesRead);
+        public static extern byte* LoadFileData(string fileName, int* bytesRead);
 
         /// <summary>Unload file data allocated by LoadFileData()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -543,11 +543,11 @@ namespace Raylib_cs
 
         /// <summary>Compress data (DEFLATE algorythm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* CompressData(byte[] data, int dataLength, ref int compDataLength);
+        public static extern byte* CompressData(byte[] data, int dataLength, int* compDataLength);
 
         /// <summary>Decompress data (DEFLATE algorythm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* DecompressData(byte[] compData, int compDataLength, ref int dataLength);
+        public static extern byte* DecompressData(byte[] compData, int compDataLength, int* dataLength);
 
 
         // Persistent storage management
@@ -770,7 +770,7 @@ namespace Raylib_cs
 
         /// <summary>Update camera position for selected mode</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateCamera(ref Camera3D camera);
+        public static extern void UpdateCamera(Camera3D* camera);
 
         /// <summary>Set camera pan key to combine with mouse movement (free camera)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -977,7 +977,7 @@ namespace Raylib_cs
 
         /// <summary>Check the collision between two lines defined by two points each, returns collision point by reference</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
+        public static extern CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
 
         /// <summary>Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1005,7 +1005,7 @@ namespace Raylib_cs
 
         /// <summary>Load image sequence from file (frames appended to image.data)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image LoadImageAnim(string fileName, ref int frames);
+        public static extern Image LoadImageAnim(string fileName, int* frames);
 
         /// <summary>Load image from memory buffer, fileType refers to extension: i.e. "png"</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1098,91 +1098,91 @@ namespace Raylib_cs
 
         /// <summary>Convert image to POT (power-of-two)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageToPOT(ref Image image, Color fill);
+        public static extern void ImageToPOT(Image* image, Color fill);
 
         /// <summary>Convert image data to desired format</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageFormat(ref Image image, PixelFormat newFormat);
+        public static extern void ImageFormat(Image* image, PixelFormat newFormat);
 
         /// <summary>Apply alpha mask to image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageAlphaMask(ref Image image, Image alphaMask);
+        public static extern void ImageAlphaMask(Image* image, Image alphaMask);
 
         /// <summary>Clear alpha channel to desired color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageAlphaClear(ref Image image, Color color, float threshold);
+        public static extern void ImageAlphaClear(Image* image, Color color, float threshold);
 
         /// <summary>Crop image depending on alpha value</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageAlphaCrop(ref Image image, float threshold);
+        public static extern void ImageAlphaCrop(Image* image, float threshold);
 
         /// <summary>Premultiply alpha channel</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageAlphaPremultiply(ref Image image);
+        public static extern void ImageAlphaPremultiply(Image* image);
 
         /// <summary>Crop an image to a defined rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageCrop(ref Image image, Rectangle crop);
+        public static extern void ImageCrop(Image* image, Rectangle crop);
 
         /// <summary>Resize image (Bicubic scaling algorithm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageResize(ref Image image, int newWidth, int newHeight);
+        public static extern void ImageResize(Image* image, int newWidth, int newHeight);
 
         /// <summary>Resize image (Nearest-Neighbor scaling algorithm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageResizeNN(ref Image image, int newWidth, int newHeight);
+        public static extern void ImageResizeNN(Image* image, int newWidth, int newHeight);
 
         /// <summary>Resize canvas and fill with color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color color);
+        public static extern void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color color);
 
         /// <summary>Generate all mipmap levels for a provided image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageMipmaps(ref Image image);
+        public static extern void ImageMipmaps(Image* image);
 
         /// <summary>Dither image data to 16bpp or lower (Floyd-Steinberg dithering)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDither(ref Image image, int rBpp, int gBpp, int bBpp, int aBpp);
+        public static extern void ImageDither(Image* image, int rBpp, int gBpp, int bBpp, int aBpp);
 
         /// <summary>Flip image vertically</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageFlipVertical(ref Image image);
+        public static extern void ImageFlipVertical(Image* image);
 
         /// <summary>Flip image horizontally</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageFlipHorizontal(ref Image image);
+        public static extern void ImageFlipHorizontal(Image* image);
 
         /// <summary>Rotate image clockwise 90deg</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageRotateCW(ref Image image);
+        public static extern void ImageRotateCW(Image* image);
 
         /// <summary>Rotate image counter-clockwise 90deg</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageRotateCCW(ref Image image);
+        public static extern void ImageRotateCCW(Image* image);
 
         /// <summary>Modify image color: tint</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageColorTint(ref Image image, Color color);
+        public static extern void ImageColorTint(Image* image, Color color);
 
         /// <summary>Modify image color: invert</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageColorInvert(ref Image image);
+        public static extern void ImageColorInvert(Image* image);
 
         /// <summary>Modify image color: grayscale</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageColorGrayscale(ref Image image);
+        public static extern void ImageColorGrayscale(Image* image);
 
         /// <summary>Modify image color: contrast (-100 to 100)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageColorContrast(ref Image image, float contrast);
+        public static extern void ImageColorContrast(Image* image, float contrast);
 
         /// <summary>Modify image color: brightness (-255 to 255)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageColorBrightness(ref Image image, int brightness);
+        public static extern void ImageColorBrightness(Image* image, int brightness);
 
         /// <summary>Modify image color: replace color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageColorReplace(ref Image image, Color color, Color replace);
+        public static extern void ImageColorReplace(Image* image, Color color, Color replace);
 
         /// <summary>Load color data from image as a Color array (RGBA - 32bit)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1190,7 +1190,7 @@ namespace Raylib_cs
 
         /// <summary>Load colors palette from image as a Color array (RGBA - 32bit)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color* LoadImagePalette(Image image, int maxPaletteSize, ref int colorsCount);
+        public static extern Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorsCount);
 
         /// <summary>Unload color data loaded with LoadImageColors()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1214,51 +1214,51 @@ namespace Raylib_cs
 
         /// <summary>Clear image background with given color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageClearBackground(ref Image dst, Color color);
+        public static extern void ImageClearBackground(Image* dst, Color color);
 
         /// <summary>Draw pixel within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawPixel(ref Image dst, int posX, int posY, Color color);
+        public static extern void ImageDrawPixel(Image* dst, int posX, int posY, Color color);
 
         /// <summary>Draw pixel within an image (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawPixelV(ref Image dst, Vector2 position, Color color);
+        public static extern void ImageDrawPixelV(Image* dst, Vector2 position, Color color);
 
         /// <summary>Draw line within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
+        public static extern void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
 
         /// <summary>Draw line within an image (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawLineV(ref Image dst, Vector2 start, Vector2 end, Color color);
+        public static extern void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color);
 
         /// <summary>Draw circle within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color);
+        public static extern void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color);
 
         /// <summary>Draw circle within an image (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawCircleV(ref Image dst, Vector2 center, int radius, Color color);
+        public static extern void ImageDrawCircleV(Image* dst, Vector2 center, int radius, Color color);
 
         /// <summary>Draw rectangle within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawRectangle(ref Image dst, int posX, int posY, int width, int height, Color color);
+        public static extern void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color);
 
         /// <summary>Draw rectangle within an image (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawRectangleV(ref Image dst, Vector2 position, Vector2 size, Color color);
+        public static extern void ImageDrawRectangleV(Image* dst, Vector2 position, Vector2 size, Color color);
 
         /// <summary>Draw rectangle within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawRectangleRec(ref Image dst, Rectangle rec, Color color);
+        public static extern void ImageDrawRectangleRec(Image* dst, Rectangle rec, Color color);
 
         /// <summary>Draw rectangle lines within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawRectangleLines(ref Image dst, Rectangle rec, int thick, Color color);
+        public static extern void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color);
 
         /// <summary>Draw a source image within a destination image (tint applied to source)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
+        public static extern void ImageDraw(Image* dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
 
         /// <summary>Draw text (using default font) within an image (destination)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1309,7 +1309,7 @@ namespace Raylib_cs
 
         /// <summary>Generate GPU mipmaps for a texture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GenTextureMipmaps(ref Texture2D texture);
+        public static extern void GenTextureMipmaps(Texture2D* texture);
 
         /// <summary>Set texture scaling filter mode</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1666,7 +1666,7 @@ namespace Raylib_cs
 
         /// <summary>Upload vertex data into GPU and provided VAO/VBO ids</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UploadMesh(ref Mesh mesh, CBool dynamic);
+        public static extern void UploadMesh(Mesh* mesh, CBool dynamic);
 
         /// <summary>Update mesh vertex data in GPU for a specific buffer index</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1674,7 +1674,7 @@ namespace Raylib_cs
 
         /// <summary>Unload mesh from memory (RAM and/or VRAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadMesh(ref Mesh mesh);
+        public static extern void UnloadMesh(Mesh* mesh);
 
         /// <summary>Draw a 3d mesh with material and transform</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1694,11 +1694,11 @@ namespace Raylib_cs
 
         /// <summary>Compute mesh tangents</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GenMeshTangents(ref Mesh mesh);
+        public static extern void GenMeshTangents(Mesh* mesh);
 
         /// <summary>Compute mesh binormals</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GenMeshBinormals(ref Mesh mesh);
+        public static extern void GenMeshBinormals(Mesh* mesh);
 
 
         // Material loading/unloading functions
@@ -1706,7 +1706,7 @@ namespace Raylib_cs
         //TODO: safe Helper method
         /// <summary>Load materials from model file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Material* LoadMaterials(string fileName, ref int materialCount);
+        public static extern Material* LoadMaterials(string fileName, int* materialCount);
 
         /// <summary>Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1718,11 +1718,11 @@ namespace Raylib_cs
 
         /// <summary>Set texture for a material map type (MAP_DIFFUSE, MAP_SPECULAR...)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMaterialTexture(ref Material material, int mapType, Texture2D texture);
+        public static extern void SetMaterialTexture(Material* material, int mapType, Texture2D texture);
 
         /// <summary>Set material for a mesh</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetModelMeshMaterial(ref Model model, int meshId, int materialId);
+        public static extern void SetModelMeshMaterial(Model* model, int meshId, int materialId);
 
 
         // Mesh generation functions
@@ -1973,7 +1973,7 @@ namespace Raylib_cs
 
         /// <summary>Convert wave data to desired format</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void WaveFormat(ref Wave wave, int sampleRate, int sampleSize, int channels);
+        public static extern void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels);
 
         /// <summary>Copy a wave to a new wave</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1981,7 +1981,7 @@ namespace Raylib_cs
 
         /// <summary>Crop a wave to defined samples range</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void WaveCrop(ref Wave wave, int initSample, int finalSample);
+        public static extern void WaveCrop(Wave* wave, int initSample, int finalSample);
 
         //TODO: Span
         /// <summary>Get samples data from wave as a floats array</summary>

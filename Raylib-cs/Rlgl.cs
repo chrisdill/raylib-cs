@@ -101,7 +101,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlMultMatrixf(float* matf);
 
-        /// <inheritdoc cref="rlMultMatrixf"/>
+        /// <inheritdoc cref="rlMultMatrixf(float*)"/>
         public static void rlMultMatrixf(Matrix4x4 matf)
         {
             float16 f = Raymath.MatrixToFloatV(matf);
