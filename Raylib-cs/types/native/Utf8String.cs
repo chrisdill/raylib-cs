@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
@@ -205,6 +206,16 @@ namespace Raylib_cs
             byteArray[wrote] = 0;
 
             return byteArray;
+        }
+
+        public static unsafe string GetUTF8String(byte* bytes)
+        {
+            return Marshal.PtrToStringUTF8((IntPtr)bytes);
+        }
+
+        public static byte[] GetUTF8Bytes(this string text)
+        {
+            return Encoding.UTF8.GetBytes(text);
         }
     }
 }

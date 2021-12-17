@@ -6,53 +6,53 @@ namespace Raylib_cs
 {
     public static unsafe partial class Raylib
     {
-        /// <inheritdoc cref="InitWindow(int, int, byte*)"/>
-        public static void InitWindow(int width, int height, Utf8String title)
+        /// <summary>Initialize window and OpenGL context</summary>
+        public static void InitWindow(int width, int height, string title)
         {
-            fixed (byte* p = title)
+            fixed (byte* b = title.GetUTF8Bytes())
             {
-                InitWindow(width, height, p);
+                InitWindow(width, height, b);
             }
         }
 
-        /// <inheritdoc cref="SetWindowTitle(byte*)"/>
-        public static void SetWindowTitle(Utf8String title)
+        /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
+        public static void SetWindowTitle(string title)
         {
-            fixed (byte* p = title)
+            fixed (byte* b = title.GetUTF8Bytes())
             {
-                SetWindowTitle(p);
+                SetWindowTitle(b);
             }
         }
 
-        /// <inheritdoc cref="GetMonitorName"/>
-        public static Utf8String GetMonitorName_(int monitor)
+        /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
+        public static string GetMonitorName_(int monitor)
         {
-            return Utf8String.FromPtr(GetMonitorName(monitor));
+            return Utf8StringUtils.GetUTF8String(GetMonitorName(monitor));
         }
 
-        /// <inheritdoc cref="GetClipboardText"/>
-        public static Utf8String GetClipboardText_()
+        /// <summary>Get clipboard text content</summary>
+        public static string GetClipboardText_()
         {
-            return Utf8String.FromPtr(GetClipboardText());
+            return Utf8StringUtils.GetUTF8String(GetClipboardText());
         }
 
-        /// <inheritdoc cref="SetClipboardText(byte*)"/>
-        public static void SetClipboardText(Utf8String text)
+        /// <summary>Set clipboard text content</summary>
+        public static void SetClipboardText(string text)
         {
-            fixed (byte* p = text)
+            fixed (byte* p = text.GetUTF8Bytes())
             {
                 SetClipboardText(p);
             }
         }
 
-        /// <inheritdoc cref="SetTraceLogCallback"/>
+        /// <summary>Set custom trace log</summary>
         public static void SetTraceLogCallback_(TraceLogCallback callback)
         {
             SetTraceLogCallback(callback);
             traceLogCallback = callback;
         }
 
-        /// <inheritdoc cref="GetDroppedFiles(int*)"/>
+        /// <summary>Get dropped files names (memory should be freed)</summary>
         public static string[] GetDroppedFiles()
         {
             int count;
@@ -67,10 +67,10 @@ namespace Raylib_cs
             return files;
         }
 
-        /// <inheritdoc cref="GetGamepadName"/>
-        public static Utf8String GetGamepadName_(int gamepad)
+        /// <summary>Return gamepad internal name id</summary>
+        public static string GetGamepadName_(int gamepad)
         {
-            return Utf8String.FromPtr(GetGamepadName(gamepad));
+            return Utf8StringUtils.GetUTF8String(GetGamepadName(gamepad));
         }
 
         /// <inheritdoc cref="UpdateCamera(Camera3D*)"/>
@@ -82,17 +82,19 @@ namespace Raylib_cs
             }
         }
 
-        public static Image ImageText(Utf8String text, int fontSize, Color color)
+        /// <summary>Create an image from text (default font)</summary>
+        public static Image ImageText(string text, int fontSize, Color color)
         {
-            fixed (byte* p = text)
+            fixed (byte* p = text.GetUTF8Bytes())
             {
                 return ImageText(p, fontSize, color);
             }
         }
 
-        public static Image ImageTextEx(Font font, Utf8String text, float fontSize, float spacing, Color tint)
+        /// <summary>Create an image from text (custom sprite font)</summary>
+        public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
         {
-            fixed (byte* p = text)
+            fixed (byte* p = text.GetUTF8Bytes())
             {
                 return ImageTextEx(font, p, fontSize, spacing, tint);
             }
@@ -315,9 +317,9 @@ namespace Raylib_cs
             }
         }
 
-        public static void DrawText(Utf8String text, int posX, int posY, int fontSize, Color color)
+        public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
         {
-            fixed (byte* p = text)
+            fixed (byte* p = text.GetUTF8Bytes())
             {
                 DrawText(p, posX, posY, fontSize, color);
             }
@@ -366,11 +368,11 @@ namespace Raylib_cs
             }
         }
 
-        public static Utf8String TextToPascal(Utf8String text)
+        public static string TextToPascal(Utf8String text)
         {
             fixed (byte* p1 = text)
             {
-                return Utf8String.FromPtr(TextToPascal(p1));
+                return Utf8StringUtils.GetUTF8String(TextToPascal(p1));
             }
         }
 
@@ -382,9 +384,9 @@ namespace Raylib_cs
             }
         }
 
-        public static int[] LoadCodepoints(Utf8String text, ref int count)
+        public static int[] LoadCodepoints(string text, ref int count)
         {
-            fixed (byte* p1 = text)
+            fixed (byte* p1 = text.GetUTF8Bytes())
             {
                 fixed (int* c = &count)
                 {
@@ -406,9 +408,9 @@ namespace Raylib_cs
 
         /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         /// <returns>single codepoint / "char"</returns>
-        public static int GetCodepoint(Utf8String text, ref int bytesProcessed)
+        public static int GetCodepoint(string text, ref int bytesProcessed)
         {
-            fixed (byte* p1 = text)
+            fixed (byte* p1 = text.GetUTF8Bytes())
             {
                 // this probably wont work
                 fixed (int* p = &bytesProcessed)
@@ -418,21 +420,21 @@ namespace Raylib_cs
             }
         }
 
-        public static Utf8String CodepointToUTF8(int codepoint, ref int byteSize)
+        public static string CodepointToUTF8(int codepoint, ref int byteSize)
         {
             fixed (int* l1 = &byteSize)
             {
                 var ptr = CodepointToUTF8(codepoint, l1);
-                return Utf8String.FromPtr(ptr);
+                return Utf8StringUtils.GetUTF8String(ptr);
             }
         }
 
-        public static Utf8String TextCodepointsToUTF8(int[] codepoints, int length)
+        public static string TextCodepointsToUTF8(int[] codepoints, int length)
         {
             fixed (int* c1 = codepoints)
             {
                 var ptr = TextCodepointsToUTF8(c1, length);
-                return Utf8String.FromPtr(ptr);
+                return Utf8StringUtils.GetUTF8String(ptr);
             }
         }
 
