@@ -1077,24 +1077,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image ImageText(byte* text, int fontSize, Color color);
 
-        public static Image ImageText(Utf8String text, int fontSize, Color color)
-        {
-            fixed (byte* p = text)
-            {
-                return ImageText(p, fontSize, color);
-            }
-        }
-
         /// <summary>Create an image from text (custom sprite font)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Image ImageTextEx(Font font, byte* text, float fontSize, float spacing, Color tint);
-        public static Image ImageTextEx(Font font, Utf8String text, float fontSize, float spacing, Color tint)
-        {
-            fixed (byte* p = text)
-            {
-                return ImageTextEx(font, p, fontSize, spacing, tint);
-            }
-        }
 
         /// <summary>Convert image to POT (power-of-two)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

@@ -4,11 +4,9 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs
 {
-    /// <summary>
-    /// Utility functions for parts of the api that are not easy to interact with via pinvoke.
-    /// </summary>
     public static unsafe partial class Raylib
     {
+        /// <inheritdoc cref="InitWindow(int, int, byte*)"/>
         public static void InitWindow(int width, int height, Utf8String title)
         {
             fixed (byte* p = title)
@@ -17,6 +15,7 @@ namespace Raylib_cs
             }
         }
 
+        /// <inheritdoc cref="SetWindowTitle(byte*)"/>
         public static void SetWindowTitle(Utf8String title)
         {
             fixed (byte* p = title)
@@ -25,18 +24,19 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
+        /// <inheritdoc cref="GetMonitorName"/>
         public static Utf8String GetMonitorName_(int monitor)
         {
             return Utf8String.FromPtr(GetMonitorName(monitor));
         }
 
-        /// <summary>Get clipboard text content</summary>
+        /// <inheritdoc cref="GetClipboardText"/>
         public static Utf8String GetClipboardText_()
         {
             return Utf8String.FromPtr(GetClipboardText());
         }
 
+        /// <inheritdoc cref="SetClipboardText(byte*)"/>
         public static void SetClipboardText(Utf8String text)
         {
             fixed (byte* p = text)
@@ -45,19 +45,236 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Set custom trace log</summary>
+        /// <inheritdoc cref="SetTraceLogCallback"/>
         public static void SetTraceLogCallback_(TraceLogCallback callback)
         {
             SetTraceLogCallback(callback);
             traceLogCallback = callback;
         }
 
-        /// <summary>Return gamepad internal name id</summary>
+        /// <inheritdoc cref="GetDroppedFiles(int*)"/>
+        public static string[] GetDroppedFiles()
+        {
+            int count;
+            var buffer = GetDroppedFiles(&count);
+            var files = new string[count];
+
+            for (var i = 0; i < count; i++)
+            {
+                files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
+            }
+
+            return files;
+        }
+
+        /// <inheritdoc cref="GetGamepadName"/>
         public static Utf8String GetGamepadName_(int gamepad)
         {
             return Utf8String.FromPtr(GetGamepadName(gamepad));
         }
 
+        /// <inheritdoc cref="UpdateCamera(Camera3D*)"/>
+        public static void UpdateCamera(ref Camera3D camera)
+        {
+            fixed (Camera3D* c = &camera)
+            {
+                UpdateCamera(c);
+            }
+        }
+
+        public static Image ImageText(Utf8String text, int fontSize, Color color)
+        {
+            fixed (byte* p = text)
+            {
+                return ImageText(p, fontSize, color);
+            }
+        }
+
+        public static Image ImageTextEx(Font font, Utf8String text, float fontSize, float spacing, Color tint)
+        {
+            fixed (byte* p = text)
+            {
+                return ImageTextEx(font, p, fontSize, spacing, tint);
+            }
+        }
+        
+        public static void ImageToPOT(ref Image image, Color fill)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageToPOT(p, fill);
+            }
+        }
+
+        public static void ImageFormat(ref Image image, PixelFormat newFormat)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageFormat(p, newFormat);
+            }
+        }
+
+        public static void ImageAlphaMask(ref Image image, Image alphaMask)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageAlphaMask(p, alphaMask);
+            }
+        }
+
+        public static void ImageAlphaClear(ref Image image, Color color, float threshold)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageAlphaClear(p, color, threshold);
+            }
+        }
+
+        public static void ImageAlphaCrop(ref Image image, float threshold)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageAlphaCrop(p, threshold);
+            }
+        }
+
+        public static void ImageAlphaPremultiply(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageAlphaPremultiply(p);
+            }
+        }
+
+        public static void ImageCrop(ref Image image, Rectangle crop)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageCrop(p, crop);
+            }
+        }
+
+        public static void ImageResize(ref Image image, int newWidth, int newHeight)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageResize(p, newWidth, newHeight);
+            }
+        }
+
+        public static void ImageResizeNN(ref Image image, int newWidth, int newHeight)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageResizeNN(p, newWidth, newHeight);
+            }
+        }
+
+        public static void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color color)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageResizeCanvas(p, newWidth, newHeight, offsetX, offsetY, color);
+            }
+        }
+
+        public static void ImageMipmaps(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageMipmaps(p);
+            }
+        }
+
+        public static void ImageDither(ref Image image, int rBpp, int gBpp, int bBpp, int aBpp)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageDither(p, rBpp, gBpp, bBpp, aBpp);
+            }
+        }
+
+        public static void ImageFlipVertical(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageFlipVertical(p);
+            }
+        }
+
+        public static void ImageFlipHorizontal(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageFlipHorizontal(p);
+            }
+        }
+
+        public static void ImageRotateCW(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageRotateCW(p);
+            }
+        }
+
+        public static void ImageRotateCCW(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageRotateCCW(p);
+            }
+        }
+
+        public static void ImageColorTint(ref Image image, Color color)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageColorTint(p, color);
+            }
+        }
+
+        public static void ImageColorInvert(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageColorInvert(p);
+            }
+        }
+
+        public static void ImageColorGrayscale(ref Image image)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageColorGrayscale(p);
+            }
+        }
+
+        public static void ImageColorContrast(ref Image image, float contrast)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageColorContrast(p, contrast);
+            }
+        }
+
+        public static void ImageColorBrightness(ref Image image, int brightness)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageColorBrightness(p, brightness);
+            }
+        }
+
+        public static void ImageColorReplace(ref Image image, Color color, Color replace)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageColorReplace(p, color, replace);
+            }
+        }
+
+        /// <inheritdoc cref="ImageDrawText(Image*, byte*, int, int, int, Color)"/>
         public static void ImageDrawText(ref Image dst, Utf8String text, int x, int y, int fontSize, Color color)
         {
             fixed (byte* p = text)
@@ -65,6 +282,17 @@ namespace Raylib_cs
                 fixed (Image* i = &dst)
                 {
                     ImageDrawText(i, p, x, y, fontSize, color);
+                }
+            }
+        }
+
+        public static void ImageDrawTextEx(ref Image dst, Font font, Utf8String text, Vector2 position, int fontSize, float spacing, Color color)
+        {
+            fixed (byte* p = text)
+            {
+                fixed (Image* i = &dst)
+                {
+                    ImageDrawTextEx(i, font, p, position, fontSize, spacing, color);
                 }
             }
         }
@@ -211,22 +439,6 @@ namespace Raylib_cs
         public static string SubText(this string input, int position, int length)
         {
             return input.Substring(position, Math.Min(length, input.Length));
-        }
-
-        public static string[] GetDroppedFiles()
-        {
-            int count;
-            var buffer = GetDroppedFiles(&count);
-            var files = new string[count];
-
-            for (var i = 0; i < count; i++)
-            {
-                files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
-            }
-
-            ClearDroppedFiles();
-
-            return files;
         }
 
         public static Material GetMaterial(ref Model model, int materialIndex)
