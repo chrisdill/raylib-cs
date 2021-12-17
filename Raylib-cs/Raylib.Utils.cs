@@ -97,7 +97,7 @@ namespace Raylib_cs
                 return ImageTextEx(font, p, fontSize, spacing, tint);
             }
         }
-        
+
         public static void ImageToPOT(ref Image image, Color fill)
         {
             fixed (Image* p = &image)
@@ -271,6 +271,24 @@ namespace Raylib_cs
             fixed (Image* p = &image)
             {
                 ImageColorReplace(p, color, replace);
+            }
+        }
+
+        /// <inheritdoc cref="ImageDrawPixel(Image*, int, int, Color)"/>
+        public static void ImageDrawPixel(ref Image dst, int posX, int posY, Color color)
+        {
+            fixed (Image* p = &dst)
+            {
+                ImageDrawPixel(p, posX, posY, color);
+            }
+        }
+
+        /// <inheritdoc cref="ImageDrawPixelV(Image*, Vector2, Color)"/>
+        public static void ImageDrawPixelV(ref Image dst, Vector2 position, Color color)
+        {
+            fixed (Image* p = &dst)
+            {
+                ImageDrawPixelV(p, position, color);
             }
         }
 

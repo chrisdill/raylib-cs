@@ -62,7 +62,7 @@ namespace Raylib_cs.Tests
             int count = 0;
             string input = "aàáâãäāăąȧXǎȁȃeèéêẽëē";
             int[] codepoints1 = Raylib.LoadCodepoints(input, ref count);
-      
+
             for (int i = 0; i < input.Length; i++)
             {
                 Assert.Equal(input[i], codepoints1[i]);
@@ -81,7 +81,7 @@ namespace Raylib_cs.Tests
         public void TextCodepointsToUTF8()
         {
             string input = "aàáâãäāăąȧXǎȁȃeèéêẽëē";
-            
+
             int count = 0;
             int[] codepoints1 = Raylib.LoadCodepoints(input, ref count);
 

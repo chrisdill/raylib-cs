@@ -20,9 +20,9 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Build project
-        run: dotnet build -c Release
+        run: dotnet build -c Release -f net6.0
       - name: Test project
-        run: dotnet test
+        run: dotnet test -c Release -f net6.0
   publish:
     name: Build Release Package
     runs-on: ubuntu-latest
