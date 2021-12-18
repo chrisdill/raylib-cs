@@ -488,7 +488,7 @@ namespace Raylib_cs
 
         /// <summary>Set custom trace log</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetTraceLogCallback(TraceLogCallback callback);
+        public static extern void SetTraceLogCallback(delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void> callback);
 
         /// <summary>Set custom file binary data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

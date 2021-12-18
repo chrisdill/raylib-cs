@@ -86,10 +86,13 @@ namespace Raylib_cs
             }
         }
 
+        [DllImport(nativeLibName, EntryPoint = "SetTraceLogCallback", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void SetTraceLogCallbackInternal(TraceLogCallback callback);
+
         /// <summary>Set custom trace log</summary>
-        public static void SetTraceLogCallback_(TraceLogCallback callback)
+        public static void SetTraceLogCallback(TraceLogCallback callback)
         {
-            SetTraceLogCallback(callback);
+            SetTraceLogCallbackInternal(callback);
             traceLogCallback = callback;
         }
 
