@@ -7,12 +7,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>$(NoWarn);1591</NoWarn>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
     <TargetRaylibTag>4.0.0</TargetRaylibTag>
-    <Version>4.0.0-alpha.2</Version>
-    <PackageVersion>4.0.0-alpha.2</PackageVersion>
+    <Version>4.0.0-alpha.3</Version>
+    <PackageVersion>4.0.0-alpha.3</PackageVersion>
     <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>

@@ -115,13 +115,9 @@ namespace Raylib_cs
 
             readonly int boneCount;
 
-            public FramePoses this[int index]
-            {
-                get
-                {
-                    return new(framePoses[index], boneCount);
-                }
-            }
+            public FramePoses this[int index] => new(framePoses[index], boneCount);
+
+            public Transform this[int index1, int index2] => new FramePoses(framePoses[index1], boneCount)[index2];
 
             internal FramePosesCollection(Transform** framePoses, int frameCount, int boneCount)
             {
