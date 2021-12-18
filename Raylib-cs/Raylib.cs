@@ -511,7 +511,7 @@ namespace Raylib_cs
 
         /// <summary>Load file data as byte array (read)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* LoadFileData(string fileName, int* bytesRead);
+        public static extern byte* LoadFileData(string fileName, uint* bytesRead);
 
         /// <summary>Unload file data allocated by LoadFileData()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -519,7 +519,7 @@ namespace Raylib_cs
 
         /// <summary>Save data to file from byte array (write)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool SaveFileData(string fileName, void* data, int bytesToWrite);
+        public static extern CBool SaveFileData(string fileName, void* data, uint bytesToWrite);
 
         /// <summary>Check file extension</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -541,13 +541,21 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFileModTime(string fileName);
 
-        /// <summary>Compress data (DEFLATE algorythm)</summary>
+        /// <summary>Compress data (DEFLATE algorithm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* CompressData(byte[] data, int dataLength, int* compDataLength);
 
-        /// <summary>Decompress data (DEFLATE algorythm)</summary>
+        /// <summary>Decompress data (DEFLATE algorithm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* DecompressData(byte[] compData, int compDataLength, int* dataLength);
+
+        /// <summary>Encode data to Base64 string</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* EncodeDataBase64(byte[] data, int dataLength, int* outputLength);
+
+        /// <summary>Decode Base64 string data</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* DecodeDataBase64(byte[] data, int* outputLength);
 
 
         // Persistent storage management
@@ -1376,7 +1384,7 @@ namespace Raylib_cs
 
         /// <summary>Get Color structure from hexadecimal value</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color GetColor(int hexValue);
+        public static extern Color GetColor(uint hexValue);
 
         /// <summary>Get Color from a source pixel pointer of certain format</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1525,7 +1533,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* CodepointToUTF8(int codepoint, int* byteSize);
 
-        /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
+        /// <summary>Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* TextCodepointsToUTF8(int* codepoints, int length);
 
@@ -1703,7 +1711,7 @@ namespace Raylib_cs
 
         /// <summary>Set texture for a material map type (MAP_DIFFUSE, MAP_SPECULAR...)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMaterialTexture(Material* material, int mapType, Texture2D texture);
+        public static extern void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture2D texture);
 
         /// <summary>Set material for a mesh</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1794,7 +1802,7 @@ namespace Raylib_cs
 
         /// <summary>Load model animations from file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ModelAnimation* LoadModelAnimations(byte* fileName, int* animsCount);
+        public static extern ModelAnimation* LoadModelAnimations(byte* fileName, uint* animsCount);
 
         /// <summary>Update model animation pose</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1806,7 +1814,7 @@ namespace Raylib_cs
 
         /// <summary>Unload animation array data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadModelAnimations(ModelAnimation[] animations, int count);
+        public static extern void UnloadModelAnimations(ModelAnimation[] animations, uint count);
 
         /// <summary>Check model animation skeleton match</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
