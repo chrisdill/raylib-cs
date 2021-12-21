@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using System.Text;
 using System.Runtime.InteropServices;
 
@@ -26,6 +27,28 @@ namespace Raylib_cs
     // - Implicit Conversion From string
 
     #endregion
+
+    /// <summary>
+    /// Converts text to a UTF8 buffer for passing to native code.<br/>
+    /// Uses ArrayPool to reduce memory allocation.
+    /// </summary>
+    public ref struct UTF8Buffer
+    {
+        public byte[] buffer;
+
+        public UTF8Buffer(string text)
+        {
+            int length = (text.Length * 4) + 1;
+            buffer = ArrayPool<byte>.Shared.Rent(length);
+            int count = Encoding.UTF8.GetBytes(text.AsSpan(), buffer.AsSpan());
+            buffer[count] = 0;
+        }
+
+        public void Dispose()
+        {
+            ArrayPool<byte>.Shared.Return(buffer);
+        }
+    }
 
     /// <summary>
     /// A raw string representation suitable for passing into many core SQLite apis. These will normally be pointers to
@@ -149,7 +172,7 @@ namespace Raylib_cs
 
         /// <summary>
         /// UTF16 String representation
-        /// Returns "NUL" on Null native type 
+        /// Returns "NUL" on Null native type
         /// </summary>
         /// <returns></returns>
         public override string ToString()

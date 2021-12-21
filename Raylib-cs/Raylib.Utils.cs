@@ -9,7 +9,8 @@ namespace Raylib_cs
         /// <summary>Initialize window and OpenGL context</summary>
         public static void InitWindow(int width, int height, string title)
         {
-            fixed (byte* b = title.GetUTF8Bytes())
+            using var str = new UTF8Buffer(title);
+            fixed (byte* b = str.buffer)
             {
                 InitWindow(width, height, b);
             }
@@ -18,7 +19,8 @@ namespace Raylib_cs
         /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
         public static void SetWindowTitle(string title)
         {
-            fixed (byte* b = title.GetUTF8Bytes())
+            using var str = new UTF8Buffer(title);
+            fixed (byte* b = str.buffer)
             {
                 SetWindowTitle(b);
             }
@@ -39,9 +41,10 @@ namespace Raylib_cs
         /// <summary>Set clipboard text content</summary>
         public static void SetClipboardText(string text)
         {
-            fixed (byte* p = text.GetUTF8Bytes())
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                SetClipboardText(p);
+                SetClipboardText(b);
             }
         }
 
@@ -147,18 +150,20 @@ namespace Raylib_cs
         /// <summary>Create an image from text (default font)</summary>
         public static Image ImageText(string text, int fontSize, Color color)
         {
-            fixed (byte* p = text.GetUTF8Bytes())
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return ImageText(p, fontSize, color);
+                return ImageText(b, fontSize, color);
             }
         }
 
         /// <summary>Create an image from text (custom sprite font)</summary>
         public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
         {
-            fixed (byte* p = text.GetUTF8Bytes())
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return ImageTextEx(font, p, fontSize, spacing, tint);
+                return ImageTextEx(font, b, fontSize, spacing, tint);
             }
         }
 
@@ -469,25 +474,27 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw text (using default font) within an image (destination)</summary>
-        public static void ImageDrawText(ref Image dst, Utf8String text, int x, int y, int fontSize, Color color)
+        public static void ImageDrawText(ref Image dst, string text, int x, int y, int fontSize, Color color)
         {
             fixed (Image* p = &dst)
             {
-                fixed (byte* p1 = text)
+                using var str = new UTF8Buffer(text);
+                fixed (byte* b = str.buffer)
                 {
-                    ImageDrawText(p, p1, x, y, fontSize, color);
+                    ImageDrawText(p, b, x, y, fontSize, color);
                 }
             }
         }
 
         /// <summary>Draw text (custom sprite font) within an image (destination)</summary>
-        public static void ImageDrawTextEx(ref Image dst, Font font, Utf8String text, Vector2 position, int fontSize, float spacing, Color color)
+        public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, int fontSize, float spacing, Color color)
         {
             fixed (Image* p = &dst)
             {
-                fixed (byte* p1 = text)
+                using var str = new UTF8Buffer(text);
+                fixed (byte* b = str.buffer)
                 {
-                    ImageDrawTextEx(p, font, p1, position, fontSize, spacing, color);
+                    ImageDrawTextEx(p, font, b, position, fontSize, spacing, color);
                 }
             }
         }
@@ -538,13 +545,14 @@ namespace Raylib_cs
         }
 
         /// <summary>Load model animations from file</summary>
-        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(Utf8String fileName, ref uint animsCount)
+        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animsCount)
         {
-            fixed (byte* p1 = fileName)
+            using var str = new UTF8Buffer(fileName);
+            fixed (byte* b = str.buffer)
             {
-                fixed (uint* p2 = &animsCount)
+                fixed (uint* p = &animsCount)
                 {
-                    var model = LoadModelAnimations(p1, p2);
+                    var model = LoadModelAnimations(b, p);
 
                     if ((IntPtr)model == IntPtr.Zero)
                     {
@@ -594,78 +602,88 @@ namespace Raylib_cs
 
         public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
         {
-            fixed (byte* p = text.GetUTF8Bytes())
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                DrawText(p, posX, posY, fontSize, color);
+                DrawText(b, posX, posY, fontSize, color);
             }
         }
 
-        public static void DrawTextEx(Font font, Utf8String text, Vector2 position, float fontSize, float spacing, Color tint)
+        public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
         {
-            fixed (byte* p = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                DrawTextEx(font, p, position, fontSize, spacing, tint);
+                DrawTextEx(font, b, position, fontSize, spacing, tint);
             }
         }
 
-        public static void DrawTextPro(Font font, Utf8String text, Vector2 position, float fontSize, float spacing, Color tint)
+        public static void DrawTextPro(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
         {
-            fixed (byte* p = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                DrawTextEx(font, p, position, fontSize, spacing, tint);
+                DrawTextEx(font, b, position, fontSize, spacing, tint);
             }
         }
 
-        public static int MeasureText(Utf8String text, int fontSize)
+        public static int MeasureText(string text, int fontSize)
         {
-            fixed (byte* p = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return MeasureText(p, fontSize);
+                return MeasureText(b, fontSize);
             }
         }
 
-        public static Vector2 MeasureTextEx(Font font, Utf8String text, float fontSize, float spacing)
+        public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
         {
-            fixed (byte* p = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return MeasureTextEx(font, p, fontSize, spacing);
+                return MeasureTextEx(font, b, fontSize, spacing);
             }
         }
 
-        public static void TextAppend(Utf8String text, Utf8String append, int position)
+        public static void TextAppend(string text, string append, int position)
         {
-            fixed (byte* p1 = text)
+            using var str = new UTF8Buffer(text);
+            using var str1 = new UTF8Buffer(append);
+            fixed (byte* p1 = str.buffer)
             {
-                fixed (byte* p2 = append)
+                fixed (byte* p2 = str1.buffer)
                 {
                     TextAppend(p1, p2, &position);
                 }
             }
         }
 
-        public static string TextToPascal(Utf8String text)
+        public static string TextToPascal(string text)
         {
-            fixed (byte* p1 = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return Utf8StringUtils.GetUTF8String(TextToPascal(p1));
+                return Utf8StringUtils.GetUTF8String(TextToPascal(b));
             }
         }
 
-        public static int TextToInteger(Utf8String text)
+        public static int TextToInteger(string text)
         {
-            fixed (byte* p1 = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return TextToInteger(p1);
+                return TextToInteger(b);
             }
         }
 
         public static int[] LoadCodepoints(string text, ref int count)
         {
-            fixed (byte* p1 = text.GetUTF8Bytes())
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
                 fixed (int* c = &count)
                 {
-                    var pointsPtr = LoadCodepoints(p1, c);
+                    var pointsPtr = LoadCodepoints(b, c);
                     var codepoints = new ReadOnlySpan<int>(pointsPtr, count).ToArray();
                     UnloadCodepoints(pointsPtr);
                     return codepoints;
@@ -673,11 +691,12 @@ namespace Raylib_cs
             }
         }
 
-        public static int GetCodepointCount(Utf8String text)
+        public static int GetCodepointCount(string text)
         {
-            fixed (byte* p1 = text)
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
-                return GetCodepointCount(p1);
+                return GetCodepointCount(b);
             }
         }
 
@@ -685,12 +704,13 @@ namespace Raylib_cs
         /// <returns>single codepoint / "char"</returns>
         public static int GetCodepoint(string text, ref int bytesProcessed)
         {
-            fixed (byte* p1 = text.GetUTF8Bytes())
+            using var str = new UTF8Buffer(text);
+            fixed (byte* b = str.buffer)
             {
                 // this probably wont work
                 fixed (int* p = &bytesProcessed)
                 {
-                    return GetCodepoint(p1, p);
+                    return GetCodepoint(b, p);
                 }
             }
         }
