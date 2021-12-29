@@ -24,7 +24,6 @@ namespace Raylib_cs
         /// </summary>
         public static Color Fade(Color color, float alpha) => ColorAlpha(color, alpha);
 
-
         //------------------------------------------------------------------------------------
         // Window and Graphics Device Functions (Module: core)
         //------------------------------------------------------------------------------------

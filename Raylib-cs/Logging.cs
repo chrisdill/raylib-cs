@@ -37,16 +37,17 @@ namespace Raylib_cs
     /// <summary>
     /// Logging workaround for formatting strings from native code
     /// </summary>
-    public static class Logging
+    public static unsafe class Logging
     {
         static Logging()
         {
-            Raylib.SetTraceLogCallback(LogConsole);
+            Raylib.SetTraceLogCallback(&LogConsole);
         }
 
-        public static void LogConsole(TraceLogLevel msgType, IntPtr text, IntPtr args)
+        [UnmanagedCallersOnly(CallConvs = new[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+        public static unsafe void LogConsole(int msgType, sbyte* text, sbyte* args)
         {
-            var message = GetLogMessage(text, args);
+            var message = GetLogMessage(new IntPtr(text), new IntPtr(args));
             Console.WriteLine(message);
         }
 
