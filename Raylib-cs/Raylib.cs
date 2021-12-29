@@ -18,48 +18,6 @@ namespace Raylib_cs
         public const float DEG2RAD = MathF.PI / 180.0f;
         public const float RAD2DEG = 180.0f / MathF.PI;
 
-        // Callbacks to hook some internal functions
-        // WARNING: These callbacks are intended for advance users
-
-        /// <summary>
-        /// Logging: Redirect trace log messages<br/>
-        /// WARNING: This callback is intended for advance users
-        /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void TraceLogCallback(TraceLogLevel logLevel, IntPtr text, IntPtr args);
-
-        /// <summary>
-        /// FileIO: Load binary data<br/>
-        /// WARNING: This callback is intended for advance users
-        /// </summary>
-        /// <returns><see cref="IntPtr"/> refers to a unsigned char *</returns>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate IntPtr LoadFileDataCallback(string fileName, int* bytesRead);
-
-        /// <summary>
-        /// FileIO: Save binary data<br/>
-        /// WARNING: This callback is intended for advance users
-        /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate CBool SaveFileDataCallback(string fileName, IntPtr data, int* bytesToWrite);
-
-        /// <summary>
-        /// FileIO: Load text data<br/>
-        /// WARNING: This callback is intended for advance users
-        /// </summary>
-        /// <returns><see cref="IntPtr"/> refers to a char *</returns>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate IntPtr LoadFileTextCallback(string fileName);
-
-        /// <summary>
-        /// FileIO: Save text data<br/>
-        /// WARNING: This callback is intended for advance users
-        /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate CBool SaveFileTextCallback(string fileName, string text);
-
-        private static TraceLogCallback traceLogCallback;
-
         /// <summary>
         /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f<br/>
         /// NOTE: Added for compatability with previous versions
@@ -492,19 +450,19 @@ namespace Raylib_cs
 
         /// <summary>Set custom file binary data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetLoadFileDataCallback(LoadFileDataCallback callback);
+        public static extern void SetLoadFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*> callback);
 
         /// <summary>Set custom file binary data saver</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetSaveFileDataCallback(SaveFileDataCallback callback);
+        public static extern void SetSaveFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, void*, uint, CBool> callback);
 
         /// <summary>Set custom file text data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetLoadFileTextCallback(LoadFileTextCallback callback);
+        public static extern void SetLoadFileTextCallback(delegate* unmanaged[Cdecl]<sbyte*, sbyte*> callback);
 
         /// <summary>Set custom file text data saver</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetSaveFileTextCallback(SaveFileTextCallback callback);
+        public static extern void SetSaveFileTextCallback(delegate* unmanaged[Cdecl]<sbyte*, sbyte*, CBool> callback);
 
 
         // Files management functions

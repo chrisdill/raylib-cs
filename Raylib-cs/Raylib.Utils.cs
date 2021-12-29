@@ -89,16 +89,6 @@ namespace Raylib_cs
             }
         }
 
-        [DllImport(nativeLibName, EntryPoint = "SetTraceLogCallback", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void SetTraceLogCallbackInternal(TraceLogCallback callback);
-
-        /// <summary>Set custom trace log</summary>
-        public static void SetTraceLogCallback(TraceLogCallback callback)
-        {
-            SetTraceLogCallbackInternal(callback);
-            traceLogCallback = callback;
-        }
-
         /// <summary>Load file data as byte array (read)</summary>
         public static byte* LoadFileData(string fileName, ref uint bytesRead)
         {
