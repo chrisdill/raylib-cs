@@ -48,6 +48,6 @@
     <Compile Include="*.cs" />
     <Compile Include="types\*.cs" />
     <Compile Include="types\native\CBool.cs" />
-    <Compile Include="types\native\Utf8String.cs" />
+    <Compile Include="types\native\UTF8Buffer.cs" />
   </ItemGroup>
 </Project>
