@@ -500,19 +500,19 @@ namespace Raylib_cs
 
         /// <summary>Compress data (DEFLATE algorithm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* CompressData(byte[] data, int dataLength, int* compDataLength);
+        public static extern byte* CompressData(byte* data, int dataLength, int* compDataLength);
 
         /// <summary>Decompress data (DEFLATE algorithm)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* DecompressData(byte[] compData, int compDataLength, int* dataLength);
+        public static extern byte* DecompressData(byte* compData, int compDataLength, int* dataLength);
 
         /// <summary>Encode data to Base64 string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* EncodeDataBase64(byte[] data, int dataLength, int* outputLength);
+        public static extern byte* EncodeDataBase64(byte* data, int dataLength, int* outputLength);
 
         /// <summary>Decode Base64 string data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* DecodeDataBase64(byte[] data, int* outputLength);
+        public static extern byte* DecodeDataBase64(byte* data, int* outputLength);
 
 
         // Persistent storage management
@@ -800,7 +800,7 @@ namespace Raylib_cs
 
         /// <summary>Draw lines sequence</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawLineStrip(Vector2[] points, int numPoints, Color color);
+        public static extern void DrawLineStrip(Vector2* points, int numPoints, Color color);
 
         /// <summary>Draw a color-filled circle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -896,11 +896,11 @@ namespace Raylib_cs
 
         /// <summary>Draw a triangle fan defined by points (first vertex is the center)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleFan(Vector2[] points, int numPoints, Color color);
+        public static extern void DrawTriangleFan(Vector2* points, int numPoints, Color color);
 
         /// <summary>Draw a triangle strip defined by points</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleStrip(Vector2[] points, int pointsCount, Color color);
+        public static extern void DrawTriangleStrip(Vector2* points, int pointsCount, Color color);
 
         /// <summary>Draw a regular polygon (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1306,7 +1306,7 @@ namespace Raylib_cs
 
         /// <summary>Draw a textured polygon</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointsCount, Color tint);
+        public static extern void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointsCount, Color tint);
 
 
         // Color/pixel related functions
@@ -1519,7 +1519,7 @@ namespace Raylib_cs
 
         /// <summary>Draw a triangle strip defined by points</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color);
+        public static extern void DrawTriangleStrip3D(Vector3* points, int pointsCount, Color color);
 
         /// <summary>Draw cube</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1632,7 +1632,7 @@ namespace Raylib_cs
 
         /// <summary>Draw multiple mesh instances with material and different transforms</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4[] transforms, int instances);
+        public static extern void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4* transforms, int instances);
 
         /// <summary>Export mesh data to file, returns true on success</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

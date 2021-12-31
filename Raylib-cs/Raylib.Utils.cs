@@ -590,6 +590,45 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>Draw lines sequence</summary>
+        public static void DrawLineStrip(Vector2[] points, int numPoints, Color color)
+        {
+            fixed (Vector2* p = points)
+            {
+                DrawLineStrip(p, numPoints, color);
+            }
+        }
+
+        /// <summary>Draw a triangle fan defined by points (first vertex is the center)</summary>
+        public static void DrawTriangleFan(Vector2[] points, int numPoints, Color color)
+        {
+            fixed (Vector2* p = points)
+            {
+                DrawTriangleFan(p, numPoints, color);
+            }
+        }
+
+        /// <summary>Draw a triangle strip defined by points</summary>
+        public static void DrawTriangleStrip(Vector2[] points, int pointsCount, Color color)
+        {
+            fixed (Vector2* p = points)
+            {
+                DrawTriangleStrip(p, pointsCount, color);
+            }
+        }
+
+        /// <summary>Draw a textured polygon</summary>
+        public static void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointsCount, Color tint)
+        {
+            fixed (Vector2* p = points)
+            {
+                fixed (Vector2* p1 = texcoords)
+                {
+                    DrawTexturePoly(texture, center, p, p1, pointsCount, tint);
+                }
+            }
+        }
+
         public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
         {
             using var str = new UTF8Buffer(text);
@@ -724,6 +763,24 @@ namespace Raylib_cs
                 var text = Utf8StringUtils.GetUTF8String(ptr);
                 MemFree(ptr);
                 return text;
+            }
+        }
+
+        /// <summary>Draw a triangle strip defined by points</summary>
+        public static void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color)
+        {
+            fixed (Vector3* p = points)
+            {
+                DrawTriangleStrip3D(p, pointsCount, color);
+            }
+        }
+
+        /// <summary>Draw multiple mesh instances with material and different transforms</summary>
+        public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4[] transforms, int instances)
+        {
+            fixed (Matrix4x4* p = transforms)
+            {
+                DrawMeshInstanced(mesh, material, p, instances);
             }
         }
 
