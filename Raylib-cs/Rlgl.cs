@@ -561,12 +561,12 @@ namespace Raylib_cs
 
         /// <summary>Load shader from code strings</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadShaderCode(string vsCode, string fsCode);
+        public static extern uint rlLoadShaderCode(sbyte* vsCode, sbyte* fsCode);
 
         /// <summary>Compile custom shader and return shader id<br/>
         /// (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlCompileShader(string shaderCode, int type);
+        public static extern uint rlCompileShader(sbyte* shaderCode, int type);
 
         /// <summary>Load custom shader program</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -578,11 +578,11 @@ namespace Raylib_cs
 
         /// <summary>Get shader location uniform</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int rlGetLocationUniform(uint shaderId, string uniformName);
+        public static extern int rlGetLocationUniform(uint shaderId, sbyte* uniformName);
 
         /// <summary>Get shader location attribute</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int rlGetLocationAttrib(uint shaderId, string attribName);
+        public static extern int rlGetLocationAttrib(uint shaderId, sbyte* attribName);
 
         /// <summary>Set shader value uniform</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
