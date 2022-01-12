@@ -1,5 +1,4 @@
 using System;
-using System.Buffers;
 using System.Text;
 using System.Runtime.InteropServices;
 
@@ -11,41 +10,48 @@ namespace Raylib_cs
     /// </summary>
     public ref struct UTF8Buffer
     {
-        public byte[] buffer;
+        private IntPtr data;
 
         public UTF8Buffer(string text)
         {
-            int length = (text.Length * 4) + 1;
-            buffer = ArrayPool<byte>.Shared.Rent(length);
-            int count = Encoding.UTF8.GetBytes(text.AsSpan(), buffer.AsSpan());
-            buffer[count] = 0;
+            data = Marshal.StringToCoTaskMemUTF8(text);
+        }
+
+        public unsafe sbyte* AsPointer()
+        {
+            return (sbyte*)data.ToPointer();
         }
 
         public void Dispose()
         {
-            ArrayPool<byte>.Shared.Return(buffer);
+            Marshal.FreeCoTaskMem(data);
         }
     }
 
     public static class Utf8StringUtils
     {
-        public static byte[] ToUtf8String(this string sourceText)
+        public static UTF8Buffer ToUTF8Buffer(this string text)
         {
-            if (sourceText == null)
+            return new UTF8Buffer(text);
+        }
+
+        public static byte[] ToUtf8String(this string text)
+        {
+            if (text == null)
             {
                 return null;
             }
 
-            var length = Encoding.UTF8.GetByteCount(sourceText);
+            var length = Encoding.UTF8.GetByteCount(text);
 
             var byteArray = new byte[length + 1];
-            var wrote = Encoding.UTF8.GetBytes(sourceText, 0, sourceText.Length, byteArray, 0);
+            var wrote = Encoding.UTF8.GetBytes(text, 0, text.Length, byteArray, 0);
             byteArray[wrote] = 0;
 
             return byteArray;
         }
 
-        public static unsafe string GetUTF8String(byte* bytes)
+        public static unsafe string GetUTF8String(sbyte* bytes)
         {
             return Marshal.PtrToStringUTF8((IntPtr)bytes);
         }

@@ -9,21 +9,15 @@ namespace Raylib_cs
         /// <summary>Initialize window and OpenGL context</summary>
         public static void InitWindow(int width, int height, string title)
         {
-            using var str = new UTF8Buffer(title);
-            fixed (byte* b = str.buffer)
-            {
-                InitWindow(width, height, b);
-            }
+            using var str1 = title.ToUTF8Buffer();
+            InitWindow(width, height, str1.AsPointer());
         }
 
         /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
         public static void SetWindowTitle(string title)
         {
-            using var str = new UTF8Buffer(title);
-            fixed (byte* b = str.buffer)
-            {
-                SetWindowTitle(b);
-            }
+            using var str1 = title.ToUTF8Buffer();
+            SetWindowTitle(str1.AsPointer());
         }
 
         /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
@@ -41,12 +35,100 @@ namespace Raylib_cs
         /// <summary>Set clipboard text content</summary>
         public static void SetClipboardText(string text)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
+            using var str1 = text.ToUTF8Buffer();
+            SetClipboardText(str1.AsPointer());
+        }
+
+        /// <summary>Load shader from files and bind default locations</summary>
+        public static Shader LoadShader(string vsFileName, string fsFileName)
+        {
+            using var str1 = vsFileName.ToUTF8Buffer();
+            using var str2 = fsFileName.ToUTF8Buffer();
+            return LoadShader(str1.AsPointer(), str2.AsPointer());
+        }
+
+        /// <summary>Load shader from code string and bind default locations</summary>
+        public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
+        {
+            using var str1 = vsCode.ToUTF8Buffer();
+            using var str2 = fsCode.ToUTF8Buffer();
+            return LoadShaderFromMemory(str1.AsPointer(), str2.AsPointer());
+        }
+
+        /// <summary>Get shader uniform location</summary>
+        public static int GetShaderLocation(Shader shader, string uniformName)
+        {
+            using var str1 = uniformName.ToUTF8Buffer();
+            return GetShaderLocation(shader, str1.AsPointer());
+        }
+
+        /// <summary>Get shader attribute location</summary>
+        public static int GetShaderLocationAttrib(Shader shader, string attribName)
+        {
+            using var str1 = attribName.ToUTF8Buffer();
+            return GetShaderLocation(shader, str1.AsPointer()); 
+        }
+
+        /// <summary>Takes a screenshot of current screen (saved a .png)</summary>
+        public static void TakeScreenshot(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            TakeScreenshot(str1.AsPointer()); 
+        }
+
+        /// <summary>Check file extension</summary>
+        public static CBool IsFileExtension(string fileName, string ext)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            using var str2 = ext.ToUTF8Buffer();
+            return IsFileExtension(str1.AsPointer(), str2.AsPointer());
+        }
+        
+        /// <summary>Get file modification time (last write time)</summary>
+        public static long GetFileModTime(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return GetFileModTime(str1.AsPointer());
+        }
+
+        /// <summary>Load image from file into CPU memory (RAM)</summary>
+        public static Image LoadImage(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadImage(str1.AsPointer());
+        }
+
+        /// <summary>Load image from RAW file data</summary>
+        public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadImageRaw(str1.AsPointer(), width, height, format, headerSize);
+        }
+
+        /// <summary>Load image sequence from file (frames appended to image.data)</summary>
+        public static Image LoadImageAnim(string fileName, int[] frames)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            fixed (int* p = frames)
             {
-                SetClipboardText(b);
+                return LoadImageAnim(str1.AsPointer(), p);
             }
         }
+
+        /// <summary>Export image data to file</summary>
+        public static void ExportImage(Image image, string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            ExportImage(image, str1.AsPointer());
+        }
+
+        /// <summary>Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR)</summary>
+        public static void TraceLog(TraceLogLevel logLevel, string text)
+        {
+            using var str1 = text.ToUTF8Buffer();
+            TraceLog(logLevel, str1.AsPointer()); 
+        }
+
 
         /// <summary>Set shader uniform value vector</summary>
         public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType, int count)
@@ -92,9 +174,10 @@ namespace Raylib_cs
         /// <summary>Load file data as byte array (read)</summary>
         public static byte* LoadFileData(string fileName, ref uint bytesRead)
         {
+            using var str1 = fileName.ToUTF8Buffer();
             fixed (uint* p = &bytesRead)
             {
-                return LoadFileData(fileName, p);
+                return LoadFileData(str1.AsPointer(), p);
             }
         }
 
@@ -140,21 +223,15 @@ namespace Raylib_cs
         /// <summary>Create an image from text (default font)</summary>
         public static Image ImageText(string text, int fontSize, Color color)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return ImageText(b, fontSize, color);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return ImageText(str1.AsPointer(), fontSize, color);
         }
 
         /// <summary>Create an image from text (custom sprite font)</summary>
         public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return ImageTextEx(font, b, fontSize, spacing, tint);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return ImageTextEx(font, str1.AsPointer(), fontSize, spacing, tint);
         }
 
         /// <summary>Convert image to POT (power-of-two)</summary>
@@ -466,27 +543,28 @@ namespace Raylib_cs
         /// <summary>Draw text (using default font) within an image (destination)</summary>
         public static void ImageDrawText(ref Image dst, string text, int x, int y, int fontSize, Color color)
         {
+            using var str1 = text.ToUTF8Buffer();            
             fixed (Image* p = &dst)
             {
-                using var str = new UTF8Buffer(text);
-                fixed (byte* b = str.buffer)
-                {
-                    ImageDrawText(p, b, x, y, fontSize, color);
-                }
+                ImageDrawText(p, str1.AsPointer(), x, y, fontSize, color);
             }
         }
 
         /// <summary>Draw text (custom sprite font) within an image (destination)</summary>
         public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, int fontSize, float spacing, Color color)
         {
+            using var str1 = text.ToUTF8Buffer();
             fixed (Image* p = &dst)
             {
-                using var str = new UTF8Buffer(text);
-                fixed (byte* b = str.buffer)
-                {
-                    ImageDrawTextEx(p, font, b, position, fontSize, spacing, color);
-                }
+                ImageDrawTextEx(p, font, str1.AsPointer(), position, fontSize, spacing, color);
             }
+        }
+
+        /// <summary>Load texture from file into GPU memory (VRAM)</summary>
+        public static Texture2D LoadTexture(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadTexture(str1.AsPointer());
         }
 
         /// <summary>Generate GPU mipmaps for a texture</summary>
@@ -496,6 +574,20 @@ namespace Raylib_cs
             {
                 GenTextureMipmaps(p);
             }
+        }
+        
+        /// <summary>Load font from file into GPU memory (VRAM)</summary>
+        public static Font LoadFont(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadFont(str1.AsPointer());
+        }
+
+        /// <summary>Load font from file with extended parameters</summary>
+        public static Font LoadFontEx(string fileName, int fontSize, int[] fontChars, int charsCount)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadFontEx(str1.AsPointer(), fontSize, fontChars, charsCount);
         }
 
         /// <summary>Upload vertex data into GPU and provided VAO/VBO ids</summary>
@@ -537,20 +629,17 @@ namespace Raylib_cs
         /// <summary>Load model animations from file</summary>
         public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animsCount)
         {
-            using var str = new UTF8Buffer(fileName);
-            fixed (byte* b = str.buffer)
+            using var str1 = fileName.ToUTF8Buffer();
+            fixed (uint* p = &animsCount)
             {
-                fixed (uint* p = &animsCount)
+                var model = LoadModelAnimations(str1.AsPointer(), p);
+
+                if ((IntPtr)model == IntPtr.Zero)
                 {
-                    var model = LoadModelAnimations(b, p);
-
-                    if ((IntPtr)model == IntPtr.Zero)
-                    {
-                        throw new ApplicationException("Failed to load animation");
-                    }
-
-                    return new ReadOnlySpan<ModelAnimation>(model, (int)animsCount);
+                    throw new ApplicationException("Failed to load animation");
                 }
+
+                return new ReadOnlySpan<ModelAnimation>(model, (int)animsCount);
             }
         }
 
@@ -629,118 +718,91 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>Draw text (using default font)</summary>
         public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                DrawText(b, posX, posY, fontSize, color);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            DrawText(str1.AsPointer(), posX, posY, fontSize, color);
         }
 
+        /// <summary>Draw text using font and additional parameters</summary>
         public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                DrawTextEx(font, b, position, fontSize, spacing, tint);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            DrawTextEx(font, str1.AsPointer(), position, fontSize, spacing, tint);
         }
 
+        /// <summary>Draw text using Font and pro parameters (rotation)</summary>
         public static void DrawTextPro(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                DrawTextEx(font, b, position, fontSize, spacing, tint);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            DrawTextEx(font, str1.AsPointer(), position, fontSize, spacing, tint);
         }
 
+        /// <summary>Measure string width for default font</summary>
         public static int MeasureText(string text, int fontSize)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return MeasureText(b, fontSize);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return MeasureText(str1.AsPointer(), fontSize);
         }
 
+        /// <summary>Measure string size for Font</summary>
         public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return MeasureTextEx(font, b, fontSize, spacing);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return MeasureTextEx(font, str1.AsPointer(), fontSize, spacing);
         }
 
+        /// <summary>Append text at specific position and move cursor!</summary>
         public static void TextAppend(string text, string append, int position)
         {
-            using var str = new UTF8Buffer(text);
-            using var str1 = new UTF8Buffer(append);
-            fixed (byte* p1 = str.buffer)
-            {
-                fixed (byte* p2 = str1.buffer)
-                {
-                    TextAppend(p1, p2, &position);
-                }
-            }
+            using var str1 = text.ToUTF8Buffer();
+            using var str2 = append.ToUTF8Buffer();
+            TextAppend(str1.AsPointer(), str2.AsPointer(), &position);
         }
 
+        /// <summary>Get Pascal case notation version of provided string</summary>
         public static string TextToPascal(string text)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return Utf8StringUtils.GetUTF8String(TextToPascal(b));
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return Utf8StringUtils.GetUTF8String(TextToPascal(str1.AsPointer()));
         }
 
+        /// <summary>Get integer value from text (negative values not supported)</summary>
         public static int TextToInteger(string text)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return TextToInteger(b);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return TextToInteger(str1.AsPointer());
         }
 
+        /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         public static int[] LoadCodepoints(string text, ref int count)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
+            using var str1 = text.ToUTF8Buffer();
+            fixed (int* c = &count)
             {
-                fixed (int* c = &count)
-                {
-                    var pointsPtr = LoadCodepoints(b, c);
-                    var codepoints = new ReadOnlySpan<int>(pointsPtr, count).ToArray();
-                    UnloadCodepoints(pointsPtr);
-                    return codepoints;
-                }
+                var pointsPtr = LoadCodepoints(str1.AsPointer(), c);
+                var codepoints = new ReadOnlySpan<int>(pointsPtr, count).ToArray();
+                UnloadCodepoints(pointsPtr);
+                return codepoints;
             }
         }
 
+        /// <summary>Get total number of characters (codepoints) in a UTF8 encoded string</summary>
         public static int GetCodepointCount(string text)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
-            {
-                return GetCodepointCount(b);
-            }
+            using var str1 = text.ToUTF8Buffer();
+            return GetCodepointCount(str1.AsPointer());
         }
 
         /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         /// <returns>single codepoint / "char"</returns>
         public static int GetCodepoint(string text, ref int bytesProcessed)
         {
-            using var str = new UTF8Buffer(text);
-            fixed (byte* b = str.buffer)
+            using var str1 = text.ToUTF8Buffer();
+            fixed (int* p = &bytesProcessed)
             {
-                // this probably wont work
-                fixed (int* p = &bytesProcessed)
-                {
-                    return GetCodepoint(b, p);
-                }
+                return GetCodepoint(str1.AsPointer(), p);
             }
         }
 
@@ -766,6 +828,13 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>Draw a model (with texture if set)</summary>
+        public static Model LoadModel(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadModel(str1.AsPointer());
+        }
+
         /// <summary>Draw a triangle strip defined by points</summary>
         public static void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color)
         {
@@ -782,6 +851,27 @@ namespace Raylib_cs
             {
                 DrawMeshInstanced(mesh, material, p, instances);
             }
+        }
+
+        /// <summary>Load wave data from file</summary>
+        public static Wave LoadWave(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadWave(str1.AsPointer());
+        }
+
+        /// <summary>Load sound from file</summary>
+        public static Sound LoadSound(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadSound(str1.AsPointer());
+        }
+
+        /// <summary>Load music stream from file</summary>
+        public static Music LoadMusicStream(string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return LoadMusicStream(str1.AsPointer());
         }
 
         public static string SubText(this string input, int position, int length)
