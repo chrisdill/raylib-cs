@@ -122,6 +122,13 @@ namespace Raylib_cs
             ExportImage(image, str1.AsPointer());
         }
 
+        /// <summary>Export image as code file defining an array of bytes</summary>
+        public static void ExportImageAsCode(Image image, string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            ExportImageAsCode(image, str1.AsPointer());
+        }
+
         /// <summary>Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR)</summary>
         public static void TraceLog(TraceLogLevel logLevel, string text)
         {
@@ -835,6 +842,13 @@ namespace Raylib_cs
             return LoadModel(str1.AsPointer());
         }
 
+        /// <summary>Export mesh data to file, returns true on success</summary>
+        public static CBool ExportMesh(Mesh mesh, string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            return ExportMesh(mesh, str1.AsPointer());
+        }
+
         /// <summary>Draw a triangle strip defined by points</summary>
         public static void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color)
         {
@@ -865,6 +879,20 @@ namespace Raylib_cs
         {
             using var str1 = fileName.ToUTF8Buffer();
             return LoadSound(str1.AsPointer());
+        }
+
+        /// <summary>Export wave data to file</summary>
+        public static void ExportWave(Wave wave, string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            ExportWave(wave, str1.AsPointer());
+        }
+
+        /// <summary>Export wave sample data to code (.h)</summary>
+        public static void ExportWaveAsCode(Wave wave, string fileName)
+        {
+            using var str1 = fileName.ToUTF8Buffer();
+            ExportWaveAsCode(wave, str1.AsPointer());
         }
 
         /// <summary>Load music stream from file</summary>
