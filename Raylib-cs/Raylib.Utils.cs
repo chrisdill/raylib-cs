@@ -66,14 +66,14 @@ namespace Raylib_cs
         public static int GetShaderLocationAttrib(Shader shader, string attribName)
         {
             using var str1 = attribName.ToUTF8Buffer();
-            return GetShaderLocation(shader, str1.AsPointer()); 
+            return GetShaderLocationAttrib(shader, str1.AsPointer());
         }
 
         /// <summary>Takes a screenshot of current screen (saved a .png)</summary>
         public static void TakeScreenshot(string fileName)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            TakeScreenshot(str1.AsPointer()); 
+            TakeScreenshot(str1.AsPointer());
         }
 
         /// <summary>Check file extension</summary>
@@ -83,7 +83,7 @@ namespace Raylib_cs
             using var str2 = ext.ToUTF8Buffer();
             return IsFileExtension(str1.AsPointer(), str2.AsPointer());
         }
-        
+
         /// <summary>Get file modification time (last write time)</summary>
         public static long GetFileModTime(string fileName)
         {
@@ -550,7 +550,7 @@ namespace Raylib_cs
         /// <summary>Draw text (using default font) within an image (destination)</summary>
         public static void ImageDrawText(ref Image dst, string text, int x, int y, int fontSize, Color color)
         {
-            using var str1 = text.ToUTF8Buffer();            
+            using var str1 = text.ToUTF8Buffer();
             fixed (Image* p = &dst)
             {
                 ImageDrawText(p, str1.AsPointer(), x, y, fontSize, color);
@@ -582,7 +582,7 @@ namespace Raylib_cs
                 GenTextureMipmaps(p);
             }
         }
-        
+
         /// <summary>Load font from file into GPU memory (VRAM)</summary>
         public static Font LoadFont(string fileName)
         {
