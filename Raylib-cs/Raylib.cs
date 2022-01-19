@@ -1416,7 +1416,7 @@ namespace Raylib_cs
 
         /// <summary>Draw text using Font and pro parameters (rotation)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextPro(Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void DrawTextPro(Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
 
         /// <summary>Draw one character (codepoint)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

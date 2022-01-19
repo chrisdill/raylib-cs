@@ -133,9 +133,8 @@ namespace Raylib_cs
         public static void TraceLog(TraceLogLevel logLevel, string text)
         {
             using var str1 = text.ToUTF8Buffer();
-            TraceLog(logLevel, str1.AsPointer()); 
+            TraceLog(logLevel, str1.AsPointer());
         }
-
 
         /// <summary>Set shader uniform value vector</summary>
         public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType, int count)
@@ -740,10 +739,10 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw text using Font and pro parameters (rotation)</summary>
-        public static void DrawTextPro(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+        public static void DrawTextPro(Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
         {
             using var str1 = text.ToUTF8Buffer();
-            DrawTextEx(font, str1.AsPointer(), position, fontSize, spacing, tint);
+            DrawTextPro(font, str1.AsPointer(), position, origin, rotation, fontSize, spacing, tint);
         }
 
         /// <summary>Measure string width for default font</summary>
