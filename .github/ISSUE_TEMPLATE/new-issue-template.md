@@ -18,7 +18,7 @@ Before submitting a new issue, please verify and check:
 
 ### Environment
 
-*Provide your Platform, Operating System, OpenGL version, GPU details where you experienced the issue.*
+*Provide your Platform, Operating System, OpenGL version, GPU, Raylib-cs version, Raylib version (if applicable), and details of where or how you experienced the issue.*
 
 ### Issue screenshot
 
