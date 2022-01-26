@@ -61,7 +61,7 @@ namespace Raylib_cs
 
         public override string ToString()
         {
-            return string.Concat(r.ToString(), " ", g.ToString(), " ", b.ToString(), " ", a.ToString());
+            return $"{{r:{r} g:{g} b:{b} a:{a}}}";
         }
     }
 }

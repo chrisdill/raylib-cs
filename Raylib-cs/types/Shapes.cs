@@ -21,6 +21,11 @@ namespace Raylib_cs
             this.width = width;
             this.height = height;
         }
+
+        public override string ToString()
+        {
+            return $"{{x:{x} y:{y} width:{width} height:{height}}}";
+        }
     }
 
     /// <summary>Bounding box type</summary>
