@@ -24,7 +24,7 @@ namespace Raylib_cs
 
         public override string ToString()
         {
-            return $"{{x:{x} y:{y} width:{width} height:{height}}}";
+            return $"{{X:{x} Y:{y} Width:{width} Height:{height}}}";
         }
     }
 
@@ -70,6 +70,11 @@ namespace Raylib_cs
             this.position = position;
             this.direction = direction;
         }
+
+        public override string ToString()
+        {
+            return $"{{Position:{position} Direction:{direction}}}";
+        }
     }
 
     /// <summary>
@@ -97,5 +102,10 @@ namespace Raylib_cs
         /// Surface normal of hit
         /// </summary>
         public Vector3 normal;
+
+        public override string ToString()
+        {
+            return $"{{Hit:{hit} Distance:{distance} Point:{point} Normal:{normal}}}";
+        }
     }
 }

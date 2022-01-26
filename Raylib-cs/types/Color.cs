@@ -61,7 +61,7 @@ namespace Raylib_cs
 
         public override string ToString()
         {
-            return $"{{r:{r} g:{g} b:{b} a:{a}}}";
+            return $"{{R:{r} G:{g} B:{b} A:{a}}}";
         }
     }
 }
