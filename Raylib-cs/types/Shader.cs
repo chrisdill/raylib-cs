@@ -70,7 +70,7 @@ namespace Raylib_cs
     /// Shader type (generic)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Shader
+    public unsafe partial struct Shader
     {
         /// <summary>
         /// Shader program id

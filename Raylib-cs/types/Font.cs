@@ -28,7 +28,7 @@ namespace Raylib_cs
     /// GlyphInfo, font characters glyphs info
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct GlyphInfo
+    public partial struct GlyphInfo
     {
         /// <summary>
         /// Character value (Unicode)
@@ -60,7 +60,7 @@ namespace Raylib_cs
     /// Font, font texture and GlyphInfo array data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Font
+    public unsafe partial struct Font
     {
         /// <summary>
         /// Base size (default chars height)

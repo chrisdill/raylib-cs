@@ -7,7 +7,7 @@ namespace Raylib_cs
     /// Wave type, defines audio wave data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Wave
+    public unsafe partial struct Wave
     {
         /// <summary>
         /// Number of samples
@@ -41,7 +41,7 @@ namespace Raylib_cs
     /// NOTE: Useful to create custom audio streams not bound to a specific file
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AudioStream
+    public partial struct AudioStream
     {
         //TODO: convert
         /// <summary>
@@ -69,7 +69,7 @@ namespace Raylib_cs
     /// Sound source type
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Sound
+    public partial struct Sound
     {
         /// <summary>
         /// Audio stream
@@ -87,7 +87,7 @@ namespace Raylib_cs
     /// NOTE: Anything longer than ~10 seconds should be streamed
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Music
+    public unsafe partial struct Music
     {
         /// <summary>
         /// Audio stream

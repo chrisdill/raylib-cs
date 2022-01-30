@@ -7,7 +7,7 @@ namespace Raylib_cs
     /// Rectangle type
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Rectangle
+    public partial struct Rectangle
     {
         public float x;
         public float y;
@@ -30,7 +30,7 @@ namespace Raylib_cs
 
     /// <summary>Bounding box type</summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BoundingBox
+    public partial struct BoundingBox
     {
         /// <summary>
         /// Minimum vertex box-corner
@@ -53,7 +53,7 @@ namespace Raylib_cs
     /// Ray, ray for raycasting
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Ray
+    public partial struct Ray
     {
         /// <summary>
         /// Ray position (origin)
@@ -76,7 +76,7 @@ namespace Raylib_cs
     /// Raycast hit information
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct RayCollision
+    public partial struct RayCollision
     {
         /// <summary>
         /// Did the ray hit something?
