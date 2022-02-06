@@ -4,6 +4,9 @@ on:
     branches: master
   pull_request:
     branches: '*'
+    paths:
+      - 'Raylib-cs/**'
+      - 'Raylib-cs.Tests/**'
   workflow_dispatch:
 
 jobs:
