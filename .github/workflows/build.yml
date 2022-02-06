@@ -4,9 +4,9 @@ on:
     branches: master
   pull_request:
     branches: '*'
-    paths:
-      - 'Raylib-cs/**'
-      - 'Raylib-cs.Tests/**'
+    paths-ignore:
+      - 'README.md'
+      - '.github/ISSUE_TEMPLATE/**'
   workflow_dispatch:
 
 jobs:
