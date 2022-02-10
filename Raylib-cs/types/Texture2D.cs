@@ -107,7 +107,7 @@ namespace Raylib_cs
     /// NOTE: Data stored in GPU memory
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Texture2D
+    public struct Texture2D
     {
         /// <summary>
         /// OpenGL texture id

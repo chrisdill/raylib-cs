@@ -119,7 +119,7 @@ namespace Raylib_cs
     /// Image, pixel data stored in CPU memory (RAM)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct Image
+    public unsafe struct Image
     {
         /// <summary>
         /// Image raw data

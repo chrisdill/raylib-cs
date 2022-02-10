@@ -8,7 +8,7 @@ namespace Raylib_cs
     /// Bone information
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct BoneInfo
+    public unsafe struct BoneInfo
     {
         /// <summary>
         /// Bone name (char[32])
@@ -25,7 +25,7 @@ namespace Raylib_cs
     /// Model type
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct Model
+    public unsafe struct Model
     {
         /// <summary>
         /// Local transform matrix
@@ -79,7 +79,7 @@ namespace Raylib_cs
     /// Model animation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public readonly unsafe partial struct ModelAnimation
+    public readonly unsafe struct ModelAnimation
     {
         /// <summary>
         /// Number of bones
@@ -107,7 +107,7 @@ namespace Raylib_cs
         /// <inheritdoc cref="framePoses"/>
         public FramePosesCollection FramePoses => new(framePoses, frameCount, boneCount);
 
-        public partial struct FramePosesCollection
+        public struct FramePosesCollection
         {
             readonly Transform** framePoses;
 
@@ -128,7 +128,7 @@ namespace Raylib_cs
         }
     }
 
-    public unsafe partial struct FramePoses
+    public unsafe struct FramePoses
     {
         readonly Transform* poses;
 

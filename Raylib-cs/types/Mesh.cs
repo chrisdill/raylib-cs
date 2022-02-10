@@ -8,7 +8,7 @@ namespace Raylib_cs
     /// Transform, vectex transformation data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Transform
+    public struct Transform
     {
         /// <summary>
         /// Translation
@@ -31,7 +31,7 @@ namespace Raylib_cs
     /// NOTE: Data stored in CPU memory (and GPU)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct Mesh
+    public unsafe struct Mesh
     {
         /// <summary>
         ///  Number of vertices stored in arrays

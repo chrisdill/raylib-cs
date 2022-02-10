@@ -27,7 +27,7 @@ namespace Raylib_cs
     /// N-Patch layout info
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct NPatchInfo
+    public struct NPatchInfo
     {
         /// <summary>
         /// Texture source rectangle
