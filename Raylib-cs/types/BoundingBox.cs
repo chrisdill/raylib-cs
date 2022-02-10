@@ -5,7 +5,7 @@ namespace Raylib_cs
 {
     /// <summary>Bounding box type</summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BoundingBox
+    public partial struct BoundingBox
     {
         /// <summary>
         /// Minimum vertex box-corner

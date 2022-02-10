@@ -380,7 +380,7 @@ namespace Raylib_cs
     /// Head-Mounted-Display device parameters
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct VrDeviceInfo
+    public unsafe partial struct VrDeviceInfo
     {
         /// <summary>
         /// HMD horizontal resolution in pixels
@@ -437,7 +437,7 @@ namespace Raylib_cs
     /// VR Stereo rendering configuration for simulator
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct VrStereoConfig
+    public partial struct VrStereoConfig
     {
         /// <summary>
         /// VR projection matrices (per eye)

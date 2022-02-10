@@ -49,7 +49,7 @@ namespace Raylib_cs
     /// Material texture map
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MaterialMap
+    public partial struct MaterialMap
     {
         /// <summary>
         /// Material map texture
@@ -71,7 +71,7 @@ namespace Raylib_cs
     /// Material type (generic)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Material
+    public unsafe partial struct Material
     {
         /// <summary>
         /// Material shader
