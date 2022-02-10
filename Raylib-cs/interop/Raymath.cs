@@ -16,7 +16,7 @@ namespace Raylib_cs
     }
 
     [SuppressUnmanagedCodeSecurity]
-    public static unsafe class Raymath
+    public static unsafe partial class Raymath
     {
         /// <summary>
         /// Used by DllImport to load the native library

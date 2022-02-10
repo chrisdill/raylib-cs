@@ -5,7 +5,7 @@ using System.Security;
 namespace Raylib_cs
 {
     [SuppressUnmanagedCodeSecurity]
-    public static unsafe class Rlgl
+    public static unsafe partial class Rlgl
     {
         /// <summary>
         /// Used by DllImport to load the native library
