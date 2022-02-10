@@ -480,15 +480,15 @@ namespace Raylib_cs
 
         // Load text data from file (read), returns a '\0' terminated string
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern char *LoadFileText(sbyte* fileName);
+        public static extern char* LoadFileText(sbyte* fileName);
 
         // Unload file text data allocated by LoadFileText()
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadFileText(char *text);
+        public static extern void UnloadFileText(char* text);
 
         // Save text data to file (write), string must be '\0' terminated, returns true on success
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool SaveFileText(sbyte* fileName, char *text);
+        public static extern CBool SaveFileText(sbyte* fileName, char* text);
 
         // Check if file exists
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -504,39 +504,39 @@ namespace Raylib_cs
 
         /// <summary>Get pointer to extension for a filename string (includes dot: '.png')</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* GetFileExtension(sbyte* fileName);         
-        
+        public static extern sbyte* GetFileExtension(sbyte* fileName);
+
         /// <summary>Get pointer to filename for a path string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* GetFileName(sbyte* filePath);              
-        
+        public static extern sbyte* GetFileName(sbyte* filePath);
+
         /// <summary>Get filename string without extension (uses static string)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* GetFileNameWithoutExt(sbyte* filePath);    
-        
+        public static extern sbyte* GetFileNameWithoutExt(sbyte* filePath);
+
         /// <summary>Get full path for a given fileName with path (uses static string)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* GetDirectoryPath(sbyte* filePath);         
-        
+        public static extern sbyte* GetDirectoryPath(sbyte* filePath);
+
         /// <summary>Get previous directory path for a given path (uses static string)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* GetPrevDirectoryPath(sbyte* dirPath);      
-        
+        public static extern sbyte* GetPrevDirectoryPath(sbyte* dirPath);
+
         /// <summary>Get current working directory (uses static string)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* GetWorkingDirectory();                      
-        
+        public static extern sbyte* GetWorkingDirectory();
+
         /// <summary>Get filenames in a directory path (memory should be freed)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern char **GetDirectoryFiles(sbyte* dirPath, int *count);  
-        
+        public static extern char** GetDirectoryFiles(sbyte* dirPath, int* count);
+
         /// <summary>Clear directory files paths buffers (free memory)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ClearDirectoryFiles();                             
-        
+        public static extern void ClearDirectoryFiles();
+
         /// <summary>Change working directory, return true on success</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool ChangeDirectory(sbyte* dir);                      
+        public static extern CBool ChangeDirectory(sbyte* dir);
 
         /// <summary>Check if a file has been dropped into window</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
