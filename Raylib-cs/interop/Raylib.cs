@@ -1482,7 +1482,7 @@ namespace Raylib_cs
         public static extern void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float scale, Color tint);
 
 
-        // Text misc. functions
+        // Text font info functions
 
         /// <summary>Measure string width for default font</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1504,30 +1504,8 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Rectangle GetGlyphAtlasRec(Font font, int codepoint);
 
-        // Text strings management functions
-        // NOTE: Some strings allocate memory internally for returned strings, just be careful!
 
-        /// <summary>Text formatting with variables (sprintf style)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* TextFormat(sbyte* text);
-
-        /// <summary>Get a piece of a text string</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* TextSubtext(sbyte* text, int position, int length);
-
-        /// <summary>Append text at specific position and move cursor!</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void TextAppend(sbyte* text, sbyte* append, int* position);
-
-        /// <summary>Get Pascal case notation version of provided string</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* TextToPascal(sbyte* text);
-
-        /// <summary>Get integer value from text (negative values not supported)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int TextToInteger(sbyte* text);
-
-        // UTF8 text strings management functions
+        // Text codepoints management functions (unicode characters)
 
         /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1552,6 +1530,70 @@ namespace Raylib_cs
         /// <summary>Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern sbyte* TextCodepointsToUTF8(int* codepoints, int length);
+
+
+        // Text strings management functions (no UTF-8 strings, only byte chars)
+        // NOTE: Some strings allocate memory internally for returned strings, just be careful!
+
+        // <summary>Copy one string to another, returns bytes copied</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TextCopy(char* dst, sbyte* src);
+
+        /// <summary>Check if two text string are equal</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool TextIsEqual(sbyte* text1, sbyte* text2);
+
+        /// <summary>Get text length, checks for '\0' ending</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint TextLength(sbyte* text);
+
+        /// <summary>Text formatting with variables (sprintf style)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* TextFormat(sbyte* text);
+
+        /// <summary>Get a piece of a text string</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* TextSubtext(sbyte* text, int position, int length);
+
+        /// <summary>Replace text string (WARNING: memory must be freed!)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern char* TextReplace(char* text, sbyte* replace, sbyte* by);
+
+        /// <summary>Insert text in a position (WARNING: memory must be freed!)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern char* TextInsert(sbyte* text, sbyte* insert, int position);
+
+        /// <summary>Join text strings with delimiter</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* TextJoin(sbyte** textList, int count, sbyte* delimiter);
+
+        /// <summary>Split text into multiple strings</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte** TextSplit(sbyte* text, char delimiter, int* count);
+
+        /// <summary>Append text at specific position and move cursor!</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void TextAppend(sbyte* text, sbyte* append, int* position);
+
+        /// <summary>Find first text occurrence within a string</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TextFindIndex(sbyte* text, sbyte* find);
+
+        /// <summary>Get upper case version of provided string</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* TextToUpper(sbyte* text);
+
+        /// <summary>Get lower case version of provided string</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* TextToLower(sbyte* text);
+
+        /// <summary>Get Pascal case notation version of provided string</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* TextToPascal(sbyte* text);
+
+        /// <summary>Get integer value from text (negative values not supported)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TextToInteger(sbyte* text);
 
 
         //------------------------------------------------------------------------------------
