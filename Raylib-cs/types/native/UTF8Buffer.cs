@@ -5,8 +5,7 @@ using System.Runtime.InteropServices;
 namespace Raylib_cs
 {
     /// <summary>
-    /// Converts text to a UTF8 buffer for passing to native code.<br/>
-    /// Uses ArrayPool to reduce memory allocation.
+    /// Converts text to a UTF8 buffer for passing to native code
     /// </summary>
     public ref struct UTF8Buffer
     {
