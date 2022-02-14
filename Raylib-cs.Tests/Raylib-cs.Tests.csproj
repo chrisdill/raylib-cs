@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <ApplicationIcon>../Logo/raylib-cs.ico</ApplicationIcon>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -13,6 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
+    <PackageReference Include="Raylib-cs" Version="4.0.0-alpha.2" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,9 @@ on:
     branches: master
   pull_request:
     branches: '*'
+    paths-ignore:
+      - 'README.md'
+      - '.github/ISSUE_TEMPLATE/**'
   workflow_dispatch:
 
 jobs:
@@ -18,16 +21,21 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 6.0.x
       - name: Build project
-        run: dotnet build -c Release
+        run: dotnet build -c Release -f net6.0
       - name: Test project
-        run: dotnet test
+        run: dotnet test -c Release -f net6.0
   publish:
     name: Build Release Package
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
       - name: Download Repo
         uses: actions/checkout@v2
 
@@ -41,12 +49,12 @@ jobs:
       - name: echo tag
         run: echo ${{ steps.get-tag.outputs.info }}
 
-      - name: Download raylib Release
-        uses: robinraju/release-downloader@v1.2
+      - name: Download win-x64 Raylib Release
+        uses: robinraju/release-downloader@v1.3
         with:
           repository: "raysan5/raylib"
           tag: ${{ steps.get-tag.outputs.info }}
-          fileName: "*"
+          fileName: "raylib-${{steps.get-tag.outputs.info}}_win64_msvc16.zip"
 
       - name: extract win-x64
         uses: montudor/action-zip@v1
@@ -58,6 +66,13 @@ jobs:
         with:
           source: "raylib-win64/raylib-${{steps.get-tag.outputs.info}}_win64_msvc16/lib/raylib.dll"
           target: "Raylib-cs/runtimes/win-x64/native/raylib.dll"
+          
+      - name: Download win-x86 Raylib Release
+        uses: robinraju/release-downloader@v1.3
+        with:
+          repository: "raysan5/raylib"
+          tag: ${{ steps.get-tag.outputs.info }}
+          fileName: "raylib-${{steps.get-tag.outputs.info}}_win32_msvc16.zip"    
 
       - name: extract win-x86
         uses: montudor/action-zip@v1
@@ -69,6 +84,13 @@ jobs:
         with:
           source: "raylib-win86/raylib-${{steps.get-tag.outputs.info}}_win32_msvc16/lib/raylib.dll"
           target: "Raylib-cs/runtimes/win-x86/native/raylib.dll"
+          
+      - name: Download linux-x64 Raylib Release
+        uses: robinraju/release-downloader@v1.3
+        with:
+          repository: "raysan5/raylib"
+          tag: ${{ steps.get-tag.outputs.info }}
+          fileName: "raylib-${{steps.get-tag.outputs.info}}_linux_amd64.tar.gz"  
 
       - name: extract linux-x64
         run: mkdir -p raylib-linux64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_linux_amd64.tar.gz -C raylib-linux64
@@ -78,6 +100,13 @@ jobs:
         with:
           source: "raylib-linux64/raylib-${{steps.get-tag.outputs.info}}_linux_amd64/lib/libraylib.so.${{steps.get-tag.outputs.info}}"
           target: "Raylib-cs/runtimes/linux-x64/native/libraylib.so"
+
+      - name: Download osx-x64 Raylib Release
+        uses: robinraju/release-downloader@v1.3
+        with:
+          repository: "raysan5/raylib"
+          tag: ${{ steps.get-tag.outputs.info }}
+          fileName: "raylib-${{steps.get-tag.outputs.info}}_macos.tar.gz"  
 
       - name: extract osx-x64
         run: mkdir -p raylib-osx64 && tar -xvf raylib-${{steps.get-tag.outputs.info}}_macos.tar.gz -C raylib-osx64
@@ -96,7 +125,7 @@ jobs:
           xpath: "//PackageVersion"
 
       - name: Create NuGet Package
-        run:  dotnet pack -c Release
+        run:  dotnet pack -c Release Raylib-cs
 
       - name: Upload NuGet Package As Artifact
         uses: actions/upload-artifact@v2
