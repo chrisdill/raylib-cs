@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -39,7 +40,8 @@ namespace Raylib_cs
     /// </summary>
     public static unsafe class Logging
     {
-        static Logging()
+        [ModuleInitializer]
+        internal static void SetDefaultCallback()
         {
             Raylib.SetTraceLogCallback(&LogConsole);
         }
