@@ -1431,7 +1431,7 @@ namespace Raylib_cs
 
         /// <summary>Load font from file with extended parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Font LoadFontEx(sbyte* fileName, int fontSize, int[] fontChars, int charsCount);
+        public static extern Font LoadFontEx(sbyte* fileName, int fontSize, int* fontChars, int glyphCount);
 
         /// <summary>Load font from Image (XNA style)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1440,19 +1440,19 @@ namespace Raylib_cs
         /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"<br/>
         /// fileData refers to const unsigned char *</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int[] fontChars, int charsCount);
+        public static extern Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* fontChars, int glyphCount);
 
         /// <summary>Load font data for further use</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int[] fontChars, int charsCount, FontType type);
+        public static extern GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, FontType type);
 
         /// <summary>Generate image font atlas using chars info</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int charsCount, int fontSize, int padding, int packMethod);
+        public static extern Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int glyphCount, int fontSize, int padding, int packMethod);
 
         /// <summary>Unload font chars info data (RAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadFontData(GlyphInfo* chars, int charsCount);
+        public static extern void UnloadFontData(GlyphInfo* chars, int glyphCount);
 
         /// <summary>Unload Font from GPU memory (VRAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

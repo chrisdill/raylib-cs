@@ -590,10 +590,13 @@ namespace Raylib_cs
         }
 
         /// <summary>Load font from file with extended parameters</summary>
-        public static Font LoadFontEx(string fileName, int fontSize, int[] fontChars, int charsCount)
+        public static Font LoadFontEx(string fileName, int fontSize, int[] fontChars, int glyphCount)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            return LoadFontEx(str1.AsPointer(), fontSize, fontChars, charsCount);
+            fixed (int* p = fontChars)
+            {
+                return LoadFontEx(str1.AsPointer(), fontSize, p, glyphCount);
+            }
         }
 
         /// <summary>Upload vertex data into GPU and provided VAO/VBO ids</summary>
