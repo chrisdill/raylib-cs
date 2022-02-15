@@ -943,7 +943,7 @@ namespace Raylib_cs
 
         /// <summary>Draw rectangle with rounded edges outline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, int lineThick, Color color);
+        public static extern void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, float lineThick, Color color);
 
         /// <summary>Draw a color-filled triangle (vertex in counter-clockwise order!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
