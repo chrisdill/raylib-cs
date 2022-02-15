@@ -935,7 +935,7 @@ namespace Raylib_cs
 
         /// <summary>Draw rectangle outline with extended parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRectangleLinesEx(Rectangle rec, int lineThick, Color color);
+        public static extern void DrawRectangleLinesEx(Rectangle rec, float lineThick, Color color);
 
         /// <summary>Draw rectangle with rounded edges</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
