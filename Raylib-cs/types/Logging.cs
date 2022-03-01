@@ -40,12 +40,6 @@ namespace Raylib_cs
     /// </summary>
     public static unsafe class Logging
     {
-        [ModuleInitializer]
-        internal static void SetDefaultCallback()
-        {
-            Raylib.SetTraceLogCallback(&LogConsole);
-        }
-
         [UnmanagedCallersOnly(CallConvs = new[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
         public static unsafe void LogConsole(int msgType, sbyte* text, sbyte* args)
         {
