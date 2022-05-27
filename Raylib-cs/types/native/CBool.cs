@@ -56,24 +56,18 @@ namespace Raylib_cs
          * to a native boolean or integer, or a CBool.
          */
 
-        // Between CBools
+        // Addition
         public static CBool operator +(CBool left, CBool right)
         {
             return new CBool { value = (sbyte)(left.value + right.value) };
         }
+
+        // Subtraction
+        public static CBool operator -(CBool left, CBool right)
+        {
+            return new CBool { value = (sbyte)(left.value - right.value) };
+        }
         
-        // Left-hand CBool
-        public static CBool operator +(CBool left, bool right)
-        {
-            return new CBool { value = (sbyte)(left.value + (right ? 1 : 0)) };
-        }
-
-        // Right-hand CBool
-        public static CBool operator +(bool left, CBool right)
-        {
-            return new CBool { value = (sbyte)((left ? 1 : 0) + right.value) };
-        }
-
         // ToString override
         public override string ToString()
         {
