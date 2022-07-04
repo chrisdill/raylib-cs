@@ -67,7 +67,7 @@ namespace Raylib_cs
         {
             return new CBool { value = (sbyte)(left.value - right.value) };
         }
-        
+
         // ToString override
         public override string ToString()
         {

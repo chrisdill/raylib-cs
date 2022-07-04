@@ -76,9 +76,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector2DotProduct(Vector2 v1, Vector2 v2);
 
-        /// <summary>Calculate distance between two vectors</summary>
+        /// <summary>Calculate square distance between two vectors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float Vector2Distance(Vector2 v1, Vector2 v2);
+        public static extern float Vector2DistanceSqr(Vector2 v1, Vector2 v2);
 
         /// <summary>Calculate angle from two vectors in X-axis</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -103,6 +103,10 @@ namespace Raylib_cs
         /// <summary>Normalize provided vector</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Normalize(Vector2 v);
+
+        /// <summary>Transforms a Vector2 by a given Matrix</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Transform(Vector2 v, Matrix4x4 mat);
 
         /// <summary>Calculate linear interpolation between two vectors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -168,6 +172,10 @@ namespace Raylib_cs
         /// <summary>Calculate distance between two vectors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector3Distance(Vector3 v1, Vector3 v2);
+
+        /// <summary>Calculate square distance between two vectors</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float Vector3DistanceSqr(Vector3 v1, Vector3 v2);
 
         /// <summary>Calculate angle between two vectors in XY and XZ</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

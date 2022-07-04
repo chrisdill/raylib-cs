@@ -49,5 +49,6 @@
     <Compile Include="types\*.cs" />
     <Compile Include="types\native\CBool.cs" />
     <Compile Include="types\native\UTF8Buffer.cs" />
+    <Compile Include="types\native\FilePathList.cs" />
   </ItemGroup>
 </Project>

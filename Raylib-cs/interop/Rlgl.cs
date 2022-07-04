@@ -511,7 +511,7 @@ namespace Raylib_cs
 
         /// <summary>Update GPU texture with new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateTexture(uint id, int width, int height, PixelFormat format, void* data);
+        public static extern void rlUpdateTexture(uint id, int offsetX, int offsetY, int width, int height, PixelFormat format, void* data);
 
         /// <summary>Get OpenGL internal formats</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -659,7 +659,7 @@ namespace Raylib_cs
 
         /// <summary>Get internal accumulated transform matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixTramsform();
+        public static extern Matrix4x4 rlGetMatrixTransform();
 
         /// <summary>Get internal projection matrix for stereo render (selected eye)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
