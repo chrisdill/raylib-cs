@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetRaylibTag>4.0.0</TargetRaylibTag>
+    <TargetRaylibTag>4.2.0</TargetRaylibTag>
     <Version>4.0.0.1</Version>
     <PackageVersion>4.0.0.1</PackageVersion>
     <Authors>Chris Dill, Raysan5</Authors>
