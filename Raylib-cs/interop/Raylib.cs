@@ -609,17 +609,6 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* DecodeDataBase64(byte* data, int* outputLength);
 
-
-        // Persistent storage management
-
-        /// <summary>Save integer value to storage file (to defined position)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool SaveStorageValue(uint position, int value);
-
-        /// <summary>Load integer value from storage file (from defined position)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int LoadStorageValue(uint position);
-
         /// <summary>Open URL with default system browser (if available)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void OpenURL(sbyte* url);
@@ -1796,11 +1785,6 @@ namespace Raylib_cs
         /// <summary>Compute mesh tangents</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void GenMeshTangents(Mesh* mesh);
-
-        /// <summary>Compute mesh binormals</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GenMeshBinormals(Mesh* mesh);
-
 
         // Material loading/unloading functions
 
