@@ -20,7 +20,7 @@ namespace Raylib_cs
             SetWindowTitle(str1.AsPointer());
         }
 
-        /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
+        /// <summary>Get the human-readable, UTF-8 encoded name of the specified monitor</summary>
         public static string GetMonitorName_(int monitor)
         {
             return Utf8StringUtils.GetUTF8String(GetMonitorName(monitor));

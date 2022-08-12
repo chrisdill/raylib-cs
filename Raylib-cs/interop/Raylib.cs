@@ -82,7 +82,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ClearWindowState(ConfigFlags flag);
 
-        /// <summary>Toggle fullscreen mode (only PLATFORM_DESKTOP)</summary>
+        /// <summary>Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ToggleFullscreen();
 
@@ -158,19 +158,19 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetMonitorPosition(int monitor);
 
-        /// <summary>Get primary monitor width</summary>
+        /// <summary>Get specified monitor width</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorWidth(int monitor);
 
-        /// <summary>Get primary monitor height</summary>
+        /// <summary>Get specified monitor height</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorHeight(int monitor);
 
-        /// <summary>Get primary monitor physical width in millimetres</summary>
+        /// <summary>Get specified monitor physical width in millimetres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalWidth(int monitor);
 
-        /// <summary>Get primary monitor physical height in millimetres</summary>
+        /// <summary>Get specified monitor physical height in millimetres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalHeight(int monitor);
 
@@ -186,7 +186,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetWindowScaleDPI();
 
-        /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
+        /// <summary>Get the human-readable, UTF-8 encoded name of the specified monitor</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern sbyte* GetMonitorName(int monitor);
 
@@ -554,7 +554,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern sbyte* GetWorkingDirectory();
 
-        /// <summary>Get the directory if the running application (uses static string)</summary>
+        /// <summary>Get the directory of the running application (uses static string)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern sbyte* GetApplicationDirectory();
 
