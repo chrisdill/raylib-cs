@@ -661,15 +661,6 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Compute mesh binormals</summary>
-        public static void GenMeshBinormals(ref Mesh mesh)
-        {
-            fixed (Mesh* p = &mesh)
-            {
-                GenMeshBinormals(p);
-            }
-        }
-
         /// <summary>Convert wave data to desired format</summary>
         public static void WaveFormat(ref Wave wave, int sampleRate, int sampleSize, int channels)
         {
