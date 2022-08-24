@@ -106,10 +106,10 @@ namespace Raylib_cs
         }
 
         /// <summary>Load image sequence from file (frames appended to image.data)</summary>
-        public static Image LoadImageAnim(string fileName, int[] frames)
+        public static Image LoadImageAnim(string fileName, out int frames)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            fixed (int* p = frames)
+            fixed (int* p = &frames)
             {
                 return LoadImageAnim(str1.AsPointer(), p);
             }
