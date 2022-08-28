@@ -659,7 +659,7 @@ namespace Raylib_cs
 
         /// <summary>Get internal accumulated transform matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixTramsform();
+        public static extern Matrix4x4 rlGetMatrixTransform();
 
         /// <summary>Get internal projection matrix for stereo render (selected eye)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

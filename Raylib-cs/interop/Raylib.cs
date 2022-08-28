@@ -82,7 +82,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ClearWindowState(ConfigFlags flag);
 
-        /// <summary>Toggle fullscreen mode (only PLATFORM_DESKTOP)</summary>
+        /// <summary>Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ToggleFullscreen();
 
@@ -146,19 +146,19 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetMonitorPosition(int monitor);
 
-        /// <summary>Get primary monitor width</summary>
+        /// <summary>Get specified monitor width</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorWidth(int monitor);
 
-        /// <summary>Get primary monitor height</summary>
+        /// <summary>Get specified monitor height</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorHeight(int monitor);
 
-        /// <summary>Get primary monitor physical width in millimetres</summary>
+        /// <summary>Get specified monitor physical width in millimetres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalWidth(int monitor);
 
-        /// <summary>Get primary monitor physical height in millimetres</summary>
+        /// <summary>Get specified monitor physical height in millimetres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMonitorPhysicalHeight(int monitor);
 
@@ -174,7 +174,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetWindowScaleDPI();
 
-        /// <summary>Get the human-readable, UTF-8 encoded name of the primary monitor</summary>
+        /// <summary>Get the human-readable, UTF-8 encoded name of the specified monitor</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern sbyte* GetMonitorName(int monitor);
 
@@ -1049,11 +1049,11 @@ namespace Raylib_cs
 
         /// <summary>Export image data to file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ExportImage(Image image, sbyte* fileName);
+        public static extern CBool ExportImage(Image image, sbyte* fileName);
 
         /// <summary>Export image as code file defining an array of bytes</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ExportImageAsCode(Image image, sbyte* fileName);
+        public static extern CBool ExportImageAsCode(Image image, sbyte* fileName);
 
 
         // Image generation functions
@@ -1370,31 +1370,31 @@ namespace Raylib_cs
 
         // Color/pixel related functions
 
-        /// <summary>Returns hexadecimal value for a Color</summary>
+        /// <summary>Get hexadecimal value for a Color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ColorToInt(Color color);
 
-        /// <summary>Returns color normalized as float [0..1]</summary>
+        /// <summary>Get color normalized as float [0..1]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector4 ColorNormalize(Color color);
 
-        /// <summary>Returns color from normalized values [0..1]</summary>
+        /// <summary>Get color from normalized values [0..1]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Color ColorFromNormalized(Vector4 normalized);
 
-        /// <summary>Returns HSV values for a Color, hue [0..360], saturation/value [0..1]</summary>
+        /// <summary>Get HSV values for a Color, hue [0..360], saturation/value [0..1]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 ColorToHSV(Color color);
 
-        /// <summary>Returns a Color from HSV values, hue [0..360], saturation/value [0..1]</summary>
+        /// <summary>Get a Color from HSV values, hue [0..360], saturation/value [0..1]</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Color ColorFromHSV(float hue, float saturation, float value);
 
-        /// <summary>Returns color with alpha applied, alpha goes from 0.0f to 1.0f</summary>
+        /// <summary>Get color with alpha applied, alpha goes from 0.0f to 1.0f</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Color ColorAlpha(Color color, float alpha);
 
-        /// <summary>Returns src alpha-blended into dst color with tint</summary>
+        /// <summary>Get src alpha-blended into dst color with tint</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Color ColorAlphaBlend(Color dst, Color src, Color tint);
 
@@ -1973,11 +1973,11 @@ namespace Raylib_cs
 
         /// <summary>Export wave data to file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ExportWave(Wave wave, sbyte* fileName);
+        public static extern CBool ExportWave(Wave wave, sbyte* fileName);
 
         /// <summary>Export wave sample data to code (.h)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ExportWaveAsCode(Wave wave, sbyte* fileName);
+        public static extern CBool ExportWaveAsCode(Wave wave, sbyte* fileName);
 
 
         // Wave/Sound management functions
