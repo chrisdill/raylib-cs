@@ -140,4 +140,4 @@ jobs:
           files: Raylib-cs/bin/Release/Raylib-cs.${{steps.get-nuget-version.outputs.info}}.nupkg
           
       - name: Publish to NuGet
-        run: nuget push Raylib-cs/bin/Release/Raylib-cs.${{steps.get-nuget-version.outputs.info}}.nupkg -k $${{secrets.NUGET_API_KEY}}
+        run: dotnet nuget push Raylib-cs/bin/Release/Raylib-cs.${{steps.get-nuget-version.outputs.info}}.nupkg -k $${{secrets.NUGET_API_KEY}}
