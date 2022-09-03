@@ -106,27 +106,27 @@ namespace Raylib_cs
         }
 
         /// <summary>Load image sequence from file (frames appended to image.data)</summary>
-        public static Image LoadImageAnim(string fileName, int[] frames)
+        public static Image LoadImageAnim(string fileName, out int frames)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            fixed (int* p = frames)
+            fixed (int* p = &frames)
             {
                 return LoadImageAnim(str1.AsPointer(), p);
             }
         }
 
         /// <summary>Export image data to file</summary>
-        public static void ExportImage(Image image, string fileName)
+        public static CBool ExportImage(Image image, string fileName)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            ExportImage(image, str1.AsPointer());
+            return ExportImage(image, str1.AsPointer());
         }
 
         /// <summary>Export image as code file defining an array of bytes</summary>
-        public static void ExportImageAsCode(Image image, string fileName)
+        public static CBool ExportImageAsCode(Image image, string fileName)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            ExportImageAsCode(image, str1.AsPointer());
+            return ExportImageAsCode(image, str1.AsPointer());
         }
 
         /// <summary>Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR)</summary>
@@ -202,7 +202,7 @@ namespace Raylib_cs
             return files;
         }
 
-        /// <summary>Return gamepad internal name id</summary>
+        /// <summary>Get gamepad internal name id</summary>
         public static string GetGamepadName_(int gamepad)
         {
             return Utf8StringUtils.GetUTF8String(GetGamepadName(gamepad));
@@ -795,7 +795,7 @@ namespace Raylib_cs
             return GetCodepointCount(str1.AsPointer());
         }
 
-        /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
+        /// <summary>Get next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         /// <returns>single codepoint / "char"</returns>
         public static int GetCodepoint(string text, ref int bytesProcessed)
         {
@@ -875,17 +875,17 @@ namespace Raylib_cs
         }
 
         /// <summary>Export wave data to file</summary>
-        public static void ExportWave(Wave wave, string fileName)
+        public static CBool ExportWave(Wave wave, string fileName)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            ExportWave(wave, str1.AsPointer());
+            return ExportWave(wave, str1.AsPointer());
         }
 
         /// <summary>Export wave sample data to code (.h)</summary>
-        public static void ExportWaveAsCode(Wave wave, string fileName)
+        public static CBool ExportWaveAsCode(Wave wave, string fileName)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            ExportWaveAsCode(wave, str1.AsPointer());
+            return ExportWaveAsCode(wave, str1.AsPointer());
         }
 
         /// <summary>Load music stream from file</summary>

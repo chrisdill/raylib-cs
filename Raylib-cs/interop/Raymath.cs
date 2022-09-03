@@ -112,9 +112,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Lerp(Vector2 v1, Vector2 v2, float amount);
 
-        /// <summary>Calculate linear interpolation between two vectors</summary>
+        /// <summary>Rotate vector by angle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector2 Vector2Rotate(Vector2 v, float degs);
+        public static extern Vector2 Vector2Rotate(Vector2 v, float angle);
 
 
         /// <summary>Vector with components value 0.0f</summary>
