@@ -466,6 +466,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlUpdateVertexBuffer(uint bufferId, void* data, int dataSize, int offset);
 
+        /// <summary>Update vertex buffer elements with new data</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void rlUpdateVertexBufferElements(uint id, void* data, int dataSize, int offset);
+
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlUnloadVertexArray(uint vaoId);
 
@@ -596,9 +600,9 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlSetUniformSampler(int locIndex, uint textureId);
 
-        /// <summary>Set shader currently active</summary>
+        /// <summary>Set shader currently active (id and locations)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetShader(Shader shader);
+        public static extern void rlSetShader(uint id, int* locs);
 
 
         // Compute shader management
@@ -621,7 +625,7 @@ namespace Raylib_cs
 
         /// <summary>Update SSBO buffer data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateShaderBufferElements(Shader shader);
+        public static extern void rlUpdateShaderBufferElements(uint id, void* data, ulong dataSize, ulong offset);
 
         /// <summary>Get SSBO buffer size</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
