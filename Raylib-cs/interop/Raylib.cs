@@ -13,7 +13,7 @@ namespace Raylib_cs
         /// </summary>
         public const string nativeLibName = "raylib";
 
-        public const string RAYLIB_VERSION = "4.0";
+        public const string RAYLIB_VERSION = "4.2";
 
         public const float DEG2RAD = MathF.PI / 180.0f;
         public const float RAD2DEG = 180.0f / MathF.PI;
