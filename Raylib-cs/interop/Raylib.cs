@@ -845,9 +845,11 @@ namespace Raylib_cs
         // Basic Shapes Drawing Functions (Module: shapes)
         //------------------------------------------------------------------------------------
 
-        /// <summary>Set texture and rectangle to be used on shapes drawing<br/>
+        /// <summary>
+        /// Set texture and rectangle to be used on shapes drawing<br/>
         /// NOTE: It can be useful when using basic shapes and one single font.<br/>
-        /// Defining a white rectangle would allow drawing everything in a single draw call.</summary>
+        /// Defining a white rectangle would allow drawing everything in a single draw call.
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 
@@ -1469,8 +1471,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Font LoadFontFromImage(Image image, Color key, int firstChar);
 
-        /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"<br/>
-        /// fileData refers to const unsigned char *</summary>
+        /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* fontChars, int glyphCount);
 
@@ -1976,8 +1977,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Wave LoadWave(sbyte* fileName);
 
-        /// <summary>Load wave from memory buffer, fileType refers to extension: i.e. "wav"<br/>
-        /// fileData refers to a const unsigned char *</summary>
+        /// <summary>Load wave from memory buffer, fileType refers to extension: i.e. "wav"</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Wave LoadWaveFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
@@ -2068,12 +2068,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels);
 
-        //TODO: Span
         /// <summary>Get samples data from wave as a floats array</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float* LoadWaveSamples(Wave wave);
 
-        //TODO: Span
         /// <summary>Unload samples data loaded with LoadWaveSamples()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadWaveSamples(float* samples);
@@ -2196,13 +2194,15 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetAudioStreamBufferSizeDefault(int size);
 
-        // <summary>Audio thread callback to request new data</summary>
+        /// <summary>Audio thread callback to request new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetAudioStreamCallback(AudioStream stream, delegate* unmanaged[Cdecl]<sbyte*, uint, void> callback);
 
+        /// <summary>Attach audio stream processor to stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void AttachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor);
 
+        /// <summary>Detach audio stream processor from stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DetachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor);
     }

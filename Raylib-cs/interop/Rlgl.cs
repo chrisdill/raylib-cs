@@ -64,6 +64,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlMatrixMode(int mode);
 
+        /// <inheritdoc cref="rlMatrixMode(int)"/>
         public static void rlMatrixMode(MatrixMode mode)
         {
             rlMatrixMode((int)mode);
@@ -94,8 +95,7 @@ namespace Raylib_cs
         public static extern void rlScalef(float x, float y, float z);
 
         /// <summary>
-        /// Multiply the current matrix by another matrix
-        /// <br/>
+        /// Multiply the current matrix by another matrix<br/>
         /// Current Matrix can be set via <see cref="rlMatrixMode(int)"/>
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

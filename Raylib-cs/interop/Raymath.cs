@@ -512,6 +512,6 @@ namespace Raylib_cs
 
         /// <summary>Check whether two given quaternions are almost equal</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Quaternion QuaternionEquals(Quaternion p, Quaternion q);
+        public static extern int QuaternionEquals(Quaternion p, Quaternion q);
     }
 }
