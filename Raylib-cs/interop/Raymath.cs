@@ -258,11 +258,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Reflect(Vector3 v, Vector3 normal);
 
-        /// <summary>Return min value for each pair of components</summary>
+        /// <summary>Get min value for each pair of components</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Min(Vector3 v1, Vector3 v2);
 
-        /// <summary>Return max value for each pair of components</summary>
+        /// <summary>Get max value for each pair of components</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Max(Vector3 v1, Vector3 v2);
 

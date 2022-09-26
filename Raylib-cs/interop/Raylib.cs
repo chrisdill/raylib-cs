@@ -19,7 +19,7 @@ namespace Raylib_cs
         public const float RAD2DEG = 180.0f / MathF.PI;
 
         /// <summary>
-        /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f<br/>
+        /// Get color with alpha applied, alpha goes from 0.0f to 1.0f<br/>
         /// NOTE: Added for compatability with previous versions
         /// </summary>
         public static Color Fade(Color color, float alpha) => ColorAlpha(color, alpha);
@@ -373,31 +373,31 @@ namespace Raylib_cs
 
         // Screen-space-related functions
 
-        /// <summary>Returns a ray trace from mouse position</summary>
+        /// <summary>Get a ray trace from mouse position</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Ray GetMouseRay(Vector2 mousePosition, Camera3D camera);
 
-        /// <summary>Returns camera transform matrix (view matrix)</summary>
+        /// <summary>Get camera transform matrix (view matrix)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 GetCameraMatrix(Camera3D camera);
 
-        /// <summary>Returns camera 2d transform matrix</summary>
+        /// <summary>Get camera 2d transform matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 GetCameraMatrix2D(Camera2D camera);
 
-        /// <summary>Returns the screen space position for a 3d world space position</summary>
+        /// <summary>Get the screen space position for a 3d world space position</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetWorldToScreen(Vector3 position, Camera3D camera);
 
-        /// <summary>Returns size position for a 3d world space position</summary>
+        /// <summary>Get size position for a 3d world space position</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetWorldToScreenEx(Vector3 position, Camera3D camera, int width, int height);
 
-        /// <summary>Returns the screen space position for a 2d camera world space position</summary>
+        /// <summary>Get the screen space position for a 2d camera world space position</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
 
-        /// <summary>Returns the world space position for a 2d camera screen space position</summary>
+        /// <summary>Get the world space position for a 2d camera screen space position</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
 
@@ -408,22 +408,22 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetTargetFPS(int fps);
 
-        /// <summary>Returns current FPS</summary>
+        /// <summary>Get current FPS</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFPS();
 
-        /// <summary>Returns time in seconds for last frame drawn</summary>
+        /// <summary>Get time in seconds for last frame drawn</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetFrameTime();
 
-        /// <summary>Returns elapsed time in seconds since InitWindow()</summary>
+        /// <summary>Get elapsed time in seconds since InitWindow()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern double GetTime();
 
 
         // Misc. functions
 
-        /// <summary>Returns a random value between min and max (both included)</summary>
+        /// <summary>Get a random value between min and max (both included)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRandomValue(int min, int max);
 
@@ -654,7 +654,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool IsGamepadAvailable(int gamepad);
 
-        /// <summary>Return gamepad internal name id</summary>
+        /// <summary>Get gamepad internal name id</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern sbyte* GetGamepadName(int gamepad);
 
@@ -678,11 +678,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetGamepadButtonPressed();
 
-        /// <summary>Return gamepad axis count for a gamepad</summary>
+        /// <summary>Get gamepad axis count for a gamepad</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetGamepadAxisCount(int gamepad);
 
-        /// <summary>Return axis movement value for a gamepad axis</summary>
+        /// <summary>Get axis movement value for a gamepad axis</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetGamepadAxisMovement(int gamepad, GamepadAxis axis);
 
@@ -709,15 +709,15 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool IsMouseButtonUp(MouseButton button);
 
-        /// <summary>Returns mouse position X</summary>
+        /// <summary>Get mouse position X</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMouseX();
 
-        /// <summary>Returns mouse position Y</summary>
+        /// <summary>Get mouse position Y</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetMouseY();
 
-        /// <summary>Returns mouse position XY</summary>
+        /// <summary>Get mouse position XY</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetMousePosition();
 
@@ -752,15 +752,15 @@ namespace Raylib_cs
 
         // Input-related functions: touch
 
-        /// <summary>Returns touch position X for touch point 0 (relative to screen size)</summary>
+        /// <summary>Get touch position X for touch point 0 (relative to screen size)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTouchX();
 
-        /// <summary>Returns touch position Y for touch point 0 (relative to screen size)</summary>
+        /// <summary>Get touch position Y for touch point 0 (relative to screen size)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTouchY();
 
-        /// <summary>Returns touch position XY for a touch point index (relative to screen size)</summary>
+        /// <summary>Get touch position XY for a touch point index (relative to screen size)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 GetTouchPosition(int index);
 
@@ -1559,7 +1559,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepointCount(sbyte* text);
 
-        /// <summary>Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
+        /// <summary>Get next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepoint(sbyte* text, int* bytesProcessed);
 
