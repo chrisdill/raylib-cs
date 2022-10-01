@@ -50,6 +50,11 @@ namespace Raylib_cs
         public IntPtr buffer;
 
         /// <summary>
+        /// Pointer to internal data processor, useful for audio effects
+        /// </summary>
+        public IntPtr processor;
+
+        /// <summary>
         /// Frequency (samples per second)
         /// </summary>
         public uint sampleRate;
