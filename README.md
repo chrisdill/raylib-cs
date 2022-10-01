@@ -2,7 +2,7 @@
 
 # Raylib-cs
 
-C# bindings for raylib 4.2.0, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/ChrisDill/Raylib-cs)](https://github.com/ChrisDill/Raylib-cs/graphs/contributors)
 [![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE)
