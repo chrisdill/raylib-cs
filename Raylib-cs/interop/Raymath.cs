@@ -39,6 +39,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Remap(float value, float inputStart, float inputEnd, float outputStart, float outputEnd);
 
+        /// <summary>Wrap input value from min to max</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float Wrap(float value, float min, float max);
+
+        /// <summary>Check whether two given floats are almost equal</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int FloatEquals(float x, float y);
 
         /// <summary>Vector with components value 0.0f</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -80,7 +87,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector2Distance(Vector2 v1, Vector2 v2);
 
-        /// <summary>Calculate angle from two vectors in X-axis</summary>
+        /// <summary>Calculate square distance between two vectors</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float Vector2DistanceSqr(Vector2 v1, Vector2 v2);
+
+        /// <summary>Calculate angle from two vectors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector2Angle(Vector2 v1, Vector2 v2);
 
@@ -104,13 +115,43 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Normalize(Vector2 v);
 
+        /// <summary>Transforms a Vector2 by a given Matrix</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Transform(Vector2 v, Matrix4x4 mat);
+
         /// <summary>Calculate linear interpolation between two vectors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Lerp(Vector2 v1, Vector2 v2, float amount);
 
+        /// <summary>Calculate reflected vector to normal</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Reflect(Vector2 v, Vector2 normal);
+
         /// <summary>Rotate vector by angle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector2Rotate(Vector2 v, float angle);
+
+        /// <summary>Move Vector towards target</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2MoveTowards(Vector2 v, Vector2 target, float maxDistance);
+
+        /// <summary>Invert the given vector</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Invert(Vector2 v);
+
+        /// <summary>
+        /// Clamp the components of the vector between min and max values specified by the given vectors
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2Clamp(Vector2 v);
+
+        /// <summary>Clamp the magnitude of the vector between two min and max values</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector2 Vector2ClampValue(Vector2 v, float min, float max);
+
+        /// <summary>Check whether two given vectors are almost equal</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Vector2Equals(Vector2 p, Vector2 q);
 
 
         /// <summary>Vector with components value 0.0f</summary>
@@ -169,6 +210,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector3Distance(Vector3 v1, Vector3 v2);
 
+        /// <summary>Calculate square distance between two vectors</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float Vector3DistanceSqr(Vector3 v1, Vector3 v2);
+
         /// <summary>Calculate angle between two vectors in XY and XZ</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 Vector3Angle(Vector3 v1, Vector3 v2);
@@ -185,9 +230,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Normalize(Vector3 v);
 
-        /// <summary>Orthonormalize provided vectors<br/>
+        /// <summary>
+        /// Orthonormalize provided vectors<br/>
         /// Makes vectors normalized and orthogonal to each other<br/>
-        /// Gram-Schmidt function implementation</summary>
+        /// Gram-Schmidt function implementation
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void Vector3OrthoNormalize(Vector3* v1, Vector3* v2);
 
@@ -199,6 +246,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3RotateByQuaternion(Vector3 v, Quaternion q);
 
+        /// <summary>Rotates a vector around an axis</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3RotateByAxisAngle(Vector3 v, Vector3 axis, float angle);
+
         /// <summary>Calculate linear interpolation between two vectors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount);
@@ -207,27 +258,61 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Reflect(Vector3 v, Vector3 normal);
 
-        /// <summary>Return min value for each pair of components</summary>
+        /// <summary>Get min value for each pair of components</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Min(Vector3 v1, Vector3 v2);
 
-        /// <summary>Return max value for each pair of components</summary>
+        /// <summary>Get max value for each pair of components</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Max(Vector3 v1, Vector3 v2);
 
-        /// <summary>Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c)<br/>
-        /// NOTE: Assumes P is on the plane of the triangle</summary>
+        /// <summary>
+        /// Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c)<br/>
+        /// NOTE: Assumes P is on the plane of the triangle
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Barycenter(Vector3 p, Vector3 a, Vector3 b, Vector3 c);
 
-        /// <summary>Projects a Vector3 from screen space into object space<br/>
-        /// NOTE: We are avoiding calling other raymath functions despite available</summary>
+        /// <summary>
+        /// Projects a Vector3 from screen space into object space<br/>
+        /// NOTE: We are avoiding calling other raymath functions despite available
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 Vector3Unproject(Vector3 source, Matrix4x4 projection, Matrix4x4 view);
 
         /// <summary>Get Vector3 as float array</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float3 Vector3ToFloatV(Vector3 v);
+
+        /// <summary>Invert the given vector</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3Invert(Vector3 v);
+
+        /// <summary>
+        /// Clamp the components of the vector between
+        /// min and max values specified by the given vectors
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3Clamp(Vector3 v, Vector3 min, Vector3 max);
+
+        /// <summary>Clamp the magnitude of the vector between two values</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3ClampValue(Vector3 v, float min, float max);
+
+        /// <summary>Check whether two given vectors are almost equal</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Vector3Equals(Vector3 p, Vector3 q);
+
+        /// <summary>
+        /// Compute the direction of a refracted ray where v specifies the
+        /// normalized direction of the incoming ray, n specifies the
+        /// normalized normal vector of the interface of two optical media,
+        /// and r specifies the ratio of the refractive index of the medium
+        /// from where the ray comes to the refractive index of the medium
+        /// on the other side of the surface
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 Vector3Refract(Vector3 v, Vector3 n, float r);
 
 
         /// <summary>Compute matrix determinant</summary>
@@ -262,8 +347,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixSubtract(Matrix4x4 left, Matrix4x4 right);
 
-        /// <summary>Get two matrix multiplication<br/>
-        /// NOTE: When multiplying matrices... the order matters!</summary>
+        /// <summary>
+        /// Get two matrix multiplication<br/>
+        /// NOTE: When multiplying matrices... the order matters!
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixMultiply(Matrix4x4 left, Matrix4x4 right);
 
@@ -271,8 +358,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixTranslate(float x, float y, float z);
 
-        /// <summary>Create rotation matrix from axis and angle<br/>
-        /// NOTE: Angle should be provided in radians</summary>
+        /// <summary>
+        /// Create rotation matrix from axis and angle<br/>
+        /// NOTE: Angle should be provided in radians
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixRotate(Vector3 axis, float angle);
 
@@ -304,8 +393,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixFrustum(double left, double right, double bottom, double top, double near, double far);
 
-        /// <summary>Get perspective projection matrix<br/>
-        /// NOTE: Angle should be provided in radians</summary>
+        /// <summary>
+        /// Get perspective projection matrix<br/>
+        /// NOTE: Angle should be provided in radians
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixPerspective(double fovy, double aspect, double near, double far);
 
@@ -390,8 +481,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 QuaternionToMatrix(Quaternion q);
 
-        /// <summary>Get rotation quaternion for an angle and axis<br/>
-        /// NOTE: angle must be provided in radians</summary>
+        /// <summary>
+        /// Get rotation quaternion for an angle and axis<br/>
+        /// NOTE: angle must be provided in radians
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Quaternion QuaternionFromAxisAngle(Vector3 axis, float angle);
 
@@ -399,18 +492,26 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void QuaternionToAxisAngle(Quaternion q, Vector3* outAxis, float* outAngle);
 
-        /// <summary>Get the quaternion equivalent to Euler angles<br/>
-        /// NOTE: Rotation order is ZYX</summary>
+        /// <summary>
+        /// Get the quaternion equivalent to Euler angles<br/>
+        /// NOTE: Rotation order is ZYX
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Quaternion QuaternionFromEuler(float pitch, float yaw, float roll);
 
-        /// <summary>Get the Euler angles equivalent to quaternion (roll, pitch, yaw)<br/>
-        /// NOTE: Angles are returned in a Vector3 struct in radians</summary>
+        /// <summary>
+        /// Get the Euler angles equivalent to quaternion (roll, pitch, yaw)<br/>
+        /// NOTE: Angles are returned in a Vector3 struct in radians
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector3 QuaternionToEuler(Quaternion q);
 
         /// <summary>Transform a quaternion given a transformation matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Quaternion QuaternionTransform(Quaternion q, Matrix4x4 mat);
+
+        /// <summary>Check whether two given quaternions are almost equal</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int QuaternionEquals(Quaternion p, Quaternion q);
     }
 }

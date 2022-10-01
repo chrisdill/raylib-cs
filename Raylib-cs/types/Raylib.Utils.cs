@@ -190,14 +190,14 @@ namespace Raylib_cs
         /// <summary>Get dropped files names (memory should be freed)</summary>
         public static string[] GetDroppedFiles()
         {
-            int count;
-            var buffer = GetDroppedFiles(&count);
-            var files = new string[count];
+            var filePathList = LoadDroppedFiles();
+            var files = new string[filePathList.count];
 
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < filePathList.count; i++)
             {
-                files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
+                files[i] = Marshal.PtrToStringUTF8((IntPtr)filePathList.paths[i]);
             }
+            UnloadDroppedFiles(filePathList);
 
             return files;
         }
@@ -658,15 +658,6 @@ namespace Raylib_cs
             fixed (Mesh* p = &mesh)
             {
                 GenMeshTangents(p);
-            }
-        }
-
-        /// <summary>Compute mesh binormals</summary>
-        public static void GenMeshBinormals(ref Mesh mesh)
-        {
-            fixed (Mesh* p = &mesh)
-            {
-                GenMeshBinormals(p);
             }
         }
 

@@ -71,6 +71,11 @@ namespace Raylib_cs
         FLAG_WINDOW_HIGHDPI = 0x00002000,
 
         /// <summary>
+        /// Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+        /// </summary>
+        FLAG_WINDOW_MOUSE_PASSTHROUGH = 0x00004000,
+
+        /// <summary>
         /// Set to try enabling MSAA 4X
         /// </summary>
         FLAG_MSAA_4X_HINT = 0x00000020,
@@ -157,6 +162,11 @@ namespace Raylib_cs
         /// Blend textures subtracting colors (alternative)
         /// </summary>
         BLEND_SUBTRACT_COLORS,
+
+        /// <summary>
+        /// Blend premultiplied textures considering alpha
+        /// </summary>
+        BLEND_ALPHA_PREMULTIPLY,
 
         /// <summary>
         /// Blend textures using custom src/dst factors (use rlSetBlendMode())

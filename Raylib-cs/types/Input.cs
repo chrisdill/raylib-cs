@@ -279,7 +279,7 @@ namespace Raylib_cs
     public enum GamepadButton
     {
         /// <summary>
-        /// This is here just for error checking
+        /// Unknown button, just for error checking
         /// </summary>
         GAMEPAD_BUTTON_UNKNOWN = 0,
 
@@ -323,41 +323,54 @@ namespace Raylib_cs
         /// </summary>
         GAMEPAD_BUTTON_RIGHT_FACE_LEFT,
 
-        // Triggers
+        /// <summary>
+        /// Gamepad top/back trigger left (first), it could be a trailing button
+        /// </summary>
         GAMEPAD_BUTTON_LEFT_TRIGGER_1,
-        GAMEPAD_BUTTON_LEFT_TRIGGER_2,
-        GAMEPAD_BUTTON_RIGHT_TRIGGER_1,
-        GAMEPAD_BUTTON_RIGHT_TRIGGER_2,
-
-        // These are buttons in the center of the gamepad
 
         /// <summary>
-        /// PS3 Select
+        /// Gamepad top/back trigger left (second), it could be a trailing button
+        /// </summary>
+        GAMEPAD_BUTTON_LEFT_TRIGGER_2,
+        
+        /// <summary>
+        /// Gamepad top/back trigger right (first), it could be a trailing button
+        /// </summary>
+        GAMEPAD_BUTTON_RIGHT_TRIGGER_1,
+        
+        /// <summary>
+        /// Gamepad top/back trigger right (second), it could be a trailing button
+        /// </summary>
+        GAMEPAD_BUTTON_RIGHT_TRIGGER_2,
+
+        /// <summary>
+        /// Gamepad center buttons, left one (i.e. PS3: Select)
         /// </summary>
         GAMEPAD_BUTTON_MIDDLE_LEFT,
 
         /// <summary>
-        /// PS Button/XBOX Button
+        /// Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX)
         /// </summary>
         GAMEPAD_BUTTON_MIDDLE,
 
         /// <summary>
-        /// PS3 Start
+        /// Gamepad center buttons, right one (i.e. PS3: Start)
         /// </summary>
         GAMEPAD_BUTTON_MIDDLE_RIGHT,
 
         /// <summary>
-        /// Left joystick press button
+        /// Gamepad joystick pressed button left
         /// </summary>
         GAMEPAD_BUTTON_LEFT_THUMB,
 
         /// <summary>
-        /// Right joystick press button
+        /// Gamepad joystick pressed button right
         /// </summary>
         GAMEPAD_BUTTON_RIGHT_THUMB
     }
 
-    /// <summary>Gesture
+    /// <summary>
+    /// Gesture
     /// NOTE: It could be used as flags to enable only some gestures
     /// </summary>
     [Flags]

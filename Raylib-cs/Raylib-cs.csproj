@@ -11,9 +11,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetRaylibTag>4.0.0</TargetRaylibTag>
-    <Version>4.0.0.2</Version>
-    <PackageVersion>4.0.0.2</PackageVersion>
+    <TargetRaylibTag>4.2.0</TargetRaylibTag>
+    <Version>4.2.0</Version>
+    <PackageVersion>4.2.0</PackageVersion>
     <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
@@ -49,5 +49,6 @@
     <Compile Include="types\*.cs" />
     <Compile Include="types\native\CBool.cs" />
     <Compile Include="types\native\UTF8Buffer.cs" />
+    <Compile Include="types\native\FilePathList.cs" />
   </ItemGroup>
 </Project>
