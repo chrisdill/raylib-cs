@@ -116,7 +116,13 @@ jobs:
         with:
           source: "raylib-osx64/raylib-${{steps.get-tag.outputs.info}}_macos/lib/libraylib.dylib"
           target: "Raylib-cs/runtimes/osx-x64/native/libraylib.dylib"
-
+          
+      - name: copy osx-arm64
+        uses: canastro/copy-file-action@master
+        with:
+          source: "raylib-osx64/raylib-${{steps.get-tag.outputs.info}}_macos/lib/libraylib.dylib"
+          target: "Raylib-cs/runtimes/osx-arm64/native/libraylib.dylib"
+          
       - id: get-nuget-version
         name: Get NuGet Package Version
         uses: mavrosxristoforos/get-xml-info@1.0
