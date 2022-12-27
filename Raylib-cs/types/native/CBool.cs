@@ -18,9 +18,19 @@ namespace Raylib_cs
          * on explicit motivation than to blindly trust the runtime judgement on its memory
          * management. 
          * 
-         * 'value' is visible and constructable, but impossible to modify or access.
+         * 'value' is visible and constructable (if necessary), but impossible to modify or access.
          */
         public sbyte value { init; private get; }
+
+        // Constructors for easier usage.
+        public CBool(bool value)
+        {
+            this.value = (sbyte)(value ? 1 : 0);
+        }
+        public CBool(Int64 value)
+        {
+            this.value = (sbyte)(value != 0 ? 1 : 0);
+        }
 
         // CBool -> Native
         // Allows for arithmetic between CBools and for assignment to greater integer variables.
@@ -29,7 +39,7 @@ namespace Raylib_cs
             return x.value;
         }
 
-        // Allows for CBools to be implicitely assigned to a native boolean variable
+        // Allows for CBools to be implicitely assigned to a native boolean variable.
         public static implicit operator bool(CBool x)
         {
             return x.value != 0 ? true : false;
@@ -45,7 +55,7 @@ namespace Raylib_cs
         // Same goes for integer numeric values (any value, so an Int64 is used).
         public static implicit operator CBool(Int64 x)
         {
-            return new CBool { value = (sbyte)x };
+            return new CBool { value = (sbyte)(x != 0 ? 1 : 0) };
         }
 
         /* Arithmetic overloads
