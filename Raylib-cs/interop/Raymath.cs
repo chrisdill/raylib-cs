@@ -143,7 +143,7 @@ namespace Raylib_cs
         /// Clamp the components of the vector between min and max values specified by the given vectors
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector2 Vector2Clamp(Vector2 v);
+        public static extern Vector2 Vector2Clamp(Vector2 v, Vector2 min, Vector2 max);
 
         /// <summary>Clamp the magnitude of the vector between two min and max values</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -330,10 +330,6 @@ namespace Raylib_cs
         /// <summary>Invert provided matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Matrix4x4 MatrixInvert(Matrix4x4 mat);
-
-        /// <summary>Normalize provided matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 MatrixNormalize(Matrix4x4 mat);
 
         /// <summary>Get identity matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
