@@ -169,8 +169,13 @@ namespace Raylib_cs
         BLEND_ALPHA_PREMULTIPLY,
 
         /// <summary>
-        /// Blend textures using custom src/dst factors (use rlSetBlendMode())
+        /// Blend textures using custom src/dst factors (use rlSetBlendFactors())
         /// </summary>
-        BLEND_CUSTOM
+        BLEND_CUSTOM,
+
+        /// <summary>
+        /// Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
+        /// </summary>
+        BLEND_CUSTOM_SEPARATE
     }
 }

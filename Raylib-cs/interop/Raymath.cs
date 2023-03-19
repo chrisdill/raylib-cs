@@ -91,9 +91,20 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector2DistanceSqr(Vector2 v1, Vector2 v2);
 
-        /// <summary>Calculate angle from two vectors</summary>
+        /// <summary>
+        /// Calculate angle between two vectors
+        /// NOTE: Angle is calculated from origin point (0, 0)
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float Vector2Angle(Vector2 v1, Vector2 v2);
+
+        /// <summary>
+        /// Calculate angle defined by a two vectors line
+        /// NOTE: Parameters need to be normalized
+        /// Current implementation should be aligned with glm::angle
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float Vector2LineAngle(Vector2 start, Vector2 end);
 
         /// <summary>Scale vector (multiply by value)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

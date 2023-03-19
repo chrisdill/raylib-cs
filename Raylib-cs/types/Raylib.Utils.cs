@@ -209,11 +209,11 @@ namespace Raylib_cs
         }
 
         /// <summary>Update camera position for selected mode</summary>
-        public static void UpdateCamera(ref Camera3D camera)
+        public static void UpdateCamera(ref Camera3D camera, CameraMode mode)
         {
             fixed (Camera3D* c = &camera)
             {
-                UpdateCamera(c);
+                UpdateCamera(c, mode);
             }
         }
 
@@ -706,18 +706,6 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Draw a textured polygon</summary>
-        public static void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointsCount, Color tint)
-        {
-            fixed (Vector2* p = points)
-            {
-                fixed (Vector2* p1 = texcoords)
-                {
-                    DrawTexturePoly(texture, center, p, p1, pointsCount, tint);
-                }
-            }
-        }
-
         /// <summary>Draw text (using default font)</summary>
         public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
         {
@@ -802,7 +790,7 @@ namespace Raylib_cs
             using var str1 = text.ToUTF8Buffer();
             fixed (int* p = &bytesProcessed)
             {
-                return GetCodepoint(str1.AsPointer(), p);
+                return GetCodepointNext(str1.AsPointer(), p);
             }
         }
 
@@ -821,7 +809,7 @@ namespace Raylib_cs
         {
             fixed (int* c1 = codepoints)
             {
-                var ptr = TextCodepointsToUTF8(c1, length);
+                var ptr = LoadUTF8(c1, length);
                 var text = Utf8StringUtils.GetUTF8String(ptr);
                 MemFree(ptr);
                 return text;
