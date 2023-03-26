@@ -174,7 +174,7 @@ namespace Raylib_cs
         BLEND_CUSTOM,
 
         /// <summary>
-        /// Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
+        /// Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
         /// </summary>
         BLEND_CUSTOM_SEPARATE
     }
