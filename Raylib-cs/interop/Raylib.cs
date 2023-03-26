@@ -249,7 +249,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DisableCursor();
 
-        /// <summary>Disables cursor (lock cursor)</summary>
+        /// <summary>Check if cursor is on the screen</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool IsCursorOnScreen();
 
