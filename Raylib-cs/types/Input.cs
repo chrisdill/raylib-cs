@@ -332,12 +332,12 @@ namespace Raylib_cs
         /// Gamepad top/back trigger left (second), it could be a trailing button
         /// </summary>
         GAMEPAD_BUTTON_LEFT_TRIGGER_2,
-        
+
         /// <summary>
         /// Gamepad top/back trigger right (first), it could be a trailing button
         /// </summary>
         GAMEPAD_BUTTON_RIGHT_TRIGGER_1,
-        
+
         /// <summary>
         /// Gamepad top/back trigger right (second), it could be a trailing button
         /// </summary>

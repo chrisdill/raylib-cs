@@ -37,7 +37,13 @@ namespace Raylib_cs
 
         /// <summary>Remap input value within input range to output range</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float Remap(float value, float inputStart, float inputEnd, float outputStart, float outputEnd);
+        public static extern float Remap(
+            float value,
+            float inputStart,
+            float inputEnd,
+            float outputStart,
+            float outputEnd
+        );
 
         /// <summary>Wrap input value from min to max</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -398,7 +404,14 @@ namespace Raylib_cs
 
         /// <summary>Get perspective projection matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 MatrixFrustum(double left, double right, double bottom, double top, double near, double far);
+        public static extern Matrix4x4 MatrixFrustum(
+            double left,
+            double right,
+            double bottom,
+            double top,
+            double near,
+            double far
+        );
 
         /// <summary>
         /// Get perspective projection matrix<br/>
@@ -409,7 +422,14 @@ namespace Raylib_cs
 
         /// <summary>Get orthographic projection matrix</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 MatrixOrtho(double left, double right, double bottom, double top, double near, double far);
+        public static extern Matrix4x4 MatrixOrtho(
+            double left,
+            double right,
+            double bottom,
+            double top,
+            double near,
+            double far
+        );
 
         /// <summary>Get camera look-at matrix (view matrix)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

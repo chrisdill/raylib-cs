@@ -360,11 +360,22 @@ namespace Raylib_cs
 
         /// <summary>Set shader uniform value</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValue(Shader shader, int locIndex, void* value, ShaderUniformDataType uniformType);
+        public static extern void SetShaderValue(
+            Shader shader,
+            int locIndex,
+            void* value,
+            ShaderUniformDataType uniformType
+        );
 
         /// <summary>Set shader uniform value vector</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetShaderValueV(Shader shader, int locIndex, void* value, ShaderUniformDataType uniformType, int count);
+        public static extern void SetShaderValueV(
+            Shader shader,
+            int locIndex,
+            void* value,
+            ShaderUniformDataType uniformType,
+            int count
+        );
 
         /// <summary>Set shader uniform value (matrix 4x4)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -481,7 +492,9 @@ namespace Raylib_cs
 
         /// <summary>Set custom file binary data saver</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetSaveFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, void*, uint, CBool> callback);
+        public static extern void SetSaveFileDataCallback(
+            delegate* unmanaged[Cdecl]<sbyte*, void*, uint, CBool> callback
+        );
 
         /// <summary>Set custom file text data loader</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -651,11 +664,15 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetExitKey(KeyboardKey key);
 
-        /// <summary>Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty</summary>
+        /// <summary>
+        /// Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetKeyPressed();
 
-        /// <summary>Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty</summary>
+        /// <summary>
+        /// Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCharPressed();
 
@@ -881,12 +898,24 @@ namespace Raylib_cs
 
         /// <summary>Draw line using quadratic bezier curves with a control point</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawLineBezierQuad(Vector2 startPos, Vector2 endPos, Vector2 controlPos, float thick, Color color);
+        public static extern void DrawLineBezierQuad(
+            Vector2 startPos,
+            Vector2 endPos,
+            Vector2 controlPos,
+            float thick,
+            Color color
+        );
 
         /// <summary>Draw line using cubic bezier curves with 2 control points</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawLineBezierCubic(Vector2 startPos, Vector2 endPos, Vector2 startControlPos, Vector2 endControlPos, float thick, Color color);
-
+        public static extern void DrawLineBezierCubic(
+            Vector2 startPos,
+            Vector2 endPos,
+            Vector2 startControlPos,
+            Vector2 endControlPos,
+            float thick,
+            Color color
+        );
 
         /// <summary>Draw lines sequence</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -898,15 +927,35 @@ namespace Raylib_cs
 
         /// <summary>Draw a piece of a circle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCircleSector(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color);
+        public static extern void DrawCircleSector(
+            Vector2 center,
+            float radius,
+            float startAngle,
+            float endAngle,
+            int segments,
+            Color color
+        );
 
         /// <summary>Draw circle sector outline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCircleSectorLines(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color);
+        public static extern void DrawCircleSectorLines(
+            Vector2 center,
+            float radius,
+            float startAngle,
+            float endAngle,
+            int segments,
+            Color color
+        );
 
         /// <summary>Draw a gradient-filled circle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2);
+        public static extern void DrawCircleGradient(
+            int centerX,
+            int centerY,
+            float radius,
+            Color color1,
+            Color color2
+        );
 
         /// <summary>Draw a color-filled circle (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -926,11 +975,27 @@ namespace Raylib_cs
 
         /// <summary>Draw ring</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRing(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
+        public static extern void DrawRing(
+            Vector2 center,
+            float innerRadius,
+            float outerRadius,
+            float startAngle,
+            float endAngle,
+            int segments,
+            Color color
+        );
 
         /// <summary>Draw ring outline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRingLines(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
+        public static extern void DrawRingLines(
+            Vector2 center,
+            float innerRadius,
+            float outerRadius,
+            float startAngle,
+            float endAngle,
+            int segments,
+            Color color
+        );
 
         /// <summary>Draw a color-filled rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -950,15 +1015,35 @@ namespace Raylib_cs
 
         /// <summary>Draw a vertical-gradient-filled rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);
+        public static extern void DrawRectangleGradientV(
+            int posX,
+            int posY,
+            int width,
+            int height,
+            Color color1,
+            Color color2
+        );
 
         /// <summary>Draw a horizontal-gradient-filled rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);
+        public static extern void DrawRectangleGradientH(
+            int posX,
+            int posY,
+            int width,
+            int height,
+            Color color1,
+            Color color2
+        );
 
         /// <summary>Draw a gradient-filled rectangle with custom vertex colors</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
+        public static extern void DrawRectangleGradientEx(
+            Rectangle rec,
+            Color col1,
+            Color col2,
+            Color col3,
+            Color col4
+        );
 
         /// <summary>Draw rectangle outline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -974,7 +1059,13 @@ namespace Raylib_cs
 
         /// <summary>Draw rectangle with rounded edges outline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, float lineThick, Color color);
+        public static extern void DrawRectangleRoundedLines(
+            Rectangle rec,
+            float roundness,
+            int segments,
+            float lineThick,
+            Color color
+        );
 
         /// <summary>Draw a color-filled triangle (vertex in counter-clockwise order!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1002,7 +1093,14 @@ namespace Raylib_cs
 
         /// <summary>Draw a polygon outline of n sides with extended parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color);
+        public static extern void DrawPolyLinesEx(
+            Vector2 center,
+            int sides,
+            float radius,
+            float rotation,
+            float lineThick,
+            Color color
+        );
 
         // Basic shapes collision detection functions
 
@@ -1012,7 +1110,12 @@ namespace Raylib_cs
 
         /// <summary>Check collision between two circles</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
+        public static extern CBool CheckCollisionCircles(
+            Vector2 center1,
+            float radius1,
+            Vector2 center2,
+            float radius2
+        );
 
         /// <summary>Check collision between circle and rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1034,11 +1137,21 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool CheckCollisionPointPoly(Vector2 point, Vector2* points, int pointCount);
 
-        /// <summary>Check the collision between two lines defined by two points each, returns collision point by reference</summary>
+        /// <summary>
+        /// Check the collision between two lines defined by two points each, returns collision point by reference
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
+        public static extern CBool CheckCollisionLines(
+            Vector2 startPos1,
+            Vector2 endPos1,
+            Vector2 startPos2,
+            Vector2 endPos2,
+            Vector2* collisionPoint
+        );
 
-        /// <summary>Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]</summary>
+        /// <summary>
+        /// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
@@ -1060,7 +1173,13 @@ namespace Raylib_cs
 
         /// <summary>Load image from RAW file data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image LoadImageRaw(sbyte* fileName, int width, int height, PixelFormat format, int headerSize);
+        public static extern Image LoadImageRaw(
+            sbyte* fileName,
+            int width,
+            int height,
+            PixelFormat format,
+            int headerSize
+        );
 
         /// <summary>Load image sequence from file (frames appended to image.data)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1111,11 +1230,24 @@ namespace Raylib_cs
 
         /// <summary>Generate image: radial gradient</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image GenImageGradientRadial(int width, int height, float density, Color inner, Color outer);
+        public static extern Image GenImageGradientRadial(
+            int width,
+            int height,
+            float density,
+            Color inner,
+            Color outer
+        );
 
         /// <summary>Generate image: checked</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image GenImageChecked(int width, int height, int checksX, int checksY, Color col1, Color col2);
+        public static extern Image GenImageChecked(
+            int width,
+            int height,
+            int checksX,
+            int checksY,
+            Color col1,
+            Color col2
+        );
 
         /// <summary>Generate image: white noise</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1194,7 +1326,14 @@ namespace Raylib_cs
 
         /// <summary>Resize canvas and fill with color</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color color);
+        public static extern void ImageResizeCanvas(
+            Image* image,
+            int newWidth,
+            int newHeight,
+            int offsetX,
+            int offsetY,
+            Color color
+        );
 
         /// <summary>Generate all mipmap levels for a provided image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1286,7 +1425,14 @@ namespace Raylib_cs
 
         /// <summary>Draw line within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
+        public static extern void ImageDrawLine(
+            Image* dst,
+            int startPosX,
+            int startPosY,
+            int endPosX,
+            int endPosY,
+            Color color
+        );
 
         /// <summary>Draw line within an image (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1310,7 +1456,14 @@ namespace Raylib_cs
 
         /// <summary>Draw rectangle within an image</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color);
+        public static extern void ImageDrawRectangle(
+            Image* dst,
+            int posX,
+            int posY,
+            int width,
+            int height,
+            Color color
+        );
 
         /// <summary>Draw rectangle within an image (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1334,7 +1487,15 @@ namespace Raylib_cs
 
         /// <summary>Draw text (custom sprite font) within an image (destination)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImageDrawTextEx(Image* dst, Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void ImageDrawTextEx(
+            Image* dst,
+            Font font,
+            sbyte* text,
+            Vector2 position,
+            float fontSize,
+            float spacing,
+            Color tint
+        );
 
 
         // Texture loading functions
@@ -1408,7 +1569,13 @@ namespace Raylib_cs
 
         /// <summary>Draw a Texture2D with extended parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
+        public static extern void DrawTextureEx(
+            Texture2D texture,
+            Vector2 position,
+            float rotation,
+            float scale,
+            Color tint
+        );
 
         /// <summary>Draw a part of a texture defined by a rectangle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1416,11 +1583,25 @@ namespace Raylib_cs
 
         /// <summary>Draw a part of a texture defined by a rectangle with 'pro' parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
+        public static extern void DrawTexturePro(
+            Texture2D texture,
+            Rectangle source,
+            Rectangle dest,
+            Vector2 origin,
+            float rotation,
+            Color tint
+        );
 
         /// <summary>Draws a texture (or part of it) that stretches or shrinks nicely</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
+        public static extern void DrawTextureNPatch(
+            Texture2D texture,
+            NPatchInfo nPatchInfo,
+            Rectangle dest,
+            Vector2 origin,
+            float rotation,
+            Color tint
+        );
 
 
         // Color/pixel related functions
@@ -1509,7 +1690,14 @@ namespace Raylib_cs
 
         /// <summary>Load font from memory buffer, fileType refers to extension: i.e. "ttf"</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* fontChars, int glyphCount);
+        public static extern Font LoadFontFromMemory(
+            sbyte* fileType,
+            byte* fileData,
+            int dataSize,
+            int fontSize,
+            int* fontChars,
+            int glyphCount
+        );
 
         /// <summary>Check if a font is ready</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1517,11 +1705,25 @@ namespace Raylib_cs
 
         /// <summary>Load font data for further use</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, FontType type);
+        public static extern GlyphInfo* LoadFontData(
+            byte* fileData,
+            int dataSize,
+            int fontSize,
+            int* fontChars,
+            int glyphCount,
+            FontType type
+        );
 
         /// <summary>Generate image font atlas using chars info</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int glyphCount, int fontSize, int padding, int packMethod);
+        public static extern Image GenImageFontAtlas(
+            GlyphInfo* chars,
+            Rectangle** recs,
+            int glyphCount,
+            int fontSize,
+            int padding,
+            int packMethod
+        );
 
         /// <summary>Unload font chars info data (RAM)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1548,19 +1750,49 @@ namespace Raylib_cs
 
         /// <summary>Draw text using font and additional parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextEx(Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void DrawTextEx(
+            Font font,
+            sbyte* text,
+            Vector2 position,
+            float fontSize,
+            float spacing,
+            Color tint
+        );
 
         /// <summary>Draw text using Font and pro parameters (rotation)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextPro(Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
+        public static extern void DrawTextPro(
+            Font font,
+            sbyte* text,
+            Vector2 position,
+            Vector2 origin,
+            float rotation,
+            float fontSize,
+            float spacing,
+            Color tint
+        );
 
         /// <summary>Draw one character (codepoint)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float fontSize, Color tint);
+        public static extern void DrawTextCodepoint(
+            Font font,
+            int codepoint,
+            Vector2 position,
+            float fontSize,
+            Color tint
+        );
 
         /// <summary>Draw multiple characters (codepoint)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTextCodepoints(Font font, int* codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint);
+        public static extern void DrawTextCodepoints(
+            Font font,
+            int* codepoints,
+            int count,
+            Vector2 position,
+            float fontSize,
+            float spacing,
+            Color tint
+        );
 
         // Text font info functions
 
@@ -1572,15 +1804,21 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 MeasureTextEx(Font font, sbyte* text, float fontSize, float spacing);
 
-        /// <summary>Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found</summary>
+        /// <summary>
+        /// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetGlyphIndex(Font font, int character);
 
-        /// <summary>Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found</summary>
+        /// <summary>
+        /// Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern GlyphInfo GetGlyphInfo(Font font, int codepoint);
 
-        /// <summary>Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found</summary>
+        /// <summary>
+        /// Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Rectangle GetGlyphAtlasRec(Font font, int codepoint);
 
@@ -1704,7 +1942,13 @@ namespace Raylib_cs
 
         /// <summary>Draw a circle in 3D world space</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color);
+        public static extern void DrawCircle3D(
+            Vector3 center,
+            float radius,
+            Vector3 rotationAxis,
+            float rotationAngle,
+            Color color
+        );
 
         /// <summary>Draw a color-filled triangle (vertex in counter-clockwise order!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1744,27 +1988,69 @@ namespace Raylib_cs
 
         /// <summary>Draw a cylinder/cone</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
+        public static extern void DrawCylinder(
+            Vector3 position,
+            float radiusTop,
+            float radiusBottom,
+            float height,
+            int slices,
+            Color color
+        );
 
         /// <summary>Draw a cylinder with base at startPos and top at endPos</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCylinderEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int sides, Color color);
+        public static extern void DrawCylinderEx(
+            Vector3 startPos,
+            Vector3 endPos,
+            float startRadius,
+            float endRadius,
+            int sides,
+            Color color
+        );
 
         /// <summary>Draw a cylinder/cone wires</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
+        public static extern void DrawCylinderWires(
+            Vector3 position,
+            float radiusTop,
+            float radiusBottom,
+            float height,
+            int slices,
+            Color color
+        );
 
         /// <summary>Draw a cylinder wires with base at startPos and top at endPos</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCylinderWiresEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int sides, Color color);
+        public static extern void DrawCylinderWiresEx(
+            Vector3 startPos,
+            Vector3 endPos,
+            float startRadius,
+            float endRadius,
+            int sides,
+            Color color
+        );
 
         /// <summary>Draw a capsule with the center of its sphere caps at startPos and endPos</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCapsule(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
+        public static extern void DrawCapsule(
+            Vector3 startPos,
+            Vector3 endPos,
+            float radius,
+            int slices,
+            int rings,
+            Color color
+        );
 
         /// <summary>Draw capsule wireframe with the center of its sphere caps at startPos and endPos</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawCapsuleWires(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
+        public static extern void DrawCapsuleWires(
+            Vector3 startPos,
+            Vector3 endPos,
+            float radius,
+            int slices,
+            int rings,
+            Color color
+        );
 
         /// <summary>Draw a plane XZ</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1814,7 +2100,14 @@ namespace Raylib_cs
 
         /// <summary>Draw a model with extended parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+        public static extern void DrawModelEx(
+            Model model,
+            Vector3 position,
+            Vector3 rotationAxis,
+            float rotationAngle,
+            Vector3 scale,
+            Color tint
+        );
 
         /// <summary>Draw a model wires (with texture if set)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1822,7 +2115,14 @@ namespace Raylib_cs
 
         /// <summary>Draw a model wires (with texture if set) with extended parameters</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+        public static extern void DrawModelWiresEx(
+            Model model,
+            Vector3 position,
+            Vector3 rotationAxis,
+            float rotationAngle,
+            Vector3 scale,
+            Color tint
+        );
 
         /// <summary>Draw bounding box (wires)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1830,15 +2130,38 @@ namespace Raylib_cs
 
         /// <summary>Draw a billboard texture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 center, float size, Color tint);
+        public static extern void DrawBillboard(
+            Camera3D camera,
+            Texture2D texture,
+            Vector3 center,
+            float size,
+            Color tint
+        );
 
         /// <summary>Draw a billboard texture defined by source</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+        public static extern void DrawBillboardRec(
+            Camera3D camera,
+            Texture2D texture,
+            Rectangle source,
+            Vector3 position,
+            Vector2 size,
+            Color tint
+        );
 
         /// <summary>Draw a billboard texture defined by source and rotation</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawBillboardPro(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
+        public static extern void DrawBillboardPro(
+            Camera3D camera,
+            Texture2D texture,
+            Rectangle source,
+            Vector3 position,
+            Vector3 up,
+            Vector2 size,
+            Vector2 origin,
+            float rotation,
+            Color tint
+        );
 
 
         // Mesh management functions
@@ -1977,7 +2300,12 @@ namespace Raylib_cs
 
         /// <summary>Detect collision between two spheres</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
+        public static extern CBool CheckCollisionSpheres(
+            Vector3 center1,
+            float radius1,
+            Vector3 center2,
+            float radius2
+        );
 
         /// <summary>Detect collision between two bounding boxes</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2264,22 +2592,35 @@ namespace Raylib_cs
 
         /// <summary>Audio thread callback to request new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetAudioStreamCallback(AudioStream stream, delegate* unmanaged[Cdecl]<sbyte*, uint, void> callback);
+        public static extern void SetAudioStreamCallback(
+            AudioStream stream,
+            delegate* unmanaged[Cdecl]<sbyte*, uint, void> callback
+        );
 
         /// <summary>Attach audio stream processor to stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void AttachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor);
+        public static extern void AttachAudioStreamProcessor(
+            AudioStream stream,
+            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+        );
 
         /// <summary>Detach audio stream processor from stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DetachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor);
+        public static extern void DetachAudioStreamProcessor(
+            AudioStream stream,
+            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+        );
 
         /// <summary>Attach audio stream processor to the entire audio pipeline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void AttachAudioMixedProcessor(delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor);
+        public static extern void AttachAudioMixedProcessor(
+            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+        );
 
         /// <summary>Detach audio stream processor from the entire audio pipeline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DetachAudioMixedProcessor(delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor);
+        public static extern void DetachAudioMixedProcessor(
+            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+        );
     }
 }

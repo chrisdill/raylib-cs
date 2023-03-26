@@ -140,10 +140,24 @@ namespace Raylib_cs
         }
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlFrustum(double left, double right, double bottom, double top, double znear, double zfar);
+        public static extern void rlFrustum(
+            double left,
+            double right,
+            double bottom,
+            double top,
+            double znear,
+            double zfar
+        );
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlOrtho(double left, double right, double bottom, double top, double znear, double zfar);
+        public static extern void rlOrtho(
+            double left,
+            double right,
+            double bottom,
+            double top,
+            double znear,
+            double zfar
+        );
 
         /// <summary>Set the viewport area</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -415,7 +429,14 @@ namespace Raylib_cs
 
         /// <summary>Set blending mode factors and equations separately (using OpenGL factors)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha, int glDstAlpha, int glEqRGB, int glEqAlpha);
+        public static extern void rlSetBlendFactorsSeparate(
+            int glSrcRGB,
+            int glDstRGB,
+            int glSrcAlpha,
+            int glDstAlpha,
+            int glEqRGB,
+            int glEqAlpha
+        );
 
 
         // ------------------------------------------------------------------------------------
@@ -520,7 +541,14 @@ namespace Raylib_cs
         public static extern void rlUnloadVertexBuffer(uint vboId);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetVertexAttribute(uint index, int compSize, int type, CBool normalized, int stride, void* pointer);
+        public static extern void rlSetVertexAttribute(
+            uint index,
+            int compSize,
+            int type,
+            CBool normalized,
+            int stride,
+            void* pointer
+        );
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void rlSetVertexAttributeDivisor(uint index, int divisor);
@@ -539,7 +567,12 @@ namespace Raylib_cs
         public static extern void rlDrawVertexArrayInstanced(int offset, int count, int instances);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawVertexArrayElementsInstanced(int offset, int count, void* buffer, int instances);
+        public static extern void rlDrawVertexArrayElementsInstanced(
+            int offset,
+            int count,
+            void* buffer,
+            int instances
+        );
 
 
         // Textures data management
@@ -558,11 +591,24 @@ namespace Raylib_cs
 
         /// <summary>Update GPU texture with new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateTexture(uint id, int offsetX, int offsetY, int width, int height, PixelFormat format, void* data);
+        public static extern void rlUpdateTexture(
+            uint id,
+            int offsetX,
+            int offsetY,
+            int width,
+            int height,
+            PixelFormat format,
+            void* data
+        );
 
         /// <summary>Get OpenGL internal formats</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlGetGlTextureFormats(PixelFormat format, int* glInternalFormat, int* glFormat, int* glType);
+        public static extern void rlGetGlTextureFormats(
+            PixelFormat format,
+            int* glInternalFormat,
+            int* glFormat,
+            int* glType
+        );
 
         /// <summary>Get OpenGL internal formats</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -593,7 +639,13 @@ namespace Raylib_cs
 
         /// <summary>Attach texture/renderbuffer to a framebuffer</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlFramebufferAttach(uint fboId, uint texId, FramebufferAttachType attachType, FramebufferAttachTextureType texType, int mipLevel);
+        public static extern void rlFramebufferAttach(
+            uint fboId,
+            uint texId,
+            FramebufferAttachType attachType,
+            FramebufferAttachTextureType texType,
+            int mipLevel
+        );
 
         /// <summary>Verify framebuffer is complete</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -683,7 +735,13 @@ namespace Raylib_cs
 
         /// <summary>Copy SSBO data between buffers</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlCopyShaderBuffer(uint destId, uint srcId, uint destOffset, uint srcOffset, uint count);
+        public static extern void rlCopyShaderBuffer(
+            uint destId,
+            uint srcId,
+            uint destOffset,
+            uint srcOffset,
+            uint count
+        );
 
         /// <summary>Get SSBO buffer size</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

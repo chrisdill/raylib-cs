@@ -137,43 +137,61 @@ namespace Raylib_cs
         }
 
         /// <summary>Set shader uniform value vector</summary>
-        public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType, int count)
-        where T : unmanaged
+        public static void SetShaderValueV<T>(
+            Shader shader,
+            int locIndex,
+            T[] values,
+            ShaderUniformDataType uniformType,
+            int count
+        ) where T : unmanaged
         {
-            SetShaderValueV(shader, uniformLoc, (Span<T>)values, uniformType, count);
+            SetShaderValueV(shader, locIndex, (Span<T>)values, uniformType, count);
         }
 
         /// <summary>Set shader uniform value vector</summary>
-        public static void SetShaderValueV<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType, int count)
-        where T : unmanaged
+        public static void SetShaderValueV<T>(
+            Shader shader,
+            int locIndex,
+            Span<T> values,
+            ShaderUniformDataType uniformType,
+            int count
+        ) where T : unmanaged
         {
             fixed (T* valuePtr = values)
             {
-                SetShaderValueV(shader, uniformLoc, valuePtr, uniformType, count);
+                SetShaderValueV(shader, locIndex, valuePtr, uniformType, count);
             }
         }
 
         /// <summary>Set shader uniform value</summary>
-        public static void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType)
+        public static void SetShaderValue<T>(Shader shader, int locIndex, T value, ShaderUniformDataType uniformType)
         where T : unmanaged
         {
-            SetShaderValue(shader, uniformLoc, &value, uniformType);
+            SetShaderValue(shader, locIndex, &value, uniformType);
         }
 
         /// <summary>Set shader uniform value</summary>
-        public static void SetShaderValue<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType)
-        where T : unmanaged
+        public static void SetShaderValue<T>(
+            Shader shader,
+            int locIndex,
+            T[] values,
+            ShaderUniformDataType uniformType
+        ) where T : unmanaged
         {
-            SetShaderValue(shader, uniformLoc, (Span<T>)values, uniformType);
+            SetShaderValue(shader, locIndex, (Span<T>)values, uniformType);
         }
 
         /// <summary>Set shader uniform value</summary>
-        public static void SetShaderValue<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType)
-        where T : unmanaged
+        public static void SetShaderValue<T>(
+            Shader shader,
+            int locIndex,
+            Span<T> values,
+            ShaderUniformDataType uniformType
+        ) where T : unmanaged
         {
             fixed (T* valuePtr = values)
             {
-                SetShaderValue(shader, uniformLoc, valuePtr, uniformType);
+                SetShaderValue(shader, locIndex, valuePtr, uniformType);
             }
         }
 
@@ -217,8 +235,16 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Check the collision between two lines defined by two points each, returns collision point by reference</summary>
-        public static CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint)
+        /// <summary>
+        /// Check the collision between two lines defined by two points each, returns collision point by reference
+        /// </summary>
+        public static CBool CheckCollisionLines(
+            Vector2 startPos1,
+            Vector2 endPos1,
+            Vector2 startPos2,
+            Vector2 endPos2,
+            ref Vector2 collisionPoint
+        )
         {
             fixed (Vector2* p = &collisionPoint)
             {
@@ -322,7 +348,14 @@ namespace Raylib_cs
         }
 
         /// <summary>Resize canvas and fill with color</summary>
-        public static void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color color)
+        public static void ImageResizeCanvas(
+            ref Image image,
+            int newWidth,
+            int newHeight,
+            int offsetX,
+            int offsetY,
+            Color color
+        )
         {
             fixed (Image* p = &image)
             {
@@ -466,7 +499,14 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw line within an image</summary>
-        public static void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
+        public static void ImageDrawLine(
+            ref Image dst,
+            int startPosX,
+            int startPosY,
+            int endPosX,
+            int endPosY,
+            Color color
+        )
         {
             fixed (Image* p = &dst)
             {
@@ -557,7 +597,15 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw text (custom sprite font) within an image (destination)</summary>
-        public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, int fontSize, float spacing, Color color)
+        public static void ImageDrawTextEx(
+            ref Image dst,
+            Font font,
+            string text,
+            Vector2 position,
+            int fontSize,
+            float spacing,
+            Color color
+        )
         {
             using var str1 = text.ToUTF8Buffer();
             fixed (Image* p = &dst)
@@ -714,14 +762,30 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw text using font and additional parameters</summary>
-        public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+        public static void DrawTextEx(
+            Font font,
+            string text,
+            Vector2 position,
+            float fontSize,
+            float spacing,
+            Color tint
+        )
         {
             using var str1 = text.ToUTF8Buffer();
             DrawTextEx(font, str1.AsPointer(), position, fontSize, spacing, tint);
         }
 
         /// <summary>Draw text using Font and pro parameters (rotation)</summary>
-        public static void DrawTextPro(Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
+        public static void DrawTextPro(
+            Font font,
+            string text,
+            Vector2 position,
+            Vector2 origin,
+            float rotation,
+            float fontSize,
+            float spacing,
+            Color tint
+        )
         {
             using var str1 = text.ToUTF8Buffer();
             DrawTextPro(font, str1.AsPointer(), position, origin, rotation, fontSize, spacing, tint);
@@ -898,7 +962,12 @@ namespace Raylib_cs
             return model.materials[materialIndex].maps[(int)mapIndex].texture;
         }
 
-        public static void SetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex, ref Texture2D texture)
+        public static void SetMaterialTexture(
+            ref Model model,
+            int materialIndex,
+            MaterialMapIndex mapIndex,
+            ref Texture2D texture
+        )
         {
             SetMaterialTexture(&model.materials[materialIndex], mapIndex, texture);
         }
