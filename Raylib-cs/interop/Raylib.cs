@@ -515,7 +515,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadFileData(byte* data);
 
-        /// <summary>Save data to file from byte array (write)</summary>
+        /// <summary>Save data to file from byte array (write), returns true on success</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool SaveFileData(sbyte* fileName, void* data, uint bytesToWrite);
 
@@ -543,11 +543,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool DirectoryExists(sbyte* dirPath);
 
-        /// <summary>Check file extension</summary>
+        /// <summary>Check file extension (including point: .png, .wav)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool IsFileExtension(sbyte* fileName, sbyte* ext);
 
-        /// <summary> Get file length in bytes</summary>
+        /// <summary>Get file length in bytes</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFileLength(sbyte* fileName);
 
@@ -603,11 +603,11 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool IsFileDropped();
 
-        /// <summary>Get dropped files names (memory should be freed)</summary>
+        /// <summary>Load dropped filepaths</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern FilePathList LoadDroppedFiles();
 
-        /// <summary>Clear dropped files paths buffer (free memory)</summary>
+        /// <summary>Unload dropped filepaths</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadDroppedFiles(FilePathList files);
 
@@ -618,21 +618,21 @@ namespace Raylib_cs
 
         // Compression/Encoding functionality
 
-        /// <summary>Compress data (DEFLATE algorithm)</summary>
+        /// <summary>Compress data (DEFLATE algorithm), memory must be MemFree()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* CompressData(byte* data, int dataLength, int* compDataLength);
+        public static extern byte* CompressData(byte* data, int dataSize, int* compDataSize);
 
-        /// <summary>Decompress data (DEFLATE algorithm)</summary>
+        /// <summary>Decompress data (DEFLATE algorithm), memory must be MemFree()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* DecompressData(byte* compData, int compDataLength, int* dataLength);
+        public static extern byte* DecompressData(byte* compData, int compDataSize, int* dataSize);
 
-        /// <summary>Encode data to Base64 string</summary>
+        /// <summary>Encode data to Base64 string, memory must be MemFree()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* EncodeDataBase64(byte* data, int dataLength, int* outputLength);
+        public static extern sbyte* EncodeDataBase64(byte* data, int dataSize, int* outputSize);
 
-        /// <summary>Decode Base64 string data</summary>
+        /// <summary>Decode Base64 string data, memory must be MemFree()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* DecodeDataBase64(byte* data, int* outputLength);
+        public static extern byte* DecodeDataBase64(byte* data, int* outputSize);
 
         /// <summary>Open URL with default system browser (if available)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -809,18 +809,13 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetGesturesEnabled(Gesture flags);
 
-        /// <summary>Check if a gesture have been detected</summary>
+        /// <summary>Check if a gesture has been detected</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern CBool IsGestureDetected(Gesture gesture);
-
 
         /// <summary>Get latest detected gesture</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Gesture GetGestureDetected();
-
-        /// <summary>Get touch points count</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetTouchPointsCount();
 
         /// <summary>Get gesture hold time in milliseconds</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -919,7 +914,7 @@ namespace Raylib_cs
 
         /// <summary>Draw lines sequence</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawLineStrip(Vector2* points, int numPoints, Color color);
+        public static extern void DrawLineStrip(Vector2* points, int pointCount, Color color);
 
         /// <summary>Draw a color-filled circle</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1077,11 +1072,11 @@ namespace Raylib_cs
 
         /// <summary>Draw a triangle fan defined by points (first vertex is the center)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleFan(Vector2* points, int numPoints, Color color);
+        public static extern void DrawTriangleFan(Vector2* points, int pointCount, Color color);
 
         /// <summary>Draw a triangle strip defined by points</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleStrip(Vector2* points, int pointsCount, Color color);
+        public static extern void DrawTriangleStrip(Vector2* points, int pointCount, Color color);
 
         /// <summary>Draw a regular polygon (Vector version)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1841,7 +1836,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UnloadCodepoints(int* codepoints);
 
-        /// <summary>Get total number of characters (codepoints) in a UTF8 encoded string</summary>
+        /// <summary>Get total number of codepoints in a UTF8 encoded string</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCodepointCount(sbyte* text);
 
@@ -1956,7 +1951,7 @@ namespace Raylib_cs
 
         /// <summary>Draw a triangle strip defined by points</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawTriangleStrip3D(Vector3* points, int pointsCount, Color color);
+        public static extern void DrawTriangleStrip3D(Vector3* points, int pointCount, Color color);
 
         /// <summary>Draw cube</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

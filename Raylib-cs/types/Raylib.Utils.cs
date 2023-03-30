@@ -728,29 +728,29 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw lines sequence</summary>
-        public static void DrawLineStrip(Vector2[] points, int numPoints, Color color)
+        public static void DrawLineStrip(Vector2[] points, int pointCount, Color color)
         {
             fixed (Vector2* p = points)
             {
-                DrawLineStrip(p, numPoints, color);
+                DrawLineStrip(p, pointCount, color);
             }
         }
 
         /// <summary>Draw a triangle fan defined by points (first vertex is the center)</summary>
-        public static void DrawTriangleFan(Vector2[] points, int numPoints, Color color)
+        public static void DrawTriangleFan(Vector2[] points, int pointCount, Color color)
         {
             fixed (Vector2* p = points)
             {
-                DrawTriangleFan(p, numPoints, color);
+                DrawTriangleFan(p, pointCount, color);
             }
         }
 
         /// <summary>Draw a triangle strip defined by points</summary>
-        public static void DrawTriangleStrip(Vector2[] points, int pointsCount, Color color)
+        public static void DrawTriangleStrip(Vector2[] points, int pointCount, Color color)
         {
             fixed (Vector2* p = points)
             {
-                DrawTriangleStrip(p, pointsCount, color);
+                DrawTriangleStrip(p, pointCount, color);
             }
         }
 
@@ -840,36 +840,36 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Get total number of characters (codepoints) in a UTF8 encoded string</summary>
+        /// <summary>Get total number of codepoints in a UTF8 encoded string</summary>
         public static int GetCodepointCount(string text)
         {
             using var str1 = text.ToUTF8Buffer();
             return GetCodepointCount(str1.AsPointer());
         }
 
-        /// <summary>Get next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
+        /// <summary>Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure</summary>
         /// <returns>single codepoint / "char"</returns>
-        public static int GetCodepoint(string text, ref int bytesProcessed)
+        public static int GetCodepoint(string text, ref int codepointSize)
         {
             using var str1 = text.ToUTF8Buffer();
-            fixed (int* p = &bytesProcessed)
+            fixed (int* p = &codepointSize)
             {
                 return GetCodepointNext(str1.AsPointer(), p);
             }
         }
 
-        /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
-        public static string CodepointToUTF8(int codepoint, ref int byteSize)
+        /// <summary>Encode one codepoint into UTF-8 byte array (array length returned as parameter)</summary>
+        public static string CodepointToUTF8(int codepoint, ref int utf8Size)
         {
-            fixed (int* l1 = &byteSize)
+            fixed (int* l1 = &utf8Size)
             {
                 var ptr = CodepointToUTF8(codepoint, l1);
                 return Utf8StringUtils.GetUTF8String(ptr);
             }
         }
 
-        /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
-        public static string TextCodepointsToUTF8(int[] codepoints, int length)
+        /// <summary>Load UTF-8 text encoded from codepoints array</summary>
+        public static string LoadUTF8(int[] codepoints, int length)
         {
             fixed (int* c1 = codepoints)
             {
@@ -895,11 +895,11 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw a triangle strip defined by points</summary>
-        public static void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color)
+        public static void DrawTriangleStrip3D(Vector3[] points, int pointCount, Color color)
         {
             fixed (Vector3* p = points)
             {
-                DrawTriangleStrip3D(p, pointsCount, color);
+                DrawTriangleStrip3D(p, pointCount, color);
             }
         }
 
