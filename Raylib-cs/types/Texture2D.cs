@@ -82,7 +82,7 @@ namespace Raylib_cs
         CUBEMAP_LAYOUT_LINE_VERTICAL,
 
         /// <summary>
-        /// Layout is defined by an horizontal line with faces
+        /// Layout is defined by a horizontal line with faces
         /// </summary>
         CUBEMAP_LAYOUT_LINE_HORIZONTAL,
 

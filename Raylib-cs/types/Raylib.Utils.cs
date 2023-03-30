@@ -137,43 +137,61 @@ namespace Raylib_cs
         }
 
         /// <summary>Set shader uniform value vector</summary>
-        public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType, int count)
-        where T : unmanaged
+        public static void SetShaderValueV<T>(
+            Shader shader,
+            int locIndex,
+            T[] values,
+            ShaderUniformDataType uniformType,
+            int count
+        ) where T : unmanaged
         {
-            SetShaderValueV(shader, uniformLoc, (Span<T>)values, uniformType, count);
+            SetShaderValueV(shader, locIndex, (Span<T>)values, uniformType, count);
         }
 
         /// <summary>Set shader uniform value vector</summary>
-        public static void SetShaderValueV<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType, int count)
-        where T : unmanaged
+        public static void SetShaderValueV<T>(
+            Shader shader,
+            int locIndex,
+            Span<T> values,
+            ShaderUniformDataType uniformType,
+            int count
+        ) where T : unmanaged
         {
             fixed (T* valuePtr = values)
             {
-                SetShaderValueV(shader, uniformLoc, valuePtr, uniformType, count);
+                SetShaderValueV(shader, locIndex, valuePtr, uniformType, count);
             }
         }
 
         /// <summary>Set shader uniform value</summary>
-        public static void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType)
+        public static void SetShaderValue<T>(Shader shader, int locIndex, T value, ShaderUniformDataType uniformType)
         where T : unmanaged
         {
-            SetShaderValue(shader, uniformLoc, &value, uniformType);
+            SetShaderValue(shader, locIndex, &value, uniformType);
         }
 
         /// <summary>Set shader uniform value</summary>
-        public static void SetShaderValue<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType)
-        where T : unmanaged
+        public static void SetShaderValue<T>(
+            Shader shader,
+            int locIndex,
+            T[] values,
+            ShaderUniformDataType uniformType
+        ) where T : unmanaged
         {
-            SetShaderValue(shader, uniformLoc, (Span<T>)values, uniformType);
+            SetShaderValue(shader, locIndex, (Span<T>)values, uniformType);
         }
 
         /// <summary>Set shader uniform value</summary>
-        public static void SetShaderValue<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType)
-        where T : unmanaged
+        public static void SetShaderValue<T>(
+            Shader shader,
+            int locIndex,
+            Span<T> values,
+            ShaderUniformDataType uniformType
+        ) where T : unmanaged
         {
             fixed (T* valuePtr = values)
             {
-                SetShaderValue(shader, uniformLoc, valuePtr, uniformType);
+                SetShaderValue(shader, locIndex, valuePtr, uniformType);
             }
         }
 
@@ -209,16 +227,24 @@ namespace Raylib_cs
         }
 
         /// <summary>Update camera position for selected mode</summary>
-        public static void UpdateCamera(ref Camera3D camera)
+        public static void UpdateCamera(ref Camera3D camera, CameraMode mode)
         {
             fixed (Camera3D* c = &camera)
             {
-                UpdateCamera(c);
+                UpdateCamera(c, mode);
             }
         }
 
-        /// <summary>Check the collision between two lines defined by two points each, returns collision point by reference</summary>
-        public static CBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint)
+        /// <summary>
+        /// Check the collision between two lines defined by two points each, returns collision point by reference
+        /// </summary>
+        public static CBool CheckCollisionLines(
+            Vector2 startPos1,
+            Vector2 endPos1,
+            Vector2 startPos2,
+            Vector2 endPos2,
+            ref Vector2 collisionPoint
+        )
         {
             fixed (Vector2* p = &collisionPoint)
             {
@@ -322,7 +348,14 @@ namespace Raylib_cs
         }
 
         /// <summary>Resize canvas and fill with color</summary>
-        public static void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color color)
+        public static void ImageResizeCanvas(
+            ref Image image,
+            int newWidth,
+            int newHeight,
+            int offsetX,
+            int offsetY,
+            Color color
+        )
         {
             fixed (Image* p = &image)
             {
@@ -466,7 +499,14 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw line within an image</summary>
-        public static void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
+        public static void ImageDrawLine(
+            ref Image dst,
+            int startPosX,
+            int startPosY,
+            int endPosX,
+            int endPosY,
+            Color color
+        )
         {
             fixed (Image* p = &dst)
             {
@@ -557,7 +597,15 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw text (custom sprite font) within an image (destination)</summary>
-        public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, int fontSize, float spacing, Color color)
+        public static void ImageDrawTextEx(
+            ref Image dst,
+            Font font,
+            string text,
+            Vector2 position,
+            int fontSize,
+            float spacing,
+            Color color
+        )
         {
             using var str1 = text.ToUTF8Buffer();
             fixed (Image* p = &dst)
@@ -636,19 +684,19 @@ namespace Raylib_cs
         }
 
         /// <summary>Load model animations from file</summary>
-        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animsCount)
+        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animCount)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            fixed (uint* p = &animsCount)
+            fixed (uint* p = &animCount)
             {
-                var model = LoadModelAnimations(str1.AsPointer(), p);
+                ModelAnimation* modelAnimations = LoadModelAnimations(str1.AsPointer(), p);
 
-                if ((IntPtr)model == IntPtr.Zero)
+                if ((IntPtr)modelAnimations == IntPtr.Zero)
                 {
                     throw new ApplicationException("Failed to load animation");
                 }
 
-                return new ReadOnlySpan<ModelAnimation>(model, (int)animsCount);
+                return new ReadOnlySpan<ModelAnimation>(modelAnimations, (int)animCount);
             }
         }
 
@@ -680,41 +728,29 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw lines sequence</summary>
-        public static void DrawLineStrip(Vector2[] points, int numPoints, Color color)
+        public static void DrawLineStrip(Vector2[] points, int pointCount, Color color)
         {
             fixed (Vector2* p = points)
             {
-                DrawLineStrip(p, numPoints, color);
+                DrawLineStrip(p, pointCount, color);
             }
         }
 
         /// <summary>Draw a triangle fan defined by points (first vertex is the center)</summary>
-        public static void DrawTriangleFan(Vector2[] points, int numPoints, Color color)
+        public static void DrawTriangleFan(Vector2[] points, int pointCount, Color color)
         {
             fixed (Vector2* p = points)
             {
-                DrawTriangleFan(p, numPoints, color);
+                DrawTriangleFan(p, pointCount, color);
             }
         }
 
         /// <summary>Draw a triangle strip defined by points</summary>
-        public static void DrawTriangleStrip(Vector2[] points, int pointsCount, Color color)
+        public static void DrawTriangleStrip(Vector2[] points, int pointCount, Color color)
         {
             fixed (Vector2* p = points)
             {
-                DrawTriangleStrip(p, pointsCount, color);
-            }
-        }
-
-        /// <summary>Draw a textured polygon</summary>
-        public static void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointsCount, Color tint)
-        {
-            fixed (Vector2* p = points)
-            {
-                fixed (Vector2* p1 = texcoords)
-                {
-                    DrawTexturePoly(texture, center, p, p1, pointsCount, tint);
-                }
+                DrawTriangleStrip(p, pointCount, color);
             }
         }
 
@@ -726,14 +762,30 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw text using font and additional parameters</summary>
-        public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+        public static void DrawTextEx(
+            Font font,
+            string text,
+            Vector2 position,
+            float fontSize,
+            float spacing,
+            Color tint
+        )
         {
             using var str1 = text.ToUTF8Buffer();
             DrawTextEx(font, str1.AsPointer(), position, fontSize, spacing, tint);
         }
 
         /// <summary>Draw text using Font and pro parameters (rotation)</summary>
-        public static void DrawTextPro(Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
+        public static void DrawTextPro(
+            Font font,
+            string text,
+            Vector2 position,
+            Vector2 origin,
+            float rotation,
+            float fontSize,
+            float spacing,
+            Color tint
+        )
         {
             using var str1 = text.ToUTF8Buffer();
             DrawTextPro(font, str1.AsPointer(), position, origin, rotation, fontSize, spacing, tint);
@@ -788,40 +840,40 @@ namespace Raylib_cs
             }
         }
 
-        /// <summary>Get total number of characters (codepoints) in a UTF8 encoded string</summary>
+        /// <summary>Get total number of codepoints in a UTF8 encoded string</summary>
         public static int GetCodepointCount(string text)
         {
             using var str1 = text.ToUTF8Buffer();
             return GetCodepointCount(str1.AsPointer());
         }
 
-        /// <summary>Get next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure</summary>
+        /// <summary>Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure</summary>
         /// <returns>single codepoint / "char"</returns>
-        public static int GetCodepoint(string text, ref int bytesProcessed)
+        public static int GetCodepoint(string text, ref int codepointSize)
         {
             using var str1 = text.ToUTF8Buffer();
-            fixed (int* p = &bytesProcessed)
+            fixed (int* p = &codepointSize)
             {
-                return GetCodepoint(str1.AsPointer(), p);
+                return GetCodepointNext(str1.AsPointer(), p);
             }
         }
 
-        /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
-        public static string CodepointToUTF8(int codepoint, ref int byteSize)
+        /// <summary>Encode one codepoint into UTF-8 byte array (array length returned as parameter)</summary>
+        public static string CodepointToUTF8(int codepoint, ref int utf8Size)
         {
-            fixed (int* l1 = &byteSize)
+            fixed (int* l1 = &utf8Size)
             {
                 var ptr = CodepointToUTF8(codepoint, l1);
                 return Utf8StringUtils.GetUTF8String(ptr);
             }
         }
 
-        /// <summary>Encode codepoint into utf8 text (char array length returned as parameter)</summary>
-        public static string TextCodepointsToUTF8(int[] codepoints, int length)
+        /// <summary>Load UTF-8 text encoded from codepoints array</summary>
+        public static string LoadUTF8(int[] codepoints, int length)
         {
             fixed (int* c1 = codepoints)
             {
-                var ptr = TextCodepointsToUTF8(c1, length);
+                var ptr = LoadUTF8(c1, length);
                 var text = Utf8StringUtils.GetUTF8String(ptr);
                 MemFree(ptr);
                 return text;
@@ -843,11 +895,11 @@ namespace Raylib_cs
         }
 
         /// <summary>Draw a triangle strip defined by points</summary>
-        public static void DrawTriangleStrip3D(Vector3[] points, int pointsCount, Color color)
+        public static void DrawTriangleStrip3D(Vector3[] points, int pointCount, Color color)
         {
             fixed (Vector3* p = points)
             {
-                DrawTriangleStrip3D(p, pointsCount, color);
+                DrawTriangleStrip3D(p, pointCount, color);
             }
         }
 
@@ -910,7 +962,12 @@ namespace Raylib_cs
             return model.materials[materialIndex].maps[(int)mapIndex].texture;
         }
 
-        public static void SetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex, ref Texture2D texture)
+        public static void SetMaterialTexture(
+            ref Model model,
+            int materialIndex,
+            MaterialMapIndex mapIndex,
+            ref Texture2D texture
+        )
         {
             SetMaterialTexture(&model.materials[materialIndex], mapIndex, texture);
         }

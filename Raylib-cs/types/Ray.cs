@@ -38,12 +38,12 @@ namespace Raylib_cs
         public CBool hit;
 
         /// <summary>
-        /// Distance to nearest hit
+        /// Distance to the nearest hit
         /// </summary>
         public float distance;
 
         /// <summary>
-        /// Position of nearest hit
+        /// Point of the nearest hit
         /// </summary>
         public Vector3 point;
 

@@ -229,7 +229,7 @@ namespace Raylib_cs
         MOUSE_CURSOR_RESIZE_NESW = 8,
 
         /// <summary>
-        /// The omni-directional resize/move cursor shape
+        /// The omnidirectional resize/move cursor shape
         /// </summary>
         MOUSE_CURSOR_RESIZE_ALL = 9,
 
@@ -332,12 +332,12 @@ namespace Raylib_cs
         /// Gamepad top/back trigger left (second), it could be a trailing button
         /// </summary>
         GAMEPAD_BUTTON_LEFT_TRIGGER_2,
-        
+
         /// <summary>
         /// Gamepad top/back trigger right (first), it could be a trailing button
         /// </summary>
         GAMEPAD_BUTTON_RIGHT_TRIGGER_1,
-        
+
         /// <summary>
         /// Gamepad top/back trigger right (second), it could be a trailing button
         /// </summary>
