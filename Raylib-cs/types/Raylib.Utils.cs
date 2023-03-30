@@ -684,19 +684,19 @@ namespace Raylib_cs
         }
 
         /// <summary>Load model animations from file</summary>
-        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animsCount)
+        public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animCount)
         {
             using var str1 = fileName.ToUTF8Buffer();
-            fixed (uint* p = &animsCount)
+            fixed (uint* p = &animCount)
             {
-                var model = LoadModelAnimations(str1.AsPointer(), p);
+                ModelAnimation* modelAnimations = LoadModelAnimations(str1.AsPointer(), p);
 
-                if ((IntPtr)model == IntPtr.Zero)
+                if ((IntPtr)modelAnimations == IntPtr.Zero)
                 {
                     throw new ApplicationException("Failed to load animation");
                 }
 
-                return new ReadOnlySpan<ModelAnimation>(model, (int)animsCount);
+                return new ReadOnlySpan<ModelAnimation>(modelAnimations, (int)animCount);
             }
         }
 

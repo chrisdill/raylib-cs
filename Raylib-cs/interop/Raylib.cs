@@ -1389,7 +1389,7 @@ namespace Raylib_cs
 
         /// <summary>Load colors palette from image as a Color array (RGBA - 32bit)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorsCount);
+        public static extern Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorCount);
 
         /// <summary>Unload color data loaded with LoadImageColors()</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2278,7 +2278,7 @@ namespace Raylib_cs
 
         /// <summary>Load model animations from file</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ModelAnimation* LoadModelAnimations(sbyte* fileName, uint* animsCount);
+        public static extern ModelAnimation* LoadModelAnimations(sbyte* fileName, uint* animCount);
 
         /// <summary>Update model animation pose</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2387,7 +2387,7 @@ namespace Raylib_cs
 
         /// <summary>Update sound buffer with new data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateSound(Sound sound, void* data, int samplesCount);
+        public static extern void UpdateSound(Sound sound, void* data, int sampleCount);
 
         /// <summary>Unload wave data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2548,7 +2548,7 @@ namespace Raylib_cs
 
         /// <summary>Update audio stream buffers with data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdateAudioStream(AudioStream stream, void* data, int samplesCount);
+        public static extern void UpdateAudioStream(AudioStream stream, void* data, int frameCount);
 
         /// <summary>Check if any audio stream buffers requires refill</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
