@@ -26,6 +26,8 @@ dotnet add package Raylib-cs --version 4.2.0.2
 
 If you need to edit Raylib-cs source then you will need to add the bindings as a project (see below).
 
+If you are new to using NuGet (or you've forgotten) and are trying to run the above command in the command prompt, remember that you need to be *inside the intended project directory* (not just inside the solution directory) otherwise the command won't work.
+
 ## Installation - Manual
 
 1. Download/Clone this repo
