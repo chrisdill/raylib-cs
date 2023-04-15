@@ -2655,33 +2655,33 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetAudioStreamCallback(
             AudioStream stream,
-            delegate* unmanaged[Cdecl]<sbyte*, uint, void> callback
+            delegate* unmanaged[Cdecl]<void*, uint, void> callback
         );
 
         /// <summary>Attach audio stream processor to stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void AttachAudioStreamProcessor(
             AudioStream stream,
-            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+            delegate* unmanaged[Cdecl]<void*, uint, void> processor
         );
 
         /// <summary>Detach audio stream processor from stream</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DetachAudioStreamProcessor(
             AudioStream stream,
-            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+            delegate* unmanaged[Cdecl]<void*, uint, void> processor
         );
 
         /// <summary>Attach audio stream processor to the entire audio pipeline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void AttachAudioMixedProcessor(
-            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+            delegate* unmanaged[Cdecl]<void*, uint, void> processor
         );
 
         /// <summary>Detach audio stream processor from the entire audio pipeline</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DetachAudioMixedProcessor(
-            delegate* unmanaged[Cdecl]<sbyte*, uint, void> processor
+            delegate* unmanaged[Cdecl]<void*, uint, void> processor
         );
     }
 }
