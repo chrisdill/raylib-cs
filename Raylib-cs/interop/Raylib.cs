@@ -837,13 +837,10 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetGesturePinchAngle();
 
+
         //------------------------------------------------------------------------------------
         // Camera System Functions (Module: camera)
         //------------------------------------------------------------------------------------
-
-        /// <summary>Set camera mode (multiple camera modes available)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetCameraMode(Camera3D camera, CameraMode mode);
 
         /// <summary>Update camera position for selected mode</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -852,6 +849,75 @@ namespace Raylib_cs
         /// <summary>Update camera movement/rotation</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UpdateCameraPro(Camera3D* camera, Vector3 movement, Vector3 rotation, float zoom);
+
+        /// <summary>Returns the cameras forward vector (normalized)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 GetCameraForward(Camera3D* camera);
+
+        /// <summary>
+        /// Returns the cameras up vector (normalized)<br/>
+        /// NOTE: The up vector might not be perpendicular to the forward vector
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 GetCameraUp(Camera3D* camera);
+
+        /// <summary>Returns the cameras right vector (normalized)</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Vector3 GetCameraRight(Camera3D* camera);
+
+
+        // Camera movement
+
+        /// <summary>Moves the camera in its forward direction</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraMoveForward(Camera3D* camera, float distance, CBool moveInWorldPlane);
+
+        /// <summary>Moves the camera in its up direction</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraMoveUp(Camera3D* camera, float distance);
+
+        /// <summary>Moves the camera target in its current right direction</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraMoveRight(Camera3D* camera, float distance, CBool moveInWorldPlane);
+
+        /// <summary>Moves the camera position closer/farther to/from the camera target</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraMoveToTarget(Camera3D* camera, float delta);
+
+
+        // Camera rotation
+
+        /// <summary>
+        /// Rotates the camera around its up vector<br/>
+        /// If rotateAroundTarget is false, the camera rotates around its position
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraYaw(Camera3D* camera, float angle, CBool rotateAroundTarget);
+
+        /// <summary>
+        /// Rotates the camera around its right vector
+        /// </summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraPitch(
+            Camera3D* camera,
+            float angle,
+            CBool lockView,
+            CBool rotateAroundTarget,
+            CBool rotateUp
+        );
+
+        /// <summary>Rotates the camera around its forward vector</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CameraRoll(Camera3D* camera, float angle);
+
+        /// <summary>Returns the camera view matrix</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 GetCameraViewMatrix(Camera3D* camera);
+
+        /// <summary>Returns the camera projection matrix</summary>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 GetCameraProjectionMatrix(Camera3D* camera, float aspect);
+
 
         //------------------------------------------------------------------------------------
         // Basic Shapes Drawing Functions (Module: shapes)
@@ -1866,7 +1932,7 @@ namespace Raylib_cs
 
         /// <summary>Check if two text string are equal</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool TextIsEqual(sbyte* text1, sbyte* text2);
+        public static extern CBool TextIsEqual(sbyte* text1, sbyte* text2);
 
         /// <summary>Get text length, checks for '\0' ending</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]

@@ -235,6 +235,15 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>Update camera movement/rotation</summary>
+        public static void UpdateCameraPro(ref Camera3D camera, Vector3 movement, Vector3 rotation, float zoom)
+        {
+            fixed (Camera3D* c = &camera)
+            {
+                UpdateCameraPro(c, movement, rotation, zoom);
+            }
+        }
+
         /// <summary>
         /// Check the collision between two lines defined by two points each, returns collision point by reference
         /// </summary>
