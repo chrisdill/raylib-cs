@@ -19,18 +19,20 @@ Raylib-cs targets net5.0 and net6.0.
 This is the prefered method to get started.
 
 ```
-dotnet add package Raylib-cs --version 4.2.0.2
+dotnet add package Raylib-cs --version 4.5.0
 ```
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
 
 If you need to edit Raylib-cs source then you will need to add the bindings as a project (see below).
 
-If you are new to using NuGet (or you've forgotten) and are trying to run the above command in the command prompt, remember that you need to be *inside the intended project directory* (not just inside the solution directory) otherwise the command won't work.
+If you are new to using NuGet (or you've forgotten) and are trying to run the above command in the command prompt,
+remember that you need to be *inside the intended project directory* (not just inside the solution directory) otherwise
+the command won't work.
 
 ## Installation - Manual
 
-1. Download/Clone this repo
+1. Download/clone the repo
 
 2. Add [Raylib-cs/Raylib-cs.csproj](Raylib-cs/Raylib-cs.csproj) to your project as an existing project.
 
@@ -71,19 +73,14 @@ namespace HelloWorld
 }
 ```
 
-## Documentation
-
-Examples for Raylib-cs can be found at [Raylib-cs-Examples](https://github.com/ChrisDill/Raylib-cs-Examples).
-
-Details about Raylib-cs can be found on the [Raylib-cs wiki](https://github.com/ChrisDill/Raylib-cs/wiki).
-
 ## Contributing
 
 If you have any ideas, feel free to open an issue and tell me what you think.
 If you'd like to contribute, please fork the repository and make changes as
 you'd like. Pull requests are warmly welcome.
 
-If you want to request features or report bugs related to raylib directly (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
+If you want to request features or report bugs related to raylib directly (in contrast to this binding), please refer
+to the [author's project repo](https://github.com/raysan5/raylib).
 
 ## License
 

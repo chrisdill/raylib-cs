@@ -23,6 +23,7 @@
     <PackageTags>raylib;bindings;gamedev</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
