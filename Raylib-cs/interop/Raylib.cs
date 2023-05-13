@@ -2351,7 +2351,7 @@ namespace Raylib_cs
 
         /// <summary>Unload animation array data</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadModelAnimations(ModelAnimation[] animations, uint count);
+        public static extern void UnloadModelAnimations(ModelAnimation* animations, uint count);
 
         /// <summary>Check model animation skeleton match</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
