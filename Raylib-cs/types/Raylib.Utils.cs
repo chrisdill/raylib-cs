@@ -866,13 +866,12 @@ namespace Raylib_cs
         }
 
         /// <summary>Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure</summary>
-        /// <returns>single codepoint / "char"</returns>
         public static int GetCodepoint(string text, ref int codepointSize)
         {
             using var str1 = text.ToUTF8Buffer();
             fixed (int* p = &codepointSize)
             {
-                return GetCodepointNext(str1.AsPointer(), p);
+                return GetCodepoint(str1.AsPointer(), p);
             }
         }
 
