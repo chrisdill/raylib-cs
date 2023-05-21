@@ -329,6 +329,15 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>Apply Gaussian blur using a box blur approximation</summary>
+        public static void ImageBlurGaussian(ref Image image, int blurSize)
+        {
+            fixed (Image* p = &image)
+            {
+                ImageBlurGaussian(p, blurSize);
+            }
+        }
+
         /// <summary>Crop an image to a defined rectangle</summary>
         public static void ImageCrop(ref Image image, Rectangle crop)
         {
