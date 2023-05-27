@@ -115,6 +115,21 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>
+        /// Load image from a native copy of managed memory, fileType refers to extension: i.e. "png"
+        /// </summary>
+        public static Image LoadImageFromMemory(string fileType, byte[] fileData)
+        {
+            using var fileTypeNative = fileType.ToUTF8Buffer();
+
+            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
+            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
+
+            Image image = LoadImageFromMemory(fileTypeNative.AsPointer(), fileDataNative, fileData.Length);
+
+            return image;
+        }
+
         /// <summary>Export image data to file</summary>
         public static CBool ExportImage(Image image, string fileName)
         {
@@ -665,6 +680,37 @@ namespace Raylib_cs
             }
         }
 
+        /// <summary>
+        /// Load font from a native copy of managed memory, fileType refers to extension: i.e. "ttf"
+        /// </summary>
+        public static Font LoadFontFromMemory(
+            string fileType,
+            byte[] fileData,
+            int fontSize,
+            int[] fontChars,
+            int glyphCount
+        )
+        {
+            using var fileTypeNative = fileType.ToUTF8Buffer();
+
+            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
+            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
+
+            fixed (int* fontCharsNative = fontChars)
+            {
+                Font font = LoadFontFromMemory(
+                    fileTypeNative.AsPointer(),
+                    fileDataNative,
+                    fileData.Length,
+                    fontSize,
+                    fontCharsNative,
+                    glyphCount
+                );
+
+                return font;
+            }
+        }
+
         /// <summary>Upload vertex data into GPU and provided VAO/VBO ids</summary>
         public static void UploadMesh(ref Mesh mesh, CBool dynamic)
         {
@@ -936,6 +982,28 @@ namespace Raylib_cs
             return LoadWave(str1.AsPointer());
         }
 
+        /// <summary>
+        /// Load wave from a native copy of managed memory, fileType refers to extension: i.e. "wav"
+        /// </summary>
+        public static Wave LoadWaveFromMemory(
+            string fileType,
+            byte[] fileData
+        )
+        {
+            using var fileTypeNative = fileType.ToUTF8Buffer();
+
+            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
+            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
+
+            Wave wave = LoadWaveFromMemory(
+                fileTypeNative.AsPointer(),
+                fileDataNative,
+                fileData.Length
+            );
+
+            return wave;
+        }
+
         /// <summary>Load sound from file</summary>
         public static Sound LoadSound(string fileName)
         {
@@ -962,6 +1030,28 @@ namespace Raylib_cs
         {
             using var str1 = fileName.ToUTF8Buffer();
             return LoadMusicStream(str1.AsPointer());
+        }
+
+        /// <summary>
+        /// Load music stream from a native copy of managed memory, fileType refers to extension: i.e. ".wav"
+        /// </summary>
+        public static Music LoadMusicStreamFromMemory(
+            string fileType,
+            byte[] fileData
+        )
+        {
+            using var fileTypeNative = fileType.ToUTF8Buffer();
+
+            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
+            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
+
+            Music music = LoadMusicStreamFromMemory(
+                fileTypeNative.AsPointer(),
+                fileDataNative,
+                fileData.Length
+            );
+
+            return music;
         }
 
         public static string SubText(this string input, int position, int length)

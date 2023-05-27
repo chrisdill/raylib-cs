@@ -2531,8 +2531,7 @@ namespace Raylib_cs
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Music LoadMusicStream(sbyte* fileName);
 
-        //TODO: Span/Helper method
-        /// <summary>Load music stream from data</summary>
+        /// <summary>Load music stream from memory buffer, fileType refers to extension: i.e. ".wav"</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Music LoadMusicStreamFromMemory(sbyte* fileType, byte* data, int dataSize);
 
