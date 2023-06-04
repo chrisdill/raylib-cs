@@ -613,7 +613,7 @@ namespace Raylib_cs
 
         /// <summary>Get file modification time (last write time)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetFileModTime(sbyte* fileName);
+        public static extern long GetFileModTime(sbyte* fileName);
 
 
         // Compression/Encoding functionality
