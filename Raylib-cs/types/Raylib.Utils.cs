@@ -869,28 +869,6 @@ namespace Raylib_cs
             return MeasureTextEx(font, str1.AsPointer(), fontSize, spacing);
         }
 
-        /// <summary>Append text at specific position and move cursor!</summary>
-        public static void TextAppend(string text, string append, int position)
-        {
-            using var str1 = text.ToUTF8Buffer();
-            using var str2 = append.ToUTF8Buffer();
-            TextAppend(str1.AsPointer(), str2.AsPointer(), &position);
-        }
-
-        /// <summary>Get Pascal case notation version of provided string</summary>
-        public static string TextToPascal(string text)
-        {
-            using var str1 = text.ToUTF8Buffer();
-            return Utf8StringUtils.GetUTF8String(TextToPascal(str1.AsPointer()));
-        }
-
-        /// <summary>Get integer value from text (negative values not supported)</summary>
-        public static int TextToInteger(string text)
-        {
-            using var str1 = text.ToUTF8Buffer();
-            return TextToInteger(str1.AsPointer());
-        }
-
         /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         public static int[] LoadCodepoints(string text, ref int count)
         {
