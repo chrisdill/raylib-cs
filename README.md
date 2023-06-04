@@ -19,7 +19,7 @@ Raylib-cs targets net5.0 and net6.0.
 This is the prefered method to get started.
 
 ```
-dotnet add package Raylib-cs --version 4.5.0
+dotnet add package Raylib-cs --version 4.5.0.1
 ```
 
 [![NuGet](https://img.shields.io/nuget/dt/raylib-cs)](https://www.nuget.org/packages/Raylib-cs/)
