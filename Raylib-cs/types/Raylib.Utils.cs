@@ -116,18 +116,16 @@ namespace Raylib_cs
         }
 
         /// <summary>
-        /// Load image from a native copy of managed memory, fileType refers to extension: i.e. "png"
+        /// Load image from managed memory, fileType refers to extension: i.e. "png"
         /// </summary>
         public static Image LoadImageFromMemory(string fileType, byte[] fileData)
         {
             using var fileTypeNative = fileType.ToUTF8Buffer();
-
-            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
-            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
-
-            Image image = LoadImageFromMemory(fileTypeNative.AsPointer(), fileDataNative, fileData.Length);
-
-            return image;
+            fixed (byte* fileDataNative = fileData)
+            {
+                Image image = LoadImageFromMemory(fileTypeNative.AsPointer(), fileDataNative, fileData.Length);
+                return image;
+            }
         }
 
         /// <summary>Export image data to file</summary>
@@ -681,7 +679,7 @@ namespace Raylib_cs
         }
 
         /// <summary>
-        /// Load font from a native copy of managed memory, fileType refers to extension: i.e. "ttf"
+        /// Load font from managed memory, fileType refers to extension: i.e. "ttf"
         /// </summary>
         public static Font LoadFontFromMemory(
             string fileType,
@@ -692,22 +690,21 @@ namespace Raylib_cs
         )
         {
             using var fileTypeNative = fileType.ToUTF8Buffer();
-
-            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
-            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
-
-            fixed (int* fontCharsNative = fontChars)
+            fixed (byte* fileDataNative = fileData)
             {
-                Font font = LoadFontFromMemory(
-                    fileTypeNative.AsPointer(),
-                    fileDataNative,
-                    fileData.Length,
-                    fontSize,
-                    fontCharsNative,
-                    glyphCount
-                );
+                fixed (int* fontCharsNative = fontChars)
+                {
+                    Font font = LoadFontFromMemory(
+                        fileTypeNative.AsPointer(),
+                        fileDataNative,
+                        fileData.Length,
+                        fontSize,
+                        fontCharsNative,
+                        glyphCount
+                    );
 
-                return font;
+                    return font;
+                }
             }
         }
 
@@ -961,7 +958,7 @@ namespace Raylib_cs
         }
 
         /// <summary>
-        /// Load wave from a native copy of managed memory, fileType refers to extension: i.e. "wav"
+        /// Load wave from managed memory, fileType refers to extension: i.e. "wav"
         /// </summary>
         public static Wave LoadWaveFromMemory(
             string fileType,
@@ -970,16 +967,16 @@ namespace Raylib_cs
         {
             using var fileTypeNative = fileType.ToUTF8Buffer();
 
-            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
-            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
+            fixed (byte* fileDataNative = fileData)
+            {
+                Wave wave = LoadWaveFromMemory(
+                    fileTypeNative.AsPointer(),
+                    fileDataNative,
+                    fileData.Length
+                );
 
-            Wave wave = LoadWaveFromMemory(
-                fileTypeNative.AsPointer(),
-                fileDataNative,
-                fileData.Length
-            );
-
-            return wave;
+                return wave;
+            }
         }
 
         /// <summary>Load sound from file</summary>
@@ -1011,7 +1008,7 @@ namespace Raylib_cs
         }
 
         /// <summary>
-        /// Load music stream from a native copy of managed memory, fileType refers to extension: i.e. ".wav"
+        /// Load music stream from managed memory, fileType refers to extension: i.e. ".wav"
         /// </summary>
         public static Music LoadMusicStreamFromMemory(
             string fileType,
@@ -1020,16 +1017,16 @@ namespace Raylib_cs
         {
             using var fileTypeNative = fileType.ToUTF8Buffer();
 
-            byte* fileDataNative = (byte*)MemAlloc(fileData.Length);
-            Marshal.Copy(fileData, 0, (IntPtr)fileDataNative, fileData.Length);
+            fixed (byte* fileDataNative = fileData)
+            {
+                Music music = LoadMusicStreamFromMemory(
+                    fileTypeNative.AsPointer(),
+                    fileDataNative,
+                    fileData.Length
+                );
 
-            Music music = LoadMusicStreamFromMemory(
-                fileTypeNative.AsPointer(),
-                fileDataNative,
-                fileData.Length
-            );
-
-            return music;
+                return music;
+            }
         }
 
         public static string SubText(this string input, int position, int length)
