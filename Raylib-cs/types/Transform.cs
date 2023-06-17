@@ -17,7 +17,7 @@ namespace Raylib_cs
         /// <summary>
         /// Rotation
         /// </summary>
-        public Vector4 rotation;
+        public Quaternion rotation;
 
         /// <summary>
         /// Scale
