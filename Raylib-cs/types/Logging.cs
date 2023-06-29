@@ -1,5 +1,7 @@
+// Adapted mfkl and jeremyVignelles work on libvlcsharp for marshalling va_list arguments
+// For more information see the dotnet issue: https://github.com/dotnet/runtime/issues/9316
+// Example of va_list interop: https://github.com/jeremyVignelles/va-list-interop-demo
 using System;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -141,7 +143,7 @@ namespace Raylib_cs
             return -1;
         }
 
-        // https://github.com/dotnet/runtime/issues/51052
+        // yhttps://github.com/dotnet/runtime/issues/51052
         static int vsprintf(IntPtr buffer, IntPtr format, IntPtr args)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
