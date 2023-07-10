@@ -525,15 +525,15 @@ namespace Raylib_cs
 
         // Load text data from file (read), returns a '\0' terminated string
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern char* LoadFileText(sbyte* fileName);
+        public static extern sbyte* LoadFileText(sbyte* fileName);
 
         // Unload file text data allocated by LoadFileText()
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadFileText(char* text);
+        public static extern void UnloadFileText(sbyte* text);
 
         // Save text data to file (write), string must be '\0' terminated, returns true on success
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool SaveFileText(sbyte* fileName, char* text);
+        public static extern CBool SaveFileText(sbyte* fileName, sbyte* text);
 
         // Check if file exists
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1892,7 +1892,7 @@ namespace Raylib_cs
 
         /// <summary>Unload UTF-8 text encoded from codepoints array</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UnloadUTF8(int* text);
+        public static extern void UnloadUTF8(sbyte* text);
 
         /// <summary>Load all codepoints from a UTF-8 text string, codepoints count returned by parameter</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1928,7 +1928,7 @@ namespace Raylib_cs
 
         // <summary>Copy one string to another, returns bytes copied</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int TextCopy(char* dst, sbyte* src);
+        public static extern int TextCopy(sbyte* dst, sbyte* src);
 
         /// <summary>Check if two text string are equal</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1948,11 +1948,11 @@ namespace Raylib_cs
 
         /// <summary>Replace text string (WARNING: memory must be freed!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern char* TextReplace(char* text, sbyte* replace, sbyte* by);
+        public static extern sbyte* TextReplace(sbyte* text, sbyte* replace, sbyte* by);
 
         /// <summary>Insert text in a position (WARNING: memory must be freed!)</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern char* TextInsert(sbyte* text, sbyte* insert, int position);
+        public static extern sbyte* TextInsert(sbyte* text, sbyte* insert, int position);
 
         /// <summary>Join text strings with delimiter</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
