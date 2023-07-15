@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -12,16 +11,16 @@ namespace Raylib_cs
         /// <summary>
         /// Filepaths max entries
         /// </summary>
-        public uint capacity;
+        public uint Capacity;
 
         /// <summary>
         /// Filepaths entries count
         /// </summary>
-        public uint count;
+        public uint Count;
 
         /// <summary>
         /// Filepaths entries
         /// </summary>
-        public byte** paths;
+        public byte** Paths;
     }
 }

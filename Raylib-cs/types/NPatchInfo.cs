@@ -32,31 +32,31 @@ namespace Raylib_cs
         /// <summary>
         /// Texture source rectangle
         /// </summary>
-        public Rectangle source;
+        public Rectangle Source;
 
         /// <summary>
         /// Left border offset
         /// </summary>
-        public int left;
+        public int Left;
 
         /// <summary>
         /// Top border offset
         /// </summary>
-        public int top;
+        public int Top;
 
         /// <summary>
         /// Right border offset
         /// </summary>
-        public int right;
+        public int Right;
 
         /// <summary>
         /// Bottom border offset
         /// </summary>
-        public int bottom;
+        public int Bottom;
 
         /// <summary>
         /// Layout of the n-patch: 3x3, 1x3 or 3x1
         /// </summary>
-        public NPatchLayout layout;
+        public NPatchLayout Layout;
     }
 }

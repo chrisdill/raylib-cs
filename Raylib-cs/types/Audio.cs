@@ -12,28 +12,28 @@ namespace Raylib_cs
         /// <summary>
         /// Number of samples
         /// </summary>
-        public uint sampleCount;
+        public uint SampleCount;
 
         /// <summary>
         /// Frequency (samples per second)
         /// </summary>
-        public uint sampleRate;
+        public uint SampleRate;
 
         /// <summary>
         /// Bit depth (bits per sample): 8, 16, 32 (24 not supported)
         /// </summary>
-        public uint sampleSize;
+        public uint SampleSize;
 
         /// <summary>
         /// Number of channels (1-mono, 2-stereo)
         /// </summary>
-        public uint channels;
+        public uint Channels;
 
         //TODO: SPAN<byte>  ?
         /// <summary>
         /// Buffer data pointer
         /// </summary>
-        public void* data;
+        public void* Data;
     }
 
     /// <summary>
@@ -47,27 +47,27 @@ namespace Raylib_cs
         /// <summary>
         /// Pointer to internal data(rAudioBuffer *) used by the audio system
         /// </summary>
-        public IntPtr buffer;
+        public IntPtr Buffer;
 
         /// <summary>
         /// Pointer to internal data processor, useful for audio effects
         /// </summary>
-        public IntPtr processor;
+        public IntPtr Processor;
 
         /// <summary>
         /// Frequency (samples per second)
         /// </summary>
-        public uint sampleRate;
+        public uint SampleRate;
 
         /// <summary>
         /// Bit depth (bits per sample): 8, 16, 32 (24 not supported)
         /// </summary>
-        public uint sampleSize;
+        public uint SampleSize;
 
         /// <summary>
         /// Number of channels (1-mono, 2-stereo)
         /// </summary>
-        public uint channels;
+        public uint Channels;
     }
 
     /// <summary>
@@ -79,12 +79,12 @@ namespace Raylib_cs
         /// <summary>
         /// Audio stream
         /// </summary>
-        public AudioStream stream;
+        public AudioStream Stream;
 
         /// <summary>
         /// Total number of frames (considering channels)
         /// </summary>
-        public uint frameCount;
+        public uint FrameCount;
     }
 
     /// <summary>
@@ -97,27 +97,27 @@ namespace Raylib_cs
         /// <summary>
         /// Audio stream
         /// </summary>
-        public AudioStream stream;
+        public AudioStream Stream;
 
         /// <summary>
         /// Total number of samples
         /// </summary>
-        public uint frameCount;
+        public uint FrameCount;
 
         /// <summary>
         /// Music looping enable
         /// </summary>
-        public CBool looping;
+        public CBool Looping;
 
         /// <summary>
         /// Type of music context (audio filetype)
         /// </summary>
-        public int ctxType;
+        public int CtxType;
 
         //TODO span
         /// <summary>
         /// Audio context data, depends on type
         /// </summary>
-        public void* ctxData;
+        public void* CtxData;
     }
 }

@@ -222,11 +222,11 @@ namespace Raylib_cs
         public static string[] GetDroppedFiles()
         {
             var filePathList = LoadDroppedFiles();
-            var files = new string[filePathList.count];
+            var files = new string[filePathList.Count];
 
-            for (var i = 0; i < filePathList.count; i++)
+            for (var i = 0; i < filePathList.Count; i++)
             {
-                files[i] = Marshal.PtrToStringUTF8((IntPtr)filePathList.paths[i]);
+                files[i] = Marshal.PtrToStringUTF8((IntPtr)filePathList.Paths[i]);
             }
             UnloadDroppedFiles(filePathList);
 
@@ -1036,12 +1036,12 @@ namespace Raylib_cs
 
         public static Material GetMaterial(ref Model model, int materialIndex)
         {
-            return model.materials[materialIndex];
+            return model.Materials[materialIndex];
         }
 
         public static Texture2D GetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex)
         {
-            return model.materials[materialIndex].maps[(int)mapIndex].texture;
+            return model.Materials[materialIndex].Maps[(int)mapIndex].Texture;
         }
 
         public static void SetMaterialTexture(
@@ -1051,12 +1051,12 @@ namespace Raylib_cs
             ref Texture2D texture
         )
         {
-            SetMaterialTexture(&model.materials[materialIndex], mapIndex, texture);
+            SetMaterialTexture(&model.Materials[materialIndex], mapIndex, texture);
         }
 
         public static void SetMaterialShader(ref Model model, int materialIndex, ref Shader shader)
         {
-            model.materials[materialIndex].shader = shader;
+            model.Materials[materialIndex].Shader = shader;
         }
     }
 }

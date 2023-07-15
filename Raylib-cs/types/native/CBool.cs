@@ -20,42 +20,42 @@ namespace Raylib_cs
          * 
          * 'value' is visible and constructable (if necessary), but impossible to modify or access.
          */
-        public sbyte value { init; private get; }
+        public sbyte Value { init; private get; }
 
         // Constructors for easier usage.
         public CBool(bool value)
         {
-            this.value = (sbyte)(value ? 1 : 0);
+            this.Value = (sbyte)(value ? 1 : 0);
         }
         public CBool(Int64 value)
         {
-            this.value = (sbyte)(value != 0 ? 1 : 0);
+            this.Value = (sbyte)(value != 0 ? 1 : 0);
         }
 
         // CBool -> Native
         // Allows for arithmetic between CBools and for assignment to greater integer variables.
         public static implicit operator sbyte(CBool x)
         {
-            return x.value;
+            return x.Value;
         }
 
         // Allows for CBools to be implicitely assigned to a native boolean variable.
         public static implicit operator bool(CBool x)
         {
-            return x.value != 0 ? true : false;
+            return x.Value != 0 ? true : false;
         }
 
         // Native -> CBool
         // Allows native booleans to be implicitely constructed into CBools while passing parameters.
         public static implicit operator CBool(bool x)
         {
-            return new CBool { value = (sbyte)(x ? 1 : 0) };
+            return new CBool { Value = (sbyte)(x ? 1 : 0) };
         }
 
         // Same goes for integer numeric values (any value, so an Int64 is used).
         public static implicit operator CBool(Int64 x)
         {
-            return new CBool { value = (sbyte)(x != 0 ? 1 : 0) };
+            return new CBool { Value = (sbyte)(x != 0 ? 1 : 0) };
         }
 
         /* Arithmetic overloads
@@ -69,13 +69,13 @@ namespace Raylib_cs
         // Addition
         public static CBool operator +(CBool left, CBool right)
         {
-            return new CBool { value = (sbyte)(left.value + right.value) };
+            return new CBool { Value = (sbyte)(left.Value + right.Value) };
         }
 
         // Subtraction
         public static CBool operator -(CBool left, CBool right)
         {
-            return new CBool { value = (sbyte)(left.value - right.value) };
+            return new CBool { Value = (sbyte)(left.Value - right.Value) };
         }
 
         // ToString override

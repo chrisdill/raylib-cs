@@ -33,35 +33,35 @@ namespace Raylib_cs
         /// <summary>
         /// Camera position
         /// </summary>
-        public Vector3 position;
+        public Vector3 Position;
 
         /// <summary>
         /// Camera target it looks-at
         /// </summary>
-        public Vector3 target;
+        public Vector3 Target;
 
         /// <summary>
         /// Camera up vector (rotation over its axis)
         /// </summary>
-        public Vector3 up;
+        public Vector3 Up;
 
         /// <summary>
         /// Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
         /// </summary>
-        public float fovy;
+        public float FovY;
 
         /// <summary>
         /// Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
         /// </summary>
-        public CameraProjection projection;
+        public CameraProjection Projection;
 
-        public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy, CameraProjection projection)
+        public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovY, CameraProjection projection)
         {
-            this.position = position;
-            this.target = target;
-            this.up = up;
-            this.fovy = fovy;
-            this.projection = projection;
+            this.Position = position;
+            this.Target = target;
+            this.Up = up;
+            this.FovY = fovY;
+            this.Projection = projection;
         }
     }
 }

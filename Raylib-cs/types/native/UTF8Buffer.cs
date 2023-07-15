@@ -9,21 +9,21 @@ namespace Raylib_cs
     /// </summary>
     public ref struct UTF8Buffer
     {
-        private IntPtr data;
+        private IntPtr _data;
 
         public UTF8Buffer(string text)
         {
-            data = Marshal.StringToCoTaskMemUTF8(text);
+            _data = Marshal.StringToCoTaskMemUTF8(text);
         }
 
         public unsafe sbyte* AsPointer()
         {
-            return (sbyte*)data.ToPointer();
+            return (sbyte*)_data.ToPointer();
         }
 
         public void Dispose()
         {
-            Marshal.FreeCoTaskMem(data);
+            Marshal.FreeCoTaskMem(_data);
         }
     }
 

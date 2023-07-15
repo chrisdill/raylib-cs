@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -124,26 +123,26 @@ namespace Raylib_cs
         /// <summary>
         /// Image raw data
         /// </summary>
-        public void* data;
+        public void* Data;
 
         /// <summary>
         /// Image base width
         /// </summary>
-        public int width;
+        public int Width;
 
         /// <summary>
         /// Image base height
         /// </summary>
-        public int height;
+        public int Height;
 
         /// <summary>
         /// Mipmap levels, 1 by default
         /// </summary>
-        public int mipmaps;
+        public int Mipmaps;
 
         /// <summary>
         /// Data format (PixelFormat type)
         /// </summary>
-        public PixelFormat format;
+        public PixelFormat Format;
     }
 }

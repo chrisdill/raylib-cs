@@ -112,26 +112,26 @@ namespace Raylib_cs
         /// <summary>
         /// OpenGL texture id
         /// </summary>
-        public uint id;
+        public uint Id;
 
         /// <summary>
         /// Texture base width
         /// </summary>
-        public int width;
+        public int Width;
 
         /// <summary>
         /// Texture base height
         /// </summary>
-        public int height;
+        public int Height;
 
         /// <summary>
         /// Mipmap levels, 1 by default
         /// </summary>
-        public int mipmaps;
+        public int Mipmaps;
 
         /// <summary>
         /// Data format (PixelFormat type)
         /// </summary>
-        public PixelFormat format;
+        public PixelFormat Format;
     }
 }

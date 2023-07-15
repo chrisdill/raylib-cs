@@ -13,12 +13,12 @@ namespace Raylib_cs
         /// <summary>
         /// Bone name (char[32])
         /// </summary>
-        public fixed sbyte name[32];
+        public fixed sbyte Name[32];
 
         /// <summary>
         /// Bone parent
         /// </summary>
-        public int parent;
+        public int Parent;
     }
 
     /// <summary>
@@ -30,49 +30,49 @@ namespace Raylib_cs
         /// <summary>
         /// Local transform matrix
         /// </summary>
-        public Matrix4x4 transform;
+        public Matrix4x4 Transform;
 
         /// <summary>
         /// Number of meshes
         /// </summary>
-        public int meshCount;
+        public int MeshCount;
 
         /// <summary>
         /// Number of materials
         /// </summary>
-        public int materialCount;
+        public int MaterialCount;
 
         /// <summary>
         /// Meshes array (Mesh *)
         /// </summary>
-        public Mesh* meshes;
+        public Mesh* Meshes;
 
         /// <summary>
         /// Materials array (Material *)
         /// </summary>
-        public Material* materials;
+        public Material* Materials;
 
         /// <summary>
         /// Mesh material number (int *)
         /// </summary>
-        public int* meshMaterial;
+        public int* MeshMaterial;
 
         /// <summary>
         /// Number of bones
         /// </summary>
-        public int boneCount;
+        public int BoneCount;
 
         //TODO: Span
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
-        public BoneInfo* bones;
+        public BoneInfo* Bones;
 
         //TODO: Span
         /// <summary>
         /// Bones base transformation (pose, Transform *)
         /// </summary>
-        public Transform* bindPose;
+        public Transform* BindPose;
     }
 
     /// <summary>
@@ -84,68 +84,62 @@ namespace Raylib_cs
         /// <summary>
         /// Number of bones
         /// </summary>
-        public readonly int boneCount;
+        public readonly int BoneCount;
 
         /// <summary>
         /// Number of animation frames
         /// </summary>
-        public readonly int frameCount;
+        public readonly int FrameCount;
 
         /// <summary>
         /// Bones information (skeleton, BoneInfo *)
         /// </summary>
-        public readonly BoneInfo* bones;
+        public readonly BoneInfo* Bones;
 
-        /// <inheritdoc cref="bones"/>
-        public ReadOnlySpan<BoneInfo> BoneInfo => new(bones, boneCount);
+        /// <inheritdoc cref="Bones"/>
+        public ReadOnlySpan<BoneInfo> BoneInfo => new(Bones, BoneCount);
 
         /// <summary>
         /// Poses array by frame (Transform **)
         /// </summary>
-        public readonly Transform** framePoses;
+        public readonly Transform** FramePoses;
 
-        /// <inheritdoc cref="framePoses"/>
-        public FramePosesCollection FramePoses => new(framePoses, frameCount, boneCount);
+        /// <inheritdoc cref="FramePoses"/>
+        public FramePosesCollection FramePosesColl => new(FramePoses, FrameCount, BoneCount);
 
         public struct FramePosesCollection
         {
-            readonly Transform** framePoses;
+            readonly Transform** _framePoses;
 
-            readonly int frameCount;
+            readonly int _frameCount;
 
-            readonly int boneCount;
+            readonly int _boneCount;
 
-            public FramePoses this[int index] => new(framePoses[index], boneCount);
+            public FramePoses this[int index] => new(_framePoses[index], _boneCount);
 
-            public Transform this[int index1, int index2] => new FramePoses(framePoses[index1], boneCount)[index2];
+            public Transform this[int index1, int index2] => new FramePoses(_framePoses[index1], _boneCount)[index2];
 
             internal FramePosesCollection(Transform** framePoses, int frameCount, int boneCount)
             {
-                this.framePoses = framePoses;
-                this.frameCount = frameCount;
-                this.boneCount = boneCount;
+                this._framePoses = framePoses;
+                this._frameCount = frameCount;
+                this._boneCount = boneCount;
             }
         }
     }
 
     public unsafe struct FramePoses
     {
-        readonly Transform* poses;
+        readonly Transform* _poses;
 
-        readonly int count;
+        readonly int _count;
 
-        public ref Transform this[int index]
-        {
-            get
-            {
-                return ref poses[index];
-            }
-        }
+        public ref Transform this[int index] => ref _poses[index];
 
         internal FramePoses(Transform* poses, int count)
         {
-            this.poses = poses;
-            this.count = count;
+            this._poses = poses;
+            this._count = count;
         }
     }
 }

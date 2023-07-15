@@ -11,16 +11,16 @@ namespace Raylib_cs
         /// <summary>
         /// OpenGL Framebuffer Object (FBO) id
         /// </summary>
-        public uint id;
+        public uint Id;
 
         /// <summary>
         ///  Color buffer attachment texture
         /// </summary>
-        public Texture2D texture;
+        public Texture2D Texture;
 
         /// <summary>
         /// Depth buffer attachment texture
         /// </summary>
-        public Texture2D depth;
+        public Texture2D Depth;
     }
 }

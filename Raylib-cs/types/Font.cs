@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -33,27 +32,27 @@ namespace Raylib_cs
         /// <summary>
         /// Character value (Unicode)
         /// </summary>
-        public int value;
+        public int Value;
 
         /// <summary>
         /// Character offset X when drawing
         /// </summary>
-        public int offsetX;
+        public int OffsetX;
 
         /// <summary>
         /// Character offset Y when drawing
         /// </summary>
-        public int offsetY;
+        public int OffsetY;
 
         /// <summary>
         /// Character advance position X
         /// </summary>
-        public int advanceX;
+        public int AdvanceX;
 
         /// <summary>
         /// Character image data
         /// </summary>
-        public Image image;
+        public Image Image;
     }
 
     /// <summary>
@@ -65,31 +64,31 @@ namespace Raylib_cs
         /// <summary>
         /// Base size (default chars height)
         /// </summary>
-        public int baseSize;
+        public int BaseSize;
 
         /// <summary>
         /// Number of characters
         /// </summary>
-        public int glyphCount;
+        public int GlyphCount;
 
         /// <summary>
         /// Padding around the glyph characters
         /// </summary>
-        public int glyphPadding;
+        public int GlyphPadding;
 
         /// <summary>
         /// Texture atlas containing the glyphs
         /// </summary>
-        public Texture2D texture;
+        public Texture2D Texture;
 
         /// <summary>
         /// Rectangles in texture for the glyphs
         /// </summary>
-        public Rectangle* recs;
+        public Rectangle* Recs;
 
         /// <summary>
         /// Glyphs info data
         /// </summary>
-        public GlyphInfo* glyphs;
+        public GlyphInfo* Glyphs;
     }
 }

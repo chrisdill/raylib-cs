@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -14,49 +12,49 @@ namespace Raylib_cs
         /// <summary>
         ///  Number of vertices stored in arrays
         /// </summary>
-        public int vertexCount;
+        public int VertexCount;
 
         /// <summary>
         /// Number of triangles stored (indexed or not)
         /// </summary>
-        public int triangleCount;
+        public int TriangleCount;
 
         #region Default vertex data
 
         /// <summary>
         /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
         /// </summary>
-        public float* vertices;
+        public float* Vertices;
 
         /// <summary>
         /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
         /// </summary>
-        public float* texcoords;
+        public float* TexCoords;
 
         /// <summary>
         /// Vertex second texture coordinates (useful for lightmaps) (shader-location = 5)
         /// </summary>
-        public float* texcoords2;
+        public float* TexCoords2;
 
         /// <summary>
         /// Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
         /// </summary>
-        public float* normals;
+        public float* Normals;
 
         /// <summary>
         /// Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
         /// </summary>
-        public float* tangents;
+        public float* Tangents;
 
         /// <summary>
         /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
         /// </summary>
-        public byte* colors;
+        public byte* Colors;
 
         /// <summary>
         /// Vertex indices (in case vertex data comes indexed)
         /// </summary>
-        public ushort* indices;
+        public ushort* Indices;
 
         #endregion
 
@@ -65,22 +63,22 @@ namespace Raylib_cs
         /// <summary>
         /// Animated vertex positions (after bones transformations)
         /// </summary>
-        public float* animVertices;
+        public float* AnimVertices;
 
         /// <summary>
         /// Animated normals (after bones transformations)
         /// </summary>
-        public float* animNormals;
+        public float* AnimNormals;
 
         /// <summary>
         /// Vertex bone ids, up to 4 bones influence by vertex (skinning)
         /// </summary>
-        public byte* boneIds;
+        public byte* BoneIds;
 
         /// <summary>
         /// Vertex bone weight, up to 4 bones influence by vertex (skinning)
         /// </summary>
-        public float* boneWeights;
+        public float* BoneWeights;
 
         #endregion
 
@@ -89,12 +87,12 @@ namespace Raylib_cs
         /// <summary>
         /// OpenGL Vertex Array Object id
         /// </summary>
-        public uint vaoId;
+        public uint VaoId;
 
         /// <summary>
         /// OpenGL Vertex Buffer Objects id (default vertex data, uint[])
         /// </summary>
-        public uint* vboId;
+        public uint* VboId;
 
         #endregion
     }

@@ -13,28 +13,28 @@ namespace Raylib_cs
         internal const string LibSystem = "libSystem";
 
         [DllImport(LibSystem, EntryPoint = "vasprintf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int vasprintf_apple(ref IntPtr buffer, IntPtr format, IntPtr args);
+        public static extern int VasPrintfApple(ref IntPtr buffer, IntPtr format, IntPtr args);
 
         [DllImport(Libc, EntryPoint = "vsprintf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int vsprintf_linux(IntPtr buffer, IntPtr format, IntPtr args);
+        public static extern int VsPrintfLinux(IntPtr buffer, IntPtr format, IntPtr args);
 
         [DllImport(Msvcrt, EntryPoint = "vsprintf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int vsprintf_windows(IntPtr buffer, IntPtr format, IntPtr args);
+        public static extern int VsPrintfWindows(IntPtr buffer, IntPtr format, IntPtr args);
 
         [DllImport(Libc, EntryPoint = "vsnprintf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int vsnprintf_linux(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args);
+        public static extern int VsnPrintfLinux(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args);
 
         [DllImport(Msvcrt, EntryPoint = "vsnprintf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int vsnprintf_windows(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args);
+        public static extern int VsnPrintfWindows(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args);
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     struct VaListLinuxX64
     {
-        uint gpOffset;
-        uint fpOffset;
-        IntPtr overflowArgArea;
-        IntPtr regSaveArea;
+        uint _gpOffset;
+        uint _fpOffset;
+        IntPtr _overflowArgArea;
+        IntPtr _regSaveArea;
     }
 
     /// <summary>
@@ -62,14 +62,14 @@ namespace Raylib_cs
                 return LinuxX64LogCallback(format, args);
             }
 
-            var byteLength = vsnprintf(IntPtr.Zero, UIntPtr.Zero, format, args) + 1;
+            var byteLength = VsnPrintf(IntPtr.Zero, UIntPtr.Zero, format, args) + 1;
             if (byteLength <= 1)
             {
                 return string.Empty;
             }
 
             var buffer = Marshal.AllocHGlobal(byteLength);
-            vsprintf(buffer, format, args);
+            VsPrintf(buffer, format, args);
 
             string result = Marshal.PtrToStringUTF8(buffer);
             Marshal.FreeHGlobal(buffer);
@@ -82,7 +82,7 @@ namespace Raylib_cs
             IntPtr buffer = IntPtr.Zero;
             try
             {
-                var count = Native.vasprintf_apple(ref buffer, format, args);
+                var count = Native.VasPrintfApple(ref buffer, format, args);
                 if (count == -1)
                 {
                     return string.Empty;
@@ -106,7 +106,7 @@ namespace Raylib_cs
             // Get length of args
             listPointer = Marshal.AllocHGlobal(Marshal.SizeOf(listStructure));
             Marshal.StructureToPtr(listStructure, listPointer, false);
-            byteLength = Native.vsnprintf_linux(IntPtr.Zero, UIntPtr.Zero, format, listPointer) + 1;
+            byteLength = Native.VsnPrintfLinux(IntPtr.Zero, UIntPtr.Zero, format, listPointer) + 1;
 
             // Allocate buffer for result
             Marshal.StructureToPtr(listStructure, listPointer, false);
@@ -115,7 +115,7 @@ namespace Raylib_cs
             utf8Buffer = Marshal.AllocHGlobal(byteLength);
 
             // Print result into buffer
-            Native.vsprintf_linux(utf8Buffer, format, listPointer);
+            Native.VsPrintfLinux(utf8Buffer, format, listPointer);
             result = Marshal.PtrToStringUTF8(utf8Buffer);
 
             Marshal.FreeHGlobal(listPointer);
@@ -125,38 +125,38 @@ namespace Raylib_cs
         }
 
         // https://github.com/dotnet/runtime/issues/51052
-        static int vsnprintf(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args)
+        static int VsnPrintf(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args)
         {
             var os = Environment.OSVersion;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return Native.vsnprintf_windows(buffer, size, format, args);
+                return Native.VsnPrintfWindows(buffer, size, format, args);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                return Native.vsnprintf_linux(buffer, size, format, args);
+                return Native.VsnPrintfLinux(buffer, size, format, args);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("ANDROID")))
             {
-                return Native.vsprintf_linux(buffer, format, args);
+                return Native.VsPrintfLinux(buffer, format, args);
             }
             return -1;
         }
 
-        // yhttps://github.com/dotnet/runtime/issues/51052
-        static int vsprintf(IntPtr buffer, IntPtr format, IntPtr args)
+        // https://github.com/dotnet/runtime/issues/51052
+        static int VsPrintf(IntPtr buffer, IntPtr format, IntPtr args)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return Native.vsprintf_windows(buffer, format, args);
+                return Native.VsPrintfWindows(buffer, format, args);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                return Native.vsprintf_linux(buffer, format, args);
+                return Native.VsPrintfLinux(buffer, format, args);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("ANDROID")))
             {
-                return Native.vsprintf_linux(buffer, format, args);
+                return Native.VsPrintfLinux(buffer, format, args);
             }
             return -1;
         }
