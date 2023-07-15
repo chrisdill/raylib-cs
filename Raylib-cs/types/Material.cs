@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs
@@ -54,17 +53,17 @@ namespace Raylib_cs
         /// <summary>
         /// Material map texture
         /// </summary>
-        public Texture2D texture;
+        public Texture2D Texture;
 
         /// <summary>
         /// Material map color
         /// </summary>
-        public Color color;
+        public Color Color;
 
         /// <summary>
         /// Material map value
         /// </summary>
-        public float value;
+        public float Value;
     }
 
     /// <summary>
@@ -76,17 +75,17 @@ namespace Raylib_cs
         /// <summary>
         /// Material shader
         /// </summary>
-        public Shader shader;
+        public Shader Shader;
 
         //TODO: convert
         /// <summary>
         /// Material maps
         /// </summary>
-        public MaterialMap* maps;
+        public MaterialMap* Maps;
 
         /// <summary>
         /// Material generic parameters (if required)
         /// </summary>
-        public fixed float param[4];
+        public fixed float Param[4];
     }
 }

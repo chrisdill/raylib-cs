@@ -9,10 +9,10 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Color
     {
-        public byte r;
-        public byte g;
-        public byte b;
-        public byte a;
+        public byte R;
+        public byte G;
+        public byte B;
+        public byte A;
 
         // Example - Color.RED instead of RED
         // Custom raylib color palette for amazing visuals
@@ -45,23 +45,23 @@ namespace Raylib_cs
 
         public Color(byte r, byte g, byte b, byte a)
         {
-            this.r = r;
-            this.g = g;
-            this.b = b;
-            this.a = a;
+            this.R = r;
+            this.G = g;
+            this.B = b;
+            this.A = a;
         }
 
         public Color(int r, int g, int b, int a)
         {
-            this.r = Convert.ToByte(r);
-            this.g = Convert.ToByte(g);
-            this.b = Convert.ToByte(b);
-            this.a = Convert.ToByte(a);
+            this.R = Convert.ToByte(r);
+            this.G = Convert.ToByte(g);
+            this.B = Convert.ToByte(b);
+            this.A = Convert.ToByte(a);
         }
 
         public override string ToString()
         {
-            return $"{{R:{r} G:{g} B:{b} A:{a}}}";
+            return $"{{R:{R} G:{G} B:{B} A:{A}}}";
         }
     }
 }

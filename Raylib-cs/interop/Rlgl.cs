@@ -10,7 +10,7 @@ namespace Raylib_cs
         /// <summary>
         /// Used by DllImport to load the native library
         /// </summary>
-        public const string nativeLibName = "raylib";
+        public const string NativeLibName = "raylib";
 
         public const int DEFAULT_BATCH_BUFFER_ELEMENTS = 8192;
         public const int DEFAULT_BATCH_BUFFERS = 1;
@@ -92,55 +92,55 @@ namespace Raylib_cs
         // ------------------------------------------------------------------------------------
 
         /// <summary>Choose the current matrix to be transformed</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlMatrixMode(int mode);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlMatrixMode(int mode);
 
-        /// <inheritdoc cref="rlMatrixMode(int)"/>
-        public static void rlMatrixMode(MatrixMode mode)
+        /// <inheritdoc cref="RlMatrixMode(int)"/>
+        public static void RlMatrixMode(MatrixMode mode)
         {
-            rlMatrixMode((int)mode);
+            RlMatrixMode((int)mode);
         }
 
         /// <summary>Push the current matrix to stack</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlPushMatrix();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlPushMatrix();
 
         /// <summary>Pop lattest inserted matrix from stack</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlPopMatrix();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlPopMatrix();
 
         /// <summary>Reset current matrix to identity matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlLoadIdentity();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlLoadIdentity();
 
         /// <summary>Multiply the current matrix by a translation matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlTranslatef(float x, float y, float z);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlTranslatef(float x, float y, float z);
 
         /// <summary>Multiply the current matrix by a rotation matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlRotatef(float angle, float x, float y, float z);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlRotatef(float angle, float x, float y, float z);
 
         /// <summary>Multiply the current matrix by a scaling matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlScalef(float x, float y, float z);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlScalef(float x, float y, float z);
 
         /// <summary>
         /// Multiply the current matrix by another matrix<br/>
-        /// Current Matrix can be set via <see cref="rlMatrixMode(int)"/>
+        /// Current Matrix can be set via <see cref="RlMatrixMode(int)"/>
         /// </summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlMultMatrixf(float* matf);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlMultMatrixf(float* matf);
 
-        /// <inheritdoc cref="rlMultMatrixf(float*)"/>
-        public static void rlMultMatrixf(Matrix4x4 matf)
+        /// <inheritdoc cref="RlMultMatrixf"/>
+        public static void RlMultMatrixf(Matrix4x4 matf)
         {
-            float16 f = Raymath.MatrixToFloatV(matf);
-            rlMultMatrixf(f.v);
+            Float16 f = Raymath.MatrixToFloatV(matf);
+            RlMultMatrixf(f.v);
         }
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlFrustum(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlFrustum(
             double left,
             double right,
             double bottom,
@@ -149,8 +149,8 @@ namespace Raylib_cs
             double zfar
         );
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlOrtho(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlOrtho(
             double left,
             double right,
             double bottom,
@@ -160,8 +160,8 @@ namespace Raylib_cs
         );
 
         /// <summary>Set the viewport area</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlViewport(int x, int y, int width, int height);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlViewport(int x, int y, int width, int height);
 
 
         // ------------------------------------------------------------------------------------
@@ -169,49 +169,49 @@ namespace Raylib_cs
         // ------------------------------------------------------------------------------------
 
         /// <summary>Initialize drawing mode (how to organize vertex)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlBegin(int mode);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlBegin(int mode);
 
-        public static void rlBegin(DrawMode mode)
+        public static void RlBegin(DrawMode mode)
         {
-            rlBegin((int)mode);
+            RlBegin((int)mode);
         }
 
         /// <summary>Finish vertex providing</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnd();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnd();
 
         /// <summary>Define one vertex (position) - 2 int</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlVertex2i(int x, int y);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlVertex2i(int x, int y);
 
         /// <summary>Define one vertex (position) - 2 float</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlVertex2f(float x, float y);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlVertex2f(float x, float y);
 
         /// <summary>Define one vertex (position) - 3 float</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlVertex3f(float x, float y, float z);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlVertex3f(float x, float y, float z);
 
         /// <summary>Define one vertex (texture coordinate) - 2 float</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlTexCoord2f(float x, float y);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlTexCoord2f(float x, float y);
 
         /// <summary>Define one vertex (normal) - 3 float</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlNormal3f(float x, float y, float z);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlNormal3f(float x, float y, float z);
 
         /// <summary>Define one vertex (color) - 4 byte</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlColor4ub(byte r, byte g, byte b, byte a);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlColor4ub(byte r, byte g, byte b, byte a);
 
         /// <summary>Define one vertex (color) - 3 float</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlColor3f(float x, float y, float z);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlColor3f(float x, float y, float z);
 
         /// <summary>Define one vertex (color) - 4 float</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlColor4f(float x, float y, float z, float w);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlColor4f(float x, float y, float z, float w);
 
 
         // ------------------------------------------------------------------------------------
@@ -222,214 +222,214 @@ namespace Raylib_cs
         /// <summary>Vertex buffers state</summary>
 
         /// <summary>Enable vertex array (VAO, if supported)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool rlEnableVertexArray(uint vaoId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern CBool RlEnableVertexArray(uint vaoId);
 
         /// <summary>Disable vertex array (VAO, if supported)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableVertexArray();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableVertexArray();
 
         /// <summary>Enable vertex buffer (VBO)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableVertexBuffer(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableVertexBuffer(uint id);
 
         /// <summary>Disable vertex buffer (VBO)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableVertexBuffer();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableVertexBuffer();
 
         /// <summary>Enable vertex buffer element (VBO element)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableVertexBufferElement(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableVertexBufferElement(uint id);
 
         /// <summary>Disable vertex buffer element (VBO element)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableVertexBufferElement();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableVertexBufferElement();
 
         /// <summary>Enable vertex attribute index</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableVertexAttribute(uint index);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableVertexAttribute(uint index);
 
         /// <summary>Disable vertex attribute index</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableVertexAttribute(uint index);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableVertexAttribute(uint index);
 
         /// <summary>Enable attribute state pointer<br/>
         /// NOTE: Only available for GRAPHICS_API_OPENGL_11</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableStatePointer(int vertexAttribType, void* buffer);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableStatePointer(int vertexAttribType, void* buffer);
 
         /// <summary>Disable attribute state pointer<br/>
         /// NOTE: Only available for GRAPHICS_API_OPENGL_11</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableStatePointer(int vertexAttribType);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableStatePointer(int vertexAttribType);
 
 
         // Textures state
 
         /// <summary>Select and active a texture slot</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlActiveTextureSlot(int slot);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlActiveTextureSlot(int slot);
 
         /// <summary>Enable texture</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableTexture(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableTexture(uint id);
 
         /// <summary>Disable texture</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableTexture();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableTexture();
 
         /// <summary>Enable texture cubemap</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableTextureCubemap(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableTextureCubemap(uint id);
 
         /// <summary>Disable texture cubemap</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableTextureCubemap();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableTextureCubemap();
 
         /// <summary>Set texture parameters (filter, wrap)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlTextureParameters(uint id, int param, int value);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlTextureParameters(uint id, int param, int value);
 
         /// <summary>Set cubemap parameters (filter, wrap)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlCubemapParameters(uint id, int param, int value);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlCubemapParameters(uint id, int param, int value);
 
 
         // Shader state
 
         /// <summary>Enable shader program</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableShader(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableShader(uint id);
 
         /// <summary>Disable shader program</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableShader();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableShader();
 
 
         // Framebuffer state
 
         /// <summary>Enable render texture (fbo)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableFramebuffer(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableFramebuffer(uint id);
 
         /// <summary>Disable render texture (fbo), return to default framebuffer</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableFramebuffer();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableFramebuffer();
 
         /// <summary>Activate multiple draw color buffers</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlActiveDrawBuffers(int count);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlActiveDrawBuffers(int count);
 
 
         // General render state
 
         /// <summary>Enable color blending</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableColorBlend();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableColorBlend();
 
         /// <summary>Disable color blending</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableColorBlend();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableColorBlend();
 
         /// <summary>Enable depth test</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableDepthTest();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableDepthTest();
 
         /// <summary>Disable depth test</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableDepthTest();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableDepthTest();
 
         /// <summary>Enable depth write</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableDepthMask();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableDepthMask();
 
         /// <summary>Disable depth write</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableDepthMask();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableDepthMask();
 
         /// <summary>Enable backface culling</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableBackfaceCulling();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableBackfaceCulling();
 
         /// <summary>Disable backface culling</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableBackfaceCulling();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableBackfaceCulling();
 
         /// <summary>Set face culling mode</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetCullFace(int mode);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetCullFace(int mode);
 
         /// <summary>Enable scissor test</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableScissorTest();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableScissorTest();
 
         /// <summary>Disable scissor test</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableScissorTest();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableScissorTest();
 
         /// <summary>Scissor test</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlScissor(int x, int y, int width, int height);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlScissor(int x, int y, int width, int height);
 
         /// <summary>Enable wire mode</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableWireMode();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableWireMode();
 
         /// <summary>Disable wire mode</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableWireMode();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableWireMode();
 
         /// <summary>Set the line drawing width</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetLineWidth(float width);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetLineWidth(float width);
 
         /// <summary>Get the line drawing width</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern float rlGetLineWidth();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern float RlGetLineWidth();
 
         /// <summary>Enable line aliasing</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableSmoothLines();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableSmoothLines();
 
         /// <summary>Disable line aliasing</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableSmoothLines();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableSmoothLines();
 
         /// <summary>Enable stereo rendering</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlEnableStereoRender();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlEnableStereoRender();
 
         /// <summary>Disable stereo rendering</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDisableStereoRender();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDisableStereoRender();
 
         /// <summary>Check if stereo render is enabled</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool rlIsStereoRenderEnabled();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern CBool RlIsStereoRenderEnabled();
 
         /// <summary>Clear color buffer with color</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlClearColor(byte r, byte g, byte b, byte a);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlClearColor(byte r, byte g, byte b, byte a);
 
         /// <summary>Clear used screen buffers (color and depth)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlClearScreenBuffers();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlClearScreenBuffers();
 
         /// <summary>Check and log OpenGL error codes</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlCheckErrors();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlCheckErrors();
 
         /// <summary>Set blending mode</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetBlendMode(BlendMode mode);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetBlendMode(BlendMode mode);
 
         /// <summary>Set blending mode factor and equation (using OpenGL factors)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
 
         /// <summary>Set blending mode factors and equations separately (using OpenGL factors)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetBlendFactorsSeparate(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetBlendFactorsSeparate(
             int glSrcRGB,
             int glDstRGB,
             int glSrcAlpha,
@@ -444,104 +444,104 @@ namespace Raylib_cs
         // ------------------------------------------------------------------------------------
 
         /// <summary>Initialize rlgl (buffers, shaders, textures, states)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlglInit(int width, int height);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlGlInit(int width, int height);
 
         /// <summary>De-inititialize rlgl (buffers, shaders, textures)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlglClose();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlGlClose();
 
         /// <summary>Load OpenGL extensions</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlLoadExtensions(void* loader);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlLoadExtensions(void* loader);
 
         /// <summary>Get current OpenGL version</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern GlVersion rlGetVersion();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern GlVersion RlGetVersion();
 
         /// <summary>Get default framebuffer width</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int rlGetFramebufferWidth();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RlGetFramebufferWidth();
 
         /// <summary>Get default framebuffer height</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int rlGetFramebufferHeight();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RlGetFramebufferHeight();
 
         /// <summary>Get default texture</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlGetTextureIdDefault();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlGetTextureIdDefault();
 
         /// <summary>Get default shader</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlGetShaderIdDefault();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlGetShaderIdDefault();
 
         /// <summary>Get default shader locations</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int* rlGetShaderLocsDefault();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int* RlGetShaderLocsDefault();
 
         // Render batch management
 
         /// <summary>Load a render batch system<br/>
         /// NOTE: rlgl provides a default render batch to behave like OpenGL 1.1 immediate mode<br/>
         /// but this render batch API is exposed in case custom batches are required</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern RenderBatch rlLoadRenderBatch(int numBuffers, int bufferElements);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern RenderBatch RlLoadRenderBatch(int numBuffers, int bufferElements);
 
         /// <summary>Unload render batch system</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadRenderBatch(RenderBatch batch);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadRenderBatch(RenderBatch batch);
 
         /// <summary>Draw render batch data (Update->Draw->Reset)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawRenderBatch(RenderBatch* batch);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDrawRenderBatch(RenderBatch* batch);
 
         /// <summary>Set the active render batch for rlgl (NULL for default internal)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetRenderBatchActive(RenderBatch* batch);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetRenderBatchActive(RenderBatch* batch);
 
         /// <summary>Update and draw internal render batch</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawRenderBatchActive();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDrawRenderBatchActive();
 
         /// <summary>Check internal buffer overflow for a given number of vertex</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool rlCheckRenderBatchLimit(int vCount);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern CBool RlCheckRenderBatchLimit(int vCount);
 
         /// <summary>Set current texture for render batch and check buffers limits</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetTexture(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetTexture(uint id);
 
 
         // Vertex buffers management
 
         /// <summary>Load vertex array (vao) if supported</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadVertexArray();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadVertexArray();
 
         /// <summary>Load a vertex buffer attribute</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadVertexBuffer(void* buffer, int size, CBool dynamic);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadVertexBuffer(void* buffer, int size, CBool dynamic);
 
         /// <summary>Load a new attributes element buffer</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadVertexBufferElement(void* buffer, int size, CBool dynamic);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadVertexBufferElement(void* buffer, int size, CBool dynamic);
 
         /// <summary>Update GPU buffer with new data</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateVertexBuffer(uint bufferId, void* data, int dataSize, int offset);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUpdateVertexBuffer(uint bufferId, void* data, int dataSize, int offset);
 
         /// <summary>Update vertex buffer elements with new data</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateVertexBufferElements(uint id, void* data, int dataSize, int offset);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUpdateVertexBufferElements(uint id, void* data, int dataSize, int offset);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadVertexArray(uint vaoId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadVertexArray(uint vaoId);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadVertexBuffer(uint vboId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadVertexBuffer(uint vboId);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetVertexAttribute(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetVertexAttribute(
             uint index,
             int compSize,
             int type,
@@ -550,24 +550,24 @@ namespace Raylib_cs
             void* pointer
         );
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetVertexAttributeDivisor(uint index, int divisor);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetVertexAttributeDivisor(uint index, int divisor);
 
         /// <summary>Set vertex attribute default value</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetVertexAttributeDefault(int locIndex, void* value, int attribType, int count);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetVertexAttributeDefault(int locIndex, void* value, int attribType, int count);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawVertexArray(int offset, int count);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDrawVertexArray(int offset, int count);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawVertexArrayElements(int offset, int count, void* buffer);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDrawVertexArrayElements(int offset, int count, void* buffer);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawVertexArrayInstanced(int offset, int count, int instances);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDrawVertexArrayInstanced(int offset, int count, int instances);
 
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlDrawVertexArrayElementsInstanced(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlDrawVertexArrayElementsInstanced(
             int offset,
             int count,
             void* buffer,
@@ -578,20 +578,20 @@ namespace Raylib_cs
         // Textures data management
 
         /// <summary>Load texture in GPU</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadTexture(void* data, int width, int height, PixelFormat format, int mipmapCount);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadTexture(void* data, int width, int height, PixelFormat format, int mipmapCount);
 
         /// <summary>Load depth texture/renderbuffer (to be attached to fbo)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadTextureDepth(int width, int height, CBool useRenderBuffer);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadTextureDepth(int width, int height, CBool useRenderBuffer);
 
         /// <summary>Load texture cubemap</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadTextureCubemap(void* data, int size, PixelFormat format);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadTextureCubemap(void* data, int size, PixelFormat format);
 
         /// <summary>Update GPU texture with new data</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateTexture(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUpdateTexture(
             uint id,
             int offsetX,
             int offsetY,
@@ -602,8 +602,8 @@ namespace Raylib_cs
         );
 
         /// <summary>Get OpenGL internal formats</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlGetGlTextureFormats(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlGetGlTextureFormats(
             PixelFormat format,
             int* glInternalFormat,
             int* glFormat,
@@ -611,35 +611,35 @@ namespace Raylib_cs
         );
 
         /// <summary>Get OpenGL internal formats</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern sbyte* rlGetPixelFormatName(PixelFormat format);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern sbyte* RlGetPixelFormatName(PixelFormat format);
 
         /// <summary>Unload texture from GPU memory</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadTexture(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadTexture(uint id);
 
         /// <summary>Generate mipmap data for selected texture</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlGenTextureMipmaps(uint id, int width, int height, PixelFormat format, int* mipmaps);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlGenTextureMipmaps(uint id, int width, int height, PixelFormat format, int* mipmaps);
 
         /// <summary>Read texture pixel data</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* rlReadTexturePixels(uint id, int width, int height, PixelFormat format);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void* RlReadTexturePixels(uint id, int width, int height, PixelFormat format);
 
         /// <summary>Read screen pixel data (color buffer)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* rlReadScreenPixels(int width, int height);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte* RlReadScreenPixels(int width, int height);
 
 
         // Framebuffer management (fbo)
 
         /// <summary>Load an empty framebuffer</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadFramebuffer(int width, int height);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadFramebuffer(int width, int height);
 
         /// <summary>Attach texture/renderbuffer to a framebuffer</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlFramebufferAttach(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlFramebufferAttach(
             uint fboId,
             uint texId,
             FramebufferAttachType attachType,
@@ -648,94 +648,94 @@ namespace Raylib_cs
         );
 
         /// <summary>Verify framebuffer is complete</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern CBool rlFramebufferComplete(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern CBool RlFramebufferComplete(uint id);
 
         /// <summary>Delete framebuffer from GPU</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadFramebuffer(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadFramebuffer(uint id);
 
 
         // Shaders management
 
         /// <summary>Load shader from code strings</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadShaderCode(sbyte* vsCode, sbyte* fsCode);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadShaderCode(sbyte* vsCode, sbyte* fsCode);
 
         /// <summary>Compile custom shader and return shader id<br/>
         /// (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlCompileShader(sbyte* shaderCode, int type);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlCompileShader(sbyte* shaderCode, int type);
 
         /// <summary>Load custom shader program</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadShaderProgram(uint vShaderId, uint fShaderId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadShaderProgram(uint vShaderId, uint fShaderId);
 
         /// <summary>Unload shader program</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadShaderProgram(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadShaderProgram(uint id);
 
         /// <summary>Get shader location uniform</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int rlGetLocationUniform(uint shaderId, sbyte* uniformName);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RlGetLocationUniform(uint shaderId, sbyte* uniformName);
 
         /// <summary>Get shader location attribute</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int rlGetLocationAttrib(uint shaderId, sbyte* attribName);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RlGetLocationAttrib(uint shaderId, sbyte* attribName);
 
         /// <summary>Set shader value uniform</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetUniform(int locIndex, void* value, int uniformType, int count);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetUniform(int locIndex, void* value, int uniformType, int count);
 
         /// <summary>Set shader value matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetUniformMatrix(int locIndex, Matrix4x4 mat);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetUniformMatrix(int locIndex, Matrix4x4 mat);
 
         /// <summary>Set shader value sampler</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetUniformSampler(int locIndex, uint textureId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetUniformSampler(int locIndex, uint textureId);
 
         /// <summary>Set shader currently active (id and locations)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetShader(uint id, int* locs);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetShader(uint id, int* locs);
 
 
         // Compute shader management
 
         /// <summary>Load compute shader program</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadComputeShaderProgram(uint shaderId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadComputeShaderProgram(uint shaderId);
 
         /// <summary>Dispatch compute shader (equivalent to *draw* for graphics pilepine)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlComputeShaderDispatch(uint groupX, uint groupY, uint groupZ);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlComputeShaderDispatch(uint groupX, uint groupY, uint groupZ);
 
 
         // Shader buffer storage object management (ssbo)
 
         /// <summary>Load shader storage buffer object (SSBO)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlLoadShaderBuffer(uint size, void* data, int usageHint);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlLoadShaderBuffer(uint size, void* data, int usageHint);
 
         /// <summary>Unload shader storage buffer object (SSBO)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUnloadShaderBuffer(uint ssboId);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUnloadShaderBuffer(uint ssboId);
 
         /// <summary>Update SSBO buffer data</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlUpdateShaderBuffer(uint id, void* data, uint dataSize, uint offset);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlUpdateShaderBuffer(uint id, void* data, uint dataSize, uint offset);
 
         /// <summary>Bind SSBO buffer data</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlBindShaderBuffer(uint id, uint index);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlBindShaderBuffer(uint id, uint index);
 
         /// <summary>Read SSBO buffer data (GPU->CPU)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlReadShaderBuffer(uint id, void* dest, uint count, uint offset);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlReadShaderBuffer(uint id, void* dest, uint count, uint offset);
 
         /// <summary>Copy SSBO data between buffers</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlCopyShaderBuffer(
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlCopyShaderBuffer(
             uint destId,
             uint srcId,
             uint destOffset,
@@ -744,64 +744,64 @@ namespace Raylib_cs
         );
 
         /// <summary>Get SSBO buffer size</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint rlGetShaderBufferSize(uint id);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RlGetShaderBufferSize(uint id);
 
 
         // Buffer management
 
         /// <summary>Bind image texture</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlBindImageTexture(uint id, uint index, int format, CBool readOnly);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlBindImageTexture(uint id, uint index, int format, CBool readOnly);
 
 
         // Matrix state management
 
         /// <summary>Get internal modelview matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixModelview();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 RlGetMatrixModelView();
 
         /// <summary>Get internal projection matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixProjection();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 RlGetMatrixProjection();
 
         /// <summary>Get internal accumulated transform matrix</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixTransform();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 RlGetMatrixTransform();
 
         /// <summary>Get internal projection matrix for stereo render (selected eye)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixProjectionStereo(int eye);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 RlGetMatrixProjectionStereo(int eye);
 
         /// <summary>Get internal view offset matrix for stereo render (selected eye)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Matrix4x4 rlGetMatrixViewOffsetStereo(int eye);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern Matrix4x4 RlGetMatrixViewOffsetStereo(int eye);
 
         /// <summary>Set a custom projection matrix (replaces internal projection matrix)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetMatrixProjection(Matrix4x4 view);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetMatrixProjection(Matrix4x4 view);
 
         /// <summary>Set a custom modelview matrix (replaces internal modelview matrix)</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetMatrixModelview(Matrix4x4 proj);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetMatrixModelView(Matrix4x4 proj);
 
         /// <summary>Set eyes projection matrices for stereo rendering</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetMatrixProjectionStereo(Matrix4x4 left, Matrix4x4 right);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetMatrixProjectionStereo(Matrix4x4 left, Matrix4x4 right);
 
         /// <summary>Set eyes view offsets matrices for stereo rendering</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlSetMatrixViewOffsetStereo(Matrix4x4 left, Matrix4x4 right);
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlSetMatrixViewOffsetStereo(Matrix4x4 left, Matrix4x4 right);
 
 
         // Quick and dirty cube/quad buffers load->draw->unload
 
         /// <summary>Load and draw a cube</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlLoadDrawCube();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlLoadDrawCube();
 
         /// <summary>Load and draw a quad</summary>
-        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rlLoadDrawQuad();
+        [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RlLoadDrawQuad();
     }
 }

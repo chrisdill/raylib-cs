@@ -10,17 +10,17 @@ namespace Raylib_cs
         /// <summary>
         /// Minimum vertex box-corner
         /// </summary>
-        public Vector3 min;
+        public Vector3 Min;
 
         /// <summary>
         /// Maximum vertex box-corner
         /// </summary>
-        public Vector3 max;
+        public Vector3 Max;
 
         public BoundingBox(Vector3 min, Vector3 max)
         {
-            this.min = min;
-            this.max = max;
+            this.Min = min;
+            this.Max = max;
         }
     }
 }

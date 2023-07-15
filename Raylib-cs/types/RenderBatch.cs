@@ -11,32 +11,32 @@ namespace Raylib_cs
         /// <summary>
         /// Number of vertex buffers (multi-buffering support)
         /// </summary>
-        int buffersCount;
+        int _buffersCount;
 
         /// <summary>
         /// Current buffer tracking in case of multi-buffering
         /// </summary>
-        int currentBuffer;
+        int _currentBuffer;
 
         /// <summary>
         /// Dynamic buffer(s) for vertex data
         /// </summary>
-        VertexBuffer* vertexBuffer;
+        VertexBuffer* _vertexBuffer;
 
         /// <summary>
         /// Draw calls array, depends on textureId
         /// </summary>
-        DrawCall* draws;
+        DrawCall* _draws;
 
         /// <summary>
         /// Draw calls counter
         /// </summary>
-        int drawsCounter;
+        int _drawsCounter;
 
         /// <summary>
         /// Current depth value for next draw
         /// </summary>
-        float currentDepth;
+        float _currentDepth;
     }
 
     /// <summary>
@@ -48,39 +48,39 @@ namespace Raylib_cs
         /// <summary>
         /// Number of elements in the buffer (QUADS)
         /// </summary>
-        public int elementCount;
+        public int ElementCount;
 
         /// <summary>
         /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
         /// </summary>
-        public float* vertices;
+        public float* Vertices;
 
         /// <summary>
         /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
         /// </summary>
-        public float* texcoords;
+        public float* TexCoords;
 
         /// <summary>
         /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
         /// </summary>
-        public byte* colors;
+        public byte* Colors;
 
         /// <summary>
         /// Vertex indices (in case vertex data comes indexed) (6 indices per quad)<br/>
         /// unsigned int* for GRAPHICS_API_OPENGL_11 or GRAPHICS_API_OPENGL_33<br/>
         /// unsigned short* for GRAPHICS_API_OPENGL_ES2
         /// </summary>
-        public void* indices;
+        public void* Indices;
 
         /// <summary>
         /// OpenGL Vertex Array Object id
         /// </summary>
-        public uint vaoId;
+        public uint VaoId;
 
         /// <summary>
         /// OpenGL Vertex Buffer Objects id (4 types of vertex data)
         /// </summary>
-        public fixed uint vboId[4];
+        public fixed uint VboId[4];
     }
 
     /// <summary>
@@ -92,22 +92,22 @@ namespace Raylib_cs
         /// <summary>
         /// Drawing mode: LINES, TRIANGLES, QUADS
         /// </summary>
-        int mode;
+        int _mode;
 
         /// <summary>
         /// Number of vertices for the draw call
         /// </summary>
-        int vertexCount;
+        int _vertexCount;
 
         /// <summary>
         /// Number of vertices required for index alignment (LINES, TRIANGLES)
         /// </summary>
-        int vertexAlignment;
+        int _vertexAlignment;
 
         /// <summary>
         /// Texture id to be used on the draw -> Use to create new draw call if changes
         /// </summary>
-        uint textureId;
+        uint _textureId;
     }
 
     public enum GlVersion
