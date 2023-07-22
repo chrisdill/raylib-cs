@@ -1,13 +1,13 @@
 name: Build
 on:
   push:
-    branches: master
-  pull_request:
-    branches: '*'
-    paths-ignore:
-      - 'README.md'
-      - '.github/ISSUE_TEMPLATE/**'
-  workflow_dispatch:
+  #   branches: master
+  # pull_request:
+  #   branches: '*'
+  #   paths-ignore:
+  #     - 'README.md'
+  #     - '.github/ISSUE_TEMPLATE/**'
+  # workflow_dispatch:
 jobs:
   prepare:
     runs-on: ubuntu-latest
