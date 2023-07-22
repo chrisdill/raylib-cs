@@ -52,6 +52,32 @@ jobs:
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
 
+  build-osx:
+    runs-on: macos-latest
+    needs: prepare
+    strategy:
+      matrix:
+        name: [arm64, x64]
+        include:
+          - name: arm64
+            arch: arm64
+          - name: x64
+            arch: x86_64
+    steps:
+      - name: build raylib
+        env:
+          version: ${{ needs.prepare.outputs.version }}
+        run: |
+          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
+          unzip -qq raylib.zip
+          cmake -S raylib-${version} \
+            -B build \
+            -D CMAKE_BUILD_TYPE=Release \
+            -D CMAKE_OSX_ARCHITECTURES=${arch} \
+            -D BUILD_SHARED_LIBS=ON \
+            -D BUILD_EXAMPLES=OFF
+          cmake --build build --config Release
+
 # jobs:
 #   build:
 #     name: Build on dotnet using ${{ matrix.os }}
