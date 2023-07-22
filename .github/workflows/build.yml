@@ -53,6 +53,13 @@ jobs:
           cmake --build build --config Release
           file build/raylib/libraylib.so # TODO: remove me
 
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-x64
+          path: build/raylib/libraylib.so
+          if-no-files-found: error
+
   build-osx:
     runs-on: macos-latest
     needs: prepare
@@ -79,6 +86,13 @@ jobs:
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
           file build/raylib/libraylib.dylib # TODO: remove me
+
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: osx-${{ matrix.name }}
+          path: build/raylib/libraylib.dylib
+          if-no-files-found: error
 
   build-windows:
     runs-on: windows-latest
@@ -108,6 +122,50 @@ jobs:
           cmake --build build --config Release
           file build/raylib/Release/raylib.dll # TODO: remove me
 
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: win-${{ matrix.name }}
+          path: build/raylib/Release/raylib.dll
+          if-no-files-found: error
+
+  publish:
+    runs-on: ubuntu-latest
+    needs:
+      - prepare
+      - build-linux
+      - build-osx
+      - build-windows
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: linux-x64
+          path: Raylib-cs/runtimes/linux-x64/native
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: osx-arm64
+          path: Raylib-cs/runtimes/osx-arm64/native
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: osx-x64
+          path: Raylib-cs/runtimes/osx-x64/native
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: win-x86
+          path: Raylib-cs/runtimes/win-x86/native
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: win-x64
+          path: Raylib-cs/runtimes/win-x64/native
+
+      - run: find Raylib-cs/runtimes/ # TODO: remove me
 # jobs:
 #   build:
 #     name: Build on dotnet using ${{ matrix.os }}
