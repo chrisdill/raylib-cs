@@ -1,13 +1,42 @@
+using System.Runtime.InteropServices;
+using Android.Content;
+using Android.Content.PM;
+
 namespace Raylib_cs.Android;
 
-[Activity(Label = "@string/app_name", MainLauncher = true)]
-public class MainActivity : Activity
+[
+    Activity(
+        Label = "@string/app_name",
+        MainLauncher = true,
+        ConfigurationChanges = ConfigChanges.Orientation
+            | ConfigChanges.KeyboardHidden
+            | ConfigChanges.ScreenSize,
+        ScreenOrientation = ScreenOrientation.Landscape,
+        ClearTaskOnLaunch = true
+    ),
+    IntentFilter(new[] { Intent.ActionMain }),
+    MetaData(NativeActivity.MetaDataLibName, Value = "raylib")
+]
+public class MainActivity : NativeActivity
 {
-    protected override void OnCreate(Bundle? savedInstanceState)
+    static MainActivity()
     {
-        base.OnCreate(savedInstanceState);
-
-        // Set our view from the "main" layout resource
-        SetContentView(Resource.Layout.activity_main);
+        RaylibSetAndroidCallback(Main);
     }
+
+    private static void Main()
+    {
+        Raylib.InitWindow(0, 0, "android_window");
+        while (!Raylib.WindowShouldClose())
+        {
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.WHITE);
+            Raylib.DrawFPS(10, 10);
+            Raylib.DrawText("Hello Raylib-cs.Android", 20, 100, 100, Color.BLACK);
+            Raylib.EndDrawing();
+        }
+    }
+
+    [DllImport("raylib")]
+    private static extern void RaylibSetAndroidCallback(Action callback);
 }
