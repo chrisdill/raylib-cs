@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
+      pkgversion: ${{ steps.version.outputs.pkgversion }}
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
@@ -22,6 +23,7 @@ jobs:
         shell: bash
         run: |
           echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Raylib-cs/Raylib-cs.csproj)">> ${GITHUB_OUTPUT}
+          echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Raylib-cs/Raylib-cs.csproj)">> ${GITHUB_OUTPUT}
 
   build-linux:
     runs-on: ubuntu-latest
@@ -176,15 +178,17 @@ jobs:
       - name: Upload NuGet Package As Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: raylib-cs.nupkg
-          path: Raylib-cs/bin/Release/Raylib-cs.*.nupkg
+          path: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.nupkg
 
       - name: Upload NuGet Package As Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: Raylib-cs/bin/Release/Raylib-cs.*.nupkg
+          files: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.nupkg
 
       - name: Publish to NuGet
         if: startsWith(github.ref, 'refs/tags/')
-        run: dotnet nuget push Raylib-cs/bin/Release/Raylib-cs.*.nupkg --api-key ${{secrets.NUGET_API_KEY}}
+        run: |
+          dotnet nuget push \
+            Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.nupkg \
+            --api-key ${{secrets.NUGET_API_KEY}}
