@@ -51,6 +51,7 @@ jobs:
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
+          file build/raylib/libraylib.so # TODO: remove me
 
   build-osx:
     runs-on: macos-latest
@@ -77,6 +78,35 @@ jobs:
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
+          file build/raylib/libraylib.dylib # TODO: remove me
+
+  build-windows:
+    runs-on: windows-latest
+    needs: prepare
+    strategy:
+      matrix:
+        name: [x86, x64]
+        include:
+          - name: x86
+            arch: win32
+          - name: x64
+            arch: x64
+    steps:
+      - name: build ${{ matrix.arch }}
+        shell: bash
+        env:
+          version: ${{ needs.prepare.outputs.version }}
+        run: |
+          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
+          unzip -qq raylib.zip
+          cmake -S raylib-${version} \
+            -A ${{ matrix.arch }} \
+            -B build \
+            -D CMAKE_BUILD_TYPE=Release \
+            -D BUILD_SHARED_LIBS=ON \
+            -D BUILD_EXAMPLES=OFF
+          cmake --build build --config Release
+          file build/raylib/Release/raylib.dll # TODO: remove me
 
 # jobs:
 #   build:
