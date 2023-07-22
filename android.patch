@@ -1,0 +1,24 @@
+diff --git a/src/rcore.c b/src/rcore.c
+index eae4951..76e26ad 100644
+--- a/src/rcore.c
++++ b/src/rcore.c
+@@ -709,7 +709,18 @@ const char *TextFormat(const char *text, ...);       // Formatting of text with
+ #if defined(PLATFORM_ANDROID)
+ // To allow easier porting to android, we allow the user to define a
+ // main function which we call from android_main, defined by ourselves
+-extern int main(int argc, char *argv[]);
++
++typedef void (*RaylibAndroidCallback)();
++static RaylibAndroidCallback _androidCallback = NULL;
++
++void RaylibSetAndroidCallback(RaylibAndroidCallback callback) {
++    _androidCallback = callback;
++}
++
++int main(int argc, char *argv[]) {
++    while(_androidCallback == NULL) {}
++    _androidCallback();
++}
+ 
+ void android_main(struct android_app *app)
+ {
