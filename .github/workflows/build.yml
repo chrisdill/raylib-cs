@@ -1,7 +1,12 @@
 name: Build
 on:
   push:
+    branches: master
   pull_request:
+    branches: '*'
+    paths-ignore:
+      - 'README.md'
+      - '.github/ISSUE_TEMPLATE/**'
   workflow_dispatch:
 jobs:
   prepare:
@@ -92,7 +97,6 @@ jobs:
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
-          file build/raylib/libraylib.so # TODO: remove me
 
       - name: upload build
         uses: actions/upload-artifact@v3
@@ -126,7 +130,6 @@ jobs:
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
-          file build/raylib/libraylib.dylib # TODO: remove me
 
       - name: upload build
         uses: actions/upload-artifact@v3
@@ -161,7 +164,6 @@ jobs:
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF
           cmake --build build --config Release
-          file build/raylib/Release/raylib.dll # TODO: remove me
 
       - name: upload build
         uses: actions/upload-artifact@v3
