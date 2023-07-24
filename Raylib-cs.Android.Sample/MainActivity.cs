@@ -17,14 +17,9 @@ namespace Raylib_cs.Android;
     IntentFilter(new[] { Intent.ActionMain }),
     MetaData(NativeActivity.MetaDataLibName, Value = "raylib")
 ]
-public class MainActivity : NativeActivity
+public class MainActivity : RaylibActivity
 {
-    static MainActivity()
-    {
-        RaylibSetAndroidCallback(Main);
-    }
-
-    private static void Main()
+    protected override void OnReady()
     {
         Raylib.InitWindow(0, 0, "android_window");
         while (!Raylib.WindowShouldClose())
@@ -36,7 +31,4 @@ public class MainActivity : NativeActivity
             Raylib.EndDrawing();
         }
     }
-
-    [DllImport("raylib")]
-    private static extern void RaylibSetAndroidCallback(Action callback);
 }

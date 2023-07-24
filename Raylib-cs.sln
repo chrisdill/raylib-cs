@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-cs.Tests", "Raylib-c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Android", "Raylib-cs.Android\Raylib-cs.Android.csproj", "{FF57C585-9887-4DC1-A240-5B3D85E9C459}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Android.Sample", "Raylib-cs.Android.Sample\Raylib-cs.Android.Sample.csproj", "{83FB8D25-FD15-4893-9F57-1736D2C0F616}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{FF57C585-9887-4DC1-A240-5B3D85E9C459}.Release|x64.Build.0 = Release|Any CPU
 		{FF57C585-9887-4DC1-A240-5B3D85E9C459}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF57C585-9887-4DC1-A240-5B3D85E9C459}.Release|x86.Build.0 = Release|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Debug|x64.Build.0 = Debug|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Debug|x86.Build.0 = Debug|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Release|x64.ActiveCfg = Release|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Release|x64.Build.0 = Release|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Release|x86.ActiveCfg = Release|Any CPU
+		{83FB8D25-FD15-4893-9F57-1736D2C0F616}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
