@@ -58,9 +58,9 @@ jobs:
             -D BUILD_EXAMPLES=OFF \
             -D CMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
             -D PLATFORM=Android \
-            -D ANDROID_ABI=${{ matrix.arch }}
+            -D ANDROID_ABI=${{ matrix.arch }} \
+            -D ANDROID_PLATFORM=21
           cmake --build build --config Release
-          file build/raylib/libraylib.so # TODO: remove me
 
       - name: upload build
         uses: actions/upload-artifact@v3
