@@ -240,13 +240,13 @@ jobs:
       - name: Upload NuGet Package As Artifact
         uses: actions/upload-artifact@v3
         with:
-          path: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.nupkg
+          path: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.*pkg
 
       - name: Upload NuGet Package As Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.nupkg
+          files: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.*pkg
 
       - name: Publish to NuGet
         if: startsWith(github.ref, 'refs/tags/')
