@@ -1,0 +1,8 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetRaylibTag>4.5.0</TargetRaylibTag>
+    <PackageVersion>4.5.0.2-android.1</PackageVersion>
+  </PropertyGroup>
+
+</Project>

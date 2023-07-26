@@ -22,8 +22,8 @@ jobs:
         id: version
         shell: bash
         run: |
-          echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Raylib-cs/Raylib-cs.csproj)">> ${GITHUB_OUTPUT}
-          echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Raylib-cs/Raylib-cs.csproj)">> ${GITHUB_OUTPUT}
+          echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Directory.Build.props)">> ${GITHUB_OUTPUT}
+          echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Directory.Build.props)">> ${GITHUB_OUTPUT}
 
   build-android:
     runs-on: ubuntu-latest
@@ -235,22 +235,22 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Create NuGet Package
-        run: dotnet pack -c Release Raylib-cs
+        run: dotnet pack -c Release -o artifacts/nupkg
 
       - name: Upload NuGet Package As Artifact
         uses: actions/upload-artifact@v3
         with:
-          path: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.*pkg
+          path: artifacts/nupkg/Raylib-cs.*.*pkg
 
       - name: Upload NuGet Package As Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.*pkg
+          files: artifacts/nupkg/Raylib-cs.*.*pkg
 
       - name: Publish to NuGet
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           dotnet nuget push \
-            Raylib-cs/bin/Release/Raylib-cs.${{ needs.prepare.outputs.pkgversion }}.nupkg \
+            artifacts/nupkg/Raylib-cs.*.*pkg \
             --api-key ${{secrets.NUGET_API_KEY}}

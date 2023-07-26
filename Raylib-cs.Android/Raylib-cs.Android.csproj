@@ -6,7 +6,6 @@
     <RootNamespace>Raylib_cs.Android</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>Raylibcs.Android</AssemblyName>
   </PropertyGroup>
 
 </Project>

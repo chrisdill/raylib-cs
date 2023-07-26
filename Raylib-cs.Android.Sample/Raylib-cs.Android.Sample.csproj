@@ -10,6 +10,7 @@
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <EmbedAssembliesIntoApk Condition="$(Configuration) == 'Debug'">true</EmbedAssembliesIntoApk>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Raylib-cs" Version="4.5.0.2" />
