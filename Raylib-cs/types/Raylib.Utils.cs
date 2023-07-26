@@ -652,6 +652,36 @@ namespace Raylib_cs
             return LoadTexture(str1.AsPointer());
         }
 
+        /// <summary>Update GPU texture with new data</summary>
+        public static void UpdateTexture<T>(Texture2D texture, T[] pixels) where T : unmanaged
+        {
+            UpdateTexture(texture, (ReadOnlySpan<T>)pixels);
+        }
+
+        /// <summary>Update GPU texture with new data</summary>
+        public static void UpdateTexture<T>(Texture2D texture, ReadOnlySpan<T> pixels) where T : unmanaged
+        {
+            fixed (void* pixelPtr = pixels)
+            {
+                UpdateTexture(texture, pixelPtr);
+            }
+        }
+
+        /// <summary>Update GPU texture rectangle with new data</summary>
+        public static void UpdateTextureRec<T>(Texture2D texture, Rectangle rec, T[] pixels) where T : unmanaged
+        {
+            UpdateTextureRec(texture, rec, (ReadOnlySpan<T>)pixels);
+        }
+
+        /// <summary>Update GPU texture rectangle with new data</summary>
+        public static void UpdateTextureRec<T>(Texture2D texture, Rectangle rec, ReadOnlySpan<T> pixels) where T : unmanaged
+        {
+            fixed (void* pixelPtr = pixels)
+            {
+                UpdateTextureRec(texture, rec, pixelPtr);
+            }
+        }
+
         /// <summary>Generate GPU mipmaps for a texture</summary>
         public static void GenTextureMipmaps(ref Texture2D texture)
         {

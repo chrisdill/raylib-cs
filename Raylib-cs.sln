@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs", "Raylib-cs\Raylib-cs.csproj", "{B02C431E-271A-432E-BA5C-EE3B68DBF585}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-cs", "Raylib-cs\Raylib-cs.csproj", "{B02C431E-271A-432E-BA5C-EE3B68DBF585}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-cs.Tests", "Raylib-cs.Tests\Raylib-cs.Tests.csproj", "{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}"
 EndProject
@@ -17,14 +17,30 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Debug|x64.Build.0 = Debug|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Debug|x86.Build.0 = Debug|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|x64.ActiveCfg = Release|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|x64.Build.0 = Release|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|x86.ActiveCfg = Release|Any CPU
+		{B02C431E-271A-432E-BA5C-EE3B68DBF585}.Release|x86.Build.0 = Release|Any CPU
 		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Debug|x64.Build.0 = Debug|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Debug|x86.Build.0 = Debug|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|x64.ActiveCfg = Release|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|x64.Build.0 = Release|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|x86.ActiveCfg = Release|Any CPU
+		{523DEE6A-20CD-47AB-94A6-8D3C3CF9ADAD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
