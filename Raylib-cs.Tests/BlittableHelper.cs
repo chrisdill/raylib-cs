@@ -36,7 +36,7 @@ namespace Raylib_cs.Tests
     {
         public static bool IsBlittable<T>()
         {
-            return IsBlittableCache<T>.Value;
+            return IsBlittableCache<T>.VALUE;
         }
 
         public static bool IsBlittable(this Type type)
@@ -64,7 +64,7 @@ namespace Raylib_cs.Tests
 
         private static class IsBlittableCache<T>
         {
-            public static readonly bool Value = IsBlittable(typeof(T));
+            public static readonly bool VALUE = IsBlittable(typeof(T));
         }
     }
 }
