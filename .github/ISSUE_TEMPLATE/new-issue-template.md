@@ -1,7 +1,7 @@
 ---
 name: new issue template
 about: generic template for new issues
-title: "[module] Short description of the issue/bug/feature"
+title: "Short description of the issue/bug/feature"
 labels: ''
 assignees: ''
 ---
@@ -14,11 +14,14 @@ Before submitting a new issue, please verify and check:
 
 ### Issue description
 
-*Briefly describe the issue you are experiencing (or the feature you want to see added to Raylib-cs). Tell us what you were trying to do and what happened instead. You can also ask questions on the [raylib discord server](https://discord.gg/raylib).*
+*Briefly describe the issue you are experiencing (or the feature you want to see added to Raylib-cs). Tell us
+what you were trying to do and what happened instead. You can also ask questions on the
+[raylib discord server](https://discord.gg/raylib).*
 
 ### Environment
 
-*Provide your Platform, Operating System, OpenGL version, GPU, Raylib-cs version, Raylib version (if applicable), and details of where or how you experienced the issue.*
+*Provide your Platform, Operating System, OpenGL version, GPU, Raylib-cs version, Raylib version (if applicable),
+and details of where or how you experienced the issue.*
 
 ### Issue screenshot
 
@@ -26,4 +29,5 @@ Before submitting a new issue, please verify and check:
 
 ### Code example
 
-*Provide minimal reproduction code to test the issue. Please, format the code properly and try to keep it as simple as possible, just focusing on the experienced issue.*
+*Provide minimal reproduction code to test the issue. Please, format the code properly and try to keep it as simple
+as possible, just focusing on the experienced issue.*
