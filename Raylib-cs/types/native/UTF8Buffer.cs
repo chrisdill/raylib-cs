@@ -13,7 +13,7 @@ namespace Raylib_cs
 
         public UTF8Buffer(string text)
         {
-            _data = Marshal.StringToCoTaskMemUTF8(text);
+            _data = Marshal.StringToHGlobalAnsi(text);
         }
 
         public unsafe sbyte* AsPointer()
@@ -23,7 +23,7 @@ namespace Raylib_cs
 
         public void Dispose()
         {
-            Marshal.FreeCoTaskMem(_data);
+            Marshal.FreeHGlobal(_data);
         }
     }
 
