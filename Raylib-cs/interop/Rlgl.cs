@@ -445,11 +445,11 @@ namespace Raylib_cs
 
         /// <summary>Initialize rlgl (buffers, shaders, textures, states)</summary>
         [DllImport(NativeLibName, EntryPoint = "rlglInit", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void glInit(int width, int height);
+        public static extern void GlInit(int width, int height);
 
         /// <summary>De-inititialize rlgl (buffers, shaders, textures)</summary>
         [DllImport(NativeLibName, EntryPoint = "rlglClose", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void glClose();
+        public static extern void GlClose();
 
         /// <summary>Load OpenGL extensions</summary>
         [DllImport(NativeLibName, EntryPoint = "rlLoadExtensions", CallingConvention = CallingConvention.Cdecl)]
