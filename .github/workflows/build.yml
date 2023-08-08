@@ -31,7 +31,8 @@ jobs:
     steps:
       - name: setup dependencies
         run: |
-          sudo apt install \
+          sudo apt-get update
+          sudo apt-get install \
             libasound2-dev \
             libx11-dev \
             libxrandr-dev \
