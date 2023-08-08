@@ -38,6 +38,20 @@ namespace Raylib_cs
             using var str1 = text.ToUTF8Buffer();
             SetClipboardText(str1.AsPointer());
         }
+        
+        /// <summary>Open URL with default system browser (if available)</summary>
+        public static void OpenURL(string url)
+        {
+            using var str1 = url.ToUTF8Buffer();
+            OpenURL(str1.AsPointer());
+        }
+        
+        /// <summary>Set internal gamepad mappings (SDL_GameControllerDB)</summary>
+        public static int SetGamepadMappings(string mappings)
+        {
+            using var str1 = mappings.ToUTF8Buffer();
+            return SetGamepadMappings(str1.AsPointer());
+        }
 
         /// <summary>Load shader from files and bind default locations</summary>
         public static Shader LoadShader(string vsFileName, string fsFileName)
@@ -650,6 +664,36 @@ namespace Raylib_cs
         {
             using var str1 = fileName.ToUTF8Buffer();
             return LoadTexture(str1.AsPointer());
+        }
+
+        /// <summary>Update GPU texture with new data</summary>
+        public static void UpdateTexture<T>(Texture2D texture, T[] pixels) where T : unmanaged
+        {
+            UpdateTexture(texture, (ReadOnlySpan<T>)pixels);
+        }
+
+        /// <summary>Update GPU texture with new data</summary>
+        public static void UpdateTexture<T>(Texture2D texture, ReadOnlySpan<T> pixels) where T : unmanaged
+        {
+            fixed (void* pixelPtr = pixels)
+            {
+                UpdateTexture(texture, pixelPtr);
+            }
+        }
+
+        /// <summary>Update GPU texture rectangle with new data</summary>
+        public static void UpdateTextureRec<T>(Texture2D texture, Rectangle rec, T[] pixels) where T : unmanaged
+        {
+            UpdateTextureRec(texture, rec, (ReadOnlySpan<T>)pixels);
+        }
+
+        /// <summary>Update GPU texture rectangle with new data</summary>
+        public static void UpdateTextureRec<T>(Texture2D texture, Rectangle rec, ReadOnlySpan<T> pixels) where T : unmanaged
+        {
+            fixed (void* pixelPtr = pixels)
+            {
+                UpdateTextureRec(texture, rec, pixelPtr);
+            }
         }
 
         /// <summary>Generate GPU mipmaps for a texture</summary>
