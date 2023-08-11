@@ -1,60 +1,60 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>net5.0;net6.0</TargetFrameworks>
-		<EnableDefaultItems>false</EnableDefaultItems>
-		<AssemblyName>Raylib-cs</AssemblyName>
-		<RootNamespace>Raylib_cs</RootNamespace>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<NoWarn>$(NoWarn);1591</NoWarn>
-		<LangVersion>10.0</LangVersion>
-	</PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AssemblyName>Raylib-cs</AssemblyName>
+    <RootNamespace>Raylib_cs</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<TargetRaylibTag>4.5.0</TargetRaylibTag>
-		<Version>4.5.0.3</Version>
-		<PackageVersion>4.5.0.3</PackageVersion>
-		<Authors>Chris Dill, Raysan5</Authors>
-		<PackProject>true</PackProject>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<PackageLicenseExpression>Zlib</PackageLicenseExpression>
-		<Title>Raylib-cs</Title>
-		<Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming</Description>
-		<PackageIcon>raylib-cs_64x64.png</PackageIcon>
-		<PackageTags>raylib;bindings;gamedev</PackageTags>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetRaylibTag>4.5.0</TargetRaylibTag>
+    <Version>4.5.0.3</Version>
+    <PackageVersion>4.5.0.3</PackageVersion>
+    <Authors>Chris Dill, Raysan5</Authors>
+    <PackProject>true</PackProject>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>Zlib</PackageLicenseExpression>
+    <Title>Raylib-cs</Title>
+    <Description>C# bindings for raylib - A simple and easy-to-use library to learn videogames programming</Description>
+    <PackageIcon>raylib-cs_64x64.png</PackageIcon>
+    <PackageTags>raylib;bindings;gamedev</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ChrisDill/Raylib-cs/</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
-		<None Include="../README.md" Pack="true" PackagePath="" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="../Logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
+    <None Include="../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
 
-	<ItemGroup>
-		<Content Include="runtimes/**" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
-			<PackagePath>runtimes/</PackagePath>
-			<Pack>true</Pack>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="runtimes/**" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
+      <PackagePath>runtimes/</PackagePath>
+      <Pack>true</Pack>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
-	<ItemGroup>
-		<Compile Include="interop\*.cs" />
-		<Compile Include="types\*.cs" />
-		<Compile Include="types\native\CBool.cs" />
-        <Compile Include="types\native\AnsiBuffer.cs" />
-		<Compile Include="types\native\FilePathList.cs" />
-        <Compile Include="types\native\UTF8Buffer.cs" />
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Include="interop\*.cs" />
+    <Compile Include="types\*.cs" />
+    <Compile Include="types\native\CBool.cs" />
+	<Compile Include="types\native\AnsiBuffer.cs" />
+    <Compile Include="types\native\UTF8Buffer.cs" />
+    <Compile Include="types\native\FilePathList.cs" />
+  </ItemGroup>
 </Project>
