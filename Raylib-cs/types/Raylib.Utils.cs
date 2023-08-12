@@ -38,14 +38,14 @@ namespace Raylib_cs
             using var str1 = text.ToUTF8Buffer();
             SetClipboardText(str1.AsPointer());
         }
-        
+
         /// <summary>Open URL with default system browser (if available)</summary>
         public static void OpenURL(string url)
         {
             using var str1 = url.ToUTF8Buffer();
             OpenURL(str1.AsPointer());
         }
-        
+
         /// <summary>Set internal gamepad mappings (SDL_GameControllerDB)</summary>
         public static int SetGamepadMappings(string mappings)
         {
