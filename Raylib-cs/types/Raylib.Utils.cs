@@ -56,8 +56,8 @@ namespace Raylib_cs
         /// <summary>Load shader from files and bind default locations</summary>
         public static Shader LoadShader(string vsFileName, string fsFileName)
         {
-            using var str1 = vsFileName.ToUTF8Buffer();
-            using var str2 = fsFileName.ToUTF8Buffer();
+            using var str1 = vsFileName.ToAnsiBuffer();
+            using var str2 = fsFileName.ToAnsiBuffer();
             return LoadShader(str1.AsPointer(), str2.AsPointer());
         }
 
@@ -86,43 +86,43 @@ namespace Raylib_cs
         /// <summary>Takes a screenshot of current screen (saved a .png)</summary>
         public static void TakeScreenshot(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             TakeScreenshot(str1.AsPointer());
         }
 
         /// <summary>Check file extension</summary>
         public static CBool IsFileExtension(string fileName, string ext)
         {
-            using var str1 = fileName.ToUTF8Buffer();
-            using var str2 = ext.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
+            using var str2 = ext.ToAnsiBuffer();
             return IsFileExtension(str1.AsPointer(), str2.AsPointer());
         }
 
         /// <summary>Get file modification time (last write time)</summary>
         public static long GetFileModTime(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return GetFileModTime(str1.AsPointer());
         }
 
         /// <summary>Load image from file into CPU memory (RAM)</summary>
         public static Image LoadImage(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadImage(str1.AsPointer());
         }
 
         /// <summary>Load image from RAW file data</summary>
         public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadImageRaw(str1.AsPointer(), width, height, format, headerSize);
         }
 
         /// <summary>Load image sequence from file (frames appended to image.data)</summary>
         public static Image LoadImageAnim(string fileName, out int frames)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             fixed (int* p = &frames)
             {
                 return LoadImageAnim(str1.AsPointer(), p);
@@ -134,7 +134,7 @@ namespace Raylib_cs
         /// </summary>
         public static Image LoadImageFromMemory(string fileType, byte[] fileData)
         {
-            using var fileTypeNative = fileType.ToUTF8Buffer();
+            using var fileTypeNative = fileType.ToAnsiBuffer();
             fixed (byte* fileDataNative = fileData)
             {
                 Image image = LoadImageFromMemory(fileTypeNative.AsPointer(), fileDataNative, fileData.Length);
@@ -145,14 +145,14 @@ namespace Raylib_cs
         /// <summary>Export image data to file</summary>
         public static CBool ExportImage(Image image, string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return ExportImage(image, str1.AsPointer());
         }
 
         /// <summary>Export image as code file defining an array of bytes</summary>
         public static CBool ExportImageAsCode(Image image, string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return ExportImageAsCode(image, str1.AsPointer());
         }
 
@@ -225,7 +225,7 @@ namespace Raylib_cs
         /// <summary>Load file data as byte array (read)</summary>
         public static byte* LoadFileData(string fileName, ref uint bytesRead)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             fixed (uint* p = &bytesRead)
             {
                 return LoadFileData(str1.AsPointer(), p);
@@ -662,7 +662,7 @@ namespace Raylib_cs
         /// <summary>Load texture from file into GPU memory (VRAM)</summary>
         public static Texture2D LoadTexture(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadTexture(str1.AsPointer());
         }
 
@@ -708,14 +708,14 @@ namespace Raylib_cs
         /// <summary>Load font from file into GPU memory (VRAM)</summary>
         public static Font LoadFont(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadFont(str1.AsPointer());
         }
 
         /// <summary>Load font from file with extended parameters</summary>
         public static Font LoadFontEx(string fileName, int fontSize, int[] fontChars, int glyphCount)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             fixed (int* p = fontChars)
             {
                 return LoadFontEx(str1.AsPointer(), fontSize, p, glyphCount);
@@ -733,7 +733,7 @@ namespace Raylib_cs
             int glyphCount
         )
         {
-            using var fileTypeNative = fileType.ToUTF8Buffer();
+            using var fileTypeNative = fileType.ToAnsiBuffer();
             fixed (byte* fileDataNative = fileData)
             {
                 fixed (int* fontCharsNative = fontChars)
@@ -791,7 +791,7 @@ namespace Raylib_cs
         /// <summary>Load model animations from file</summary>
         public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animCount)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             fixed (uint* p = &animCount)
             {
                 ModelAnimation* modelAnimations = LoadModelAnimations(str1.AsPointer(), p);
@@ -965,14 +965,14 @@ namespace Raylib_cs
         /// <summary>Draw a model (with texture if set)</summary>
         public static Model LoadModel(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadModel(str1.AsPointer());
         }
 
         /// <summary>Export mesh data to file, returns true on success</summary>
         public static CBool ExportMesh(Mesh mesh, string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return ExportMesh(mesh, str1.AsPointer());
         }
 
@@ -997,7 +997,7 @@ namespace Raylib_cs
         /// <summary>Load wave data from file</summary>
         public static Wave LoadWave(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadWave(str1.AsPointer());
         }
 
@@ -1009,7 +1009,7 @@ namespace Raylib_cs
             byte[] fileData
         )
         {
-            using var fileTypeNative = fileType.ToUTF8Buffer();
+            using var fileTypeNative = fileType.ToAnsiBuffer();
 
             fixed (byte* fileDataNative = fileData)
             {
@@ -1026,28 +1026,28 @@ namespace Raylib_cs
         /// <summary>Load sound from file</summary>
         public static Sound LoadSound(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadSound(str1.AsPointer());
         }
 
         /// <summary>Export wave data to file</summary>
         public static CBool ExportWave(Wave wave, string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return ExportWave(wave, str1.AsPointer());
         }
 
         /// <summary>Export wave sample data to code (.h)</summary>
         public static CBool ExportWaveAsCode(Wave wave, string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return ExportWaveAsCode(wave, str1.AsPointer());
         }
 
         /// <summary>Load music stream from file</summary>
         public static Music LoadMusicStream(string fileName)
         {
-            using var str1 = fileName.ToUTF8Buffer();
+            using var str1 = fileName.ToAnsiBuffer();
             return LoadMusicStream(str1.AsPointer());
         }
 
@@ -1059,7 +1059,7 @@ namespace Raylib_cs
             byte[] fileData
         )
         {
-            using var fileTypeNative = fileType.ToUTF8Buffer();
+            using var fileTypeNative = fileType.ToAnsiBuffer();
 
             fixed (byte* fileDataNative = fileData)
             {
