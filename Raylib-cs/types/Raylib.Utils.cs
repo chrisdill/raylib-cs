@@ -9,14 +9,14 @@ namespace Raylib_cs
         /// <summary>Initialize window and OpenGL context</summary>
         public static void InitWindow(int width, int height, string title)
         {
-            using var str1 = title.ToAnsiBuffer();
+            using var str1 = title.ToUTF8Buffer();
             InitWindow(width, height, str1.AsPointer());
         }
 
         /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
         public static void SetWindowTitle(string title)
         {
-            using var str1 = title.ToAnsiBuffer();
+            using var str1 = title.ToUTF8Buffer();
             SetWindowTitle(str1.AsPointer());
         }
 
@@ -35,7 +35,7 @@ namespace Raylib_cs
         /// <summary>Set clipboard text content</summary>
         public static void SetClipboardText(string text)
         {
-            using var str1 = text.ToAnsiBuffer();
+            using var str1 = text.ToUTF8Buffer();
             SetClipboardText(str1.AsPointer());
         }
         
@@ -64,22 +64,22 @@ namespace Raylib_cs
         /// <summary>Load shader from code string and bind default locations</summary>
         public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
         {
-            using var str1 = vsCode.ToAnsiBuffer();
-            using var str2 = fsCode.ToAnsiBuffer();
+            using var str1 = vsCode.ToUTF8Buffer();
+            using var str2 = fsCode.ToUTF8Buffer();
             return LoadShaderFromMemory(str1.AsPointer(), str2.AsPointer());
         }
 
         /// <summary>Get shader uniform location</summary>
         public static int GetShaderLocation(Shader shader, string uniformName)
         {
-            using var str1 = uniformName.ToAnsiBuffer();
+            using var str1 = uniformName.ToUTF8Buffer();
             return GetShaderLocation(shader, str1.AsPointer());
         }
 
         /// <summary>Get shader attribute location</summary>
         public static int GetShaderLocationAttrib(Shader shader, string attribName)
         {
-            using var str1 = attribName.ToAnsiBuffer();
+            using var str1 = attribName.ToUTF8Buffer();
             return GetShaderLocationAttrib(shader, str1.AsPointer());
         }
 
