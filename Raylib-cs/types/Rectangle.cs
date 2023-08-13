@@ -13,7 +13,8 @@ namespace Raylib_cs
         public float Width;
         public float Height;
 
-        public Rectangle(float x, float y, float width, float height) {
+        public Rectangle(float x, float y, float width, float height)
+        {
             this.X = x;
             this.Y = y;
             this.Width = width;

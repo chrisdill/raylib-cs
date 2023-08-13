@@ -1,19 +1,19 @@
-using System;
-using System.Text;
+﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Raylib_cs
 {
     /// <summary>
     /// Converts text to a UTF8 buffer for passing to native code
     /// </summary>
-    public ref struct UTF8Buffer
+    public readonly ref struct Utf8Buffer
     {
-        private IntPtr _data;
+        private readonly IntPtr _data;
 
-        public UTF8Buffer(string text)
+        public Utf8Buffer(string text)
         {
-            _data = Marshal.StringToHGlobalAnsi(text);
+            _data = Marshal.StringToCoTaskMemUTF8(text);
         }
 
         public unsafe sbyte* AsPointer()
@@ -23,15 +23,15 @@ namespace Raylib_cs
 
         public void Dispose()
         {
-            Marshal.FreeHGlobal(_data);
+            Marshal.ZeroFreeCoTaskMemUTF8(_data);
         }
     }
 
     public static class Utf8StringUtils
     {
-        public static UTF8Buffer ToUTF8Buffer(this string text)
+        public static Utf8Buffer ToUtf8Buffer(this string text)
         {
-            return new UTF8Buffer(text);
+            return new Utf8Buffer(text);
         }
 
         public static byte[] ToUtf8String(this string text)
