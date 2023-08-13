@@ -77,7 +77,8 @@
     <Content
       Include="$(IntermediateOutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)"
       Link="%(Filename)%(Extension)"
-      CopyToOutputDirectory="PreserveNewest" />
+      CopyToOutputDirectory="PreserveNewest"
+      Condition="Exists('$(IntermediateOutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)')" />
     <CMakeArgs Include="-B $(IntermediateOutputPath)native" />
     <CMakeArgs Include="-S $(IntermediateOutputPath)raylib-$(TargetRaylibTag)" />
     <CMakeArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
@@ -85,7 +86,7 @@
     <CMakeArgs Include="-D BUILD_EXAMPLES=OFF" />
   </ItemGroup>
 
-  <Target Name="ConfigureNative" BeforeTargets="BuildNative">
+  <Target Name="ConfigureNative" BeforeTargets="BuildNative" Condition="$(SkipLocalBuild) != true">
     <DownloadFile
       SourceUrl="https://github.com/raysan5/raylib/archive/refs/tags/$(TargetRaylibTag).zip"
       DestinationFolder="$(IntermediateOutputPath)"
@@ -100,7 +101,7 @@
       Condition="!Exists('$(IntermediateOutputPath)native/CMakeCache.txt')" />
   </Target>
 
-  <Target Name="BuildNative" BeforeTargets="BeforeBuild">
+  <Target Name="BuildNative" BeforeTargets="BeforeBuild" Condition="$(SkipLocalBuild) != true">
     <Exec Command="cmake --build $(IntermediateOutputPath)native --config $(Configuration)" />
   </Target>
 
