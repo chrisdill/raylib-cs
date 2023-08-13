@@ -38,10 +38,10 @@
 
   <ItemGroup>
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$(Configuration) == 'Release'">
     <Content Include="runtimes/**" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
       <PackagePath>runtimes/</PackagePath>
       <Pack>true</Pack>
@@ -57,4 +57,51 @@
     <Compile Include="types\native\UTF8Buffer.cs" />
     <Compile Include="types\native\FilePathList.cs" />
   </ItemGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <NativeExt>so</NativeExt>
+    <NativePre>lib</NativePre>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+    <NativeExt>dylib</NativeExt>
+    <NativePre>lib</NativePre>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <NativeExt>dll</NativeExt>
+    <NativePre>$(Configuration)/</NativePre>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content
+      Include="$(IntermediateOutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)"
+      Link="%(Filename)%(Extension)"
+      CopyToOutputDirectory="PreserveNewest" />
+    <CMakeArgs Include="-B $(IntermediateOutputPath)native" />
+    <CMakeArgs Include="-S $(IntermediateOutputPath)raylib-$(TargetRaylibTag)" />
+    <CMakeArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
+    <CMakeArgs Include="-D BUILD_SHARED_LIBS=ON" />
+    <CMakeArgs Include="-D BUILD_EXAMPLES=OFF" />
+  </ItemGroup>
+
+  <Target Name="ConfigureNative" BeforeTargets="BuildNative">
+    <DownloadFile
+      SourceUrl="https://github.com/raysan5/raylib/archive/refs/tags/$(TargetRaylibTag).zip"
+      DestinationFolder="$(IntermediateOutputPath)"
+      DestinationFileName="raylib.zip"
+      Condition="!Exists('$(IntermediateOutputPath)raylib.zip')" />
+    <Unzip
+      SourceFiles="$(IntermediateOutputPath)raylib.zip"
+      DestinationFolder="$(IntermediateOutputPath)"
+      OverwriteReadOnlyFiles="true"
+      Condition="!Exists('$(IntermediateOutputPath)raylib-$(TargetRaylibTag)')" />
+    <Exec Command="cmake @(CMakeArgs, ' ') $(CMakeExtraArgs)"
+      Condition="!Exists('$(IntermediateOutputPath)native/CMakeCache.txt')" />
+  </Target>
+
+  <Target Name="BuildNative" BeforeTargets="BeforeBuild">
+    <Exec Command="cmake --build $(IntermediateOutputPath)native --config $(Configuration)" />
+  </Target>
+
 </Project>
