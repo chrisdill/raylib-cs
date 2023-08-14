@@ -9,14 +9,14 @@ namespace Raylib_cs
         /// <summary>Initialize window and OpenGL context</summary>
         public static void InitWindow(int width, int height, string title)
         {
-            using var str1 = title.ToUTF8Buffer();
+            using var str1 = title.ToUtf8Buffer();
             InitWindow(width, height, str1.AsPointer());
         }
 
         /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
         public static void SetWindowTitle(string title)
         {
-            using var str1 = title.ToUTF8Buffer();
+            using var str1 = title.ToUtf8Buffer();
             SetWindowTitle(str1.AsPointer());
         }
 
@@ -35,21 +35,21 @@ namespace Raylib_cs
         /// <summary>Set clipboard text content</summary>
         public static void SetClipboardText(string text)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             SetClipboardText(str1.AsPointer());
         }
 
         /// <summary>Open URL with default system browser (if available)</summary>
         public static void OpenURL(string url)
         {
-            using var str1 = url.ToUTF8Buffer();
+            using var str1 = url.ToUtf8Buffer();
             OpenURL(str1.AsPointer());
         }
 
         /// <summary>Set internal gamepad mappings (SDL_GameControllerDB)</summary>
         public static int SetGamepadMappings(string mappings)
         {
-            using var str1 = mappings.ToUTF8Buffer();
+            using var str1 = mappings.ToUtf8Buffer();
             return SetGamepadMappings(str1.AsPointer());
         }
 
@@ -64,22 +64,22 @@ namespace Raylib_cs
         /// <summary>Load shader from code string and bind default locations</summary>
         public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
         {
-            using var str1 = vsCode.ToUTF8Buffer();
-            using var str2 = fsCode.ToUTF8Buffer();
+            using var str1 = vsCode.ToUtf8Buffer();
+            using var str2 = fsCode.ToUtf8Buffer();
             return LoadShaderFromMemory(str1.AsPointer(), str2.AsPointer());
         }
 
         /// <summary>Get shader uniform location</summary>
         public static int GetShaderLocation(Shader shader, string uniformName)
         {
-            using var str1 = uniformName.ToUTF8Buffer();
+            using var str1 = uniformName.ToUtf8Buffer();
             return GetShaderLocation(shader, str1.AsPointer());
         }
 
         /// <summary>Get shader attribute location</summary>
         public static int GetShaderLocationAttrib(Shader shader, string attribName)
         {
-            using var str1 = attribName.ToUTF8Buffer();
+            using var str1 = attribName.ToUtf8Buffer();
             return GetShaderLocationAttrib(shader, str1.AsPointer());
         }
 
@@ -159,7 +159,7 @@ namespace Raylib_cs
         /// <summary>Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR)</summary>
         public static void TraceLog(TraceLogLevel logLevel, string text)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             TraceLog(logLevel, str1.AsPointer());
         }
 
@@ -236,11 +236,11 @@ namespace Raylib_cs
         public static string[] GetDroppedFiles()
         {
             var filePathList = LoadDroppedFiles();
-            var files = new string[filePathList.count];
+            var files = new string[filePathList.Count];
 
-            for (var i = 0; i < filePathList.count; i++)
+            for (var i = 0; i < filePathList.Count; i++)
             {
-                files[i] = Marshal.PtrToStringUTF8((IntPtr)filePathList.paths[i]);
+                files[i] = Marshal.PtrToStringUTF8((IntPtr)filePathList.Paths[i]);
             }
             UnloadDroppedFiles(filePathList);
 
@@ -291,14 +291,14 @@ namespace Raylib_cs
         /// <summary>Create an image from text (default font)</summary>
         public static Image ImageText(string text, int fontSize, Color color)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             return ImageText(str1.AsPointer(), fontSize, color);
         }
 
         /// <summary>Create an image from text (custom sprite font)</summary>
         public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             return ImageTextEx(font, str1.AsPointer(), fontSize, spacing, tint);
         }
 
@@ -634,7 +634,7 @@ namespace Raylib_cs
         /// <summary>Draw text (using default font) within an image (destination)</summary>
         public static void ImageDrawText(ref Image dst, string text, int x, int y, int fontSize, Color color)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             fixed (Image* p = &dst)
             {
                 ImageDrawText(p, str1.AsPointer(), x, y, fontSize, color);
@@ -652,7 +652,7 @@ namespace Raylib_cs
             Color color
         )
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             fixed (Image* p = &dst)
             {
                 ImageDrawTextEx(p, font, str1.AsPointer(), position, fontSize, spacing, color);
@@ -862,7 +862,7 @@ namespace Raylib_cs
         /// <summary>Draw text (using default font)</summary>
         public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             DrawText(str1.AsPointer(), posX, posY, fontSize, color);
         }
 
@@ -876,7 +876,7 @@ namespace Raylib_cs
             Color tint
         )
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             DrawTextEx(font, str1.AsPointer(), position, fontSize, spacing, tint);
         }
 
@@ -892,28 +892,28 @@ namespace Raylib_cs
             Color tint
         )
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             DrawTextPro(font, str1.AsPointer(), position, origin, rotation, fontSize, spacing, tint);
         }
 
         /// <summary>Measure string width for default font</summary>
         public static int MeasureText(string text, int fontSize)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             return MeasureText(str1.AsPointer(), fontSize);
         }
 
         /// <summary>Measure string size for Font</summary>
         public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             return MeasureTextEx(font, str1.AsPointer(), fontSize, spacing);
         }
 
         /// <summary>Get all codepoints in a string, codepoints count returned by parameters</summary>
         public static int[] LoadCodepoints(string text, ref int count)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             fixed (int* c = &count)
             {
                 var pointsPtr = LoadCodepoints(str1.AsPointer(), c);
@@ -926,14 +926,14 @@ namespace Raylib_cs
         /// <summary>Get total number of codepoints in a UTF8 encoded string</summary>
         public static int GetCodepointCount(string text)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             return GetCodepointCount(str1.AsPointer());
         }
 
         /// <summary>Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure</summary>
         public static int GetCodepoint(string text, ref int codepointSize)
         {
-            using var str1 = text.ToUTF8Buffer();
+            using var str1 = text.ToUtf8Buffer();
             fixed (int* p = &codepointSize)
             {
                 return GetCodepoint(str1.AsPointer(), p);
@@ -1080,12 +1080,12 @@ namespace Raylib_cs
 
         public static Material GetMaterial(ref Model model, int materialIndex)
         {
-            return model.materials[materialIndex];
+            return model.Materials[materialIndex];
         }
 
         public static Texture2D GetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex)
         {
-            return model.materials[materialIndex].maps[(int)mapIndex].texture;
+            return model.Materials[materialIndex].Maps[(int)mapIndex].Texture;
         }
 
         public static void SetMaterialTexture(
@@ -1095,12 +1095,12 @@ namespace Raylib_cs
             ref Texture2D texture
         )
         {
-            SetMaterialTexture(&model.materials[materialIndex], mapIndex, texture);
+            SetMaterialTexture(&model.Materials[materialIndex], mapIndex, texture);
         }
 
         public static void SetMaterialShader(ref Model model, int materialIndex, ref Shader shader)
         {
-            model.materials[materialIndex].shader = shader;
+            model.Materials[materialIndex].Shader = shader;
         }
     }
 }

@@ -7,31 +7,31 @@ namespace Raylib_cs
     /// <summary>
     /// Converts text to a UTF8 buffer for passing to native code
     /// </summary>
-    public readonly ref struct UTF8Buffer
+    public readonly ref struct Utf8Buffer
     {
-        private readonly IntPtr data;
+        private readonly IntPtr _data;
 
-        public UTF8Buffer(string text)
+        public Utf8Buffer(string text)
         {
-            data = Marshal.StringToCoTaskMemUTF8(text);
+            _data = Marshal.StringToCoTaskMemUTF8(text);
         }
 
         public unsafe sbyte* AsPointer()
         {
-            return (sbyte*)data.ToPointer();
+            return (sbyte*)_data.ToPointer();
         }
 
         public void Dispose()
         {
-            Marshal.ZeroFreeCoTaskMemUTF8(data);
+            Marshal.ZeroFreeCoTaskMemUTF8(_data);
         }
     }
 
     public static class Utf8StringUtils
     {
-        public static UTF8Buffer ToUTF8Buffer(this string text)
+        public static Utf8Buffer ToUtf8Buffer(this string text)
         {
-            return new UTF8Buffer(text);
+            return new Utf8Buffer(text);
         }
 
         public static byte[] ToUtf8String(this string text)

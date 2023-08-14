@@ -8,21 +8,21 @@ namespace Raylib_cs
     /// </summary>
     public readonly ref struct AnsiBuffer
     {
-        private readonly IntPtr data;
+        private readonly IntPtr _data;
 
         public AnsiBuffer(string text)
         {
-            data = Marshal.StringToHGlobalAnsi(text);
+            _data = Marshal.StringToHGlobalAnsi(text);
         }
 
         public unsafe sbyte* AsPointer()
         {
-            return (sbyte*)data.ToPointer();
+            return (sbyte*)_data.ToPointer();
         }
 
         public void Dispose()
         {
-            Marshal.FreeHGlobal(data);
+            Marshal.FreeHGlobal(_data);
         }
     }
 

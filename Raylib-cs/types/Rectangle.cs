@@ -8,22 +8,22 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Rectangle
     {
-        public float x;
-        public float y;
-        public float width;
-        public float height;
+        public float X;
+        public float Y;
+        public float Width;
+        public float Height;
 
         public Rectangle(float x, float y, float width, float height)
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
         }
 
         public override string ToString()
         {
-            return $"{{X:{x} Y:{y} Width:{width} Height:{height}}}";
+            return $"{{X:{X} Y:{Y} Width:{Width} Height:{Height}}}";
         }
     }
 }

@@ -12,17 +12,17 @@ namespace Raylib_cs
         /// <summary>
         /// Ray position (origin)
         /// </summary>
-        public Vector3 position;
+        public Vector3 Position;
 
         /// <summary>
         /// Ray direction
         /// </summary>
-        public Vector3 direction;
+        public Vector3 Direction;
 
         public Ray(Vector3 position, Vector3 direction)
         {
-            this.position = position;
-            this.direction = direction;
+            this.Position = position;
+            this.Direction = direction;
         }
     }
 
@@ -35,21 +35,21 @@ namespace Raylib_cs
         /// <summary>
         /// Did the ray hit something?
         /// </summary>
-        public CBool hit;
+        public CBool Hit;
 
         /// <summary>
         /// Distance to the nearest hit
         /// </summary>
-        public float distance;
+        public float Distance;
 
         /// <summary>
         /// Point of the nearest hit
         /// </summary>
-        public Vector3 point;
+        public Vector3 Point;
 
         /// <summary>
         /// Surface normal of hit
         /// </summary>
-        public Vector3 normal;
+        public Vector3 Normal;
     }
 }

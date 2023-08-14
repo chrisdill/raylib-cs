@@ -12,16 +12,16 @@ namespace Raylib_cs
         /// <summary>
         /// Translation
         /// </summary>
-        public Vector3 translation;
+        public Vector3 Translation;
 
         /// <summary>
         /// Rotation
         /// </summary>
-        public Quaternion rotation;
+        public Quaternion Rotation;
 
         /// <summary>
         /// Scale
         /// </summary>
-        public Vector3 scale;
+        public Vector3 Scale;
     }
 }

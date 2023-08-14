@@ -398,52 +398,52 @@ namespace Raylib_cs
         /// <summary>
         /// HMD horizontal resolution in pixels
         /// </summary>
-        public int hResolution;
+        public int HResolution;
 
         /// <summary>
         /// HMD vertical resolution in pixels
         /// </summary>
-        public int vResolution;
+        public int VResolution;
 
         /// <summary>
         /// HMD horizontal size in meters
         /// </summary>
-        public float hScreenSize;
+        public float HScreenSize;
 
         /// <summary>
         /// HMD vertical size in meters
         /// </summary>
-        public float vScreenSize;
+        public float VScreenSize;
 
         /// <summary>
         /// HMD screen center in meters
         /// </summary>
-        public float vScreenCenter;
+        public float VScreenCenter;
 
         /// <summary>
         /// HMD distance between eye and display in meters
         /// </summary>
-        public float eyeToScreenDistance;
+        public float EyeToScreenDistance;
 
         /// <summary>
         /// HMD lens separation distance in meters
         /// </summary>
-        public float lensSeparationDistance;
+        public float LensSeparationDistance;
 
         /// <summary>
         /// HMD IPD (distance between pupils) in meters
         /// </summary>
-        public float interpupillaryDistance;
+        public float InterpupillaryDistance;
 
         /// <summary>
         /// HMD lens distortion constant parameters
         /// </summary>
-        public fixed float lensDistortionValues[4];
+        public fixed float LensDistortionValues[4];
 
         /// <summary>
         /// HMD chromatic aberration correction parameters
         /// </summary>
-        public fixed float chromaAbCorrection[4];
+        public fixed float ChromaAbCorrection[4];
     }
 
     /// <summary>
@@ -455,51 +455,51 @@ namespace Raylib_cs
         /// <summary>
         /// VR projection matrices (per eye)
         /// </summary>
-        public Matrix4x4 projection1;
+        public Matrix4x4 Projection1;
 
         /// <summary>
         /// VR projection matrices (per eye)
         /// </summary>
-        public Matrix4x4 projection2;
+        public Matrix4x4 Projection2;
 
         /// <summary>
         /// VR view offset matrices (per eye)
         /// </summary>
-        public Matrix4x4 viewOffset1;
+        public Matrix4x4 ViewOffset1;
 
         /// <summary>
         /// VR view offset matrices (per eye)
         /// </summary>
-        public Matrix4x4 viewOffset2;
+        public Matrix4x4 ViewOffset2;
 
         /// <summary>
         /// VR left lens center
         /// </summary>
-        public Vector2 leftLensCenter;
+        public Vector2 LeftLensCenter;
 
         /// <summary>
         /// VR right lens center
         /// </summary>
-        public Vector2 rightLensCenter;
+        public Vector2 RightLensCenter;
 
         /// <summary>
         /// VR left screen center
         /// </summary>
-        public Vector2 leftScreenCenter;
+        public Vector2 LeftScreenCenter;
 
         /// <summary>
         /// VR right screen center
         /// </summary>
-        public Vector2 rightScreenCenter;
+        public Vector2 RightScreenCenter;
 
         /// <summary>
         /// VR distortion scale
         /// </summary>
-        public Vector2 scale;
+        public Vector2 Scale;
 
         /// <summary>
         /// VR distortion scale in
         /// </summary>
-        public Vector2 scaleIn;
+        public Vector2 ScaleIn;
     }
 }
