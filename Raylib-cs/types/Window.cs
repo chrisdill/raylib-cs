@@ -16,7 +16,8 @@ public class Window : IDisposable
     /// <summary>
     /// Initializes the object if it is not ready.
     /// </summary>
-    public static Window Instance(int width, int height, string title) {
+    public static Window Instance(int width, int height, string title)
+    {
         return _instance ?? new Window(width, height, title);
     }
     
