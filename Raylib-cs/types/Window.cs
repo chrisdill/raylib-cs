@@ -14,8 +14,12 @@ public class Window : IDisposable
     }
     
     /// <summary>
-    /// Initializes the object if it is not ready.
+    /// Gets an instance of the Window or creates a new one if it doesn't exist.
     /// </summary>
+    /// <param name="width">The width of the window.</param>
+    /// <param name="height">The height of the window.</param>
+    /// <param name="title">The title of the window.</param>
+    /// <returns>An instance of the Window.</returns>
     public static Window Instance(int width, int height, string title)
     {
         return _instance ?? new Window(width, height, title);
