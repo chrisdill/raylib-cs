@@ -5,27 +5,19 @@ namespace Raylib_cs;
 
 public class Window : IDisposable
 {
+    private static Window _instance;
     
-    private readonly int _width;
-    private readonly int _height;
-    private readonly string _title;
-    
-    public Window(int width, int height, string title)
+    private Window(int width, int height, string title)
     {
-        this._width = width;
-        this._height = height;
-        this._title = title;
+        Raylib.InitWindow(width, height, title);
+        _instance = this;
     }
     
     /// <summary>
     /// Initializes the object if it is not ready.
     /// </summary>
-    public void Init()
-    {
-        if (!IsReady())
-        {
-            Raylib.InitWindow(this._width, this._height, this._title);
-        }
+    public static Window Instance(int width, int height, string title) {
+        return _instance ?? new Window(width, height, title);
     }
     
     /// <summary> See <see cref="Raylib.WindowShouldClose"/> </summary>
@@ -166,6 +158,7 @@ public class Window : IDisposable
     public void Dispose()
     {
         if (!IsReady()) return;
+        
         this.Close();
     }
 }
