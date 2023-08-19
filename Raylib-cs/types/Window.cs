@@ -7,8 +7,9 @@ public class Window : IDisposable
 {
     private static Window _instance;
     
-    private Window(int width, int height, string title)
+    private Window(ConfigFlags flags, int width, int height, string title)
     {
+        Raylib.SetConfigFlags(flags);
         Raylib.InitWindow(width, height, title);
         _instance = this;
     }
@@ -16,13 +17,14 @@ public class Window : IDisposable
     /// <summary>
     /// Gets an instance of the Window or creates a new one if it doesn't exist.
     /// </summary>
+    /// <param name="flags">The configuration flags for the window.</param>
     /// <param name="width">The width of the window.</param>
     /// <param name="height">The height of the window.</param>
     /// <param name="title">The title of the window.</param>
     /// <returns>An instance of the Window.</returns>
-    public static Window Instance(int width, int height, string title)
+    public static Window Instance(ConfigFlags flags, int width, int height, string title)
     {
-        return _instance ?? new Window(width, height, title);
+        return _instance ?? new Window(flags, width, height, title);
     }
     
     /// <summary> See <see cref="Raylib.WindowShouldClose"/> </summary>
@@ -62,9 +64,6 @@ public class Window : IDisposable
     
     /// <summary> See <see cref="Raylib.SetWindowState"/> </summary>
     public bool SetState(ConfigFlags state) => Raylib.SetWindowState(state);
-    
-    /// <summary> See <see cref="Raylib.SetConfigFlags"/> </summary>
-    public void SetConfigFlag(ConfigFlags state) => Raylib.SetConfigFlags(state);
     
     /// <summary> See <see cref="Raylib.ClearWindowState"/> </summary>
     public void ClearState(ConfigFlags state) => Raylib.ClearWindowState(state);
