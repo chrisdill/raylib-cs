@@ -10,8 +10,6 @@ public class Window : IDisposable
     private readonly int _height;
     private readonly string _title;
     
-    public static bool HasInitialized { get; private set; }
-    
     public Window(int width, int height, string title)
     {
         this._width = width;
@@ -24,8 +22,10 @@ public class Window : IDisposable
     /// </summary>
     public void Init()
     {
-        if (!HasInitialized)
+        if (!IsReady())
+        {
             Raylib.InitWindow(this._width, this._height, this._title);
+        }
     }
     
     /// <summary> See <see cref="Raylib.WindowShouldClose"/> </summary>
@@ -165,9 +165,7 @@ public class Window : IDisposable
 
     public void Dispose()
     {
-        if (!HasInitialized) return;
-        
+        if (!IsReady()) return;
         this.Close();
-        HasInitialized = false;
     }
 }
