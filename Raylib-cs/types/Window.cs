@@ -158,7 +158,6 @@ public class Window : IDisposable
     public void Dispose()
     {
         if (!IsReady()) return;
-        
         this.Close();
     }
 }
