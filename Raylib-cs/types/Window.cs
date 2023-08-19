@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Raylib_cs;
 
-public class Window : IDisposable
+public sealed class Window : IDisposable
 {
     private static Window _instance;
     
