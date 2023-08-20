@@ -5,33 +5,40 @@ namespace Raylib_cs;
 
 public sealed class Window : IDisposable
 {
-    private static Window _instance;
+    public event OnInit Init;
+    public event OnUpdate Update;
+    public event OnDraw Draw;
+    public event OnClose Close;
+
+    private int _width;
+    private int _height;
+    private string _title;
     
-    private Window(ConfigFlags flags, int width, int height, string title)
-    {
-        Raylib.SetConfigFlags(flags);
-        Raylib.InitWindow(width, height, title);
-        _instance = this;
+    public Window(int width, int height, string title) {
+        this._width = width;
+        this._height = height;
+        this._title = title;
     }
-    
-    /// <summary>
-    /// Gets an instance of the Window or creates a new one if it doesn't exist.
-    /// </summary>
-    /// <param name="flags">The configuration flags for the window.</param>
-    /// <param name="width">The width of the window.</param>
-    /// <param name="height">The height of the window.</param>
-    /// <param name="title">The title of the window.</param>
-    /// <returns>An instance of the Window.</returns>
-    public static Window Instance(ConfigFlags flags, int width, int height, string title)
-    {
-        return _instance ?? new Window(flags, width, height, title);
+
+    public void Run() {
+        Raylib.InitWindow(_width, _height, _title);
+        Init?.Invoke();
+
+        while (!ShouldClose()) {
+            Update?.Invoke();
+            
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.SKYBLUE);
+            Draw?.Invoke();
+            Raylib.EndDrawing();
+        }
+        
+        Close?.Invoke();
+        Raylib.CloseWindow();
     }
     
     /// <inheritdoc cref="Raylib.WindowShouldClose"/>
     public bool ShouldClose() => Raylib.WindowShouldClose();
-    
-    /// <inheritdoc cref="Raylib.CloseWindow"/>
-    public void Close() => Raylib.CloseWindow();
     
     /// <inheritdoc cref="Raylib.TakeScreenshot(string)"/>
     public void TakeScreenshot(string path) => Raylib.TakeScreenshot(path);
@@ -162,10 +169,13 @@ public sealed class Window : IDisposable
     /// <inheritdoc cref="Raylib.GetClipboardText_"/>
     public string GetClipboardText() => Raylib.GetClipboardText_();
     
-    public void Dispose()
-    {
-        if (!IsReady()) return;
-        this.Close();
-        _instance = null;
-    }
+    public delegate void OnInit();
+    
+    public delegate void OnUpdate();
+    
+    public delegate void OnDraw();
+    
+    public delegate void OnClose();
+    
+    public void Dispose() { }
 }
