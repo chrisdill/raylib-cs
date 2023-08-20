@@ -27,141 +27,145 @@ public sealed class Window : IDisposable
         return _instance ?? new Window(flags, width, height, title);
     }
     
-    /// <summary> See <see cref="Raylib.WindowShouldClose"/> </summary>
+    /// <inheritdoc cref="Raylib.WindowShouldClose"/>
     public bool ShouldClose() => Raylib.WindowShouldClose();
     
-    /// <summary> See <see cref="Raylib.CloseWindow"/> </summary>
+    /// <inheritdoc cref="Raylib.CloseWindow"/>
     public void Close() => Raylib.CloseWindow();
     
-    /// <summary> See <see cref="Raylib.TakeScreenshot(string)"/> </summary>
+    /// <inheritdoc cref="Raylib.TakeScreenshot(string)"/>
     public void TakeScreenshot(string path) => Raylib.TakeScreenshot(path);
     
     
-    /// <summary> See <see cref="Raylib.IsWindowReady"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowReady"/>
     public bool IsReady() => Raylib.IsWindowReady();
     
-    /// <summary> See <see cref="Raylib.IsWindowFullscreen"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowFullscreen"/>
     public bool IsFullscreen() => Raylib.IsWindowFullscreen();
     
-    /// <summary> See <see cref="Raylib.IsWindowHidden"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowHidden"/>
     public bool IsHidden() => Raylib.IsWindowHidden();
     
-    /// <summary> See <see cref="Raylib.IsWindowMinimized"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowMinimized"/>
     public bool IsMinimized() => Raylib.IsWindowMinimized();
     
-    /// <summary> See <see cref="Raylib.IsWindowMaximized"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowMaximized"/>
     public bool IsMaximized() => Raylib.IsWindowMaximized();
     
-    /// <summary> See <see cref="Raylib.IsWindowFocused"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowFocused"/>
     public bool IsFocused() => Raylib.IsWindowFocused();
     
-    /// <summary> See <see cref="Raylib.IsWindowResized"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowResized"/>
     public bool IsResized() => Raylib.IsWindowResized();
     
-    /// <summary> See <see cref="Raylib.IsWindowState"/> </summary>
+    /// <inheritdoc cref="Raylib.IsWindowState"/>
     public bool IsState(ConfigFlags state) => Raylib.IsWindowState(state);
     
     
-    /// <summary> See <see cref="Raylib.SetWindowState"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowState"/>
     public bool SetState(ConfigFlags state) => Raylib.SetWindowState(state);
     
-    /// <summary> See <see cref="Raylib.ClearWindowState"/> </summary>
+    /// <inheritdoc cref="Raylib.ClearWindowState"/>
     public void ClearState(ConfigFlags state) => Raylib.ClearWindowState(state);
     
-    /// <summary> See <see cref="Raylib.ToggleFullscreen"/> </summary>
+    /// <inheritdoc cref="Raylib.ToggleFullscreen"/>
     public void ToggleFullscreen() => Raylib.ToggleFullscreen();
     
-    /// <summary> See <see cref="Raylib.MaximizeWindow"/> </summary>
+    /// <inheritdoc cref="Raylib.MaximizeWindow"/>
     public void Maximize() => Raylib.MaximizeWindow();
     
-    /// <summary> See <see cref="Raylib.MinimizeWindow"/> </summary>
+    /// <inheritdoc cref="Raylib.MinimizeWindow"/>
     public void Minimize() => Raylib.MinimizeWindow();
     
-    /// <summary> See <see cref="Raylib.RestoreWindow"/> </summary>
+    /// <inheritdoc cref="Raylib.RestoreWindow"/>
     public void Restore() => Raylib.RestoreWindow();
     
-    /// <summary> See <see cref="Raylib.SetWindowIcon"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowIcon"/>
     public void SetIcon(Image image) => Raylib.SetWindowIcon(image);
     
-    /// <summary> See <see cref="Raylib.SetWindowIcons"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowIcons"/>
     public unsafe void SetIcons(Image* images, int count) => Raylib.SetWindowIcons(images, count);
     
-    /// <summary> See <see cref="Raylib.SetWindowTitle(string)"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowTitle(string)"/>
     public void SetTitle(string title) => Raylib.SetWindowTitle(title);
     
-    /// <summary> See <see cref="Raylib.SetClipboardText(string)"/> </summary>
+    /// <inheritdoc cref="Raylib.SetClipboardText(string)"/>
     public void SetClipboardText(string path) => Raylib.SetClipboardText(path);
     
-    /// <summary> See <see cref="Raylib.SetWindowPosition"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowPosition"/>
     public void SetPosition(int x, int y) => Raylib.SetWindowPosition(x, y);
     
-    /// <summary> See <see cref="Raylib.SetWindowMonitor"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowMonitor"/>
     public void SetMonitor(int monitor) => Raylib.SetWindowMonitor(monitor);
     
-    /// <summary> See <see cref="Raylib.SetWindowMinSize"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowMinSize"/>
     public void SetMinSize(int width, int height) => Raylib.SetWindowMinSize(width, height);
     
-    /// <summary> See <see cref="Raylib.SetWindowSize"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowSize"/>
     public void SetSize(int width, int height) => Raylib.SetWindowSize(width, height);
     
-    /// <summary> See <see cref="Raylib.SetWindowOpacity"/> </summary>
+    /// <inheritdoc cref="Raylib.SetWindowOpacity"/>
     public void SetOpacity(float opacity) => Raylib.SetWindowOpacity(opacity);
     
-    /// <summary> See <see cref="Raylib.EnableEventWaiting"/> </summary>
+    /// <inheritdoc cref="Raylib.EnableEventWaiting"/>
     public void EnableEventWaiting() => Raylib.EnableEventWaiting();
     
-    /// <summary> See <see cref="Raylib.DisableEventWaiting"/> </summary>
+    /// <inheritdoc cref="Raylib.DisableEventWaiting"/>
     public void DisableEventWaiting() => Raylib.DisableEventWaiting();
     
     
-    /// <summary> See <see cref="Raylib.GetScreenWidth"/> </summary>
+    /// <inheritdoc cref="Raylib.GetScreenWidth"/>
     public int GetScreenWidth() => Raylib.GetScreenWidth();
     
-    /// <summary> See <see cref="Raylib.GetScreenHeight"/> </summary>
+    /// <inheritdoc cref="Raylib.GetScreenHeight"/>
     public int GetScreenHeight() => Raylib.GetScreenHeight();
     
-    /// <summary> See <see cref="Raylib.GetRenderWidth"/> </summary>
+    /// <inheritdoc cref="Raylib.GetRenderWidth"/>
     public int GetRenderWidth() => Raylib.GetRenderWidth();
     
-    /// <summary> See <see cref="Raylib.GetRenderHeight"/> </summary>
+    /// <inheritdoc cref="Raylib.GetRenderHeight"/>
     public int GetRenderHeight() => Raylib.GetRenderHeight();
     
-    /// <summary> See <see cref="Raylib.GetMonitorCount"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorCount"/>
     public int GetMonitorCount() => Raylib.GetMonitorCount();
     
-    /// <summary> See <see cref="Raylib.GetCurrentMonitor"/> </summary>
+    /// <inheritdoc cref="Raylib.GetCurrentMonitor"/>
     public int GetCurrentMonitor() => Raylib.GetCurrentMonitor();
     
-    /// <summary> See <see cref="Raylib.GetMonitorPosition"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorPosition"/>
     public Vector2 GetMonitorPosition(int monitor) => Raylib.GetMonitorPosition(monitor);
     
-    /// <summary> See <see cref="Raylib.GetMonitorWidth"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorWidth"/>
     public int GetMonitorWidth(int monitor) => Raylib.GetMonitorWidth(monitor);
     
-    /// <summary> See <see cref="Raylib.GetMonitorHeight"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorHeight"/>
     public int GetMonitorHeight(int monitor) => Raylib.GetMonitorHeight(monitor);
     
-    /// <summary> See <see cref="Raylib.GetMonitorPhysicalWidth"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorPhysicalWidth"/>
     public int GetMonitorPhysicalWidth(int monitor) => Raylib.GetMonitorPhysicalWidth(monitor);
     
-    /// <summary> See <see cref="Raylib.GetMonitorPhysicalHeight"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorPhysicalHeight"/>
     public int GetMonitorPhysicalHeight(int monitor) => Raylib.GetMonitorPhysicalHeight(monitor);
     
-    /// <summary> See <see cref="Raylib.GetMonitorRefreshRate"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorRefreshRate"/>
     public int GetMonitorRefreshRate(int monitor) => Raylib.GetMonitorRefreshRate(monitor);
     
-    /// <summary> See <see cref="Raylib.GetWindowPosition"/> </summary>
+    /// <inheritdoc cref="Raylib.GetWindowPosition"/>
     public Vector2 GetPosition() => Raylib.GetWindowPosition();
     
-    /// <summary> See <see cref="Raylib.GetWindowScaleDPI"/> </summary>
+    /// <inheritdoc cref="Raylib.GetWindowScaleDPI"/>
     public Vector2 GetScaleDpi() => Raylib.GetWindowScaleDPI();
     
-    /// <summary> See <see cref="Raylib.GetMonitorName_"/> </summary>
+    /// <inheritdoc cref="Raylib.GetMonitorName_"/>
     public string GetMonitorName(int monitor) => Raylib.GetMonitorName_(monitor);
-
+    
+    /// <inheritdoc cref="Raylib.GetClipboardText_"/>
+    public string GetClipboardText() => Raylib.GetClipboardText_();
+    
     public void Dispose()
     {
         if (!IsReady()) return;
         this.Close();
+        _instance = null;
     }
 }
