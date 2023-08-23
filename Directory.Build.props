@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetRaylibTag>4.5.0</TargetRaylibTag>
+    <Version>4.5.0.4</Version>
+    <PackageVersion>4.5.0.4</PackageVersion>
+  </PropertyGroup>
+
+</Project>
