@@ -25,6 +25,50 @@ jobs:
           echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Raylib-cs/Raylib-cs.csproj)">> ${GITHUB_OUTPUT}
           echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Raylib-cs/Raylib-cs.csproj)">> ${GITHUB_OUTPUT}
 
+  build-android:
+    runs-on: ubuntu-latest
+    needs: prepare
+    strategy:
+      matrix:
+        name: [arm, arm64, x86, x64]
+        include:
+          - name: arm
+            arch: armeabi-v7a
+          - name: arm64
+            arch: arm64-v8a
+          - name: x86
+            arch: x86
+          - name: x64
+            arch: x86_64
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: build raylib
+        env:
+          version: ${{ needs.prepare.outputs.version }}
+        run: |
+          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
+          unzip -qq raylib.zip
+          pushd raylib-${version}; patch -p1 < ../Raylib-cs.Android/android.patch; popd
+          cmake -S raylib-${version} \
+            -B build \
+            -D CMAKE_BUILD_TYPE=Release \
+            -D BUILD_SHARED_LIBS=ON \
+            -D BUILD_EXAMPLES=OFF \
+            -D CMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
+            -D PLATFORM=Android \
+            -D ANDROID_ABI=${{ matrix.arch }} \
+            -D ANDROID_PLATFORM=21
+          cmake --build build --config Release
+
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-${{ matrix.name }}
+          path: build/raylib/libraylib.so
+          if-no-files-found: error
+
   build-linux:
     runs-on: ubuntu-latest
     needs: prepare
