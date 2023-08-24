@@ -22,8 +22,8 @@ jobs:
         id: version
         shell: bash
         run: |
-          echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Directory.Build.props)">> ${GITHUB_OUTPUT}
-          echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Directory.Build.props)">> ${GITHUB_OUTPUT}
+          echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Raylib-cs/Build.props)">> ${GITHUB_OUTPUT}
+          echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Raylib-cs/Build.props)">> ${GITHUB_OUTPUT}
 
   build-android:
     runs-on: ubuntu-latest
