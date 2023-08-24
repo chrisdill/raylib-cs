@@ -1,0 +1,82 @@
+| resource             | author      | licence | notes |
+| :------------------- | :---------: | :------ | :---- |
+| country.mp3          | [@emegeme](https://github.com/emegeme) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Originally created for "DART that TARGET" game |
+| target.ogg           | [@emegeme](https://github.com/emegeme) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Originally created for "DART that TARGET" game |
+| target.flac          | [@emegeme](https://github.com/emegeme) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Originally created for "DART that TARGET" game |
+| coin.wav             | [@raysan5](https://github.com/raysan5) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Created using [rFXGen](https://raylibtech.itch.io/rfxgen) |
+| sound.wav            | [@raysan5](https://github.com/raysan5) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Created using [rFXGen](https://raylibtech.itch.io/rfxgen) |
+| spring.wav           | [@raysan5](https://github.com/raysan5) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Created using [rFXGen](https://raylibtech.itch.io/rfxgen) |
+| weird.wav            | [@raysan5](https://github.com/raysan5) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | Created using [rFXGen](https://raylibtech.itch.io/rfxgen) |
+| mini1111.xm          | [tPORt](https://modarchive.org/index.php?request=view_by_moduleid&query=51891) | [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload) | - |
+
+
+| resource      | author      | licence | notes |
+| :------------ | :---------: | :------ | :---- |
+| ps3.png       | [@raysan5](https://github.com/raysan5) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | - |
+| xbox.png      | [@raysan5](https://github.com/raysan5) | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | - |
+
+
+Rigged Figure model has been created by Cesium (https://cesium.com/cesiumjs/),
+and licensed as Creative Commons Attribution 4.0 International License.
+
+Box Animated model has been created by Cesium (https://cesium.com/cesiumjs/)
+and is licensed as Creative Commons Attribution 4.0 International License
+
+Avocado model is provided by Microsoft
+and licensed as CC0 Universal Public Domain
+
+Animated Morph Cube model is provided by Microsoft
+and licensed as CC0 Universal Public Domain
+
+Animated Triangle model is licensed as CC0 Universal Public Domain
+
+Gearbox Assy model has been provided by Okino Computer Graphics, using Okino Polytrans Software.
+no license information was provided
+
+Check for details on CC0: https://creativecommons.org/publicdomain/zero/1.0/
+Check for details on CC4: http://creativecommons.org/licenses/by/4.0/
+GLTF sample models for testing are taken from: https://github.com/KhronosGroup/glTF-Sample-Models/
+
+
+Medieval City models and textures have been created by Alberto Cano, 
+and licensed as Creative Commons Attribution-NonCommercial 4.0.
+
+Check for details: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+
+WWI Plane Model created by GiaHanLam (https://sketchfab.com/GiaHanLam)
+This model is free to use, licensed as Creative Commons Attribution (CC-BY 4.0)
+
+License details: https://creativecommons.org/licenses/by/4.0/
+
+As per the license, author must be credited and commercial use is allowed.
+
+This model was donwload from author Sketchfab account: https://sketchfab.com/3d-models/wwi-plane-model-f0d39a6daacd4925a8922db193886715
+
+
+Art used in examples is provided under a free and permissive license.
+Check individual licenses for details:
+
+ - [Jupiter Crash] font by Brian Kent (AEnigma) - https://www.dafont.com/es/jupiter-crash.font
+ - [Kaiserzeit Gotisch] font by Dieter Steffmann - https://www.dafont.com/es/kaiserzeit-gotisch.font
+ - [Scarfy spritesheet](scarfy.png) by [Eiden Marsal](https://www.artstation.com/artist/marshall_z), licensed as [Creative Commons Attribution-NonCommercial 3.0](https://creativecommons.org/licenses/by-nc/3.0/legalcode)
+ - [Fudesumi image](fudesumi.png) by [Eiden Marsal](https://www.artstation.com/artist/marshall_z), licensed as [Creative Commons Attribution-NonCommercial 3.0](https://creativecommons.org/licenses/by-nc/3.0/legalcode)
+ - [Cyberpunk Street Environment](https://ansimuz.itch.io/cyberpunk-street-environment) by Luis Zuno ([@ansimuz](https://twitter.com/ansimuz)), licensed as [CC-BY-3.0](http://creativecommons.org/licenses/by/3.0/)
+
+
+All fonts used in examples are provided under a free and permissive license.
+Check individual licenses for details:
+
+ - [Alpha Beta] by Brian Kent (AEnigma) - https://www.dafont.com/es/alpha-beta.font
+ - [Setback] by Brian Kent (AEnigma) - https://www.dafont.com/es/setback.font
+ - [Jupiter Crash] by Brian Kent (AEnigma) - https://www.dafont.com/es/jupiter-crash.font
+ - [Alagard] by Hewett Tsoi - https://www.dafont.com/es/alagard.font
+ - [Romulus] by Hewett Tsoi - https://www.dafont.com/es/romulus.font
+ - [Mecha] by Captain Falcon - https://www.dafont.com/es/mecha-cf.font
+ - [PixelPlay] by Aleksander Shevchuk - https://www.dafont.com/es/pixelplay.font
+ - [PixAntiqua] by Gerhard Großmann - https://www.dafont.com/es/pixantiqua.font
+ - [Kaiserzeit Gotisch] by Dieter Steffmann - https://www.dafont.com/es/kaiserzeit-gotisch.font
+ - [Noto CJK] by Google Fonts - https://www.google.com/get/noto/help/cjk/
+ - [Anonymous Pro] by Mark Simonson - https://fonts.google.com/specimen/Anonymous+Pro
+ - [DejaVu] by DejaVu Fonts - https://dejavu-fonts.github.io/
+ - [Symbola] by George Douros - https://fontlibrary.org/en/font/symbola

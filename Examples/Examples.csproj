@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <StartupObject>Examples.Program</StartupObject>
+    <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
+    <LangVersion>10</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Core/LoadingThread.cs"/>
+    <Compile Remove="Text/Unicode.cs"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Raylib_cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Raylib-cs\Raylib-cs.csproj" />
+  </ItemGroup>
+</Project>
