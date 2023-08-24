@@ -38,6 +38,8 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
   </ItemGroup>
 
+  <Import Project="./Build.props" />
+
   <ItemGroup>
     <Content Include="runtimes/**" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
       <PackagePath>runtimes/</PackagePath>

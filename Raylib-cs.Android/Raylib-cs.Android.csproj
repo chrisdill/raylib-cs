@@ -12,4 +12,6 @@
     <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
   </ItemGroup>
 
+  <Import Project="../Raylib-cs/Build.props" />
+
 </Project>
