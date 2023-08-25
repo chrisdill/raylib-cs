@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Raylib-cs.Native</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
+
+  <Import Project="../Raylib-cs/Build.props" />
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
     <NativeExt>so</NativeExt>

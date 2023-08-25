@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <StartupObject>Examples.Program</StartupObject>
     <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Raylib-cs\Raylib-cs.csproj" />
+    <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
+    <ProjectReference Include="../Raylib-cs.Native/Raylib-cs.Native.csproj" />
   </ItemGroup>
 </Project>
