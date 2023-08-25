@@ -239,7 +239,7 @@ jobs:
         run: dotnet workload restore
 
       - name: Create NuGet Package
-        run: dotnet pack -c Release --output nuget
+        run: dotnet pack Raylib-cs -c Release --output nuget
 
       - name: Upload NuGet Package As Artifact
         uses: actions/upload-artifact@v3
