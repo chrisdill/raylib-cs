@@ -1,6 +1,5 @@
 using System;
 using Xunit;
-using Raylib_cs;
 
 namespace Raylib_cs.Tests
 {

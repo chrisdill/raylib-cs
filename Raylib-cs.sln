@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Android", "Raylib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Tests", "Raylib-cs.Tests\Raylib-cs.Tests.csproj", "{1341D222-7E10-42C6-BC6E-4A46C934A843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{1E2A5986-3F11-457F-AF97-D0C08D0060BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1341D222-7E10-42C6-BC6E-4A46C934A843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1341D222-7E10-42C6-BC6E-4A46C934A843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1341D222-7E10-42C6-BC6E-4A46C934A843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
