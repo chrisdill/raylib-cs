@@ -30,41 +30,40 @@ using System;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
-namespace Raylib_cs.Tests
+namespace Raylib_cs.Tests;
+
+public static class BlittableHelper
 {
-    public static class BlittableHelper
+    public static bool IsBlittable<T>()
     {
-        public static bool IsBlittable<T>()
-        {
-            return IsBlittableCache<T>.VALUE;
-        }
+        return IsBlittableCache<T>.VALUE;
+    }
 
-        public static bool IsBlittable(this Type type)
+    public static bool IsBlittable(this Type type)
+    {
+        if (type == typeof(decimal))
         {
-            if (type == typeof(decimal))
-            {
-                return false;
-            }
-            if (type.IsArray)
-            {
-                var elementType = type.GetElementType();
-                return elementType != null && elementType.IsValueType && IsBlittable(elementType);
-            }
-            try
-            {
-                var instance = FormatterServices.GetUninitializedObject(type);
-                GCHandle.Alloc(instance, GCHandleType.Pinned).Free();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return false;
         }
+        if (type.IsArray)
+        {
+            var elementType = type.GetElementType();
+            return elementType != null && elementType.IsValueType && IsBlittable(elementType);
+        }
+        try
+        {
+            var instance = FormatterServices.GetUninitializedObject(type);
+            GCHandle.Alloc(instance, GCHandleType.Pinned).Free();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 
-        private static class IsBlittableCache<T>
-        {
-            public static readonly bool VALUE = IsBlittable(typeof(T));
-        }
+    private static class IsBlittableCache<T>
+    {
+        public static readonly bool VALUE = IsBlittable(typeof(T));
     }
 }

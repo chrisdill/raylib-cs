@@ -1,62 +1,61 @@
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs
+namespace Raylib_cs;
+
+/// <summary>
+/// N-patch layout
+/// </summary>
+public enum NPatchLayout
 {
     /// <summary>
-    /// N-patch layout
+    /// Npatch defined by 3x3 tiles
     /// </summary>
-    public enum NPatchLayout
-    {
-        /// <summary>
-        /// Npatch defined by 3x3 tiles
-        /// </summary>
-        NPATCH_NINE_PATCH = 0,
-
-        /// <summary>
-        /// Npatch defined by 1x3 tiles
-        /// </summary>
-        NPATCH_THREE_PATCH_VERTICAL,
-
-        /// <summary>
-        /// Npatch defined by 3x1 tiles
-        /// </summary>
-        NPATCH_THREE_PATCH_HORIZONTAL
-    }
+    NPATCH_NINE_PATCH = 0,
 
     /// <summary>
-    /// N-Patch layout info
+    /// Npatch defined by 1x3 tiles
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct NPatchInfo
-    {
-        /// <summary>
-        /// Texture source rectangle
-        /// </summary>
-        public Rectangle Source;
+    NPATCH_THREE_PATCH_VERTICAL,
 
-        /// <summary>
-        /// Left border offset
-        /// </summary>
-        public int Left;
+    /// <summary>
+    /// Npatch defined by 3x1 tiles
+    /// </summary>
+    NPATCH_THREE_PATCH_HORIZONTAL
+}
 
-        /// <summary>
-        /// Top border offset
-        /// </summary>
-        public int Top;
+/// <summary>
+/// N-Patch layout info
+/// </summary>
+[StructLayout(LayoutKind.Sequential)]
+public partial struct NPatchInfo
+{
+    /// <summary>
+    /// Texture source rectangle
+    /// </summary>
+    public Rectangle Source;
 
-        /// <summary>
-        /// Right border offset
-        /// </summary>
-        public int Right;
+    /// <summary>
+    /// Left border offset
+    /// </summary>
+    public int Left;
 
-        /// <summary>
-        /// Bottom border offset
-        /// </summary>
-        public int Bottom;
+    /// <summary>
+    /// Top border offset
+    /// </summary>
+    public int Top;
 
-        /// <summary>
-        /// Layout of the n-patch: 3x3, 1x3 or 3x1
-        /// </summary>
-        public NPatchLayout Layout;
-    }
+    /// <summary>
+    /// Right border offset
+    /// </summary>
+    public int Right;
+
+    /// <summary>
+    /// Bottom border offset
+    /// </summary>
+    public int Bottom;
+
+    /// <summary>
+    /// Layout of the n-patch: 3x3, 1x3 or 3x1
+    /// </summary>
+    public NPatchLayout Layout;
 }

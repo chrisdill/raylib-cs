@@ -1,67 +1,66 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs
+namespace Raylib_cs;
+
+/// <summary>
+/// Camera system modes
+/// </summary>
+public enum CameraMode
+{
+    CAMERA_CUSTOM = 0,
+    CAMERA_FREE,
+    CAMERA_ORBITAL,
+    CAMERA_FIRST_PERSON,
+    CAMERA_THIRD_PERSON
+}
+
+/// <summary>
+/// Camera projection
+/// </summary>
+public enum CameraProjection
+{
+    CAMERA_PERSPECTIVE = 0,
+    CAMERA_ORTHOGRAPHIC
+}
+
+/// <summary>
+/// Camera3D, defines position/orientation in 3d space
+/// </summary>
+[StructLayout(LayoutKind.Sequential)]
+public partial struct Camera3D
 {
     /// <summary>
-    /// Camera system modes
+    /// Camera position
     /// </summary>
-    public enum CameraMode
-    {
-        CAMERA_CUSTOM = 0,
-        CAMERA_FREE,
-        CAMERA_ORBITAL,
-        CAMERA_FIRST_PERSON,
-        CAMERA_THIRD_PERSON
-    }
+    public Vector3 Position;
 
     /// <summary>
-    /// Camera projection
+    /// Camera target it looks-at
     /// </summary>
-    public enum CameraProjection
-    {
-        CAMERA_PERSPECTIVE = 0,
-        CAMERA_ORTHOGRAPHIC
-    }
+    public Vector3 Target;
 
     /// <summary>
-    /// Camera3D, defines position/orientation in 3d space
+    /// Camera up vector (rotation over its axis)
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct Camera3D
+    public Vector3 Up;
+
+    /// <summary>
+    /// Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+    /// </summary>
+    public float FovY;
+
+    /// <summary>
+    /// Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+    /// </summary>
+    public CameraProjection Projection;
+
+    public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovY, CameraProjection projection)
     {
-        /// <summary>
-        /// Camera position
-        /// </summary>
-        public Vector3 Position;
-
-        /// <summary>
-        /// Camera target it looks-at
-        /// </summary>
-        public Vector3 Target;
-
-        /// <summary>
-        /// Camera up vector (rotation over its axis)
-        /// </summary>
-        public Vector3 Up;
-
-        /// <summary>
-        /// Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-        /// </summary>
-        public float FovY;
-
-        /// <summary>
-        /// Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
-        /// </summary>
-        public CameraProjection Projection;
-
-        public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovY, CameraProjection projection)
-        {
-            this.Position = position;
-            this.Target = target;
-            this.Up = up;
-            this.FovY = fovY;
-            this.Projection = projection;
-        }
+        this.Position = position;
+        this.Target = target;
+        this.Up = up;
+        this.FovY = fovY;
+        this.Projection = projection;
     }
 }
