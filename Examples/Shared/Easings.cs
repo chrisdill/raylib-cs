@@ -1,6 +1,6 @@
 using System;
 
-namespace Examples;
+namespace Examples.Shared;
 
 public static class Easings
 {

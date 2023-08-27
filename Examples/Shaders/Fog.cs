@@ -28,7 +28,7 @@
 using System.Numerics;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Raymath;
-using static Examples.Rlights;
+using Examples.Shared;
 
 namespace Examples.Shaders;
 
@@ -88,7 +88,7 @@ public class Fog
         Raylib.SetMaterialShader(ref modelC, 0, ref shader);
 
         // Using just 1 point lights
-        CreateLight(0, LightType.Point, new Vector3(0, 2, 6), Vector3.Zero, Color.WHITE, shader);
+        Rlights.CreateLight(0, LightType.Point, new Vector3(0, 2, 6), Vector3.Zero, Color.WHITE, shader);
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------

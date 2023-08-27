@@ -27,7 +27,7 @@
 
 using System.Numerics;
 using static Raylib_cs.Raylib;
-using static Examples.Rlights;
+using Examples.Shared;
 
 namespace Examples.Shaders;
 
@@ -77,7 +77,7 @@ public class BasicLighting
 
         // Using 4 point lights: Color.gold, Color.red, Color.green and Color.blue
         Light[] lights = new Light[4];
-        lights[0] = CreateLight(
+        lights[0] = Rlights.CreateLight(
             0,
             LightType.Point,
             new Vector3(-2, 1, -2),
@@ -85,7 +85,7 @@ public class BasicLighting
             Color.YELLOW,
             shader
         );
-        lights[1] = CreateLight(
+        lights[1] = Rlights.CreateLight(
             1,
             LightType.Point,
             new Vector3(2, 1, 2),
@@ -93,7 +93,7 @@ public class BasicLighting
             Color.RED,
             shader
         );
-        lights[2] = CreateLight(
+        lights[2] = Rlights.CreateLight(
             2,
             LightType.Point,
             new Vector3(-2, 1, 2),
@@ -101,7 +101,7 @@ public class BasicLighting
             Color.GREEN,
             shader
         );
-        lights[3] = CreateLight(
+        lights[3] = Rlights.CreateLight(
             3,
             LightType.Point,
             new Vector3(2, 1, -2),
@@ -138,10 +138,10 @@ public class BasicLighting
             }
 
             // Update light values (actually, only enable/disable them)
-            UpdateLightValues(shader, lights[0]);
-            UpdateLightValues(shader, lights[1]);
-            UpdateLightValues(shader, lights[2]);
-            UpdateLightValues(shader, lights[3]);
+            Rlights.UpdateLightValues(shader, lights[0]);
+            Rlights.UpdateLightValues(shader, lights[1]);
+            Rlights.UpdateLightValues(shader, lights[2]);
+            Rlights.UpdateLightValues(shader, lights[3]);
 
             // Update the light shader with the camera view position
             Raylib.SetShaderValue(
