@@ -6,8 +6,8 @@ public abstract class RaylibActivity : NativeActivity
 {
     protected override void OnCreate(Bundle? savedInstanceState)
     {
-        base.OnCreate(savedInstanceState);
         RaylibSetAndroidCallback(OnReady);
+        base.OnCreate(savedInstanceState);
     }
 
     protected abstract void OnReady();
