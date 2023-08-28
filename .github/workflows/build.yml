@@ -185,6 +185,19 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
+      - name: setup dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install \
+            libasound2-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev \
+            libxcursor-dev \
+            libxinerama-dev
+
       - uses: actions/download-artifact@v3
         with:
           name: android-arm
