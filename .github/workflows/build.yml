@@ -238,6 +238,12 @@ jobs:
       - name: Restore workload
         run: dotnet workload restore
 
+      - name: Build and run tests
+        run: dotnet test Raylib-cs.Tests -c Release
+
+      - name: Build examples
+        run: dotnet build Examples -c Release
+
       - name: Create NuGet Package
         run: dotnet pack Raylib-cs -c Release --output nuget
 
