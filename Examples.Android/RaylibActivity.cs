@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs;
+namespace Examples.Android;
 
 public abstract class RaylibActivity : NativeActivity
 {

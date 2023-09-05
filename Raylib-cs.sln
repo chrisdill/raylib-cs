@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs", "Raylib-cs\Raylib-cs.csproj", "{236DB383-2FDC-4A77-8B33-22122D9B8950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Android", "Raylib-cs.Android\Raylib-cs.Android.csproj", "{F854D9EC-B7BE-47EE-B51B-3918E57973BC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Tests", "Raylib-cs.Tests\Raylib-cs.Tests.csproj", "{1341D222-7E10-42C6-BC6E-4A46C934A843}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{1E2A5986-3F11-457F-AF97-D0C08D0060BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples.Android", "Examples.Android\Examples.Android.csproj", "{EC189309-7F82-4029-93E4-BFA2793FD784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,10 +24,6 @@ Global
 		{236DB383-2FDC-4A77-8B33-22122D9B8950}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{236DB383-2FDC-4A77-8B33-22122D9B8950}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{236DB383-2FDC-4A77-8B33-22122D9B8950}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F854D9EC-B7BE-47EE-B51B-3918E57973BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F854D9EC-B7BE-47EE-B51B-3918E57973BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F854D9EC-B7BE-47EE-B51B-3918E57973BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F854D9EC-B7BE-47EE-B51B-3918E57973BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1341D222-7E10-42C6-BC6E-4A46C934A843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1341D222-7E10-42C6-BC6E-4A46C934A843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1341D222-7E10-42C6-BC6E-4A46C934A843}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +32,9 @@ Global
 		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E2A5986-3F11-457F-AF97-D0C08D0060BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC189309-7F82-4029-93E4-BFA2793FD784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC189309-7F82-4029-93E4-BFA2793FD784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC189309-7F82-4029-93E4-BFA2793FD784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC189309-7F82-4029-93E4-BFA2793FD784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
