@@ -16,6 +16,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Using Include="Raylib_cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
     <ProjectReference Include="../Examples/Examples.csproj" />
   </ItemGroup>
