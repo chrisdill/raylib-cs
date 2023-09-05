@@ -50,7 +50,7 @@ jobs:
         run: |
           curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
           unzip -qq raylib.zip
-          pushd raylib-${version}; patch -p1 < ../Raylib-cs.Android/android.patch; popd
+          pushd raylib-${version}; patch -p1 < ../Examples.Android/android.patch; popd
           cmake -S raylib-${version} \
             -B build \
             -D CMAKE_BUILD_TYPE=Release \
@@ -201,22 +201,22 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: android-arm
-          path: Raylib-cs.Android/runtimes/android-arm/native
+          path: Examples.Android/runtimes/android-arm/native
 
       - uses: actions/download-artifact@v3
         with:
           name: android-arm64
-          path: Raylib-cs.Android/runtimes/android-arm64/native
+          path: Examples.Android/runtimes/android-arm64/native
 
       - uses: actions/download-artifact@v3
         with:
           name: android-x86
-          path: Raylib-cs.Android/runtimes/android-x86/native
+          path: Examples.Android/runtimes/android-x86/native
 
       - uses: actions/download-artifact@v3
         with:
           name: android-x64
-          path: Raylib-cs.Android/runtimes/android-x64/native
+          path: Examples.Android/runtimes/android-x64/native
 
       - uses: actions/download-artifact@v3
         with:
