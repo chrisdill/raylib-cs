@@ -272,11 +272,11 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - name: restore workload
-        run: dotnet workload restore
+      #- name: restore workload
+      #  run: dotnet workload restore
 
-      - name: build examples android
-        run: dotnet build Examples.Android -c Release
+      #- name: build examples android
+      #  run: dotnet build Examples.Android -c Release
 
       - name: create NuGet Package
         run: dotnet pack Raylib-cs -c Release --output nuget
