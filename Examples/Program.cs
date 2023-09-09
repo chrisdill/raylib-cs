@@ -117,6 +117,7 @@ public class ExampleList
         new ExampleInfo("FirstPersonMaze", FirstPersonMaze.Main),
         new ExampleInfo("GeometricShapes", GeometricShapes.Main),
         new ExampleInfo("HeightmapDemo", HeightmapDemo.Main),
+        new ExampleInfo("MeshDemo", MeshDemo.Main),
         new ExampleInfo("ModelLoading", ModelLoading.Main),
         new ExampleInfo("MeshGeneration", MeshGeneration.Main),
         new ExampleInfo("MeshPicking", MeshPicking.Main),
