@@ -16,6 +16,7 @@
 ********************************************************************************************/
 
 using System.Numerics;
+using Raylib_cs;
 using static Raylib_cs.Raylib;
 
 namespace Examples.Core;
@@ -23,10 +24,11 @@ namespace Examples.Core;
 public class InputGamepad
 {
     // NOTE: Gamepad name ID depends on drivers and OS
-    // public const string XBOX360_NAME_ID = "Microsoft;
-    // public const string PS3_NAME_ID = "PLAYSTATION(R)3;
-    public const string XBOX360_NAME_ID = "Xbox";
-    public const string PS3_NAME_ID = "PLAYSTATION(R)3";
+    // These are some possible names the gamepads could have.
+    public const string XBOX360_LEGACY_NAME_ID = "Xbox Controller";
+    public const string XBOX360_NAME_ID = "Xbox 360 Controller";
+    public const string XBOX360_NAME_ID_RPI = "Microsoft X-Box 360 pad";
+    public const string PS3_NAME_ID = "PLAYSTATION(R)3 Controller";
 
     public static int Main()
     {
@@ -63,7 +65,9 @@ public class InputGamepad
                 string gamepadName = GetGamepadName_(0);
                 DrawText($"GP1: {gamepadName}", 10, 10, 10, Color.BLACK);
 
-                if (gamepadName == XBOX360_NAME_ID)
+                if (gamepadName == XBOX360_LEGACY_NAME_ID ||
+                    gamepadName == XBOX360_NAME_ID ||
+                    gamepadName == XBOX360_NAME_ID_RPI)
                 {
                     DrawTexture(texXboxPad, 0, 0, Color.DARKGRAY);
 
@@ -143,7 +147,7 @@ public class InputGamepad
                     DrawCircle(259, 152, 34, Color.LIGHTGRAY);
                     DrawCircle(
                         259 + (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_LEFT_X) * 20),
-                        152 - (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_LEFT_Y) * 20),
+                        152 + (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_LEFT_Y) * 20),
                         25,
                         Color.BLACK
                     );
@@ -152,8 +156,8 @@ public class InputGamepad
                     DrawCircle(461, 237, 38, Color.BLACK);
                     DrawCircle(461, 237, 33, Color.LIGHTGRAY);
                     DrawCircle(
-                        461 + (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_LEFT_X) * 20),
-                        237 - (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_LEFT_Y) * 20),
+                        461 + (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_RIGHT_X) * 20),
+                        237 + (int)(GetGamepadAxisMovement(0, GamepadAxis.GAMEPAD_AXIS_RIGHT_Y) * 20),
                         25, Color.BLACK
                     );
 
