@@ -222,6 +222,12 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>C++ style memory allocator</summary>
+    public static T* New<T>(int count) where T : unmanaged
+    {
+        return (T*)MemAlloc(count * sizeof(T));
+    }
+
     /// <summary>Load file data as byte array (read)</summary>
     public static byte* LoadFileData(string fileName, ref uint bytesRead)
     {
