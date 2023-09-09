@@ -9,142 +9,158 @@ using Examples.Audio;
 
 namespace Examples;
 
+public class ExampleInfo
+{
+    public ExampleInfo(string name, Func<int> main)
+    {
+        this.Name = name;
+        this.Main = main;
+    }
+
+    public string Name
+    {
+        get; set;
+    }
+
+    public Func<int> Main
+    {
+        get; set;
+    }
+}
+
 public class ExampleList
 {
-    public static Func<int>[] CoreExamples = new Func<int>[]
+    public static ExampleInfo[] AllExamples = new[]
     {
-        Camera2dPlatformer.Main,
-        Camera2dDemo.Main,
-        Camera3dFirstPerson.Main,
-        Camera3dFree.Main,
-        Camera3dMode.Main,
-        Picking3d.Main,
-        BasicScreenManager.Main,
-        BasicWindow.Main,
-        CustomLogging.Main,
-        DropFiles.Main,
-        InputGamepad.Main,
-        InputGestures.Main,
-        InputKeys.Main,
-        InputMouseWheel.Main,
-        InputMouse.Main,
-        InputMultitouch.Main,
-        RandomValues.Main,
-        ScissorTest.Main,
-        SmoothPixelPerfect.Main,
-        SplitScreen.Main,
-        StorageValues.Main,
-        VrSimulator.Main,
-        WindowFlags.Main,
-        WindowLetterbox.Main,
-        WorldScreen.Main,
+        // Core
+        new ExampleInfo("Camera2dPlatformer", Camera2dPlatformer.Main),
+        new ExampleInfo("Camera2dDemo", Camera2dDemo.Main),
+        new ExampleInfo("Camera3dFirstPerson", Camera3dFirstPerson.Main),
+        new ExampleInfo("Camera3dFree", Camera3dFree.Main),
+        new ExampleInfo("Camera3dMode", Camera3dMode.Main),
+        new ExampleInfo("Picking3d", Picking3d.Main),
+        new ExampleInfo("BasicScreenManager", BasicScreenManager.Main),
+        new ExampleInfo("BasicWindow", BasicWindow.Main),
+        new ExampleInfo("CustomLogging", CustomLogging.Main),
+        new ExampleInfo("DropFiles", DropFiles.Main),
+        new ExampleInfo("InputGamepad", InputGamepad.Main),
+        new ExampleInfo("InputGestures", InputGestures.Main),
+        new ExampleInfo("InputKeys", InputKeys.Main),
+        new ExampleInfo("InputMouseWheel", InputMouseWheel.Main),
+        new ExampleInfo("InputMouse", InputMouse.Main),
+        new ExampleInfo("InputMultitouch", InputMultitouch.Main),
+        new ExampleInfo("RandomValues", RandomValues.Main),
+        new ExampleInfo("ScissorTest", ScissorTest.Main),
+        new ExampleInfo("SmoothPixelPerfect", SmoothPixelPerfect.Main),
+        new ExampleInfo("SplitScreen", SplitScreen.Main),
+        new ExampleInfo("StorageValues", StorageValues.Main),
+        new ExampleInfo("VrSimulator", VrSimulator.Main),
+        new ExampleInfo("WindowFlags", WindowFlags.Main),
+        new ExampleInfo("WindowLetterbox", WindowLetterbox.Main),
+        new ExampleInfo("WorldScreen", WorldScreen.Main),
+
+        // Shapes
+        new ExampleInfo("BasicShapes", BasicShapes.Main),
+        new ExampleInfo("BouncingBall", BouncingBall.Main),
+        new ExampleInfo("CollisionArea", CollisionArea.Main),
+        new ExampleInfo("ColorsPalette", ColorsPalette.Main),
+        new ExampleInfo("EasingsBallAnim", EasingsBallAnim.Main),
+        new ExampleInfo("EasingsBoxAnim", EasingsBoxAnim.Main),
+        new ExampleInfo("EasingsRectangleArray", EasingsRectangleArray.Main),
+        new ExampleInfo("FollowingEyes", FollowingEyes.Main),
+        new ExampleInfo("LinesBezier", LinesBezier.Main),
+        new ExampleInfo("LogoRaylibAnim", LogoRaylibAnim.Main),
+        new ExampleInfo("LogoRaylibShape", LogoRaylibShape.Main),
+        new ExampleInfo("RectangleScaling", RectangleScaling.Main),
+
+        // Textures
+        new ExampleInfo("BackgroundScrolling", BackgroundScrolling.Main),
+        new ExampleInfo("BlendModes", BlendModes.Main),
+        new ExampleInfo("Bunnymark", Bunnymark.Main),
+        new ExampleInfo("DrawTiled", DrawTiled.Main),
+        new ExampleInfo("ImageDrawing", ImageDrawing.Main),
+        new ExampleInfo("ImageGeneration", ImageGeneration.Main),
+        new ExampleInfo("ImageLoading", ImageLoading.Main),
+        new ExampleInfo("ImageProcessing", ImageProcessing.Main),
+        new ExampleInfo("ImageText", ImageText.Main),
+        new ExampleInfo("LogoRaylibTexture", LogoRaylibTexture.Main),
+        new ExampleInfo("MousePainting", MousePainting.Main),
+        new ExampleInfo("NpatchDrawing", NpatchDrawing.Main),
+        new ExampleInfo("ParticlesBlending", ParticlesBlending.Main),
+        new ExampleInfo("TexturedCurve", TexturedCurve.Main),
+        new ExampleInfo("Polygon", Polygon.Main),
+        new ExampleInfo("RawData", RawData.Main),
+        new ExampleInfo("SpriteAnim", SpriteAnim.Main),
+        new ExampleInfo("SpriteButton", SpriteButton.Main),
+        new ExampleInfo("SpriteExplosion", SpriteExplosion.Main),
+        new ExampleInfo("SrcRecDstRec", SrcRecDstRec.Main),
+        new ExampleInfo("ToImage", ToImage.Main),
+
+        // Text
+        new ExampleInfo("CodepointsLoading", CodepointsLoading.Main),
+        new ExampleInfo("FontFilters", FontFilters.Main),
+        new ExampleInfo("FontLoading", FontLoading.Main),
+        new ExampleInfo("FontSdf", FontSdf.Main),
+        new ExampleInfo("FontSpritefont", FontSpritefont.Main),
+        new ExampleInfo("FormatText", FormatText.Main),
+        new ExampleInfo("InputBox", InputBox.Main),
+        new ExampleInfo("RaylibFonts", RaylibFonts.Main),
+        new ExampleInfo("RectangleBounds", RectangleBounds.Main),
+        new ExampleInfo("WritingAnim", WritingAnim.Main),
+
+        // Models
+        new ExampleInfo("AnimationDemo", AnimationDemo.Main),
+        new ExampleInfo("BillboardDemo", BillboardDemo.Main),
+        new ExampleInfo("BoxCollisions", BoxCollisions.Main),
+        new ExampleInfo("CubicmapDemo", CubicmapDemo.Main),
+        new ExampleInfo("ModelCubeTexture", ModelCubeTexture.Main),
+        new ExampleInfo("FirstPersonMaze", FirstPersonMaze.Main),
+        new ExampleInfo("GeometricShapes", GeometricShapes.Main),
+        new ExampleInfo("HeightmapDemo", HeightmapDemo.Main),
+        new ExampleInfo("ModelLoading", ModelLoading.Main),
+        new ExampleInfo("MeshGeneration", MeshGeneration.Main),
+        new ExampleInfo("MeshPicking", MeshPicking.Main),
+        new ExampleInfo("OrthographicProjection", OrthographicProjection.Main),
+        new ExampleInfo("SolarSystem", SolarSystem.Main),
+        new ExampleInfo("SkyboxDemo", SkyboxDemo.Main),
+        new ExampleInfo("WavingCubes", WavingCubes.Main),
+        new ExampleInfo("YawPitchRoll", YawPitchRoll.Main),
+
+        // Shaders
+        new ExampleInfo("BasicLighting", BasicLighting.Main),
+        new ExampleInfo("CustomUniform", CustomUniform.Main),
+        new ExampleInfo("Eratosthenes", Eratosthenes.Main),
+        new ExampleInfo("Fog", Fog.Main),
+        new ExampleInfo("HotReloading", HotReloading.Main),
+        new ExampleInfo("HybridRender", HybridRender.Main),
+        new ExampleInfo("JuliaSet", JuliaSet.Main),
+        new ExampleInfo("ModelShader", ModelShader.Main),
+        new ExampleInfo("MultiSample2d", MultiSample2d.Main),
+        new ExampleInfo("PaletteSwitch", PaletteSwitch.Main),
+        new ExampleInfo("PostProcessing", PostProcessing.Main),
+        new ExampleInfo("Raymarching", Raymarching.Main),
+        new ExampleInfo("MeshInstancing", MeshInstancing.Main),
+        new ExampleInfo("ShapesTextures", ShapesTextures.Main),
+        new ExampleInfo("SimpleMask", SimpleMask.Main),
+        new ExampleInfo("Spotlight", Spotlight.Main),
+        new ExampleInfo("TextureDrawing", TextureDrawing.Main),
+        new ExampleInfo("TextureOutline", TextureOutline.Main),
+        new ExampleInfo("TextureWaves", TextureWaves.Main),
+        new ExampleInfo("WriteDepth", WriteDepth.Main),
+
+        // Audio
+        new ExampleInfo("ModulePlaying", ModulePlaying.Main),
+        new ExampleInfo("MusicStreamDemo", MusicStreamDemo.Main),
+        new ExampleInfo("SoundLoading", SoundLoading.Main),
     };
 
-    public static Func<int>[] ShapesExamples = new Func<int>[]
+    public static ExampleInfo GetExample(string name)
     {
-        BasicShapes.Main,
-        BouncingBall.Main,
-        CollisionArea.Main,
-        ColorsPalette.Main,
-        EasingsBallAnim.Main,
-        EasingsBoxAnim.Main,
-        EasingsRectangleArray.Main,
-        FollowingEyes.Main,
-        LinesBezier.Main,
-        LogoRaylibAnim.Main,
-        LogoRaylibShape.Main,
-        RectangleScaling.Main,
-    };
-
-    public static Func<int>[] TexturesExamples = new Func<int>[]
-    {
-        BackgroundScrolling.Main,
-        BlendModes.Main,
-        Bunnymark.Main,
-        DrawTiled.Main,
-        ImageDrawing.Main,
-        ImageGeneration.Main,
-        ImageLoading.Main,
-        ImageProcessing.Main,
-        ImageText.Main,
-        LogoRaylibTexture.Main,
-        MousePainting.Main,
-        NpatchDrawing.Main,
-        ParticlesBlending.Main,
-        TexturedCurve.Main,
-        Polygon.Main,
-        RawData.Main,
-        SpriteAnim.Main,
-        SpriteButton.Main,
-        SpriteExplosion.Main,
-        SrcRecDstRec.Main,
-        ToImage.Main,
-    };
-
-    public static Func<int>[] TextExamples = new Func<int>[]
-    {
-        CodepointsLoading.Main,
-        FontFilters.Main,
-        FontLoading.Main,
-        FontSdf.Main,
-        FontSpritefont.Main,
-        FormatText.Main,
-        InputBox.Main,
-        RaylibFonts.Main,
-        RectangleBounds.Main,
-        WritingAnim.Main,
-    };
-
-    public static Func<int>[] ModelsExamples = new Func<int>[]
-    {
-        AnimationDemo.Main,
-        BillboardDemo.Main,
-        BoxCollisions.Main,
-        CubicmapDemo.Main,
-        ModelCubeTexture.Main,
-        FirstPersonMaze.Main,
-        GeometricShapes.Main,
-        HeightmapDemo.Main,
-        ModelLoading.Main,
-        MeshGeneration.Main,
-        MeshPicking.Main,
-        OrthographicProjection.Main,
-        SolarSystem.Main,
-        SkyboxDemo.Main,
-        WavingCubes.Main,
-        YawPitchRoll.Main,
-    };
-
-    public static Func<int>[] ShadersExamples = new Func<int>[]
-    {
-        BasicLighting.Main,
-        CustomUniform.Main,
-        Eratosthenes.Main,
-        Fog.Main,
-        HotReloading.Main,
-        HybridRender.Main,
-        JuliaSet.Main,
-        ModelShader.Main,
-        MultiSample2d.Main,
-        PaletteSwitch.Main,
-        PostProcessing.Main,
-        Raymarching.Main,
-        MeshInstancing.Main,
-        ShapesTextures.Main,
-        SimpleMask.Main,
-        Spotlight.Main,
-        TextureDrawing.Main,
-        TextureOutline.Main,
-        TextureWaves.Main,
-        WriteDepth.Main,
-    };
-
-    public static Func<int>[] AudioExamples = new Func<int>[]
-    {
-        ModulePlaying.Main,
-        MusicStreamDemo.Main,
-        SoundLoading.Main,
-    };
+        var example = Array.Find(ExampleList.AllExamples, x =>
+            x.Name.Equals(name, StringComparison.OrdinalIgnoreCase)
+        );
+        return example;
+    }
 }
 
 class Program
@@ -152,21 +168,24 @@ class Program
     static unsafe void Main(string[] args)
     {
         Raylib.SetTraceLogCallback(&Logging.LogConsole);
-        RunExamples(ExampleList.CoreExamples);
-        RunExamples(ExampleList.ShapesExamples);
-        RunExamples(ExampleList.TexturesExamples);
-        RunExamples(ExampleList.TextExamples);
-        RunExamples(ExampleList.ModelsExamples);
-        RunExamples(ExampleList.ShadersExamples);
-        RunExamples(ExampleList.AudioExamples);
+
+        if (args.Length > 0)
+        {
+            var example = ExampleList.GetExample(args[0]);
+            example?.Main?.Invoke();
+        }
+        else
+        {
+            RunExamples(ExampleList.AllExamples);
+        }
     }
 
-    static void RunExamples(Func<int>[] examples)
+    static void RunExamples(ExampleInfo[] examples)
     {
         var configFlags = Enum.GetValues(typeof(ConfigFlags));
         foreach (var example in examples)
         {
-            example.Invoke();
+            example?.Main?.Invoke();
             foreach (ConfigFlags flag in configFlags)
             {
                 Raylib.ClearWindowState(flag);
