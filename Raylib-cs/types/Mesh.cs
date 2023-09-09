@@ -154,19 +154,25 @@ public unsafe partial struct Mesh
         return new(Normals, 3 * VertexCount * sizeof(float) / sizeof(T));
     }
 
-    /// <summary>Access <see cref="Tangents"/></summary>
+    /// <summary>
+    /// Access <see cref="Tangents"/>
+    /// </summary>
     public readonly Span<T> TangentsAs<T>() where T : unmanaged
     {
         return new(Tangents, 4 * VertexCount * sizeof(float) / sizeof(T));
     }
 
-    /// <summary>Access <see cref="Colors"/></summary>
+    /// <summary>
+    /// Access <see cref="Colors"/>
+    /// </summary>
     public readonly Span<T> ColorsAs<T>() where T : unmanaged
     {
         return new(Colors, 4 * VertexCount * sizeof(byte) / sizeof(T));
     }
 
-    /// <summary>Access <see cref="Indices"/></summary>
+    /// <summary>
+    /// Access <see cref="Indices"/>
+    /// </summary>
     public readonly Span<T> IndicesAs<T>() where T : unmanaged
     {
         return new(Indices, 3 * TriangleCount * sizeof(ushort) / sizeof(T));
