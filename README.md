@@ -39,10 +39,9 @@ the command won't work.
 3. Download the native libraries for the platforms you want to build for using the [official 4.5.0 release](https://github.com/raysan5/raylib/releases/tag/4.5.0).
    **NOTE: the MSVC version is required for Windows platforms**
 
-4. **(Recommended)** Put the native library for each platform under `Raylib-cs/runtimes/{platform}/native/`
-   **(Optional)** If you want to handle the native libraries yourself, make sure they are either in the same directory as the executable and/or can be found in the search path. See https://www.mono-project.com/docs/advanced/pinvoke/ for details.
+4. Setup the native libraries so they are in the same directory as the executable/can be found in the [search path](https://www.mono-project.com/docs/advanced/pinvoke/).
 
-5. Start coding!
+6. Start coding!
 
 ## Hello, World!
 
