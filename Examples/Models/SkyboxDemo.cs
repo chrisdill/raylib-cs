@@ -93,6 +93,7 @@ public class SkyboxDemo
                 PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8
             );
             SetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP, ref cubemap);
+            UnloadTexture(panorama);
         }
         else
         {
@@ -136,6 +137,7 @@ public class SkyboxDemo
                                 PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8
                             );
                             SetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP, ref cubemap);
+                            UnloadTexture(panorama);
                         }
                         else
                         {
