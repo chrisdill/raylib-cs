@@ -30,7 +30,7 @@ public class MeshGeneration
         Texture2D texture = LoadTextureFromImage(isChecked);
         UnloadImage(isChecked);
 
-        Model[] models = new Model[7];
+        Model[] models = new Model[9];
 
         models[0] = LoadModelFromMesh(GenMeshPlane(2, 2, 5, 5));
         models[1] = LoadModelFromMesh(GenMeshCube(2.0f, 1.0f, 2.0f));
@@ -39,6 +39,8 @@ public class MeshGeneration
         models[4] = LoadModelFromMesh(GenMeshCylinder(1, 2, 16));
         models[5] = LoadModelFromMesh(GenMeshTorus(0.25f, 4.0f, 16, 32));
         models[6] = LoadModelFromMesh(GenMeshKnot(1.0f, 2.0f, 16, 128));
+        models[7] = LoadModelFromMesh(GenMeshPoly(5, 2.0f));
+        models[8] = LoadModelFromMesh(GenMeshCustom());
 
         // Set isChecked texture as default diffuse component for all models material
         for (int i = 0; i < models.Length; i++)
@@ -117,6 +119,12 @@ public class MeshGeneration
                 case 6:
                     DrawText("KNOT", 680, 10, 20, Color.DARKBLUE);
                     break;
+                case 7:
+                    DrawText("POLY", 680, 10, 20, Color.DARKBLUE);
+                    break;
+                case 8:
+                    DrawText("Custom (triagnle)", 580, 10, 20, Color.DARKBLUE);
+                    break;
                 default:
                     break;
             }
@@ -136,5 +144,37 @@ public class MeshGeneration
         //--------------------------------------------------------------------------------------
 
         return 0;
+    }
+
+    // Generate a simple triangle mesh from code
+    private static Mesh GenMeshCustom()
+    {
+        Mesh mesh = new(3, 1);
+        mesh.AllocVertices();
+        mesh.AllocTexCoords();
+        mesh.AllocNormals();
+        Span<Vector3> vertices = mesh.VerticesAs<Vector3>();
+        Span<Vector2> texcoords = mesh.TexCoordsAs<Vector2>();
+        Span<Vector3> normals = mesh.NormalsAs<Vector3>();
+
+        // Vertex at (0, 0, 0)
+        vertices[0] = new(0, 0, 0);
+        normals[0] = new(0, 1, 0);
+        texcoords[0] = new(0, 0);
+
+        // Vertex at (1, 0, 2)
+        vertices[1] = new(1, 0, 2);
+        normals[1] = new(0, 1, 0);
+        texcoords[1] = new(0.5f, 1.0f);
+
+        // Vertex at (2, 0, 0)
+        vertices[2] = new(2, 0, 0);
+        normals[2] = new(0, 1, 0);
+        texcoords[2] = new(1, 0);
+
+        // Upload mesh data from CPU (RAM) to GPU (VRAM) memory
+        UploadMesh(ref mesh, false);
+
+        return mesh;
     }
 }
