@@ -29,6 +29,11 @@ public unsafe partial struct RenderBatch
     public DrawCall* Draws;
 
     /// <summary>
+    /// Draw calls counter
+    /// </summary>
+    public int DrawCounter;
+
+    /// <summary>
     /// Current depth value for next draw
     /// </summary>
     public float CurrentDepth;
@@ -76,6 +81,30 @@ public unsafe partial struct VertexBuffer
     /// OpenGL Vertex Buffer Objects id (4 types of vertex data)
     /// </summary>
     public fixed uint VboId[4];
+
+    /// <summary>
+    /// Access <see cref="Vertices"/>
+    /// </summary>
+    public readonly Span<T> VerticesAs<T>() where T : unmanaged
+    {
+        return new(Vertices, ElementCount * sizeof(float) / sizeof(T));
+    }
+
+    /// <summary>
+    /// Access <see cref="TexCoords"/>
+    /// </summary>
+    public readonly Span<T> TexCoordsAs<T>() where T : unmanaged
+    {
+        return new(TexCoords, ElementCount * sizeof(float) / sizeof(T));
+    }
+
+    /// <summary>
+    /// Access <see cref="Colors"/>
+    /// </summary>
+    public readonly Span<T> ColorsAs<T>() where T : unmanaged
+    {
+        return new(Colors, ElementCount * sizeof(byte) / sizeof(T));
+    }
 }
 
 /// <summary>
