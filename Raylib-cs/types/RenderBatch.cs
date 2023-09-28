@@ -11,32 +11,27 @@ public unsafe partial struct RenderBatch
     /// <summary>
     /// Number of vertex buffers (multi-buffering support)
     /// </summary>
-    int _buffersCount;
+    public int BufferCount;
 
     /// <summary>
     /// Current buffer tracking in case of multi-buffering
     /// </summary>
-    int _currentBuffer;
+    public int CurrentBuffer;
 
     /// <summary>
     /// Dynamic buffer(s) for vertex data
     /// </summary>
-    VertexBuffer* _vertexBuffer;
+    public VertexBuffer* VertexBuffer;
 
     /// <summary>
     /// Draw calls array, depends on textureId
     /// </summary>
-    DrawCall* _draws;
-
-    /// <summary>
-    /// Draw calls counter
-    /// </summary>
-    int _drawsCounter;
+    public DrawCall* Draws;
 
     /// <summary>
     /// Current depth value for next draw
     /// </summary>
-    float _currentDepth;
+    public float CurrentDepth;
 }
 
 /// <summary>
@@ -84,7 +79,10 @@ public unsafe partial struct VertexBuffer
 }
 
 /// <summary>
-/// Dynamic vertex buffers (position + texcoords + colors + indices arrays)
+/// Draw call type<br/>
+/// NOTE: Only texture changes register a new draw, other state-change-related elements are not
+/// used at this moment (vaoId, shaderId, matrices), raylib just forces a batch draw call if any
+/// of those state-change happens (this is done in core module)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
 public partial struct DrawCall
@@ -92,22 +90,22 @@ public partial struct DrawCall
     /// <summary>
     /// Drawing mode: LINES, TRIANGLES, QUADS
     /// </summary>
-    int _mode;
+    public DrawMode Mode;
 
     /// <summary>
     /// Number of vertices for the draw call
     /// </summary>
-    int _vertexCount;
+    public int VertexCount;
 
     /// <summary>
     /// Number of vertices required for index alignment (LINES, TRIANGLES)
     /// </summary>
-    int _vertexAlignment;
+    public int VertexAlignment;
 
     /// <summary>
     /// Texture id to be used on the draw -> Use to create new draw call if changes
     /// </summary>
-    uint _textureId;
+    public uint TextureId;
 }
 
 public enum GlVersion
