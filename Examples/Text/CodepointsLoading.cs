@@ -45,7 +45,7 @@ class CodepointsLoading
         // Load font containing all the provided codepoint glyphs
         // A texture font atlas is automatically generated
         Font font = LoadFontEx(
-            "resources/DotGothic16-Regular.ttf",
+            "resources/fonts/DotGothic16-Regular.ttf",
             36,
             codepointsNoDuplicates,
             codepointsNoDuplicates.Length

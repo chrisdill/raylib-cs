@@ -43,8 +43,8 @@ public class ModelShader
         camera.FovY = 45.0f;
         camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
 
-        Model model = LoadModel("resources/models/watermill.obj");
-        Texture2D texture = LoadTexture("resources/models/watermill_diffuse.png");
+        Model model = LoadModel("resources/models/obj/watermill.obj");
+        Texture2D texture = LoadTexture("resources/models/obj/watermill_diffuse.png");
         Shader shader = LoadShader("resources/shaders/glsl330/base.vs",
                                    "resources/shaders/glsl330/grayscale.fs");
 

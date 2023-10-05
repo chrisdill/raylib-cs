@@ -78,8 +78,8 @@ public class PostProcessing
         camera.FovY = 45.0f;
         camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
 
-        Model model = LoadModel("resources/models/church.obj");
-        Texture2D texture = LoadTexture("resources/models/church_diffuse.png");
+        Model model = LoadModel("resources/models/obj/church.obj");
+        Texture2D texture = LoadTexture("resources/models/obj/church_diffuse.png");
 
         // Set model diffuse texture
         Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
