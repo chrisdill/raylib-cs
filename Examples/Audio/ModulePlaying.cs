@@ -72,7 +72,7 @@ public class ModulePlaying
             circles[i].Color = colors[GetRandomValue(0, 13)];
         }
 
-        Music music = LoadMusicStream("resources/audio/mini1111.Xm");
+        Music music = LoadMusicStream("resources/audio/mini1111.xm");
         music.Looping = false;
         float pitch = 1.0f;
 
