@@ -277,6 +277,127 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>Returns the cameras forward vector (normalized)</summary>
+    public static Vector3 GetCameraForward(ref Camera3D camera)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            return GetCameraForward(c);
+        }
+    }
+
+    /// <summary>
+    /// Returns the cameras up vector (normalized)<br/>
+    /// NOTE: The up vector might not be perpendicular to the forward vector
+    /// </summary>
+    public static Vector3 GetCameraUp(ref Camera3D camera)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            return GetCameraUp(c);
+        }
+    }
+
+    /// <summary>Returns the cameras right vector (normalized)</summary>
+    public static Vector3 GetCameraRight(ref Camera3D camera)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            return GetCameraRight(c);
+        }
+    }
+
+    /// <summary>Moves the camera in its forward direction</summary>
+    public static void CameraMoveForward(ref Camera3D camera, float distance, CBool moveInWorldPlane)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraMoveForward(c, distance, moveInWorldPlane);
+        }
+    }
+
+    /// <summary>Moves the camera in its up direction</summary>
+    public static void CameraMoveUp(ref Camera3D camera, float distance)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraMoveUp(c, distance);
+        }
+    }
+
+    /// <summary>Moves the camera target in its current right direction</summary>
+    public static void CameraMoveRight(ref Camera3D camera, float distance, CBool moveInWorldPlane)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraMoveRight(c, distance, moveInWorldPlane);
+        }
+    }
+
+    /// <summary>Moves the camera position closer/farther to/from the camera target</summary>
+    public static void CameraMoveToTarget(ref Camera3D camera, float delta)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraMoveToTarget(c, delta);
+        }
+    }
+
+    /// <summary>
+    /// Rotates the camera around its up vector<br/>
+    /// If rotateAroundTarget is false, the camera rotates around its position
+    /// </summary>
+    public static void CameraYaw(ref Camera3D camera, float angle, CBool rotateAroundTarget)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraYaw(c, angle, rotateAroundTarget);
+        }
+    }
+
+    /// <summary>
+    /// Rotates the camera around its right vector
+    /// </summary>
+    public static void CameraPitch(ref Camera3D camera,
+        float angle,
+        CBool lockView,
+        CBool rotateAroundTarget,
+        CBool rotateUp
+        )
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraPitch(c, angle, lockView, rotateAroundTarget, rotateUp);
+        }
+    }
+
+    /// <summary>Rotates the camera around its forward vector</summary>
+    public static void CameraRoll(ref Camera3D camera, float angle)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            CameraRoll(c, angle);
+        }
+    }
+
+    /// <summary>Returns the camera view matrix</summary>
+    public static Matrix4x4 GetCameraViewMatrix(ref Camera3D camera)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            return GetCameraViewMatrix(c);
+        }
+    }
+
+    /// <summary>Returns the camera projection matrix</summary>
+    public static Matrix4x4 GetCameraProjectionMatrix(ref Camera3D camera, float aspect)
+    {
+        fixed (Camera3D* c = &camera)
+        {
+            return GetCameraProjectionMatrix(c, aspect);
+        }
+    }
+
     /// <summary>
     /// Check the collision between two lines defined by two points each, returns collision point by reference
     /// </summary>
