@@ -2320,7 +2320,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Check if a material is ready</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsMaterialReady();
+    public static extern CBool IsMaterialReady(Material material);
 
     /// <summary>Unload material from GPU memory (VRAM)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
