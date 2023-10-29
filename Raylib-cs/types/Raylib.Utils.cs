@@ -916,19 +916,12 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>Load model animations from file</summary>
-    public static ReadOnlySpan<ModelAnimation> LoadModelAnimations(string fileName, ref uint animCount)
+    public static ModelAnimation* LoadModelAnimations(string fileName, ref uint animCount)
     {
         using var str1 = fileName.ToAnsiBuffer();
         fixed (uint* p = &animCount)
         {
-            ModelAnimation* modelAnimations = LoadModelAnimations(str1.AsPointer(), p);
-
-            if ((IntPtr)modelAnimations == IntPtr.Zero)
-            {
-                throw new ApplicationException("Failed to load animation");
-            }
-
-            return new ReadOnlySpan<ModelAnimation>(modelAnimations, (int)animCount);
+            return LoadModelAnimations(str1.AsPointer(), p);
         }
     }
 
