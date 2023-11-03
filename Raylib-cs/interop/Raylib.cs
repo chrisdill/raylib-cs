@@ -2351,7 +2351,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Unload animation array data</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void UnloadModelAnimations(ModelAnimation* animations, uint count);
+    public static extern void UnloadModelAnimations(ModelAnimation* animations, uint animCount);
 
     /// <summary>Check model animation skeleton match</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]

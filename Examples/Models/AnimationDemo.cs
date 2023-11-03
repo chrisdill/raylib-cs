@@ -110,10 +110,7 @@ public class AnimationDemo
         //--------------------------------------------------------------------------------------
         UnloadTexture(texture);
 
-        for (int i = 0; i < animsCount; i++)
-        {
-            UnloadModelAnimation(anims[i]);
-        }
+        UnloadModelAnimations(anims, animsCount);
 
         UnloadModel(model);
 
