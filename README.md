@@ -12,7 +12,7 @@ C# bindings for raylib, a simple and easy-to-use library to learn videogames pro
 
 [![Build](https://github.com/ChrisDill/Raylib-cs/workflows/Build/badge.svg)](https://github.com/ChrisDill/Raylib-cs/actions?query=workflow%3ABuild)
 
-Raylib-cs targets net5.0 and net6.0.
+Raylib-cs targets net5.0 and net6.0 and uses the [official 4.5.0 release](https://github.com/raysan5/raylib/releases/tag/4.5.0) to build the native libraries.
 
 ## Installation - NuGet
 
