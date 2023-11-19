@@ -247,6 +247,14 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3Normalize(Vector3 v);
 
+    /// <summary>Calculate the projection of the vector v1 on to v2</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector3 Vector3Project(Vector3 v1, Vector3 v2);
+
+    /// <summary>Calculate the rejection of the vector v1 on to v2</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector3 Vector3Reject(Vector3 v1, Vector3 v2);
+
     /// <summary>
     /// Orthonormalize provided vectors<br/>
     /// Makes vectors normalized and orthogonal to each other<br/>

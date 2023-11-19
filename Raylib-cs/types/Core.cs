@@ -76,6 +76,11 @@ public enum ConfigFlags : uint
     FLAG_WINDOW_MOUSE_PASSTHROUGH = 0x00004000,
 
     /// <summary>
+    /// Set to run program in borderless windowed mode
+    /// </summary>
+    FLAG_BORDERLESS_WINDOWED_MODE = 0x00008000,
+
+    /// <summary>
     /// Set to try enabling MSAA 4X
     /// </summary>
     FLAG_MSAA_4X_HINT = 0x00000020,
