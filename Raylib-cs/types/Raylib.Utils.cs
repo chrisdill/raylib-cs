@@ -83,15 +83,6 @@ public static unsafe partial class Raylib
         return GetShaderLocationAttrib(shader, str1.AsPointer());
     }
 
-    /// <summary>Unload random values sequence</summary>
-    public static void UnloadRandomSequence(out int sequence)
-    {
-        fixed (int* p = &sequence)
-        {
-            UnloadRandomSequence(p);
-        }
-    }
-
     /// <summary>Takes a screenshot of current screen (saved a .png)</summary>
     public static void TakeScreenshot(string fileName)
     {
