@@ -1336,7 +1336,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Load image from SVG file data or string with specified size</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern Image LoadImageSvg(char *fileNameOrString, int width, int height);
+    public static extern Image LoadImageSvg(sbyte* fileName, int width, int height);
 
     /// <summary>Load image sequence from file (frames appended to image.data)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1368,7 +1368,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Export image to memory buffer</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern char* ExportImageToMemory(Image image, char *fileType, int *fileSize);
+    public static extern char* ExportImageToMemory(Image image, sbyte* fileType, int *fileSize);
 
     /// <summary>Export image as code file defining an array of bytes</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
