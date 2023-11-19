@@ -107,7 +107,7 @@ public readonly unsafe partial struct ModelAnimation
     /// <summary>
     /// Animation name
     /// </summary>
-    public readonly char Name; // TODO CHECK IF IT WORKS
+    public readonly char[] Name; // TODO CHECK IF IT WORKS
 
     /// <inheritdoc cref="FramePoses"/>
     public FramePosesCollection FramePosesColl => new(FramePoses, FrameCount, BoneCount);
