@@ -138,6 +138,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowOpacity(float opacity);
 
+    /// <summary>Set window focused (only PLATFORM_DESKTOP)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetWindowFocused();
+
     /// <summary>Get native window handle</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void* GetWindowHandle();
