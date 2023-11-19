@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <TargetRaylibTag>5.0.0</TargetRaylibTag>
+    <TargetRaylibTag>5.0</TargetRaylibTag>
     <Version>5.0.0</Version>
     <PackageVersion>5.0.0</PackageVersion>
   </PropertyGroup>
