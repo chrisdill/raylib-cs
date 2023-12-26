@@ -419,7 +419,7 @@ public static unsafe partial class Raylib
     public static Image GenImageText(int width, int height, string text)
     {
         using var str1 = text.ToUtf8Buffer();
-        return GenImageText(width, height, text);
+        return GenImageText(width, height, str1.AsPointer());
     }
 
     /// <summary>Create an image from text (default font)</summary>
