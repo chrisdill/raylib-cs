@@ -415,6 +415,13 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>Generate image: grayscale image from text data</summary>
+    public static Image GenImageText(int width, int height, string text)
+    {
+        using var str1 = text.ToUtf8Buffer();
+        return GenImageText(width, height, text);
+    }
+
     /// <summary>Create an image from text (default font)</summary>
     public static Image ImageText(string text, int fontSize, Color color)
     {
