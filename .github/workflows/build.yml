@@ -58,10 +58,10 @@ jobs:
         include:
           - name: arm
             arch: armeabi-v7a
-            flags: "${{ matrix.flags }} -mfloat-abi=softfp -mfpu=vfpv3-d16"
+            cflags: "-mfloat-abi=softfp -mfpu=vfpv3-d16"
           - name: arm64
             arch: arm64-v8a
-            flags: "${{ matrix.flags }} -mfix-cortex-a53-835769"
+            cflags: "-mfix-cortex-a53-835769"
           - name: x86
             arch: x86
           - name: x64
@@ -73,7 +73,6 @@ jobs:
       - name: build raylib
         env:
           version: ${{ needs.build.outputs.version }}
-          CFLAGS: ${{ matrix.flags }}
         run: |
           curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
           unzip -qq raylib.zip
