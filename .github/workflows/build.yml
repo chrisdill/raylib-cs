@@ -58,8 +58,10 @@ jobs:
         include:
           - name: arm
             arch: armeabi-v7a
+            cflags: "-mfloat-abi=softfp -mfpu=vfpv3-d16"
           - name: arm64
             arch: arm64-v8a
+            cflags: "-mfix-cortex-a53-835769"
           - name: x86
             arch: x86
           - name: x64
@@ -83,7 +85,8 @@ jobs:
             -D CMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
             -D PLATFORM=Android \
             -D ANDROID_ABI=${{ matrix.arch }} \
-            -D ANDROID_PLATFORM=21
+            -D ANDROID_PLATFORM=21 \
+            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
           cmake --build build --config Release
 
       - name: upload build

@@ -316,6 +316,10 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlDisableFramebuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void DisableFramebuffer();
 
+    /// <summary>Blit active framebuffer to main framebuffer</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlBlitFramebuffer", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void BlitFramebuffer();
+
     /// <summary>Activate multiple draw color buffers</summary>
     [DllImport(NativeLibName, EntryPoint = "rlActiveDrawBuffers", CallingConvention = CallingConvention.Cdecl)]
     public static extern void ActiveDrawBuffers(int count);
@@ -374,6 +378,10 @@ public static unsafe partial class Rlgl
     /// <summary>Enable wire mode</summary>
     [DllImport(NativeLibName, EntryPoint = "rlEnableWireMode", CallingConvention = CallingConvention.Cdecl)]
     public static extern void EnableWireMode();
+
+    /// <summary>Enable point mode</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlEnablePointMode", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void EnablePointMode();
 
     /// <summary>Disable wire mode</summary>
     [DllImport(NativeLibName, EntryPoint = "rlDisableWireMode", CallingConvention = CallingConvention.Cdecl)]

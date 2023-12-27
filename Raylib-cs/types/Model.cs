@@ -79,7 +79,7 @@ public unsafe partial struct Model
 /// Model animation
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public readonly unsafe partial struct ModelAnimation
+public unsafe partial struct ModelAnimation
 {
     /// <summary>
     /// Number of bones
@@ -103,6 +103,11 @@ public readonly unsafe partial struct ModelAnimation
     /// Poses array by frame (Transform **)
     /// </summary>
     public readonly Transform** FramePoses;
+
+    /// <summary>
+    /// Animation name (char[32])
+    /// </summary>
+    public fixed sbyte Name[32];
 
     /// <inheritdoc cref="FramePoses"/>
     public FramePosesCollection FramePosesColl => new(FramePoses, FrameCount, BoneCount);
