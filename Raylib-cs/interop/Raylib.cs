@@ -1429,7 +1429,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Generate image: grayscale image from text data</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern Image GenImageText(int width, int height, int tileSize);
+    public static extern Image GenImageText(int width, int height, sbyte* text);
 
 
     // Image manipulation functions
