@@ -58,10 +58,10 @@ jobs:
         include:
           - name: arm
             arch: armeabi-v7a
-            flags: "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16"
+            flags: "${CFLAGS} -mfloat-abi=softfp -mfpu=vfpv3-d16"
           - name: arm64
             arch: arm64-v8a
-            flags: "-target aarch64 -mfix-cortex-a53-835769"
+            flags: "${CFLAGS} -mfix-cortex-a53-835769"
           - name: x86
             arch: x86
           - name: x64
