@@ -58,8 +58,10 @@ jobs:
         include:
           - name: arm
             arch: armeabi-v7a
+            flags: "-mfloat-abi=softfp -mfpu=vfpv3-d16"
           - name: arm64
             arch: arm64-v8a
+            flags: "-mfix-cortex-a53-835769"
           - name: x86
             arch: x86
           - name: x64
@@ -71,15 +73,11 @@ jobs:
       - name: build raylib
         env:
           version: ${{ needs.build.outputs.version }}
+          CFLAGS: ${{ matrix.flags }}
         run: |
           curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
           unzip -qq raylib.zip
           pushd raylib-${version}; patch -p1 < ../Examples.Android/android.patch; popd
-          if [ "${{ matrix.arch }}" == "armeabi-v7a" ]; then
-            export CFLAGS="$CFLAGS -mfloat-abi=softfp -mfpu=vfpv3-d16"
-          elif [ "${{ matrix.arch }}" == "arm64-v8a" ]; then
-            export CFLAGS="$CFLAGS -mfix-cortex-a53-835769"
-          fi
           cmake -S raylib-${version} \
             -B build \
             -D CMAKE_BUILD_TYPE=Release \
@@ -89,8 +87,6 @@ jobs:
             -D PLATFORM=Android \
             -D ANDROID_ABI=${{ matrix.arch }} \
             -D ANDROID_PLATFORM=21
-            -D ANDROID_ARM_NEON=TRUE \
-            -D ANDROID_ARMV8A=TRUE
           cmake --build build --config Release
 
       - name: upload build
