@@ -58,10 +58,10 @@ jobs:
         include:
           - name: arm
             arch: armeabi-v7a
-            flags: "-mfloat-abi=softfp -mfpu=vfpv3-d16 -DANDROID_ARM_NEON=TRUE -DANDROID_PLATFORM=android-21 -Wno-implicit-function-declaration"
+            flags: "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16"
           - name: arm64
             arch: arm64-v8a
-            flags: "-mfix-cortex-a53-835769 -mfpu=neon -DANDROID_ARM_NEON=TRUE -DANDROID_PLATFORM=android-21 -Wno-implicit-function-declaration"
+            flags: "-target aarch64 -mfix-cortex-a53-835769"
           - name: x86
             arch: x86
           - name: x64
