@@ -86,6 +86,7 @@ jobs:
             -D PLATFORM=Android \
             -D ANDROID_ABI=${{ matrix.arch }} \
             -D ANDROID_PLATFORM=21
+            -D CMAKE_C_FLAGS=${{ matrix.cflags }}
           cmake --build build --config Release
 
       - name: upload build
