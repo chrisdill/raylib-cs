@@ -159,9 +159,10 @@ jobs:
             -D CMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} \
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}" \
+            -D CMAKE_C_FLAGS="${{ matrix.cflags }} -Wno-dev" \
+            -D CMAKE_CXX_FLAGS="${{ matrix.cflags }} -Wno-dev" \
             -D GRAPHICS=GRAPHICS_API_OPENGL_43
-          cmake --build build --config Release -Wno-dev
+          cmake --build build --config Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
