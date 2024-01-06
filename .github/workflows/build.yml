@@ -161,7 +161,7 @@ jobs:
             -D BUILD_EXAMPLES=OFF \
             -D CMAKE_C_FLAGS="${{ matrix.cflags }}" \
             -D GRAPHICS=GRAPHICS_API_OPENGL_43
-          cmake --build build --config Release
+          cmake --build build --config Release -Wno-dev
 
       - name: upload build
         uses: actions/upload-artifact@v3
