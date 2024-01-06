@@ -159,8 +159,7 @@ jobs:
             -D CMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} \
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }} -Wno-dev" \
-            -D CMAKE_CXX_FLAGS="${{ matrix.cflags }} -Wno-dev" \
+            -D CMAKE_C_FLAGS="${{ matrix.cflags }}" \
             -D GRAPHICS=GRAPHICS_API_OPENGL_43
           cmake --build build --config Release
 
