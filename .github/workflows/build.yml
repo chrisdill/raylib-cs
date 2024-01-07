@@ -125,7 +125,6 @@ jobs:
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF \
             -D CMAKE_C_FLAGS="${{ matrix.cflags }}" \
-            -D GRAPHICS=GRAPHICS_API_OPENGL_43
           cmake --build build --config Release
 
       - name: upload build
@@ -193,8 +192,7 @@ jobs:
             -D CMAKE_BUILD_TYPE=Release \
             -D BUILD_SHARED_LIBS=ON \
             -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}" \
-            -D GRAPHICS=GRAPHICS_API_OPENGL_43
+            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
           cmake --build build --config Release
 
       - name: upload build
