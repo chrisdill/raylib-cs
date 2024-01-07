@@ -33,6 +33,7 @@
     <CMakeArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
     <CMakeArgs Include="-D BUILD_SHARED_LIBS=ON" />
     <CMakeArgs Include="-D BUILD_EXAMPLES=OFF" />
+    <!-- <CMakeArgs Include="-D GRAPHICS=GRAPHICS_API_OPENGL_43" /> -->
   </ItemGroup>
 
   <Target Name="ConfigureNative" BeforeTargets="BuildNative" Condition="$(SkipLocalBuild) != true">
