@@ -18,6 +18,13 @@ Raylib-cs targets net5.0 and net6.0 and uses the [official 4.5.0 release](https:
 
 This is the prefered method to get started.
 
+1) Pick a folder in which you would like to start a raylib project for example "MyRaylibCSProj"
+2) Then from a terminal (for example a VSCode terminal), whilst in the folder dir you just created
+    run the following commands. (Please keep in mind you should have .NET already installed on your system)
+
+```
+dotnet new console
+```
 ```
 dotnet add package Raylib-cs
 ```

@@ -123,7 +123,8 @@ jobs:
             -B build \
             -D CMAKE_BUILD_TYPE=Release \
             -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF
+            -D BUILD_EXAMPLES=OFF \
+            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
           cmake --build build --config Release
 
       - name: upload build
@@ -190,7 +191,8 @@ jobs:
             -B build \
             -D CMAKE_BUILD_TYPE=Release \
             -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF
+            -D BUILD_EXAMPLES=OFF \
+            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
           cmake --build build --config Release
 
       - name: upload build
