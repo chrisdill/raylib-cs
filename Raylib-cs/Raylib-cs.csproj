@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <EnableDefaultItems>false</EnableDefaultItems>
     <AssemblyName>Raylib-cs</AssemblyName>
     <RootNamespace>Raylib_cs</RootNamespace>
@@ -9,7 +9,6 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
-
   <PropertyGroup>
     <Authors>Chris Dill, Raysan5</Authors>
     <PackProject>true</PackProject>
@@ -27,19 +26,14 @@
     <PackageProjectUrl>https://www.raylib.com/</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="logo/raylib-cs_64x64.png" Pack="true" PackagePath="" />
     <None Include="../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
-
   <Import Project="./Build.props" />
-
   <ItemGroup>
     <Content Include="runtimes/**" Link="runtimes/%(RecursiveDir)/%(Filename)%(Extension)">
       <PackagePath>runtimes/</PackagePath>
@@ -47,7 +41,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Include="interop\*.cs" />
     <Compile Include="types\*.cs" />

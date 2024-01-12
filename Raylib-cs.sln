@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs", "Raylib-cs\Raylib-cs.csproj", "{236DB383-2FDC-4A77-8B33-22122D9B8950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-cs", "Raylib-cs\Raylib-cs.csproj", "{236DB383-2FDC-4A77-8B33-22122D9B8950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Tests", "Raylib-cs.Tests\Raylib-cs.Tests.csproj", "{1341D222-7E10-42C6-BC6E-4A46C934A843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-cs.Tests", "Raylib-cs.Tests\Raylib-cs.Tests.csproj", "{1341D222-7E10-42C6-BC6E-4A46C934A843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{1E2A5986-3F11-457F-AF97-D0C08D0060BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{1E2A5986-3F11-457F-AF97-D0C08D0060BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
