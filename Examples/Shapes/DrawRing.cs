@@ -56,10 +56,10 @@ public class DrawRing
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LIGHTGRAY, 0.6f));
-            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LIGHTGRAY, 0.3f));
+            DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.6f));
+            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.3f));
 
             if (drawRing)
             {
@@ -70,7 +70,7 @@ public class DrawRing
                     startAngle,
                     endAngle,
                     segments,
-                    ColorAlpha(Color.MAROON, 0.3f)
+                    ColorAlpha(Color.Maroon, 0.3f)
                 );
             }
             if (drawRingLines)
@@ -82,7 +82,7 @@ public class DrawRing
                     startAngle,
                     endAngle,
                     segments,
-                    ColorAlpha(Color.BLACK, 0.4f)
+                    ColorAlpha(Color.Black, 0.4f)
                 );
             }
             if (drawCircleLines)
@@ -93,7 +93,7 @@ public class DrawRing
                     startAngle,
                     endAngle,
                     segments,
-                    ColorAlpha(Color.BLACK, 0.4f)
+                    ColorAlpha(Color.Black, 0.4f)
                 );
             }
 
@@ -113,7 +113,7 @@ public class DrawRing
             //------------------------------------------------------------------------------
 
             minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
-            Color color = (segments >= minSegments) ? Color.MAROON : Color.DARKGRAY;
+            Color color = (segments >= minSegments) ? Color.Maroon : Color.DarkGray;
             DrawText($"MODE: {((segments >= minSegments) ? "MANUAL" : "AUTO")}", 600, 270, 10, color);
 
             DrawFPS(10, 10);

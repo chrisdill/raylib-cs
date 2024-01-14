@@ -23,7 +23,7 @@ public class LinesBezier
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [shapes] example - cubic-bezier lines");
 
         Vector2 start = new(0, 0);
@@ -50,10 +50,10 @@ public class LinesBezier
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("USE MOUSE LEFT-RIGHT CLICK to DEFINE LINE START and END POINTS", 15, 20, 20, Color.GRAY);
-            DrawLineBezier(start, end, 2.0f, Color.RED);
+            DrawText("USE MOUSE LEFT-RIGHT CLICK to DEFINE LINE START and END POINTS", 15, 20, 20, Color.Gray);
+            DrawLineBezier(start, end, 2.0f, Color.Red);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

@@ -99,10 +99,10 @@ public class SpriteButton
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw button frame
-            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), Color.WHITE);
+            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), Color.White);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

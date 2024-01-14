@@ -42,7 +42,7 @@ public class Fog
         const int screenHeight = 450;
 
         // Enable Multi Sampling Anti Aliasing 4x (if available)
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - fog");
 
         // Define the camera to look into our 3d world
@@ -51,7 +51,7 @@ public class Fog
         camera.Target = new Vector3(0.0f, 0.5f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Load models and texture
         Model modelA = LoadModelFromMesh(GenMeshTorus(0.4f, 1.0f, 16, 32));
@@ -60,14 +60,14 @@ public class Fog
         Texture2D texture = LoadTexture("resources/texel_checker.png");
 
         // Assign texture to default model material
-        Raylib.SetMaterialTexture(ref modelA, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
-        Raylib.SetMaterialTexture(ref modelB, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
-        Raylib.SetMaterialTexture(ref modelC, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref modelA, 0, MaterialMapIndex.Albedo, ref texture);
+        Raylib.SetMaterialTexture(ref modelB, 0, MaterialMapIndex.Albedo, ref texture);
+        Raylib.SetMaterialTexture(ref modelC, 0, MaterialMapIndex.Albedo, ref texture);
 
         // Load shader and set up some uniforms
         Shader shader = LoadShader("resources/shaders/glsl330/lighting.vs", "resources/shaders/glsl330/fog.fs");
-        shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
-        shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
+        shader.Locs[(int)ShaderLocationIndex.MatrixModel] = GetShaderLocation(shader, "matModel");
+        shader.Locs[(int)ShaderLocationIndex.VectorView] = GetShaderLocation(shader, "viewPos");
 
         // Ambient light level
         int ambientLoc = GetShaderLocation(shader, "ambient");
@@ -75,12 +75,12 @@ public class Fog
             shader,
             ambientLoc,
             new float[] { 0.2f, 0.2f, 0.2f, 1.0f },
-            ShaderUniformDataType.SHADER_UNIFORM_VEC4
+            ShaderUniformDataType.Vec4
         );
 
         float fogDensity = 0.15f;
         int fogDensityLoc = GetShaderLocation(shader, "fogDensity");
-        Raylib.SetShaderValue(shader, fogDensityLoc, fogDensity, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+        Raylib.SetShaderValue(shader, fogDensityLoc, fogDensity, ShaderUniformDataType.Float);
 
         // NOTE: All models share the same shader
         Raylib.SetMaterialShader(ref modelA, 0, ref shader);
@@ -88,7 +88,7 @@ public class Fog
         Raylib.SetMaterialShader(ref modelC, 0, ref shader);
 
         // Using just 1 point lights
-        Rlights.CreateLight(0, LightType.Point, new Vector3(0, 2, 6), Vector3.Zero, Color.WHITE, shader);
+        Rlights.CreateLight(0, LightType.Point, new Vector3(0, 2, 6), Vector3.Zero, Color.White, shader);
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -98,9 +98,9 @@ public class Fog
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
 
-            if (IsKeyDown(KeyboardKey.KEY_UP))
+            if (IsKeyDown(KeyboardKey.Up))
             {
                 fogDensity += 0.001f;
                 if (fogDensity > 1.0f)
@@ -109,7 +109,7 @@ public class Fog
                 }
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_DOWN))
+            if (IsKeyDown(KeyboardKey.Down))
             {
                 fogDensity -= 0.001f;
                 if (fogDensity < 0.0f)
@@ -118,7 +118,7 @@ public class Fog
                 }
             }
 
-            Raylib.SetShaderValue(shader, fogDensityLoc, fogDensity, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+            Raylib.SetShaderValue(shader, fogDensityLoc, fogDensity, ShaderUniformDataType.Float);
 
             // Rotate the torus
             modelA.Transform = MatrixMultiply(modelA.Transform, MatrixRotateX(-0.025f));
@@ -127,27 +127,27 @@ public class Fog
             // Update the light shader with the camera view position
             Raylib.SetShaderValue(
                 shader,
-                shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_VECTOR_VIEW],
+                shader.Locs[(int)ShaderLocationIndex.VectorView],
                 camera.Position,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC3
+                ShaderUniformDataType.Vec3
             );
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.GRAY);
+            ClearBackground(Color.Gray);
 
             BeginMode3D(camera);
 
             // Draw the three models
-            DrawModel(modelA, Vector3.Zero, 1.0f, Color.WHITE);
-            DrawModel(modelB, new Vector3(-2.6f, 0, 0), 1.0f, Color.WHITE);
-            DrawModel(modelC, new Vector3(2.6f, 0, 0), 1.0f, Color.WHITE);
+            DrawModel(modelA, Vector3.Zero, 1.0f, Color.White);
+            DrawModel(modelB, new Vector3(-2.6f, 0, 0), 1.0f, Color.White);
+            DrawModel(modelC, new Vector3(2.6f, 0, 0), 1.0f, Color.White);
 
             for (int i = -20; i < 20; i += 2)
             {
-                DrawModel(modelA, new Vector3(i, 0, 2), 1.0f, Color.WHITE);
+                DrawModel(modelA, new Vector3(i, 0, 2), 1.0f, Color.White);
             }
 
             EndMode3D();
@@ -157,7 +157,7 @@ public class Fog
                 10,
                 10,
                 20,
-                Color.RAYWHITE
+                Color.RayWhite
             );
 
             EndDrawing();

@@ -30,20 +30,20 @@ public unsafe class SplitScreen
 
         // Grid of cube trees on a plane to make a "world"
         // Simple world plane
-        DrawPlane(new Vector3(0, 0, 0), new Vector2(50, 50), Color.BEIGE);
+        DrawPlane(new Vector3(0, 0, 0), new Vector2(50, 50), Color.Beige);
 
         for (float x = -count * spacing; x <= count * spacing; x += spacing)
         {
             for (float z = -count * spacing; z <= count * spacing; z += spacing)
             {
-                DrawCube(new Vector3(x, 1.5f, z), 1, 1, 1, Color.LIME);
-                DrawCube(new Vector3(x, 0.5f, z), 0.25f, 1, 0.25f, Color.BROWN);
+                DrawCube(new Vector3(x, 1.5f, z), 1, 1, 1, Color.Lime);
+                DrawCube(new Vector3(x, 0.5f, z), 0.25f, 1, 0.25f, Color.Brown);
             }
         }
 
         // Draw a cube at each player's position
-        DrawCube(CameraPlayer1.Position, 1, 1, 1, Color.RED);
-        DrawCube(CameraPlayer2.Position, 1, 1, 1, Color.BLUE);
+        DrawCube(CameraPlayer1.Position, 1, 1, 1, Color.Red);
+        DrawCube(CameraPlayer2.Position, 1, 1, 1, Color.Blue);
     }
 
     public static int Main()
@@ -56,11 +56,11 @@ public unsafe class SplitScreen
         InitWindow(screenWidth, screenHeight, "raylib [core] example - split screen");
 
         // Generate a simple texture to use for trees
-        Image img = GenImageChecked(256, 256, 32, 32, Color.DARKGRAY, Color.WHITE);
+        Image img = GenImageChecked(256, 256, 32, 32, Color.DarkGray, Color.White);
         TextureGrid = LoadTextureFromImage(img);
         UnloadImage(img);
-        SetTextureFilter(TextureGrid, TextureFilter.TEXTURE_FILTER_ANISOTROPIC_16X);
-        SetTextureWrap(TextureGrid, TextureWrap.TEXTURE_WRAP_CLAMP);
+        SetTextureFilter(TextureGrid, TextureFilter.Anisotropic16X);
+        SetTextureWrap(TextureGrid, TextureWrap.Clamp);
 
         // Setup player 1 camera and screen
         CameraPlayer1.FovY = 45.0f;
@@ -101,24 +101,24 @@ public unsafe class SplitScreen
             float offsetThisFrame = 10.0f * GetFrameTime();
 
             // Move Player1 forward and backwards (no turning)
-            if (IsKeyDown(KeyboardKey.KEY_W))
+            if (IsKeyDown(KeyboardKey.W))
             {
                 CameraPlayer1.Position.Z += offsetThisFrame;
                 CameraPlayer1.Target.Z += offsetThisFrame;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_S))
+            else if (IsKeyDown(KeyboardKey.S))
             {
                 CameraPlayer1.Position.Z -= offsetThisFrame;
                 CameraPlayer1.Target.Z -= offsetThisFrame;
             }
 
             // Move Player2 forward and backwards (no turning)
-            if (IsKeyDown(KeyboardKey.KEY_UP))
+            if (IsKeyDown(KeyboardKey.Up))
             {
                 CameraPlayer2.Position.X += offsetThisFrame;
                 CameraPlayer2.Target.X += offsetThisFrame;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_DOWN))
+            else if (IsKeyDown(KeyboardKey.Down))
             {
                 CameraPlayer2.Position.X -= offsetThisFrame;
                 CameraPlayer2.Target.X -= offsetThisFrame;
@@ -129,32 +129,32 @@ public unsafe class SplitScreen
             //----------------------------------------------------------------------------------
             // Draw Player1 view to the render texture
             BeginTextureMode(screenPlayer1);
-            ClearBackground(Color.SKYBLUE);
+            ClearBackground(Color.SkyBlue);
 
             BeginMode3D(CameraPlayer1);
             DrawScene();
             EndMode3D();
 
-            DrawText("PLAYER 1 W/S to move", 10, 10, 20, Color.RED);
+            DrawText("PLAYER 1 W/S to move", 10, 10, 20, Color.Red);
             EndTextureMode();
 
             // Draw Player2 view to the render texture
             BeginTextureMode(screenPlayer2);
-            ClearBackground(Color.SKYBLUE);
+            ClearBackground(Color.SkyBlue);
 
             BeginMode3D(CameraPlayer2);
             DrawScene();
             EndMode3D();
 
-            DrawText("PLAYER 2 UP/DOWN to move", 10, 10, 20, Color.BLUE);
+            DrawText("PLAYER 2 UP/DOWN to move", 10, 10, 20, Color.Blue);
             EndTextureMode();
 
             // Draw both views render textures to the screen side by side
             BeginDrawing();
-            ClearBackground(Color.BLACK);
+            ClearBackground(Color.Black);
 
-            DrawTextureRec(screenPlayer1.Texture, splitScreenRect, new Vector2(0, 0), Color.WHITE);
-            DrawTextureRec(screenPlayer2.Texture, splitScreenRect, new Vector2(screenWidth / 2.0f, 0), Color.WHITE);
+            DrawTextureRec(screenPlayer1.Texture, splitScreenRect, new Vector2(0, 0), Color.White);
+            DrawTextureRec(screenPlayer2.Texture, splitScreenRect, new Vector2(screenWidth / 2.0f, 0), Color.White);
 
             EndDrawing();
         }

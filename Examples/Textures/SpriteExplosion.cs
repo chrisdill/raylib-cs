@@ -105,12 +105,12 @@ public class SpriteExplosion
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw explosion required frame rectangle
             if (active)
             {
-                DrawTextureRec(explosion, frameRec, position, Color.WHITE);
+                DrawTextureRec(explosion, frameRec, position, Color.White);
             }
 
             EndDrawing();

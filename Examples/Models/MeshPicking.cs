@@ -33,14 +33,14 @@ public class MeshPicking
         camera.Target = new Vector3(0.0f, 8.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.6f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Picking ray
         Ray ray = new();
 
         Model tower = LoadModel("resources/models/obj/turret.obj");
         Texture2D texture = LoadTexture("resources/models/obj/turret_diffuse.png");
-        Raylib.SetMaterialTexture(ref tower, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref tower, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 towerPos = new(0.0f, 0.0f, 0.0f);
         BoundingBox towerBBox = GetMeshBoundingBox(tower.Meshes[0]);
@@ -75,11 +75,11 @@ public class MeshPicking
             //----------------------------------------------------------------------------------
             if (IsCursorHidden())
             {
-                UpdateCamera(ref camera, CameraMode.CAMERA_FIRST_PERSON);
+                UpdateCamera(ref camera, CameraMode.FirstPerson);
             }
 
             // Toggle camera controls
-            if (IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_RIGHT))
+            if (IsMouseButtonPressed(MouseButton.Right))
             {
                 if (IsCursorHidden())
                 {
@@ -96,7 +96,7 @@ public class MeshPicking
             string hitObjectName = "None";
             collision.Distance = float.MaxValue;
             collision.Hit = false;
-            Color cursorColor = Color.WHITE;
+            Color cursorColor = Color.White;
 
             // Get ray and test against objects
             ray = GetMouseRay(GetMousePosition(), camera);
@@ -106,7 +106,7 @@ public class MeshPicking
             if (groundHitInfo.Hit && (groundHitInfo.Distance < collision.Distance))
             {
                 collision = groundHitInfo;
-                cursorColor = Color.GREEN;
+                cursorColor = Color.Green;
                 hitObjectName = "Ground";
             }
 
@@ -115,7 +115,7 @@ public class MeshPicking
             if (triHitInfo.Hit && (triHitInfo.Distance < collision.Distance))
             {
                 collision = triHitInfo;
-                cursorColor = Color.PURPLE;
+                cursorColor = Color.Purple;
                 hitObjectName = "Triangle";
 
                 bary = Vector3Barycenter(collision.Point, ta, tb, tc);
@@ -126,7 +126,7 @@ public class MeshPicking
             if ((sphereHitInfo.Hit) && (sphereHitInfo.Distance < collision.Distance))
             {
                 collision = sphereHitInfo;
-                cursorColor = Color.ORANGE;
+                cursorColor = Color.Orange;
                 hitObjectName = "Sphere";
             }
 
@@ -135,7 +135,7 @@ public class MeshPicking
             if (boxHitInfo.Hit && boxHitInfo.Distance < collision.Distance)
             {
                 collision = boxHitInfo;
-                cursorColor = Color.ORANGE;
+                cursorColor = Color.Orange;
                 hitObjectName = "Box";
 
                 // Check ray collision against model meshes
@@ -160,7 +160,7 @@ public class MeshPicking
                 if (meshHitInfo.Hit)
                 {
                     collision = meshHitInfo;
-                    cursorColor = Color.ORANGE;
+                    cursorColor = Color.Orange;
                     hitObjectName = "Mesh";
                 }
             }
@@ -169,65 +169,65 @@ public class MeshPicking
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
             // Draw the tower
-            DrawModel(tower, towerPos, 1.0f, Color.WHITE);
+            DrawModel(tower, towerPos, 1.0f, Color.White);
 
             // Draw the test triangle
-            DrawLine3D(ta, tb, Color.PURPLE);
-            DrawLine3D(tb, tc, Color.PURPLE);
-            DrawLine3D(tc, ta, Color.PURPLE);
+            DrawLine3D(ta, tb, Color.Purple);
+            DrawLine3D(tb, tc, Color.Purple);
+            DrawLine3D(tc, ta, Color.Purple);
 
             // Draw the test sphere
-            DrawSphereWires(sp, sr, 8, 8, Color.PURPLE);
+            DrawSphereWires(sp, sr, 8, 8, Color.Purple);
 
             // Draw the mesh bbox if we hit it
             if (boxHitInfo.Hit)
             {
-                DrawBoundingBox(towerBBox, Color.LIME);
+                DrawBoundingBox(towerBBox, Color.Lime);
             }
 
             // If we hit something, draw the cursor at the hit point
             if (collision.Hit)
             {
                 DrawCube(collision.Point, 0.3f, 0.3f, 0.3f, cursorColor);
-                DrawCubeWires(collision.Point, 0.3f, 0.3f, 0.3f, Color.RED);
+                DrawCubeWires(collision.Point, 0.3f, 0.3f, 0.3f, Color.Red);
 
                 Vector3 normalEnd = collision.Point + collision.Normal;
-                DrawLine3D(collision.Point, normalEnd, Color.RED);
+                DrawLine3D(collision.Point, normalEnd, Color.Red);
             }
 
-            DrawRay(ray, Color.MAROON);
+            DrawRay(ray, Color.Maroon);
 
             DrawGrid(10, 10.0f);
 
             EndMode3D();
 
             // Draw some debug GUI text
-            DrawText($"Hit Object: {hitObjectName}", 10, 50, 10, Color.BLACK);
+            DrawText($"Hit Object: {hitObjectName}", 10, 50, 10, Color.Black);
 
             if (collision.Hit)
             {
                 int ypos = 70;
 
-                DrawText($"Distance: {collision.Distance}", 10, ypos, 10, Color.BLACK);
+                DrawText($"Distance: {collision.Distance}", 10, ypos, 10, Color.Black);
 
-                DrawText($"Hit Pos: {collision.Point}", 10, ypos + 15, 10, Color.BLACK);
+                DrawText($"Hit Pos: {collision.Point}", 10, ypos + 15, 10, Color.Black);
 
-                DrawText($"Hit Norm: {collision.Normal}", 10, ypos + 30, 10, Color.BLACK);
+                DrawText($"Hit Norm: {collision.Normal}", 10, ypos + 30, 10, Color.Black);
 
                 if (triHitInfo.Hit)
                 {
-                    DrawText($"Barycenter: {bary}", 10, ypos + 45, 10, Color.BLACK);
+                    DrawText($"Barycenter: {bary}", 10, ypos + 45, 10, Color.Black);
                 }
             }
 
-            DrawText("Right click mouse to toggle camera controls", 10, 430, 10, Color.GRAY);
+            DrawText("Right click mouse to toggle camera controls", 10, 430, 10, Color.Gray);
 
-            DrawText("(c) Turret 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Color.GRAY);
+            DrawText("(c) Turret 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
             DrawFPS(10, 10);
 

@@ -67,15 +67,15 @@ public static class Rlights
             shader,
             light.EnabledLoc,
             light.Enabled ? 1 : 0,
-            ShaderUniformDataType.SHADER_UNIFORM_INT
+            ShaderUniformDataType.Int
         );
-        Raylib.SetShaderValue(shader, light.TypeLoc, (int)light.Type, ShaderUniformDataType.SHADER_UNIFORM_INT);
+        Raylib.SetShaderValue(shader, light.TypeLoc, (int)light.Type, ShaderUniformDataType.Int);
 
         // Send to shader light target position values
-        Raylib.SetShaderValue(shader, light.PosLoc, light.Position, ShaderUniformDataType.SHADER_UNIFORM_VEC3);
+        Raylib.SetShaderValue(shader, light.PosLoc, light.Position, ShaderUniformDataType.Vec3);
 
         // Send to shader light target position values
-        Raylib.SetShaderValue(shader, light.TargetLoc, light.Target, ShaderUniformDataType.SHADER_UNIFORM_VEC3);
+        Raylib.SetShaderValue(shader, light.TargetLoc, light.Target, ShaderUniformDataType.Vec3);
 
         // Send to shader light color values
         float[] color = new[]
@@ -85,6 +85,6 @@ public static class Rlights
                 (float)light.Color.B / (float)255,
                 (float)light.Color.A / (float)255
             };
-        Raylib.SetShaderValue(shader, light.ColorLoc, color, ShaderUniformDataType.SHADER_UNIFORM_VEC4);
+        Raylib.SetShaderValue(shader, light.ColorLoc, color, ShaderUniformDataType.Vec4);
     }
 }

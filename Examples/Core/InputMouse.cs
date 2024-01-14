@@ -26,7 +26,7 @@ public class InputMouse
         InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input");
 
         Vector2 ballPosition = new(-100.0f, -100.0f);
-        Color ballColor = Color.DARKBLUE;
+        Color ballColor = Color.DarkBlue;
 
         SetTargetFPS(60);
         //---------------------------------------------------------------------------------------
@@ -40,26 +40,26 @@ public class InputMouse
 
             if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
             {
-                ballColor = Color.MAROON;
+                ballColor = Color.Maroon;
             }
             else if (IsMouseButtonPressed(MouseButton.MOUSE_MIDDLE_BUTTON))
             {
-                ballColor = Color.LIME;
+                ballColor = Color.Lime;
             }
             else if (IsMouseButtonPressed(MouseButton.MOUSE_RIGHT_BUTTON))
             {
-                ballColor = Color.DARKBLUE;
+                ballColor = Color.DarkBlue;
             }
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             DrawCircleV(ballPosition, 40, ballColor);
 
-            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, Color.DARKGRAY);
+            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, Color.DarkGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

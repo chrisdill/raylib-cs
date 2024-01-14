@@ -61,17 +61,17 @@ public class Eratosthenes
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Enable drawing to texture
             BeginTextureMode(target);
-            ClearBackground(Color.BLACK);
+            ClearBackground(Color.Black);
 
             // Draw a rectangle in shader mode to be used as shader canvas
             // NOTE: Rectangle uses font white character texture coordinates,
             // so shader can not be applied here directly because input vertexTexCoord
             // do not represent full screen coordinates (space where want to apply shader)
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color.BLACK);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color.Black);
 
             // End drawing to texture (now we have a blank texture available for the shader)
             EndTextureMode();
@@ -82,7 +82,7 @@ public class Eratosthenes
                 target.Texture,
                 new Rectangle(0, 0, target.Texture.Width, -target.Texture.Height),
                 new Vector2(0.0f, 0.0f),
-                Color.WHITE
+                Color.White
             );
             EndShaderMode();
 

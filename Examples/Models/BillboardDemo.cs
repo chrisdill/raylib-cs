@@ -31,7 +31,7 @@ public class BillboardDemo
         camera.Target = new Vector3(0.0f, 2.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Our texture billboard
         Texture2D bill = LoadTexture("resources/billboard.png");
@@ -66,7 +66,7 @@ public class BillboardDemo
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
             rotation += 0.4f;
             distanceStatic = Vector3.Distance(camera.Position, billPositionStatic);
             distanceRotating = Vector3.Distance(camera.Position, billPositionRotating);
@@ -75,7 +75,7 @@ public class BillboardDemo
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
@@ -84,7 +84,7 @@ public class BillboardDemo
             // Draw order matters!
             if (distanceStatic > distanceRotating)
             {
-                DrawBillboard(camera, bill, billPositionStatic, 2.0f, Color.WHITE);
+                DrawBillboard(camera, bill, billPositionStatic, 2.0f, Color.White);
                 DrawBillboardPro(
                     camera,
                     bill,
@@ -94,7 +94,7 @@ public class BillboardDemo
                     new Vector2(1.0f, 1.0f),
                     rotateOrigin,
                     rotation,
-                    Color.WHITE
+                    Color.White
                 );
             }
             else
@@ -108,9 +108,9 @@ public class BillboardDemo
                     new Vector2(1.0f, 1.0f),
                     rotateOrigin,
                     rotation,
-                    Color.WHITE
+                    Color.White
                 );
-                DrawBillboard(camera, bill, billPositionStatic, 2.0f, Color.WHITE);
+                DrawBillboard(camera, bill, billPositionStatic, 2.0f, Color.White);
             }
 
             EndMode3D();

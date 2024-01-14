@@ -10,17 +10,17 @@ public enum FontType
     /// <summary>
     /// Default font generation, anti-aliased
     /// </summary>
-    FONT_DEFAULT = 0,
+    Default = 0,
 
     /// <summary>
     /// Bitmap font generation, no anti-aliasing
     /// </summary>
-    FONT_BITMAP,
+    Bitmap,
 
     /// <summary>
     /// SDF font generation, requires external shader
     /// </summary>
-    FONT_SDF
+    Sdf
 }
 
 /// <summary>

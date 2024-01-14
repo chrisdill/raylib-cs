@@ -40,7 +40,7 @@ public class BouncingBall
         {
             // Update
             //-----------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 pause = !pause;
             }
@@ -69,15 +69,15 @@ public class BouncingBall
             // Draw
             //-----------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawCircleV(ballPosition, ballRadius, Color.MAROON);
-            DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, Color.LIGHTGRAY);
+            DrawCircleV(ballPosition, ballRadius, Color.Maroon);
+            DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, Color.LightGray);
 
             // On pause, we draw a blinking message
             if (pause && ((framesCounter / 30) % 2) == 0)
             {
-                DrawText("PAUSED", 350, 200, 30, Color.GRAY);
+                DrawText("PAUSED", 350, 200, 30, Color.Gray);
             }
             DrawFPS(10, 10);
 

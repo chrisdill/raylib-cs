@@ -35,22 +35,22 @@ public class InputKeys
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KeyboardKey.KEY_RIGHT))
+            if (IsKeyDown(KeyboardKey.Right))
             {
                 ballPosition.X += 2.0f;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_LEFT))
+            if (IsKeyDown(KeyboardKey.Left))
             {
                 ballPosition.X -= 2.0f;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_UP))
+            if (IsKeyDown(KeyboardKey.Up))
             {
                 ballPosition.Y -= 2.0f;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_DOWN))
+            if (IsKeyDown(KeyboardKey.Down))
             {
                 ballPosition.Y += 2.0f;
             }
@@ -59,11 +59,11 @@ public class InputKeys
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("move the ball with arrow keys", 10, 10, 20, Color.DARKGRAY);
+            DrawText("move the ball with arrow keys", 10, 10, 20, Color.DarkGray);
 
-            DrawCircleV(ballPosition, 50, Color.MAROON);
+            DrawCircleV(ballPosition, 50, Color.Maroon);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

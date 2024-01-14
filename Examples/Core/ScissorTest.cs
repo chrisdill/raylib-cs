@@ -37,7 +37,7 @@ public class ScissorTest
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_S))
+            if (IsKeyPressed(KeyboardKey.S))
             {
                 scissorMode = !scissorMode;
             }
@@ -50,7 +50,7 @@ public class ScissorTest
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             if (scissorMode)
             {
@@ -59,16 +59,16 @@ public class ScissorTest
 
             // Draw full screen rectangle and some text
             // NOTE: Only part defined by scissor area will be rendered
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color.RED);
-            DrawText("Move the mouse around to reveal this text!", 190, 200, 20, Color.LIGHTGRAY);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color.Red);
+            DrawText("Move the mouse around to reveal this text!", 190, 200, 20, Color.LightGray);
 
             if (scissorMode)
             {
                 EndScissorMode();
             }
 
-            DrawRectangleLinesEx(scissorArea, 1, Color.BLACK);
-            DrawText("Press S to toggle scissor test", 10, 10, 20, Color.BLACK);
+            DrawRectangleLinesEx(scissorArea, 1, Color.Black);
+            DrawText("Press S to toggle scissor test", 10, 10, 20, Color.Black);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

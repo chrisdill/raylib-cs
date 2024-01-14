@@ -47,7 +47,7 @@ public class BlendModes
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 if ((int)blendMode >= (blendCountMax - 1))
                 {
@@ -63,42 +63,42 @@ public class BlendModes
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             int bgX = screenWidth / 2 - bgTexture.Width / 2;
             int bgY = screenHeight / 2 - bgTexture.Height / 2;
-            DrawTexture(bgTexture, bgX, bgY, Color.WHITE);
+            DrawTexture(bgTexture, bgX, bgY, Color.White);
 
             // Apply the blend mode and then draw the foreground texture
             BeginBlendMode(blendMode);
             int fgX = screenWidth / 2 - fgTexture.Width / 2;
             int fgY = screenHeight / 2 - fgTexture.Height / 2;
-            DrawTexture(fgTexture, fgX, fgY, Color.WHITE);
+            DrawTexture(fgTexture, fgX, fgY, Color.White);
             EndBlendMode();
 
             // Draw the texts
-            DrawText("Press SPACE to change blend modes.", 310, 350, 10, Color.GRAY);
+            DrawText("Press SPACE to change blend modes.", 310, 350, 10, Color.Gray);
 
             switch (blendMode)
             {
-                case BlendMode.BLEND_ALPHA:
-                    DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, Color.GRAY);
+                case BlendMode.Alpha:
+                    DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, Color.Gray);
                     break;
-                case BlendMode.BLEND_ADDITIVE:
-                    DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, Color.GRAY);
+                case BlendMode.Additive:
+                    DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, Color.Gray);
                     break;
-                case BlendMode.BLEND_MULTIPLIED:
-                    DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, Color.GRAY);
+                case BlendMode.Multiplied:
+                    DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, Color.Gray);
                     break;
-                case BlendMode.BLEND_ADD_COLORS:
-                    DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, Color.GRAY);
+                case BlendMode.AddColors:
+                    DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, Color.Gray);
                     break;
                 default:
                     break;
             }
 
             string text = "(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)";
-            DrawText(text, screenWidth - 330, screenHeight - 20, 10, Color.GRAY);
+            DrawText(text, screenWidth - 330, screenHeight - 20, 10, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

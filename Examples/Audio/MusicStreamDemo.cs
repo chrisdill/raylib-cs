@@ -44,14 +44,14 @@ public class MusicStreamDemo
             UpdateMusicStream(music);        // Update music buffer with new stream data
 
             // Restart music playing (stop and play)
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 StopMusicStream(music);
                 PlayMusicStream(music);
             }
 
             // Pause/Resume music playing
-            if (IsKeyPressed(KeyboardKey.KEY_P))
+            if (IsKeyPressed(KeyboardKey.P))
             {
                 pause = !pause;
 
@@ -77,16 +77,16 @@ public class MusicStreamDemo
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, Color.LIGHTGRAY);
+            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, Color.LightGray);
 
-            DrawRectangle(200, 200, 400, 12, Color.LIGHTGRAY);
-            DrawRectangle(200, 200, (int)timePlayed, 12, Color.MAROON);
-            DrawRectangleLines(200, 200, 400, 12, Color.GRAY);
+            DrawRectangle(200, 200, 400, 12, Color.LightGray);
+            DrawRectangle(200, 200, (int)timePlayed, 12, Color.Maroon);
+            DrawRectangleLines(200, 200, 400, 12, Color.Gray);
 
-            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, Color.LIGHTGRAY);
-            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, Color.LIGHTGRAY);
+            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, Color.LightGray);
+            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

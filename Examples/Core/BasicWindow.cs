@@ -51,9 +51,9 @@ public class BasicWindow
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Congrats! You created your first window!", 190, 200, 20, Color.MAROON);
+            DrawText("Congrats! You created your first window!", 190, 200, 20, Color.Maroon);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

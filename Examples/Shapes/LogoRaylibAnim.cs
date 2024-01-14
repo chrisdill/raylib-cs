@@ -113,7 +113,7 @@ public class LogoRaylibAnim
             // State 4: Reset and Replay
             else if (state == 4)
             {
-                if (IsKeyPressed(KeyboardKey.KEY_R))
+                if (IsKeyPressed(KeyboardKey.R))
                 {
                     framesCounter = 0;
                     lettersCount = 0;
@@ -134,7 +134,7 @@ public class LogoRaylibAnim
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             if (state == 0)
             {
@@ -165,7 +165,7 @@ public class LogoRaylibAnim
                 DrawRectangle(logoPositionX + 240, logoPositionY + 16, 16, rightSideRecHeight - 32, outlineFade);
                 DrawRectangle(logoPositionX, logoPositionY + 240, bottomSideRecWidth, 16, outlineFade);
 
-                Color whiteFade = ColorAlpha(Color.RAYWHITE, alpha);
+                Color whiteFade = ColorAlpha(Color.RayWhite, alpha);
                 DrawRectangle(screenWidth / 2 - 112, screenHeight / 2 - 112, 224, 224, whiteFade);
 
                 Color label = ColorAlpha(new Color(155, 79, 151, 255), alpha);
@@ -176,7 +176,7 @@ public class LogoRaylibAnim
             }
             else if (state == 4)
             {
-                DrawText("[R] REPLAY", 340, 200, 20, Color.GRAY);
+                DrawText("[R] REPLAY", 340, 200, 20, Color.Gray);
             }
 
             EndDrawing();

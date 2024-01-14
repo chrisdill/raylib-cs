@@ -67,7 +67,7 @@ public class PostProcessing
         const int screenHeight = 450;
 
         // Enable Multi Sampling Anti Aliasing 4x (if available)
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
 
         // Define the camera to look into our 3d world
@@ -76,13 +76,13 @@ public class PostProcessing
         camera.Target = new Vector3(0.0f, 1.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Model model = LoadModel("resources/models/obj/church.obj");
         Texture2D texture = LoadTexture("resources/models/obj/church_diffuse.png");
 
         // Set model diffuse texture
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);
 
@@ -119,13 +119,13 @@ public class PostProcessing
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
 
-            if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+            if (IsKeyPressed(KeyboardKey.Right))
             {
                 currentShader++;
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+            else if (IsKeyPressed(KeyboardKey.Left))
             {
                 currentShader--;
             }
@@ -143,15 +143,15 @@ public class PostProcessing
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Enable drawing to texture
             BeginTextureMode(target);
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, position, 0.1f, Color.WHITE);
+            DrawModel(model, position, 0.1f, Color.White);
 
             DrawGrid(10, 1.0f);
 
@@ -168,18 +168,18 @@ public class PostProcessing
                 target.Texture,
                 new Rectangle(0, 0, target.Texture.Width, -target.Texture.Height),
                 new Vector2(0, 0),
-                Color.WHITE
+                Color.White
             );
 
             EndShaderMode();
 
-            DrawRectangle(0, 9, 580, 30, ColorAlpha(Color.LIGHTGRAY, 0.7f));
+            DrawRectangle(0, 9, 580, 30, ColorAlpha(Color.LightGray, 0.7f));
 
-            DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Color.GRAY);
+            DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
-            DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, Color.BLACK);
-            DrawText(postproShaderText[currentShader], 330, 15, 20, Color.RED);
-            DrawText("< >", 540, 10, 30, Color.DARKBLUE);
+            DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, Color.Black);
+            DrawText(postproShaderText[currentShader], 330, 15, 20, Color.Red);
+            DrawText("< >", 540, 10, 30, Color.DarkBlue);
 
             DrawFPS(700, 15);
 

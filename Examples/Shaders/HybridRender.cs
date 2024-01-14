@@ -60,7 +60,7 @@ public class HybridRender
             shdrRaymarch,
             marchLocs.ScreenCenter,
             screenCenter,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
 
         // Use customized function to create writable depth texture buffer
@@ -72,7 +72,7 @@ public class HybridRender
         camera.Target = new Vector3(0.0f, 0.5f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Camera FOV is pre-calculated in the camera Distance.
         float camDist = 1.0f / (MathF.Tan(camera.FovY * 0.5f * Raylib.DEG2RAD));
@@ -85,41 +85,41 @@ public class HybridRender
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
 
             // Update Camera Postion in the ray march shader.
             SetShaderValue(
                 shdrRaymarch,
                 marchLocs.CamPos,
                 camera.Position,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC3
+                ShaderUniformDataType.Vec3
             );
 
             // Update Camera Looking Vector. Vector length determines FOV.
             Vector3 camDir = Vector3.Normalize(camera.Target - camera.Position) * camDist;
-            SetShaderValue(shdrRaymarch, marchLocs.CamDir, camDir, ShaderUniformDataType.SHADER_UNIFORM_VEC3);
+            SetShaderValue(shdrRaymarch, marchLocs.CamDir, camDir, ShaderUniformDataType.Vec3);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             // Draw into our custom render texture (framebuffer)
             BeginTextureMode(target);
-            ClearBackground(Color.WHITE);
+            ClearBackground(Color.White);
 
             // Raymarch Scene
             // Manually enable Depth Test to handle multiple rendering methods.
             Rlgl.EnableDepthTest();
             BeginShaderMode(shdrRaymarch);
-            DrawRectangleRec(new Rectangle(0, 0, screenWidth, screenHeight), Color.WHITE);
+            DrawRectangleRec(new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
             EndShaderMode();
 
             // Rasterize Scene
             BeginMode3D(camera);
             BeginShaderMode(shdrRaster);
-            DrawCubeWiresV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.RED);
-            DrawCubeV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.PURPLE);
-            DrawCubeWiresV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.DARKGREEN);
-            DrawCubeV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.YELLOW);
+            DrawCubeWiresV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Red);
+            DrawCubeV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Purple);
+            DrawCubeWiresV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.DarkGreen);
+            DrawCubeV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Yellow);
             DrawGrid(10, 1.0f);
             EndShaderMode();
             EndMode3D();
@@ -128,13 +128,13 @@ public class HybridRender
 
             // Draw custom render texture
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             DrawTextureRec(
                 target.Texture,
                 new Rectangle(0, 0, screenWidth, -screenHeight),
                 Vector2.Zero,
-                Color.WHITE
+                Color.White
             );
             DrawFPS(10, 10);
 
@@ -171,48 +171,48 @@ public class HybridRender
                 null,
                 width,
                 height,
-                PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+                PixelFormat.UncompressedR8G8B8A8,
                 1
             );
             target.Texture.Width = width;
             target.Texture.Height = height;
-            target.Texture.Format = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
+            target.Texture.Format = PixelFormat.UncompressedR8G8B8A8;
             target.Texture.Mipmaps = 1;
 
             // Create depth texture buffer (instead of raylib default renderbuffer)
             target.Depth.Id = Rlgl.LoadTextureDepth(width, height, false);
             target.Depth.Width = width;
             target.Depth.Height = height;
-            target.Depth.Format = PixelFormat.PIXELFORMAT_COMPRESSED_PVRT_RGBA;
+            target.Depth.Format = PixelFormat.CompressedPvrtRgba;
             target.Depth.Mipmaps = 1;
 
             // Attach color texture and depth texture to FBO
             Rlgl.FramebufferAttach(
                 target.Id,
                 target.Texture.Id,
-                FramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL0,
-                FramebufferAttachTextureType.RL_ATTACHMENT_TEXTURE2D,
+                FramebufferAttachType.ColorChannel0,
+                FramebufferAttachTextureType.Texture2D,
                 0
             );
             Rlgl.FramebufferAttach(
                 target.Id,
                 target.Depth.Id,
-                FramebufferAttachType.RL_ATTACHMENT_DEPTH,
-                FramebufferAttachTextureType.RL_ATTACHMENT_TEXTURE2D,
+                FramebufferAttachType.Depth,
+                FramebufferAttachTextureType.Texture2D,
                 0
             );
 
             // Check if fbo is complete with attachments (valid)
             if (Rlgl.FramebufferComplete(target.Id))
             {
-                TraceLog(TraceLogLevel.LOG_INFO, $"FBO: [ID {target.Id}] Framebuffer object created successfully");
+                TraceLog(TraceLogLevel.Info, $"FBO: [ID {target.Id}] Framebuffer object created successfully");
             }
 
             Rlgl.DisableFramebuffer();
         }
         else
         {
-            TraceLog(TraceLogLevel.LOG_WARNING, "FBO: Framebuffer object can not be created");
+            TraceLog(TraceLogLevel.Warning, "FBO: Framebuffer object can not be created");
         }
 
         return target;

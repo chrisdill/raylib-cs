@@ -51,11 +51,11 @@ public class RandomValues
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Every 2 seconds a new random value is generated:", 130, 100, 20, Color.MAROON);
+            DrawText("Every 2 seconds a new random value is generated:", 130, 100, 20, Color.Maroon);
 
-            DrawText($"{randValue}", 360, 180, 80, Color.LIGHTGRAY);
+            DrawText($"{randValue}", 360, 180, 80, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

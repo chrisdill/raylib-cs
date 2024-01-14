@@ -56,11 +56,11 @@ public class MultiSample2d
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KeyboardKey.KEY_RIGHT))
+            if (IsKeyDown(KeyboardKey.Right))
             {
                 dividerValue += 0.01f;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_LEFT))
+            else if (IsKeyDown(KeyboardKey.Left))
             {
                 dividerValue -= 0.01f;
             }
@@ -74,13 +74,13 @@ public class MultiSample2d
                 dividerValue = 1.0f;
             }
 
-            Raylib.SetShaderValue(shader, dividerLoc, dividerValue, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+            Raylib.SetShaderValue(shader, dividerLoc, dividerValue, ShaderUniformDataType.Float);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginShaderMode(shader);
 
@@ -91,12 +91,12 @@ public class MultiSample2d
 
             // We are drawing texRed using default sampler2D texture0 but
             // an additional texture units is enabled for texBlue (sampler2D texture1)
-            DrawTexture(texRed, 0, 0, Color.WHITE);
+            DrawTexture(texRed, 0, 0, Color.White);
 
             EndShaderMode();
 
             int y = GetScreenHeight() - 40;
-            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, y, 20, Color.RAYWHITE);
+            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, y, 20, Color.RayWhite);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

@@ -64,11 +64,11 @@ public class SpriteAnim
                 frameRec.X = (float)currentFrame * (float)scarfy.Width / 6;
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+            if (IsKeyPressed(KeyboardKey.Right))
             {
                 framesSpeed++;
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+            else if (IsKeyPressed(KeyboardKey.Left))
             {
                 framesSpeed--;
             }
@@ -79,34 +79,34 @@ public class SpriteAnim
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawTexture(scarfy, 15, 40, Color.WHITE);
-            DrawRectangleLines(15, 40, scarfy.Width, scarfy.Height, Color.LIME);
+            DrawTexture(scarfy, 15, 40, Color.White);
+            DrawRectangleLines(15, 40, scarfy.Width, scarfy.Height, Color.Lime);
             DrawRectangleLines(
                 15 + (int)frameRec.X,
                 40 + (int)frameRec.Y,
                 (int)frameRec.Width,
                 (int)frameRec.Height,
-                Color.RED
+                Color.Red
             );
 
-            DrawText("FRAME SPEED: ", 165, 210, 10, Color.DARKGRAY);
-            DrawText($"{framesSpeed:2F} FPS", 575, 210, 10, Color.DARKGRAY);
-            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, Color.DARKGRAY);
+            DrawText("FRAME SPEED: ", 165, 210, 10, Color.DarkGray);
+            DrawText($"{framesSpeed:2F} FPS", 575, 210, 10, Color.DarkGray);
+            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, Color.DarkGray);
 
             for (int i = 0; i < MaxFrameSpeed; i++)
             {
                 if (i < framesSpeed)
                 {
-                    DrawRectangle(250 + 21 * i, 205, 20, 20, Color.RED);
+                    DrawRectangle(250 + 21 * i, 205, 20, 20, Color.Red);
                 }
-                DrawRectangleLines(250 + 21 * i, 205, 20, 20, Color.MAROON);
+                DrawRectangleLines(250 + 21 * i, 205, 20, 20, Color.Maroon);
             }
 
             // Draw part of the texture
-            DrawTextureRec(scarfy, frameRec, position, Color.WHITE);
-            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Color.GRAY);
+            DrawTextureRec(scarfy, frameRec, position, Color.White);
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

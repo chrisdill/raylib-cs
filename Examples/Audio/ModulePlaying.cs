@@ -36,27 +36,27 @@ public class ModulePlaying
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);      // NOTE: Try to enable MSAA 4X
+        SetConfigFlags(ConfigFlags.Msaa4xHint);      // NOTE: Try to enable MSAA 4X
 
         InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
 
         InitAudioDevice();
 
         Color[] colors = new Color[14] {
-            Color.ORANGE,
-            Color.RED,
-            Color.GOLD,
-            Color.LIME,
-            Color.BLUE,
-            Color.VIOLET,
-            Color.BROWN,
-            Color.LIGHTGRAY,
-            Color.PINK,
-            Color.YELLOW,
-            Color.GREEN,
-            Color.SKYBLUE,
-            Color.PURPLE,
-            Color.BEIGE
+            Color.Orange,
+            Color.Red,
+            Color.Gold,
+            Color.Lime,
+            Color.Blue,
+            Color.Violet,
+            Color.Brown,
+            Color.LightGray,
+            Color.Pink,
+            Color.Yellow,
+            Color.Green,
+            Color.SkyBlue,
+            Color.Purple,
+            Color.Beige
         };
 
         // Creates ome circles for visual effect
@@ -92,14 +92,14 @@ public class ModulePlaying
             UpdateMusicStream(music);        // Update music buffer with new stream data
 
             // Restart music playing (stop and play)
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 StopMusicStream(music);
                 PlayMusicStream(music);
             }
 
             // Pause/Resume music playing
-            if (IsKeyPressed(KeyboardKey.KEY_P))
+            if (IsKeyPressed(KeyboardKey.P))
             {
                 pause = !pause;
 
@@ -113,11 +113,11 @@ public class ModulePlaying
                 }
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_DOWN))
+            if (IsKeyDown(KeyboardKey.Down))
             {
                 pitch -= 0.01f;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_UP))
+            else if (IsKeyDown(KeyboardKey.Up))
             {
                 pitch += 0.01f;
             }
@@ -159,7 +159,7 @@ public class ModulePlaying
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             for (int i = MaxCircles - 1; i >= 0; i--)
             {
@@ -171,9 +171,9 @@ public class ModulePlaying
             }
 
             // Draw time bar
-            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, Color.LIGHTGRAY);
-            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, Color.MAROON);
-            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, Color.GRAY);
+            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, Color.LightGray);
+            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, Color.Maroon);
+            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

@@ -31,7 +31,7 @@ public class CustomUniform
         const int screenHeight = 450;
 
         // Enable Multi Sampling Anti Aliasing 4x (if available)
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - custom uniform variable");
 
@@ -41,13 +41,13 @@ public class CustomUniform
         camera.Target = new Vector3(0.0f, 1.5f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Model model = LoadModel("resources/models/obj/barracks.obj");
         Texture2D texture = LoadTexture("resources/models/obj/barracks_diffuse.png");
 
         // Set model diffuse texture
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);
 
@@ -78,28 +78,28 @@ public class CustomUniform
             swirlCenter[1] = screenHeight - mousePosition.Y;
 
             // Send new value to the shader to be used on drawing
-            Raylib.SetShaderValue(shader, swirlCenterLoc, swirlCenter, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+            Raylib.SetShaderValue(shader, swirlCenterLoc, swirlCenter, ShaderUniformDataType.Vec2);
 
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Enable drawing to texture
             BeginTextureMode(target);
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, position, 0.5f, Color.WHITE);
+            DrawModel(model, position, 0.5f, Color.White);
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawText("TEXT DRAWN IN RENDER TEXTURE", 200, 10, 30, Color.RED);
+            DrawText("TEXT DRAWN IN RENDER TEXTURE", 200, 10, 30, Color.Red);
 
             // End drawing to texture (now we have a texture available for next passes)
             EndTextureMode();
@@ -111,7 +111,7 @@ public class CustomUniform
                 target.Texture,
                 new Rectangle(0, 0, target.Texture.Width, -target.Texture.Height),
                 new Vector2(0, 0),
-                Color.WHITE
+                Color.White
             );
 
             EndShaderMode();
@@ -121,7 +121,7 @@ public class CustomUniform
                 screenWidth - 220,
                 screenHeight - 20,
                 10,
-                Color.GRAY
+                Color.Gray
             );
 
             DrawFPS(10, 10);

@@ -82,15 +82,15 @@ public class FollowingEyes
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawCircleV(scleraLeftPosition, scleraRadius, Color.LIGHTGRAY);
-            DrawCircleV(irisLeftPosition, irisRadius, Color.BROWN);
-            DrawCircleV(irisLeftPosition, 10, Color.BLACK);
+            DrawCircleV(scleraLeftPosition, scleraRadius, Color.LightGray);
+            DrawCircleV(irisLeftPosition, irisRadius, Color.Brown);
+            DrawCircleV(irisLeftPosition, 10, Color.Black);
 
-            DrawCircleV(scleraRightPosition, scleraRadius, Color.LIGHTGRAY);
-            DrawCircleV(irisRightPosition, irisRadius, Color.DARKGREEN);
-            DrawCircleV(irisRightPosition, 10, Color.BLACK);
+            DrawCircleV(scleraRightPosition, scleraRadius, Color.LightGray);
+            DrawCircleV(irisRightPosition, irisRadius, Color.DarkGreen);
+            DrawCircleV(irisRightPosition, 10, Color.Black);
 
             DrawFPS(10, 10);
 
