@@ -171,12 +171,7 @@ public enum MouseButton
     /// <summary>
     /// Mouse button back (advanced mouse device)
     /// </summary>
-    Back = 6,
-
-    // i will keep these as is
-    MOUSE_LEFT_BUTTON = Left,
-    MOUSE_RIGHT_BUTTON = Right,
-    MOUSE_MIDDLE_BUTTON = Middle,
+    Back = 6
 }
 
 /// <summary>
