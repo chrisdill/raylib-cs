@@ -68,7 +68,7 @@ public class RectangleBounds
             // Container resizing logic
             if (resizing)
             {
-                if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonReleased(MouseButton.Left))
                 {
                     resizing = false;
                 }
@@ -82,7 +82,7 @@ public class RectangleBounds
             else
             {
                 // Check if we're resizing
-                if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mouse, resizer))
+                if (IsMouseButtonDown(MouseButton.Left) && CheckCollisionPointRec(mouse, resizer))
                 {
                     resizing = true;
                 }

@@ -133,7 +133,7 @@ public unsafe class TexturedCurve
     static void UpdateCurve()
     {
         // If the mouse is not down, we are not editing the curve so clear the selection
-        if (!IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+        if (!IsMouseButtonDown(MouseButton.Left))
         {
             return;
         }

@@ -96,7 +96,7 @@ public class DrawTiled
             screenHeight = GetScreenHeight();
 
             // Handle mouse
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 Vector2 mouse = GetMousePosition();
 

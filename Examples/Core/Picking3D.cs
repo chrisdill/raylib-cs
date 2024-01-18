@@ -50,7 +50,7 @@ public class Picking3d
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera, CameraMode.Free);
 
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 if (!collision.Hit)
                 {

@@ -38,15 +38,15 @@ public class InputMouse
             //----------------------------------------------------------------------------------
             ballPosition = GetMousePosition();
 
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 ballColor = Color.Maroon;
             }
-            else if (IsMouseButtonPressed(MouseButton.MOUSE_MIDDLE_BUTTON))
+            else if (IsMouseButtonPressed(MouseButton.Middle))
             {
                 ballColor = Color.Lime;
             }
-            else if (IsMouseButtonPressed(MouseButton.MOUSE_RIGHT_BUTTON))
+            else if (IsMouseButtonPressed(MouseButton.Right))
             {
                 ballColor = Color.DarkBlue;
             }

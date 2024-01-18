@@ -58,7 +58,7 @@ public class ImageGeneration
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) || IsKeyPressed(KeyboardKey.Right))
+            if (IsMouseButtonPressed(MouseButton.Left) || IsKeyPressed(KeyboardKey.Right))
             {
                 // Cycle between the textures
                 currentTexture = (currentTexture + 1) % NumTextures;

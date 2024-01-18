@@ -161,14 +161,14 @@ public class JuliaSet
 
                 // TODO: The idea is to zoom and move around with mouse
                 // Probably offset movement should be proportional to zoom level
-                if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+                if (IsMouseButtonDown(MouseButton.Left) || IsMouseButtonDown(MouseButton.Right))
                 {
-                    if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+                    if (IsMouseButtonDown(MouseButton.Left))
                     {
                         zoom += zoom * 0.003f;
                     }
 
-                    if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+                    if (IsMouseButtonDown(MouseButton.Right))
                     {
                         zoom -= zoom * 0.003f;
                     }

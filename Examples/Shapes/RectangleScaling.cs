@@ -56,7 +56,7 @@ public class RectangleScaling
                 CheckCollisionPointRec(mousePosition, area))
             {
                 mouseScaleReady = true;
-                if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonPressed(MouseButton.Left))
                 {
                     mouseScaleMode = true;
                 }
@@ -82,7 +82,7 @@ public class RectangleScaling
                     rec.Height = MOUSE_SCALE_MARK_SIZE;
                 }
 
-                if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonReleased(MouseButton.Left))
                 {
                     mouseScaleMode = false;
                 }

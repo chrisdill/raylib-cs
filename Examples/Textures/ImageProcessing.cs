@@ -87,7 +87,7 @@ public class ImageProcessing
                 {
                     mouseHoverRec = i;
 
-                    if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                    if (IsMouseButtonReleased(MouseButton.Left))
                     {
                         currentProcess = (ImageProcess)i;
                         textureReload = true;

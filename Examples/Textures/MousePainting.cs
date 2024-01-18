@@ -126,7 +126,7 @@ public class MousePainting
                 }
             }
 
-            if ((colorMouseHover >= 0) && IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if ((colorMouseHover >= 0) && IsMouseButtonPressed(MouseButton.Left))
             {
                 colorSelected = colorMouseHover;
                 colorSelectedPrev = colorSelected;
@@ -152,7 +152,7 @@ public class MousePainting
                 EndTextureMode();
             }
 
-            if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonDown(MouseButton.Left))
             {
                 // Paint circle into render texture
                 // NOTE: To avoid discontinuous circles, we could store
@@ -165,7 +165,7 @@ public class MousePainting
 
                 EndTextureMode();
             }
-            else if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+            else if (IsMouseButtonDown(MouseButton.Right))
             {
                 colorSelected = 0;
 
@@ -195,7 +195,7 @@ public class MousePainting
 
             // Image saving logic
             // NOTE: Saving painted texture to a default named image
-            if ((btnSaveMouseHover && IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON)) ||
+            if ((btnSaveMouseHover && IsMouseButtonReleased(MouseButton.Left)) ||
                 IsKeyPressed(KeyboardKey.S))
             {
                 Image image = LoadImageFromTexture(target.Texture);
@@ -229,7 +229,7 @@ public class MousePainting
             // Draw drawing circle for reference
             if (mousePos.Y > 50)
             {
-                if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+                if (IsMouseButtonDown(MouseButton.Right))
                 {
                     DrawCircleLines((int)mousePos.X, (int)mousePos.Y, brushSize, colors[colorSelected]);
                 }

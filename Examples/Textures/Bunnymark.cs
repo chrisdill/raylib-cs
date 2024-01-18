@@ -53,7 +53,7 @@ public class Bunnymark
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonDown(MouseButton.Left))
             {
                 // Create more bunnies
                 for (int i = 0; i < 100; i++)

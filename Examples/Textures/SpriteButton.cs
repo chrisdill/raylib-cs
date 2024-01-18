@@ -67,7 +67,7 @@ public class SpriteButton
             // Check button state
             if (CheckCollisionPointRec(mousePoint, btnBounds))
             {
-                if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonDown(MouseButton.Left))
                 {
                     btnState = 2;
                 }
@@ -76,7 +76,7 @@ public class SpriteButton
                     btnState = 1;
                 }
 
-                if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonReleased(MouseButton.Left))
                 {
                     btnAction = true;
                 }

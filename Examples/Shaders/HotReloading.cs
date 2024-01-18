@@ -63,7 +63,7 @@ public class HotReloading
             Raylib.SetShaderValue(shader, mouseLoc, mousePos, ShaderUniformDataType.Vec2);
 
             // Hot shader reloading
-            if (shaderAutoReloading || (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON)))
+            if (shaderAutoReloading || (IsMouseButtonPressed(MouseButton.Left)))
             {
                 long currentFragShaderModTime = GetFileModTime(fragShaderFileName);
 

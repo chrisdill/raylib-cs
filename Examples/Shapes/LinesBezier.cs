@@ -37,11 +37,11 @@ public class LinesBezier
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonDown(MouseButton.Left))
             {
                 start = GetMousePosition();
             }
-            else if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+            else if (IsMouseButtonDown(MouseButton.Right))
             {
                 end = GetMousePosition();
             }

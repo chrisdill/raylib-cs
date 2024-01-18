@@ -72,7 +72,7 @@ public class MeshGeneration
             //----------------------------------------------------------------------------------
             UpdateCamera(ref camera, CameraMode.Orbital);
 
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 // Cycle between the textures
                 currentModel = (currentModel + 1) % models.Length;

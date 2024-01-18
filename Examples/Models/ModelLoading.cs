@@ -98,7 +98,7 @@ public class ModelLoading
             }
 
             // Select model on mouse click
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 // Check collision between ray and box
                 if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).Hit)
