@@ -8,11 +8,11 @@ namespace Raylib_cs;
 /// </summary>
 public enum CameraMode
 {
-    CAMERA_CUSTOM = 0,
-    CAMERA_FREE,
-    CAMERA_ORBITAL,
-    CAMERA_FIRST_PERSON,
-    CAMERA_THIRD_PERSON
+    Custom = 0,
+    Free,
+    Orbital,
+    FirstPerson,
+    ThirdPerson
 }
 
 /// <summary>
@@ -20,8 +20,8 @@ public enum CameraMode
 /// </summary>
 public enum CameraProjection
 {
-    CAMERA_PERSPECTIVE = 0,
-    CAMERA_ORTHOGRAPHIC
+    Perspective = 0,
+    Orthographic
 }
 
 /// <summary>

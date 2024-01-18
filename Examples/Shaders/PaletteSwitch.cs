@@ -99,11 +99,11 @@ public class PaletteSwitch
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+            if (IsKeyPressed(KeyboardKey.Right))
             {
                 currentPalette++;
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+            else if (IsKeyPressed(KeyboardKey.Left))
             {
                 currentPalette--;
             }
@@ -123,7 +123,7 @@ public class PaletteSwitch
                 shader,
                 paletteLoc,
                 Palettes[currentPalette],
-                ShaderUniformDataType.SHADER_UNIFORM_IVEC3,
+                ShaderUniformDataType.IVec3,
                 ColorsPerPalette
             );
             //----------------------------------------------------------------------------------
@@ -131,7 +131,7 @@ public class PaletteSwitch
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginShaderMode(shader);
 
@@ -144,9 +144,9 @@ public class PaletteSwitch
 
             EndShaderMode();
 
-            DrawText("< >", 10, 10, 30, Color.DARKBLUE);
-            DrawText("CURRENT PALETTE:", 60, 15, 20, Color.RAYWHITE);
-            DrawText(PaletteText[currentPalette], 300, 15, 20, Color.RED);
+            DrawText("< >", 10, 10, 30, Color.DarkBlue);
+            DrawText("CURRENT PALETTE:", 60, 15, 20, Color.RayWhite);
+            DrawText(PaletteText[currentPalette], 300, 15, 20, Color.Red);
 
             DrawFPS(700, 15);
 

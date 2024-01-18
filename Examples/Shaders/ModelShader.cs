@@ -31,7 +31,7 @@ public class ModelShader
         const int screenHeight = 450;
 
         // Enable Multi Sampling Anti Aliasing 4x (if available)
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
 
@@ -41,7 +41,7 @@ public class ModelShader
         camera.Target = new Vector3(0.0f, 1.0f, -1.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Model model = LoadModel("resources/models/obj/watermill.obj");
         Texture2D texture = LoadTexture("resources/models/obj/watermill_diffuse.png");
@@ -49,7 +49,7 @@ public class ModelShader
                                    "resources/shaders/glsl330/grayscale.fs");
 
         Raylib.SetMaterialShader(ref model, 0, ref shader);
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);
 
@@ -61,17 +61,17 @@ public class ModelShader
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, position, 0.2f, Color.WHITE);
+            DrawModel(model, position, 0.2f, Color.White);
 
             DrawGrid(10, 1.0f);
 
@@ -82,11 +82,11 @@ public class ModelShader
                 screenWidth - 210,
                 screenHeight - 20,
                 10,
-                Color.GRAY
+                Color.Gray
             );
 
-            DrawText($"Camera3D position: ({camera.Position})", 600, 20, 10, Color.BLACK);
-            DrawText($"Camera3D target: ({camera.Position})", 600, 40, 10, Color.GRAY);
+            DrawText($"Camera3D position: ({camera.Position})", 600, 20, 10, Color.Black);
+            DrawText($"Camera3D target: ({camera.Position})", 600, 40, 10, Color.Gray);
 
             DrawFPS(10, 10);
 

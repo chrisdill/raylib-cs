@@ -25,7 +25,7 @@ public class WindowLetterbox
         const int windowHeight = 450;
 
         // Enable config flags for resizable window and vertical synchro
-        SetConfigFlags(ConfigFlags.FLAG_WINDOW_RESIZABLE | ConfigFlags.FLAG_VSYNC_HINT);
+        SetConfigFlags(ConfigFlags.ResizableWindow | ConfigFlags.VSyncHint);
         InitWindow(windowWidth, windowHeight, "raylib [core] example - window scale letterbox");
         SetWindowMinSize(320, 240);
 
@@ -34,7 +34,7 @@ public class WindowLetterbox
 
         // Render texture initialization, used to hold the rendering result so we can easily resize it
         RenderTexture2D target = LoadRenderTexture(gameScreenWidth, gameScreenHeight);
-        SetTextureFilter(target.Texture, TextureFilter.TEXTURE_FILTER_BILINEAR);
+        SetTextureFilter(target.Texture, TextureFilter.Bilinear);
 
         Color[] colors = new Color[10];
         for (int i = 0; i < 10; i++)
@@ -56,7 +56,7 @@ public class WindowLetterbox
                 (float)GetScreenHeight() / gameScreenHeight
             );
 
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 // Recalculate random colors for the bars
                 for (int i = 0; i < 10; i++)
@@ -83,11 +83,11 @@ public class WindowLetterbox
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.BLACK);
+            ClearBackground(Color.Black);
 
             // Draw everything in the render texture, note this will not be rendered on screen, yet
             BeginTextureMode(target);
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             for (int i = 0; i < 10; i++)
             {
@@ -99,11 +99,11 @@ public class WindowLetterbox
                 10,
                 25,
                 20,
-                Color.WHITE
+                Color.White
             );
 
-            DrawText($"Default Mouse: [{(int)mouse.X} {(int)mouse.Y}]", 350, 25, 20, Color.GREEN);
-            DrawText($"Virtual Mouse: [{(int)virtualMouse.X}, {(int)virtualMouse.Y}]", 350, 55, 20, Color.YELLOW);
+            DrawText($"Default Mouse: [{(int)mouse.X} {(int)mouse.Y}]", 350, 25, 20, Color.Green);
+            DrawText($"Virtual Mouse: [{(int)virtualMouse.X}, {(int)virtualMouse.Y}]", 350, 55, 20, Color.Yellow);
 
             EndTextureMode();
 
@@ -120,7 +120,7 @@ public class WindowLetterbox
                 (float)gameScreenWidth * scale,
                 (float)gameScreenHeight * scale
             );
-            DrawTexturePro(target.Texture, sourceRec, destRec, new Vector2(0, 0), 0.0f, Color.WHITE);
+            DrawTexturePro(target.Texture, sourceRec, destRec, new Vector2(0, 0), 0.0f, Color.White);
 
             EndDrawing();
             //--------------------------------------------------------------------------------------

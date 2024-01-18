@@ -55,22 +55,22 @@ public class DrawRectangleRounded
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawLine(560, 0, 560, GetScreenHeight(), ColorAlpha(Color.LIGHTGRAY, 0.6f));
-            DrawRectangle(560, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LIGHTGRAY, 0.3f));
+            DrawLine(560, 0, 560, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.6f));
+            DrawRectangle(560, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.3f));
 
             if (drawRect)
             {
-                DrawRectangleRec(rec, ColorAlpha(Color.GOLD, 0.6f));
+                DrawRectangleRec(rec, ColorAlpha(Color.Gold, 0.6f));
             }
             if (drawRoundedRect)
             {
-                DrawRectangleRounded(rec, roundness, segments, ColorAlpha(Color.MAROON, 0.2f));
+                DrawRectangleRounded(rec, roundness, segments, ColorAlpha(Color.Maroon, 0.2f));
             }
             if (drawRoundedLines)
             {
-                DrawRectangleRoundedLines(rec, roundness, segments, (float)lineThick, ColorAlpha(Color.MAROON, 0.4f));
+                DrawRectangleRoundedLines(rec, roundness, segments, (float)lineThick, ColorAlpha(Color.Maroon, 0.4f));
             }
 
             // Draw GUI controls
@@ -87,7 +87,7 @@ public class DrawRectangleRounded
             //------------------------------------------------------------------------------
 
             string text = $"MODE: {((segments >= 4) ? "MANUAL" : "AUTO")}";
-            DrawText(text, 640, 280, 10, (segments >= 4) ? Color.MAROON : Color.DARKGRAY);
+            DrawText(text, 640, 280, 10, (segments >= 4) ? Color.Maroon : Color.DarkGray);
             DrawFPS(10, 10);
 
             EndDrawing();

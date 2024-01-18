@@ -31,7 +31,7 @@ public class Camera3dMode
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
@@ -49,18 +49,18 @@ public class Camera3dMode
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Color.RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Color.MAROON);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Color.Red);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Color.Maroon);
 
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawText("Welcome to the third dimension!", 10, 40, 20, Color.DARKGRAY);
+            DrawText("Welcome to the third dimension!", 10, 40, 20, Color.DarkGray);
 
             DrawFPS(10, 10);
 

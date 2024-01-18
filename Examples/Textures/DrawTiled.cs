@@ -27,14 +27,14 @@ public class DrawTiled
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(ConfigFlags.FLAG_WINDOW_RESIZABLE);
+        SetConfigFlags(ConfigFlags.ResizableWindow);
         InitWindow(screenWidth, screenHeight, "raylib [textures] example - Draw part of a texture tiled");
 
         // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
         Texture2D texPattern = LoadTexture("resources/patterns.png");
 
         // Makes the texture smoother when upscaled
-        SetTextureFilter(texPattern, TextureFilter.TEXTURE_FILTER_TRILINEAR);
+        SetTextureFilter(texPattern, TextureFilter.Trilinear);
 
         // Coordinates for all patterns inside the texture
         Rectangle[] recPattern = new[] {
@@ -49,16 +49,16 @@ public class DrawTiled
         // Setup colors
         Color[] colors = new[]
         {
-                Color.BLACK,
-                Color.MAROON,
-                Color.ORANGE,
-                Color.BLUE,
-                Color.PURPLE,
-                Color.BEIGE,
-                Color.LIME,
-                Color.RED,
-                Color.DARKGRAY,
-                Color.SKYBLUE
+                Color.Black,
+                Color.Maroon,
+                Color.Orange,
+                Color.Blue,
+                Color.Purple,
+                Color.Beige,
+                Color.Lime,
+                Color.Red,
+                Color.DarkGray,
+                Color.SkyBlue
             };
         Rectangle[] colorRec = new Rectangle[colors.Length];
 
@@ -96,7 +96,7 @@ public class DrawTiled
             screenHeight = GetScreenHeight();
 
             // Handle mouse
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 Vector2 mouse = GetMousePosition();
 
@@ -130,11 +130,11 @@ public class DrawTiled
             // Handle keys
 
             // Change scale
-            if (IsKeyPressed(KeyboardKey.KEY_UP))
+            if (IsKeyPressed(KeyboardKey.Up))
             {
                 scale += 0.25f;
             }
-            if (IsKeyPressed(KeyboardKey.KEY_DOWN))
+            if (IsKeyPressed(KeyboardKey.Down))
             {
                 scale -= 0.25f;
             }
@@ -148,17 +148,17 @@ public class DrawTiled
             }
 
             // Change rotation
-            if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+            if (IsKeyPressed(KeyboardKey.Left))
             {
                 rotation -= 25.0f;
             }
-            if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+            if (IsKeyPressed(KeyboardKey.Right))
             {
                 rotation += 25.0f;
             }
 
             // Reset
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 rotation = 0.0f;
                 scale = 1.0f;
@@ -168,7 +168,7 @@ public class DrawTiled
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw the tiled area
             Rectangle source = recPattern[activePattern];
@@ -181,39 +181,39 @@ public class DrawTiled
             DrawTextureTiled(texPattern, source, dest, Vector2.Zero, rotation, scale, colors[activeCol]);
 
             // Draw options
-            Color color = ColorAlpha(Color.LIGHTGRAY, 0.5f);
+            Color color = ColorAlpha(Color.LightGray, 0.5f);
             DrawRectangle(MarginSize, MarginSize, OptWidth - MarginSize, screenHeight - 2 * MarginSize, color);
 
-            DrawText("Select Pattern", 2 + MarginSize, 30 + MarginSize, 10, Color.BLACK);
-            DrawTexture(texPattern, 2 + MarginSize, 40 + MarginSize, Color.BLACK);
+            DrawText("Select Pattern", 2 + MarginSize, 30 + MarginSize, 10, Color.Black);
+            DrawTexture(texPattern, 2 + MarginSize, 40 + MarginSize, Color.Black);
             DrawRectangle(
                 2 + MarginSize + (int)recPattern[activePattern].X,
                 40 + MarginSize + (int)recPattern[activePattern].Y,
                 (int)recPattern[activePattern].Width,
                 (int)recPattern[activePattern].Height,
-                ColorAlpha(Color.DARKBLUE, 0.3f)
+                ColorAlpha(Color.DarkBlue, 0.3f)
             );
 
-            DrawText("Select Color", 2 + MarginSize, 10 + 256 + MarginSize, 10, Color.BLACK);
+            DrawText("Select Color", 2 + MarginSize, 10 + 256 + MarginSize, 10, Color.Black);
             for (int i = 0; i < colors.Length; i++)
             {
                 DrawRectangleRec(colorRec[i], colors[i]);
                 if (activeCol == i)
                 {
-                    DrawRectangleLinesEx(colorRec[i], 3, ColorAlpha(Color.WHITE, 0.5f));
+                    DrawRectangleLinesEx(colorRec[i], 3, ColorAlpha(Color.White, 0.5f));
                 }
             }
 
-            DrawText("Scale (UP/DOWN to change)", 2 + MarginSize, 80 + 256 + MarginSize, 10, Color.BLACK);
-            DrawText($"{scale}x", 2 + MarginSize, 92 + 256 + MarginSize, 20, Color.BLACK);
+            DrawText("Scale (UP/DOWN to change)", 2 + MarginSize, 80 + 256 + MarginSize, 10, Color.Black);
+            DrawText($"{scale}x", 2 + MarginSize, 92 + 256 + MarginSize, 20, Color.Black);
 
-            DrawText("Rotation (LEFT/RIGHT to change)", 2 + MarginSize, 122 + 256 + MarginSize, 10, Color.BLACK);
-            DrawText($"{rotation} degrees", 2 + MarginSize, 134 + 256 + MarginSize, 20, Color.BLACK);
+            DrawText("Rotation (LEFT/RIGHT to change)", 2 + MarginSize, 122 + 256 + MarginSize, 10, Color.Black);
+            DrawText($"{rotation} degrees", 2 + MarginSize, 134 + 256 + MarginSize, 20, Color.Black);
 
-            DrawText("Press [SPACE] to reset", 2 + MarginSize, 164 + 256 + MarginSize, 10, Color.DARKBLUE);
+            DrawText("Press [SPACE] to reset", 2 + MarginSize, 164 + 256 + MarginSize, 10, Color.DarkBlue);
 
             // Draw FPS
-            DrawText($"{GetFPS()}", 2 + MarginSize, 2 + MarginSize, 20, Color.BLACK);
+            DrawText($"{GetFPS()}", 2 + MarginSize, 2 + MarginSize, 20, Color.Black);
             EndDrawing();
             //----------------------------------------------------------------------------------
         }

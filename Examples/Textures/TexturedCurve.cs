@@ -34,12 +34,12 @@ public unsafe class TexturedCurve
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(ConfigFlags.FLAG_VSYNC_HINT | ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.VSyncHint | ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [textures] examples - textured curve");
 
         // Load the road texture
         texRoad = LoadTexture("resources/road.png");
-        SetTextureFilter(texRoad, TextureFilter.TEXTURE_FILTER_BILINEAR);
+        SetTextureFilter(texRoad, TextureFilter.Bilinear);
 
         // Setup the curve
         curveStartPosition = new Vector2(80, 100);
@@ -63,14 +63,14 @@ public unsafe class TexturedCurve
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             DrawTexturedCurve();
             DrawCurve();
 
-            DrawText("Drag points to move curve, press SPACE to show/hide base curve", 10, 10, 10, Color.DARKGRAY);
-            DrawText($"Curve width: {curveWidth} (Use + and - to adjust)", 10, 30, 10, Color.DARKGRAY);
-            DrawText($"Curve segments: {curveSegments} (Use LEFT and RIGHT to adjust)", 10, 50, 10, Color.DARKGRAY);
+            DrawText("Drag points to move curve, press SPACE to show/hide base curve", 10, 10, 10, Color.DarkGray);
+            DrawText($"Curve width: {curveWidth} (Use + and - to adjust)", 10, 30, 10, Color.DarkGray);
+            DrawText($"Curve segments: {curveSegments} (Use LEFT and RIGHT to adjust)", 10, 50, 10, Color.DarkGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -96,44 +96,44 @@ public unsafe class TexturedCurve
                 curveStartPositionTangent,
                 curveEndPositionTangent,
                 2,
-                Color.BLUE
+                Color.Blue
             );
         }
 
         // Draw the various control points and highlight where the mouse is
-        DrawLineV(curveStartPosition, curveStartPositionTangent, Color.SKYBLUE);
-        DrawLineV(curveEndPosition, curveEndPositionTangent, Color.PURPLE);
+        DrawLineV(curveStartPosition, curveStartPositionTangent, Color.SkyBlue);
+        DrawLineV(curveEndPosition, curveEndPositionTangent, Color.Purple);
         Vector2 mouse = GetMousePosition();
 
         if (CheckCollisionPointCircle(mouse, curveStartPosition, 6))
         {
-            DrawCircleV(curveStartPosition, 7, Color.YELLOW);
+            DrawCircleV(curveStartPosition, 7, Color.Yellow);
         }
-        DrawCircleV(curveStartPosition, 5, Color.RED);
+        DrawCircleV(curveStartPosition, 5, Color.Red);
 
         if (CheckCollisionPointCircle(mouse, curveStartPositionTangent, 6))
         {
-            DrawCircleV(curveStartPositionTangent, 7, Color.YELLOW);
+            DrawCircleV(curveStartPositionTangent, 7, Color.Yellow);
         }
-        DrawCircleV(curveStartPositionTangent, 5, Color.MAROON);
+        DrawCircleV(curveStartPositionTangent, 5, Color.Maroon);
 
         if (CheckCollisionPointCircle(mouse, curveEndPosition, 6))
         {
-            DrawCircleV(curveEndPosition, 7, Color.YELLOW);
+            DrawCircleV(curveEndPosition, 7, Color.Yellow);
         }
-        DrawCircleV(curveEndPosition, 5, Color.GREEN);
+        DrawCircleV(curveEndPosition, 5, Color.Green);
 
         if (CheckCollisionPointCircle(mouse, curveEndPositionTangent, 6))
         {
-            DrawCircleV(curveEndPositionTangent, 7, Color.YELLOW);
+            DrawCircleV(curveEndPositionTangent, 7, Color.Yellow);
         }
-        DrawCircleV(curveEndPositionTangent, 5, Color.DARKGREEN);
+        DrawCircleV(curveEndPositionTangent, 5, Color.DarkGreen);
     }
 
     static void UpdateCurve()
     {
         // If the mouse is not down, we are not editing the curve so clear the selection
-        if (!IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+        if (!IsMouseButtonDown(MouseButton.Left))
         {
             return;
         }
@@ -219,7 +219,7 @@ public unsafe class TexturedCurve
 
             // Draw the segment as a quad
             Rlgl.SetTexture(texRoad.Id);
-            Rlgl.Begin(DrawMode.QUADS);
+            Rlgl.Begin(DrawMode.Quads);
 
             Rlgl.Color4ub(255, 255, 255, 255);
             Rlgl.Normal3f(0.0f, 0.0f, 1.0f);
@@ -247,17 +247,17 @@ public unsafe class TexturedCurve
 
     static void UpdateOptions()
     {
-        if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+        if (IsKeyPressed(KeyboardKey.Space))
         {
             showCurve = !showCurve;
         }
 
         // Update with
-        if (IsKeyPressed(KeyboardKey.KEY_EQUAL))
+        if (IsKeyPressed(KeyboardKey.Equal))
         {
             curveWidth += 2;
         }
-        if (IsKeyPressed(KeyboardKey.KEY_MINUS))
+        if (IsKeyPressed(KeyboardKey.Minus))
         {
             curveWidth -= 2;
         }
@@ -268,11 +268,11 @@ public unsafe class TexturedCurve
         }
 
         // Update segments
-        if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+        if (IsKeyPressed(KeyboardKey.Left))
         {
             curveSegments -= 2;
         }
-        if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+        if (IsKeyPressed(KeyboardKey.Right))
         {
             curveSegments += 2;
         }

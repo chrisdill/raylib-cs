@@ -39,11 +39,11 @@ public class AnimationDemo
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Model model = LoadModel("resources/models/iqm/guy.iqm");
         Texture2D texture = LoadTexture("resources/models/iqm/guytex.png");
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);
         // Load animation data
@@ -59,10 +59,10 @@ public class AnimationDemo
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
             // Play animation when spacebar is held down
-            if (IsKeyDown(KeyboardKey.KEY_SPACE))
+            if (IsKeyDown(KeyboardKey.Space))
             {
                 animFrameCounter++;
                 UpdateModelAnimation(model, anims[0], animFrameCounter);
@@ -76,7 +76,7 @@ public class AnimationDemo
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
@@ -86,21 +86,21 @@ public class AnimationDemo
                 new Vector3(1.0f, 0.0f, 0.0f),
                 -90.0f,
                 new Vector3(1.0f, 1.0f, 1.0f),
-                Color.WHITE
+                Color.White
             );
 
             for (int i = 0; i < model.BoneCount; i++)
             {
                 var framePoses = anims[0].FramePoses;
-                DrawCube(framePoses[animFrameCounter][i].Translation, 0.2f, 0.2f, 0.2f, Color.RED);
+                DrawCube(framePoses[animFrameCounter][i].Translation, 0.2f, 0.2f, 0.2f, Color.Red);
             }
 
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, Color.MAROON);
-            DrawText("(c) Guy IQM 3D model by @culacant", screenWidth - 200, screenHeight - 20, 10, Color.GRAY);
+            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, Color.Maroon);
+            DrawText("(c) Guy IQM 3D model by @culacant", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

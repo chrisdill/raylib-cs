@@ -43,7 +43,7 @@ public class BasicLighting
         const int screenHeight = 450;
 
         // Enable Multi Sampling Anti Aliasing 4x (if available)
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - basic lighting");
 
         // Define the camera to look into our 3d world
@@ -52,7 +52,7 @@ public class BasicLighting
         camera.Target = new Vector3(0.0f, 0.5f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Load plane model from a generated mesh
         Model model = LoadModelFromMesh(GenMeshPlane(10.0f, 10.0f, 3, 3));
@@ -64,12 +64,12 @@ public class BasicLighting
         );
 
         // Get some required shader loactions
-        shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
+        shader.Locs[(int)ShaderLocationIndex.VectorView] = GetShaderLocation(shader, "viewPos");
 
         // ambient light level
         int ambientLoc = GetShaderLocation(shader, "ambient");
         float[] ambient = new[] { 0.1f, 0.1f, 0.1f, 1.0f };
-        Raylib.SetShaderValue(shader, ambientLoc, ambient, ShaderUniformDataType.SHADER_UNIFORM_VEC4);
+        Raylib.SetShaderValue(shader, ambientLoc, ambient, ShaderUniformDataType.Vec4);
 
         // Assign out lighting shader to model
         model.Materials[0].Shader = shader;
@@ -82,7 +82,7 @@ public class BasicLighting
             LightType.Point,
             new Vector3(-2, 1, -2),
             Vector3.Zero,
-            Color.YELLOW,
+            Color.Yellow,
             shader
         );
         lights[1] = Rlights.CreateLight(
@@ -90,7 +90,7 @@ public class BasicLighting
             LightType.Point,
             new Vector3(2, 1, 2),
             Vector3.Zero,
-            Color.RED,
+            Color.Red,
             shader
         );
         lights[2] = Rlights.CreateLight(
@@ -98,7 +98,7 @@ public class BasicLighting
             LightType.Point,
             new Vector3(-2, 1, 2),
             Vector3.Zero,
-            Color.GREEN,
+            Color.Green,
             shader
         );
         lights[3] = Rlights.CreateLight(
@@ -106,7 +106,7 @@ public class BasicLighting
             LightType.Point,
             new Vector3(2, 1, -2),
             Vector3.Zero,
-            Color.BLUE,
+            Color.Blue,
             shader
         );
 
@@ -118,21 +118,21 @@ public class BasicLighting
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
 
-            if (IsKeyPressed(KeyboardKey.KEY_Y))
+            if (IsKeyPressed(KeyboardKey.Y))
             {
                 lights[0].Enabled = !lights[0].Enabled;
             }
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
                 lights[1].Enabled = !lights[1].Enabled;
             }
-            if (IsKeyPressed(KeyboardKey.KEY_G))
+            if (IsKeyPressed(KeyboardKey.G))
             {
                 lights[2].Enabled = !lights[2].Enabled;
             }
-            if (IsKeyPressed(KeyboardKey.KEY_B))
+            if (IsKeyPressed(KeyboardKey.B))
             {
                 lights[3].Enabled = !lights[3].Enabled;
             }
@@ -146,57 +146,57 @@ public class BasicLighting
             // Update the light shader with the camera view position
             Raylib.SetShaderValue(
                 shader,
-                shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_VECTOR_VIEW],
+                shader.Locs[(int)ShaderLocationIndex.VectorView],
                 camera.Position,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC3
+                ShaderUniformDataType.Vec3
             );
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, Vector3.Zero, 1.0f, Color.WHITE);
-            DrawModel(cube, Vector3.Zero, 1.0f, Color.WHITE);
+            DrawModel(model, Vector3.Zero, 1.0f, Color.White);
+            DrawModel(cube, Vector3.Zero, 1.0f, Color.White);
 
             // Draw markers to show where the lights are
             if (lights[0].Enabled)
             {
-                DrawSphereEx(lights[0].Position, 0.2f, 8, 8, Color.YELLOW);
+                DrawSphereEx(lights[0].Position, 0.2f, 8, 8, Color.Yellow);
             }
             else
             {
-                DrawSphereWires(lights[0].Position, 0.2f, 8, 8, ColorAlpha(Color.YELLOW, 0.3f));
+                DrawSphereWires(lights[0].Position, 0.2f, 8, 8, ColorAlpha(Color.Yellow, 0.3f));
             }
 
             if (lights[1].Enabled)
             {
-                DrawSphereEx(lights[1].Position, 0.2f, 8, 8, Color.RED);
+                DrawSphereEx(lights[1].Position, 0.2f, 8, 8, Color.Red);
             }
             else
             {
-                DrawSphereWires(lights[1].Position, 0.2f, 8, 8, ColorAlpha(Color.RED, 0.3f));
+                DrawSphereWires(lights[1].Position, 0.2f, 8, 8, ColorAlpha(Color.Red, 0.3f));
             }
 
             if (lights[2].Enabled)
             {
-                DrawSphereEx(lights[2].Position, 0.2f, 8, 8, Color.GREEN);
+                DrawSphereEx(lights[2].Position, 0.2f, 8, 8, Color.Green);
             }
             else
             {
-                DrawSphereWires(lights[2].Position, 0.2f, 8, 8, ColorAlpha(Color.GREEN, 0.3f));
+                DrawSphereWires(lights[2].Position, 0.2f, 8, 8, ColorAlpha(Color.Green, 0.3f));
             }
 
             if (lights[3].Enabled)
             {
-                DrawSphereEx(lights[3].Position, 0.2f, 8, 8, Color.BLUE);
+                DrawSphereEx(lights[3].Position, 0.2f, 8, 8, Color.Blue);
             }
             else
             {
-                DrawSphereWires(lights[3].Position, 0.2f, 8, 8, ColorAlpha(Color.BLUE, 0.3f));
+                DrawSphereWires(lights[3].Position, 0.2f, 8, 8, ColorAlpha(Color.Blue, 0.3f));
             }
 
             DrawGrid(10, 1.0f);
@@ -204,7 +204,7 @@ public class BasicLighting
             EndMode3D();
 
             DrawFPS(10, 10);
-            DrawText("Use keys [Y][R][G][B] to toggle lights", 10, 40, 20, Color.DARKGRAY);
+            DrawText("Use keys [Y][R][G][B] to toggle lights", 10, 40, 20, Color.DarkGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

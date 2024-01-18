@@ -31,7 +31,7 @@ public class FirstPersonMaze
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Image imMap = LoadImage("resources/cubicmap.png");
         Texture2D cubicmap = LoadTextureFromImage(imMap);
@@ -42,7 +42,7 @@ public class FirstPersonMaze
         Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");
 
         // Set map diffuse texture
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         // Get map image data to be used for collision detection
         Color* mapPixels = LoadImageColors(imMap);
@@ -61,7 +61,7 @@ public class FirstPersonMaze
             //----------------------------------------------------------------------------------
             Vector3 oldCamPos = camera.Position;
 
-            UpdateCamera(ref camera, CameraMode.CAMERA_FIRST_PERSON);
+            UpdateCamera(ref camera, CameraMode.FirstPerson);
 
             // Check player collision (we simplify to 2D collision detection)
             Vector2 playerPos = new(camera.Position.X, camera.Position.Z);
@@ -120,18 +120,18 @@ public class FirstPersonMaze
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw maze map
             BeginMode3D(camera);
-            DrawModel(model, mapPosition, 1.0f, Color.WHITE);
+            DrawModel(model, mapPosition, 1.0f, Color.White);
             EndMode3D();
 
-            DrawTextureEx(cubicmap, new Vector2(GetScreenWidth() - cubicmap.Width * 4 - 20, 20), 0.0f, 4.0f, Color.WHITE);
-            DrawRectangleLines(GetScreenWidth() - cubicmap.Width * 4 - 20, 20, cubicmap.Width * 4, cubicmap.Height * 4, Color.GREEN);
+            DrawTextureEx(cubicmap, new Vector2(GetScreenWidth() - cubicmap.Width * 4 - 20, 20), 0.0f, 4.0f, Color.White);
+            DrawRectangleLines(GetScreenWidth() - cubicmap.Width * 4 - 20, 20, cubicmap.Width * 4, cubicmap.Height * 4, Color.Green);
 
             // Draw player position radar
-            DrawRectangle(GetScreenWidth() - cubicmap.Width * 4 - 20 + playerCellX * 4, 20 + playerCellY * 4, 4, 4, Color.RED);
+            DrawRectangle(GetScreenWidth() - cubicmap.Width * 4 - 20 + playerCellX * 4, 20 + playerCellY * 4, 4, 4, Color.Red);
 
             DrawFPS(10, 10);
 

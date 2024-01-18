@@ -31,7 +31,7 @@ public class Picking3d
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Vector3 cubePosition = new(0.0f, 1.0f, 0.0f);
         Vector3 cubeSize = new(2.0f, 2.0f, 2.0f);
@@ -48,9 +48,9 @@ public class Picking3d
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 if (!collision.Hit)
                 {
@@ -75,34 +75,34 @@ public class Picking3d
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
             if (collision.Hit)
             {
-                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.RED);
-                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.MAROON);
+                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.Red);
+                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.Maroon);
 
-                DrawCubeWires(cubePosition, cubeSize.X + 0.2f, cubeSize.Y + 0.2f, cubeSize.Z + 0.2f, Color.GREEN);
+                DrawCubeWires(cubePosition, cubeSize.X + 0.2f, cubeSize.Y + 0.2f, cubeSize.Z + 0.2f, Color.Green);
             }
             else
             {
-                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.GRAY);
-                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.DARKGRAY);
+                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.Gray);
+                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Color.DarkGray);
             }
 
-            DrawRay(ray, Color.MAROON);
+            DrawRay(ray, Color.Maroon);
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawText("Try selecting the box with mouse!", 240, 10, 20, Color.DARKGRAY);
+            DrawText("Try selecting the box with mouse!", 240, 10, 20, Color.DarkGray);
 
             if (collision.Hit)
             {
                 int posX = (screenWidth - MeasureText("BOX SELECTED", 30)) / 2;
-                DrawText("BOX SELECTED", posX, (int)(screenHeight * 0.1f), 30, Color.GREEN);
+                DrawText("BOX SELECTED", posX, (int)(screenHeight * 0.1f), 30, Color.Green);
             }
 
             DrawFPS(10, 10);

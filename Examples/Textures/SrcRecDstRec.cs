@@ -57,19 +57,19 @@ public class SrcRecDstRec
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // NOTE: Using DrawTexturePro() we can easily rotate and scale the part of the texture we draw
             // sourceRec defines the part of the texture we use for drawing
             // destRec defines the rectangle where our texture part will fit (scaling it to fit)
             // origin defines the point of the texture used as reference for rotation and scaling
             // rotation defines the texture rotation (using origin as rotation point)
-            DrawTexturePro(scarfy, sourceRec, destRec, origin, rotation, Color.WHITE);
+            DrawTexturePro(scarfy, sourceRec, destRec, origin, rotation, Color.White);
 
-            DrawLine((int)destRec.X, 0, (int)destRec.X, screenHeight, Color.GRAY);
-            DrawLine(0, (int)destRec.Y, screenWidth, (int)destRec.Y, Color.GRAY);
+            DrawLine((int)destRec.X, 0, (int)destRec.X, screenHeight, Color.Gray);
+            DrawLine(0, (int)destRec.Y, screenWidth, (int)destRec.Y, Color.Gray);
 
-            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Color.GRAY);
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

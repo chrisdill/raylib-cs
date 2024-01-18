@@ -11,107 +11,107 @@ public enum PixelFormat
     /// <summary>
     /// 8 bit per pixel (no alpha)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1,
+    UncompressedGrayscale = 1,
 
     /// <summary>
     /// 8*2 bpp (2 channels)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,
+    UncompressedGrayAlpha,
 
     /// <summary>
     /// 16 bpp
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R5G6B5,
+    UncompressedR5G6B5,
 
     /// <summary>
     /// 24 bpp
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R8G8B8,
+    UncompressedR8G8B8,
 
     /// <summary>
     /// 16 bpp (1 bit alpha)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R5G5B5A1,
+    UncompressedR5G5B5A1,
 
     /// <summary>
     /// 16 bpp (4 bit alpha)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R4G4B4A4,
+    UncompressedR4G4B4A4,
 
     /// <summary>
     /// 32 bpp
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+    UncompressedR8G8B8A8,
 
     /// <summary>
     /// 32 bpp (1 channel - float)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R32,
+    UncompressedR32,
 
     /// <summary>
     /// 32*3 bpp (3 channels - float)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R32G32B32,
+    UncompressedR32G32B32,
 
     /// <summary>
     /// 32*4 bpp (4 channels - float)
     /// </summary>
-    PIXELFORMAT_UNCOMPRESSED_R32G32B32A32,
+    UncompressedR32G32B32A32,
 
     /// <summary>
     /// 4 bpp (no alpha)
     /// </summary>
-    PIXELFORMAT_COMPRESSED_DXT1_RGB,
+    CompressedDxt1Rgb,
 
     /// <summary>
     /// 4 bpp (1 bit alpha)
     /// </summary>
-    PIXELFORMAT_COMPRESSED_DXT1_RGBA,
+    CompressedDxt1Rgba,
 
     /// <summary>
     /// 8 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_DXT3_RGBA,
+    CompressedDxt3Rgba,
 
     /// <summary>
     /// 8 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_DXT5_RGBA,
+    CompressedDxt5Rgba,
 
     /// <summary>
     /// 4 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_ETC1_RGB,
+    CompressedEtc1Rgb,
 
     /// <summary>
     /// 4 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_ETC2_RGB,
+    CompressedEtc2Rgb,
 
     /// <summary>
     /// 8 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA,
+    CompressedEtc2EacRgba,
 
     /// <summary>
     /// 4 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_PVRT_RGB,
+    CompressedPvrtRgb,
 
     /// <summary>
     /// 4 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_PVRT_RGBA,
+    CompressedPvrtRgba,
 
     /// <summary>
     /// 8 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA,
+    CompressedAstc4X4Rgba,
 
     /// <summary>
     /// 2 bpp
     /// </summary>
-    PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA
+    CompressedAstc8X8Rgba
 }
 
 /// <summary>

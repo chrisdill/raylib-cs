@@ -69,14 +69,14 @@ public class RaylibFonts
         positions[7].Y -= 8;
 
         Color[] colors = new Color[MaxFonts] {
-                Color.MAROON,
-                Color.ORANGE,
-                Color.DARKGREEN,
-                Color.DARKBLUE,
-                Color.DARKPURPLE,
-                Color.LIME,
-                Color.GOLD,
-                Color.RED
+                Color.Maroon,
+                Color.Orange,
+                Color.DarkGreen,
+                Color.DarkBlue,
+                Color.DarkPurple,
+                Color.Lime,
+                Color.Gold,
+                Color.Red
             };
         //--------------------------------------------------------------------------------------
 
@@ -91,10 +91,10 @@ public class RaylibFonts
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("free fonts included with raylib", 250, 20, 20, Color.DARKGRAY);
-            DrawLine(220, 50, 590, 50, Color.DARKGRAY);
+            DrawText("free fonts included with raylib", 250, 20, 20, Color.DarkGray);
+            DrawLine(220, 50, 590, 50, Color.DarkGray);
 
             for (int i = 0; i < MaxFonts; i++)
             {

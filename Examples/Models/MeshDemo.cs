@@ -20,7 +20,7 @@ public class MeshDemo
         camera.Target = Vector3.Zero;
         camera.Up = Vector3.UnitY;
         camera.FovY = 60.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Generate a mesh using utils to allocate/access mesh attribute data
         Mesh tetrahedron = new(4, 4);
@@ -44,10 +44,10 @@ public class MeshDemo
         texcoords[2] = Vector2.UnitY;
         texcoords[3] = Vector2.One;
 
-        colors[0] = Color.PINK;
-        colors[1] = Color.LIME;
-        colors[2] = Color.SKYBLUE;
-        colors[3] = Color.VIOLET;
+        colors[0] = Color.Pink;
+        colors[1] = Color.Lime;
+        colors[2] = Color.SkyBlue;
+        colors[3] = Color.Violet;
 
         indices[0] = 2;
         indices[1] = 1;
@@ -76,7 +76,7 @@ public class MeshDemo
         Texture2D texture = Raylib.LoadTextureFromImage(image);
         Raylib.UnloadImage(image);
 
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_DIFFUSE, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Diffuse, ref texture);
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -86,17 +86,17 @@ public class MeshDemo
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
             rotationAngle = Raymath.Wrap(rotationAngle += 1f, 0f, 360f);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
-            Raylib.DrawModelEx(model, Vector3.Zero, Vector3.UnitX, rotationAngle, Vector3.One, Color.WHITE);
+            Raylib.DrawModelEx(model, Vector3.Zero, Vector3.UnitX, rotationAngle, Vector3.One, Color.White);
             EndMode3D();
 
             EndDrawing();
