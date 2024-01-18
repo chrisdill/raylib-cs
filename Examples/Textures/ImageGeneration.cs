@@ -26,10 +26,10 @@ public class ImageGeneration
 
         InitWindow(screenWidth, screenHeight, "raylib [textures] example - procedural images generation");
 
-        Image verticalGradient = GenImageGradientLinear(screenWidth, screenHeight, 0, Color.RED, Color.BLUE);
-        Image horizontalGradient = GenImageGradientLinear(screenWidth, screenHeight, 90, Color.RED, Color.BLUE);
-        Image radialGradient = GenImageGradientRadial(screenWidth, screenHeight, 0.0f, Color.WHITE, Color.BLACK);
-        Image isChecked = GenImageChecked(screenWidth, screenHeight, 32, 32, Color.RED, Color.BLUE);
+        Image verticalGradient = GenImageGradientLinear(screenWidth, screenHeight, 0, Color.Red, Color.Blue);
+        Image horizontalGradient = GenImageGradientLinear(screenWidth, screenHeight, 90, Color.Red, Color.Blue);
+        Image radialGradient = GenImageGradientRadial(screenWidth, screenHeight, 0.0f, Color.White, Color.Black);
+        Image isChecked = GenImageChecked(screenWidth, screenHeight, 32, 32, Color.Red, Color.Blue);
         Image whiteNoise = GenImageWhiteNoise(screenWidth, screenHeight, 0.5f);
         Image cellular = GenImageCellular(screenWidth, screenHeight, 32);
 
@@ -58,7 +58,7 @@ public class ImageGeneration
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) || IsKeyPressed(KeyboardKey.KEY_RIGHT))
+            if (IsMouseButtonPressed(MouseButton.Left) || IsKeyPressed(KeyboardKey.Right))
             {
                 // Cycle between the textures
                 currentTexture = (currentTexture + 1) % NumTextures;
@@ -68,33 +68,33 @@ public class ImageGeneration
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawTexture(textures[currentTexture], 0, 0, Color.WHITE);
+            DrawTexture(textures[currentTexture], 0, 0, Color.White);
 
-            DrawRectangle(30, 400, 325, 30, ColorAlpha(Color.SKYBLUE, 0.5f));
-            DrawRectangleLines(30, 400, 325, 30, ColorAlpha(Color.WHITE, 0.5f));
-            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL TEXTURES", 40, 410, 10, Color.WHITE);
+            DrawRectangle(30, 400, 325, 30, ColorAlpha(Color.SkyBlue, 0.5f));
+            DrawRectangleLines(30, 400, 325, 30, ColorAlpha(Color.White, 0.5f));
+            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL TEXTURES", 40, 410, 10, Color.White);
 
             switch (currentTexture)
             {
                 case 0:
-                    DrawText("VERTICAL GRADIENT", 560, 10, 20, Color.RAYWHITE);
+                    DrawText("VERTICAL GRADIENT", 560, 10, 20, Color.RayWhite);
                     break;
                 case 1:
-                    DrawText("HORIZONTAL GRADIENT", 540, 10, 20, Color.RAYWHITE);
+                    DrawText("HORIZONTAL GRADIENT", 540, 10, 20, Color.RayWhite);
                     break;
                 case 2:
-                    DrawText("RADIAL GRADIENT", 580, 10, 20, Color.LIGHTGRAY);
+                    DrawText("RADIAL GRADIENT", 580, 10, 20, Color.LightGray);
                     break;
                 case 3:
-                    DrawText("CHECKED", 680, 10, 20, Color.RAYWHITE);
+                    DrawText("CHECKED", 680, 10, 20, Color.RayWhite);
                     break;
                 case 4:
-                    DrawText("Color.WHITE NOISE", 640, 10, 20, Color.RED);
+                    DrawText("Color.WHITE NOISE", 640, 10, 20, Color.Red);
                     break;
                 case 5:
-                    DrawText("CELLULAR", 670, 10, 20, Color.RAYWHITE);
+                    DrawText("CELLULAR", 670, 10, 20, Color.RayWhite);
                     break;
                 default:
                     break;

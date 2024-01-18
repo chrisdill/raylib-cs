@@ -91,7 +91,7 @@ public class CollisionArea
             }
 
             // Pause Box A movement
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 pause = !pause;
             }
@@ -100,26 +100,26 @@ public class CollisionArea
             // Draw
             //-----------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision ? Color.RED : Color.BLACK);
+            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision ? Color.Red : Color.Black);
 
-            DrawRectangleRec(boxA, Color.GOLD);
-            DrawRectangleRec(boxB, Color.BLUE);
+            DrawRectangleRec(boxA, Color.Gold);
+            DrawRectangleRec(boxB, Color.Blue);
 
             if (collision)
             {
                 // Draw collision area
-                DrawRectangleRec(boxCollision, Color.LIME);
+                DrawRectangleRec(boxCollision, Color.Lime);
 
                 // Draw collision message
                 int cx = GetScreenWidth() / 2 - MeasureText("COLLISION!", 20) / 2;
                 int cy = screenUpperLimit / 2 - 10;
-                DrawText("COLLISION!", cx, cy, 20, Color.BLACK);
+                DrawText("COLLISION!", cx, cy, 20, Color.Black);
 
                 // Draw collision area
                 string text = $"Collision Area: {(int)boxCollision.Width * (int)boxCollision.Height}";
-                DrawText(text, GetScreenWidth() / 2 - 100, screenUpperLimit + 10, 20, Color.BLACK);
+                DrawText(text, GetScreenWidth() / 2 - 100, screenUpperLimit + 10, 20, Color.Black);
             }
 
             DrawFPS(10, 10);

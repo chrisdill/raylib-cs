@@ -68,9 +68,9 @@ public unsafe class CustomLogging
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20, Color.LIGHTGRAY);
+            DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

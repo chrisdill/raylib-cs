@@ -42,12 +42,12 @@ public class FormatText
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText($"Score: {score}", 200, 80, 20, Color.RED);
-            DrawText($"HiScore: {hiscore}", 200, 120, 20, Color.GREEN);
-            DrawText($"Lives: {lives}", 200, 160, 40, Color.BLUE);
-            DrawText($"Elapsed Time: {GetFrameTime() * 1000} ms", 200, 220, 20, Color.BLACK);
+            DrawText($"Score: {score}", 200, 80, 20, Color.Red);
+            DrawText($"HiScore: {hiscore}", 200, 120, 20, Color.Green);
+            DrawText($"Lives: {lives}", 200, 160, 40, Color.Blue);
+            DrawText($"Elapsed Time: {GetFrameTime() * 1000} ms", 200, 220, 20, Color.Black);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

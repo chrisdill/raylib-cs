@@ -38,7 +38,7 @@ public class ImageText
             new Vector2(20, 20),
             font.BaseSize,
             0,
-            Color.WHITE
+            Color.White
         );
 
         // Image converted to texture, uploaded to GPU memory (VRAM)
@@ -60,7 +60,7 @@ public class ImageText
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KeyboardKey.KEY_SPACE))
+            if (IsKeyDown(KeyboardKey.Space))
             {
                 showFont = true;
             }
@@ -73,23 +73,23 @@ public class ImageText
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             if (!showFont)
             {
                 // Draw texture with text already drawn inside
-                DrawTextureV(texture, position, Color.WHITE);
+                DrawTextureV(texture, position, Color.White);
 
                 // Draw text directly using sprite font
                 Vector2 textPosition = new(position.X + 20, position.Y + 20 + 280);
-                DrawTextEx(font, "[Parrots font drawing]", textPosition, font.BaseSize, 0, Color.WHITE);
+                DrawTextEx(font, "[Parrots font drawing]", textPosition, font.BaseSize, 0, Color.White);
             }
             else
             {
-                DrawTexture(font.Texture, screenWidth / 2 - font.Texture.Width / 2, 50, Color.BLACK);
+                DrawTexture(font.Texture, screenWidth / 2 - font.Texture.Width / 2, 50, Color.Black);
             }
 
-            DrawText("PRESS SPACE to SEE USED SPRITEFONT ", 290, 420, 10, Color.DARKGRAY);
+            DrawText("PRESS SPACE to SEE USED SPRITEFONT ", 290, 420, 10, Color.DarkGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

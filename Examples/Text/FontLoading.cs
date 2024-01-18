@@ -57,7 +57,7 @@ public class FontLoading
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KeyboardKey.KEY_SPACE))
+            if (IsKeyDown(KeyboardKey.Space))
             {
                 useTtf = true;
             }
@@ -70,19 +70,19 @@ public class FontLoading
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, Color.LIGHTGRAY);
+            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, Color.LightGray);
 
             if (!useTtf)
             {
-                DrawTextEx(fontBm, msg, new Vector2(20.0f, 100.0f), fontBm.BaseSize, 2, Color.MAROON);
-                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, Color.GRAY);
+                DrawTextEx(fontBm, msg, new Vector2(20.0f, 100.0f), fontBm.BaseSize, 2, Color.Maroon);
+                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, Color.Gray);
             }
             else
             {
-                DrawTextEx(fontTtf, msg, new Vector2(20.0f, 100.0f), fontTtf.BaseSize, 2, Color.LIME);
-                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, Color.GRAY);
+                DrawTextEx(fontTtf, msg, new Vector2(20.0f, 100.0f), fontTtf.BaseSize, 2, Color.Lime);
+                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, Color.Gray);
             }
 
             EndDrawing();

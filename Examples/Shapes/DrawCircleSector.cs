@@ -50,19 +50,19 @@ public class DrawCircleSector
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LIGHTGRAY, 0.6f));
-            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LIGHTGRAY, 0.3f));
+            DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.6f));
+            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.3f));
 
-            DrawCircleSector(center, outerRadius, startAngle, endAngle, segments, ColorAlpha(Color.MAROON, 0.3f));
+            DrawCircleSector(center, outerRadius, startAngle, endAngle, segments, ColorAlpha(Color.Maroon, 0.3f));
             DrawCircleSectorLines(
                 center,
                 outerRadius,
                 startAngle,
                 endAngle,
                 segments,
-                ColorAlpha(Color.MAROON, 0.6f)
+                ColorAlpha(Color.Maroon, 0.6f)
             );
 
             // Draw GUI controls
@@ -75,7 +75,7 @@ public class DrawCircleSector
             //------------------------------------------------------------------------------
 
             minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
-            Color color = (segments >= minSegments) ? Color.MAROON : Color.DARKGRAY;
+            Color color = (segments >= minSegments) ? Color.Maroon : Color.DarkGray;
             DrawText($"MODE: {((segments >= minSegments) ? "MANUAL" : "AUTO")}", 600, 270, 10, color);
 
             DrawFPS(10, 10);

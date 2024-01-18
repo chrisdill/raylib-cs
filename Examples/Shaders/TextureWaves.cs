@@ -62,14 +62,14 @@ public class TextureWaves
             shader,
             GetShaderLocation(shader, "size"),
             screenSize,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
-        Raylib.SetShaderValue(shader, freqXLoc, freqX, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-        Raylib.SetShaderValue(shader, freqYLoc, freqY, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-        Raylib.SetShaderValue(shader, ampXLoc, ampX, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-        Raylib.SetShaderValue(shader, ampYLoc, ampY, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-        Raylib.SetShaderValue(shader, speedXLoc, speedX, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-        Raylib.SetShaderValue(shader, speedYLoc, speedY, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+        Raylib.SetShaderValue(shader, freqXLoc, freqX, ShaderUniformDataType.Float);
+        Raylib.SetShaderValue(shader, freqYLoc, freqY, ShaderUniformDataType.Float);
+        Raylib.SetShaderValue(shader, ampXLoc, ampX, ShaderUniformDataType.Float);
+        Raylib.SetShaderValue(shader, ampYLoc, ampY, ShaderUniformDataType.Float);
+        Raylib.SetShaderValue(shader, speedXLoc, speedX, ShaderUniformDataType.Float);
+        Raylib.SetShaderValue(shader, speedYLoc, speedY, ShaderUniformDataType.Float);
 
         float seconds = 0.0f;
 
@@ -83,18 +83,18 @@ public class TextureWaves
             //----------------------------------------------------------------------------------
             seconds += GetFrameTime();
 
-            Raylib.SetShaderValue(shader, secondsLoc, seconds, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+            Raylib.SetShaderValue(shader, secondsLoc, seconds, ShaderUniformDataType.Float);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginShaderMode(shader);
 
-            DrawTexture(texture, 0, 0, Color.WHITE);
-            DrawTexture(texture, texture.Width, 0, Color.WHITE);
+            DrawTexture(texture, 0, 0, Color.White);
+            DrawTexture(texture, texture.Width, 0, Color.White);
 
             EndShaderMode();
 

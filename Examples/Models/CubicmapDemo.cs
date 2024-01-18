@@ -31,7 +31,7 @@ public class CubicmapDemo
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Image image = LoadImage("resources/cubicmap.png");
         Texture2D cubicmap = LoadTextureFromImage(image);
@@ -43,7 +43,7 @@ public class CubicmapDemo
         Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");
 
         // Set map diffuse texture
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 mapPosition = new(-16.0f, 0.0f, -8.0f);
         UnloadImage(image);
@@ -56,32 +56,32 @@ public class CubicmapDemo
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, mapPosition, 1.0f, Color.WHITE);
+            DrawModel(model, mapPosition, 1.0f, Color.White);
 
             EndMode3D();
 
             Vector2 position = new(screenWidth - cubicmap.Width * 4 - 20, 20);
-            DrawTextureEx(cubicmap, position, 0.0f, 4.0f, Color.WHITE);
+            DrawTextureEx(cubicmap, position, 0.0f, 4.0f, Color.White);
             DrawRectangleLines(
                 screenWidth - cubicmap.Width * 4 - 20,
                 20,
                 cubicmap.Width * 4,
                 cubicmap.Height * 4,
-                Color.GREEN
+                Color.Green
             );
 
-            DrawText("cubicmap image used to", 658, 90, 10, Color.GRAY);
-            DrawText("generate map 3d model", 658, 104, 10, Color.GRAY);
+            DrawText("cubicmap image used to", 658, 90, 10, Color.Gray);
+            DrawText("generate map 3d model", 658, 104, 10, Color.Gray);
 
             DrawFPS(10, 10);
 

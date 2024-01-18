@@ -41,7 +41,7 @@ public class HotReloading
         int timeLoc = GetShaderLocation(shader, "time");
 
         float[] resolution = new[] { (float)screenWidth, (float)screenHeight };
-        Raylib.SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+        Raylib.SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformDataType.Vec2);
 
         float totalTime = 0.0f;
         bool shaderAutoReloading = false;
@@ -59,11 +59,11 @@ public class HotReloading
             float[] mousePos = new[] { mouse.X, mouse.Y };
 
             // Set shader required uniform values
-            Raylib.SetShaderValue(shader, timeLoc, totalTime, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-            Raylib.SetShaderValue(shader, mouseLoc, mousePos, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+            Raylib.SetShaderValue(shader, timeLoc, totalTime, ShaderUniformDataType.Float);
+            Raylib.SetShaderValue(shader, mouseLoc, mousePos, ShaderUniformDataType.Vec2);
 
             // Hot shader reloading
-            if (shaderAutoReloading || (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON)))
+            if (shaderAutoReloading || (IsMouseButtonPressed(MouseButton.Left)))
             {
                 long currentFragShaderModTime = GetFileModTime(fragShaderFileName);
 
@@ -89,7 +89,7 @@ public class HotReloading
                             shader,
                             resolutionLoc,
                             resolution,
-                            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+                            ShaderUniformDataType.Vec2
                         );
                     }
 
@@ -97,7 +97,7 @@ public class HotReloading
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_A))
+            if (IsKeyPressed(KeyboardKey.A))
             {
                 shaderAutoReloading = !shaderAutoReloading;
             }
@@ -106,18 +106,18 @@ public class HotReloading
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // We only draw a white full-screen rectangle, frame is generated in shader
             BeginShaderMode(shader);
-            DrawRectangle(0, 0, screenWidth, screenHeight, Color.WHITE);
+            DrawRectangle(0, 0, screenWidth, screenHeight, Color.White);
             EndShaderMode();
 
             string info = $"PRESS [A] to TOGGLE SHADER AUTOLOADING: {(shaderAutoReloading ? "AUTO" : "MANUAL")}";
-            DrawText(info, 10, 10, 10, shaderAutoReloading ? Color.RED : Color.BLACK);
+            DrawText(info, 10, 10, 10, shaderAutoReloading ? Color.Red : Color.Black);
             if (!shaderAutoReloading)
             {
-                DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, Color.BLACK);
+                DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, Color.Black);
             }
 
             // DrawText($"Shader last modification: ", 10, 430, 10, Color.BLACK);

@@ -27,27 +27,27 @@ public class ColorsPalette
 
         Color[] colors = new[]
         {
-                Color.DARKGRAY,
-                Color.MAROON,
-                Color.ORANGE,
-                Color.DARKGREEN,
-                Color.DARKBLUE,
-                Color.DARKPURPLE,
-                Color.DARKBROWN,
-                Color.GRAY,
-                Color.RED,
-                Color.GOLD,
-                Color.LIME,
-                Color.BLUE,
-                Color.VIOLET,
-                Color.BROWN,
-                Color.LIGHTGRAY,
-                Color.PINK,
-                Color.YELLOW,
-                Color.GREEN,
-                Color.SKYBLUE,
-                Color.PURPLE,
-                Color.BEIGE
+                Color.DarkGray,
+                Color.Maroon,
+                Color.Orange,
+                Color.DarkGreen,
+                Color.DarkBlue,
+                Color.DarkPurple,
+                Color.DarkBrown,
+                Color.Gray,
+                Color.Red,
+                Color.Gold,
+                Color.Lime,
+                Color.Blue,
+                Color.Violet,
+                Color.Brown,
+                Color.LightGray,
+                Color.Pink,
+                Color.Yellow,
+                Color.Green,
+                Color.SkyBlue,
+                Color.Purple,
+                Color.Beige
             };
 
         string[] colorNames = new[]
@@ -118,15 +118,15 @@ public class ColorsPalette
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("raylib colors palette", 28, 42, 20, Color.BLACK);
+            DrawText("raylib colors palette", 28, 42, 20, Color.Black);
             DrawText(
                 "press SPACE to see all colors",
                 GetScreenWidth() - 180,
                 GetScreenHeight() - 40,
                 10,
-                Color.GRAY
+                Color.Gray
             );
 
             // Draw all rectangles
@@ -134,16 +134,16 @@ public class ColorsPalette
             {
                 DrawRectangleRec(colorsRecs[i], ColorAlpha(colors[i], colorState[i] != 0 ? 0.6f : 1.0f));
 
-                if (IsKeyDown(KeyboardKey.KEY_SPACE) || colorState[i] != 0)
+                if (IsKeyDown(KeyboardKey.Space) || colorState[i] != 0)
                 {
                     DrawRectangle(
                         (int)colorsRecs[i].X,
                         (int)(colorsRecs[i].Y + colorsRecs[i].Height - 26),
                         (int)colorsRecs[i].Width,
                         20,
-                        Color.BLACK
+                        Color.Black
                     );
-                    DrawRectangleLinesEx(colorsRecs[i], 6, ColorAlpha(Color.BLACK, 0.3f));
+                    DrawRectangleLinesEx(colorsRecs[i], 6, ColorAlpha(Color.Black, 0.3f));
                     DrawText(
                         colorNames[i],
                         (int)(colorsRecs[i].X + colorsRecs[i].Width - MeasureText(colorNames[i], 10) - 12),

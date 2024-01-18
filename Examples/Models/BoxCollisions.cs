@@ -31,11 +31,11 @@ public class BoxCollisions
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Vector3 playerPosition = new(0.0f, 1.0f, 2.0f);
         Vector3 playerSize = new(1.0f, 2.0f, 1.0f);
-        Color playerColor = Color.GREEN;
+        Color playerColor = Color.Green;
 
         Vector3 enemyBoxPos = new(-4.0f, 1.0f, 0.0f);
         Vector3 enemyBoxSize = new(2.0f, 2.0f, 2.0f);
@@ -55,19 +55,19 @@ public class BoxCollisions
             //----------------------------------------------------------------------------------
 
             // Move player
-            if (IsKeyDown(KeyboardKey.KEY_RIGHT))
+            if (IsKeyDown(KeyboardKey.Right))
             {
                 playerPosition.X += 0.2f;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_LEFT))
+            else if (IsKeyDown(KeyboardKey.Left))
             {
                 playerPosition.X -= 0.2f;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_DOWN))
+            else if (IsKeyDown(KeyboardKey.Down))
             {
                 playerPosition.Z += 0.2f;
             }
-            else if (IsKeyDown(KeyboardKey.KEY_UP))
+            else if (IsKeyDown(KeyboardKey.Up))
             {
                 playerPosition.Z -= 0.2f;
             }
@@ -97,28 +97,28 @@ public class BoxCollisions
 
             if (collision)
             {
-                playerColor = Color.RED;
+                playerColor = Color.Red;
             }
             else
             {
-                playerColor = Color.GREEN;
+                playerColor = Color.Green;
             }
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
             // Draw enemy-box
-            DrawCube(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, Color.GRAY);
-            DrawCubeWires(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, Color.DARKGRAY);
+            DrawCube(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, Color.Gray);
+            DrawCubeWires(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, Color.DarkGray);
 
             // Draw enemy-sphere
-            DrawSphere(enemySpherePos, enemySphereSize, Color.GRAY);
-            DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, Color.DARKGRAY);
+            DrawSphere(enemySpherePos, enemySphereSize, Color.Gray);
+            DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, Color.DarkGray);
 
             // Draw player
             DrawCubeV(playerPosition, playerSize, playerColor);
@@ -127,7 +127,7 @@ public class BoxCollisions
 
             EndMode3D();
 
-            DrawText("Move player with cursors to collide", 220, 40, 20, Color.GRAY);
+            DrawText("Move player with cursors to collide", 220, 40, 20, Color.Gray);
             DrawFPS(10, 10);
 
             EndDrawing();

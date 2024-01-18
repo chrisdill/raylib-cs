@@ -111,7 +111,7 @@ public class Spotlight
         // a pitch Color.black half and a dimly lit half.
         int wLoc = GetShaderLocation(shdrSpot, "screenWidth");
         float sw = (float)GetScreenWidth();
-        Raylib.SetShaderValue(shdrSpot, wLoc, sw, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+        Raylib.SetShaderValue(shdrSpot, wLoc, sw, ShaderUniformDataType.Float);
 
         // Randomise the locations and velocities of the spotlights
         // and initialise the shader locations
@@ -134,19 +134,19 @@ public class Spotlight
                 shdrSpot,
                 spots[i].posLoc,
                 spots[i].pos,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC2
+                ShaderUniformDataType.Vec2
             );
             Raylib.SetShaderValue(
                 shdrSpot,
                 spots[i].innerLoc,
                 spots[i].inner,
-                ShaderUniformDataType.SHADER_UNIFORM_FLOAT
+                ShaderUniformDataType.Float
             );
             Raylib.SetShaderValue(
                 shdrSpot,
                 spots[i].radiusLoc,
                 spots[i].radius,
-                ShaderUniformDataType.SHADER_UNIFORM_FLOAT
+                ShaderUniformDataType.Float
             );
         }
 
@@ -205,20 +205,20 @@ public class Spotlight
                     shdrSpot,
                     spots[i].posLoc,
                     spots[i].pos,
-                    ShaderUniformDataType.SHADER_UNIFORM_VEC2
+                    ShaderUniformDataType.Vec2
                 );
             }
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.DARKBLUE);
+            ClearBackground(Color.DarkBlue);
 
             // Draw stars and bobs
             for (int n = 0; n < MaxStars; n++)
             {
                 // MathF.Single pixel is just too small these days!
-                DrawRectangle((int)stars[n].pos.X, (int)stars[n].pos.Y, 2, 2, Color.WHITE);
+                DrawRectangle((int)stars[n].pos.X, (int)stars[n].pos.Y, 2, 2, Color.White);
             }
 
             for (int i = 0; i < 16; i++)
@@ -227,7 +227,7 @@ public class Spotlight
                     texRay,
                     (int)((screenWidth / 2.0) + MathF.Cos((frameCounter + i * 8) / 51.45f) * (screenWidth / 2.2) - 32),
                     (int)((screenHeight / 2.0) + MathF.Sin((frameCounter + i * 8) / 17.87f) * (screenHeight / 4.2)),
-                    Color.WHITE
+                    Color.White
                 );
             }
 
@@ -236,14 +236,14 @@ public class Spotlight
 
             // Instead of a blank rectangle you could render a render texture of the full screen used to do screen
             // scaling (slight adjustment to shader would be required to actually pay attention to the colour!)
-            DrawRectangle(0, 0, screenWidth, screenHeight, Color.WHITE);
+            DrawRectangle(0, 0, screenWidth, screenHeight, Color.White);
             EndShaderMode();
 
             DrawFPS(10, 10);
 
-            DrawText("Move the mouse!", 10, 30, 20, Color.GREEN);
-            DrawText("Pitch Color.Black", (int)(screenWidth * 0.2f), screenHeight / 2, 20, Color.GREEN);
-            DrawText("Dark", (int)(screenWidth * 0.66f), screenHeight / 2, 20, Color.GREEN);
+            DrawText("Move the mouse!", 10, 30, 20, Color.Green);
+            DrawText("Pitch Color.Black", (int)(screenWidth * 0.2f), screenHeight / 2, 20, Color.Green);
+            DrawText("Dark", (int)(screenWidth * 0.66f), screenHeight / 2, 20, Color.Green);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

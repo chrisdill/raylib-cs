@@ -44,18 +44,18 @@ public class StorageValues
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
                 score = GetRandomValue(1000, 2000);
                 hiscore = GetRandomValue(2000, 4000);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+            if (IsKeyPressed(KeyboardKey.Enter))
             {
                 SaveStorageValue(storageDataFile, (int)StorageData.Score, score);
                 SaveStorageValue(storageDataFile, (int)StorageData.HiScore, hiscore);
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            else if (IsKeyPressed(KeyboardKey.Space))
             {
                 // NOTE: If requested position could not be found, value 0 is returned
                 score = LoadStorageValue(storageDataFile, (int)StorageData.Score);
@@ -68,16 +68,16 @@ public class StorageValues
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText($"SCORE: {score}", 280, 130, 40, Color.MAROON);
-            DrawText($"HI-SCORE: {hiscore}", 210, 200, 50, Color.BLACK);
+            DrawText($"SCORE: {score}", 280, 130, 40, Color.Maroon);
+            DrawText($"HI-SCORE: {hiscore}", 210, 200, 50, Color.Black);
 
-            DrawText($"frames: {framesCounter}", 10, 10, 20, Color.LIME);
+            DrawText($"frames: {framesCounter}", 10, 10, 20, Color.Lime);
 
-            DrawText("Press R to generate random numbers", 220, 40, 20, Color.LIGHTGRAY);
-            DrawText("Press ENTER to SAVE values", 250, 310, 20, Color.LIGHTGRAY);
-            DrawText("Press SPACE to LOAD values", 252, 350, 20, Color.LIGHTGRAY);
+            DrawText("Press R to generate random numbers", 220, 40, 20, Color.LightGray);
+            DrawText("Press ENTER to SAVE values", 250, 310, 20, Color.LightGray);
+            DrawText("Press SPACE to LOAD values", 252, 350, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ public class StorageValues
                     // RL_REALLOC failed
                     uint positionInBytes = position * sizeof(int);
                     TraceLog(
-                        TraceLogLevel.LOG_WARNING,
+                        TraceLogLevel.Warning,
                         @$"FILEIO: [{fileName}] Failed to realloc data ({dataSize}),
                             position in bytes({positionInBytes}) bigger than actual file size"
                     );
@@ -147,11 +147,11 @@ public class StorageValues
             success = SaveFileData(fileNameBuffer.AsPointer(), newFileData, newDataSize);
             MemFree(newFileData);
 
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{fileName}] Saved storage value: {value}");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{fileName}] Saved storage value: {value}");
         }
         else
         {
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{fileName}] File created successfully");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{fileName}] File created successfully");
 
             dataSize = (position + 1) * sizeof(int);
             fileData = (byte*)MemAlloc((int)dataSize);
@@ -161,7 +161,7 @@ public class StorageValues
             success = SaveFileData(fileNameBuffer.AsPointer(), fileData, dataSize);
             UnloadFileData(fileData);
 
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{fileName}] Saved storage value: {value}");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{fileName}] Saved storage value: {value}");
         }
 
         return success;
@@ -182,7 +182,7 @@ public class StorageValues
             if (dataSize < (position * 4))
             {
                 TraceLog(
-                    TraceLogLevel.LOG_WARNING,
+                    TraceLogLevel.Warning,
                     $"FILEIO: [{fileName}] Failed to find storage position: {value}"
                 );
             }
@@ -194,7 +194,7 @@ public class StorageValues
 
             UnloadFileData(fileData);
 
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{fileName}] Loaded storage value: {value}");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{fileName}] Loaded storage value: {value}");
         }
 
         return value;

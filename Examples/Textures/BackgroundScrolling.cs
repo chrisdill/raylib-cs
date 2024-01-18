@@ -69,34 +69,34 @@ public class BackgroundScrolling
 
             // Draw background image twice
             // NOTE: Texture is scaled twice its size
-            DrawTextureEx(background, new Vector2(scrollingBack, 20), 0.0f, 2.0f, Color.WHITE);
+            DrawTextureEx(background, new Vector2(scrollingBack, 20), 0.0f, 2.0f, Color.White);
             DrawTextureEx(
                 background,
                 new Vector2(background.Width * 2 + scrollingBack, 20),
                 0.0f,
                 2.0f,
-                Color.WHITE
+                Color.White
             );
 
             // Draw midground image twice
-            DrawTextureEx(midground, new Vector2(scrollingMid, 20), 0.0f, 2.0f, Color.WHITE);
-            DrawTextureEx(midground, new Vector2(midground.Width * 2 + scrollingMid, 20), 0.0f, 2.0f, Color.WHITE);
+            DrawTextureEx(midground, new Vector2(scrollingMid, 20), 0.0f, 2.0f, Color.White);
+            DrawTextureEx(midground, new Vector2(midground.Width * 2 + scrollingMid, 20), 0.0f, 2.0f, Color.White);
 
             // Draw foreground image twice
-            DrawTextureEx(foreground, new Vector2(scrollingFore, 70), 0.0f, 2.0f, Color.WHITE);
+            DrawTextureEx(foreground, new Vector2(scrollingFore, 70), 0.0f, 2.0f, Color.White);
             DrawTextureEx(
                 foreground,
                 new Vector2(foreground.Width * 2 + scrollingFore, 70),
                 0.0f,
                 2.0f,
-                Color.WHITE
+                Color.White
             );
 
-            DrawText("BACKGROUND SCROLLING & PARALLAX", 10, 10, 20, Color.RED);
+            DrawText("BACKGROUND SCROLLING & PARALLAX", 10, 10, 20, Color.Red);
 
             int x = screenWidth - 330;
             int y = screenHeight - 20;
-            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", x, y, 10, Color.RAYWHITE);
+            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", x, y, 10, Color.RayWhite);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

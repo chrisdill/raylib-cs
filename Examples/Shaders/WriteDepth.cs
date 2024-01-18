@@ -43,27 +43,27 @@ public class WriteDepth
         camera.Target = new Vector3(0.0f, 0.5f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
 
-        UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+        UpdateCamera(ref camera, CameraMode.Orbital);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
         // Draw into our custom render texture (framebuffer)
         BeginTextureMode(target);
-        ClearBackground(Color.WHITE);
+        ClearBackground(Color.White);
 
         BeginMode3D(camera);
         BeginShaderMode(shader);
 
-        DrawCubeWiresV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.RED);
-        DrawCubeV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.PURPLE);
-        DrawCubeWiresV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.DARKGREEN);
-        DrawCubeV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.YELLOW);
+        DrawCubeWiresV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Red);
+        DrawCubeV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Purple);
+        DrawCubeWiresV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.DarkGreen);
+        DrawCubeV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Yellow);
         DrawGrid(10, 1.0f);
 
         EndShaderMode();
@@ -72,13 +72,13 @@ public class WriteDepth
 
         // Draw custom render texture
         BeginDrawing();
-        ClearBackground(Color.RAYWHITE);
+        ClearBackground(Color.RayWhite);
 
         DrawTextureRec(
             target.Texture,
             new Rectangle(0, 0, screenWidth, -screenHeight),
             Vector2.Zero,
-            Color.WHITE
+            Color.White
         );
         DrawFPS(10, 10);
 
@@ -113,48 +113,48 @@ public class WriteDepth
                 null,
                 width,
                 height,
-                PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+                PixelFormat.UncompressedR8G8B8A8,
                 1
             );
             target.Texture.Width = width;
             target.Texture.Height = height;
-            target.Texture.Format = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
+            target.Texture.Format = PixelFormat.UncompressedR8G8B8A8;
             target.Texture.Mipmaps = 1;
 
             // Create depth texture buffer (instead of raylib default renderbuffer)
             target.Depth.Id = Rlgl.LoadTextureDepth(width, height, false);
             target.Depth.Width = width;
             target.Depth.Height = height;
-            target.Depth.Format = PixelFormat.PIXELFORMAT_COMPRESSED_PVRT_RGBA;
+            target.Depth.Format = PixelFormat.CompressedPvrtRgba;
             target.Depth.Mipmaps = 1;
 
             // Attach color texture and depth texture to FBO
             Rlgl.FramebufferAttach(
                 target.Id,
                 target.Texture.Id,
-                FramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL0,
-                FramebufferAttachTextureType.RL_ATTACHMENT_TEXTURE2D,
+                FramebufferAttachType.ColorChannel0,
+                FramebufferAttachTextureType.Texture2D,
                 0
             );
             Rlgl.FramebufferAttach(
                 target.Id,
                 target.Depth.Id,
-                FramebufferAttachType.RL_ATTACHMENT_DEPTH,
-                FramebufferAttachTextureType.RL_ATTACHMENT_TEXTURE2D,
+                FramebufferAttachType.Depth,
+                FramebufferAttachTextureType.Texture2D,
                 0
             );
 
             // Check if fbo is complete with attachments (valid)
             if (Rlgl.FramebufferComplete(target.Id))
             {
-                TraceLog(TraceLogLevel.LOG_INFO, $"FBO: [ID {target.Id}] Framebuffer object created successfully");
+                TraceLog(TraceLogLevel.Info, $"FBO: [ID {target.Id}] Framebuffer object created successfully");
             }
 
             Rlgl.DisableFramebuffer();
         }
         else
         {
-            TraceLog(TraceLogLevel.LOG_WARNING, "FBO: Framebuffer object can not be created");
+            TraceLog(TraceLogLevel.Warning, "FBO: Framebuffer object can not be created");
         }
 
         return target;

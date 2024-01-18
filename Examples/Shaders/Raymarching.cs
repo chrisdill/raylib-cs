@@ -33,7 +33,7 @@ public class Raymarching
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+        SetConfigFlags(ResizableWindow);
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - raymarching shapes");
 
         Camera3D camera = new();
@@ -53,7 +53,7 @@ public class Raymarching
         int resolutionLoc = GetShaderLocation(shader, "resolution");
 
         float[] resolution = { (float)screenWidth, (float)screenHeight };
-        Raylib.SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+        Raylib.SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformDataType.Vec2);
 
         float runTime = 0.0f;
 
@@ -70,31 +70,31 @@ public class Raymarching
                 screenWidth = GetScreenWidth();
                 screenHeight = GetScreenHeight();
                 resolution = new float[] { (float)screenWidth, (float)screenHeight };
-                Raylib.SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+                Raylib.SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformDataType.Vec2);
             }
 
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
             float deltaTime = GetFrameTime();
             runTime += deltaTime;
 
             // Set shader required uniform values
-            Raylib.SetShaderValue(shader, viewEyeLoc, camera.Position, ShaderUniformDataType.SHADER_UNIFORM_VEC3);
-            Raylib.SetShaderValue(shader, viewCenterLoc, camera.Target, ShaderUniformDataType.SHADER_UNIFORM_VEC3);
-            Raylib.SetShaderValue(shader, runTimeLoc, runTime, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+            Raylib.SetShaderValue(shader, viewEyeLoc, camera.Position, ShaderUniformDataType.Vec3);
+            Raylib.SetShaderValue(shader, viewCenterLoc, camera.Target, ShaderUniformDataType.Vec3);
+            Raylib.SetShaderValue(shader, runTimeLoc, runTime, ShaderUniformDataType.Float);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // We only draw a white full-screen rectangle,
             // frame is generated in shader using raymarching
             BeginShaderMode(shader);
-            DrawRectangle(0, 0, screenWidth, screenHeight, Color.WHITE);
+            DrawRectangle(0, 0, screenWidth, screenHeight, Color.White);
             EndShaderMode();
 
             DrawText(
@@ -102,7 +102,7 @@ public class Raymarching
                 screenWidth - 280,
                 screenHeight - 20,
                 10,
-                Color.BLACK
+                Color.Black
             );
 
             EndDrawing();

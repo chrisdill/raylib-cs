@@ -30,7 +30,7 @@ public class MeshInstancing
         const int fps = 60;
 
         // Enable Multi Sampling Anti Aliasing 4x (if available)
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - rlgl mesh instanced");
 
         // Speed of jump animation
@@ -55,7 +55,7 @@ public class MeshInstancing
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Number of instances to display
         const int instances = 10000;
@@ -97,9 +97,9 @@ public class MeshInstancing
         unsafe
         {
             int* locs = (int*)shader.Locs;
-            locs[(int)ShaderLocationIndex.SHADER_LOC_MATRIX_MVP] = GetShaderLocation(shader, "mvp");
-            locs[(int)ShaderLocationIndex.SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
-            locs[(int)ShaderLocationIndex.SHADER_LOC_MATRIX_MODEL] = GetShaderLocationAttrib(
+            locs[(int)ShaderLocationIndex.MatrixMvp] = GetShaderLocation(shader, "mvp");
+            locs[(int)ShaderLocationIndex.VectorView] = GetShaderLocation(shader, "viewPos");
+            locs[(int)ShaderLocationIndex.MatrixModel] = GetShaderLocationAttrib(
                 shader,
                 "instanceTransform"
             );
@@ -111,7 +111,7 @@ public class MeshInstancing
             shader,
             ambientLoc,
             new float[] { 0.2f, 0.2f, 0.2f, 1.0f },
-            ShaderUniformDataType.SHADER_UNIFORM_VEC4
+            ShaderUniformDataType.Vec4
         );
 
         Rlights.CreateLight(
@@ -119,7 +119,7 @@ public class MeshInstancing
             LightType.Directorional,
             new Vector3(50, 50, 0),
             Vector3.Zero,
-            Color.WHITE,
+            Color.White,
             shader
         );
 
@@ -127,7 +127,7 @@ public class MeshInstancing
         material.Shader = shader;
         unsafe
         {
-            material.Maps[(int)MaterialMapIndex.MATERIAL_MAP_DIFFUSE].Color = Color.RED;
+            material.Maps[(int)MaterialMapIndex.Diffuse].Color = Color.Red;
         }
 
         int textPositionY = 300;
@@ -143,77 +143,77 @@ public class MeshInstancing
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
             textPositionY = 300;
             framesCounter += 1;
 
-            if (IsKeyDown(KeyboardKey.KEY_UP))
+            if (IsKeyDown(KeyboardKey.Up))
             {
                 amp += 0.5f;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_DOWN))
+            if (IsKeyDown(KeyboardKey.Down))
             {
                 amp = (amp <= 1) ? 1.0f : (amp - 1.0f);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_LEFT))
+            if (IsKeyDown(KeyboardKey.Left))
             {
                 variance = (variance <= 0.0f) ? 0.0f : (variance - 0.01f);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_RIGHT))
+            if (IsKeyDown(KeyboardKey.Right))
             {
                 variance = (variance >= 1.0f) ? 1.0f : (variance + 0.01f);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_ONE))
+            if (IsKeyDown(KeyboardKey.One))
             {
                 groups = 1;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_TWO))
+            if (IsKeyDown(KeyboardKey.Two))
             {
                 groups = 2;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_THREE))
+            if (IsKeyDown(KeyboardKey.Three))
             {
                 groups = 3;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_FOUR))
+            if (IsKeyDown(KeyboardKey.Four))
             {
                 groups = 4;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_FIVE))
+            if (IsKeyDown(KeyboardKey.Five))
             {
                 groups = 5;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_SIX))
+            if (IsKeyDown(KeyboardKey.Six))
             {
                 groups = 6;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_SEVEN))
+            if (IsKeyDown(KeyboardKey.Seven))
             {
                 groups = 7;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_EIGHT))
+            if (IsKeyDown(KeyboardKey.Eight))
             {
                 groups = 8;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_NINE))
+            if (IsKeyDown(KeyboardKey.Nine))
             {
                 groups = 9;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_W))
+            if (IsKeyDown(KeyboardKey.W))
             {
                 groups = 7;
                 amp = 25;
@@ -221,22 +221,22 @@ public class MeshInstancing
                 variance = 0.70f;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_EQUAL))
+            if (IsKeyDown(KeyboardKey.Equal))
             {
                 speed = (speed <= (int)(fps * 0.25f)) ? (int)(fps * 0.25f) : (int)(speed * 0.95f);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_KP_ADD))
+            if (IsKeyDown(KeyboardKey.KpAdd))
             {
                 speed = (speed <= (int)(fps * 0.25f)) ? (int)(fps * 0.25f) : (int)(speed * 0.95f);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_MINUS))
+            if (IsKeyDown(KeyboardKey.Minus))
             {
                 speed = (int)MathF.Max(speed * 1.02f, speed + 1);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_KP_SUBTRACT))
+            if (IsKeyDown(KeyboardKey.KpSubtract))
             {
                 speed = (int)MathF.Max(speed * 1.02f, speed + 1);
             }
@@ -245,9 +245,9 @@ public class MeshInstancing
             float[] cameraPos = { camera.Position.X, camera.Position.Y, camera.Position.Z };
             Raylib.SetShaderValue(
                 shader,
-                (int)ShaderLocationIndex.SHADER_LOC_VECTOR_VIEW,
+                (int)ShaderLocationIndex.VectorView,
                 cameraPos,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC3
+                ShaderUniformDataType.Vec3
             );
 
             // Apply per-instance transformations
@@ -273,42 +273,42 @@ public class MeshInstancing
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
             DrawMeshInstanced(cube, material, transforms, instances);
             EndMode3D();
 
-            DrawText("A CUBE OF DANCING CUBES!", 490, 10, 20, Color.MAROON);
-            DrawText("PRESS KEYS:", 10, textPositionY, 20, Color.BLACK);
+            DrawText("A CUBE OF DANCING CUBES!", 490, 10, 20, Color.Maroon);
+            DrawText("PRESS KEYS:", 10, textPositionY, 20, Color.Black);
 
-            DrawText("1 - 9", 10, textPositionY += 25, 10, Color.BLACK);
-            DrawText(": Number of groups", 50, textPositionY, 10, Color.BLACK);
-            DrawText($": {groups}", 160, textPositionY, 10, Color.BLACK);
+            DrawText("1 - 9", 10, textPositionY += 25, 10, Color.Black);
+            DrawText(": Number of groups", 50, textPositionY, 10, Color.Black);
+            DrawText($": {groups}", 160, textPositionY, 10, Color.Black);
 
-            DrawText("UP", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": increase amplitude", 50, textPositionY, 10, Color.BLACK);
-            DrawText($": {amp}%.2f", 160, textPositionY, 10, Color.BLACK);
+            DrawText("UP", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": increase amplitude", 50, textPositionY, 10, Color.Black);
+            DrawText($": {amp}%.2f", 160, textPositionY, 10, Color.Black);
 
-            DrawText("DOWN", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": decrease amplitude", 50, textPositionY, 10, Color.BLACK);
+            DrawText("DOWN", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": decrease amplitude", 50, textPositionY, 10, Color.Black);
 
-            DrawText("LEFT", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": decrease variance", 50, textPositionY, 10, Color.BLACK);
-            DrawText($": {variance}.2f", 160, textPositionY, 10, Color.BLACK);
+            DrawText("LEFT", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": decrease variance", 50, textPositionY, 10, Color.Black);
+            DrawText($": {variance}.2f", 160, textPositionY, 10, Color.Black);
 
-            DrawText("RIGHT", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": increase variance", 50, textPositionY, 10, Color.BLACK);
+            DrawText("RIGHT", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": increase variance", 50, textPositionY, 10, Color.Black);
 
-            DrawText("+/=", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": increase speed", 50, textPositionY, 10, Color.BLACK);
-            DrawText($": {speed} = {((float)fps / speed)} loops/sec", 160, textPositionY, 10, Color.BLACK);
+            DrawText("+/=", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": increase speed", 50, textPositionY, 10, Color.Black);
+            DrawText($": {speed} = {((float)fps / speed)} loops/sec", 160, textPositionY, 10, Color.Black);
 
-            DrawText("-", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": decrease speed", 50, textPositionY, 10, Color.BLACK);
+            DrawText("-", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": decrease speed", 50, textPositionY, 10, Color.Black);
 
-            DrawText("W", 10, textPositionY += 15, 10, Color.BLACK);
-            DrawText(": Wild setup!", 50, textPositionY, 10, Color.BLACK);
+            DrawText("W", 10, textPositionY += 15, 10, Color.Black);
+            DrawText(": Wild setup!", 50, textPositionY, 10, Color.Black);
 
             DrawFPS(10, 10);
 

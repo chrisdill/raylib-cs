@@ -31,7 +31,7 @@ public class WorldScreen
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
         Vector2 cubeScreenPosition;
@@ -44,7 +44,7 @@ public class WorldScreen
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
             // Calculate cube screen space position (with a little offset to be in top)
             cubeScreenPosition = GetWorldToScreen(
@@ -56,12 +56,12 @@ public class WorldScreen
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Color.RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Color.MAROON);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Color.Red);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Color.Maroon);
 
             DrawGrid(10, 1.0f);
 
@@ -72,14 +72,14 @@ public class WorldScreen
                 (int)cubeScreenPosition.X - MeasureText("Enemy: 100 / 100", 20) / 2,
                 (int)cubeScreenPosition.Y,
                 20,
-                Color.BLACK
+                Color.Black
             );
             DrawText(
                 "Text is always on top of the cube",
                 (screenWidth - MeasureText("Text is always on top of the cube", 20)) / 2,
                 25,
                 20,
-                Color.GRAY
+                Color.Gray
             );
 
             EndDrawing();

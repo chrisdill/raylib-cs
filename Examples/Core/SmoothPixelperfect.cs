@@ -100,25 +100,25 @@ public static class SmoothPixelPerfect
             // Draw
             //----------------------------------------------------------------------------------
             BeginTextureMode(target);
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode2D(worldSpaceCamera);
-            DrawRectanglePro(rec01, origin, rotation, Color.BLACK);
-            DrawRectanglePro(rec02, origin, -rotation, Color.RED);
-            DrawRectanglePro(rec03, origin, rotation + 45.0f, Color.BLUE);
+            DrawRectanglePro(rec01, origin, rotation, Color.Black);
+            DrawRectanglePro(rec02, origin, -rotation, Color.Red);
+            DrawRectanglePro(rec03, origin, rotation + 45.0f, Color.Blue);
             EndMode2D();
 
             EndTextureMode();
 
             BeginDrawing();
-            ClearBackground(Color.RED);
+            ClearBackground(Color.Red);
 
             BeginMode2D(screenSpaceCamera);
-            DrawTexturePro(target.Texture, sourceRec, destRec, origin, 0.0f, Color.WHITE);
+            DrawTexturePro(target.Texture, sourceRec, destRec, origin, 0.0f, Color.White);
             EndMode2D();
 
-            DrawText($"Screen resolution: {screenWidth}x{screenHeight}", 10, 10, 20, Color.DARKBLUE);
-            DrawText($"World resolution: {virtualScreenWidth}x{virtualScreenHeight}", 10, 40, 20, Color.DARKGREEN);
+            DrawText($"Screen resolution: {screenWidth}x{screenHeight}", 10, 10, 20, Color.DarkBlue);
+            DrawText($"World resolution: {virtualScreenWidth}x{virtualScreenHeight}", 10, 40, 20, Color.DarkGreen);
             DrawFPS(GetScreenWidth() - 95, 10);
             EndDrawing();
             //----------------------------------------------------------------------------------

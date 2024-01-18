@@ -33,7 +33,7 @@ public class ModelCubeTexture
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Load texture to be applied to the cubes sides
         Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");
@@ -51,12 +51,12 @@ public class ModelCubeTexture
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
             // Draw cube with an applied texture
-            DrawCubeTexture(texture, new Vector3(-2.0f, 2.0f, 0.0f), 2.0f, 4.0f, 2.0f, Color.WHITE);
+            DrawCubeTexture(texture, new Vector3(-2.0f, 2.0f, 0.0f), 2.0f, 4.0f, 2.0f, Color.White);
 
             // Draw cube with an applied texture, but only a defined rectangle piece of the texture
             DrawCubeTextureRec(
@@ -66,7 +66,7 @@ public class ModelCubeTexture
                 2.0f,
                 2.0f,
                 2.0f,
-                Color.WHITE
+                Color.White
             );
 
             DrawGrid(10, 1.0f);
@@ -113,7 +113,7 @@ public class ModelCubeTexture
         // Rlgl.Rotatef(45, 0, 1, 0);
         // Rlgl.Scalef(2.0f, 2.0f, 2.0f);
 
-        Rlgl.Begin(DrawMode.QUADS);
+        Rlgl.Begin(DrawMode.Quads);
         Rlgl.Color4ub(color.R, color.G, color.B, color.A);
 
         // Front Face
@@ -239,7 +239,7 @@ public class ModelCubeTexture
 
         // We calculate the normalized texture coordinates for the desired texture-source-rectangle
         // It means converting from (tex.Width, tex.Height) coordinates to [0.0f, 1.0f] equivalent
-        Rlgl.Begin(DrawMode.QUADS);
+        Rlgl.Begin(DrawMode.Quads);
         Rlgl.Color4ub(color.R, color.G, color.B, color.A);
 
         // Front face

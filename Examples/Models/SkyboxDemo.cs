@@ -31,7 +31,7 @@ public class SkyboxDemo
         camera.Target = new Vector3(4.0f, 1.0f, 4.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Load skybox model
         Mesh cube = GenMeshCube(1.0f, 1.0f, 1.0f);
@@ -46,22 +46,22 @@ public class SkyboxDemo
         Raylib.SetShaderValue(
             shdrSkybox,
             GetShaderLocation(shdrSkybox, "environmentMap"),
-            (int)MaterialMapIndex.MATERIAL_MAP_CUBEMAP,
-            ShaderUniformDataType.SHADER_UNIFORM_INT
+            (int)MaterialMapIndex.Cubemap,
+            ShaderUniformDataType.Int
         );
 
         Raylib.SetShaderValue(
             shdrSkybox,
             GetShaderLocation(shdrSkybox, "doGamma"),
             useHdr ? 1 : 0,
-            ShaderUniformDataType.SHADER_UNIFORM_INT
+            ShaderUniformDataType.Int
         );
 
         Raylib.SetShaderValue(
             shdrSkybox,
             GetShaderLocation(shdrSkybox, "vflipped"),
             useHdr ? 1 : 0,
-            ShaderUniformDataType.SHADER_UNIFORM_INT
+            ShaderUniformDataType.Int
         );
 
         Raylib.SetMaterialShader(ref skybox, 0, ref shdrSkybox);
@@ -75,7 +75,7 @@ public class SkyboxDemo
             shdrCubemap,
             GetShaderLocation(shdrCubemap, "equirectangularMap"),
             0,
-            ShaderUniformDataType.SHADER_UNIFORM_INT
+            ShaderUniformDataType.Int
         );
 
         // Load skybox
@@ -90,16 +90,16 @@ public class SkyboxDemo
                 shdrCubemap,
                 panorama,
                 1024,
-                PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8
+                PixelFormat.UncompressedR8G8B8A8
             );
-            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP, ref cubemap);
+            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.Cubemap, ref cubemap);
             UnloadTexture(panorama);
         }
         else
         {
             Image img = LoadImage("resources/skybox.png");
-            Texture2D cubemap = LoadTextureCubemap(img, CubemapLayout.CUBEMAP_LAYOUT_AUTO_DETECT);
-            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP, ref cubemap);
+            Texture2D cubemap = LoadTextureCubemap(img, CubemapLayout.AutoDetect);
+            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.Cubemap, ref cubemap);
             UnloadImage(img);
         }
 
@@ -113,7 +113,7 @@ public class SkyboxDemo
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FIRST_PERSON);
+            UpdateCamera(ref camera, CameraMode.FirstPerson);
 
             // Load new cubemap texture on drag & drop
             if (IsFileDropped())
@@ -125,7 +125,7 @@ public class SkyboxDemo
                     if (IsFileExtension(files[0], ".png;.jpg;.hdr;.bmp;.tga"))
                     {
                         // Unload cubemap texture and load new one
-                        UnloadTexture(Raylib.GetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP));
+                        UnloadTexture(Raylib.GetMaterialTexture(ref skybox, 0, MaterialMapIndex.Cubemap));
 
                         if (useHdr)
                         {
@@ -134,16 +134,16 @@ public class SkyboxDemo
                                 shdrCubemap,
                                 panorama,
                                 1024,
-                                PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8
+                                PixelFormat.UncompressedR8G8B8A8
                             );
-                            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP, ref cubemap);
+                            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.Cubemap, ref cubemap);
                             UnloadTexture(panorama);
                         }
                         else
                         {
                             Image img = LoadImage(files[0]);
-                            Texture2D cubemap = LoadTextureCubemap(img, CubemapLayout.CUBEMAP_LAYOUT_AUTO_DETECT);
-                            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP, ref cubemap);
+                            Texture2D cubemap = LoadTextureCubemap(img, CubemapLayout.AutoDetect);
+                            SetMaterialTexture(ref skybox, 0, MaterialMapIndex.Cubemap, ref cubemap);
                             UnloadImage(img);
                         }
 
@@ -156,14 +156,14 @@ public class SkyboxDemo
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
             // We are inside the cube, we need to disable backface culling!
             Rlgl.DisableBackfaceCulling();
             Rlgl.DisableDepthMask();
-            DrawModel(skybox, Vector3.Zero, 1.0f, Color.WHITE);
+            DrawModel(skybox, Vector3.Zero, 1.0f, Color.White);
             Rlgl.EnableBackfaceCulling();
             Rlgl.EnableDepthMask();
 
@@ -178,12 +178,12 @@ public class SkyboxDemo
                     10,
                     GetScreenHeight() - 20,
                     10,
-                    Color.BLACK
+                    Color.Black
                 );
             }
             else
             {
-                DrawText($": {skyboxFileName}", 10, GetScreenHeight() - 20, 10, Color.BLACK);
+                DrawText($": {skyboxFileName}", 10, GetScreenHeight() - 20, 10, Color.Black);
             }
 
             DrawFPS(10, 10);
@@ -195,7 +195,7 @@ public class SkyboxDemo
         // De-Initialization
         //--------------------------------------------------------------------------------------
         UnloadShader(Raylib.GetMaterial(ref skybox, 0).Shader);
-        UnloadTexture(Raylib.GetMaterialTexture(ref skybox, 0, MaterialMapIndex.MATERIAL_MAP_CUBEMAP));
+        UnloadTexture(Raylib.GetMaterialTexture(ref skybox, 0, MaterialMapIndex.Cubemap));
 
         UnloadModel(skybox);
 
@@ -222,15 +222,15 @@ public class SkyboxDemo
         Rlgl.FramebufferAttach(
             fbo,
             rbo,
-            FramebufferAttachType.RL_ATTACHMENT_DEPTH,
-            FramebufferAttachTextureType.RL_ATTACHMENT_RENDERBUFFER,
+            FramebufferAttachType.Depth,
+            FramebufferAttachTextureType.Renderbuffer,
             0
         );
         Rlgl.FramebufferAttach(
             fbo,
             cubemap.Id,
-            FramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL0,
-            FramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_X,
+            FramebufferAttachType.ColorChannel0,
+            FramebufferAttachTextureType.CubemapPositiveX,
             0
         );
 
@@ -253,7 +253,7 @@ public class SkyboxDemo
             Rlgl.CULL_DISTANCE_NEAR,
             Rlgl.CULL_DISTANCE_FAR
         );
-        Rlgl.SetUniformMatrix(shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_MATRIX_PROJECTION], matFboProjection);
+        Rlgl.SetUniformMatrix(shader.Locs[(int)ShaderLocationIndex.MatrixProjection], matFboProjection);
 
         // Define view matrix for every side of the cubemap
         Matrix4x4[] fboViews = new[]
@@ -276,15 +276,15 @@ public class SkyboxDemo
         for (int i = 0; i < 6; i++)
         {
             // Set the view matrix for the current cube face
-            Rlgl.SetUniformMatrix(shader.Locs[(int)ShaderLocationIndex.SHADER_LOC_MATRIX_VIEW], fboViews[i]);
+            Rlgl.SetUniformMatrix(shader.Locs[(int)ShaderLocationIndex.MatrixView], fboViews[i]);
 
             // Select the current cubemap face attachment for the fbo
             // WARNING: This function by default enables->attach->disables fbo!!!
             Rlgl.FramebufferAttach(
                 fbo,
                 cubemap.Id,
-                FramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL0,
-                FramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_X + i,
+                FramebufferAttachType.ColorChannel0,
+                FramebufferAttachTextureType.CubemapPositiveX + i,
                 0
             );
             Rlgl.EnableFramebuffer(fbo);

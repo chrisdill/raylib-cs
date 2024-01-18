@@ -38,12 +38,12 @@ public class SoundLoading
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 PlaySound(fxWav);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+            if (IsKeyPressed(KeyboardKey.Enter))
             {
                 PlaySound(fxOgg);
             }
@@ -52,10 +52,10 @@ public class SoundLoading
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, Color.LIGHTGRAY);
-            DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, Color.LIGHTGRAY);
+            DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, Color.LightGray);
+            DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

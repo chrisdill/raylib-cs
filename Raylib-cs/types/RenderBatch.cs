@@ -140,37 +140,37 @@ public partial struct DrawCall
 
 public enum GlVersion
 {
-    OPENGL_11 = 1,
-    OPENGL_21,
-    OPENGL_33,
-    OPENGL_43,
-    OPENGL_ES_20
+    OpenGl11 = 1,
+    OpenGl21,
+    OpenGl33,
+    OpenGl43,
+    OpenGlEs20
 }
 
 public enum FramebufferAttachType
 {
-    RL_ATTACHMENT_COLOR_CHANNEL0 = 0,
-    RL_ATTACHMENT_COLOR_CHANNEL1,
-    RL_ATTACHMENT_COLOR_CHANNEL2,
-    RL_ATTACHMENT_COLOR_CHANNEL3,
-    RL_ATTACHMENT_COLOR_CHANNEL4,
-    RL_ATTACHMENT_COLOR_CHANNEL5,
-    RL_ATTACHMENT_COLOR_CHANNEL6,
-    RL_ATTACHMENT_COLOR_CHANNEL7,
-    RL_ATTACHMENT_DEPTH = 100,
-    RL_ATTACHMENT_STENCIL = 200,
+    ColorChannel0 = 0,
+    ColorChannel1,
+    ColorChannel2,
+    ColorChannel3,
+    ColorChannel4,
+    ColorChannel5,
+    ColorChannel6,
+    ColorChannel7,
+    Depth = 100,
+    Stencil = 200,
 }
 
 public enum FramebufferAttachTextureType
 {
-    RL_ATTACHMENT_CUBEMAP_POSITIVE_X = 0,
-    RL_ATTACHMENT_CUBEMAP_NEGATIVE_X,
-    RL_ATTACHMENT_CUBEMAP_POSITIVE_Y,
-    RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y,
-    RL_ATTACHMENT_CUBEMAP_POSITIVE_Z,
-    RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z,
-    RL_ATTACHMENT_TEXTURE2D = 100,
-    RL_ATTACHMENT_RENDERBUFFER = 200,
+    CubemapPositiveX = 0,
+    CubemapNegativeX,
+    CubemapPositiveY,
+    CubemapNegativeY,
+    CubemapPositiveZ,
+    CubemapNegativeZ,
+    Texture2D = 100,
+    Renderbuffer = 200,
 }
 
 /// <summary>
@@ -181,17 +181,17 @@ public enum MatrixMode
     /// <summary>
     /// GL_MODELVIEW
     /// </summary>
-    MODELVIEW = 0x1700,
+    ModelView = 0x1700,
 
     /// <summary>
     /// GL_PROJECTION
     /// </summary>
-    PROJECTION = 0x1701,
+    Projection = 0x1701,
 
     /// <summary>
     /// GL_TEXTURE
     /// </summary>
-    TEXTURE = 0x1702
+    Texture = 0x1702
 }
 
 /// <summary>
@@ -202,17 +202,17 @@ public enum DrawMode
     /// <summary>
     /// GL_LINES
     /// </summary>
-    LINES = 0x0001,
+    Lines = 0x0001,
 
     /// <summary>
     /// GL_TRIANGLES
     /// </summary>
-    TRIANGLES = 0x0004,
+    Triangles = 0x0004,
 
     /// <summary>
     /// GL_QUADS
     /// </summary>
-    QUADS = 0x0007
+    Quads = 0x0007
 }
 
 /// <summary>
@@ -225,49 +225,49 @@ public enum TextureFilters
     /// <br/>
     /// GL_NEAREST
     /// </summary>
-    NEAREST = 0x2600,
+    Nearest = 0x2600,
 
     /// <summary>
     /// RL_TEXTURE_FILTER_LINEAR
     /// <br/>
     /// GL_LINEAR
     /// </summary>
-    LINEAR = 0x2601,
+    Linear = 0x2601,
 
     /// <summary>
     /// RL_TEXTURE_FILTER_MIP_NEAREST
     /// <br/>
     /// GL_NEAREST_MIPMAP_NEAREST
     /// </summary>
-    MIP_NEAREST = 0x2700,
+    MipNearest = 0x2700,
 
     /// <summary>
     /// RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR
     /// <br/>
     /// GL_NEAREST_MIPMAP_LINEAR
     /// </summary>
-    NEAREST_MIP_LINEAR = 0x2702,
+    NearestMipLinear = 0x2702,
 
     /// <summary>
     /// RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST
     /// <br/>
     /// GL_LINEAR_MIPMAP_NEAREST
     /// </summary>
-    LINEAR_MIP_NEAREST = 0x2701,
+    LinearMipNearest = 0x2701,
 
     /// <summary>
     /// RL_TEXTURE_FILTER_MIP_LINEAR
     /// <br/>
     /// GL_LINEAR_MIPMAP_LINEAR
     /// </summary>
-    MIP_LINEAR = 0x2703,
+    MipLinear = 0x2703,
 
     /// <summary>
     /// RL_TEXTURE_FILTER_ANISOTROPIC
     /// <br/>
     /// Anisotropic filter (custom identifier)
     /// </summary>
-    ANISOTROPIC = 0x3000
+    Anisotropic = 0x3000
 }
 
 /// <summary>
@@ -280,19 +280,19 @@ public enum ShaderType
     /// <br/>
     /// GL_FRAGMENT_SHADER
     /// </summary>
-    FRAGMENT = 0x8B30,
+    Fragment = 0x8B30,
 
     /// <summary>
     /// RL_VERTEX_SHADER
     /// <br/>
     /// GL_VERTEX_SHADER
     /// </summary>
-    VERTEX = 0x8B31,
+    Vertex = 0x8B31,
 
     /// <summary>
     /// RL_COMPUTE_SHADER
     /// <br/>
     /// GL_COMPUTE_SHADER
     /// </summary>
-    COMPUTE = 0x91b9
+    Compute = 0x91b9
 }

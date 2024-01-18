@@ -24,7 +24,7 @@ public class VrSimulator
         const int screenWidth = 1080;
         const int screenHeight = 600;
 
-        SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
 
         // VR device parameters definition
@@ -67,38 +67,38 @@ public class VrSimulator
             distortion,
             GetShaderLocation(distortion, "leftLensCenter"),
             config.LeftLensCenter,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
         Raylib.SetShaderValue(
             distortion,
             GetShaderLocation(distortion, "rightLensCenter"),
             config.RightLensCenter,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
         Raylib.SetShaderValue(
             distortion,
             GetShaderLocation(distortion, "leftScreenCenter"),
             config.LeftScreenCenter,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
         Raylib.SetShaderValue(
             distortion,
             GetShaderLocation(distortion, "rightScreenCenter"),
             config.RightScreenCenter,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
 
         Raylib.SetShaderValue(
             distortion,
             GetShaderLocation(distortion, "scale"),
             config.Scale,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
         Raylib.SetShaderValue(
             distortion,
             GetShaderLocation(distortion, "scaleIn"),
             config.ScaleIn,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
 
         unsafe
@@ -107,13 +107,13 @@ public class VrSimulator
                 distortion,
                 GetShaderLocation(distortion, "deviceWarpParam"),
                 device.LensDistortionValues,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC4
+                ShaderUniformDataType.Vec4
             );
             SetShaderValue(
                 distortion,
                 GetShaderLocation(distortion, "chromaAbParam"),
                 device.ChromaAbCorrection,
-                ShaderUniformDataType.SHADER_UNIFORM_VEC4
+                ShaderUniformDataType.Vec4
             );
         }
 
@@ -127,7 +127,7 @@ public class VrSimulator
         camera.Target = new Vector3(0.0f, 2.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 60.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
@@ -139,22 +139,22 @@ public class VrSimulator
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FIRST_PERSON);
+            UpdateCamera(ref camera, CameraMode.FirstPerson);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginTextureMode(target);
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginVrStereoMode(config);
             BeginMode3D(camera);
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Color.RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Color.MAROON);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Color.Red);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Color.Maroon);
             DrawGrid(40, 1.0f);
 
             EndMode3D();
@@ -166,7 +166,7 @@ public class VrSimulator
                 target.Texture,
                 new Rectangle(0, 0, (float)target.Texture.Width, (float)-target.Texture.Height),
                 new Vector2(0.0f, 0.0f),
-                Color.WHITE
+                Color.White
             );
             EndShaderMode();
 

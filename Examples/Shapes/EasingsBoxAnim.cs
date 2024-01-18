@@ -108,7 +108,7 @@ public class EasingsBoxAnim
             }
 
             // Reset animation at any moment
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 rec = new Rectangle(GetScreenWidth() / 2, -100, 100, 100);
                 rotation = 0.0f;
@@ -121,15 +121,15 @@ public class EasingsBoxAnim
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             DrawRectanglePro(
                 rec,
                 new Vector2(rec.Width / 2, rec.Height / 2),
                 rotation,
-                ColorAlpha(Color.BLACK, alpha)
+                ColorAlpha(Color.Black, alpha)
             );
-            DrawText("PRESS [SPACE] TO RESET BOX ANIMATION!", 10, GetScreenHeight() - 25, 20, Color.LIGHTGRAY);
+            DrawText("PRESS [SPACE] TO RESET BOX ANIMATION!", 10, GetScreenHeight() - 25, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

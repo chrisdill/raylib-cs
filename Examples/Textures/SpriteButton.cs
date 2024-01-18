@@ -67,7 +67,7 @@ public class SpriteButton
             // Check button state
             if (CheckCollisionPointRec(mousePoint, btnBounds))
             {
-                if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonDown(MouseButton.Left))
                 {
                     btnState = 2;
                 }
@@ -76,7 +76,7 @@ public class SpriteButton
                     btnState = 1;
                 }
 
-                if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonReleased(MouseButton.Left))
                 {
                     btnAction = true;
                 }
@@ -99,10 +99,10 @@ public class SpriteButton
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw button frame
-            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), Color.WHITE);
+            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), Color.White);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

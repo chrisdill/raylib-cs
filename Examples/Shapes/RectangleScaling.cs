@@ -56,7 +56,7 @@ public class RectangleScaling
                 CheckCollisionPointRec(mousePosition, area))
             {
                 mouseScaleReady = true;
-                if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonPressed(MouseButton.Left))
                 {
                     mouseScaleMode = true;
                 }
@@ -82,7 +82,7 @@ public class RectangleScaling
                     rec.Height = MOUSE_SCALE_MARK_SIZE;
                 }
 
-                if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonReleased(MouseButton.Left))
                 {
                     mouseScaleMode = false;
                 }
@@ -92,19 +92,19 @@ public class RectangleScaling
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Scale rectangle dragging from bottom-right corner!", 10, 10, 20, Color.GRAY);
-            DrawRectangleRec(rec, ColorAlpha(Color.GREEN, 0.5f));
+            DrawText("Scale rectangle dragging from bottom-right corner!", 10, 10, 20, Color.Gray);
+            DrawRectangleRec(rec, ColorAlpha(Color.Green, 0.5f));
 
             if (mouseScaleReady)
             {
-                DrawRectangleLinesEx(rec, 1, Color.RED);
+                DrawRectangleLinesEx(rec, 1, Color.Red);
                 DrawTriangle(
                     new Vector2(rec.X + rec.Width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.Height),
                     new Vector2(rec.X + rec.Width, rec.Y + rec.Height),
                     new Vector2(rec.X + rec.Width, rec.Y + rec.Height - MOUSE_SCALE_MARK_SIZE),
-                    Color.RED
+                    Color.Red
                 );
             }
 

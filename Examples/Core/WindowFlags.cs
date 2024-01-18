@@ -42,7 +42,7 @@ public class WindowFlags
         */
 
         // Set configuration flags for window creation
-        SetConfigFlags(FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT);
+        SetConfigFlags(VSyncHint | Msaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - window flags");
 
         Vector2 ballPosition = new(GetScreenWidth() / 2, GetScreenHeight() / 2);
@@ -57,59 +57,59 @@ public class WindowFlags
         {
             // Update
             //-----------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_F))
+            if (IsKeyPressed(KeyboardKey.F))
             {
                 // modifies window size when scaling!
                 ToggleFullscreen();
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
-                if (IsWindowState(FLAG_WINDOW_RESIZABLE))
+                if (IsWindowState(ResizableWindow))
                 {
-                    ClearWindowState(FLAG_WINDOW_RESIZABLE);
+                    ClearWindowState(ResizableWindow);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_RESIZABLE);
+                    SetWindowState(ResizableWindow);
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_D))
+            if (IsKeyPressed(KeyboardKey.D))
             {
-                if (IsWindowState(FLAG_WINDOW_UNDECORATED))
+                if (IsWindowState(UndecoratedWindow))
                 {
-                    ClearWindowState(FLAG_WINDOW_UNDECORATED);
+                    ClearWindowState(UndecoratedWindow);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_UNDECORATED);
+                    SetWindowState(UndecoratedWindow);
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_H))
+            if (IsKeyPressed(KeyboardKey.H))
             {
-                if (!IsWindowState(FLAG_WINDOW_HIDDEN))
+                if (!IsWindowState(HiddenWindow))
                 {
-                    SetWindowState(FLAG_WINDOW_HIDDEN);
+                    SetWindowState(HiddenWindow);
                 }
 
                 framesCounter = 0;
             }
 
-            if (IsWindowState(FLAG_WINDOW_HIDDEN))
+            if (IsWindowState(HiddenWindow))
             {
                 framesCounter++;
                 if (framesCounter >= 240)
                 {
                     // Show window after 3 seconds
-                    ClearWindowState(FLAG_WINDOW_HIDDEN);
+                    ClearWindowState(HiddenWindow);
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_N))
+            if (IsKeyPressed(KeyboardKey.N))
             {
-                if (!IsWindowState(FLAG_WINDOW_MINIMIZED))
+                if (!IsWindowState(MinimizedWindow))
                 {
                     MinimizeWindow();
                 }
@@ -117,7 +117,7 @@ public class WindowFlags
                 framesCounter = 0;
             }
 
-            if (IsWindowState(FLAG_WINDOW_MINIMIZED))
+            if (IsWindowState(MinimizedWindow))
             {
                 framesCounter++;
                 if (framesCounter >= 240)
@@ -127,10 +127,10 @@ public class WindowFlags
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_M))
+            if (IsKeyPressed(KeyboardKey.M))
             {
                 // NOTE: Requires FLAG_WINDOW_RESIZABLE enabled!
-                if (IsWindowState(FLAG_WINDOW_MAXIMIZED))
+                if (IsWindowState(MaximizedWindow))
                 {
                     RestoreWindow();
                 }
@@ -140,51 +140,51 @@ public class WindowFlags
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_U))
+            if (IsKeyPressed(KeyboardKey.U))
             {
-                if (IsWindowState(FLAG_WINDOW_UNFOCUSED))
+                if (IsWindowState(UnfocusedWindow))
                 {
-                    ClearWindowState(FLAG_WINDOW_UNFOCUSED);
+                    ClearWindowState(UnfocusedWindow);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_UNFOCUSED);
+                    SetWindowState(UnfocusedWindow);
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_T))
+            if (IsKeyPressed(KeyboardKey.T))
             {
-                if (IsWindowState(FLAG_WINDOW_TOPMOST))
+                if (IsWindowState(TopmostWindow))
                 {
-                    ClearWindowState(FLAG_WINDOW_TOPMOST);
+                    ClearWindowState(TopmostWindow);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_TOPMOST);
+                    SetWindowState(TopmostWindow);
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_A))
+            if (IsKeyPressed(KeyboardKey.A))
             {
-                if (IsWindowState(FLAG_WINDOW_ALWAYS_RUN))
+                if (IsWindowState(AlwaysRunWindow))
                 {
-                    ClearWindowState(FLAG_WINDOW_ALWAYS_RUN);
+                    ClearWindowState(AlwaysRunWindow);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_ALWAYS_RUN);
+                    SetWindowState(AlwaysRunWindow);
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_V))
+            if (IsKeyPressed(KeyboardKey.V))
             {
-                if (IsWindowState(FLAG_VSYNC_HINT))
+                if (IsWindowState(VSyncHint))
                 {
-                    ClearWindowState(FLAG_VSYNC_HINT);
+                    ClearWindowState(VSyncHint);
                 }
                 else
                 {
-                    SetWindowState(FLAG_VSYNC_HINT);
+                    SetWindowState(VSyncHint);
                 }
             }
 
@@ -205,46 +205,46 @@ public class WindowFlags
             //-----------------------------------------------------
             BeginDrawing();
 
-            if (IsWindowState(FLAG_WINDOW_TRANSPARENT))
+            if (IsWindowState(TransparentWindow))
             {
-                ClearBackground(Color.BLANK);
+                ClearBackground(Color.Blank);
             }
             else
             {
-                ClearBackground(Color.RAYWHITE);
+                ClearBackground(Color.RayWhite);
             }
 
-            DrawCircleV(ballPosition, ballRadius, Color.MAROON);
-            DrawRectangleLinesEx(new Rectangle(0, 0, GetScreenWidth(), GetScreenHeight()), 4, Color.RAYWHITE);
+            DrawCircleV(ballPosition, ballRadius, Color.Maroon);
+            DrawRectangleLinesEx(new Rectangle(0, 0, GetScreenWidth(), GetScreenHeight()), 4, Color.RayWhite);
 
-            DrawCircleV(GetMousePosition(), 10, Color.DARKBLUE);
+            DrawCircleV(GetMousePosition(), 10, Color.DarkBlue);
 
             DrawFPS(10, 10);
 
-            DrawText($"Screen Size: [{GetScreenWidth()}, {GetScreenHeight()}]", 10, 40, 10, Color.GREEN);
+            DrawText($"Screen Size: [{GetScreenWidth()}, {GetScreenHeight()}]", 10, 40, 10, Color.Green);
 
             // Draw window state info
-            Color on = Color.LIME;
-            Color off = Color.MAROON;
+            Color on = Color.Lime;
+            Color off = Color.Maroon;
 
-            DrawText("Following flags can be set after window creation:", 10, 60, 10, Color.GRAY);
+            DrawText("Following flags can be set after window creation:", 10, 60, 10, Color.Gray);
 
-            DrawWindowState(FLAG_FULLSCREEN_MODE, "[F] FLAG_FULLSCREEN_MODE: ", 10, 80, 10);
-            DrawWindowState(FLAG_WINDOW_RESIZABLE, "[R] FLAG_WINDOW_RESIZABLE: ", 10, 100, 10);
-            DrawWindowState(FLAG_WINDOW_UNDECORATED, "[D] FLAG_WINDOW_UNDECORATED: ", 10, 120, 10);
-            DrawWindowState(FLAG_WINDOW_HIDDEN, "[H] FLAG_WINDOW_HIDDEN: ", 10, 140, 10);
-            DrawWindowState(FLAG_WINDOW_MINIMIZED, "[N] FLAG_WINDOW_MINIMIZED: ", 10, 160, 10);
-            DrawWindowState(FLAG_WINDOW_MAXIMIZED, "[M] FLAG_WINDOW_MAXIMIZED: ", 10, 180, 10);
-            DrawWindowState(FLAG_WINDOW_UNFOCUSED, "[G] FLAG_WINDOW_UNFOCUSED: ", 10, 200, 10);
-            DrawWindowState(FLAG_WINDOW_TOPMOST, "[T] FLAG_WINDOW_TOPMOST: ", 10, 220, 10);
-            DrawWindowState(FLAG_WINDOW_ALWAYS_RUN, "[A] FLAG_WINDOW_ALWAYS_RUN: ", 10, 240, 10);
-            DrawWindowState(FLAG_VSYNC_HINT, "[V] FLAG_VSYNC_HINT: ", 10, 260, 10);
+            DrawWindowState(FullscreenMode, "[F] FLAG_FULLSCREEN_MODE: ", 10, 80, 10);
+            DrawWindowState(ResizableWindow, "[R] FLAG_WINDOW_RESIZABLE: ", 10, 100, 10);
+            DrawWindowState(UndecoratedWindow, "[D] FLAG_WINDOW_UNDECORATED: ", 10, 120, 10);
+            DrawWindowState(HiddenWindow, "[H] FLAG_WINDOW_HIDDEN: ", 10, 140, 10);
+            DrawWindowState(MinimizedWindow, "[N] FLAG_WINDOW_MINIMIZED: ", 10, 160, 10);
+            DrawWindowState(MaximizedWindow, "[M] FLAG_WINDOW_MAXIMIZED: ", 10, 180, 10);
+            DrawWindowState(UnfocusedWindow, "[G] FLAG_WINDOW_UNFOCUSED: ", 10, 200, 10);
+            DrawWindowState(TopmostWindow, "[T] FLAG_WINDOW_TOPMOST: ", 10, 220, 10);
+            DrawWindowState(AlwaysRunWindow, "[A] FLAG_WINDOW_ALWAYS_RUN: ", 10, 240, 10);
+            DrawWindowState(VSyncHint, "[V] FLAG_VSYNC_HINT: ", 10, 260, 10);
 
-            DrawText("Following flags can only be set before window creation:", 10, 300, 10, Color.GRAY);
+            DrawText("Following flags can only be set before window creation:", 10, 300, 10, Color.Gray);
 
-            DrawWindowState(FLAG_WINDOW_HIGHDPI, "[F] FLAG_WINDOW_HIGHDPI: ", 10, 320, 10);
-            DrawWindowState(FLAG_WINDOW_TRANSPARENT, "[F] FLAG_WINDOW_TRANSPARENT: ", 10, 340, 10);
-            DrawWindowState(FLAG_MSAA_4X_HINT, "[F] FLAG_MSAA_4X_HINT: ", 10, 360, 10);
+            DrawWindowState(HighDpiWindow, "[F] FLAG_WINDOW_HIGHDPI: ", 10, 320, 10);
+            DrawWindowState(TransparentWindow, "[F] FLAG_WINDOW_TRANSPARENT: ", 10, 340, 10);
+            DrawWindowState(Msaa4xHint, "[F] FLAG_MSAA_4X_HINT: ", 10, 360, 10);
 
             EndDrawing();
             //-----------------------------------------------------
@@ -260,8 +260,8 @@ public class WindowFlags
 
     static void DrawWindowState(ConfigFlags flag, string text, int posX, int posY, int fontSize)
     {
-        Color onColor = Color.LIME;
-        Color offColor = Color.MAROON;
+        Color onColor = Color.Lime;
+        Color offColor = Color.Maroon;
 
         if (Raylib.IsWindowState(flag))
         {

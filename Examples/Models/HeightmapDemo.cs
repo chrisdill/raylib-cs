@@ -31,7 +31,7 @@ public class HeightmapDemo
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Image image = LoadImage("resources/heightmap.png");
         Texture2D texture = LoadTextureFromImage(image);
@@ -40,7 +40,7 @@ public class HeightmapDemo
         Model model = LoadModelFromMesh(mesh);
 
         // Set map diffuse texture
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 mapPosition = new(-8.0f, 0.0f, -8.0f);
 
@@ -54,24 +54,24 @@ public class HeightmapDemo
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, mapPosition, 1.0f, Color.RED);
+            DrawModel(model, mapPosition, 1.0f, Color.Red);
 
             DrawGrid(20, 1.0f);
 
             EndMode3D();
 
-            DrawTexture(texture, screenWidth - texture.Width - 20, 20, Color.WHITE);
-            DrawRectangleLines(screenWidth - texture.Width - 20, 20, texture.Width, texture.Height, Color.GREEN);
+            DrawTexture(texture, screenWidth - texture.Width - 20, 20, Color.White);
+            DrawRectangleLines(screenWidth - texture.Width - 20, 20, texture.Width, texture.Height, Color.Green);
 
             DrawFPS(10, 10);
 

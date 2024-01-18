@@ -40,13 +40,13 @@ public class ModelLoading
         camera.Target = new Vector3(0.0f, 10.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         Model model = LoadModel("resources/models/obj/castle.obj");
         Texture2D texture = LoadTexture("resources/models/obj/castle_diffuse.png");
 
         // Set map diffuse texture
-        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);
         BoundingBox bounds = GetMeshBoundingBox(model.Meshes[0]);
@@ -64,7 +64,7 @@ public class ModelLoading
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
             if (IsFileDropped())
             {
@@ -81,7 +81,7 @@ public class ModelLoading
                         model = LoadModel(files[0]);
 
                         // Set current map diffuse texture
-                        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+                        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
 
                         bounds = GetMeshBoundingBox(model.Meshes[0]);
 
@@ -92,13 +92,13 @@ public class ModelLoading
                         // Unload model texture and load new one
                         UnloadTexture(texture);
                         texture = LoadTexture(files[0]);
-                        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+                        Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
                     }
                 }
             }
 
             // Select model on mouse click
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 // Check collision between ray and box
                 if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).Hit)
@@ -115,28 +115,28 @@ public class ModelLoading
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(model, position, 1.0f, Color.WHITE);
+            DrawModel(model, position, 1.0f, Color.White);
 
             DrawGrid(20, 10.0f);
 
             if (selected)
             {
-                DrawBoundingBox(bounds, Color.GREEN);
+                DrawBoundingBox(bounds, Color.Green);
             }
 
             EndMode3D();
 
-            DrawText("Drag & drop model to load mesh/texture.", 10, GetScreenHeight() - 20, 10, Color.DARKGRAY);
+            DrawText("Drag & drop model to load mesh/texture.", 10, GetScreenHeight() - 20, 10, Color.DarkGray);
             if (selected)
             {
-                DrawText("MODEL SELECTED", GetScreenWidth() - 110, 10, 10, Color.GREEN);
+                DrawText("MODEL SELECTED", GetScreenWidth() - 110, 10, 10, Color.Green);
             }
 
-            DrawText("(c) Castle 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Color.GRAY);
+            DrawText("(c) Castle 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
             DrawFPS(10, 10);
 
