@@ -49,19 +49,19 @@ public class TextureOutline
             shdrOutline,
             outlineSizeLoc,
             outlineSize,
-            ShaderUniformDataType.SHADER_UNIFORM_FLOAT
+            ShaderUniformDataType.Float
         );
         Raylib.SetShaderValue(
             shdrOutline,
             outlineColorLoc,
             outlineColor,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC4
+            ShaderUniformDataType.Vec4
         );
         Raylib.SetShaderValue(
             shdrOutline,
             textureSizeLoc,
             textureSize,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
 
         SetTargetFPS(60);
@@ -82,7 +82,7 @@ public class TextureOutline
                 shdrOutline,
                 outlineSizeLoc,
                 outlineSize,
-                ShaderUniformDataType.SHADER_UNIFORM_FLOAT
+                ShaderUniformDataType.Float
             );
             //----------------------------------------------------------------------------------
 
@@ -90,15 +90,15 @@ public class TextureOutline
             //----------------------------------------------------------------------------------
             BeginDrawing();
 
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginShaderMode(shdrOutline);
-            DrawTexture(texture, GetScreenWidth() / 2 - texture.Width / 2, -30, Color.WHITE);
+            DrawTexture(texture, GetScreenWidth() / 2 - texture.Width / 2, -30, Color.White);
             EndShaderMode();
 
-            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, Color.GRAY);
+            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, Color.Gray);
 
-            DrawText($"Outline size: {outlineSize} px", 10, 120, 20, Color.MAROON);
+            DrawText($"Outline size: {outlineSize} px", 10, 120, 20, Color.Maroon);
 
             DrawFPS(710, 10);
 

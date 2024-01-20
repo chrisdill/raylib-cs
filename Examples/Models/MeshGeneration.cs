@@ -26,7 +26,7 @@ public class MeshGeneration
         InitWindow(screenWidth, screenHeight, "raylib [models] example - mesh generation");
 
         // We generate a isChecked image for texturing
-        Image isChecked = GenImageChecked(2, 2, 1, 1, Color.RED, Color.GREEN);
+        Image isChecked = GenImageChecked(2, 2, 1, 1, Color.Red, Color.Green);
         Texture2D texture = LoadTextureFromImage(isChecked);
         UnloadImage(isChecked);
 
@@ -46,7 +46,7 @@ public class MeshGeneration
         for (int i = 0; i < models.Length; i++)
         {
             // Set map diffuse texture
-            Raylib.SetMaterialTexture(ref models[i], 0, MaterialMapIndex.MATERIAL_MAP_ALBEDO, ref texture);
+            Raylib.SetMaterialTexture(ref models[i], 0, MaterialMapIndex.Albedo, ref texture);
         }
 
         // Define the camera to look into our 3d world
@@ -55,7 +55,7 @@ public class MeshGeneration
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Model drawing position
         Vector3 position = new(0.0f, 0.0f, 0.0f);
@@ -70,9 +70,9 @@ public class MeshGeneration
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_ORBITAL);
+            UpdateCamera(ref camera, CameraMode.Orbital);
 
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
                 // Cycle between the textures
                 currentModel = (currentModel + 1) % models.Length;
@@ -82,48 +82,48 @@ public class MeshGeneration
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
-            DrawModel(models[currentModel], position, 1.0f, Color.WHITE);
+            DrawModel(models[currentModel], position, 1.0f, Color.White);
 
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawRectangle(30, 400, 310, 30, ColorAlpha(Color.SKYBLUE, 0.5f));
-            DrawRectangleLines(30, 400, 310, 30, ColorAlpha(Color.DARKBLUE, 0.5f));
-            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL MODELS", 40, 410, 10, Color.BLUE);
+            DrawRectangle(30, 400, 310, 30, ColorAlpha(Color.SkyBlue, 0.5f));
+            DrawRectangleLines(30, 400, 310, 30, ColorAlpha(Color.DarkBlue, 0.5f));
+            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL MODELS", 40, 410, 10, Color.Blue);
 
             switch (currentModel)
             {
                 case 0:
-                    DrawText("PLANE", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("PLANE", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 1:
-                    DrawText("CUBE", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("CUBE", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 2:
-                    DrawText("SPHERE", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("SPHERE", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 3:
-                    DrawText("HEMISPHERE", 640, 10, 20, Color.DARKBLUE);
+                    DrawText("HEMISPHERE", 640, 10, 20, Color.DarkBlue);
                     break;
                 case 4:
-                    DrawText("CYLINDER", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("CYLINDER", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 5:
-                    DrawText("TORUS", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("TORUS", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 6:
-                    DrawText("KNOT", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("KNOT", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 7:
-                    DrawText("POLY", 680, 10, 20, Color.DARKBLUE);
+                    DrawText("POLY", 680, 10, 20, Color.DarkBlue);
                     break;
                 case 8:
-                    DrawText("Custom (triagnle)", 580, 10, 20, Color.DARKBLUE);
+                    DrawText("Custom (triagnle)", 580, 10, 20, Color.DarkBlue);
                     break;
                 default:
                     break;

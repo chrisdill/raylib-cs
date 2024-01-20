@@ -81,11 +81,11 @@ public class Polygon
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("Textured Polygon", 20, 20, 20, Color.DARKGRAY);
+            DrawText("Textured Polygon", 20, 20, 20, Color.DarkGray);
             Vector2 center = new(screenWidth / 2, screenHeight / 2);
-            DrawTexturePoly(texture, center, positions, texcoords, positions.Length, Color.WHITE);
+            DrawTexturePoly(texture, center, positions, texcoords, positions.Length, Color.White);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ public class Polygon
         Rlgl.SetTexture(texture.Id);
 
         // Texturing is only supported on RL_QUADS
-        Rlgl.Begin(DrawMode.QUADS);
+        Rlgl.Begin(DrawMode.Quads);
 
         Rlgl.Color4ub(tint.R, tint.G, tint.B, tint.A);
 

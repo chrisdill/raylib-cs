@@ -55,7 +55,7 @@ public class ImageProcessing
 
         // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
         Image imageOrigin = LoadImage("resources/parrots.png");
-        ImageFormat(ref imageOrigin, PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+        ImageFormat(ref imageOrigin, PixelFormat.UncompressedR8G8B8A8);
         Texture2D texture = LoadTextureFromImage(imageOrigin);
 
         Image imageCopy = ImageCopy(imageOrigin);
@@ -87,7 +87,7 @@ public class ImageProcessing
                 {
                     mouseHoverRec = i;
 
-                    if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                    if (IsMouseButtonReleased(MouseButton.Left))
                     {
                         currentProcess = (ImageProcess)i;
                         textureReload = true;
@@ -101,7 +101,7 @@ public class ImageProcessing
             }
 
             // Keyboard toggle group logic
-            if (IsKeyPressed(KeyboardKey.KEY_DOWN))
+            if (IsKeyPressed(KeyboardKey.Down))
             {
                 currentProcess++;
                 if ((int)currentProcess > (NumProcesses - 1))
@@ -111,7 +111,7 @@ public class ImageProcessing
 
                 textureReload = true;
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_UP))
+            else if (IsKeyPressed(KeyboardKey.Up))
             {
                 currentProcess--;
                 if (currentProcess < 0)
@@ -136,7 +136,7 @@ public class ImageProcessing
                         ImageColorGrayscale(ref imageCopy);
                         break;
                     case ImageProcess.ColorTint:
-                        ImageColorTint(ref imageCopy, Color.GREEN);
+                        ImageColorTint(ref imageCopy, Color.Green);
                         break;
                     case ImageProcess.ColorInvert:
                         ImageColorInvert(ref imageCopy);
@@ -172,20 +172,20 @@ public class ImageProcessing
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("IMAGE PROCESSING:", 40, 30, 10, Color.DARKGRAY);
+            DrawText("IMAGE PROCESSING:", 40, 30, 10, Color.DarkGray);
 
             // Draw rectangles
             for (int i = 0; i < NumProcesses; i++)
             {
-                DrawRectangleRec(toggleRecs[i], (i == (int)currentProcess) ? Color.SKYBLUE : Color.LIGHTGRAY);
+                DrawRectangleRec(toggleRecs[i], (i == (int)currentProcess) ? Color.SkyBlue : Color.LightGray);
                 DrawRectangleLines(
                     (int)toggleRecs[i].X,
                     (int)toggleRecs[i].Y,
                     (int)toggleRecs[i].Width,
                     (int)toggleRecs[i].Height,
-                    (i == (int)currentProcess) ? Color.BLUE : Color.GRAY
+                    (i == (int)currentProcess) ? Color.Blue : Color.Gray
                 );
 
                 int labelX = (int)(toggleRecs[i].X + toggleRecs[i].Width / 2);
@@ -194,14 +194,14 @@ public class ImageProcessing
                     (int)(labelX - MeasureText(processText[i], 10) / 2),
                     (int)toggleRecs[i].Y + 11,
                     10,
-                    (i == (int)currentProcess) ? Color.DARKBLUE : Color.DARKGRAY
+                    (i == (int)currentProcess) ? Color.DarkBlue : Color.DarkGray
                 );
             }
 
             int x = screenWidth - texture.Width - 60;
             int y = screenHeight / 2 - texture.Height / 2;
-            DrawTexture(texture, x, y, Color.WHITE);
-            DrawRectangleLines(x, y, texture.Width, texture.Height, Color.BLACK);
+            DrawTexture(texture, x, y, Color.White);
+            DrawRectangleLines(x, y, texture.Width, texture.Height, Color.Black);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

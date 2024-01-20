@@ -35,7 +35,7 @@ public class WritingAnim
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyDown(KeyboardKey.KEY_SPACE))
+            if (IsKeyDown(KeyboardKey.Space))
             {
                 framesCounter += 8;
             }
@@ -44,7 +44,7 @@ public class WritingAnim
                 framesCounter += 1;
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+            if (IsKeyPressed(KeyboardKey.Enter))
             {
                 framesCounter = 0;
             }
@@ -53,12 +53,12 @@ public class WritingAnim
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText(message.SubText(0, framesCounter / 10), 210, 160, 20, Color.MAROON);
+            DrawText(message.SubText(0, framesCounter / 10), 210, 160, 20, Color.Maroon);
 
-            DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, Color.LIGHTGRAY);
-            DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, Color.LIGHTGRAY);
+            DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, Color.LightGray);
+            DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

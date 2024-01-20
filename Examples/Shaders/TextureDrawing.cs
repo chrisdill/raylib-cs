@@ -31,7 +31,7 @@ public class TextureDrawing
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
 
         // Load blank texture to fill on shader
-        Image imBlank = GenImageColor(1024, 1024, Color.BLANK);
+        Image imBlank = GenImageColor(1024, 1024, Color.Blank);
         Texture2D texture = LoadTextureFromImage(imBlank);
         UnloadImage(imBlank);
 
@@ -40,7 +40,7 @@ public class TextureDrawing
 
         float time = 0.0f;
         int timeLoc = GetShaderLocation(shader, "uTime");
-        Raylib.SetShaderValue(shader, timeLoc, time, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+        Raylib.SetShaderValue(shader, timeLoc, time, ShaderUniformDataType.Float);
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -51,24 +51,24 @@ public class TextureDrawing
             // Update
             //----------------------------------------------------------------------------------
             time = (float)GetTime();
-            Raylib.SetShaderValue(shader, timeLoc, time, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
+            Raylib.SetShaderValue(shader, timeLoc, time, ShaderUniformDataType.Float);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Enable our custom shader for next shapes/textures drawings
             BeginShaderMode(shader);
 
             // Drawing blank texture, all magic happens on shader
-            DrawTexture(texture, 0, 0, Color.WHITE);
+            DrawTexture(texture, 0, 0, Color.White);
 
             // Disable our custom shader, return to default shader
             EndShaderMode();
 
-            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, Color.MAROON);
+            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, Color.Maroon);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

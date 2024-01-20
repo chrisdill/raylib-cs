@@ -2532,7 +2532,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetMasterVolume(float volume);
 
-    /// <summary>Set master volume (listener)</summary>
+    /// <summary>Get master volume (listener)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern float GetMasterVolume();
 

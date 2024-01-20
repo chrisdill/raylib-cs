@@ -50,7 +50,7 @@ public class NpatchDrawing
             Top = 40,
             Right = 12,
             Bottom = 12,
-            Layout = NPatchLayout.NPATCH_NINE_PATCH
+            Layout = NPatchLayout.NinePatch
         };
         NPatchInfo ninePatchInfo2 = new NPatchInfo
         {
@@ -59,7 +59,7 @@ public class NpatchDrawing
             Top = 16,
             Right = 16,
             Bottom = 16,
-            Layout = NPatchLayout.NPATCH_NINE_PATCH
+            Layout = NPatchLayout.NinePatch
         };
 
         // A horizontal 3-patch (NPT_3PATCH_HORIZONTAL) changes its sizes along the x axis only
@@ -70,7 +70,7 @@ public class NpatchDrawing
             Top = 8,
             Right = 8,
             Bottom = 8,
-            Layout = NPatchLayout.NPATCH_THREE_PATCH_HORIZONTAL
+            Layout = NPatchLayout.ThreePatchHorizontal
         };
 
         // A vertical 3-patch (NPT_3PATCH_VERTICAL) changes its sizes along the y axis only
@@ -81,7 +81,7 @@ public class NpatchDrawing
             Top = 6,
             Right = 6,
             Bottom = 6,
-            Layout = NPatchLayout.NPATCH_THREE_PATCH_VERTICAL
+            Layout = NPatchLayout.ThreePatchVertical
         };
 
         SetTargetFPS(60);
@@ -114,20 +114,20 @@ public class NpatchDrawing
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw the n-patches
-            DrawTextureNPatch(nPatchTexture, ninePatchInfo2, dstRec2, origin, 0.0f, Color.WHITE);
-            DrawTextureNPatch(nPatchTexture, ninePatchInfo1, dstRec1, origin, 0.0f, Color.WHITE);
-            DrawTextureNPatch(nPatchTexture, h3PatchInfo, dstRecH, origin, 0.0f, Color.WHITE);
-            DrawTextureNPatch(nPatchTexture, v3PatchInfo, dstRecV, origin, 0.0f, Color.WHITE);
+            DrawTextureNPatch(nPatchTexture, ninePatchInfo2, dstRec2, origin, 0.0f, Color.White);
+            DrawTextureNPatch(nPatchTexture, ninePatchInfo1, dstRec1, origin, 0.0f, Color.White);
+            DrawTextureNPatch(nPatchTexture, h3PatchInfo, dstRecH, origin, 0.0f, Color.White);
+            DrawTextureNPatch(nPatchTexture, v3PatchInfo, dstRecV, origin, 0.0f, Color.White);
 
             // Draw the source texture
-            DrawRectangleLines(5, 88, 74, 266, Color.BLUE);
-            DrawTexture(nPatchTexture, 10, 93, Color.WHITE);
-            DrawText("TEXTURE", 15, 360, 10, Color.DARKGRAY);
+            DrawRectangleLines(5, 88, 74, 266, Color.Blue);
+            DrawTexture(nPatchTexture, 10, 93, Color.White);
+            DrawText("TEXTURE", 15, 360, 10, Color.DarkGray);
 
-            DrawText("Move the mouse to stretch or shrink the n-patches", 10, 20, 20, Color.DARKGRAY);
+            DrawText("Move the mouse to stretch or shrink the n-patches", 10, 20, 20, Color.DarkGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

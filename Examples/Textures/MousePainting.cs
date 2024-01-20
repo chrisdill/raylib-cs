@@ -29,29 +29,29 @@ public class MousePainting
 
         // Colours to choose from
         Color[] colors = new Color[] {
-                Color.RAYWHITE,
-                Color.YELLOW,
-                Color.GOLD,
-                Color.ORANGE,
-                Color.PINK,
-                Color.RED,
-                Color.MAROON,
-                Color.GREEN,
-                Color.LIME,
-                Color.DARKGREEN,
-                Color.SKYBLUE,
-                Color.BLUE,
-                Color.DARKBLUE,
-                Color.PURPLE,
-                Color.VIOLET,
-                Color.DARKPURPLE,
-                Color.BEIGE,
-                Color.BROWN,
-                Color.DARKBROWN,
-                Color.LIGHTGRAY,
-                Color.GRAY,
-                Color.DARKGRAY,
-                Color.BLACK
+                Color.RayWhite,
+                Color.Yellow,
+                Color.Gold,
+                Color.Orange,
+                Color.Pink,
+                Color.Red,
+                Color.Maroon,
+                Color.Green,
+                Color.Lime,
+                Color.DarkGreen,
+                Color.SkyBlue,
+                Color.Blue,
+                Color.DarkBlue,
+                Color.Purple,
+                Color.Violet,
+                Color.DarkPurple,
+                Color.Beige,
+                Color.Brown,
+                Color.DarkBrown,
+                Color.LightGray,
+                Color.Gray,
+                Color.DarkGray,
+                Color.Black
             };
 
         // Define colorsRecs data (for every rectangle)
@@ -94,11 +94,11 @@ public class MousePainting
             Vector2 mousePos = GetMousePosition();
 
             // Move between colors with keys
-            if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+            if (IsKeyPressed(KeyboardKey.Right))
             {
                 colorSelected++;
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+            else if (IsKeyPressed(KeyboardKey.Left))
             {
                 colorSelected--;
             }
@@ -126,7 +126,7 @@ public class MousePainting
                 }
             }
 
-            if ((colorMouseHover >= 0) && IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            if ((colorMouseHover >= 0) && IsMouseButtonPressed(MouseButton.Left))
             {
                 colorSelected = colorMouseHover;
                 colorSelectedPrev = colorSelected;
@@ -144,7 +144,7 @@ public class MousePainting
                 brushSize = 50;
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_C))
+            if (IsKeyPressed(KeyboardKey.C))
             {
                 // Clear render texture to clear color
                 BeginTextureMode(target);
@@ -152,7 +152,7 @@ public class MousePainting
                 EndTextureMode();
             }
 
-            if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonDown(MouseButton.Left))
             {
                 // Paint circle into render texture
                 // NOTE: To avoid discontinuous circles, we could store
@@ -165,7 +165,7 @@ public class MousePainting
 
                 EndTextureMode();
             }
-            else if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+            else if (IsMouseButtonDown(MouseButton.Right))
             {
                 colorSelected = 0;
 
@@ -195,8 +195,8 @@ public class MousePainting
 
             // Image saving logic
             // NOTE: Saving painted texture to a default named image
-            if ((btnSaveMouseHover && IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON)) ||
-                IsKeyPressed(KeyboardKey.KEY_S))
+            if ((btnSaveMouseHover && IsMouseButtonReleased(MouseButton.Left)) ||
+                IsKeyPressed(KeyboardKey.S))
             {
                 Image image = LoadImageFromTexture(target.Texture);
                 ImageFlipVertical(ref image);
@@ -220,16 +220,16 @@ public class MousePainting
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
             Rectangle source = new(0, 0, target.Texture.Width, -target.Texture.Height);
-            DrawTextureRec(target.Texture, source, new Vector2(0, 0), Color.WHITE);
+            DrawTextureRec(target.Texture, source, new Vector2(0, 0), Color.White);
 
             // Draw drawing circle for reference
             if (mousePos.Y > 50)
             {
-                if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+                if (IsMouseButtonDown(MouseButton.Right))
                 {
                     DrawCircleLines((int)mousePos.X, (int)mousePos.Y, brushSize, colors[colorSelected]);
                 }
@@ -240,8 +240,8 @@ public class MousePainting
             }
 
             // Draw top panel
-            DrawRectangle(0, 0, GetScreenWidth(), 50, Color.RAYWHITE);
-            DrawLine(0, 50, GetScreenWidth(), 50, Color.LIGHTGRAY);
+            DrawRectangle(0, 0, GetScreenWidth(), 50, Color.RayWhite);
+            DrawLine(0, 50, GetScreenWidth(), 50, Color.LightGray);
 
             // Draw color selection rectangles
             for (int i = 0; i < colors.Length; i++)
@@ -249,11 +249,11 @@ public class MousePainting
                 DrawRectangleRec(colorsRecs[i], colors[i]);
             }
 
-            DrawRectangleLines(10, 10, 30, 30, Color.LIGHTGRAY);
+            DrawRectangleLines(10, 10, 30, 30, Color.LightGray);
 
             if (colorMouseHover >= 0)
             {
-                DrawRectangleRec(colorsRecs[colorMouseHover], ColorAlpha(Color.WHITE, 0.6f));
+                DrawRectangleRec(colorsRecs[colorMouseHover], ColorAlpha(Color.White, 0.6f));
             }
 
             Rectangle rec = new(
@@ -262,18 +262,18 @@ public class MousePainting
                 colorsRecs[colorSelected].Width + 4,
                 colorsRecs[colorSelected].Height + 4
             );
-            DrawRectangleLinesEx(rec, 2, Color.BLACK);
+            DrawRectangleLinesEx(rec, 2, Color.Black);
 
             // Draw save image button
-            DrawRectangleLinesEx(btnSaveRec, 2, btnSaveMouseHover ? Color.RED : Color.BLACK);
-            DrawText("SAVE!", 755, 20, 10, btnSaveMouseHover ? Color.RED : Color.BLACK);
+            DrawRectangleLinesEx(btnSaveRec, 2, btnSaveMouseHover ? Color.Red : Color.Black);
+            DrawText("SAVE!", 755, 20, 10, btnSaveMouseHover ? Color.Red : Color.Black);
 
             // Draw save image message
             if (showSaveMessage)
             {
-                DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), ColorAlpha(Color.RAYWHITE, 0.8f));
-                DrawRectangle(0, 150, GetScreenWidth(), 80, Color.BLACK);
-                DrawText("IMAGE SAVED:  my_amazing_texture_painting.png", 150, 180, 20, Color.RAYWHITE);
+                DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), ColorAlpha(Color.RayWhite, 0.8f));
+                DrawRectangle(0, 150, GetScreenWidth(), 80, Color.Black);
+                DrawText("IMAGE SAVED:  my_amazing_texture_painting.png", 150, 180, 20, Color.RayWhite);
             }
 
             EndDrawing();

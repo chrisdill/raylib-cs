@@ -70,11 +70,11 @@ public class Camera2dPlatformer
 
         EnvItem[] envItems = new EnvItem[]
         {
-            new EnvItem(new Rectangle(0, 0, 1000, 400), 0, Color.LIGHTGRAY),
-            new EnvItem(new Rectangle(0, 400, 1000, 200), 1, Color.GRAY),
-            new EnvItem(new Rectangle(300, 200, 400, 10), 1, Color.GRAY),
-            new EnvItem(new Rectangle(250, 300, 100, 10), 1, Color.GRAY),
-            new EnvItem(new Rectangle(650, 300, 100, 10), 1, Color.GRAY)
+            new EnvItem(new Rectangle(0, 0, 1000, 400), 0, Color.LightGray),
+            new EnvItem(new Rectangle(0, 400, 1000, 200), 1, Color.Gray),
+            new EnvItem(new Rectangle(300, 200, 400, 10), 1, Color.Gray),
+            new EnvItem(new Rectangle(250, 300, 100, 10), 1, Color.Gray),
+            new EnvItem(new Rectangle(650, 300, 100, 10), 1, Color.Gray)
         };
 
         Camera2D camera = new();
@@ -127,13 +127,13 @@ public class Camera2dPlatformer
                 camera.Zoom = 0.25f;
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
                 camera.Zoom = 1.0f;
                 player.Position = new Vector2(400, 280);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_C))
+            if (IsKeyPressed(KeyboardKey.C))
             {
                 cameraOption = (cameraOption + 1) % cameraUpdatersLength;
             }
@@ -145,7 +145,7 @@ public class Camera2dPlatformer
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.LIGHTGRAY);
+            ClearBackground(Color.LightGray);
 
             BeginMode2D(camera);
 
@@ -155,17 +155,17 @@ public class Camera2dPlatformer
             }
 
             Rectangle playerRect = new(player.Position.X - 20, player.Position.Y - 40, 40, 40);
-            DrawRectangleRec(playerRect, Color.RED);
+            DrawRectangleRec(playerRect, Color.Red);
 
             EndMode2D();
 
-            DrawText("Controls:", 20, 20, 10, Color.BLACK);
-            DrawText("- Right/Left to move", 40, 40, 10, Color.DARKGRAY);
-            DrawText("- Space to jump", 40, 60, 10, Color.DARKGRAY);
-            DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, Color.DARKGRAY);
-            DrawText("- C to change camera mode", 40, 100, 10, Color.DARKGRAY);
-            DrawText("Current camera mode:", 20, 120, 10, Color.BLACK);
-            DrawText(cameraDescriptions[cameraOption], 40, 140, 10, Color.DARKGRAY);
+            DrawText("Controls:", 20, 20, 10, Color.Black);
+            DrawText("- Right/Left to move", 40, 40, 10, Color.DarkGray);
+            DrawText("- Space to jump", 40, 60, 10, Color.DarkGray);
+            DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, Color.DarkGray);
+            DrawText("- C to change camera mode", 40, 100, 10, Color.DarkGray);
+            DrawText("Current camera mode:", 20, 120, 10, Color.Black);
+            DrawText(cameraDescriptions[cameraOption], 40, 140, 10, Color.DarkGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -181,17 +181,17 @@ public class Camera2dPlatformer
 
     static void UpdatePlayer(ref Player player, EnvItem[] envItems, float delta)
     {
-        if (IsKeyDown(KeyboardKey.KEY_LEFT))
+        if (IsKeyDown(KeyboardKey.Left))
         {
             player.Position.X -= PlayerHorSpeed * delta;
         }
 
-        if (IsKeyDown(KeyboardKey.KEY_RIGHT))
+        if (IsKeyDown(KeyboardKey.Right))
         {
             player.Position.X += PlayerHorSpeed * delta;
         }
 
-        if (IsKeyDown(KeyboardKey.KEY_SPACE) && player.CanJump)
+        if (IsKeyDown(KeyboardKey.Space) && player.CanJump)
         {
             player.Speed = -PlayerJumpSpeed;
             player.CanJump = false;

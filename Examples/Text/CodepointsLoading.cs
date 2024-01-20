@@ -52,7 +52,7 @@ class CodepointsLoading
         );
 
         // Set bilinear scale filter for better font scaling
-        SetTextureFilter(font.Texture, TextureFilter.TEXTURE_FILTER_BILINEAR);
+        SetTextureFilter(font.Texture, TextureFilter.Bilinear);
 
         bool showFontAtlas = false;
 
@@ -64,7 +64,7 @@ class CodepointsLoading
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 showFontAtlas = !showFontAtlas;
             }
@@ -74,31 +74,31 @@ class CodepointsLoading
             //----------------------------------------------------------------------------------
             BeginDrawing();
 
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawRectangle(0, 0, GetScreenWidth(), 70, Color.BLACK);
-            DrawText($"Total codepoints contained in provided text: {codepoints.Count}", 10, 10, 20, Color.GREEN);
+            DrawRectangle(0, 0, GetScreenWidth(), 70, Color.Black);
+            DrawText($"Total codepoints contained in provided text: {codepoints.Count}", 10, 10, 20, Color.Green);
             DrawText(
                 $"Total codepoints required for font atlas (duplicates excluded): {codepointsNoDuplicates.Length}",
                 10,
                 40,
                 20,
-                Color.GREEN
+                Color.Green
             );
 
             if (showFontAtlas)
             {
                 // Draw generated font texture atlas containing provided codepoints
-                DrawTexture(font.Texture, 150, 100, Color.BLACK);
-                DrawRectangleLines(150, 100, font.Texture.Width, font.Texture.Height, Color.BLACK);
+                DrawTexture(font.Texture, 150, 100, Color.Black);
+                DrawRectangleLines(150, 100, font.Texture.Width, font.Texture.Height, Color.Black);
             }
             else
             {
                 // Draw provided text with laoded font, containing all required codepoint glyphs
-                DrawTextEx(font, text, new Vector2(160, 110), 48, 5, Color.BLACK);
+                DrawTextEx(font, text, new Vector2(160, 110), 48, 5, Color.Black);
             }
 
-            DrawText("Press SPACE to toggle font atlas view!", 10, GetScreenHeight() - 30, 20, Color.GRAY);
+            DrawText("Press SPACE to toggle font atlas view!", 10, GetScreenHeight() - 30, 20, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

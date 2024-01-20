@@ -90,7 +90,7 @@ public class EasingsRectangleArray
                     rotation = Easings.EaseLinearIn(framesCounter, 0.0f, 360.0f, PlayTimeInFrames);
                 }
             }
-            else if ((state == 1) && IsKeyPressed(KeyboardKey.KEY_SPACE))
+            else if ((state == 1) && IsKeyPressed(KeyboardKey.Space))
             {
                 // When animation has finished, press space to restart
                 framesCounter = 0;
@@ -108,7 +108,7 @@ public class EasingsRectangleArray
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             if (state == 0)
             {
@@ -118,13 +118,13 @@ public class EasingsRectangleArray
                         recs[i],
                         new Vector2(recs[i].Width / 2, recs[i].Height / 2),
                         rotation,
-                        Color.RED
+                        Color.Red
                     );
                 }
             }
             else if (state == 1)
             {
-                DrawText("PRESS [SPACE] TO PLAY AGAIN!", 240, 200, 20, Color.GRAY);
+                DrawText("PRESS [SPACE] TO PLAY AGAIN!", 240, 200, 20, Color.Gray);
             }
 
             EndDrawing();

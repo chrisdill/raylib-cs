@@ -12,32 +12,32 @@ public enum TextureFilter
     /// <summary>
     /// No filter, just pixel aproximation
     /// </summary>
-    TEXTURE_FILTER_POINT = 0,
+    Point = 0,
 
     /// <summary>
     /// Linear filtering
     /// </summary>
-    TEXTURE_FILTER_BILINEAR,
+    Bilinear,
 
     /// <summary>
     /// Trilinear filtering (linear with mipmaps)
     /// </summary>
-    TEXTURE_FILTER_TRILINEAR,
+    Trilinear,
 
     /// <summary>
     /// Anisotropic filtering 4x
     /// </summary>
-    TEXTURE_FILTER_ANISOTROPIC_4X,
+    Anisotropic4X,
 
     /// <summary>
     /// Anisotropic filtering 8x
     /// </summary>
-    TEXTURE_FILTER_ANISOTROPIC_8X,
+    Anisotropic8X,
 
     /// <summary>
     /// Anisotropic filtering 16x
     /// </summary>
-    TEXTURE_FILTER_ANISOTROPIC_16X,
+    Anisotropic16X,
 }
 
 /// <summary>
@@ -48,22 +48,22 @@ public enum TextureWrap
     /// <summary>
     /// Repeats texture in tiled mode
     /// </summary>
-    TEXTURE_WRAP_REPEAT = 0,
+    Repeat = 0,
 
     /// <summary>
     /// Clamps texture to edge pixel in tiled mode
     /// </summary>
-    TEXTURE_WRAP_CLAMP,
+    Clamp,
 
     /// <summary>
     /// Mirrors and repeats the texture in tiled mode
     /// </summary>
-    TEXTURE_WRAP_MIRROR_REPEAT,
+    MirrorRepeat,
 
     /// <summary>
     /// Mirrors and clamps to border the texture in tiled mode
     /// </summary>
-    TEXTURE_WRAP_MIRROR_CLAMP
+    MirrorClamp
 }
 
 /// <summary>
@@ -74,32 +74,32 @@ public enum CubemapLayout
     /// <summary>
     /// Automatically detect layout type
     /// </summary>
-    CUBEMAP_LAYOUT_AUTO_DETECT = 0,
+    AutoDetect = 0,
 
     /// <summary>
     /// Layout is defined by a vertical line with faces
     /// </summary>
-    CUBEMAP_LAYOUT_LINE_VERTICAL,
+    LineVertical,
 
     /// <summary>
     /// Layout is defined by a horizontal line with faces
     /// </summary>
-    CUBEMAP_LAYOUT_LINE_HORIZONTAL,
+    LineHorizontal,
 
     /// <summary>
     /// Layout is defined by a 3x4 cross with cubemap faces
     /// </summary>
-    CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR,
+    CrossThreeByFour,
 
     /// <summary>
     /// Layout is defined by a 4x3 cross with cubemap faces
     /// </summary>
-    CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE,
+    CrossFourByThree,
 
     /// <summary>
     /// Layout is defined by a panorama image (equirectangular map)
     /// </summary>
-    CUBEMAP_LAYOUT_PANORAMA
+    Panorama
 }
 
 /// <summary>

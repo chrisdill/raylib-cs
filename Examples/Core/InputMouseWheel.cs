@@ -43,12 +43,12 @@ public class InputMouseWheel
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawRectangle(screenWidth / 2 - 40, boxPositionY, 80, 80, Color.MAROON);
+            DrawRectangle(screenWidth / 2 - 40, boxPositionY, 80, 80, Color.Maroon);
 
-            DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, Color.GRAY);
-            DrawText($"Box position Y: {boxPositionY}", 10, 40, 20, Color.LIGHTGRAY);
+            DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, Color.Gray);
+            DrawText($"Box position Y: {boxPositionY}", 10, 40, 20, Color.LightGray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

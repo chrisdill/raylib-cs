@@ -10,17 +10,17 @@ public enum NPatchLayout
     /// <summary>
     /// Npatch defined by 3x3 tiles
     /// </summary>
-    NPATCH_NINE_PATCH = 0,
+    NinePatch = 0,
 
     /// <summary>
     /// Npatch defined by 1x3 tiles
     /// </summary>
-    NPATCH_THREE_PATCH_VERTICAL,
+    ThreePatchVertical,
 
     /// <summary>
     /// Npatch defined by 3x1 tiles
     /// </summary>
-    NPATCH_THREE_PATCH_HORIZONTAL
+    ThreePatchHorizontal
 }
 
 /// <summary>

@@ -72,11 +72,11 @@ public class FontSpritefont
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawTextEx(font1, msg1, fontPosition1, font1.BaseSize, -3, Color.WHITE);
-            DrawTextEx(font2, msg2, fontPosition2, font2.BaseSize, -2, Color.WHITE);
-            DrawTextEx(font3, msg3, fontPosition3, font3.BaseSize, 2, Color.WHITE);
+            DrawTextEx(font1, msg1, fontPosition1, font1.BaseSize, -3, Color.White);
+            DrawTextEx(font2, msg2, fontPosition2, font2.BaseSize, -2, Color.White);
+            DrawTextEx(font3, msg3, fontPosition3, font3.BaseSize, 2, Color.White);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

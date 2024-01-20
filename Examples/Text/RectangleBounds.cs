@@ -37,7 +37,7 @@ public class RectangleBounds
         const int maxHeight = screenHeight - 160;
 
         Vector2 lastMouse = new(0.0f, 0.0f);
-        Color borderColor = Color.MAROON;
+        Color borderColor = Color.Maroon;
         Font font = GetFontDefault();
 
         SetTargetFPS(60);
@@ -48,7 +48,7 @@ public class RectangleBounds
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 wordWrap = !wordWrap;
             }
@@ -58,17 +58,17 @@ public class RectangleBounds
             // Check if the mouse is inside the container and toggle border color
             if (CheckCollisionPointRec(mouse, container))
             {
-                borderColor = ColorAlpha(Color.MAROON, 0.4f);
+                borderColor = ColorAlpha(Color.Maroon, 0.4f);
             }
             else if (!resizing)
             {
-                borderColor = Color.MAROON;
+                borderColor = Color.Maroon;
             }
 
             // Container resizing logic
             if (resizing)
             {
-                if (IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+                if (IsMouseButtonReleased(MouseButton.Left))
                 {
                     resizing = false;
                 }
@@ -82,7 +82,7 @@ public class RectangleBounds
             else
             {
                 // Check if we're resizing
-                if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mouse, resizer))
+                if (IsMouseButtonDown(MouseButton.Left) && CheckCollisionPointRec(mouse, resizer))
                 {
                     resizing = true;
                 }
@@ -98,7 +98,7 @@ public class RectangleBounds
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw container border
             DrawRectangleLinesEx(container, 3, borderColor);
@@ -111,28 +111,28 @@ public class RectangleBounds
                 20.0f,
                 2.0f,
                 wordWrap,
-                Color.GRAY
+                Color.Gray
             );
 
             DrawRectangleRec(resizer, borderColor);
 
             // Draw bottom info
-            DrawRectangle(0, screenHeight - 54, screenWidth, 54, Color.GRAY);
-            DrawRectangleRec(new Rectangle(382, screenHeight - 34, 12, 12), Color.MAROON);
+            DrawRectangle(0, screenHeight - 54, screenWidth, 54, Color.Gray);
+            DrawRectangleRec(new Rectangle(382, screenHeight - 34, 12, 12), Color.Maroon);
 
-            DrawText("Word Wrap: ", 313, screenHeight - 115, 20, Color.BLACK);
+            DrawText("Word Wrap: ", 313, screenHeight - 115, 20, Color.Black);
 
             if (wordWrap)
             {
-                DrawText("ON", 447, screenHeight - 115, 20, Color.RED);
+                DrawText("ON", 447, screenHeight - 115, 20, Color.Red);
             }
             else
             {
-                DrawText("OFF", 447, screenHeight - 115, 20, Color.BLACK);
+                DrawText("OFF", 447, screenHeight - 115, 20, Color.Black);
             }
 
-            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, Color.GRAY);
-            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, Color.RAYWHITE);
+            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, Color.Gray);
+            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, Color.RayWhite);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ public class RectangleBounds
         Color tint
     )
     {
-        DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, Color.WHITE, Color.WHITE);
+        DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, Color.White, Color.White);
     }
 
     // Draw text using font inside rectangle limits with support for text selection

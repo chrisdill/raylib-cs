@@ -10,38 +10,38 @@ public enum MaterialMapIndex
     /// <summary>
     /// NOTE: Same as MATERIAL_MAP_DIFFUSE
     /// </summary>
-    MATERIAL_MAP_ALBEDO = 0,
+    Albedo = 0,
 
     /// <summary>
     /// NOTE: Same as MATERIAL_MAP_SPECULAR
     /// </summary>
-    MATERIAL_MAP_METALNESS,
+    Metalness,
 
-    MATERIAL_MAP_NORMAL,
-    MATERIAL_MAP_ROUGHNESS,
-    MATERIAL_MAP_OCCLUSION,
-    MATERIAL_MAP_EMISSION,
-    MATERIAL_MAP_HEIGHT,
-
-    /// <summary>
-    /// NOTE: Uses GL_TEXTURE_CUBE_MAP
-    /// </summary>
-    MATERIAL_MAP_CUBEMAP,
+    Normal,
+    Roughness,
+    Occlusion,
+    Emission,
+    Height,
 
     /// <summary>
     /// NOTE: Uses GL_TEXTURE_CUBE_MAP
     /// </summary>
-    MATERIAL_MAP_IRRADIANCE,
+    Cubemap,
 
     /// <summary>
     /// NOTE: Uses GL_TEXTURE_CUBE_MAP
     /// </summary>
-    MATERIAL_MAP_PREFILTER,
+    Irradiance,
 
-    MATERIAL_MAP_BRDF,
+    /// <summary>
+    /// NOTE: Uses GL_TEXTURE_CUBE_MAP
+    /// </summary>
+    Prefilter,
 
-    MATERIAL_MAP_DIFFUSE = MATERIAL_MAP_ALBEDO,
-    MATERIAL_MAP_SPECULAR = MATERIAL_MAP_METALNESS,
+    Brdf,
+
+    Diffuse = Albedo,
+    Specular = Metalness,
 }
 
 /// <summary>

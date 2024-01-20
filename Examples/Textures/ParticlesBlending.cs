@@ -60,7 +60,7 @@ public class ParticlesBlending
 
         float gravity = 3.0f;
         Texture2D smoke = LoadTexture("resources/spark_flame.png");
-        BlendMode blending = BlendMode.BLEND_ALPHA;
+        BlendMode blending = BlendMode.Alpha;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -102,15 +102,15 @@ public class ParticlesBlending
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
-                if (blending == BlendMode.BLEND_ALPHA)
+                if (blending == BlendMode.Alpha)
                 {
-                    blending = BlendMode.BLEND_ADDITIVE;
+                    blending = BlendMode.Additive;
                 }
                 else
                 {
-                    blending = BlendMode.BLEND_ALPHA;
+                    blending = BlendMode.Alpha;
                 }
             }
             //----------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ public class ParticlesBlending
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.DARKGRAY);
+            ClearBackground(Color.DarkGray);
 
             BeginBlendMode(blending);
 
@@ -145,15 +145,15 @@ public class ParticlesBlending
 
             EndBlendMode();
 
-            DrawText("PRESS SPACE to CHANGE BLENDING MODE", 180, 20, 20, Color.BLACK);
+            DrawText("PRESS SPACE to CHANGE BLENDING MODE", 180, 20, 20, Color.Black);
 
-            if (blending == BlendMode.BLEND_ALPHA)
+            if (blending == BlendMode.Alpha)
             {
-                DrawText("ALPHA BLENDING", 290, screenHeight - 40, 20, Color.BLACK);
+                DrawText("ALPHA BLENDING", 290, screenHeight - 40, 20, Color.Black);
             }
             else
             {
-                DrawText("ADDITIVE BLENDING", 280, screenHeight - 40, 20, Color.RAYWHITE);
+                DrawText("ADDITIVE BLENDING", 280, screenHeight - 40, 20, Color.RayWhite);
             }
 
             EndDrawing();

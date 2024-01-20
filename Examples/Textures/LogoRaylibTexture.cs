@@ -39,16 +39,16 @@ public class LogoRaylibTexture
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             DrawTexture(
                 texture,
                 screenWidth / 2 - texture.Width / 2,
                 screenHeight / 2 - texture.Height / 2,
-                Color.WHITE
+                Color.White
             );
 
-            DrawText("this IS a texture!", 360, 370, 10, Color.GRAY);
+            DrawText("this IS a texture!", 360, 370, 10, Color.Gray);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

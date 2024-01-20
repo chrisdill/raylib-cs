@@ -62,7 +62,7 @@ public class SpriteExplosion
             //----------------------------------------------------------------------------------
 
             // Check for mouse button pressed and activate explosion (if not active)
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) && !active)
+            if (IsMouseButtonPressed(MouseButton.Left) && !active)
             {
                 position = GetMousePosition();
                 active = true;
@@ -105,12 +105,12 @@ public class SpriteExplosion
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             // Draw explosion required frame rectangle
             if (active)
             {
-                DrawTextureRec(explosion, frameRec, position, Color.WHITE);
+                DrawTextureRec(explosion, frameRec, position, Color.White);
             }
 
             EndDrawing();

@@ -69,12 +69,12 @@ public class JuliaSet
             shader,
             GetShaderLocation(shader, "screenDims"),
             screenDims,
-            ShaderUniformDataType.SHADER_UNIFORM_VEC2
+            ShaderUniformDataType.Vec2
         );
 
-        Raylib.SetShaderValue(shader, cLoc, c, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-        Raylib.SetShaderValue(shader, zoomLoc, zoomLoc, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-        Raylib.SetShaderValue(shader, offsetLoc, offset, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+        Raylib.SetShaderValue(shader, cLoc, c, ShaderUniformDataType.Vec2);
+        Raylib.SetShaderValue(shader, zoomLoc, zoomLoc, ShaderUniformDataType.Float);
+        Raylib.SetShaderValue(shader, offsetLoc, offset, ShaderUniformDataType.Vec2);
 
         // Create a RenderTexture2D to be used for render to texture
         RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
@@ -95,80 +95,80 @@ public class JuliaSet
             // Update
             //----------------------------------------------------------------------------------
             // Press [1 - 6] to reset c to a point of interest
-            if (IsKeyPressed(KeyboardKey.KEY_ONE) ||
-                IsKeyPressed(KeyboardKey.KEY_TWO) ||
-                IsKeyPressed(KeyboardKey.KEY_THREE) ||
-                IsKeyPressed(KeyboardKey.KEY_FOUR) ||
-                IsKeyPressed(KeyboardKey.KEY_FIVE) ||
-                IsKeyPressed(KeyboardKey.KEY_SIX))
+            if (IsKeyPressed(KeyboardKey.One) ||
+                IsKeyPressed(KeyboardKey.Two) ||
+                IsKeyPressed(KeyboardKey.Three) ||
+                IsKeyPressed(KeyboardKey.Four) ||
+                IsKeyPressed(KeyboardKey.Five) ||
+                IsKeyPressed(KeyboardKey.Six))
             {
 
-                if (IsKeyPressed(KeyboardKey.KEY_ONE))
+                if (IsKeyPressed(KeyboardKey.One))
                 {
                     c[0] = PointsOfInterest[0][0];
                     c[1] = PointsOfInterest[0][1];
                 }
-                else if (IsKeyPressed(KeyboardKey.KEY_TWO))
+                else if (IsKeyPressed(KeyboardKey.Two))
                 {
                     c[0] = PointsOfInterest[1][0];
                     c[1] = PointsOfInterest[1][1];
                 }
-                else if (IsKeyPressed(KeyboardKey.KEY_THREE))
+                else if (IsKeyPressed(KeyboardKey.Three))
                 {
                     c[0] = PointsOfInterest[2][0];
                     c[1] = PointsOfInterest[2][1];
                 }
-                else if (IsKeyPressed(KeyboardKey.KEY_FOUR))
+                else if (IsKeyPressed(KeyboardKey.Four))
                 {
                     c[0] = PointsOfInterest[3][0];
                     c[1] = PointsOfInterest[3][1];
                 }
-                else if (IsKeyPressed(KeyboardKey.KEY_FIVE))
+                else if (IsKeyPressed(KeyboardKey.Five))
                 {
                     c[0] = PointsOfInterest[4][0];
                     c[1] = PointsOfInterest[4][1];
                 }
-                else if (IsKeyPressed(KeyboardKey.KEY_SIX))
+                else if (IsKeyPressed(KeyboardKey.Six))
                 {
                     c[0] = PointsOfInterest[5][0];
                     c[1] = PointsOfInterest[5][1];
                 }
-                Raylib.SetShaderValue(shader, cLoc, c, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+                Raylib.SetShaderValue(shader, cLoc, c, ShaderUniformDataType.Vec2);
             }
 
             // Pause animation (c change)
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            if (IsKeyPressed(KeyboardKey.Space))
             {
                 pause = !pause;
             }
 
             // Toggle whether or not to show controls
-            if (IsKeyPressed(KeyboardKey.KEY_F1))
+            if (IsKeyPressed(KeyboardKey.F1))
             {
                 showControls = !showControls;
             }
 
             if (!pause)
             {
-                if (IsKeyPressed(KeyboardKey.KEY_RIGHT))
+                if (IsKeyPressed(KeyboardKey.Right))
                 {
                     incrementSpeed++;
                 }
-                else if (IsKeyPressed(KeyboardKey.KEY_LEFT))
+                else if (IsKeyPressed(KeyboardKey.Left))
                 {
                     incrementSpeed--;
                 }
 
                 // TODO: The idea is to zoom and move around with mouse
                 // Probably offset movement should be proportional to zoom level
-                if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+                if (IsMouseButtonDown(MouseButton.Left) || IsMouseButtonDown(MouseButton.Right))
                 {
-                    if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+                    if (IsMouseButtonDown(MouseButton.Left))
                     {
                         zoom += zoom * 0.003f;
                     }
 
-                    if (IsMouseButtonDown(MouseButton.MOUSE_RIGHT_BUTTON))
+                    if (IsMouseButtonDown(MouseButton.Right))
                     {
                         zoom -= zoom * 0.003f;
                     }
@@ -187,48 +187,48 @@ public class JuliaSet
                     offsetSpeed = new Vector2(0.0f, 0.0f);
                 }
 
-                Raylib.SetShaderValue(shader, zoomLoc, zoom, ShaderUniformDataType.SHADER_UNIFORM_FLOAT);
-                Raylib.SetShaderValue(shader, offsetLoc, offset, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+                Raylib.SetShaderValue(shader, zoomLoc, zoom, ShaderUniformDataType.Float);
+                Raylib.SetShaderValue(shader, offsetLoc, offset, ShaderUniformDataType.Vec2);
 
                 // Increment c value with time
                 float amount = GetFrameTime() * incrementSpeed * 0.0005f;
                 c[0] += amount;
                 c[1] += amount;
 
-                Raylib.SetShaderValue(shader, cLoc, c, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
+                Raylib.SetShaderValue(shader, cLoc, c, ShaderUniformDataType.Vec2);
             }
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.BLACK);
+            ClearBackground(Color.Black);
 
             // Using a render texture to draw Julia set
             // Enable drawing to texture
             BeginTextureMode(target);
-            ClearBackground(Color.BLACK);
+            ClearBackground(Color.Black);
 
             // Draw a rectangle in shader mode to be used as shader canvas
             // NOTE: Rectangle uses font Color.white character texture coordinates,
             // so shader can not be applied here directly because input vertexTexCoord
             // do not represent full screen coordinates (space where want to apply shader)
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color.BLACK);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color.Black);
             EndTextureMode();
 
             // Draw the saved texture and rendered julia set with shader
             // NOTE: We do not invert texture on Y, already considered inside shader
             BeginShaderMode(shader);
-            DrawTexture(target.Texture, 0, 0, Color.WHITE);
+            DrawTexture(target.Texture, 0, 0, Color.White);
             EndShaderMode();
 
             if (showControls)
             {
-                DrawText("Press Mouse buttons right/left to zoom in/out and move", 10, 15, 10, Color.RAYWHITE);
-                DrawText("Press KEY_F1 to toggle these controls", 10, 30, 10, Color.RAYWHITE);
-                DrawText("Press KEYS [1 - 6] to change point of interest", 10, 45, 10, Color.RAYWHITE);
-                DrawText("Press KEY_LEFT | KEY_RIGHT to change speed", 10, 60, 10, Color.RAYWHITE);
-                DrawText("Press KEY_SPACE to pause movement animation", 10, 75, 10, Color.RAYWHITE);
+                DrawText("Press Mouse buttons right/left to zoom in/out and move", 10, 15, 10, Color.RayWhite);
+                DrawText("Press KEY_F1 to toggle these controls", 10, 30, 10, Color.RayWhite);
+                DrawText("Press KEYS [1 - 6] to change point of interest", 10, 45, 10, Color.RayWhite);
+                DrawText("Press KEY_LEFT | KEY_RIGHT to change speed", 10, 60, 10, Color.RayWhite);
+                DrawText("Press KEY_SPACE to pause movement animation", 10, 75, 10, Color.RayWhite);
             }
 
             EndDrawing();

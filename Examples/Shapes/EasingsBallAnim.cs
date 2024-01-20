@@ -79,7 +79,7 @@ public class EasingsBallAnim
             // Reset state to play again
             else if (state == 3)
             {
-                if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+                if (IsKeyPressed(KeyboardKey.Enter))
                 {
                     // Reset required variables to play again
                     ballPositionX = -100;
@@ -89,7 +89,7 @@ public class EasingsBallAnim
                 }
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
                 framesCounter = 0;
             }
@@ -98,18 +98,18 @@ public class EasingsBallAnim
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             if (state >= 2)
             {
-                DrawRectangle(0, 0, screenWidth, screenHeight, Color.GREEN);
+                DrawRectangle(0, 0, screenWidth, screenHeight, Color.Green);
             }
 
-            DrawCircle(ballPositionX, 200, ballRadius, ColorAlpha(Color.RED, 1.0f - ballAlpha));
+            DrawCircle(ballPositionX, 200, ballRadius, ColorAlpha(Color.Red, 1.0f - ballAlpha));
 
             if (state == 3)
             {
-                DrawText("PRESS [ENTER] TO PLAY AGAIN!", 240, 200, 20, Color.BLACK);
+                DrawText("PRESS [ENTER] TO PLAY AGAIN!", 240, 200, 20, Color.Black);
             }
 
             EndDrawing();

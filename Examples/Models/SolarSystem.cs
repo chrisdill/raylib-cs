@@ -40,7 +40,7 @@ public class SolarSystem
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // General system rotation speed
         float rotationSpeed = 0.2f;
@@ -61,7 +61,7 @@ public class SolarSystem
         {
             // Update
             //----------------------------------------------------------------------------------
-            UpdateCamera(ref camera, CameraMode.CAMERA_FREE);
+            UpdateCamera(ref camera, CameraMode.Free);
 
             earthRotation += (5.0f * rotationSpeed);
             earthOrbitRotation += (365 / 360.0f * (5.0f * rotationSpeed) * rotationSpeed);
@@ -72,7 +72,7 @@ public class SolarSystem
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             BeginMode3D(camera);
 
@@ -80,7 +80,7 @@ public class SolarSystem
             // Scale Sun
             Rlgl.Scalef(sunRadius, sunRadius, sunRadius);
             // Draw the Sun
-            DrawSphereBasic(Color.GOLD);
+            DrawSphereBasic(Color.Gold);
             Rlgl.PopMatrix();
 
             Rlgl.PushMatrix();
@@ -98,7 +98,7 @@ public class SolarSystem
             Rlgl.Scalef(earthRadius, earthRadius, earthRadius);
 
             // Draw the Earth
-            DrawSphereBasic(Color.BLUE);
+            DrawSphereBasic(Color.Blue);
             Rlgl.PopMatrix();
 
             // Rotation for Moon orbit around Earth
@@ -113,7 +113,7 @@ public class SolarSystem
             Rlgl.Scalef(moonRadius, moonRadius, moonRadius);
 
             // Draw the Moon
-            DrawSphereBasic(Color.LIGHTGRAY);
+            DrawSphereBasic(Color.LightGray);
             Rlgl.PopMatrix();
 
             // Some reference elements (not affected by previous matrix transformations)
@@ -122,13 +122,13 @@ public class SolarSystem
                 earthOrbitRadius,
                 new Vector3(1, 0, 0),
                 90.0f,
-                ColorAlpha(Color.RED, 0.5f)
+                ColorAlpha(Color.Red, 0.5f)
             );
             DrawGrid(20, 1.0f);
 
             EndMode3D();
 
-            DrawText("EARTH ORBITING AROUND THE SUN!", 400, 10, 20, Color.MAROON);
+            DrawText("EARTH ORBITING AROUND THE SUN!", 400, 10, 20, Color.Maroon);
             DrawFPS(10, 10);
 
             EndDrawing();
@@ -150,7 +150,7 @@ public class SolarSystem
         int rings = 16;
         int slices = 16;
 
-        Rlgl.Begin(DrawMode.TRIANGLES);
+        Rlgl.Begin(DrawMode.Triangles);
         Rlgl.Color4ub(color.R, color.G, color.B, color.A);
 
         for (int i = 0; i < (rings + 2); i++)

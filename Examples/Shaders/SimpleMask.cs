@@ -41,7 +41,7 @@ public class SimpleMask
         camera.Target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.Up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.FovY = 45.0f;
-        camera.Projection = CameraProjection.CAMERA_PERSPECTIVE;
+        camera.Projection = CameraProjection.Perspective;
 
         // Define our three models to show the shader on
         Mesh torus = GenMeshTorus(.3f, 1, 16, 32);
@@ -62,11 +62,11 @@ public class SimpleMask
 
         Material* materials = model1.Materials;
         MaterialMap* maps = materials[0].Maps;
-        model1.Materials[0].Maps[(int)MaterialMapIndex.MATERIAL_MAP_ALBEDO].Texture = texDiffuse;
+        model1.Materials[0].Maps[(int)MaterialMapIndex.Albedo].Texture = texDiffuse;
 
         materials = model2.Materials;
         maps = materials[0].Maps;
-        maps[(int)MaterialMapIndex.MATERIAL_MAP_ALBEDO].Texture = texDiffuse;
+        maps[(int)MaterialMapIndex.Albedo].Texture = texDiffuse;
 
         // Using MAP_EMISSION as a spare slot to use for 2nd texture
         // NOTE: Don't use MAP_IRRADIANCE, MAP_PREFILTER or  MAP_CUBEMAP
@@ -75,14 +75,14 @@ public class SimpleMask
 
         materials = model1.Materials;
         maps = (MaterialMap*)materials[0].Maps;
-        maps[(int)MaterialMapIndex.MATERIAL_MAP_EMISSION].Texture = texMask;
+        maps[(int)MaterialMapIndex.Emission].Texture = texMask;
 
         materials = model2.Materials;
         maps = (MaterialMap*)materials[0].Maps;
-        maps[(int)MaterialMapIndex.MATERIAL_MAP_EMISSION].Texture = texMask;
+        maps[(int)MaterialMapIndex.Emission].Texture = texMask;
 
         int* locs = shader.Locs;
-        locs[(int)ShaderLocationIndex.SHADER_LOC_MAP_EMISSION] = GetShaderLocation(shader, "mask");
+        locs[(int)ShaderLocationIndex.MapEmission] = GetShaderLocation(shader, "mask");
 
         // Frame is incremented each frame to animate the shader
         int shaderFrame = GetShaderLocation(shader, "framesCounter");
@@ -113,31 +113,31 @@ public class SimpleMask
             rotation.Z -= 0.0025f;
 
             // Send frames counter to shader for animation
-            Raylib.SetShaderValue(shader, shaderFrame, framesCounter, ShaderUniformDataType.SHADER_UNIFORM_INT);
+            Raylib.SetShaderValue(shader, shaderFrame, framesCounter, ShaderUniformDataType.Int);
 
             // Rotate one of the models
             model1.Transform = MatrixRotateXYZ(rotation);
 
-            UpdateCamera(ref camera, CameraMode.CAMERA_CUSTOM);
+            UpdateCamera(ref camera, CameraMode.Custom);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.DARKBLUE);
+            ClearBackground(Color.DarkBlue);
 
             BeginMode3D(camera);
 
-            DrawModel(model1, new Vector3(0.5f, 0, 0), 1, Color.WHITE);
-            DrawModelEx(model2, new Vector3(-.5f, 0, 0), new Vector3(1, 1, 0), 50, new Vector3(1, 1, 1), Color.WHITE);
-            DrawModel(model3, new Vector3(0, 0, -1.5f), 1, Color.WHITE);
+            DrawModel(model1, new Vector3(0.5f, 0, 0), 1, Color.White);
+            DrawModelEx(model2, new Vector3(-.5f, 0, 0), new Vector3(1, 1, 0), 50, new Vector3(1, 1, 1), Color.White);
+            DrawModel(model3, new Vector3(0, 0, -1.5f), 1, Color.White);
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
             string frameText = $"Frame: {framesCounter}";
-            DrawRectangle(16, 698, MeasureText(frameText, 20) + 8, 42, Color.BLUE);
-            DrawText(frameText, 20, 700, 20, Color.WHITE);
+            DrawRectangle(16, 698, MeasureText(frameText, 20) + 8, 42, Color.Blue);
+            DrawText(frameText, 20, 700, 20, Color.White);
 
             DrawFPS(10, 10);
 

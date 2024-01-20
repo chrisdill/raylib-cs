@@ -55,7 +55,7 @@ public class InputBox
             if (mouseOnText)
             {
                 // Set the window's cursor to the I-Beam
-                SetMouseCursor(MouseCursor.MOUSE_CURSOR_IBEAM);
+                SetMouseCursor(MouseCursor.IBeam);
 
                 // Check if more characters have been pressed on the same frame
                 int key = GetCharPressed();
@@ -73,7 +73,7 @@ public class InputBox
                     key = GetCharPressed();
                 }
 
-                if (IsKeyPressed(KeyboardKey.KEY_BACKSPACE))
+                if (IsKeyPressed(KeyboardKey.Backspace))
                 {
                     letterCount -= 1;
                     if (letterCount < 0)
@@ -85,7 +85,7 @@ public class InputBox
             }
             else
             {
-                SetMouseCursor(MouseCursor.MOUSE_CURSOR_DEFAULT);
+                SetMouseCursor(MouseCursor.Default);
             }
 
             if (mouseOnText)
@@ -101,10 +101,10 @@ public class InputBox
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
-            DrawText("PLACE MOUSE OVER INPUT BOX!", 240, 140, 20, Color.GRAY);
-            DrawRectangleRec(textBox, Color.LIGHTGRAY);
+            DrawText("PLACE MOUSE OVER INPUT BOX!", 240, 140, 20, Color.Gray);
+            DrawRectangleRec(textBox, Color.LightGray);
 
             if (mouseOnText)
             {
@@ -113,7 +113,7 @@ public class InputBox
                     (int)textBox.Y,
                     (int)textBox.Width,
                     (int)textBox.Height,
-                    Color.RED
+                    Color.Red
                 );
             }
             else
@@ -123,12 +123,12 @@ public class InputBox
                     (int)textBox.Y,
                     (int)textBox.Width,
                     (int)textBox.Height,
-                    Color.DARKGRAY
+                    Color.DarkGray
                 );
             }
 
-            DrawText(new string(name), (int)textBox.X + 5, (int)textBox.Y + 8, 40, Color.MAROON);
-            DrawText($"INPUT CHARS: {letterCount}/{MaxInputChars}", 315, 250, 20, Color.DARKGRAY);
+            DrawText(new string(name), (int)textBox.X + 5, (int)textBox.Y + 8, 40, Color.Maroon);
+            DrawText($"INPUT CHARS: {letterCount}/{MaxInputChars}", 315, 250, 20, Color.DarkGray);
 
             if (mouseOnText)
             {
@@ -142,13 +142,13 @@ public class InputBox
                             (int)textBox.X + 8 + MeasureText(new string(name), 40),
                             (int)textBox.Y + 12,
                             40,
-                            Color.MAROON
+                            Color.Maroon
                         );
                     }
                 }
                 else
                 {
-                    DrawText("Press BACKSPACE to delete chars...", 230, 300, 20, Color.GRAY);
+                    DrawText("Press BACKSPACE to delete chars...", 230, 300, 20, Color.Gray);
                 }
             }
 

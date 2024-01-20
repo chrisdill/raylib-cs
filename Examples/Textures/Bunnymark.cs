@@ -53,7 +53,7 @@ public class Bunnymark
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsMouseButtonDown(MouseButton.Left))
             {
                 // Create more bunnies
                 for (int i = 0; i < 100; i++)
@@ -98,7 +98,7 @@ public class Bunnymark
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             for (int i = 0; i < bunniesCount; i++)
             {
@@ -111,9 +111,9 @@ public class Bunnymark
                 DrawTexture(texBunny, (int)bunnies[i].Position.X, (int)bunnies[i].Position.Y, bunnies[i].Color);
             }
 
-            DrawRectangle(0, 0, screenWidth, 40, Color.BLACK);
-            DrawText($"bunnies: {bunniesCount}", 120, 10, 20, Color.GREEN);
-            DrawText($"batched draw calls: {1 + bunniesCount / MAX_BATCH_ELEMENTS}", 320, 10, 20, Color.MAROON);
+            DrawRectangle(0, 0, screenWidth, 40, Color.Black);
+            DrawText($"bunnies: {bunniesCount}", 120, 10, 20, Color.Green);
+            DrawText($"batched draw calls: {1 + bunniesCount / MAX_BATCH_ELEMENTS}", 320, 10, 20, Color.Maroon);
 
             DrawFPS(10, 10);
 

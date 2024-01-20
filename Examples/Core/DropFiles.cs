@@ -45,30 +45,30 @@ public class DropFiles
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            ClearBackground(Color.RAYWHITE);
+            ClearBackground(Color.RayWhite);
 
             if (files.Length == 0)
             {
-                DrawText("Drop your files to this window!", 100, 40, 20, Color.DARKGRAY);
+                DrawText("Drop your files to this window!", 100, 40, 20, Color.DarkGray);
             }
             else
             {
-                DrawText("Dropped files:", 100, 40, 20, Color.DARKGRAY);
+                DrawText("Dropped files:", 100, 40, 20, Color.DarkGray);
 
                 for (int i = 0; i < files.Length; i++)
                 {
                     if (i % 2 == 0)
                     {
-                        DrawRectangle(0, 85 + 40 * i, screenWidth, 40, ColorAlpha(Color.LIGHTGRAY, 0.5f));
+                        DrawRectangle(0, 85 + 40 * i, screenWidth, 40, ColorAlpha(Color.LightGray, 0.5f));
                     }
                     else
                     {
-                        DrawRectangle(0, 85 + 40 * i, screenWidth, 40, ColorAlpha(Color.LIGHTGRAY, 0.3f));
+                        DrawRectangle(0, 85 + 40 * i, screenWidth, 40, ColorAlpha(Color.LightGray, 0.3f));
                     }
-                    DrawText(files[i], 120, 100 + 40 * i, 10, Color.GRAY);
+                    DrawText(files[i], 120, 100 + 40 * i, 10, Color.Gray);
                 }
 
-                DrawText("Drop new files...", 100, 110 + 40 * files.Length, 20, Color.DARKGRAY);
+                DrawText("Drop new files...", 100, 110 + 40 * files.Length, 20, Color.DarkGray);
             }
 
             EndDrawing();
