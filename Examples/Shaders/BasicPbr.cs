@@ -198,13 +198,21 @@ public class BasicPbr
                 // Draw spheres to show the lights positions
                 for (int i = 0; i < 4; i++)
                 {
+                    var color = lights[i].Color;
+                    var lightColor = new Color(
+                        (byte)(color.X * 255),
+                        (byte)(color.Y * 255),
+                        (byte)(color.Z * 255),
+                        (byte)(color.W * 255)
+                    );
+
                     if (lights[i].Enabled)
                     {
-                        DrawSphereEx(lights[i].Position, 0.2f, 8, 8, lights[i].Color);
+                        DrawSphereEx(lights[i].Position, 0.2f, 8, 8, lightColor);
                     }
                     else
                     {
-                        DrawSphereWires(lights[i].Position, 0.2f, 8, 8, ColorAlpha(lights[i].Color, 0.3f));
+                        DrawSphereWires(lights[i].Position, 0.2f, 8, 8, ColorAlpha(lightColor, 0.3f));
                     }
                 }
 

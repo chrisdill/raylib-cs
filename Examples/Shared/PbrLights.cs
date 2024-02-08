@@ -9,7 +9,7 @@ public struct PbrLight
     public bool Enabled;
     public Vector3 Position;
     public Vector3 Target;
-    public Color Color;
+    public Vector4 Color;
     public float Intensity;
 
     // Shader light parameters locations
@@ -46,7 +46,12 @@ public class PbrLights
         light.Type = type;
         light.Position = pos;
         light.Target = target;
-        light.Color = color;
+        light.Color = new Vector4(
+            color.R / 255.0f,
+            color.G / 255.0f,
+            color.B / 255.0f,
+            color.A / 255.0f
+        );
         light.Intensity = intensity;
 
         string enabledName = "lights[" + lightsCount + "].enabled";
@@ -61,7 +66,7 @@ public class PbrLights
         light.PositionLoc = GetShaderLocation(shader, posName);
         light.TargetLoc = GetShaderLocation(shader, targetName);
         light.ColorLoc = GetShaderLocation(shader, colorName);
-        light.ColorLoc = GetShaderLocation(shader, intensityName);
+        light.IntensityLoc = GetShaderLocation(shader, intensityName);
 
         UpdateLightValues(shader, light);
 
@@ -86,14 +91,7 @@ public class PbrLights
         Raylib.SetShaderValue(shader, light.TargetLoc, light.Target, ShaderUniformDataType.Vec3);
 
         // Send to shader light color values
-        float[] color = new[]
-        {
-                (float)light.Color.R / (float)255,
-                (float)light.Color.G / (float)255,
-                (float)light.Color.B / (float)255,
-                (float)light.Color.A / (float)255
-            };
-        Raylib.SetShaderValue(shader, light.ColorLoc, color, ShaderUniformDataType.Vec4);
+        Raylib.SetShaderValue(shader, light.ColorLoc, light.Color, ShaderUniformDataType.Vec4);
 
         // Send to shader light intensity values
         Raylib.SetShaderValue(shader, light.IntensityLoc, light.Intensity, ShaderUniformDataType.Float);
