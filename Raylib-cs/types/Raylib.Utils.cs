@@ -1261,6 +1261,30 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>
+    /// Attach audio stream processor to the entire audio pipeline
+    /// </summary>
+    public static void AttachAudioMixedProcessor(AudioCallback<float> processor)
+    {
+        if (AudioMixed.Callback == null)
+        {
+            AudioMixed.Callback = processor;
+            AttachAudioMixedProcessor(&AudioMixed.Processor);
+        }
+    }
+
+    /// <summary>
+    /// Detach audio stream processor from the entire audio pipeline
+    /// </summary>
+    public static void DetachAudioMixedProcessor(AudioCallback<float> processor)
+    {
+        if (AudioMixed.Callback == processor)
+        {
+            DetachAudioMixedProcessor(&AudioMixed.Processor);
+            AudioMixed.Callback = null;
+        }
+    }
+
     public static string SubText(this string input, int position, int length)
     {
         return input.Substring(position, Math.Min(length, input.Length));

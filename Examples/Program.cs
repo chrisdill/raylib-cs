@@ -129,6 +129,7 @@ public class ExampleList
 
         // Shaders
         new ExampleInfo("BasicLighting", BasicLighting.Main),
+        new ExampleInfo("BasicPbr", BasicPbr.Main),
         new ExampleInfo("CustomUniform", CustomUniform.Main),
         new ExampleInfo("Eratosthenes", Eratosthenes.Main),
         new ExampleInfo("Fog", Fog.Main),
