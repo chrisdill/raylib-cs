@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>12</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Core/LoadingThread.cs"/>
+        <Compile Remove="Text/Unicode.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Raylib_cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
+<!--        <ProjectReference Include="../Raylib-cs.Native/Raylib-cs.Native.csproj" />-->
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Serilog" Version="3.1.1" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    </ItemGroup>
+</Project>
