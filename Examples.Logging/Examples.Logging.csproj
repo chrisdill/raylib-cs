@@ -8,21 +8,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-    <ItemGroup>
-        <Compile Remove="Core/LoadingThread.cs"/>
-        <Compile Remove="Text/Unicode.cs"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Using Include="Raylib_cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />
+<!--    <ItemGroup>-->
+<!--        <ProjectReference Include="../Raylib-cs/Raylib-cs.csproj" />-->
 <!--        <ProjectReference Include="../Raylib-cs.Native/Raylib-cs.Native.csproj" />-->
-    </ItemGroup>
+<!--    </ItemGroup>-->
 
     <ItemGroup>
+      <PackageReference Include="Raylib-cs" Version="6.0.0" />
       <PackageReference Include="Serilog" Version="3.1.1" />
       <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Raylib_cs;
 using Serilog;
-using static Raylib_cs.Raylib;
 
 namespace Examples.Logging;
 
@@ -29,7 +29,7 @@ public static class CustomSerilogLogging
         // Attach Logger to callback
         //--------------------------------------------------------------------------------------
         unsafe {
-            SetTraceLogCallback(GetPointer());
+            Raylib.SetTraceLogCallback(GetPointer());
         }
 
         Logger.Information("Logger has been set to Raylib-cs TraceLogCallback");
@@ -39,25 +39,25 @@ public static class CustomSerilogLogging
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        InitWindow(screenWidth, screenHeight, "raylib custom Logger example - basic window");
+        Raylib.InitWindow(screenWidth, screenHeight, "raylib custom Logger example - basic window");
 
         // Main game loop
-        while (!WindowShouldClose())
+        while (!Raylib.WindowShouldClose())
         {
             // Draw
             //----------------------------------------------------------------------------------
-            BeginDrawing();
-            ClearBackground(Color.RayWhite);
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.RayWhite);
 
-            DrawText("Hello World!", 190, 200, 20, Color.Black);
+            Raylib.DrawText("Hello World!", 190, 200, 20, Color.Black);
 
-            EndDrawing();
+            Raylib.EndDrawing();
             //----------------------------------------------------------------------------------
         }
 
         // De-Initialization
         //--------------------------------------------------------------------------------------
-        CloseWindow();
+        Raylib.CloseWindow();
         //--------------------------------------------------------------------------------------
 
         return 0;
