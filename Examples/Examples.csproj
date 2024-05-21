@@ -5,7 +5,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <StartupObject>Examples.Program</StartupObject>
     <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
-    <LangVersion>10</LangVersion>
+    <LangVersion>12</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
