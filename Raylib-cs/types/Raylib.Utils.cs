@@ -911,15 +911,6 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <summary>Unload mesh from memory (RAM and/or VRAM)</summary>
-    public static void UnloadMesh(ref Mesh mesh)
-    {
-        fixed (Mesh* p = &mesh)
-        {
-            UnloadMesh(p);
-        }
-    }
-
     /// <summary>Set texture for a material map type (MAP_DIFFUSE, MAP_SPECULAR...)</summary>
     public static void SetMaterialTexture(ref Material material, MaterialMapIndex mapType, Texture2D texture)
     {
@@ -1258,6 +1249,30 @@ public static unsafe partial class Raylib
             );
 
             return music;
+        }
+    }
+
+    /// <summary>
+    /// Attach audio stream processor to the entire audio pipeline
+    /// </summary>
+    public static void AttachAudioMixedProcessor(AudioCallback<float> processor)
+    {
+        if (AudioMixed.Callback == null)
+        {
+            AudioMixed.Callback = processor;
+            AttachAudioMixedProcessor(&AudioMixed.Processor);
+        }
+    }
+
+    /// <summary>
+    /// Detach audio stream processor from the entire audio pipeline
+    /// </summary>
+    public static void DetachAudioMixedProcessor(AudioCallback<float> processor)
+    {
+        if (AudioMixed.Callback == processor)
+        {
+            DetachAudioMixedProcessor(&AudioMixed.Processor);
+            AudioMixed.Callback = null;
         }
     }
 
