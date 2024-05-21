@@ -2350,7 +2350,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Unload mesh from memory (RAM and/or VRAM)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void UnloadMesh(Mesh* mesh);
+    public static extern void UnloadMesh(Mesh mesh);
 
     /// <summary>Draw a 3d mesh with material and transform</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
