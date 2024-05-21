@@ -911,15 +911,6 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <summary>Unload mesh from memory (RAM and/or VRAM)</summary>
-    public static void UnloadMesh(ref Mesh mesh)
-    {
-        fixed (Mesh* p = &mesh)
-        {
-            UnloadMesh(p);
-        }
-    }
-
     /// <summary>Set texture for a material map type (MAP_DIFFUSE, MAP_SPECULAR...)</summary>
     public static void SetMaterialTexture(ref Material material, MaterialMapIndex mapType, Texture2D texture)
     {
