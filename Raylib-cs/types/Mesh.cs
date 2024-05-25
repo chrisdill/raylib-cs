@@ -71,7 +71,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocVertices()
     {
-        Vertices = Raylib.New<float>(3 * VertexCount);
+        Vertices = Raylib.New<float>(3 * (uint)VertexCount);
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocTexCoords()
     {
-        TexCoords = Raylib.New<float>(2 * VertexCount);
+        TexCoords = Raylib.New<float>(2 * (uint)VertexCount);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocTexCoords2()
     {
-        TexCoords2 = Raylib.New<float>(2 * VertexCount);
+        TexCoords2 = Raylib.New<float>(2 * (uint)VertexCount);
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocNormals()
     {
-        Normals = Raylib.New<float>(3 * VertexCount);
+        Normals = Raylib.New<float>(3 * (uint)VertexCount);
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocTangents()
     {
-        Tangents = Raylib.New<float>(4 * VertexCount);
+        Tangents = Raylib.New<float>(4 * (uint)VertexCount);
     }
 
     /// <summary>
@@ -111,7 +111,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocColors()
     {
-        Colors = Raylib.New<byte>(4 * VertexCount);
+        Colors = Raylib.New<byte>(4 * (uint)VertexCount);
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public unsafe partial struct Mesh
     /// </summary>
     public void AllocIndices()
     {
-        Indices = Raylib.New<ushort>(3 * TriangleCount);
+        Indices = Raylib.New<ushort>(3 * (uint)TriangleCount);
     }
 
     /// <summary>

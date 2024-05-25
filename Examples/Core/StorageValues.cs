@@ -93,13 +93,13 @@ public class StorageValues
 
     // Save integer value to storage file (to defined position)
     // NOTE: Storage positions is directly related to file memory layout (4 bytes each integer)
-    private static unsafe bool SaveStorageValue(string fileName, uint position, int value)
+    private static unsafe bool SaveStorageValue(string fileName, int position, int value)
     {
         using var fileNameBuffer = fileName.ToUtf8Buffer();
 
         bool success = false;
-        uint dataSize = 0;
-        uint newDataSize = 0;
+        int dataSize = 0;
+        int newDataSize = 0;
 
         byte* fileData = LoadFileData(fileNameBuffer.AsPointer(), &dataSize);
         byte* newFileData = null;
@@ -110,7 +110,7 @@ public class StorageValues
             {
                 // Increase data size up to position and store value
                 newDataSize = (position + 1) * sizeof(int);
-                newFileData = (byte*)MemRealloc(fileData, (int)newDataSize);
+                newFileData = (byte*)MemRealloc(fileData, (uint)newDataSize);
 
                 if (newFileData != null)
                 {
@@ -121,7 +121,7 @@ public class StorageValues
                 else
                 {
                     // RL_REALLOC failed
-                    uint positionInBytes = position * sizeof(int);
+                    int positionInBytes = position * sizeof(int);
                     TraceLog(
                         TraceLogLevel.Warning,
                         @$"FILEIO: [{fileName}] Failed to realloc data ({dataSize}),
@@ -154,7 +154,7 @@ public class StorageValues
             TraceLog(TraceLogLevel.Info, $"FILEIO: [{fileName}] File created successfully");
 
             dataSize = (position + 1) * sizeof(int);
-            fileData = (byte*)MemAlloc((int)dataSize);
+            fileData = (byte*)MemAlloc((uint)dataSize);
             int* dataPtr = (int*)fileData;
             dataPtr[position] = value;
 
@@ -174,7 +174,7 @@ public class StorageValues
         using var fileNameBuffer = fileName.ToUtf8Buffer();
 
         int value = 0;
-        uint dataSize = 0;
+        int dataSize = 0;
         byte* fileData = LoadFileData(fileNameBuffer.AsPointer(), &dataSize);
 
         if (fileData != null)

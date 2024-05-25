@@ -31,7 +31,7 @@ public class FontSdf
         string msg = "Signed Distance Fields";
 
         // Loading file to memory
-        uint fileSize = 0;
+        int fileSize = 0;
         byte* fileData = LoadFileData("resources/fonts/anonymous_pro_bold.ttf", ref fileSize);
 
         // Default font generation from TTF font

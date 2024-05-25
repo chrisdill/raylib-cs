@@ -464,7 +464,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Load random values sequence, no values repeated</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern int* LoadRandomSequence(int count, int min, int max);
+    public static extern int* LoadRandomSequence(uint count, int min, int max);
 
     /// <summary>Unload random values sequence</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -488,11 +488,11 @@ public static unsafe partial class Raylib
 
     /// <summary>Internal memory allocator</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void* MemAlloc(int size);
+    public static extern void* MemAlloc(uint size);
 
     /// <summary>Internal memory reallocator</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void* MemRealloc(void* ptr, int size);
+    public static extern void* MemRealloc(void* ptr, uint size);
 
     /// <summary>Internal memory free</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -508,12 +508,12 @@ public static unsafe partial class Raylib
 
     /// <summary>Set custom file binary data loader</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void SetLoadFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*> callback);
+    public static extern void SetLoadFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, int*, byte*> callback);
 
     /// <summary>Set custom file binary data saver</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetSaveFileDataCallback(
-        delegate* unmanaged[Cdecl]<sbyte*, void*, uint, CBool> callback
+        delegate* unmanaged[Cdecl]<sbyte*, void*, int, CBool> callback
     );
 
     /// <summary>Set custom file text data loader</summary>
@@ -529,7 +529,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Load file data as byte array (read)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* LoadFileData(sbyte* fileName, uint* bytesRead);
+    public static extern byte* LoadFileData(sbyte* fileName, int* dataSize);
 
     /// <summary>Unload file data allocated by LoadFileData()</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -537,11 +537,11 @@ public static unsafe partial class Raylib
 
     /// <summary>Save data to file from byte array (write), returns true on success</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool SaveFileData(sbyte* fileName, void* data, uint bytesToWrite);
+    public static extern CBool SaveFileData(sbyte* fileName, void* data, int dataSize);
 
     /// <summary>Export data to code (.h), returns true on success</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool ExportDataAsCode(byte* data, uint size, sbyte* fileName);
+    public static extern CBool ExportDataAsCode(byte* data, int dataSize, sbyte* fileName);
 
     // Load text data from file (read), returns a '\0' terminated string
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2452,7 +2452,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Load model animations from file</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern ModelAnimation* LoadModelAnimations(sbyte* fileName, uint* animCount);
+    public static extern ModelAnimation* LoadModelAnimations(sbyte* fileName, int* animCount);
 
     /// <summary>Update model animation pose</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2464,7 +2464,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Unload animation array data</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void UnloadModelAnimations(ModelAnimation* animations, uint animCount);
+    public static extern void UnloadModelAnimations(ModelAnimation* animations, int animCount);
 
     /// <summary>Check model animation skeleton match</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
