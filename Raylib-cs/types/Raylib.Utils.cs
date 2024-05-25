@@ -230,16 +230,16 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>C++ style memory allocator</summary>
-    public static T* New<T>(int count) where T : unmanaged
+    public static T* New<T>(uint count) where T : unmanaged
     {
-        return (T*)MemAlloc(count * sizeof(T));
+        return (T*)MemAlloc(count * (uint)sizeof(T));
     }
 
     /// <summary>Load file data as byte array (read)</summary>
-    public static byte* LoadFileData(string fileName, ref uint bytesRead)
+    public static byte* LoadFileData(string fileName, ref int bytesRead)
     {
         using var str1 = fileName.ToAnsiBuffer();
-        fixed (uint* p = &bytesRead)
+        fixed (int* p = &bytesRead)
         {
             return LoadFileData(str1.AsPointer(), p);
         }
@@ -930,10 +930,10 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>Load model animations from file</summary>
-    public static ModelAnimation* LoadModelAnimations(string fileName, ref uint animCount)
+    public static ModelAnimation* LoadModelAnimations(string fileName, ref int animCount)
     {
         using var str1 = fileName.ToAnsiBuffer();
-        fixed (uint* p = &animCount)
+        fixed (int* p = &animCount)
         {
             return LoadModelAnimations(str1.AsPointer(), p);
         }
