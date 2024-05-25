@@ -468,7 +468,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Unload random values sequence</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void UnloadRandomSequence(int *sequence);
+    public static extern void UnloadRandomSequence(int* sequence);
 
     /// <summary>Takes a screenshot of current screen (saved a .png)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1195,23 +1195,23 @@ public static unsafe partial class Raylib
 
     /// <summary>Draw spline: Linear, minimum 2 points</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawSplineLinear(Vector2 *points, int pointCount, float thick, Color color);
+    public static extern void DrawSplineLinear(Vector2* points, int pointCount, float thick, Color color);
 
     /// <summary>Draw spline: B-Spline, minimum 4 points</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawSplineBasis(Vector2 *points, int pointCount, float thick, Color color);
+    public static extern void DrawSplineBasis(Vector2* points, int pointCount, float thick, Color color);
 
     /// <summary>Draw spline: Catmull-Rom, minimum 4 points</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawSplineCatmullRom(Vector2 *points, int pointCount, float thick, Color color);
+    public static extern void DrawSplineCatmullRom(Vector2* points, int pointCount, float thick, Color color);
 
     /// <summary>Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawSplineBezierQuadratic(Vector2 *points, int pointCount, float thick, Color color);
+    public static extern void DrawSplineBezierQuadratic(Vector2* points, int pointCount, float thick, Color color);
 
     /// <summary>Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawSplineBezierCubic(Vector2 *points, int pointCount, float thick, Color color);
+    public static extern void DrawSplineBezierCubic(Vector2* points, int pointCount, float thick, Color color);
 
     /// <summary>Draw spline segment: Linear, 2 points</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1368,7 +1368,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Export image to memory buffer</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern char* ExportImageToMemory(Image image, sbyte* fileType, int *fileSize);
+    public static extern byte* ExportImageToMemory(Image image, sbyte* fileType, int* fileSize);
 
     /// <summary>Export image as code file defining an array of bytes</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -1519,7 +1519,7 @@ public static unsafe partial class Raylib
 
     /// <summary>Rotate image by input angle in degrees (-359 to 359)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImageRotate(Image *image, int degrees);
+    public static extern void ImageRotate(Image* image, int degrees);
 
     /// <summary>Rotate image clockwise 90deg</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
