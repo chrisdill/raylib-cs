@@ -18,29 +18,10 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: setup dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install \
-            libasound2-dev \
-            libx11-dev \
-            libxrandr-dev \
-            libxi-dev \
-            libgl1-mesa-dev \
-            libglu1-mesa-dev \
-            libxcursor-dev \
-            libxinerama-dev
-
       - name: setup dotnet
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-
-      - name: build and run tests
-        run: dotnet test Raylib-cs.Tests -c Release
-
-      - name: build examples desktop
-        run: dotnet build Examples -c Release
 
       - name: check raylib version
         id: version
@@ -66,25 +47,17 @@ jobs:
             libxcursor-dev \
             libxinerama-dev
 
-      - name: build raylib
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          cmake -S raylib-${version} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
-          cmake --build build --config Release
+      - name: build projects
+        run: dotnet build -c Release
+
+      - name: run tests
+        run: dotnet test Raylib-cs.Tests -c Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
           name: linux-x64
-          path: build/raylib/libraylib.so
+          path: Raylib-cs.Native/obj/Release/net6.0/native/raylib/libraylib.so
           if-no-files-found: error
 
   build-osx:
@@ -99,25 +72,17 @@ jobs:
           - name: x64
             arch: x86_64
     steps:
-      - name: build raylib
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          cmake -S raylib-${version} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D CMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF
-          cmake --build build --config Release
+      - name: build projects
+        run: dotnet build -c Release
+
+      - name: run tests
+        run: dotnet test Raylib-cs.Tests -c Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
           name: osx-${{ matrix.name }}
-          path: build/raylib/libraylib.dylib
+          path: Raylib-cs.Native/obj/Release/net6.0/native/raylib/libraylib.dylib
           if-no-files-found: error
 
   build-windows:
@@ -132,52 +97,28 @@ jobs:
           - name: x64
             arch: x64
     steps:
-      - name: build ${{ matrix.arch }}
-        shell: bash
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          cmake -S raylib-${version} \
-            -A ${{ matrix.arch }} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
-          cmake --build build --config Release
+      - name: build projects
+        run: dotnet build -c Release
+
+      - name: run tests
+        run: dotnet test Raylib-cs.Tests -c Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
           name: win-${{ matrix.name }}
-          path: build/raylib/Release/raylib.dll
+          path: Raylib-cs.Native/obj/Release/net6.0/native/raylib/raylib.dll
           if-no-files-found: error
 
-  publish:
+  build-publish:
     runs-on: ubuntu-20.04
     needs:
-      - build
       - build-linux
       - build-osx
       - build-windows
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
-
-      - name: setup dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install \
-            libasound2-dev \
-            libx11-dev \
-            libxrandr-dev \
-            libxi-dev \
-            libgl1-mesa-dev \
-            libglu1-mesa-dev \
-            libxcursor-dev \
-            libxinerama-dev
 
       - uses: actions/download-artifact@v3
         with:
