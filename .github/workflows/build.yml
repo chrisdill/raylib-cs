@@ -34,6 +34,9 @@ jobs:
     runs-on: ubuntu-20.04
     needs: build
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
       - name: setup dependencies
         run: |
           sudo apt-get update
@@ -72,6 +75,9 @@ jobs:
           - name: x64
             arch: x86_64
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
       - name: build projects
         run: dotnet build -c Release
 
@@ -97,6 +103,9 @@ jobs:
           - name: x64
             arch: x64
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
       - name: build projects
         run: dotnet build -c Release
 
