@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: linux-x64
-          path: Raylib-cs.Native/obj/Release/net6.0/native/raylib/libraylib.so
+          path: Raylib-cs.Native/bin/Release/native/raylib/libraylib.so
           if-no-files-found: error
 
   build-osx:
@@ -93,7 +93,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: osx-${{ matrix.name }}
-          path: Raylib-cs.Native/obj/Release/net6.0/native/raylib/libraylib.dylib
+          path: Raylib-cs.Native/bin/Release/native/raylib/libraylib.dylib
           if-no-files-found: error
 
   build-windows:
@@ -126,7 +126,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: win-${{ matrix.name }}
-          path: Raylib-cs.Native/obj/Release/net6.0/native/raylib/Release/raylib.dll
+          path: Raylib-cs.Native/bin/Release/native/raylib/Release/raylib.dll
           if-no-files-found: error
 
   build-publish:
