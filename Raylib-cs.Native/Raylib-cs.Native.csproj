@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk" InitialTargets="ConfigureNative">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Raylib-cs.Native</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <Import Project="../Raylib-cs/Build.props" />
@@ -24,34 +24,35 @@
 
   <ItemGroup>
     <Content
-      Include="$(IntermediateOutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)"
+      Include="$(OutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)"
       Link="%(Filename)%(Extension)"
       CopyToOutputDirectory="PreserveNewest"
-      Condition="Exists('$(IntermediateOutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)')" />
-    <CMakeArgs Include="-B $(IntermediateOutputPath)native" />
-    <CMakeArgs Include="-S $(IntermediateOutputPath)raylib-$(TargetRaylibTag)" />
+      Condition="Exists('$(OutputPath)native/raylib/$(NativePre)raylib.$(NativeExt)')" />
+
+    <CMakeArgs Include="-B $(OutputPath)native" />
+    <CMakeArgs Include="-S $(BaseIntermediateOutputPath)raylib-$(TargetRaylibTag)" />
     <CMakeArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
     <CMakeArgs Include="-D BUILD_SHARED_LIBS=ON" />
     <CMakeArgs Include="-D BUILD_EXAMPLES=OFF" />
     <!-- <CMakeArgs Include="-D GRAPHICS=GRAPHICS_API_OPENGL_43" /> -->
   </ItemGroup>
 
-  <Target Name="ConfigureNative" BeforeTargets="BuildNative" Condition="$(SkipLocalBuild) != true">
+  <Target Name="ConfigureNative" Condition="$(SkipLocalBuild) != true">
     <DownloadFile
       SourceUrl="https://github.com/raysan5/raylib/archive/refs/tags/$(TargetRaylibTag).zip"
-      DestinationFolder="$(IntermediateOutputPath)"
+      DestinationFolder="$(BaseIntermediateOutputPath)"
       DestinationFileName="raylib.zip"
-      Condition="!Exists('$(IntermediateOutputPath)raylib.zip')" />
-    <Unzip
-      SourceFiles="$(IntermediateOutputPath)raylib.zip"
-      DestinationFolder="$(IntermediateOutputPath)"
-      OverwriteReadOnlyFiles="true"
-      Condition="!Exists('$(IntermediateOutputPath)raylib-$(TargetRaylibTag)')" />
-    <Exec Command="cmake @(CMakeArgs, ' ') $(CMakeExtraArgs)"
-      Condition="!Exists('$(IntermediateOutputPath)native/CMakeCache.txt')" />
-  </Target>
+      Condition="!Exists('$(BaseIntermediateOutputPath)raylib.zip')" />
 
-  <Target Name="BuildNative" BeforeTargets="BeforeBuild" Condition="$(SkipLocalBuild) != true">
-    <Exec Command="cmake --build $(IntermediateOutputPath)native --config $(Configuration)" />
+    <Unzip
+      SourceFiles="$(BaseIntermediateOutputPath)raylib.zip"
+      DestinationFolder="$(BaseIntermediateOutputPath)"
+      OverwriteReadOnlyFiles="true"
+      Condition="!Exists('$(BaseIntermediateOutputPath)raylib-$(TargetRaylibTag)')" />
+    
+    <Exec Command="cmake @(CMakeArgs, ' ') $(CMakeExtraArgs)"
+      Condition="!Exists('$(BaseIntermediateOutputPath)native/CMakeCache.txt')" />
+
+    <Exec Command="cmake --build $(OutputPath)native --config $(Configuration)" />
   </Target>
 </Project>

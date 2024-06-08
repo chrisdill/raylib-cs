@@ -18,30 +18,6 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: setup dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install \
-            libasound2-dev \
-            libx11-dev \
-            libxrandr-dev \
-            libxi-dev \
-            libgl1-mesa-dev \
-            libglu1-mesa-dev \
-            libxcursor-dev \
-            libxinerama-dev
-
-      - name: setup dotnet
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
-
-      - name: build and run tests
-        run: dotnet test Raylib-cs.Tests -c Release
-
-      - name: build examples desktop
-        run: dotnet build Examples -c Release
-
       - name: check raylib version
         id: version
         shell: bash
@@ -49,57 +25,18 @@ jobs:
           echo "version=$(sed -n 's/.*<TargetRaylibTag>\(.*\)<\/TargetRaylibTag>.*/\1/p' Raylib-cs/Build.props)">> ${GITHUB_OUTPUT}
           echo "pkgversion=$(sed -n 's/.*<PackageVersion>\(.*\)<\/PackageVersion>.*/\1/p' Raylib-cs/Build.props)">> ${GITHUB_OUTPUT}
 
-  build-android:
-    runs-on: ubuntu-20.04
-    needs: build
-    strategy:
-      matrix:
-        name: [arm, arm64, x86, x64]
-        include:
-          - name: arm
-            arch: armeabi-v7a
-            cflags: "-mfloat-abi=softfp -mfpu=vfpv3-d16"
-          - name: arm64
-            arch: arm64-v8a
-            cflags: "-mfix-cortex-a53-835769"
-          - name: x86
-            arch: x86
-          - name: x64
-            arch: x86_64
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v3
-
-      - name: build raylib
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          pushd raylib-${version}; patch -p1 < ../Examples.Android/android.patch; popd
-          cmake -S raylib-${version} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
-            -D PLATFORM=Android \
-            -D ANDROID_ABI=${{ matrix.arch }} \
-            -D ANDROID_PLATFORM=21 \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
-          cmake --build build --config Release
-
-      - name: upload build
-        uses: actions/upload-artifact@v3
-        with:
-          name: android-${{ matrix.name }}
-          path: build/raylib/libraylib.so
-          if-no-files-found: error
-
   build-linux:
     runs-on: ubuntu-20.04
     needs: build
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
       - name: setup dependencies
         run: |
           sudo apt-get update
@@ -113,25 +50,17 @@ jobs:
             libxcursor-dev \
             libxinerama-dev
 
-      - name: build raylib
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          cmake -S raylib-${version} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
-          cmake --build build --config Release
+      - name: build projects
+        run: dotnet build -c Release
+
+      - name: run tests
+        run: dotnet test Raylib-cs.Tests -c Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
           name: linux-x64
-          path: build/raylib/libraylib.so
+          path: Raylib-cs.Native/bin/Release/native/raylib/libraylib.so
           if-no-files-found: error
 
   build-osx:
@@ -146,25 +75,25 @@ jobs:
           - name: x64
             arch: x86_64
     steps:
-      - name: build raylib
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          cmake -S raylib-${version} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D CMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF
-          cmake --build build --config Release
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: build projects
+        run: dotnet build -c Release
+
+      - name: run tests
+        run: dotnet test Raylib-cs.Tests -c Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
           name: osx-${{ matrix.name }}
-          path: build/raylib/libraylib.dylib
+          path: Raylib-cs.Native/bin/Release/native/raylib/libraylib.dylib
           if-no-files-found: error
 
   build-windows:
@@ -179,73 +108,36 @@ jobs:
           - name: x64
             arch: x64
     steps:
-      - name: build ${{ matrix.arch }}
-        shell: bash
-        env:
-          version: ${{ needs.build.outputs.version }}
-        run: |
-          curl -Lso raylib.zip https://github.com/raysan5/raylib/archive/refs/tags/${version}.zip
-          unzip -qq raylib.zip
-          cmake -S raylib-${version} \
-            -A ${{ matrix.arch }} \
-            -B build \
-            -D CMAKE_BUILD_TYPE=Release \
-            -D BUILD_SHARED_LIBS=ON \
-            -D BUILD_EXAMPLES=OFF \
-            -D CMAKE_C_FLAGS="${{ matrix.cflags }}"
-          cmake --build build --config Release
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: build projects
+        run: dotnet build -c Release
+
+      - name: run tests
+        run: dotnet test Raylib-cs.Tests -c Release
 
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
           name: win-${{ matrix.name }}
-          path: build/raylib/Release/raylib.dll
+          path: Raylib-cs.Native/bin/Release/native/raylib/Release/raylib.dll
           if-no-files-found: error
 
-  publish:
+  build-publish:
     runs-on: ubuntu-20.04
     needs:
-      - build
-      - build-android
       - build-linux
       - build-osx
       - build-windows
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
-
-      - name: setup dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install \
-            libasound2-dev \
-            libx11-dev \
-            libxrandr-dev \
-            libxi-dev \
-            libgl1-mesa-dev \
-            libglu1-mesa-dev \
-            libxcursor-dev \
-            libxinerama-dev
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: android-arm
-          path: Examples.Android/runtimes/android-arm/native
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: android-arm64
-          path: Examples.Android/runtimes/android-arm64/native
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: android-x86
-          path: Examples.Android/runtimes/android-x86/native
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: android-x64
-          path: Examples.Android/runtimes/android-x64/native
 
       - uses: actions/download-artifact@v3
         with:
@@ -276,12 +168,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-
-      #- name: restore workload
-      #  run: dotnet workload restore
-
-      #- name: build examples android
-      #  run: dotnet build Examples.Android -c Release
 
       - name: create NuGet Package
         run: dotnet pack Raylib-cs -c Release --output nuget
