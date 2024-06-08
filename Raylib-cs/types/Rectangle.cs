@@ -48,7 +48,10 @@ public partial struct Rectangle
 
     public Vector2 Position
     {
-        readonly get { return new Vector2(X,Y); }
+        readonly get
+        {
+            return new Vector2(X, Y);
+        }
         set
         {
             X = value.X;
@@ -58,7 +61,10 @@ public partial struct Rectangle
 
     public Vector2 Size
     {
-        readonly get { return new Vector2(Width,Height); }
+        readonly get
+        {
+            return new Vector2(Width, Height);
+        }
         set
         {
             Width = value.X;

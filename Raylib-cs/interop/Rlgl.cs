@@ -613,9 +613,9 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlGetGlTextureFormats", CallingConvention = CallingConvention.Cdecl)]
     public static extern void GetGlTextureFormats(
         PixelFormat format,
-        int* glInternalFormat,
-        int* glFormat,
-        int* glType
+        uint* glInternalFormat,
+        uint* glFormat,
+        uint* glType
     );
 
     /// <summary>Get OpenGL internal formats</summary>

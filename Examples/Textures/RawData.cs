@@ -44,7 +44,7 @@ public class RawData
         int height = 480;
 
         // Store pixel data
-        Color* pixels = (Color*)Raylib.MemAlloc(width * height * sizeof(Color));
+        Color* pixels = (Color*)Raylib.MemAlloc((uint)(width * height * sizeof(Color)));
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)

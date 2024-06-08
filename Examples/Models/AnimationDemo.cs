@@ -47,7 +47,7 @@ public class AnimationDemo
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);
         // Load animation data
-        uint animsCount = 0;
+        int animsCount = 0;
         var anims = LoadModelAnimations("resources/models/iqm/guyanim.iqm", ref animsCount);
         int animFrameCounter = 0;
 
