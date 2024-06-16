@@ -107,7 +107,7 @@ public static class Bunnymark
             BeginDrawing();
             ClearBackground(Color.RayWhite);
 
-            foreach (ref var bunny in bunnies[..bunniesCount])
+            foreach (var bunny in bunnies[..bunniesCount])
             {
                 // NOTE: When internal batch buffer limit is reached (MAX_BATCH_ELEMENTS),
                 // a draw call is launched and buffer starts being filled again;
