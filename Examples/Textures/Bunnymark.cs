@@ -68,12 +68,11 @@ public static class Bunnymark
             if (IsMouseButtonDown(MouseButton.Left) && bunniesCount < MaxBunnies)
             {
                 // Add a range of new bunnies
-                Enumerable.Range(0, BunnyIncrement)
-                    .Select(_ => new Bunny())
-                    .ToArray()
-                    .CopyTo(bunnies[bunniesCount..]);
-
-                bunniesCount+= BunnyIncrement;
+                foreach (ref var bunny in bunnies[bunniesCount..(bunniesCount+BunnyIncrement)])
+                {
+                    bunny = new();
+                }
+                bunniesCount += BunnyIncrement;
             }
             else if (IsMouseButtonDown(MouseButton.Right))
             {
