@@ -68,17 +68,20 @@ public class ModelLoading
 
             if (IsFileDropped())
             {
-                string[] files = Raylib.GetDroppedFiles();
+                string[] droppedFiles = Raylib.GetDroppedFiles();
 
-                if (files.Length == 1)
+                if (droppedFiles.Length == 1)
                 {
-                    if (IsFileExtension(files[0], ".obj") ||
-                        IsFileExtension(files[0], ".gltf") ||
-                        IsFileExtension(files[0], ".iqm")
+                    if (IsFileExtension(droppedFiles[0], ".obj") ||
+                        IsFileExtension(droppedFiles[0], ".gltf") ||
+                        IsFileExtension(droppedFiles[0], ".glb") ||
+                        IsFileExtension(droppedFiles[0], ".vox") ||
+                        IsFileExtension(droppedFiles[0], ".iqm") ||
+                        IsFileExtension(droppedFiles[0], ".m3d")
                     )
                     {
                         UnloadModel(model);
-                        model = LoadModel(files[0]);
+                        model = LoadModel(droppedFiles[0]);
 
                         // Set current map diffuse texture
                         Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
@@ -87,11 +90,11 @@ public class ModelLoading
 
                         // TODO: Move camera position from target enough distance to visualize model properly
                     }
-                    else if (IsFileExtension(files[0], ".png"))
+                    else if (IsFileExtension(droppedFiles[0], ".png"))
                     {
                         // Unload model texture and load new one
                         UnloadTexture(texture);
-                        texture = LoadTexture(files[0]);
+                        texture = LoadTexture(droppedFiles[0]);
                         Raylib.SetMaterialTexture(ref model, 0, MaterialMapIndex.Albedo, ref texture);
                     }
                 }
