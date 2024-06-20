@@ -84,7 +84,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: build projects
-        run: dotnet build -c Release
+        run: dotnet build -c Release /p:BuildArch=${{ matrix.arch }} 
 
       - name: run tests
         run: dotnet test Raylib-cs.Tests -c Release
@@ -117,7 +117,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: build projects
-        run: dotnet build -c Release
+        run: dotnet build -c Release /p:BuildArch=${{ matrix.arch }} 
 
       - name: run tests
         run: dotnet test Raylib-cs.Tests -c Release

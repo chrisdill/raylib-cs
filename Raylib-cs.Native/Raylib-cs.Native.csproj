@@ -10,17 +10,38 @@
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
     <NativeExt>so</NativeExt>
     <NativePre>lib</NativePre>
+    <NativeArch>x64</NativeArch>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
     <NativeExt>dylib</NativeExt>
     <NativePre>lib</NativePre>
+    <NativeArch Condition="$(BuildArch) == ''">x86_x64</NativeArch>
+    <NativeArch Condition="$(BuildArch) != ''">$(BuildArch)</NativeArch>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <NativeExt>dll</NativeExt>
     <NativePre>$(Configuration)/</NativePre>
+    <NativeArch Condition="$(BuildArch) == ''">x64</NativeArch>
+    <NativeArch Condition="$(BuildArch) != ''">$(BuildArch)</NativeArch>
   </PropertyGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX')) AND $(NativeArch) == 'arm64'">
+    <CMakeArgs Include="-D CMAKE_OSX_ARCHITECTURES=arm64" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX')) AND $(NativeArch) == 'x86_64'">
+    <CMakeArgs Include="-D CMAKE_OSX_ARCHITECTURES=x86_64" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Windows')) AND $(NativeArch) == 'x86'">
+    <CMakeArgs Include="-A win32" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Windows')) AND $(NativeArch) == 'x64'">
+    <CMakeArgs Include="-A x64" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content
@@ -49,7 +70,7 @@
       DestinationFolder="$(BaseIntermediateOutputPath)"
       OverwriteReadOnlyFiles="true"
       Condition="!Exists('$(BaseIntermediateOutputPath)raylib-$(TargetRaylibTag)')" />
-    
+
     <Exec Command="cmake @(CMakeArgs, ' ') $(CMakeExtraArgs)"
       Condition="!Exists('$(BaseIntermediateOutputPath)native/CMakeCache.txt')" />
 
