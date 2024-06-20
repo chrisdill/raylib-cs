@@ -48,42 +48,49 @@ public class WriteDepth
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
 
-        UpdateCamera(ref camera, CameraMode.Orbital);
-        //----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())
+        {
+            // Update
+            //----------------------------------------------------------------------------------
+            UpdateCamera(ref camera, CameraMode.Orbital);
+            //----------------------------------------------------------------------------------
 
-        // Draw
-        //----------------------------------------------------------------------------------
-        // Draw into our custom render texture (framebuffer)
-        BeginTextureMode(target);
-        ClearBackground(Color.White);
+            // Draw
+            //----------------------------------------------------------------------------------
 
-        BeginMode3D(camera);
-        BeginShaderMode(shader);
+            // Draw into our custom render texture (framebuffer)
+            BeginTextureMode(target);
+            ClearBackground(Color.White);
 
-        DrawCubeWiresV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Red);
-        DrawCubeV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Purple);
-        DrawCubeWiresV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.DarkGreen);
-        DrawCubeV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Yellow);
-        DrawGrid(10, 1.0f);
+            BeginMode3D(camera);
+            BeginShaderMode(shader);
 
-        EndShaderMode();
-        EndMode3D();
-        EndTextureMode();
+            DrawCubeWiresV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Red);
+            DrawCubeV(new Vector3(0.0f, 0.5f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Purple);
+            DrawCubeWiresV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.DarkGreen);
+            DrawCubeV(new Vector3(0.0f, 0.5f, -1.0f), new Vector3(1.0f, 1.0f, 1.0f), Color.Yellow);
+            DrawGrid(10, 1.0f);
 
-        // Draw custom render texture
-        BeginDrawing();
-        ClearBackground(Color.RayWhite);
+            EndShaderMode();
+            EndMode3D();
+            EndTextureMode();
 
-        DrawTextureRec(
-            target.Texture,
-            new Rectangle(0, 0, screenWidth, -screenHeight),
-            Vector2.Zero,
-            Color.White
-        );
-        DrawFPS(10, 10);
+            // Draw custom render texture
+            BeginDrawing();
+            ClearBackground(Color.RayWhite);
 
-        EndDrawing();
-        //----------------------------------------------------------------------------------
+            DrawTextureRec(
+                target.Texture,
+                new Rectangle(0, 0, screenWidth, -screenHeight),
+                Vector2.Zero,
+                Color.White
+            );
+            DrawFPS(10, 10);
+
+            EndDrawing();
+            //----------------------------------------------------------------------------------
+        }
 
         // De-Initialization
         //--------------------------------------------------------------------------------------
