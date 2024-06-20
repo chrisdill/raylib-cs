@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetRaylibTag>5.0</TargetRaylibTag>
-    <Version>6.0.0</Version>
-    <PackageVersion>6.0.0</PackageVersion>
+    <Version>6.1.0</Version>
+    <PackageVersion>6.1.0</PackageVersion>
   </PropertyGroup>
 
 </Project>

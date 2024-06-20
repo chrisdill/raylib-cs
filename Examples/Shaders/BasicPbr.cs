@@ -267,18 +267,19 @@ public class BasicPbr
         //--------------------------------------------------------------------------------------
         // Unbind (disconnect) shader from car.material[0]
         // to avoid UnloadMaterial() trying to unload it automatically
-
+        car.Materials[0].Shader = new();
         UnloadMaterial(car.Materials[0]);
         car.Materials[0].Maps = null;
         UnloadModel(car);
 
+        floor.Materials[0].Shader = new();
         UnloadMaterial(floor.Materials[0]);
         floor.Materials[0].Maps = null;
         UnloadModel(floor);
 
-        UnloadShader(shader); // Unload Shader
+        UnloadShader(shader);
 
-        CloseWindow(); // Close window and OpenGL context
+        CloseWindow();
         //--------------------------------------------------------------------------------------
 
         return 0;
