@@ -1,16 +1,18 @@
-![Raylib-cs Logo](https://raw.githubusercontent.com/ChrisDill/Raylib-cs/master/Raylib-cs/logo/raylib-cs_256x256.png "Raylib-cs Logo")
+![Raylib-cs Logo](Raylib-cs/logo/raylib-cs_256x256.png "Raylib-cs Logo")
 
 # Raylib-cs
 
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
-[![GitHub contributors](https://img.shields.io/github/contributors/ChrisDill/Raylib-cs)](https://github.com/ChrisDill/Raylib-cs/graphs/contributors)
+[![GitHub contributors](https://img.shields.io/github/contributors/chrisdill/raylib-cs)](https://github.com/chrisdill/raylib-cs/graphs/contributors)
+
 [![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE)
 
 [![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/raylib)
-[![GitHub stars](https://img.shields.io/github/stars/ChrisDill/Raylib-cs?style=social)](https://github.com/ChrisDill/Raylib-cs/stargazers)
 
-[![Build](https://github.com/ChrisDill/Raylib-cs/workflows/Build/badge.svg)](https://github.com/ChrisDill/Raylib-cs/actions?query=workflow%3ABuild)
+[![GitHub stars](https://img.shields.io/github/stars/chrisdill/raylib-cs?style=social)](https://github.com/chrisdill/raylib-cs/stargazers)
+
+[![Build](https://github.com/chrisdill/raylib-cs/workflows/Build/badge.svg)](https://github.com/chrisdill/raylib-cs/actions?query=workflow%3ABuild)
 
 Raylib-cs targets net6.0 and uses the [official 5.0 release](https://github.com/raysan5/raylib/releases/tag/5.0) to build the native libraries.
 
@@ -18,9 +20,9 @@ Raylib-cs targets net6.0 and uses the [official 5.0 release](https://github.com/
 
 This is the prefered method to get started.
 
-1) Pick a folder in which you would like to start a raylib project for example "MyRaylibCSProj"
-2) Then from a terminal (for example a VSCode terminal), whilst in the folder dir you just created
-    run the following commands. (Please keep in mind you should have .NET already installed on your system)
+1) Pick a folder in which you would like to start a raylib project. For example "MyRaylibCSProj".
+2) Then from a terminal (for example a VSCode terminal), whilst in the directory you just created
+    run the following commands. (Please keep in mind .NET should already be installed on your system)
 
 ```
 dotnet new console
@@ -80,12 +82,10 @@ class Program
 
 ## Contributing
 
-If you have any ideas, feel free to open an issue and tell me what you think.
-If you'd like to contribute, please fork the repository and make changes as
-you'd like. Pull requests are warmly welcome.
+If you have any ideas, feel free to open an issue. If you'd like to contribute, please fork the
+repository and make changes as you'd like. Pull requests are warmly welcome.
 
-If you want to request features or report bugs related to raylib directly (in contrast to this binding), please refer
-to the [author's project repo](https://github.com/raysan5/raylib).
+If you want to request features or report bugs related to raylib directly (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
 
 ## License
 
