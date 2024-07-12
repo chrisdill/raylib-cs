@@ -5,16 +5,17 @@
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/chrisdill/raylib-cs)](https://github.com/chrisdill/raylib-cs/graphs/contributors)
-
 [![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE)
-
 [![Chat on Discord](https://img.shields.io/discord/426912293134270465.svg?logo=discord)](https://discord.gg/raylib)
-
 [![GitHub stars](https://img.shields.io/github/stars/chrisdill/raylib-cs?style=social)](https://github.com/chrisdill/raylib-cs/stargazers)
-
 [![Build](https://github.com/chrisdill/raylib-cs/workflows/Build/badge.svg)](https://github.com/chrisdill/raylib-cs/actions?query=workflow%3ABuild)
 
 Raylib-cs targets net6.0 and uses the [official 5.0 release](https://github.com/raysan5/raylib/releases/tag/5.0) to build the native libraries.
+
+## Status
+
+Raylib-cs is passively maintained. Occasional updates may be released from time to time. Pull requests may be
+accepted if they don't have a large maintainence burden.
 
 ## Installation - NuGet
 
@@ -82,8 +83,8 @@ class Program
 
 ## Contributing
 
-If you have any ideas, feel free to open an issue. If you'd like to contribute, please fork the
-repository and make changes as you'd like. Pull requests are warmly welcome.
+Feel free to open an issue. If you'd like to contribute, please fork the repository and make 
+changes as you'd like. Pull requests are welcome.
 
 If you want to request features or report bugs related to raylib directly (in contrast to this binding), please refer to the [author's project repo](https://github.com/raysan5/raylib).
 
