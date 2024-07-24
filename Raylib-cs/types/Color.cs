@@ -43,6 +43,9 @@ public partial struct Color
     public static readonly Color Magenta = new Color(255, 0, 255, 255);
     public static readonly Color RayWhite = new Color(245, 245, 245, 255);
 
+    /// <summary>
+    /// Constructor with transparency
+    /// </summary>
     public Color(byte r, byte g, byte b, byte a)
     {
         this.R = r;
@@ -51,6 +54,9 @@ public partial struct Color
         this.A = a;
     }
 
+    /// <summary>
+    /// Constructor without transparency, the color is made opaque by setting <see cref="A"/> to 255
+    /// </summary>
     public Color(byte r, byte g, byte b)
     {
         this.R = r;
@@ -59,6 +65,10 @@ public partial struct Color
         this.A = 255;
     }
 
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte, byte)"/>.
+    /// Accepts <see cref="int"/>'s and converts them into <see cref="byte"/>'s by <see cref="Convert.ToByte(int)"/>
+    /// </summary>
     public Color(int r, int g, int b, int a)
     {
         this.R = Convert.ToByte(r);
@@ -67,6 +77,10 @@ public partial struct Color
         this.A = Convert.ToByte(a);
     }
 
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte)"/>.
+    /// Accepts <see cref="int"/>'s and converts them into <see cref="byte"/>'s by <see cref="Convert.ToByte(int)"/>
+    /// </summary>
     public Color(int r, int g, int b)
     {
         this.R = Convert.ToByte(r);
@@ -75,6 +89,11 @@ public partial struct Color
         this.A = 255;
     }
 
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte, byte)"/>.
+    /// Accepts <see cref="float"/>'s, upscales and clamps them to the range 0..255.
+    /// Then they are converted to <see cref="byte"/>'s by rounding.
+    /// </summary>
     public Color(float r, float g, float b, float a)
     {
         //   X = (byte)Math.Clamp(MathF.Round(r * 255), 0f, 255f);
@@ -84,6 +103,11 @@ public partial struct Color
         this.A = (byte)((a < 0) ? 0 : ((a > 1) ? 255 : ((a * 255) + .5f)));
     }
 
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte)"/>.
+    /// Accepts <see cref="float"/>'s, upscales and clamps them to the range 0..255.
+    /// Then they are converted to <see cref="byte"/>'s by rounding.
+    /// </summary>
     public Color(float r, float g, float b)
     {
         //   X = (byte)Math.Clamp(MathF.Round(r * 255), 0f, 255f);
