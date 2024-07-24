@@ -96,7 +96,7 @@ public partial struct Color
     /// </summary>
     public Color(float r, float g, float b, float a)
     {
-        //   X = (byte)Math.Clamp(MathF.Round(r * 255), 0f, 255f);
+        //   X = (byte)Math.Clamp(MathF.Round(x * 255), 0f, 255f);
         this.R = (byte)((r < 0) ? 0 : ((r > 1) ? 255 : ((r * 255) + .5f)));
         this.G = (byte)((g < 0) ? 0 : ((g > 1) ? 255 : ((g * 255) + .5f)));
         this.B = (byte)((b < 0) ? 0 : ((b > 1) ? 255 : ((b * 255) + .5f)));
@@ -110,7 +110,7 @@ public partial struct Color
     /// </summary>
     public Color(float r, float g, float b)
     {
-        //   X = (byte)Math.Clamp(MathF.Round(r * 255), 0f, 255f);
+        //   X = (byte)Math.Clamp(MathF.Round(x * 255), 0f, 255f);
         this.R = (byte)((r < 0) ? 0 : ((r > 1) ? 255 : ((r * 255) + .5f)));
         this.G = (byte)((g < 0) ? 0 : ((g > 1) ? 255 : ((g * 255) + .5f)));
         this.B = (byte)((b < 0) ? 0 : ((b > 1) ? 255 : ((b * 255) + .5f)));
