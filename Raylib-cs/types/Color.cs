@@ -43,6 +43,9 @@ public partial struct Color
     public static readonly Color Magenta = new Color(255, 0, 255, 255);
     public static readonly Color RayWhite = new Color(245, 245, 245, 255);
 
+    /// <summary>
+    /// Constructor with transparency
+    /// </summary>
     public Color(byte r, byte g, byte b, byte a)
     {
         this.R = r;
@@ -51,12 +54,67 @@ public partial struct Color
         this.A = a;
     }
 
+    /// <summary>
+    /// Constructor without transparency, the color is made opaque by setting <see cref="A"/> to 255
+    /// </summary>
+    public Color(byte r, byte g, byte b)
+    {
+        this.R = r;
+        this.G = g;
+        this.B = b;
+        this.A = 255;
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte, byte)"/>.
+    /// Accepts <see cref="int"/>'s and converts them into <see cref="byte"/>'s by <see cref="Convert.ToByte(int)"/>
+    /// </summary>
     public Color(int r, int g, int b, int a)
     {
         this.R = Convert.ToByte(r);
         this.G = Convert.ToByte(g);
         this.B = Convert.ToByte(b);
         this.A = Convert.ToByte(a);
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte)"/>.
+    /// Accepts <see cref="int"/>'s and converts them into <see cref="byte"/>'s by <see cref="Convert.ToByte(int)"/>
+    /// </summary>
+    public Color(int r, int g, int b)
+    {
+        this.R = Convert.ToByte(r);
+        this.G = Convert.ToByte(g);
+        this.B = Convert.ToByte(b);
+        this.A = 255;
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte, byte)"/>.
+    /// Accepts <see cref="float"/>'s, upscales and clamps them to the range 0..255.
+    /// Then they are converted to <see cref="byte"/>'s by rounding.
+    /// </summary>
+    public Color(float r, float g, float b, float a)
+    {
+        //   X = (byte)Math.Clamp(MathF.Round(x * 255), 0f, 255f);
+        this.R = (byte)((r < 0) ? 0 : ((r > 1) ? 255 : ((r * 255) + .5f)));
+        this.G = (byte)((g < 0) ? 0 : ((g > 1) ? 255 : ((g * 255) + .5f)));
+        this.B = (byte)((b < 0) ? 0 : ((b > 1) ? 255 : ((b * 255) + .5f)));
+        this.A = (byte)((a < 0) ? 0 : ((a > 1) ? 255 : ((a * 255) + .5f)));
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="Color(byte, byte, byte)"/>.
+    /// Accepts <see cref="float"/>'s, upscales and clamps them to the range 0..255.
+    /// Then they are converted to <see cref="byte"/>'s by rounding.
+    /// </summary>
+    public Color(float r, float g, float b)
+    {
+        //   X = (byte)Math.Clamp(MathF.Round(x * 255), 0f, 255f);
+        this.R = (byte)((r < 0) ? 0 : ((r > 1) ? 255 : ((r * 255) + .5f)));
+        this.G = (byte)((g < 0) ? 0 : ((g > 1) ? 255 : ((g * 255) + .5f)));
+        this.B = (byte)((b < 0) ? 0 : ((b > 1) ? 255 : ((b * 255) + .5f)));
+        this.A = 255;
     }
 
     public override string ToString()
