@@ -216,5 +216,40 @@ public unsafe partial struct Mesh
     /// </summary>
     public uint* VboId = default;
 
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="Vertices"/>
+    /// </summary>
+    public const int VboIdIndexVertices = 0;
+
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="TexCoords"/>
+    /// </summary>
+    public const int VboIdIndexTexCoords = 1;
+
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="Normals"/>
+    /// </summary>
+    public const int VboIdIndexNormals = 2;
+
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="Colors"/>
+    /// </summary>
+    public const int VboIdIndexColors = 3;
+
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="Tangents"/>
+    /// </summary>
+    public const int VboIdIndexTangents = 4;
+
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="TexCoords2"/>
+    /// </summary>
+    public const int VboIdIndexTexCoords2 = 5;
+
+    /// <summary>
+    /// Default <see cref="VboId"/> index for <see cref="Indices"/>
+    /// </summary>
+    public const int VboIdIndexIndices = 6;
+
     #endregion
 }
