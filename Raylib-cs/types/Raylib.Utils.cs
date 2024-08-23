@@ -911,6 +911,15 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary> Update mesh vertex data in GPU for a specific buffer index </summary>
+    public static void UpdateMeshBuffer<T>(Mesh mesh, int index, ReadOnlySpan<T> data, int offset) where T : unmanaged
+    {
+        fixed (void* dataPtr = data)
+        {
+            UpdateMeshBuffer(mesh, index, dataPtr, data.Length * sizeof(T), offset);
+        }
+    }
+
     /// <summary>Set texture for a material map type (MAP_DIFFUSE, MAP_SPECULAR...)</summary>
     public static void SetMaterialTexture(ref Material material, MaterialMapIndex mapType, Texture2D texture)
     {
