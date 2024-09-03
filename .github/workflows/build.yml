@@ -139,27 +139,27 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: linux-x64
           path: Raylib-cs/runtimes/linux-x64/native
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: osx-arm64
           path: Raylib-cs/runtimes/osx-arm64/native
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: osx-x64
           path: Raylib-cs/runtimes/osx-x64/native
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: win-x86
           path: Raylib-cs/runtimes/win-x86/native
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: win-x64
           path: Raylib-cs/runtimes/win-x64/native
