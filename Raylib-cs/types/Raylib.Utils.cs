@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs;
@@ -420,6 +421,12 @@ public static unsafe partial class Raylib
         {
             return CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, p);
         }
+    }
+
+    public static CBool CheckCollisionPointPoly(Vector2 point, Vector2[] points)
+    {
+        var pointsPtr = (Vector2*)Unsafe.AsPointer<Vector2>(ref MemoryMarshal.GetArrayDataReference(points));
+        return CheckCollisionPointPoly(point, pointsPtr, points.Length);
     }
 
     /// <summary>Generate image: grayscale image from text data</summary>
