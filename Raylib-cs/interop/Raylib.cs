@@ -1290,6 +1290,12 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool CheckCollisionPointPoly(Vector2 point, Vector2* points, int pointCount);
 
+    public unsafe static bool CheckCollisionPointPoly(Vector2 point, Vector2[] points, int pointCount)
+    {
+        var pointsPtr = (Vector2*)Unsafe.AsPointer<Vector2>(ref MemoryMarshal.GetArrayDataReference(points));
+        return Raylib.CheckCollisionPointPoly(point, pointsPtr, pointCount);
+    }
+
     /// <summary>
     /// Check the collision between two lines defined by two points each, returns collision point by reference
     /// </summary>
