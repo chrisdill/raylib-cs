@@ -1,7 +1,6 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
 using System.Security;
 
 namespace Raylib_cs;
@@ -1290,12 +1289,6 @@ public static unsafe partial class Raylib
     /// <summary>Check if point is within a polygon described by array of vertices</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool CheckCollisionPointPoly(Vector2 point, Vector2* points, int pointCount);
-
-    public static bool CheckCollisionPointPoly(Vector2 point, Vector2[] points)
-    {
-        var pointsPtr = (Vector2*)Unsafe.AsPointer<Vector2>(ref MemoryMarshal.GetArrayDataReference(points));
-        return CheckCollisionPointPoly(point, pointsPtr, points.Length);
-    }
 
     /// <summary>
     /// Check the collision between two lines defined by two points each, returns collision point by reference
