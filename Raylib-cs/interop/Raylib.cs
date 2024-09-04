@@ -1294,7 +1294,7 @@ public static unsafe partial class Raylib
     public unsafe static bool CheckCollisionPointPoly(Vector2 point, Vector2[] points, int pointCount)
     {
         var pointsPtr = (Vector2*)Unsafe.AsPointer<Vector2>(ref MemoryMarshal.GetArrayDataReference(points));
-        return Raylib.CheckCollisionPointPoly(point, pointsPtr, pointCount);
+        return CheckCollisionPointPoly(point, pointsPtr, pointCount);
     }
 
     /// <summary>
