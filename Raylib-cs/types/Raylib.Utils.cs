@@ -425,8 +425,10 @@ public static unsafe partial class Raylib
 
     public static CBool CheckCollisionPointPoly(Vector2 point, Vector2[] points)
     {
-        var pointsPtr = (Vector2*)Unsafe.AsPointer<Vector2>(ref MemoryMarshal.GetArrayDataReference(points));
-        return CheckCollisionPointPoly(point, pointsPtr, points.Length);
+        fixed (Vector2* pointsPtr = &MemoryMarshal.GetArrayDataReference(points))
+        {
+            return CheckCollisionPointPoly(point, pointsPtr, points.Length);
+        }
     }
 
     /// <summary>Generate image: grayscale image from text data</summary>
