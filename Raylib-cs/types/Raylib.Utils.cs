@@ -425,7 +425,7 @@ public static unsafe partial class Raylib
 
     public static CBool CheckCollisionPointPoly(Vector2 point, Vector2[] points)
     {
-        fixed (Vector2* pointsPtr = &MemoryMarshal.GetArrayDataReference(points))
+        fixed (Vector2* pointsPtr = &points[0])
         {
             return CheckCollisionPointPoly(point, pointsPtr, points.Length);
         }
