@@ -422,6 +422,14 @@ public static unsafe partial class Raylib
         }
     }
 
+    public static CBool CheckCollisionPointPoly(Vector2 point, Vector2[] points)
+    {
+        fixed (Vector2* p = points)
+        {
+            return CheckCollisionPointPoly(point, p, points.Length);
+        }
+    }
+
     /// <summary>Generate image: grayscale image from text data</summary>
     public static Image GenImageText(int width, int height, string text)
     {
