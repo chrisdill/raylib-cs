@@ -408,9 +408,9 @@ public static unsafe partial class Raylib
 
     // Screen-space-related functions
 
-    /// <summary>Get a ray trace from mouse position</summary>
+    /// <summary>Get a ray trace from screen position (i.e mouse)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern Ray GetMouseRay(Vector2 mousePosition, Camera3D camera);
+    public static extern Ray GetScreenToWorldRay(Vector2 position, Camera3D camera);
 
     /// <summary>Get camera transform matrix (view matrix)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]

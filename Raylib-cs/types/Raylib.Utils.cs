@@ -1322,4 +1322,11 @@ public static unsafe partial class Raylib
     {
         model.Materials[materialIndex].Shader = shader;
     }
+
+    /// <summary>Get a ray trace from mouse position</summary>
+    [ObsoleteAttribute("This method is obsolete. Call GetScreenToWorldRay instead.")]
+    public static Ray GetMouseRay(Vector2 mousePosition, Camera3D camera)
+    {
+        return GetScreenToWorldRay(mousePosition, camera);
+    }
 }
