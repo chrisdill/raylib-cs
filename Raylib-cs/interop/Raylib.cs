@@ -412,6 +412,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Ray GetScreenToWorldRay(Vector2 position, Camera3D camera);
 
+    /// <summary>Get a ray trace from screen position (i.e mouse) in a viewport</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Ray GetScreenToWorldRayEx(Vector2 position, Camera3D camera, int width, int height);
+
     /// <summary>Get camera transform matrix (view matrix)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Matrix4x4 GetCameraMatrix(Camera3D camera);
