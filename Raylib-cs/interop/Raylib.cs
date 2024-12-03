@@ -50,19 +50,19 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool IsWindowFullscreen();
 
-    /// <summary>Check if window is currently hidden (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Check if window is currently hidden</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool IsWindowHidden();
 
-    /// <summary>Check if window is currently minimized (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Check if window is currently minimized</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool IsWindowMinimized();
 
-    /// <summary>Check if window is currently maximized (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Check if window is currently maximized</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool IsWindowMaximized();
 
-    /// <summary>Check if window is currently focused (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Check if window is currently focused</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool IsWindowFocused();
 
@@ -82,39 +82,39 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ClearWindowState(ConfigFlags flag);
 
-    /// <summary>Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Toggle window state: fullscreen/windowed, resizes monitor to match window resolution</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ToggleFullscreen();
 
-    /// <summary>Toggle window state: borderless windowed (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Toggle window state: borderless windowed, resizes window to match monitor resolution</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ToggleBorderlessWindowed();
 
-    /// <summary>Set window state: maximized, if resizable (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set window state: maximized, if resizable</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void MaximizeWindow();
 
-    /// <summary>Set window state: minimized, if resizable (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set window state: minimized, if resizable</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void MinimizeWindow();
 
-    /// <summary>Set window state: not minimized/maximized (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set window state: not minimized/maximized</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void RestoreWindow();
 
-    /// <summary>Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set icon for window (single image, RGBA 32bit)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowIcon(Image image);
 
-    /// <summary>Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set icon for window (multiple images, RGBA 32bit)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowIcons(Image* images, int count);
 
-    /// <summary>Set title for window (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set title for window</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowTitle(sbyte* title);
 
-    /// <summary>Set window position on screen (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set window position on screen</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowPosition(int x, int y);
 
@@ -134,11 +134,11 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowSize(int width, int height);
 
-    /// <summary>Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set window opacity [0.0f..1.0f]</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowOpacity(float opacity);
 
-    /// <summary>Set window focused (only PLATFORM_DESKTOP)</summary>
+    /// <summary>Set window focused</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetWindowFocused();
 
@@ -166,7 +166,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int GetMonitorCount();
 
-    /// <summary>Get current connected monitor</summary>
+    /// <summary>Get current monitor where window is placed</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int GetCurrentMonitor();
 
