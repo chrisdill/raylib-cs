@@ -33,6 +33,9 @@ public enum ShaderLocationIndex
     MapIrradiance,
     MapPrefilter,
     MapBrdf,
+    VertexBoneIds,
+    VertexBoneWeights,
+    BoneMatrices,
 
     MapDiffuse = MapAlbedo,
     MapSpecular = MapMetalness,
