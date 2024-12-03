@@ -305,7 +305,7 @@ public enum GamepadButton
     RightFaceUp,
 
     /// <summary>
-    /// Gamepad right button right (i.e. PS3: Square, Xbox: X)
+    /// Gamepad right button right (i.e. PS3: Circle, Xbox: B)
     /// </summary>
     RightFaceRight,
 
@@ -315,7 +315,7 @@ public enum GamepadButton
     RightFaceDown,
 
     /// <summary>
-    /// Gamepad right button left (i.e. PS3: Circle, Xbox: B)
+    /// Gamepad right button left (i.e. PS3: Square, Xbox: X)
     /// </summary>
     RightFaceLeft,
 
