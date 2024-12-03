@@ -362,9 +362,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Shader LoadShaderFromMemory(sbyte* vsCode, sbyte* fsCode);
 
-    /// <summary>Check if a shader is ready</summary>
+    /// <summary>Check if a shader is valid (loaded on GPU)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsShaderReady(Shader shader);
+    public static extern CBool IsShaderValid(Shader shader);
 
     /// <summary>Get shader uniform location</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
