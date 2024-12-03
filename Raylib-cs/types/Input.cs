@@ -412,11 +412,6 @@ public unsafe partial struct VrDeviceInfo
     public float VScreenSize;
 
     /// <summary>
-    /// HMD screen center in meters
-    /// </summary>
-    public float VScreenCenter;
-
-    /// <summary>
     /// HMD distance between eye and display in meters
     /// </summary>
     public float EyeToScreenDistance;
