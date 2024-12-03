@@ -607,6 +607,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern sbyte* GetApplicationDirectory();
 
+    /// <summary>Create directories (including full path requested), returns 0 on success</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int MakeDirectory(sbyte* dirPath);
+
     /// <summary>Load directory filepaths</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern FilePathList LoadDirectoryFiles(sbyte* dirPath, int* count);
