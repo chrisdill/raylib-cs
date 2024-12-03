@@ -1329,4 +1329,27 @@ public static unsafe partial class Raylib
     {
         return GetScreenToWorldRay(mousePosition, camera);
     }
+
+    /// <summary>Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS</summary>
+    public static AutomationEventList LoadAutomationEventList(string fileName)
+    {
+        using var str1 = fileName.ToUtf8Buffer();
+        return LoadAutomationEventList(str1.AsPointer());
+    }
+
+    /// <summary>Export automation events list as text file</summary>
+    public static CBool ExportAutomationEventList(AutomationEventList list, string fileName)
+    {
+        using var str1 = fileName.ToUtf8Buffer();
+        return ExportAutomationEventList(list, str1.AsPointer());
+    }
+
+    /// <summary>Set automation event list to record to</summary>
+    public static void SetAutomationEventList(ref AutomationEventList list)
+    {
+        fixed (AutomationEventList* p = &list)
+        {
+            SetAutomationEventList(p);
+        }
+    }
 }

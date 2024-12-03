@@ -686,6 +686,40 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void OpenURL(sbyte* url);
 
+    // Automation events functionality
+
+    /// <summary>Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern AutomationEventList LoadAutomationEventList(sbyte* fileName);
+
+    /// <summary>Unload automation events list from file</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void UnloadAutomationEventList(AutomationEventList list);
+
+    /// <summary>Export automation events list as text file</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern CBool ExportAutomationEventList(AutomationEventList list, sbyte* fileName);
+
+    /// <summary>Set automation event list to record to</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetAutomationEventList(AutomationEventList* list);
+
+    /// <summary>Set automation event internal base frame to start recording</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetAutomationEventBaseFrame(int frame);
+
+    /// <summary>Start recording automation events (AutomationEventList must be set)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void StartAutomationEventRecording();
+
+    /// <summary>Stop recording automation events</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void StopAutomationEventRecording();
+
+    /// <summary>Play a recorded automation event</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void PlayAutomationEvent(AutomationEvent ev);
+
     //------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
     //------------------------------------------------------------------------------------
