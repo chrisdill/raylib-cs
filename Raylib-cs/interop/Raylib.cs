@@ -670,6 +670,18 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern byte* DecodeDataBase64(byte* data, int* outputSize);
 
+    /// <summary>Compute CRC32 hash code</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint ComputeCRC32(byte* data, int dataSize);
+
+    /// <summary>Compute MD5 hash code, returns static int[4] (16 bytes)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint* ComputeMD5(byte* data, int dataSize);
+
+    /// <summary>Compute SHA1 hash code, returns static int[5] (20 bytes)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint* ComputeSHA1(byte* data, int dataSize);
+
     /// <summary>Open URL with default system browser (if available)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void OpenURL(sbyte* url);
