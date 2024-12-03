@@ -128,7 +128,7 @@ public enum KeyboardKey
 
     // Android key buttons
     Back = 4,
-    Menu = 82,
+    Menu = 5,
     VolumeUp = 24,
     VolumeDown = 25
 }
