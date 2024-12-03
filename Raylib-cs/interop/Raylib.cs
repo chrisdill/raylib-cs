@@ -627,6 +627,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool IsPathFile(sbyte* path);
 
+    /// <summary>Check if fileName is valid for the platform/OS</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern CBool IsFileNameValid(sbyte* fileName);
+
     /// <summary>Change working directory, return true on success</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool ChangeDirectory(sbyte* dir);
