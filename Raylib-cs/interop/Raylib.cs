@@ -13,7 +13,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public const string NativeLibName = "raylib";
 
-    public const string RAYLIB_VERSION = "5.0";
+    public const string RAYLIB_VERSION = "5.5";
 
     public const float DEG2RAD = MathF.PI / 180.0f;
     public const float RAD2DEG = 180.0f / MathF.PI;
