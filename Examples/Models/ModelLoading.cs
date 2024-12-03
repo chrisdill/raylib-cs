@@ -104,7 +104,7 @@ public class ModelLoading
             if (IsMouseButtonPressed(MouseButton.Left))
             {
                 // Check collision between ray and box
-                if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).Hit)
+                if (GetRayCollisionBox(GetScreenToWorldRay(GetMousePosition(), camera), bounds).Hit)
                 {
                     selected = !selected;
                 }
