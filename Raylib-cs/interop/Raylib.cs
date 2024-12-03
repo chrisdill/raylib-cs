@@ -210,6 +210,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern sbyte* GetClipboardText();
 
+    /// <summary>Get clipboard image content (only works on Windows)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Image GetClipboardImage();
+
     /// <summary>Set clipboard text content</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetClipboardText(sbyte* text);
