@@ -906,7 +906,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Gesture GetGestureDetected();
 
-    /// <summary>Get gesture hold time in milliseconds</summary>
+    /// <summary>Get gesture hold time in seconds</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern float GetGestureHoldDuration();
 
