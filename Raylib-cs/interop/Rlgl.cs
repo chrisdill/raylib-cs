@@ -618,9 +618,9 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlLoadTextureDepth", CallingConvention = CallingConvention.Cdecl)]
     public static extern uint LoadTextureDepth(int width, int height, CBool useRenderBuffer);
 
-    /// <summary>Load texture cubemap</summary>
+    /// <summary>Load texture cubemap data</summary>
     [DllImport(NativeLibName, EntryPoint = "rlLoadTextureCubemap", CallingConvention = CallingConvention.Cdecl)]
-    public static extern uint LoadTextureCubemap(void* data, int size, PixelFormat format);
+    public static extern uint LoadTextureCubemap(void* data, int size, PixelFormat format, int mipmapCount);
 
     /// <summary>Update GPU texture with new data</summary>
     [DllImport(NativeLibName, EntryPoint = "rlUpdateTexture", CallingConvention = CallingConvention.Cdecl)]
