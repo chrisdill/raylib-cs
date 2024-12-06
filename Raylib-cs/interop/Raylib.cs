@@ -1020,11 +1020,11 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 
-    // <summary>Get texture that is used for shapes drawing</summary>
+    /// <summary>Get texture that is used for shapes drawing</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Texture2D GetShapesTexture();
 
-    // <summary>Get texture source rectangle that is used for shapes drawing</summary>
+    /// <summary>Get texture source rectangle that is used for shapes drawing</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Rectangle GetShapesTextureRectangle();
 
@@ -1228,7 +1228,7 @@ public static unsafe partial class Raylib
         Color color
     );
 
-    // <summary>Draw rectangle with rounded edges outline</summary>
+    /// <summary>Draw rectangle with rounded edges outline</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawRectangleRoundedLinesEx(
         Rectangle rec,
@@ -1356,7 +1356,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 
-    // <summary>Check if circle collides with a line created betweeen two points [p1] and [p2]</summary>
+    /// <summary>Check if circle collides with a line created betweeen two points [p1] and [p2]</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2);
 
@@ -1524,7 +1524,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Image ImageFromImage(Image image, Rectangle rec);
 
-    // <summary>Create an image from a selected channel of another image (GRAYSCALE)</summary>
+    /// <summary>Create an image from a selected channel of another image (GRAYSCALE)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Image ImageFromChannel(Image image, int selectedChannel);
 
@@ -1568,7 +1568,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageBlurGaussian(Image* image, int blurSize);
 
-    // <summary>Apply custom square convolution kernel to image</summary>
+    /// <summary>Apply custom square convolution kernel to image</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageKernelConvolution(Image* image, float* kernel, int kernelSize);
 
@@ -1698,6 +1698,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color);
 
+    /// <summary>Draw a line defining thickness within an image</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageDrawLineEx(Image* dst, Vector2 start, Vector2 end, int thick, Color color);
+
     /// <summary>Draw circle within an image</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color);
@@ -1736,6 +1740,26 @@ public static unsafe partial class Raylib
     /// <summary>Draw rectangle lines within an image</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color);
+
+    /// <summary>Draw triangle within an image</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageDrawTriangle(Image* dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+
+    /// <summary>Draw triangle with interpolated colors within an image</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageDrawTriangleEx(Image* dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3);
+
+    /// <summary>Draw triangle outline within an image</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageDrawTriangleLines(Image* dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+
+    /// <summary>Draw a triangle fan defined by points within an image (first vertex is the center)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageDrawTriangleFan(Image* dst, Vector2* points, int pointCount, Color color);
+
+    /// <summary>Draw a triangle strip defined by points within an image</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageDrawTriangleStrip(Image* dst, Vector2* points, int pointCount, Color color);
 
     /// <summary>Draw a source image within a destination image (tint applied to source)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2129,7 +2153,7 @@ public static unsafe partial class Raylib
     // Text strings management functions (no UTF-8 strings, only byte chars)
     // NOTE: Some strings allocate memory internally for returned strings, just be careful!
 
-    // <summary>Copy one string to another, returns bytes copied</summary>
+    /// <summary>Copy one string to another, returns bytes copied</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int TextCopy(sbyte* dst, sbyte* src);
 

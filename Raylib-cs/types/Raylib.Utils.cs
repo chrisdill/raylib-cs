@@ -507,7 +507,7 @@ public static unsafe partial class Raylib
         }
     }
 
-    // <summary>Apply custom square convolution kernel to image</summary>
+    /// <summary>Apply custom square convolution kernel to image</summary>
     public static void ImageKernelConvolution(ref Image image, float[] kernel)
     {
         fixed (Image* imagePtr = &image)
@@ -731,6 +731,15 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>Draw a line defining thickness within an image</summary>
+    public static void ImageDrawLineEx(ref Image dst, Vector2 start, Vector2 end, int thick, Color color)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawLineEx(p, start, end, thick, color);
+        }
+    }
+
     /// <summary>Draw circle within an image</summary>
     public static void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color)
     {
@@ -782,6 +791,57 @@ public static unsafe partial class Raylib
         fixed (Image* p = &dst)
         {
             ImageDrawRectangleLines(p, rec, thick, color);
+        }
+    }
+
+    /// <summary>Draw triangle within an image</summary>
+    public static void ImageDrawTriangle(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawTriangle(p, v1, v2, v3, color);
+        }
+    }
+
+    /// <summary>Draw triangle with interpolated colors within an image</summary>
+    public static void ImageDrawTriangleEx(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawTriangleEx(p, v1, v2, v3, c1, c2, c3);
+        }
+    }
+
+    /// <summary>Draw triangle outline within an image</summary>
+    public static void ImageDrawTriangleLines(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawTriangleLines(p, v1, v2, v3, color);
+        }
+    }
+
+    /// <summary>Draw a triangle fan defined by points within an image (first vertex is the center)</summary>
+    public static void ImageDrawTriangleFan(ref Image dst, Vector2[] points, Color color)
+    {
+        fixed (Image* imagePtr = &dst)
+        {
+            fixed (Vector2* vec2Ptr = points)
+            {
+                ImageDrawTriangleFan(imagePtr, vec2Ptr, points.Length, color);
+            }
+        }
+    }
+
+    /// <summary>Draw a triangle strip defined by points within an image</summary>
+    public static void ImageDrawTriangleStrip(ref Image dst, Vector2[] points, Color color)
+    {
+        fixed (Image* imagePtr = &dst)
+        {
+            fixed (Vector2* vec2Ptr = points)
+            {
+                ImageDrawTriangleStrip(imagePtr, vec2Ptr, points.Length, color);
+            }
         }
     }
 
