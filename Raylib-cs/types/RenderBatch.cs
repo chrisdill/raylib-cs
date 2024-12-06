@@ -62,6 +62,11 @@ public unsafe partial struct VertexBuffer
     public float* TexCoords;
 
     /// <summary>
+    /// Vertex normal (XYZ - 3 components per vertex) (shader-location = 2)
+    /// </summary>
+    public float* Normals;
+
+    /// <summary>
     /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
     /// </summary>
     public byte* Colors;
@@ -79,9 +84,9 @@ public unsafe partial struct VertexBuffer
     public uint VaoId;
 
     /// <summary>
-    /// OpenGL Vertex Buffer Objects id (4 types of vertex data)
+    /// OpenGL Vertex Buffer Objects id (5 types of vertex data)
     /// </summary>
-    public fixed uint VboId[4];
+    public fixed uint VboId[5];
 
     /// <summary>
     /// Access <see cref="Vertices"/>
@@ -97,6 +102,14 @@ public unsafe partial struct VertexBuffer
     public readonly Span<T> TexCoordsAs<T>() where T : unmanaged
     {
         return new(TexCoords, ElementCount * sizeof(float) / sizeof(T));
+    }
+
+    /// <summary>
+    /// Access <see cref="Normals"/>
+    /// </summary>
+    public readonly Span<T> NormalsAs<T>() where T : unmanaged
+    {
+        return new(Normals, ElementCount * sizeof(float) / sizeof(T));
     }
 
     /// <summary>
