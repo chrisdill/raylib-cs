@@ -170,6 +170,15 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int Vector2Equals(Vector2 p, Vector2 q);
 
+    /// <summary>Compute the direction of a refracted ray</summary>
+    /// <param name="v">normalized direction of the incoming ray</param>
+    /// <param name="n">normalized normal vector of the interface of two optical media</param>
+    /// <param name="r">
+    /// ratio of the refractive index of the medium from where the ray comes
+    /// to the refractive index of the medium on the other side of the surface
+    /// </param>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector2 Vector2Refract(Vector2 v, Vector2 n, float r);
 
     /// <summary>Vector with components value 0.0f</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
