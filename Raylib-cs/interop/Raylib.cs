@@ -2605,6 +2605,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);
 
+    /// <summary>Update model animation mesh bone matrices (GPU skinning)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void UpdateModelAnimationBones(Model model, ModelAnimation anim, int frame);
+
     /// <summary>Unload animation data</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UnloadModelAnimation(ModelAnimation anim);
