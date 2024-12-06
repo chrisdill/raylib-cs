@@ -163,6 +163,18 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlViewport", CallingConvention = CallingConvention.Cdecl)]
     public static extern void Viewport(int x, int y, int width, int height);
 
+    /// <summary>Set clip planes distances</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlSetClipPlanes", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetClipPlanes(double nearPlane, double farPlane);
+
+    /// <summary>Get cull plane distance near</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlGetCullDistanceNear", CallingConvention = CallingConvention.Cdecl)]
+    public static extern double GetCullDistanceNear();
+
+    /// <summary>Get cull plane distance far</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlGetCullDistanceFar", CallingConvention = CallingConvention.Cdecl)]
+    public static extern double GetCullDistanceFar();
+
 
     // ------------------------------------------------------------------------------------
     // Functions Declaration - Vertex level operations
