@@ -2714,9 +2714,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Sound LoadSoundAlias(Sound source);
 
-    /// <summary>Checks if a sound is ready</summary>
+    /// <summary>Checks if a sound is valid (data loaded and buffers initialized)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsSoundReady(Sound sound);
+    public static extern CBool IsSoundValid(Sound sound);
 
     /// <summary>Update sound buffer with new data</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
