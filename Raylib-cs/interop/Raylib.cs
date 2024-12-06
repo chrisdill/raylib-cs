@@ -1219,7 +1219,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawRectangleRounded(Rectangle rec, float roundness, int segments, Color color);
 
-    /// <summary>Draw rectangle lines with rounded edges/summary>
+    /// <summary>Draw rectangle lines with rounded edges</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawRectangleRoundedLines(
         Rectangle rec,
