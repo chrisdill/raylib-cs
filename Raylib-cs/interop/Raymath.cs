@@ -284,6 +284,10 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3RotateByAxisAngle(Vector3 v, Vector3 axis, float angle);
 
+    /// <summary>Move Vector towards target</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector3 Vector3MoveTowards(Vector3 v, Vector3 target, float maxDistance);
+
     /// <summary>Calculate linear interpolation between two vectors</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount);
