@@ -1240,6 +1240,13 @@ public static unsafe partial class Raylib
         return ExportMesh(mesh, str1.AsPointer());
     }
 
+    /// <summary>Export mesh as code file (.h) defining multiple arrays of vertex attributes</summary>
+    public static CBool ExportMeshAsCode(Mesh mesh, string fileName)
+    {
+        using var str1 = fileName.ToAnsiBuffer();
+        return ExportMeshAsCode(mesh, str1.AsPointer());
+    }
+
     /// <summary>Draw a triangle strip defined by points</summary>
     public static void DrawTriangleStrip3D(Vector3[] points, int pointCount, Color color)
     {

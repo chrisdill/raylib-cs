@@ -2504,10 +2504,6 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4* transforms, int instances);
 
-    /// <summary>Export mesh data to file, returns true on success</summary>
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool ExportMesh(Mesh mesh, sbyte* fileName);
-
     /// <summary>Compute mesh bounding box limits</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
@@ -2516,6 +2512,13 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void GenMeshTangents(Mesh* mesh);
 
+    /// <summary>Export mesh data to file, returns true on success</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern CBool ExportMesh(Mesh mesh, sbyte* fileName);
+
+    /// <summary>Export mesh as code file (.h) defining multiple arrays of vertex attributes</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern CBool ExportMeshAsCode(Mesh mesh, sbyte* fileName);
 
     // Mesh generation functions
 
