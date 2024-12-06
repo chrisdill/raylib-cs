@@ -1524,6 +1524,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Image ImageFromImage(Image image, Rectangle rec);
 
+    // <summary>Create an image from a selected channel of another image (GRAYSCALE)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Image ImageFromChannel(Image image, int selectedChannel);
+
     /// <summary>Create an image from text (default font)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Image ImageText(sbyte* text, int fontSize, Color color);
