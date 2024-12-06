@@ -437,8 +437,8 @@ public static unsafe partial class Raymath
         double right,
         double bottom,
         double top,
-        double near,
-        double far
+        double nearPlane,
+        double farPlane
     );
 
     /// <summary>
