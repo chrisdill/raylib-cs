@@ -668,7 +668,7 @@ public static unsafe partial class Rlgl
 
     /// <summary>Load an empty framebuffer</summary>
     [DllImport(NativeLibName, EntryPoint = "rlLoadFramebuffer", CallingConvention = CallingConvention.Cdecl)]
-    public static extern uint LoadFramebuffer(int width, int height);
+    public static extern uint LoadFramebuffer();
 
     /// <summary>Attach texture/renderbuffer to a framebuffer</summary>
     [DllImport(NativeLibName, EntryPoint = "rlFramebufferAttach", CallingConvention = CallingConvention.Cdecl)]
