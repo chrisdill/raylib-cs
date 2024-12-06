@@ -2427,6 +2427,21 @@ public static unsafe partial class Raylib
         Color tint
     );
 
+    /// <summary>Draw a model as points</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DrawModelPoints(Model model, Vector3 position, float scale, Color tint);
+
+    /// <summary>Draw a model as points with extended parameters</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DrawModelPointsEx(
+        Model model,
+        Vector3 position,
+        Vector3 rotationAxis,
+        float rotationAngle,
+        Vector3 scale,
+        Color tint
+    );
+
     /// <summary>Draw bounding box (wires)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawBoundingBox(BoundingBox box, Color color);
