@@ -328,6 +328,10 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlDisableFramebuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void DisableFramebuffer();
 
+    /// <summary>Get the currently active render texture (fbo), 0 for default framebuffer</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlGetActiveFramebuffer", CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint GetActiveFramebuffer();
+
     /// <summary>Blit active framebuffer to main framebuffer</summary>
     [DllImport(NativeLibName, EntryPoint = "rlBlitFramebuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void BlitFramebuffer();
