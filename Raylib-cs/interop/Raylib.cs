@@ -1890,7 +1890,7 @@ public static unsafe partial class Raylib
 
     // Color/pixel related functions
 
-    /// <summary>Get hexadecimal value for a Color</summary>
+    /// <summary>Get hexadecimal value for a Color (0xRRGGBBAA)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int ColorToInt(Color color);
 
