@@ -935,7 +935,10 @@ public static unsafe partial class Raylib
         return LoadFont(str1.AsPointer());
     }
 
-    /// <summary>Load font from file with extended parameters</summary>
+    /// <summary>
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load
+    /// the default character set, font size is provided in pixels height
+    /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, int[] codepoints, int codepointCount)
     {
         using var str1 = fileName.ToAnsiBuffer();

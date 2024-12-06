@@ -1966,8 +1966,8 @@ public static unsafe partial class Raylib
     public static extern Font LoadFont(sbyte* fileName);
 
     /// <summary>
-    /// Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load
-    /// the default character set
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load
+    /// the default character set, font size is provided in pixels height
     /// </summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Font LoadFontEx(sbyte* fileName, int fontSize, int* codepoints, int codepointCount);
