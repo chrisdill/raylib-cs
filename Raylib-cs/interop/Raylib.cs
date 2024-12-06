@@ -1930,6 +1930,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Color ColorAlphaBlend(Color dst, Color src, Color tint);
 
+    /// <summary>Get color lerp interpolation between two colors, factor [0.0f..1.0f]</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Color ColorLerp(Color color1, Color color2, float factor);
+
     /// <summary>Get Color structure from hexadecimal value</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Color GetColor(uint hexValue);
