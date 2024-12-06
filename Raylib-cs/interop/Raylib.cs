@@ -2452,7 +2452,7 @@ public static unsafe partial class Raylib
         Camera3D camera,
         Texture2D texture,
         Vector3 center,
-        float size,
+        float scale,
         Color tint
     );
 
