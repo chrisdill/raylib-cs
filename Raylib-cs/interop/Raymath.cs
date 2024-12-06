@@ -292,6 +292,13 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount);
 
+    /// <summary>
+    /// Calculate cubic hermite interpolation between two vectors and their tangents
+    /// as described in the GLTF 2.0 specification: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#interpolation-cubic
+    /// </summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector3 Vector3CubicHermite(Vector3 v1, Vector3 tangent1, Vector3 v2, Vector3 tangent2, float amount);
+
     /// <summary>Calculate reflected vector to normal</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3Reflect(Vector3 v, Vector3 normal);
