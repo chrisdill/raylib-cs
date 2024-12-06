@@ -1568,6 +1568,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageBlurGaussian(Image* image, int blurSize);
 
+    // <summary>Apply custom square convolution kernel to image</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ImageKernelConvolution(Image* image, float* kernel, int kernelSize);
+
     /// <summary>Resize image (Bicubic scaling algorithm)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void ImageResize(Image* image, int newWidth, int newHeight);

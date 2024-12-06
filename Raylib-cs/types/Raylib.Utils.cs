@@ -507,6 +507,18 @@ public static unsafe partial class Raylib
         }
     }
 
+    // <summary>Apply custom square convolution kernel to image</summary>
+    public static void ImageKernelConvolution(ref Image image, float[] kernel)
+    {
+        fixed (Image* imagePtr = &image)
+        {
+            fixed (float* kernelPtr = kernel)
+            {
+                ImageKernelConvolution(imagePtr, kernelPtr, kernel.Length);
+            }
+        }
+    }
+
     /// <summary>Crop an image to a defined rectangle</summary>
     public static void ImageCrop(ref Image image, Rectangle crop)
     {
