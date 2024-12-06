@@ -2785,9 +2785,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Wave WaveCopy(Wave wave);
 
-    /// <summary>Crop a wave to defined samples range</summary>
+    /// <summary>Crop a wave to defined frames range</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void WaveCrop(Wave* wave, int initSample, int finalSample);
+    public static extern void WaveCrop(Wave* wave, int initFrame, int finalFrame);
 
     /// <summary>Convert wave data to desired format</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]

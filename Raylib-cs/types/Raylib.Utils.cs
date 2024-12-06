@@ -1042,12 +1042,12 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <summary>Crop a wave to defined samples range</summary>
-    public static void WaveCrop(ref Wave wave, int initSample, int finalSample)
+    /// <summary>Crop a wave to defined frames range</summary>
+    public static void WaveCrop(ref Wave wave, int initFrame, int finalFrame)
     {
         fixed (Wave* p = &wave)
         {
-            WaveCrop(p, initSample, finalSample);
+            WaveCrop(p, initFrame, finalFrame);
         }
     }
 
