@@ -1987,9 +1987,9 @@ public static unsafe partial class Raylib
         int codepointCount
     );
 
-    /// <summary>Check if a font is ready</summary>
+    /// <summary>Check if a font is valid (font data loaded, WARNING: GPU texture not checked)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsFontReady(Font font);
+    public static extern CBool IsFontValid(Font font);
 
     /// <summary>Load font data for further use</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
