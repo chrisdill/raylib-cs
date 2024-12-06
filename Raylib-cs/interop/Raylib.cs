@@ -1030,11 +1030,11 @@ public static unsafe partial class Raylib
 
     // Basic shapes drawing functions
 
-    /// <summary>Draw a pixel</summary>
+    /// <summary>Draw a pixel using geometry [Can be slow, use with care]</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawPixel(int posX, int posY, Color color);
 
-    /// <summary>Draw a pixel (Vector version)</summary>
+    /// <summary>Draw a pixel using geometry (Vector version) [Can be slow, use with care]</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawPixelV(Vector2 position, Color color);
 
