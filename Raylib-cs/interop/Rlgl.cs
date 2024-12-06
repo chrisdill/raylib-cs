@@ -724,6 +724,10 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlSetUniformMatrix", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetUniformMatrix(int locIndex, Matrix4x4 mat);
 
+    /// <summary>Set shader value matrices</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlSetUniformMatrices", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetUniformMatrices(int locIndex, Matrix4x4* mat, int count);
+
     /// <summary>Set shader value sampler</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetUniformSampler", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetUniformSampler(int locIndex, uint textureId);
