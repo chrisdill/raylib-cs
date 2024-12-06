@@ -1111,8 +1111,8 @@ public static unsafe partial class Raylib
         int centerX,
         int centerY,
         float radius,
-        Color color1,
-        Color color2
+        Color inner,
+        Color outer
     );
 
     /// <summary>Draw a color-filled circle (Vector version)</summary>
@@ -1182,8 +1182,8 @@ public static unsafe partial class Raylib
         int posY,
         int width,
         int height,
-        Color color1,
-        Color color2
+        Color top,
+        Color bottom
     );
 
     /// <summary>Draw a horizontal-gradient-filled rectangle</summary>
@@ -1193,18 +1193,18 @@ public static unsafe partial class Raylib
         int posY,
         int width,
         int height,
-        Color color1,
-        Color color2
+        Color left,
+        Color right
     );
 
     /// <summary>Draw a gradient-filled rectangle with custom vertex colors</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawRectangleGradientEx(
         Rectangle rec,
-        Color col1,
-        Color col2,
-        Color col3,
-        Color col4
+        Color topLeft,
+        Color bottomLeft,
+        Color topRight,
+        Color bottomRight
     );
 
     /// <summary>Draw rectangle outline</summary>
