@@ -379,6 +379,10 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlDisableBackfaceCulling", CallingConvention = CallingConvention.Cdecl)]
     public static extern void DisableBackfaceCulling();
 
+    /// <summary>Color mask control</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlColorMask", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ColorMask(CBool r, CBool g, CBool b, CBool a);
+
     /// <summary>Set face culling mode</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetCullFace", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetCullFace(int mode);
