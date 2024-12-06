@@ -2382,9 +2382,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Model LoadModelFromMesh(Mesh mesh);
 
-    /// <summary>Check if a model is ready</summary>
+    /// <summary>Check if a model is valid (loaded in GPU, VAO/VBOs)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsModelReady(Model model);
+    public static extern CBool IsModelValid(Model model);
 
     /// <summary>Unload model from memory (RAM and/or VRAM)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
