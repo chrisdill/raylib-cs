@@ -2578,9 +2578,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Material LoadMaterialDefault();
 
-    /// <summary>Check if a material is ready</summary>
+    /// <summary>Check if a material is valid (shader assigned, map textures loaded in GPU)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsMaterialReady(Material material);
+    public static extern CBool IsMaterialValid(Material material);
 
     /// <summary>Unload material from GPU memory (VRAM)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
