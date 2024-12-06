@@ -336,6 +336,10 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlBlitFramebuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void BlitFramebuffer();
 
+    /// <summary>Bind framebuffer (FBO)</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlBindFramebuffer", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void BindFramebuffer(uint target, uint framebuffer);
+
     /// <summary>Activate multiple draw color buffers</summary>
     [DllImport(NativeLibName, EntryPoint = "rlActiveDrawBuffers", CallingConvention = CallingConvention.Cdecl)]
     public static extern void ActiveDrawBuffers(int count);
