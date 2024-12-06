@@ -65,6 +65,10 @@ public enum ShaderUniformDataType
     IVec2,
     IVec3,
     IVec4,
+    UInt,
+    UIVec2,
+    UIVec3,
+    UIVec4,
     Sampler2D
 }
 
