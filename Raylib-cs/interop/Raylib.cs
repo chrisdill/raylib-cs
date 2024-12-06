@@ -2601,7 +2601,7 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern ModelAnimation* LoadModelAnimations(sbyte* fileName, int* animCount);
 
-    /// <summary>Update model animation pose</summary>
+    /// <summary>Update model animation pose (CPU)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);
 
