@@ -1356,6 +1356,10 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 
+    // <summary>Check if circle collides with a line created betweeen two points [p1] and [p2]</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern CBool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2);
+
     /// <summary>Check if point is inside rectangle</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern CBool CheckCollisionPointRec(Vector2 point, Rectangle rec);
