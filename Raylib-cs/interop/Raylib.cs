@@ -2811,9 +2811,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Music LoadMusicStreamFromMemory(sbyte* fileType, byte* data, int dataSize);
 
-    /// <summary>Checks if a music stream is ready</summary>
+    /// <summary>Checks if a music stream is valid (context and buffers initialized)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsMusicReady(Music music);
+    public static extern CBool IsMusicValid(Music music);
 
     /// <summary>Unload music stream</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
