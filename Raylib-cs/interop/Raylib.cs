@@ -2698,9 +2698,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Wave LoadWaveFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
-    /// <summary>Checks if wave data is ready</summary>
+    /// <summary>Checks if wave data is valid (data loaded and parameters)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsWaveReady(Wave wave);
+    public static extern CBool IsWaveValid(Wave wave);
 
     /// <summary>Load sound from file</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
