@@ -1020,6 +1020,14 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 
+    // <summary>Get texture that is used for shapes drawing</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Texture2D GetShapesTexture();
+
+    // <summary>Get texture source rectangle that is used for shapes drawing</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Rectangle GetShapesTextureRectangle();
+
     // Basic shapes drawing functions
 
     /// <summary>Draw a pixel</summary>
