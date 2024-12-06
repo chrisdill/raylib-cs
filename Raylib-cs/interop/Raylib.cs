@@ -1809,9 +1809,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UnloadTexture(Texture2D texture);
 
-    /// <summary>Check if a render texture is ready</summary>
+    /// <summary>Check if a render texture is valid (loaded in GPU)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsRenderTextureReady(RenderTexture2D target);
+    public static extern CBool IsRenderTextureValid(RenderTexture2D target);
 
     /// <summary>Unload render texture from GPU memory (VRAM)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
