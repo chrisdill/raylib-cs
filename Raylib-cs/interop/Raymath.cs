@@ -524,6 +524,13 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Quaternion QuaternionSlerp(Quaternion q1, Quaternion q2, float amount);
 
+    /// <summary>
+    /// Calculate quaternion cubic spline interpolation using Cubic Hermite Spline algorithm
+    /// as described in the GLTF 2.0 specification: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#interpolation-cubic
+    /// </summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Quaternion QuaternionCubicHermiteSpline(Quaternion q1, Quaternion outTangent1, Quaternion q2, Quaternion inTangent2, float t);
+
     /// <summary>Calculate quaternion based on the rotation from one vector to another</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Quaternion QuaternionFromVector3ToVector3(Vector3 from, Vector3 to);
