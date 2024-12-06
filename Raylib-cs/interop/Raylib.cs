@@ -2213,10 +2213,21 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern sbyte* TextToPascal(sbyte* text);
 
+    /// <summary>Get Snake case notation version of provided string</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern sbyte* TextToSnake(sbyte* text);
+
+    /// <summary>Get Camel case notation version of provided string</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern sbyte* TextToCamel(sbyte* text);
+
     /// <summary>Get integer value from text (negative values not supported)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int TextToInteger(sbyte* text);
 
+    /// <summary>Get float value from text (negative values not supported)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern float TextToFloat(sbyte* text);
 
     //------------------------------------------------------------------------------------
     // Basic 3d Shapes Drawing Functions (Module: models)
