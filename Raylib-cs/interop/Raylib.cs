@@ -805,6 +805,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int SetGamepadMappings(sbyte* mappings);
 
+    /// <summary>Set gamepad vibration for both motors (duration in seconds)</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor, float duration);
 
     // Input-related functions: mouse
 
