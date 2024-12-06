@@ -2874,9 +2874,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern AudioStream LoadAudioStream(uint sampleRate, uint sampleSize, uint channels);
 
-    /// <summary>Checks if an audio stream is ready</summary>
+    /// <summary>Checks if an audio stream is valid (buffers initialized)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsAudioStreamReady(AudioStream stream);
+    public static extern CBool IsAudioStreamValid(AudioStream stream);
 
     /// <summary>Unload audio stream and free memory</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
