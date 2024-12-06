@@ -120,13 +120,6 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>Load image sequence from file (frames appended to image.data)</summary>
-    public static Image LoadImageSvg(string fileName, int width, int height)
-    {
-        using var str1 = fileName.ToAnsiBuffer();
-        return LoadImageSvg(str1.AsPointer(), width, height);
-    }
-
-    /// <summary>Load image sequence from file (frames appended to image.data)</summary>
     public static Image LoadImageAnim(string fileName, out int frames)
     {
         using var str1 = fileName.ToAnsiBuffer();

@@ -1420,10 +1420,6 @@ public static unsafe partial class Raylib
         int headerSize
     );
 
-    /// <summary>Load image from SVG file data or string with specified size</summary>
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern Image LoadImageSvg(sbyte* fileName, int width, int height);
-
     /// <summary>Load image sequence from file (frames appended to image.data)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Image LoadImageAnim(sbyte* fileName, int* frames);
