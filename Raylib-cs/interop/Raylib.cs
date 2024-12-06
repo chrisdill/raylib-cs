@@ -1436,9 +1436,9 @@ public static unsafe partial class Raylib
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Image LoadImageFromScreen();
 
-    /// <summary>Check if an image is ready</summary>
+    /// <summary>Check if an image is valid (data and parameters)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern CBool IsImageReady(Image image);
+    public static extern CBool IsImageValid(Image image);
 
     /// <summary>Unload image from CPU memory (RAM)</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
