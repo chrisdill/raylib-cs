@@ -572,6 +572,7 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlUnloadVertexBuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void UnloadVertexBuffer(uint vboId);
 
+    /// <summary>Set vertex attribute data configuration</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetVertexAttribute", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetVertexAttribute(
         uint index,
@@ -579,7 +580,7 @@ public static unsafe partial class Rlgl
         int type,
         CBool normalized,
         int stride,
-        void* pointer
+        int offset
     );
 
     [DllImport(NativeLibName, EntryPoint = "rlSetVertexAttributeDivisor", CallingConvention = CallingConvention.Cdecl)]
