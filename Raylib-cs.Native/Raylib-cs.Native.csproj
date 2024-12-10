@@ -55,8 +55,7 @@
     <CMakeArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
     <CMakeArgs Include="-D BUILD_SHARED_LIBS=ON" />
     <CMakeArgs Include="-D BUILD_EXAMPLES=OFF" />
-    <CMakeArgs Include="-D CMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded" />
-    <CMakeArgs Include="-D CMAKE_MINIMUM_REQUIRED_VERSION=3.15" />
+    <CMakeArgs Include="-D USE_MSVC_RUNTIME_LIBRARY_DLL=OFF" />
     <!-- <CMakeArgs Include="-D GRAPHICS=GRAPHICS_API_OPENGL_43" /> -->
   </ItemGroup>
 
