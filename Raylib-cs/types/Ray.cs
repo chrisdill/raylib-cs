@@ -15,7 +15,7 @@ public partial struct Ray
     public Vector3 Position;
 
     /// <summary>
-    /// Ray direction
+    /// Ray direction (normalized)
     /// </summary>
     public Vector3 Direction;
 

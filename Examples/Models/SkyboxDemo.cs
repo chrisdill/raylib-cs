@@ -216,9 +216,9 @@ public class SkyboxDemo
         // STEP 1: Setup framebuffer
         //------------------------------------------------------------------------------------------
         uint rbo = Rlgl.LoadTextureDepth(size, size, true);
-        cubemap.Id = Rlgl.LoadTextureCubemap(null, size, format);
+        cubemap.Id = Rlgl.LoadTextureCubemap(null, size, format, 1);
 
-        uint fbo = Rlgl.LoadFramebuffer(size, size);
+        uint fbo = Rlgl.LoadFramebuffer();
         Rlgl.FramebufferAttach(
             fbo,
             rbo,

@@ -35,7 +35,6 @@ public class VrSimulator
             VResolution = 1200,
             HScreenSize = 0.133793f,
             VScreenSize = 0.0669f,
-            VScreenCenter = 0.04678f,
             EyeToScreenDistance = 0.041f,
             LensSeparationDistance = 0.07f,
             InterpupillaryDistance = 0.07f,
@@ -188,4 +187,3 @@ public class VrSimulator
         return 0;
     }
 }
-

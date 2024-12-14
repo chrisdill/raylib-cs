@@ -70,7 +70,7 @@ public class DrawRectangleRounded
             }
             if (drawRoundedLines)
             {
-                DrawRectangleRoundedLines(rec, roundness, segments, (float)lineThick, ColorAlpha(Color.Maroon, 0.4f));
+                DrawRectangleRoundedLinesEx(rec, roundness, segments, (float)lineThick, ColorAlpha(Color.Maroon, 0.4f));
             }
 
             // Draw GUI controls

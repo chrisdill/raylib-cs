@@ -120,13 +120,6 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>Load image sequence from file (frames appended to image.data)</summary>
-    public static Image LoadImageSvg(string fileName, int width, int height)
-    {
-        using var str1 = fileName.ToAnsiBuffer();
-        return LoadImageSvg(str1.AsPointer(), width, height);
-    }
-
-    /// <summary>Load image sequence from file (frames appended to image.data)</summary>
     public static Image LoadImageAnim(string fileName, out int frames)
     {
         using var str1 = fileName.ToAnsiBuffer();
@@ -514,6 +507,18 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>Apply custom square convolution kernel to image</summary>
+    public static void ImageKernelConvolution(ref Image image, float[] kernel)
+    {
+        fixed (Image* imagePtr = &image)
+        {
+            fixed (float* kernelPtr = kernel)
+            {
+                ImageKernelConvolution(imagePtr, kernelPtr, kernel.Length);
+            }
+        }
+    }
+
     /// <summary>Crop an image to a defined rectangle</summary>
     public static void ImageCrop(ref Image image, Rectangle crop)
     {
@@ -726,6 +731,15 @@ public static unsafe partial class Raylib
         }
     }
 
+    /// <summary>Draw a line defining thickness within an image</summary>
+    public static void ImageDrawLineEx(ref Image dst, Vector2 start, Vector2 end, int thick, Color color)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawLineEx(p, start, end, thick, color);
+        }
+    }
+
     /// <summary>Draw circle within an image</summary>
     public static void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color)
     {
@@ -777,6 +791,57 @@ public static unsafe partial class Raylib
         fixed (Image* p = &dst)
         {
             ImageDrawRectangleLines(p, rec, thick, color);
+        }
+    }
+
+    /// <summary>Draw triangle within an image</summary>
+    public static void ImageDrawTriangle(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawTriangle(p, v1, v2, v3, color);
+        }
+    }
+
+    /// <summary>Draw triangle with interpolated colors within an image</summary>
+    public static void ImageDrawTriangleEx(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawTriangleEx(p, v1, v2, v3, c1, c2, c3);
+        }
+    }
+
+    /// <summary>Draw triangle outline within an image</summary>
+    public static void ImageDrawTriangleLines(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+    {
+        fixed (Image* p = &dst)
+        {
+            ImageDrawTriangleLines(p, v1, v2, v3, color);
+        }
+    }
+
+    /// <summary>Draw a triangle fan defined by points within an image (first vertex is the center)</summary>
+    public static void ImageDrawTriangleFan(ref Image dst, Vector2[] points, Color color)
+    {
+        fixed (Image* imagePtr = &dst)
+        {
+            fixed (Vector2* vec2Ptr = points)
+            {
+                ImageDrawTriangleFan(imagePtr, vec2Ptr, points.Length, color);
+            }
+        }
+    }
+
+    /// <summary>Draw a triangle strip defined by points within an image</summary>
+    public static void ImageDrawTriangleStrip(ref Image dst, Vector2[] points, Color color)
+    {
+        fixed (Image* imagePtr = &dst)
+        {
+            fixed (Vector2* vec2Ptr = points)
+            {
+                ImageDrawTriangleStrip(imagePtr, vec2Ptr, points.Length, color);
+            }
         }
     }
 
@@ -870,7 +935,10 @@ public static unsafe partial class Raylib
         return LoadFont(str1.AsPointer());
     }
 
-    /// <summary>Load font from file with extended parameters</summary>
+    /// <summary>
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load
+    /// the default character set, font size is provided in pixels height
+    /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, int[] codepoints, int codepointCount)
     {
         using var str1 = fileName.ToAnsiBuffer();
@@ -974,12 +1042,12 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <summary>Crop a wave to defined samples range</summary>
-    public static void WaveCrop(ref Wave wave, int initSample, int finalSample)
+    /// <summary>Crop a wave to defined frames range</summary>
+    public static void WaveCrop(ref Wave wave, int initFrame, int finalFrame)
     {
         fixed (Wave* p = &wave)
         {
-            WaveCrop(p, initSample, finalSample);
+            WaveCrop(p, initFrame, finalFrame);
         }
     }
 
@@ -1172,6 +1240,13 @@ public static unsafe partial class Raylib
         return ExportMesh(mesh, str1.AsPointer());
     }
 
+    /// <summary>Export mesh as code file (.h) defining multiple arrays of vertex attributes</summary>
+    public static CBool ExportMeshAsCode(Mesh mesh, string fileName)
+    {
+        using var str1 = fileName.ToAnsiBuffer();
+        return ExportMeshAsCode(mesh, str1.AsPointer());
+    }
+
     /// <summary>Draw a triangle strip defined by points</summary>
     public static void DrawTriangleStrip3D(Vector3[] points, int pointCount, Color color)
     {
@@ -1321,5 +1396,35 @@ public static unsafe partial class Raylib
     public static void SetMaterialShader(ref Model model, int materialIndex, ref Shader shader)
     {
         model.Materials[materialIndex].Shader = shader;
+    }
+
+    /// <summary>Get a ray trace from mouse position</summary>
+    [ObsoleteAttribute("This method is obsolete. Call GetScreenToWorldRay instead.")]
+    public static Ray GetMouseRay(Vector2 mousePosition, Camera3D camera)
+    {
+        return GetScreenToWorldRay(mousePosition, camera);
+    }
+
+    /// <summary>Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS</summary>
+    public static AutomationEventList LoadAutomationEventList(string fileName)
+    {
+        using var str1 = fileName.ToUtf8Buffer();
+        return LoadAutomationEventList(str1.AsPointer());
+    }
+
+    /// <summary>Export automation events list as text file</summary>
+    public static CBool ExportAutomationEventList(AutomationEventList list, string fileName)
+    {
+        using var str1 = fileName.ToUtf8Buffer();
+        return ExportAutomationEventList(list, str1.AsPointer());
+    }
+
+    /// <summary>Set automation event list to record to</summary>
+    public static void SetAutomationEventList(ref AutomationEventList list)
+    {
+        fixed (AutomationEventList* p = &list)
+        {
+            SetAutomationEventList(p);
+        }
     }
 }

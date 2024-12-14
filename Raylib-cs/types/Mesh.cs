@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs;
@@ -201,6 +202,16 @@ public unsafe partial struct Mesh
     /// Vertex bone weight, up to 4 bones influence by vertex (skinning)
     /// </summary>
     public float* BoneWeights = default;
+
+    /// <summary>
+    /// Bones animated transformation matrices
+    /// </summary>
+    public Matrix4x4* BoneMatrices = default;
+
+    /// <summary>
+    /// Number of bones
+    /// </summary>
+    public int BoneCount;
 
     #endregion
 

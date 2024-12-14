@@ -54,7 +54,7 @@ public class Picking3d
             {
                 if (!collision.Hit)
                 {
-                    ray = GetMouseRay(GetMousePosition(), camera);
+                    ray = GetScreenToWorldRay(GetMousePosition(), camera);
 
                     // Check collision between ray and box
                     BoundingBox box = new(
@@ -68,7 +68,7 @@ public class Picking3d
                     collision.Hit = false;
                 }
 
-                ray = GetMouseRay(GetMousePosition(), camera);
+                ray = GetScreenToWorldRay(GetMousePosition(), camera);
             }
             //----------------------------------------------------------------------------------
 
@@ -119,4 +119,3 @@ public class Picking3d
         return 0;
     }
 }
-
