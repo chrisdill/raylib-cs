@@ -170,6 +170,15 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int Vector2Equals(Vector2 p, Vector2 q);
 
+    /// <summary>Compute the direction of a refracted ray</summary>
+    /// <param name="v">normalized direction of the incoming ray</param>
+    /// <param name="n">normalized normal vector of the interface of two optical media</param>
+    /// <param name="r">
+    /// ratio of the refractive index of the medium from where the ray comes
+    /// to the refractive index of the medium on the other side of the surface
+    /// </param>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector2 Vector2Refract(Vector2 v, Vector2 n, float r);
 
     /// <summary>Vector with components value 0.0f</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -275,9 +284,20 @@ public static unsafe partial class Raymath
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3RotateByAxisAngle(Vector3 v, Vector3 axis, float angle);
 
+    /// <summary>Move Vector towards target</summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector3 Vector3MoveTowards(Vector3 v, Vector3 target, float maxDistance);
+
     /// <summary>Calculate linear interpolation between two vectors</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount);
+
+    /// <summary>
+    /// Calculate cubic hermite interpolation between two vectors and their tangents
+    /// as described in the GLTF 2.0 specification: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#interpolation-cubic
+    /// </summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Vector3 Vector3CubicHermite(Vector3 v1, Vector3 tangent1, Vector3 v2, Vector3 tangent2, float amount);
 
     /// <summary>Calculate reflected vector to normal</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -417,8 +437,8 @@ public static unsafe partial class Raymath
         double right,
         double bottom,
         double top,
-        double near,
-        double far
+        double nearPlane,
+        double farPlane
     );
 
     /// <summary>
@@ -503,6 +523,13 @@ public static unsafe partial class Raymath
     /// <summary>Calculates spherical linear interpolation between two quaternions</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Quaternion QuaternionSlerp(Quaternion q1, Quaternion q2, float amount);
+
+    /// <summary>
+    /// Calculate quaternion cubic spline interpolation using Cubic Hermite Spline algorithm
+    /// as described in the GLTF 2.0 specification: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#interpolation-cubic
+    /// </summary>
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Quaternion QuaternionCubicHermiteSpline(Quaternion q1, Quaternion outTangent1, Quaternion q2, Quaternion inTangent2, float t);
 
     /// <summary>Calculate quaternion based on the rotation from one vector to another</summary>
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]

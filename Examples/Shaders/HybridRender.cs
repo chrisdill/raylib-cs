@@ -160,7 +160,7 @@ public class HybridRender
         RenderTexture2D target = new();
 
         // Load an empty framebuffer
-        target.Id = Rlgl.LoadFramebuffer(width, height);
+        target.Id = Rlgl.LoadFramebuffer();
 
         if (target.Id > 0)
         {

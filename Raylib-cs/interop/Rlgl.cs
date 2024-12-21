@@ -163,6 +163,18 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlViewport", CallingConvention = CallingConvention.Cdecl)]
     public static extern void Viewport(int x, int y, int width, int height);
 
+    /// <summary>Set clip planes distances</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlSetClipPlanes", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetClipPlanes(double nearPlane, double farPlane);
+
+    /// <summary>Get cull plane distance near</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlGetCullDistanceNear", CallingConvention = CallingConvention.Cdecl)]
+    public static extern double GetCullDistanceNear();
+
+    /// <summary>Get cull plane distance far</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlGetCullDistanceFar", CallingConvention = CallingConvention.Cdecl)]
+    public static extern double GetCullDistanceFar();
+
 
     // ------------------------------------------------------------------------------------
     // Functions Declaration - Vertex level operations
@@ -316,9 +328,17 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlDisableFramebuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void DisableFramebuffer();
 
+    /// <summary>Get the currently active render texture (fbo), 0 for default framebuffer</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlGetActiveFramebuffer", CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint GetActiveFramebuffer();
+
     /// <summary>Blit active framebuffer to main framebuffer</summary>
     [DllImport(NativeLibName, EntryPoint = "rlBlitFramebuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void BlitFramebuffer();
+
+    /// <summary>Bind framebuffer (FBO)</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlBindFramebuffer", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void BindFramebuffer(uint target, uint framebuffer);
 
     /// <summary>Activate multiple draw color buffers</summary>
     [DllImport(NativeLibName, EntryPoint = "rlActiveDrawBuffers", CallingConvention = CallingConvention.Cdecl)]
@@ -358,6 +378,10 @@ public static unsafe partial class Rlgl
     /// <summary>Disable backface culling</summary>
     [DllImport(NativeLibName, EntryPoint = "rlDisableBackfaceCulling", CallingConvention = CallingConvention.Cdecl)]
     public static extern void DisableBackfaceCulling();
+
+    /// <summary>Color mask control</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlColorMask", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void ColorMask(CBool r, CBool g, CBool b, CBool a);
 
     /// <summary>Set face culling mode</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetCullFace", CallingConvention = CallingConvention.Cdecl)]
@@ -548,6 +572,7 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlUnloadVertexBuffer", CallingConvention = CallingConvention.Cdecl)]
     public static extern void UnloadVertexBuffer(uint vboId);
 
+    /// <summary>Set vertex attribute data configuration</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetVertexAttribute", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetVertexAttribute(
         uint index,
@@ -555,7 +580,7 @@ public static unsafe partial class Rlgl
         int type,
         CBool normalized,
         int stride,
-        void* pointer
+        int offset
     );
 
     [DllImport(NativeLibName, EntryPoint = "rlSetVertexAttributeDivisor", CallingConvention = CallingConvention.Cdecl)]
@@ -593,9 +618,9 @@ public static unsafe partial class Rlgl
     [DllImport(NativeLibName, EntryPoint = "rlLoadTextureDepth", CallingConvention = CallingConvention.Cdecl)]
     public static extern uint LoadTextureDepth(int width, int height, CBool useRenderBuffer);
 
-    /// <summary>Load texture cubemap</summary>
+    /// <summary>Load texture cubemap data</summary>
     [DllImport(NativeLibName, EntryPoint = "rlLoadTextureCubemap", CallingConvention = CallingConvention.Cdecl)]
-    public static extern uint LoadTextureCubemap(void* data, int size, PixelFormat format);
+    public static extern uint LoadTextureCubemap(void* data, int size, PixelFormat format, int mipmapCount);
 
     /// <summary>Update GPU texture with new data</summary>
     [DllImport(NativeLibName, EntryPoint = "rlUpdateTexture", CallingConvention = CallingConvention.Cdecl)]
@@ -643,7 +668,7 @@ public static unsafe partial class Rlgl
 
     /// <summary>Load an empty framebuffer</summary>
     [DllImport(NativeLibName, EntryPoint = "rlLoadFramebuffer", CallingConvention = CallingConvention.Cdecl)]
-    public static extern uint LoadFramebuffer(int width, int height);
+    public static extern uint LoadFramebuffer();
 
     /// <summary>Attach texture/renderbuffer to a framebuffer</summary>
     [DllImport(NativeLibName, EntryPoint = "rlFramebufferAttach", CallingConvention = CallingConvention.Cdecl)]
@@ -698,6 +723,10 @@ public static unsafe partial class Rlgl
     /// <summary>Set shader value matrix</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetUniformMatrix", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetUniformMatrix(int locIndex, Matrix4x4 mat);
+
+    /// <summary>Set shader value matrices</summary>
+    [DllImport(NativeLibName, EntryPoint = "rlSetUniformMatrices", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetUniformMatrices(int locIndex, Matrix4x4* mat, int count);
 
     /// <summary>Set shader value sampler</summary>
     [DllImport(NativeLibName, EntryPoint = "rlSetUniformSampler", CallingConvention = CallingConvention.Cdecl)]

@@ -99,7 +99,7 @@ public class MeshPicking
             Color cursorColor = Color.White;
 
             // Get ray and test against objects
-            ray = GetMouseRay(GetMousePosition(), camera);
+            ray = GetScreenToWorldRay(GetMousePosition(), camera);
 
             // Check ray collision aginst ground quad
             RayCollision groundHitInfo = GetRayCollisionQuad(ray, g0, g1, g2, g3);

@@ -128,7 +128,7 @@ public enum KeyboardKey
 
     // Android key buttons
     Back = 4,
-    Menu = 82,
+    Menu = 5,
     VolumeUp = 24,
     VolumeDown = 25
 }
@@ -305,7 +305,7 @@ public enum GamepadButton
     RightFaceUp,
 
     /// <summary>
-    /// Gamepad right button right (i.e. PS3: Square, Xbox: X)
+    /// Gamepad right button right (i.e. PS3: Circle, Xbox: B)
     /// </summary>
     RightFaceRight,
 
@@ -315,7 +315,7 @@ public enum GamepadButton
     RightFaceDown,
 
     /// <summary>
-    /// Gamepad right button left (i.e. PS3: Circle, Xbox: B)
+    /// Gamepad right button left (i.e. PS3: Square, Xbox: X)
     /// </summary>
     RightFaceLeft,
 
@@ -410,11 +410,6 @@ public unsafe partial struct VrDeviceInfo
     /// HMD vertical size in meters
     /// </summary>
     public float VScreenSize;
-
-    /// <summary>
-    /// HMD screen center in meters
-    /// </summary>
-    public float VScreenCenter;
 
     /// <summary>
     /// HMD distance between eye and display in meters
